@@ -9,20 +9,13 @@
     %meta{:content => "width=device-width, initial-scale=1, viewport-fit=cover", :name => "viewport"}/
     %meta{:content => "blue", :name => "theme-color"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
-    %link{:href => "/images/favicon.ico", :rel => "shortcut icon", :sizes => "16x16 32x32 48x48", :type => "image/x-icon"}/
+    %link{:href => asset_pack_path("media/images/favicon.ico"), :rel => "shortcut icon", :sizes => "16x16 32x32 48x48", :type => "image/x-icon"}/
     %link{:color => "blue", :href => "/images/govuk-mask-icon.svg", :rel => "mask-icon"}/
-    %link{:href => "/images/govuk-apple-touch-icon-180x180.png", :rel => "apple-touch-icon", :sizes => "180x180"}/
-    %link{:href => "/images/govuk-apple-touch-icon-167x167.png", :rel => "apple-touch-icon", :sizes => "167x167"}/
-    %link{:href => "/images/govuk-apple-touch-icon-152x152.png", :rel => "apple-touch-icon", :sizes => "152x152"}/
-    %link{:href => "/images/govuk-apple-touch-icon.png", :rel => "apple-touch-icon"}/
-    / [if !IE 8]><!
-    / %link{:href => "/govuk-frontend/all.css", :rel => "stylesheet"}/
-    / <![endif]
-    /[if IE 8]
-      / <link href="/govuk-frontend/all-ie8.css" rel="stylesheet" />
-    /[if lt IE 9]
-      / <script src="/html5-shiv/html5shiv.js"></script>
-    %meta{:content => "<YOUR-DOMAIN>/images/govuk-opengraph-image.png", :property => "og:image"}/
+    %link{:href => asset_pack_path("media/images/govuk-apple-touch-icon-180x180.png"), :rel => "apple-touch-icon", :sizes => "180x180"}/
+    %link{:href => asset_pack_path("media/images/govuk-apple-touch-icon-167x167.png"), :rel => "apple-touch-icon", :sizes => "167x167"}/
+    %link{:href => asset_pack_path("media/images/govuk-apple-touch-icon-152x152.png"), :rel => "apple-touch-icon", :sizes => "152x152"}/
+    %link{:href => asset_pack_path("media/images/govuk-apple-touch-icon.png"), :rel => "apple-touch-icon"}/
+    = tag :meta, property: 'og:image', content: asset_pack_path('media/images/govuk-opengraph-image.png')
   %body.govuk-template__body.app-body-class{"data-other" => "report:details", "data-test" => "My value"}
     :javascript
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
