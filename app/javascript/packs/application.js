@@ -3,16 +3,9 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-// import '../stylesheets/application.scss';
-// require("@rails/ujs").start()
-// initialise govk design system
-// const GOVUKFrontend = require('govuk-frontend')
-// $(function() { GOVUKFrontend.initAll() })
-
+require("@rails/ujs").start();
 require.context('govuk-frontend/govuk/assets');
 import '../stylesheets/application.scss';
-require("@rails/ujs").start();
-// require("turbolinks").start();
 // require("@rails/activestorage").start();
 // require("channels");
 initAll();
