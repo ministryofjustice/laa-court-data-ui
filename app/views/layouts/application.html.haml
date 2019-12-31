@@ -60,7 +60,9 @@
             will help us to improve it.
       %a.govuk-back-link{:href => "#"} Back
       %main#main-content.govuk-main-wrapper.app-main-class{:role => "main"}
-        %h1.govuk-heading-xl Customised page template
+        %h1.govuk-heading-xl
+          = yield(:page_title)
+        = yield
     %footer.govuk-footer{:role => "contentinfo"}
       .govuk-width-container
         .govuk-footer__meta
