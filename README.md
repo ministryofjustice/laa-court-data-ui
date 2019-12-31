@@ -3,33 +3,43 @@ An interace to the ???[laa-common-platform-connector](https://github.com/ministr
 
 
 ## System dependencies
+- postgres
 - ruby 2.7.0+
 - rails 6.0.2.1+
+- nvm
 - node 13.5.0+
 - yarn 1.21.1+
 
 ## Setup
 
+Clone:
 ```
 # clone
 git clone https://github.com/ministryofjustice/laa-common-platform-ui
 cd laa-common-platform-ui
+```
 
+Install OS dependencies (macosx):
+```
+brew bundle
+```
+
+Install app dependencies:
+```
 # install ruby if required
 rvm install 2.7.0
+
+# install gems
+bundle install
+
+# setup database
+rails db:setup
 
 # install node (using projects version)
 nvm install
 
-# install yarn. Must be yarn >= 1.0.0
-brew install yarn
-brew upgrade yarn
-
 # install node modules using yarn
 yarn install --frozen-lockfile
-
-# setup database
-rake db:setup
 ```
 
 ## Assets

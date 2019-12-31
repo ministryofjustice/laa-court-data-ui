@@ -1,0 +1,50 @@
+{
+  "entries": {
+    "brew": {
+      "postgresql": {
+        "version": "12.1",
+        "bottle": {
+          "cellar": "/usr/local/Cellar",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/postgresql-12.1.catalina.bottle.tar.gz",
+              "sha256": "309377407d7cb766d238f063c10210c4e48d48fcdadd62560346c2d4af782bc4"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/postgresql-12.1.mojave.bottle.tar.gz",
+              "sha256": "2e97d7d591916d79f8e8a5ed0023c6d1e31e27a5b289d31d9b5cdf51e1d3a040"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/postgresql-12.1.high_sierra.bottle.tar.gz",
+              "sha256": "754aac4d7055bdd801f91eef7e36ba93ee5fafd931e0a13a02bcd64e71ff34a9"
+            }
+          }
+        },
+        "options": {
+          "restart_service": true
+        }
+      },
+      "nvm": {
+        "version": "0.35.2",
+        "bottle": false
+      },
+      "yarn": {
+        "version": "1.21.1",
+        "bottle": false
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "high_sierra": {
+        "HOMEBREW_VERSION": "2.2.2",
+        "HOMEBREW_PREFIX": "/usr/local",
+        "Homebrew/homebrew-core": "c7e31596e9613a65fe5e4eb157453716dec5612f",
+        "CLT": "10.1.0.0.1.1539992718",
+        "Xcode": "10.2.1",
+        "macOS": "10.13.6"
+      }
+    }
+  }
+}
