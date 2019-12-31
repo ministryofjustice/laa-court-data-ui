@@ -41,12 +41,18 @@ To run app locally (development mode) you will therefore need to run both the `r
 
 To run the app locally you will need to run both a rails server and webpack dev server.
 
+You can do this in two different terminals
 ```
 # in one terminal
 rails s
 
 # in another terminal
 bin/webpack-dev-server
+```
+
+or using a single terminal and foreman
+```
+foreman start
 ```
 
 ## Testing
