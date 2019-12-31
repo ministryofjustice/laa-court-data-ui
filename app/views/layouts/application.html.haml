@@ -3,6 +3,9 @@
   %head
     %meta{:charset => "utf-8"}/
     %title GOV.UK - Customised page template
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'application', defer: true
+
     %meta{:content => "width=device-width, initial-scale=1, viewport-fit=cover", :name => "viewport"}/
     %meta{:content => "blue", :name => "theme-color"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
@@ -13,19 +16,19 @@
     %link{:href => "/images/govuk-apple-touch-icon-152x152.png", :rel => "apple-touch-icon", :sizes => "152x152"}/
     %link{:href => "/images/govuk-apple-touch-icon.png", :rel => "apple-touch-icon"}/
     / [if !IE 8]><!
-    %link{:href => "/govuk-frontend/all.css", :rel => "stylesheet"}/
+    / %link{:href => "/govuk-frontend/all.css", :rel => "stylesheet"}/
     / <![endif]
     /[if IE 8]
-      <link href="/govuk-frontend/all-ie8.css" rel="stylesheet" />
+      / <link href="/govuk-frontend/all-ie8.css" rel="stylesheet" />
     /[if lt IE 9]
-      <script src="/html5-shiv/html5shiv.js"></script>
+      / <script src="/html5-shiv/html5shiv.js"></script>
     %meta{:content => "<YOUR-DOMAIN>/images/govuk-opengraph-image.png", :property => "og:image"}/
   %body.govuk-template__body.app-body-class{"data-other" => "report:details", "data-test" => "My value"}
     :javascript
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     %a.govuk-skip-link{:href => "#main-content"} Skip to main content
     %header.govuk-header{"data-module" => "govuk-header", :role => "banner"}
-      .govuk-header__container.app-width-container
+      .govuk-header__container.govuk-width-container
         .govuk-header__logo
           %a.govuk-header__link.govuk-header__link--homepage{:href => "#"}
             %span.govuk-header__logotype
