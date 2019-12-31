@@ -2,7 +2,8 @@
 %html.govuk-template.app-html-class{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}/
-    %title GOV.UK - Customised page template
+    %title
+      = content_for?(:page_title) ? yield(:page_title) : 'Common platform UI'
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application', defer: true
 
@@ -32,7 +33,7 @@
                 GOV.UK
         .govuk-header__content
           %a.govuk-header__link.govuk-header__link--service-name{:href => "#"}
-            Service name
+            = service_name
           %button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls" => "navigation", "aria-label" => "Show or hide Top Level Navigation", :type => "button"} Menu
           %nav
             %ul#navigation.govuk-header__navigation{"aria-label" => "Top Level Navigation"}
