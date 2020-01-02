@@ -28,8 +28,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'capybara'
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.9'
+  gem 'rails-controller-testing'
 end
 
 group :development do
