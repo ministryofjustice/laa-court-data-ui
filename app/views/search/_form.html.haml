@@ -1,6 +1,8 @@
-= form_with url: search_path do |f|
+= form_with url: search_path, local: true do |f|
   = f.label(:query, 'Find a case', class: 'govuk-label')
   %span.govuk-hint
     Search by case number, MAAT number or defendant name
   = f.text_field(:query, class: 'govuk-input')
-  = f.submit(:search, class: 'govuk-button', 'data-module' => 'govuk-button')
+  %br
+  %br
+  = f.button('Search', value: :search, class: 'govuk-button', 'data-module' => 'govuk-button')

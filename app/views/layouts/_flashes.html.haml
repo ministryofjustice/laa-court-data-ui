@@ -1,0 +1,7 @@
+.govuk-error-summary
+  .govuk-error-message
+  - flash.each do |key, value|
+    .govuk-error-summary__title
+      = key
+    .govuk-error-summary__body
+      = value

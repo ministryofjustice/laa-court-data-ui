@@ -1,11 +1,13 @@
 !!!
 %html.govuk-template.app-html-class{:lang => "en"}
   %head
-    %meta{:charset => "utf-8"}/
     %title
       = content_for?(:page_title) ? yield(:page_title) : 'Common platform UI'
+
+    %meta{:charset => "utf-8"}/
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application', defer: true
+    = csrf_meta_tags
 
     %meta{:content => "width=device-width, initial-scale=1, viewport-fit=cover", :name => "viewport"}/
     %meta{:content => "blue", :name => "theme-color"}/
@@ -46,6 +48,7 @@
               %li.govuk-header__navigation-item
                 %a.govuk-header__link{:href => "#3"}
                   Navigation item 3
+
     .govuk-width-container.app-width-container--wide
       .govuk-phase-banner
         %p.govuk-phase-banner__content
@@ -57,6 +60,7 @@
             will help us to improve it.
       %a.govuk-back-link{:href => "#"} Back
       %main#main-content.govuk-main-wrapper.app-main-class{:role => "main"}
+        = render partial: 'layouts/flashes' unless flash.empty?
         %h1.govuk-heading-xl
           = yield(:page_title)
         = yield
