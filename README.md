@@ -66,8 +66,19 @@ foreman start
 ```
 
 ## Testing
-TODO
 
+#### Ruby 2.7 deprecation warnings
+There are a lot of warnings related to ruby 2.7 and rails 6.0.2.1. These are largely related to use of keyword arguments, such as below, and should be fixed
+in rails patches in the future:
+```
+..action_dispatch/middleware/stack.rb:37: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+```
+
+To suppress for now you can prefix any call that raises such warnings with `RUBYOPT=-W:no-deprecated`:
+```
+RUBYOPT=-W:no-deprecated rspec
+RUBYOPT=-W:no-deprecated rails server
+```
 
 ## Notes
 
