@@ -1,0 +1,7 @@
+.govuk-heading-xl
+  = page_title('Search')
+
+.govuk-body
+  = render 'query_form'
+
+= render 'results' if @results

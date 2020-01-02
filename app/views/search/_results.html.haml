@@ -1,0 +1,6 @@
+.govuk-heading-l
+  = "Search for \"#{@query}\" returned #{pluralize(@results.size, 'result')}"
+- @results&.each do |result|
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      = result

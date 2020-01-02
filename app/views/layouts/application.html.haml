@@ -34,7 +34,7 @@
               %span.govuk-header__logotype-text
                 GOV.UK
         .govuk-header__content
-          %a.govuk-header__link.govuk-header__link--service-name{:href => "#"}
+          %a.govuk-header__link.govuk-header__link--service-name{:href => root_path}
             = service_name
           %button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls" => "navigation", "aria-label" => "Show or hide Top Level Navigation", :type => "button"} Menu
           %nav
@@ -61,9 +61,13 @@
       %a.govuk-back-link{:href => "#"} Back
       %main#main-content.govuk-main-wrapper.app-main-class{:role => "main"}
         = render partial: 'layouts/flashes' unless flash.empty?
-        %h1.govuk-heading-xl
-          = yield(:page_title)
-        = yield
+
+        .govuk-grid-row
+          .govuk-grid-column-two-thirds
+            %h1.govuk-heading-xl
+              = yield(:page_title)
+            = yield
+
     %footer.govuk-footer{:role => "contentinfo"}
       .govuk-width-container
         .govuk-footer__meta

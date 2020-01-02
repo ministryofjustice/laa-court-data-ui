@@ -4,28 +4,40 @@ class SearchController < ApplicationController
   before_action :set_search_args
 
   def new
-    @search = CommonPlatformSearch.new
+    @search_type = search_params[:search_type]
   end
 
   def create
-    @search = CommonPlatformSearch.new(query: @query, filter: @filter)
-    @results = @search.call
-    @message = "search executed for \"#{search_params[:query]}\" returned #{@results.size} results"
-    redirect_to search_path, notice: @message
+    redirect_to action: :index, filter: search_params[:search_type]
   end
 
   def index
+    if @filter && @query
+      @results = Search.new(query: @query, filter: @filter).call
+    end
+
+    set_search_options
   end
 
   private
 
   def set_search_args
-    # search_params.select {|k, v| %w[query filter].include?(k) }
     @query = search_params[:query]
-    @filter = search_params[:filter] || 'ref_number'
+    @filter = search_params[:filter] || 'case_number'
+  end
+
+  def set_search_options
+    case @filter
+    when 'defendant'
+      @label = 'Find a defendant'
+      @hint = 'Search by MAAT number or defendant name'
+    else
+      @label = 'Find a case'
+      @hint = 'Search by case number'
+    end
   end
 
   def search_params
-    params.permit(:authenticity_token, :button, :query, :filter)
+    params.permit(:authenticity_token, :button, :search_type, :query, :filter)
   end
 end

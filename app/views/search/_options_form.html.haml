@@ -1,0 +1,19 @@
+= form_with url: search_new_path, local: true do |f|
+  .govuk-form-group
+    %fieldset.govuk-fieldset{ 'aria-describedby' => "search-option-hint" }
+      %legend.govuk-fieldset__legend.govuk-fieldset__legend--xl
+        %h1.govuk-fieldset__heading
+          Choose search option
+
+      %span#search-option-hint.govuk-hint
+        This is a hint for search choice
+
+      .govuk-radios
+        = f.collection_radio_buttons(:search_type, [["By case number", :case_number], ['By defendant', :defendant]], :last, :first) do |b|
+          .govuk-radios__item
+            = b.radio_button(class: 'govuk-radios__input', checked: @search_type)
+            = b.label(class: 'govuk-label govuk-radios__label', checked: @search_type)
+
+      %br
+      %br
+      = f.button('Continue', value: :continue, class: 'govuk-button', 'data-module' => 'govuk-button')
