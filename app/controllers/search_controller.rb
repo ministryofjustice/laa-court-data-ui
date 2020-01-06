@@ -4,11 +4,11 @@ class SearchController < ApplicationController
   before_action :set_search_args
 
   def new
-    @search_type = search_params[:search_type]
+    @search_option = search_params[:search_option] || helpers.search_options.first
   end
 
   def create
-    redirect_to action: :index, filter: search_params[:search_type]
+    redirect_to action: :index, filter: search_params[:search_option]
   end
 
   def index
@@ -38,6 +38,6 @@ class SearchController < ApplicationController
   end
 
   def search_params
-    params.permit(:authenticity_token, :button, :search_type, :query, :filter)
+    params.permit(:authenticity_token, :button, :search_option, :query, :filter)
   end
 end
