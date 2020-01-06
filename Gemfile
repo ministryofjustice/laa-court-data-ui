@@ -28,17 +28,20 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-group :development, :test do
-  gem 'awesome_print'
+group :test do
   gem 'brakeman'
   gem 'capybara'
-  gem 'pry-byebug'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.9'
   gem 'rubocop', '~> 0.78', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+end
+
+group :development, :test do
+  gem 'awesome_print'
+  gem 'pry-byebug'
 end
 
 group :development do
