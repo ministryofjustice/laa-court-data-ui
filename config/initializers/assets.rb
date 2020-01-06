@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # WE ARE NOT USING sprockets/asset pipeline
 #
 # To enable you have to change 

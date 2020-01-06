@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe "Choose search scenario", :type => :request do
+RSpec.describe 'Choose search scenario', type: :request do
   it 'renders search#new' do
     get '/search/new'
     expect(response).to render_template('search/new')
@@ -8,7 +9,7 @@ RSpec.describe "Choose search scenario", :type => :request do
   end
 end
 
-RSpec.describe "Search by case", :type => :request do
+RSpec.describe 'Search by case', type: :request do
   it 'renders search#index' do
     get '/search'
     expect(response).to render_template('search/index')
