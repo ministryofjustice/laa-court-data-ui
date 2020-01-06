@@ -7,6 +7,6 @@ class Search
   end
 
   def call
-    ['first result from CP','second result from CP']
+    ['first result from CP', 'second result from CP']
   end
 end

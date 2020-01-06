@@ -14,10 +14,7 @@ class SearchController < ApplicationController
   end
 
   def index
-    if @filter && @query
-      @results = Search.new(query: @query, filter: @filter).call
-    end
-
+    @results = Search.new(query: @query, filter: @filter).call if @filter && @query
     set_search_options
   end
 

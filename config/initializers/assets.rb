@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # WE ARE NOT USING sprockets/asset pipeline
 #
-# To enable you have to change 
+# To enable you have to change
 # 1. add require "sprockets/railtie" to ../config/application.rb
 # 2. uncomment/cong=figure references assets in ../config/environments/<env>.rb
 # 3. provide typical rails <= 4 assets dir structure

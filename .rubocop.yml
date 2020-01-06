@@ -8,13 +8,35 @@ AllCops:
   TargetRubyVersion: 2.7
   Exclude:
     - bin/bundle
+    - bin/rails
+    - bin/rake
+    - bin/yarn
+    - bin/webpack
+    - bin/webpack-dev-server
     - db/schema.rb
     - db/seeds.rb
     - spec/spec_helpers.rb
     - spec/rails_helper.rb
     - node_modules/**/*
 
+Capybara/FeatureMethods:
+  Enabled: false
+
 Layout/LineLength:
   Max: 100
   IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*']
   AllowHeredoc: true
+
+Rails/FilePath:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Exclude:
+    - spec/features/**/*
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/features/**/*
+
+Style/Documentation:
+  Enabled: false
