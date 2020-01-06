@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe 'Search', :type => :feature do
+RSpec.describe 'Search', type: :feature do
   scenario 'user chooses to search by case' do
     visit '/'
 
