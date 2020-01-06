@@ -65,6 +65,7 @@ GEM
       msgpack (~> 1.0)
     bootsnap (1.4.5-java)
       msgpack (~> 1.0)
+    brakeman (4.7.2)
     builder (3.2.4)
     byebug (11.0.1)
     capybara (3.30.0)
@@ -286,6 +287,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bootsnap (>= 1.4.2)
+  brakeman
   capybara
   foreman
   haml-rails (~> 2.0.1)

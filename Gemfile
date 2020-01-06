@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'brakeman'
   gem 'capybara'
   gem 'pry-byebug'
   gem 'rails-controller-testing'
