@@ -7,8 +7,14 @@ AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.7
   Exclude:
+    - bin/bundle
     - db/schema.rb
     - db/seeds.rb
     - spec/spec_helpers.rb
     - spec/rails_helper.rb
     - node_modules/**/*
+
+Layout/LineLength:
+  Max: 100
+  IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*']
+  AllowHeredoc: true
