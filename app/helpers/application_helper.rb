@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def search_options
-    [["By case number", :case_number], ['By defendant', :defendant]]
+    [['By case number', :case_number], ['By defendant', :defendant]]
   end
 
   def contextual_title

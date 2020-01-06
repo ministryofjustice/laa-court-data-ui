@@ -1,7 +1,7 @@
 # frozen_string_literal: true
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe "Search", :type => :feature do
+RSpec.describe 'Search', :type => :feature do
   scenario 'user chooses to search by case' do
     visit '/'
 
@@ -25,6 +25,6 @@ RSpec.describe "Search", :type => :feature do
 
     fill_in 'query', with: 'T20200001'
     click_button 'Search'
-    expect(page).to have_text "Search for \"T20200001\" returned"
+    expect(page).to have_text 'Search for "T20200001" returned'
   end
 end
