@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -30,8 +31,12 @@ group :development, :test do
   gem 'awesome_print'
   gem 'capybara'
   gem 'pry-byebug'
-  gem 'rspec-rails', '~> 3.9'
   gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 3.9'
+  gem 'rubocop', '~> 0.78', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-performance', require: false
 end
 
 group :development do
