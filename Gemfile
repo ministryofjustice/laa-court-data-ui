@@ -5,6 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 
+# rails GDS design system form builder
+gem 'govuk_design_system_formbuilder', '~> 1.1'
+
 gem 'haml-rails', '~> 2.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
