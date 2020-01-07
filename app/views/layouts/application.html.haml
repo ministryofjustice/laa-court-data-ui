@@ -58,7 +58,9 @@
             This is a new service – your
             %a.govuk-link{:href => "#"} feedback
             will help us to improve it.
-      %a.govuk-back-link{:href => "#"} Back
+
+      = link_to 'Back', back_page_path, class: 'govuk-back-link' unless current_page?(back_page_path)
+
       %main#main-content.govuk-main-wrapper.app-main-class{:role => "main"}
         = render partial: 'layouts/flashes' unless flash.empty?
 

@@ -4,6 +4,7 @@ class SearchController < ApplicationController
   protect_from_forgery with: :exception
 
   before_action :set_search_args
+  after_action :set_back_page_path, only: :new
 
   def new
     @search_option = search_params[:search_option] || helpers.search_options.first
