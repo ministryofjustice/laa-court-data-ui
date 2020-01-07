@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Search', type: :feature do
+RSpec.feature 'Search', type: :feature do
   scenario 'user chooses to search by defendant' do
     visit '/'
 
