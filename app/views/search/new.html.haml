@@ -1,3 +1,10 @@
-= page_title('Search options')
+= form_with url: search_new_path, local: true do |f|
+  = f.govuk_collection_radio_buttons :search_option,
+    search_options,
+    :id,
+    :name,
+    :description,
+    legend: { text: 'How do you want to search?', size: 'xl' },
+    hint_text: 'choose an option'
 
-= render 'options_form'
+  = f.govuk_submit('Continue')

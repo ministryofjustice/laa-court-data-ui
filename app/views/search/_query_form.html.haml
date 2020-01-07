@@ -1,9 +1,0 @@
-= form_with url: search_path, local: true do |f|
-  = f.label(:query, @label, class: 'govuk-label')
-  %span.govuk-hint
-    = @hint
-  = f.hidden_field(:filter, value: @filter)
-  = f.text_field(:query, value: @query, class: 'govuk-input')
-  %br
-  %br
-  = f.button('Search', value: :search, class: 'govuk-button', 'data-module' => 'govuk-button')
