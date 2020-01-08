@@ -35,6 +35,7 @@ end
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'colorize'
   gem 'pry-byebug'
 end
 
