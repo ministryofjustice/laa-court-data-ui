@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class Search
   include ActiveModel::Model
 
-  attr_writer :id
   attr_writer :filter
   attr_accessor :query
 
@@ -16,7 +17,7 @@ class Search
   def self.filters
     [
       SearchFilter.new(id: :case_number, name: 'By case number', description: nil),
-      SearchFilter.new(id: :defendant, name: 'By defendant', description: 'Name or MAAT reference'),
+      SearchFilter.new(id: :defendant, name: 'By defendant', description: 'Name or MAAT reference')
     ]
   end
 
