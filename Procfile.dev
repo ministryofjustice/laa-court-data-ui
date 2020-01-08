@@ -1,0 +1,5 @@
+# for local development run `foreman start -f Procfile.dev`
+# for local heroku - run `heroku local`
+#
+web: RUBYOPT=-W:no-deprecated rails s -p 3000
+assets: bin/webpack-dev-server
