@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'colorize'
-
 class SearchesController < ApplicationController
   protect_from_forgery with: :exception
 
