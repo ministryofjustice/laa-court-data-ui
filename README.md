@@ -7,7 +7,7 @@ An interace to the ???[laa-common-platform-connector](https://github.com/ministr
 - ruby 2.7.0+
 - rails 6.0.2.1+
 - nvm
-- node 13.5.0+
+- node 12.4.1+
 - yarn 1.21.1+
 
 ## Setup
@@ -19,23 +19,26 @@ git clone https://github.com/ministryofjustice/laa-common-platform-ui
 cd laa-common-platform-ui
 ```
 
-Install OS dependencies (macosx):
+Install on MacOSX:
 ```
-brew bundle
+# check ./Makefile for individual installation steps
+make install
 ```
+
 
 Install app dependencies:
 ```
 # install ruby if required
-rvm install 2.7.0
+rvm install $(cat .ruby-version)
 
 # install gems
 bundle install
 
 # setup database
 rails db:setup
+rails db:migrate
 
-# install node (using projects version)
+# install node (using projects version `.nvmrc`)
 nvm install
 
 # install node modules using yarn
@@ -78,6 +81,24 @@ To suppress for now you can prefix any call that raises such warnings with `RUBY
 ```
 RUBYOPT=-W:no-deprecated rspec
 RUBYOPT=-W:no-deprecated rails server
+```
+
+
+## Makefile
+You can use the `make` command as follows:
+
+```
+# get help - check what make commands are available
+make
+
+# simple first install (assuming you have `rvm` and `nvm` installed)
+make install
+
+#run the app
+make run
+
+# run the entire test suite
+make test
 ```
 
 ## Notes
