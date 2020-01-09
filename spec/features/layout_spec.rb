@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Gov UK Layout', type: :feature do
+RSpec.feature 'Gov UK Layout', type: :feature do
   scenario 'GDS styled home page' do
     visit '/'
 

@@ -1,0 +1,12 @@
+= form_with model: @search_filter, local: true do |f|
+  = f.govuk_error_summary
+
+  = f.govuk_collection_radio_buttons :id,
+    Search.filters,
+    :id,
+    :name,
+    :description,
+    legend: { text: 'How do you want to search?', size: 'xl' },
+    hint_text: 'choose an option'
+
+  = f.govuk_submit('Continue')

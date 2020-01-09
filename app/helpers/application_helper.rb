@@ -9,10 +9,6 @@ module ApplicationHelper
     content_for :page_title, title || contextual_title
   end
 
-  def search_options
-    [['By case number', :case_number], ['By defendant', :defendant]]
-  end
-
   def contextual_title
     page_title [controller_name, action_name].join(' ').titleize
   end

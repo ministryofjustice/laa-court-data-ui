@@ -1,21 +1,18 @@
 # frozen_string_literal: true
 
-class SearchController < ApplicationController
+class SearchesController < ApplicationController
   protect_from_forgery with: :exception
 
   before_action :set_search_args
 
   def new
-    @search_option = search_params[:search_option] || helpers.search_options.first
+    @search = Search.new
   end
 
   def create
-    redirect_to action: :index, filter: search_params[:search_option]
-  end
-
-  def index
-    @results = Search.new(query: @query, filter: @filter).call if @filter && @query
-    set_search_options
+    @search = Search.new(query: @query, filter: @filter)
+    @results = @search.execute
+    render 'new'
   end
 
   private
@@ -23,9 +20,10 @@ class SearchController < ApplicationController
   def set_search_args
     @query = search_params[:query]
     @filter = search_params[:filter] || 'case_number'
+    set_view_options
   end
 
-  def set_search_options
+  def set_view_options
     case @filter
     when 'defendant'
       @label = 'Find a defendant'
@@ -37,6 +35,6 @@ class SearchController < ApplicationController
   end
 
   def search_params
-    params.permit(:authenticity_token, :button, :search_option, :query, :filter)
+    params.require(:search).permit(:query, :filter)
   end
 end
