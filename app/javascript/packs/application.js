@@ -4,11 +4,11 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start();
+require("govuk-frontend").initAll();
 require.context('govuk-frontend/govuk/assets');
 import '../stylesheets/application.scss';
 // require("@rails/activestorage").start();
 // require("channels");
-initAll();
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
