@@ -61,7 +61,7 @@ executors:
           TZ: Europe/London
           GITHUB_TEAM_NAME_SLUG: laa-get-paid
           REPO_NAME: lcpui
-      - image: circleci/postgres:9.6-alpine
+      - image: circleci/postgres:11.6-alpine-ram
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: "circleci"
