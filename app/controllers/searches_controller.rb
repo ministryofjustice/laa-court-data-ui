@@ -26,11 +26,11 @@ class SearchesController < ApplicationController
   def set_view_options
     case @filter
     when 'defendant'
-      @label = 'Find a defendant'
-      @hint = 'Search by MAAT number or defendant name'
+      @label = I18n.t('search.defendant_label')
+      @hint = I18n.t('search.defendant_label_hint')
     else
-      @label = 'Find a case'
-      @hint = 'Search by case number'
+      @label = I18n.t('search.case_number_label')
+      @hint = I18n.t('search.case_number_label_hint')
     end
   end
 

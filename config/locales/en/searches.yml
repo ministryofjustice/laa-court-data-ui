@@ -1,0 +1,19 @@
+---
+en:
+  search:
+    case_number_label: Find a case
+    case_number_label_hint: Search by case number
+    defendant_label: Find a defendant
+    defendant_label_hint: Search by MAAT number or defendant name
+    page_title: Search
+    result_count:
+      one: Search for "%{query}" returned 1 result
+      other: Search for "%{query}" returned %{count} results
+      zero: Search for "%{query}" returned 0 result
+  search_filter:
+    label_hint: choose an option
+    legend_text: How do you want to search?
+    page_title: Search Filters
+    radio_case_number_label: By case number
+    radio_defendant_label: By defendant
+    radio_defendant_label_hint: Name or MAAT reference
