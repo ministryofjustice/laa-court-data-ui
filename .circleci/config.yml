@@ -1,0 +1,178 @@
+version: 2.1
+
+orbs:
+  slack: circleci/slack@3.4.1
+
+references:
+  _restore-bundle: &restore-bundle
+    restore_cache:
+      keys:
+        - v1-bundle-{{ checksum "Gemfile.lock" }}
+        # fallback to using the latest cache if no exact match is found
+        - v1-bundle-
+
+  _install-bundle: &install-bundle
+    run:
+      name: Install gems
+      command: |
+        bundler_version=$(cat Gemfile.lock | tail -1 | tr -d " ")
+        gem install bundler -v $bundler_version
+        bundle config set path 'vendor/bundle'
+        bundle check || bundle install --jobs=4 --retry=3
+
+  _save-bundle: &save-bundle
+    save_cache:
+      key: v1-bundle-{{ checksum "Gemfile.lock" }}
+      paths:
+        - vendor/bundle
+
+  _restore-assets: &restore-assets
+    restore_cache:
+      keys:
+        - v1-yarn-{{ checksum "yarn.lock" }}
+        # fallback to using the latest asset cache if no exact match is found
+        - v1-yarn-
+
+  _install-assets: &install-assets
+    run:
+      name: Install and compile assets
+      command: |
+        RUBYOPT=-W:no-deprecated \
+        bundle exec rails assets:precompile
+
+  _save-assets: &save-assets
+    save_cache:
+      key: v2-yarn-{{ checksum "yarn.lock" }}
+      paths:
+        - node_modules
+        - public/packs-test
+
+# ------------------
+# EXECUTORS
+# ------------------
+executors:
+  test-executor:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/ruby:2.7.0-node-browsers
+        environment:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/lcpui_test
+          TZ: Europe/London
+      - image: circleci/postgres:11.6-alpine-ram
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: "circleci"
+          POSTGRES_DB: lcpui_test
+
+# ------------------
+# COMMANDS
+# ------------------
+commands:
+  install-gems:
+    steps:
+      - *restore-bundle
+      - *install-bundle
+      - *save-bundle
+
+  install-compile-assets:
+    steps:
+      - *restore-assets
+      - *install-assets
+      - *save-assets
+
+  build-base:
+    steps:
+      - install-gems
+      - install-compile-assets
+
+  db-setup:
+    steps:
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: |
+            RUBYOPT=-W:no-deprecated \
+            bundle exec rails db:schema:load --trace
+
+  rubocop:
+    steps:
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop --debug
+
+  brakeman:
+    steps:
+      - run:
+          name: Run brakeman
+          command: bundle exec brakeman --quiet --exit-on-warn
+
+  rspec:
+    steps:
+      - db-setup
+      - run:
+          name: Run rspec tests
+          command: |
+                mkdir /tmp/test-results
+                TESTS=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)
+
+                RUBYOPT=-W:no-deprecated \
+                bundle exec rspec \
+                  --format progress \
+                  --format RspecJunitFormatter \
+                  --out /tmp/test-results/rspec.xml \
+                  $TEST_FILES
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+# ------------------
+# JOBS
+# ------------------
+jobs:
+  build-test-container:
+    executor: test-executor
+    steps:
+      - checkout
+      - build-base
+
+  tests:
+    executor: test-executor
+    parallelism: 1
+    steps:
+      - checkout
+      - build-base
+      # - rubocop
+      - brakeman
+      - rspec
+
+# ------------------
+# WORKFLOWS
+# ------------------
+workflows:
+  version: 2
+  test-master:
+    jobs:
+      - build-test-container:
+          filters:
+            branches:
+              only:
+                - master
+      - tests:
+          requires:
+            - build-test-container
+
+  test-branch:
+    jobs:
+      - build-test-container:
+          filters:
+            branches:
+              ignore:
+                - master
+      - tests:
+          requires:
+            - build-test-container
