@@ -141,7 +141,7 @@ jobs:
     steps:
       - checkout
       - build-base
-      - rubocop
+      # - rubocop
       - brakeman
       - rspec
 
