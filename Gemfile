@@ -26,8 +26,8 @@ group :test do
   gem 'brakeman'
   gem 'capybara'
   gem 'rails-controller-testing'
-  gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 3.9'
+  gem 'rspec_junit_formatter'
   gem 'rubocop', '~> 0.79', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
