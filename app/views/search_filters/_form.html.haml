@@ -6,7 +6,7 @@
     :id,
     :name,
     :description,
-    legend: { text: 'How do you want to search?', size: 'xl' },
-    hint_text: 'choose an option'
+    legend: { text: t('search_filter.legend_text'), size: 'xl' },
+    hint_text: t('search_filter.label_hint')
 
-  = f.govuk_submit('Continue')
+  = f.govuk_submit( t('generic.continue') )

@@ -1,12 +1,13 @@
-%button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls" => "navigation", "aria-label" => "Show or hide Top Level Navigation", type: "button"} Menu
+%button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls" => "navigation", "aria-label" => t('layouts.application.header.navigation.show_hide'), type: "button"}
+  = t('layouts.application.header.navigation.menu')
 %nav
-  %ul#navigation.govuk-header__navigation{"aria-label" => "Top Level Navigation"}
+  %ul#navigation.govuk-header__navigation{"aria-label" => t('layouts.application.header.navigation.top_navigation')}
     %li.govuk-header__navigation-item.govuk-header__navigation-item--active
       %a.govuk-header__link{href: "#1"}
-        Navigation item 1
+        = t('layouts.application.header.navigation.item_1')
     %li.govuk-header__navigation-item
       %a.govuk-header__link{href: "#2"}
-        Navigation item 2
+        = t('layouts.application.header.navigation.item_2')
     %li.govuk-header__navigation-item
       %a.govuk-header__link{href: "#3"}
-        Navigation item 3
+        = t('layouts.application.header.navigation.item_3')
