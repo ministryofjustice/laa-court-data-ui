@@ -7,9 +7,9 @@ references:
   _restore-bundle: &restore-bundle
     restore_cache:
       keys:
-        - v3-bundle-{{ checksum "Gemfile.lock" }}
+        - v1-bundle-{{ checksum "Gemfile.lock" }}
         # fallback to using the latest cache if no exact match is found
-        - v3-bundle-
+        - v1-bundle-
 
   _install-bundle: &install-bundle
     run:
@@ -22,16 +22,16 @@ references:
 
   _save-bundle: &save-bundle
     save_cache:
-      key: v3-bundle-{{ checksum "Gemfile.lock" }}
+      key: v1-bundle-{{ checksum "Gemfile.lock" }}
       paths:
         - vendor/bundle
 
   _restore-assets: &restore-assets
     restore_cache:
       keys:
-        - v2-yarn-{{ checksum "yarn.lock" }}
+        - v1-yarn-{{ checksum "yarn.lock" }}
         # fallback to using the latest asset cache if no exact match is found
-        - v2-yarn-
+        - v1-yarn-
 
   _install-assets: &install-assets
     run:
@@ -59,8 +59,6 @@ executors:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/lcpui_test
           TZ: Europe/London
-          GITHUB_TEAM_NAME_SLUG: laa-get-paid
-          REPO_NAME: lcpui
       - image: circleci/postgres:11.6-alpine-ram
         environment:
           POSTGRES_USER: postgres
@@ -71,14 +69,22 @@ executors:
 # COMMANDS
 # ------------------
 commands:
-  build-base:
+  install-gems:
     steps:
       - *restore-bundle
       - *install-bundle
       - *save-bundle
+
+  install-compile-assets:
+    steps:
       - *restore-assets
       - *install-assets
       - *save-assets
+
+  build-base:
+    steps:
+      - install-gems
+      - install-compile-assets
 
   db-setup:
     steps:
@@ -132,7 +138,6 @@ jobs:
     executor: test-executor
     steps:
       - checkout
-      # - setup_remote_docker
       - build-base
 
   tests:
