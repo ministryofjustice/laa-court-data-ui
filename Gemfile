@@ -25,6 +25,7 @@ gem 'webpacker', '~> 4.0'
 group :test do
   gem 'brakeman'
   gem 'capybara'
+  gem 'i18n-tasks', '~> 0.9.29'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.9'
   gem 'rspec_junit_formatter'
