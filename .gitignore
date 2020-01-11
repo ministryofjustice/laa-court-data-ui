@@ -17,8 +17,13 @@
 /public/assets
 .byebug_history
 
-# Ignore master key for decrypting credentials and more.
+# Ignore global master key for decrypting credentials and more.
+# NOT USED: see environment specific credentials under
+# /config/credentials/{environment}.key
 /config/master.key
+
+# IMPORTANT these keys must never be committed to repository
+/config/credentials/development.key
 
 /public/packs
 /public/packs-test
@@ -28,3 +33,5 @@ yarn-debug.log*
 .yarn-integrity
 
 Brewfile.lock.json
+
+/config/credentials/development.key
