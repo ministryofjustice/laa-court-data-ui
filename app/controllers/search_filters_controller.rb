@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SearchFiltersController < ApplicationController
-  protect_from_forgery with: :exception
-
   before_action :set_filter
   after_action :set_back_page_path, only: :new
 
