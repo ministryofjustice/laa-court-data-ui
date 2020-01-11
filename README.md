@@ -66,6 +66,9 @@ bin/webpack-dev-server
 or using a single terminal and foreman
 ```
 foreman start -f Procfile.dev
+
+# alternative, runs above command
+make run
 ```
 
 ## Testing
