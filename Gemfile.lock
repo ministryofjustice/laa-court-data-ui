@@ -123,8 +123,6 @@ GEM
       terminal-table (>= 1.5.1)
     jaro_winkler (1.5.4)
     jaro_winkler (1.5.4-java)
-    jbuilder (2.9.1)
-      activesupport (>= 4.2.0)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -315,7 +313,6 @@ DEPENDENCIES
   govuk_design_system_formbuilder (~> 1.1)
   haml-rails (~> 2.0.1)
   i18n-tasks (~> 0.9.30)
-  jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.3)
   pg (>= 0.18, < 2.0)
   pry-byebug
