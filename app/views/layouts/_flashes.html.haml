@@ -2,12 +2,5 @@
   .govuk-error-message
   - flash.each do |key, value|
     .govuk-error-summary__title
-      = key
-    .govuk-error-summary__body
       = value
-
-/ placeolder for devise flashes - to be removed
-%p.notice
-  = notice
-%p.alert
-  = alert
+    .govuk-error-summary__body
