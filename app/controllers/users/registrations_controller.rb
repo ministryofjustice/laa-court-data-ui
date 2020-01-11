@@ -5,6 +5,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
+  def new
+    flash.alert = 'Sign up not enabled!'
+  end
+
+  # POST /resource
+  def create
+    redirect_to root_path
+  end
+
+   # GET /resource/edit
+  def edit
+    flash.alert = 'Sign up not enabled!'
+  end
+
+  # PUT /resource
+  def update
+    redirect_to root_path
+  end
+
+  # GET /resource/sign_up
   # def new
   #   super
   # end
