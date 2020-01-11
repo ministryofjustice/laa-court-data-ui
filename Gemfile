@@ -8,6 +8,8 @@ ruby '2.7.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'devise', '~> 4.2'
+
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 1.1'
 gem 'haml-rails', '~> 2.0.1'
