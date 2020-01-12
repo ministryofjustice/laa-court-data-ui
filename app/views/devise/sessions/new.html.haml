@@ -1,17 +1,24 @@
-%h2 Log in
+.govuk-heading-xl
+  = page_title('Sign in')
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
+  = f.govuk_error_summary
+
+  = f.govuk_email_field(:email, label: { text: 'Email' }, autofocus: true, autocomplete: 'email')
+
+  = f.govuk_text_field(:password, type: 'password', label: { text: 'Password' }, autocomplete: 'current-password')
+
   - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
+    = f.govuk_collection_radio_buttons :remember_me,
+      [['1', 'Yes'], ['0', 'No']],
+      :first,
+      :last,
+      inline: :true,
+      legend: { text: 'Remember me', size: 's' },
+      hint_text: 'do you want to be remembered on this computer?'
+    / Below is how devise did it
+    / .field
+    /   = f.check_box :remember_me
+    /   = f.label :remember_me
+    = f.govuk_submit("Sign in")
+
 = render "devise/shared/links"
