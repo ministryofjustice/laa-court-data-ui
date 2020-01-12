@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'search', type: :request do
   describe 'Choose search filters', type: :request do
     it 'renders search_filters#new' do

@@ -96,3 +96,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   # Kernel.srand config.seed
 end
+
+# prevent need to for rails helper being required in spec files
+require 'rails_helper'

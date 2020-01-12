@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.feature 'Search', type: :feature do
   scenario 'user visits search filter options' do
     visit '/'
