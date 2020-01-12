@@ -22,8 +22,8 @@
 # /config/credentials/{environment}.key
 /config/master.key
 
-# IMPORTANT these keys must never be committed to repository
-/config/credentials/development.key
+# IMPORTANT environemtn specific keys must never be committed to repo
+/config/credentials/*.key
 
 /public/packs
 /public/packs-test
