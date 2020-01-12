@@ -11,11 +11,13 @@ AllCops:
     - bin/bundle
     - bin/rails
     - bin/rake
+    - bin/spring
     - bin/yarn
     - bin/webpack
     - bin/webpack-dev-server
     - db/schema.rb
     - db/seeds.rb
+    - db/migrate/*.rb
     - spec/spec_helpers.rb
     - spec/rails_helper.rb
     - node_modules/**/*
