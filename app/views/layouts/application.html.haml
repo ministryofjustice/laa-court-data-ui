@@ -45,8 +45,7 @@
 
         .govuk-grid-row
           .govuk-grid-column-two-thirds
-            %h1.govuk-heading-xl
-              = yield(:page_title)
+            = content_for :page_heading
             = yield
 
     = render 'layouts/footer'
