@@ -34,4 +34,8 @@ yarn-debug.log*
 
 Brewfile.lock.json
 
-/config/credentials/development.key
+# dotenv (gem) ignores
+# check https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
+.env
+.env.local
+.env.**.local
