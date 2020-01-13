@@ -12,9 +12,7 @@ en:
         terms: Terms and conditions
       header:
         navigation:
-          item_1: Navigation item 1
-          item_2: Navigation item 2
-          item_3: Navigation item 3
+          sign_out: Sign out
           menu: Menu
           show_hide: Show or hide Top Level Navigation
           top_navigation: Top Level Navigation

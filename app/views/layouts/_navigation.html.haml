@@ -3,11 +3,11 @@
 %nav
   %ul#navigation.govuk-header__navigation{"aria-label" => t('layouts.application.header.navigation.top_navigation')}
     %li.govuk-header__navigation-item.govuk-header__navigation-item--active
-      %a.govuk-header__link{href: "#1"}
-        = t('layouts.application.header.navigation.item_1')
+      = link_to current_user.name,
+            'TODO: signed in user profile path',
+            class: 'govuk-header__link'
     %li.govuk-header__navigation-item
-      %a.govuk-header__link{href: "#2"}
-        = t('layouts.application.header.navigation.item_2')
-    %li.govuk-header__navigation-item
-      %a.govuk-header__link{href: "#3"}
-        = t('layouts.application.header.navigation.item_3')
+      = link_to t('layouts.application.header.navigation.sign_out'),
+          destroy_user_session_path,
+          method: :delete,
+          class: 'govuk-header__link'

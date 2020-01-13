@@ -15,8 +15,8 @@ RSpec.describe User, type: :model do
   describe '#name' do
     subject { user.name }
 
-    it 'returns "lastname, firstname"' do
-      is_expected.to eql 'Smith, John'
+    it 'returns "firstname lastname"' do
+      is_expected.to eql 'John Smith'
     end
   end
 end

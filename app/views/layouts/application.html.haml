@@ -33,7 +33,7 @@
           %a.govuk-header__link.govuk-header__link--service-name{href: root_path}
             = service_name
 
-          = render 'layouts/navigation'
+          = render 'layouts/navigation' if user_signed_in?
 
     .govuk-width-container.app-width-container--wide
       = render 'layouts/phase_banner'
