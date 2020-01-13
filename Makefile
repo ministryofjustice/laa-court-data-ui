@@ -27,6 +27,6 @@ run: #: run the application locally
 	foreman start -f Procfile.dev
 
 test: #: run test suite locally
-	bundle exec brakeman --quiet --exit-on-warn
-	bundle exec rubocop
-	bundle exec rspec -fd
+	@bundle exec brakeman --quiet --exit-on-warn
+	@bundle exec rubocop
+	@RUBYOPT=-W:no-deprecatedbundle exec rspec -fd
