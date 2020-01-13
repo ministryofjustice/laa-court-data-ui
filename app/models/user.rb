@@ -11,4 +11,8 @@ class User < ApplicationRecord
           :trackable,
           :validatable,
           :lockable
+
+  def name
+    "#{last_name}, #{first_name}"
+  end
 end
