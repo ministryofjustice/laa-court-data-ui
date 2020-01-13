@@ -37,6 +37,7 @@ bundle install
 # setup database
 rails db:setup
 rails db:migrate
+rails db:seed
 
 # install node (using projects version `.nvmrc`)
 nvm install
