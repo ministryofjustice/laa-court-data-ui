@@ -25,6 +25,9 @@ AllCops:
 Capybara/FeatureMethods:
   Enabled: false
 
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
 Layout/LineLength:
   Max: 100
   IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*']
@@ -32,18 +35,28 @@ Layout/LineLength:
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/features/search_spec.rb'
+    - 'spec/**/*.rb'
 
+# => Rails
 Rails/FilePath:
   Enabled: false
 
+# => RSpec
 RSpec/ExampleLength:
   Exclude:
     - spec/features/**/*
+
+RSpec/ImplicitSubject:
+  Enabled: false
 
 RSpec/MultipleExpectations:
   Exclude:
     - spec/features/**/*
 
+# => Style
 Style/Documentation:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/controllers/users/*controller.rb

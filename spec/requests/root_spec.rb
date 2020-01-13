@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Root route', type: :request do
-  context 'before sign in' do
+  context 'without sign in' do
     before { get '/' }
 
     it 'redirects to users/sign_in' do
@@ -9,7 +9,7 @@ RSpec.describe 'Root route', type: :request do
     end
   end
 
-  context 'after sign in' do
+  context 'with sign in' do
     let(:user) { create(:user) }
 
     before do

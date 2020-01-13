@@ -3,15 +3,14 @@
 RSpec.feature 'Sign in', type: :feature do
   let(:user) do
     create(:user,
-          email: 'bob.smith@example.com',
-          password: 'a-password',
-          password_confirmation: 'a-password',
-          first_name: 'Bob',
-          last_name: 'Smith'
-    )
+           email: 'bob.smith@example.com',
+           password: 'a-password',
+           password_confirmation: 'a-password',
+           first_name: 'Bob',
+           last_name: 'Smith')
   end
 
-  context 'successful sign in' do
+  context 'with success' do
     scenario 'user signs' do
       visit '/'
 
@@ -23,7 +22,7 @@ RSpec.feature 'Sign in', type: :feature do
     end
   end
 
-  context 'failed sign in' do
+  context 'with failure' do
     scenario 'invalid email or password' do
       visit '/'
 

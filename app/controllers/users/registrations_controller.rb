@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
-   # GET /resource/edit
+  # GET /resource/edit
   def edit
     flash.alert = 'Sign up not enabled!'
   end
