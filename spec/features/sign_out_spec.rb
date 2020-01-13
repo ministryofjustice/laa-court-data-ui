@@ -18,8 +18,8 @@ RSpec.feature 'Sign out', type: :feature do
   end
 
   it 'does not display navigation bar' do
-    expect(page).to_not have_css('nav')
-    expect(page).to_not have_link(user.name)
-    expect(page).to_not have_link('Sign out')
+    expect(page).not_to have_css('nav')
+    expect(page).not_to have_link(user.name)
+    expect(page).not_to have_link('Sign out')
   end
 end

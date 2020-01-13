@@ -10,34 +10,48 @@ RSpec.feature 'Sign in', type: :feature do
            last_name: 'Smith')
   end
 
+  before { visit 'users/sign_in' }
+
+  it 'page header is displayed' do
+    expect(page).to have_css('h1', text: 'Sign in')
+  end
+
   context 'with success' do
     before do
-      visit '/'
-
-      expect(page).to have_css('h1', text: 'Sign in')
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
       click_button 'Sign in'
     end
 
-    scenario 'search filters page is displayed' do
+    it 'successful sign in message displayed' do
       expect(page).to have_text('Signed in successfully')
+    end
+
+    it 'search filters page is displayed' do
       expect(page).to have_css('h1', text: 'How do you want to search?')
     end
 
-    scenario 'navigation bar is displayed' do
-      within('nav') do
-        expect(page).to have_link(user.name)
-        expect(page).to have_link('Sign out')
+    it 'navigation bar is displayed' do
+      expect(page).to have_css('nav ul.govuk-header__navigation')
+    end
+
+    describe 'navigation bar' do
+      it 'displays user profile link' do
+        within('nav') do
+          expect(page).to have_link(user.name)
+        end
+      end
+
+      it 'displays sign out link' do
+        within('nav') do
+          expect(page).to have_link('Sign out')
+        end
       end
     end
   end
 
   context 'with failure' do
-    scenario 'invalid email or password' do
-      visit '/'
-
-      expect(page).to have_text('Sign in')
+    it 'invalid email or password displayed' do
       fill_in 'Email', with: 'billy bob'
       fill_in 'Password', with: user.password
       click_button 'Sign in'

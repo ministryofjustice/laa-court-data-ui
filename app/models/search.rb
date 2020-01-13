@@ -16,8 +16,16 @@ class Search
 
   def self.filters
     [
-      SearchFilter.new(id: :case_number, name: I18n.t('search_filter.radio_case_number_label'), description: nil),
-      SearchFilter.new(id: :defendant, name: I18n.t('search_filter.radio_defendant_label'), description: I18n.t('search_filter.radio_defendant_label_hint'))
+      SearchFilter.new(
+        id: :case_number,
+        name: I18n.t('search_filter.radio_case_number_label'),
+        description: nil
+      ),
+      SearchFilter.new(
+        id: :defendant,
+        name: I18n.t('search_filter.radio_defendant_label'),
+        description: I18n.t('search_filter.radio_defendant_label_hint')
+      )
     ]
   end
 

@@ -37,6 +37,9 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
 
+Metrics/MethodLength:
+  Max: 15
+
 # => Rails
 Rails/FilePath:
   Enabled: false
