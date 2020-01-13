@@ -104,6 +104,13 @@ GEM
       railties (>= 3.2, < 6.1)
     erubi (1.9.0)
     erubis (2.7.0)
+    factory_bot (5.1.1)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.1.1)
+      factory_bot (~> 5.1.0)
+      railties (>= 4.2.0)
+    faker (2.2.1)
+      i18n (>= 0.8)
     ffi (1.11.3)
     ffi (1.11.3-java)
     ffi (1.11.3-x64-mingw32)
@@ -331,6 +338,8 @@ DEPENDENCIES
   colorize
   devise (~> 4.2)
   dotenv-rails
+  factory_bot_rails
+  faker
   foreman
   govuk_design_system_formbuilder (~> 1.1)
   haml-rails (~> 2.0.1)
