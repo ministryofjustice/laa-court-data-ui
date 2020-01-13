@@ -30,7 +30,7 @@ RSpec.feature 'Sign in', type: :feature do
       fill_in 'Email', with: 'billy bob'
       fill_in 'Password', with: user.password
       click_button 'Sign in'
-      expect(page).to have_text(/invalid email or password/i)
+      expect(page).to have_text('Invalid email or password')
     end
   end
 end
