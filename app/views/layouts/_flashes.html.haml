@@ -1,6 +1,14 @@
-.govuk-error-summary
-  .govuk-error-message
-  - flash.each do |key, value|
-    .govuk-error-summary__title
-      = value
-    .govuk-error-summary__body
+- flash.each do |key, value|
+  - case key
+    - when 'alert'
+      .govuk-error-summary
+        .govuk-error-message
+        .govuk-error-summary__title
+          = value
+        / .govuk-error-summary__body
+    - when 'notice'
+      .govuk-error-summary{ style: 'border-color: #1d70b8' }
+        .govuk-error-message
+        .govuk-error-summary__title
+          = value
+        / .govuk-error-summary__body
