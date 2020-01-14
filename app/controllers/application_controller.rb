@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def back_page_path
-    session[:back_page_path] || root_path
+    session[:back_page_path] || authenticated_root_path
   end
   helper_method :back_page_path
 end

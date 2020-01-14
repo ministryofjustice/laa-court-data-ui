@@ -1,7 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'search_filters#new'
+  authenticated :user do
+    root to: 'search_filters#new', as: :authenticated_root
+  end
+
+  devise_scope :user do
+    unauthenticated :user do
+      root to: 'users/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   resources :search_filters, only: %i[new create]
   resources :searches, only: %i[new create]
 

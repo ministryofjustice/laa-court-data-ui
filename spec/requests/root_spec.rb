@@ -4,8 +4,8 @@ RSpec.describe 'Root route', type: :request do
   context 'without sign in' do
     before { get '/' }
 
-    it 'redirects to users/sign_in' do
-      expect(response).to redirect_to('/users/sign_in')
+    it 'redirects to devise/sessions/new' do
+      expect(response).to render_template('devise/sessions/new')
     end
   end
 

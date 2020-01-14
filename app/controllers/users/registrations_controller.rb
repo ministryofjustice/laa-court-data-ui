@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    redirect_to root_path
+    redirect_to authenticated_root_path
   end
 
   # GET /resource/edit
@@ -21,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    redirect_to root_path
+    redirect_to authenticated_root_path
   end
 
   # GET /resource/sign_up
