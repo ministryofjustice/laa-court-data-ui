@@ -38,7 +38,7 @@
     .govuk-width-container.app-width-container--wide
       = render 'layouts/phase_banner'
 
-      = link_to t('generic.back'), back_page_path, class: 'govuk-back-link' unless current_page?(back_page_path)
+      = link_to t('generic.back'), back_page_path, class: 'govuk-back-link' if back_page_needed?
 
       %main#main-content.govuk-main-wrapper.app-main-class{role: "main"}
         = render partial: 'layouts/flashes' unless flash.empty?

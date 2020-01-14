@@ -17,4 +17,9 @@ class ApplicationController < ActionController::Base
     session[:back_page_path] || authenticated_root_path
   end
   helper_method :back_page_path
+
+  def back_page_needed?
+    controller_name.eql?('searches')
+  end
+  helper_method :back_page_needed?
 end
