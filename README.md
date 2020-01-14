@@ -10,6 +10,17 @@ An interace to the ???[laa-common-platform-connector](https://github.com/ministr
 - node 12.4.1+
 - yarn 1.21.1+
 
+
+## Quick start (on macosx)
+```
+make install
+
+# in separate terminal
+make run
+
+make open
+```
+
 ## Setup
 
 Clone:

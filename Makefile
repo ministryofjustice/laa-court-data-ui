@@ -30,3 +30,6 @@ test: #: run test suite locally
 	@bundle exec brakeman --quiet --exit-on-warn
 	@bundle exec rubocop
 	@RUBYOPT=-W:no-deprecatedbundle exec rspec -fd
+
+open: #: open localhost:3000 in default browser
+	@open http://localhost:3000
