@@ -15,6 +15,8 @@ module GovukDesignSystemHelper
     end
   end
 
+  private
+
   def contextual_title
     [action_name.titleize, controller_name.downcase.singularize].join(' ')
   end
