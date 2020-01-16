@@ -18,11 +18,9 @@
 .byebug_history
 
 # Ignore global master key for decrypting credentials and more.
-# NOT USED: see environment specific credentials under
-# /config/credentials/{environment}.key
 /config/master.key
 
-# IMPORTANT environemtn specific keys must never be committed to repo
+# IMPORTANT environment specific keys must never be committed to repo
 /config/credentials/*.key
 
 /public/packs
