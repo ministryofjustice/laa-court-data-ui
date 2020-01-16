@@ -22,13 +22,16 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
-  resources :users, only: %i[show]
-
   get 'ping', to: 'status#ping', format: :json
 
   get '/404', to: 'errors#not_found'
   get '/422', to: 'errors#unacceptable'
   get '/500', to: 'errors#internal_error'
+
+  resources :users, only: %i[show edit update] do
+    get 'change_password', on: :member
+    patch 'update_password', on: :member
+  end
 
   # catch-all route
   # -------------------------------------------------

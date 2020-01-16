@@ -1,6 +1,19 @@
-= govuk_page_title(@user.name)
+= govuk_page_title('Your Account')
 
 .govuk-body
-  = @user.name
-  %br
-  = @user.email
+  %table
+    %caption
+      = 'Your account details'
+    %tbody
+      %tr
+        %th{ scope: 'row' }
+          = 'Name:'
+        %td
+          = @user.name
+      %tr
+        %th{ scope: 'row' }
+          = 'Email:'
+        %td
+          = mail_to @user.email, @user.email
+  = link_to 'Edit', edit_user_path(current_user)
+  = link_to 'Change Password'
