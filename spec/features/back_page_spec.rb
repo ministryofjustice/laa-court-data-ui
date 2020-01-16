@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.ffeature 'Back page', type: :feature do
+RSpec.feature 'Back page', type: :feature do
   let(:user) { create(:user) }
 
   context 'when not signed in' do
