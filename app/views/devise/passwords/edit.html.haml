@@ -1,4 +1,4 @@
-= govuk_page_title('Change your password')
+= govuk_page_title(t('devise.passwords.user.form.change.page_title'))
 
 .govuk-body
   = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
@@ -18,6 +18,6 @@
       label: { text: 'Confirm new password' },
       autocomplete: 'new-password')
 
-    = f.govuk_submit("Change my password")
+    = f.govuk_submit(t('devise.passwords.user.form.change.submit'))
 
   = render "devise/shared/links"

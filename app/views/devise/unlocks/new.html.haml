@@ -1,10 +1,10 @@
-= govuk_page_title('Resend unlock instructions')
+= govuk_page_title(t('devise.unlocks.user.form.page_title'))
 
 .govuk-body
   = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
     = render "devise/shared/error_messages", resource: resource
 
     = f.govuk_email_field(:email, label: { text: 'Email' }, autofocus: true, autocomplete: 'email')
-    = f.govuk_submit("Resend unlock instructions")
+    = f.govuk_submit(t('devise.unlocks.user.form.submit'))
 
   = render "devise/shared/links"

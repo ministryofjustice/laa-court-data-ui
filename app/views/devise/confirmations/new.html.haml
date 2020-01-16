@@ -1,4 +1,4 @@
-= govuk_page_title('Resend confirmation instructions')
+= govuk_page_title(t('devise.confirmations.user.form.page_title'))
 
 .govuk-body
   = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
@@ -10,6 +10,6 @@
       autocomplete: 'email',
       value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email))
 
-    = f.govuk_submit("Resend confirmation instructions")
+    = f.govuk_submit(t('devise.confirmations.user.form.submit'))
 
   = render "devise/shared/links"
