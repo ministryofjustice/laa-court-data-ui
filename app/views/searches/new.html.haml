@@ -1,7 +1,6 @@
-.govuk-heading-xl
-  = page_title( t('search.page_title') )
+= govuk_page_title(t('search.page_title'))
 
 .govuk-body
   = render 'form'
 
-= render 'results' if @results
+  = render 'results' if @results

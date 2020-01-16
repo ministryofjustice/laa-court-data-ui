@@ -2,6 +2,8 @@
 
 class ApplicationController < ActionController::Base
   default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
+  protect_from_forgery prepend: true, with: :exception
+  before_action :authenticate_user!
 
   def set_back_page_path
     session[:back_page_path] = request.path
@@ -12,7 +14,12 @@ class ApplicationController < ActionController::Base
   end
 
   def back_page_path
-    session[:back_page_path] || root_path
+    session[:back_page_path] || authenticated_root_path
   end
   helper_method :back_page_path
+
+  def back_page_needed?
+    controller_name.eql?('searches')
+  end
+  helper_method :back_page_needed?
 end

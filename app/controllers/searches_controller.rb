@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
-  protect_from_forgery with: :exception
-
   before_action :set_search_args
 
   def new

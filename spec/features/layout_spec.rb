@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.feature 'Gov UK Layout', type: :feature do
   scenario 'GDS styled home page' do
     visit '/'

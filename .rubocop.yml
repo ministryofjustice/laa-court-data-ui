@@ -11,16 +11,21 @@ AllCops:
     - bin/bundle
     - bin/rails
     - bin/rake
+    - bin/spring
     - bin/yarn
     - bin/webpack
     - bin/webpack-dev-server
     - db/schema.rb
     - db/seeds.rb
+    - db/migrate/*.rb
     - spec/spec_helpers.rb
     - spec/rails_helper.rb
     - node_modules/**/*
 
 Capybara/FeatureMethods:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
 Layout/LineLength:
@@ -30,18 +35,31 @@ Layout/LineLength:
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/features/search_spec.rb'
+    - 'spec/**/*.rb'
 
+Metrics/MethodLength:
+  Max: 15
+
+# => Rails
 Rails/FilePath:
   Enabled: false
 
+# => RSpec
 RSpec/ExampleLength:
   Exclude:
     - spec/features/**/*
+
+RSpec/ImplicitSubject:
+  Enabled: false
 
 RSpec/MultipleExpectations:
   Exclude:
     - spec/features/**/*
 
+# => Style
 Style/Documentation:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/controllers/users/*controller.rb

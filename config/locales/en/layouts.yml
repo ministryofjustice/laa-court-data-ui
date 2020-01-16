@@ -12,11 +12,9 @@ en:
         terms: Terms and conditions
       header:
         navigation:
-          item_1: Navigation item 1
-          item_2: Navigation item 2
-          item_3: Navigation item 3
           menu: Menu
           show_hide: Show or hide Top Level Navigation
+          sign_out: Sign out
           top_navigation: Top Level Navigation
         phase_banner_html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
       skip_content: Skip to main content

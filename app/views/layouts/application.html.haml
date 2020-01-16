@@ -30,23 +30,22 @@
           = render 'layouts/govuk_logo'
 
         .govuk-header__content
-          %a.govuk-header__link.govuk-header__link--service-name{href: root_path}
+          %a.govuk-header__link.govuk-header__link--service-name{href: authenticated_root_path}
             = service_name
 
-          = render 'layouts/navigation'
+          = render 'layouts/navigation' if user_signed_in?
 
     .govuk-width-container.app-width-container--wide
       = render 'layouts/phase_banner'
 
-      = link_to t('generic.back'), back_page_path, class: 'govuk-back-link' unless current_page?(back_page_path)
+      = link_to t('generic.back'), back_page_path, class: 'govuk-back-link' if back_page_needed?
 
       %main#main-content.govuk-main-wrapper.app-main-class{role: "main"}
         = render partial: 'layouts/flashes' unless flash.empty?
 
         .govuk-grid-row
           .govuk-grid-column-two-thirds
-            %h1.govuk-heading-xl
-              = yield(:page_title)
+            = content_for :page_heading
             = yield
 
     = render 'layouts/footer'

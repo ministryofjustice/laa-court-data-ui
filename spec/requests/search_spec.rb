@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'search', type: :request do
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
+
   describe 'Choose search filters', type: :request do
     it 'renders search_filters#new' do
       get '/search_filters/new'

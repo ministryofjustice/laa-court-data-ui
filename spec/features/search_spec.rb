@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.feature 'Search', type: :feature do
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
+
   scenario 'user visits search filter options' do
     visit '/'
 

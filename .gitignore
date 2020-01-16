@@ -17,8 +17,11 @@
 /public/assets
 .byebug_history
 
-# Ignore master key for decrypting credentials and more.
+# Ignore global master key for decrypting credentials and more.
 /config/master.key
+
+# IMPORTANT environment specific keys must never be committed to repo
+/config/credentials/*.key
 
 /public/packs
 /public/packs-test
@@ -28,3 +31,9 @@ yarn-debug.log*
 .yarn-integrity
 
 Brewfile.lock.json
+
+# dotenv (gem) ignores
+# check https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
+.env
+.env.local
+.env.**.local

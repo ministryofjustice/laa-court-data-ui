@@ -5,14 +5,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+gem 'devise', '~> 4.2'
 
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 1.1'
@@ -38,7 +34,12 @@ end
 group :development, :test do
   gem 'awesome_print'
   gem 'colorize', require: false
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pry', git: 'https://github.com/pry/pry.git', ref: '272b3290b5250d28ee82a5ff65aa3b29b825e37b'
   gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :development do

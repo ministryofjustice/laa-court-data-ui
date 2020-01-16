@@ -10,6 +10,17 @@ An interace to the ???[laa-common-platform-connector](https://github.com/ministr
 - node 12.4.1+
 - yarn 1.21.1+
 
+
+## Quick start (on macosx)
+```
+make install
+
+# in separate terminal
+make run
+
+make open
+```
+
 ## Setup
 
 Clone:
@@ -37,6 +48,7 @@ bundle install
 # setup database
 rails db:setup
 rails db:migrate
+rails db:seed
 
 # install node (using projects version `.nvmrc`)
 nvm install
@@ -66,6 +78,9 @@ bin/webpack-dev-server
 or using a single terminal and foreman
 ```
 foreman start -f Procfile.dev
+
+# alternative, runs above command
+make run
 ```
 
 ## Testing
