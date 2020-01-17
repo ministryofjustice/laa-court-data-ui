@@ -9,19 +9,21 @@ install: #: install all requirements
 	@RUBYOPT=-W:no-deprecated
 	@printf "\e[33mMAKE: install ruby $$(cat .ruby-version)...\e[0m\n"
 	@rvm install $$(cat .ruby-version)
+	@printf "\e[33mMAKE: installing bundler...\e[0m\n"
+	@gem install bundler -v $$(cat Gemfile.lock | tail -1 | tr -d " ")
 	@printf "\e[33mMAKE: installing ruby dependencies...\e[0m\n"
 	@bundle install
+	@printf "\e[33mMAKE: installing node...\e[0m\n"
+	@source $(HOME)/.nvm/nvm.sh ;\
+		nvm install
+	@printf "\e[33mMAKE: installing JS dependencies...\e[0m\n"
+	@yarn install --frozen-lockfile
 	@printf "\e[33mMAKE: db setup...\e[0m\n"
 	@rails db:setup
 	@printf "\e[33mMAKE: db migration...\e[0m\n"
 	@rails db:migrate
 	@printf "\e[33mMAKE: db seeding...\e[0m\n"
 	@rails db:seed
-	@printf "\e[33mMAKE: installing node...\e[0m\n"
-	@source $(HOME)/.nvm/nvm.sh ;\
-		nvm install
-	@printf "\e[33mMAKE: installing JS dependencies...\e[0m\n"
-	@yarn install --frozen-lockfile
 
 run: #: run the application locally
 	foreman start -f Procfile.dev

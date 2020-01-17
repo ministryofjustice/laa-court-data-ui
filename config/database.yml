@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: laa_common_platform_ui_development
+  database: laa_court_data_ui_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: laa_common_platform_ui
+  #username: laa_court_data_ui
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: laa_common_platform_ui_test
+  database: laa_court_data_ui_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: laa_common_platform_ui_production
-  username: laa_common_platform_ui
-  password: <%= ENV['LAA_COMMON_PLATFORM_UI_DATABASE_PASSWORD'] %>
+  database: laa_court_data_ui_production
+  username: laa_court_data_ui
+  password: <%= ENV['LAA_COURT_DATA_UI_DATABASE_PASSWORD'] %>
