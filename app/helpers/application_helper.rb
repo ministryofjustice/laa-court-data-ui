@@ -4,6 +4,6 @@ module ApplicationHelper
   include GovukDesignSystemHelper
 
   def service_name
-    'Common platform UI'
+    'Court data UI'
   end
 end

@@ -57,13 +57,13 @@ executors:
       - image: circleci/ruby:2.7.0-node-browsers
         environment:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/lcpui_test
+          DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/laa_court_data_ui_test
           TZ: Europe/London
       - image: circleci/postgres:11.6-alpine-ram
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: "circleci"
-          POSTGRES_DB: lcpui_test
+          POSTGRES_DB: laa_court_data_ui_test
 
 # ------------------
 # COMMANDS

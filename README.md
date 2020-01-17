@@ -1,6 +1,5 @@
-# Common platform UI
-An interace to the ???[laa-common-platform-connector](https://github.com/ministryofjustice/laa-common-platform-connector) or [laa-court-data-adaptor](https://github.com/ministryofjustice/laa-court-data-adaptor)??? for displaying information available from the HMCTS "common platform" API.
-
+# Court data UI
+An interace to the [laa-court-data-adaptor](https://github.com/ministryofjustice/laa-court-data-adaptor) for displaying information available from the HMCTS "common platform" API.
 
 ## System dependencies
 - postgres
