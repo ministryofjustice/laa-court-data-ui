@@ -25,8 +25,8 @@ make open
 Clone:
 ```
 # clone
-git clone https://github.com/ministryofjustice/laa-common-platform-ui
-cd laa-common-platform-ui
+git clone https://github.com/ministryofjustice/laa-court-data-ui
+cd laa-court-data-ui
 ```
 
 Install on MacOSX:
@@ -36,7 +36,7 @@ make install
 ```
 
 
-Install app dependencies:
+Install app dependencies (step-by-step):
 ```
 # install ruby if required
 rvm install $(cat .ruby-version)
@@ -44,16 +44,16 @@ rvm install $(cat .ruby-version)
 # install gems
 bundle install
 
-# setup database
-rails db:setup
-rails db:migrate
-rails db:seed
-
 # install node (using projects version `.nvmrc`)
 nvm install
 
 # install node modules using yarn
 yarn install --frozen-lockfile
+
+# setup database
+rails db:setup
+rails db:migrate
+rails db:seed
 ```
 
 ## Assets
@@ -123,7 +123,7 @@ This app was generated using the following initial `rails new` command, skipping
 
 ```
 # generate new rails app
-rails new laa-common-platform-ui \
+rails new laa-court-data-ui \
 --database=postgresql \
 --skip-test \
 --skip-action-mailer \
