@@ -1,0 +1,10 @@
+---
+en:
+  error:
+    404_message: If you entered a web address please check it was correct.
+    404_title: Page not found
+    422_message: Maybe you tried to change something you didn't have access to.
+    422_title: The change you wanted was rejected
+    500_message: Please try again soon or
+    500_title: We're sorry, but something went wrong
+    description_html: You can also <a href="/">browse from the homepage</a> to find the information you need.
