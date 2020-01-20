@@ -1,4 +1,4 @@
-# Court data UI
+# Court data UI (a.k.a View court data)
 An interace to the [laa-court-data-adaptor](https://github.com/ministryofjustice/laa-court-data-adaptor) for displaying information available from the HMCTS "common platform" API.
 
 ## System dependencies

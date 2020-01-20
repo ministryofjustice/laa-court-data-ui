@@ -6,7 +6,7 @@ RSpec.feature 'Gov UK Layout', type: :feature do
 
     within '.govuk-header' do
       within '.govuk-header__content' do
-        expect(page).to have_link('Court data UI')
+        expect(page).to have_link('View court data')
       end
     end
 
