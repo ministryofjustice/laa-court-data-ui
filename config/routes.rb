@@ -23,4 +23,16 @@ Rails.application.routes.draw do
   }
 
   get 'ping', to: 'status#ping', format: :json
+
+  get '/404', to: "errors#not_found"
+  get '/422', to: "errors#unacceptable"
+  get '/500', to: "errors#internal_error"
+
+
+  # catch-all route
+  # -------------------------------------------------
+  # WARNING: do not put routes below this point
+  unless Rails.env.development?
+    match '*path', to: 'errors#not_found', via: :all
+  end
 end
