@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     unlocks: 'users/unlocks'
   }
+
+  get 'ping', to: 'status#ping', format: :json
 end
