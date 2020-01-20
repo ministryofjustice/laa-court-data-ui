@@ -36,7 +36,10 @@ RUN addgroup -g 1000 -S appgroup \
 && adduser -u 1000 -S appuser -G appgroup
 
 # create app directory in conventional, existing dir /usr/src
-RUN mkdir -p /usr/src/app && mkdir -p /usr/src/app/tmp
+# tmp/pids/ needed for puma
+RUN mkdir -p /usr/src/app \
+&& mkdir -p /usr/src/app/tmp \
+&& mkdir -p /usr/src/app/tmp/pids
 WORKDIR /usr/src/app
 
 ######################
