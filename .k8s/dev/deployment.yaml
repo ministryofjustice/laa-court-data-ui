@@ -55,6 +55,10 @@ spec:
               value: 'production'
             - name: DOMAIN_URL
               value: 'https://dev.view-court-data.service.justice.gov.uk'
+            - name: RAILS_SERVE_STATIC_FILES
+              value: enabled
+            - name: RAILS_LOG_TO_STDOUT
+              value: enabled
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
