@@ -1,0 +1,5 @@
+# git-crypt kubernetes secrets
+.k8s*/**/*secret* filter=git-crypt diff=git-crypt
+
+# for default rails 6 master.key and similar
+*.key filter=git-crypt diff=git-crypt

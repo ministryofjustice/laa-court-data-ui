@@ -4,6 +4,6 @@ module ApplicationHelper
   include GovukDesignSystemHelper
 
   def service_name
-    'Court data UI'
+    'View court data'
   end
 end

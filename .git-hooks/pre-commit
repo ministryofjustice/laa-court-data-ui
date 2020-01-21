@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Usage:
+#    $ cd /path/to/repository
+#    $ ln -s ../../.git-hooks/pre-commit .git/hooks/pre-commit
+#
+
+################################################################################
+# https://github.com/AGWA/git-crypt/issues/45#issuecomment-151985431
+# Pre-commit hook to avoid accidentally adding unencrypted files which are
+# configured to be encrypted with [git-crypt](https://www.agwa.name/projects/git-crypt/)
+# Fix to [Issue #45](https://github.com/AGWA/git-crypt/issues/45)
+#
+
+printf 'Checking for git-crypt warnings...'
+
+test -d .git-crypt && git-crypt status &>/dev/null
+if [[ $? -ne 0 ]]; then
+  printf "warnings found!"
+  git-crypt status -e
+  exit 1
+else
+  printf "none found!"
+fi

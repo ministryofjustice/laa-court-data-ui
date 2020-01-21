@@ -41,20 +41,29 @@
 
 # basic config recommended for use on heroku
 #
-workers Integer(ENV.fetch('WEB_CONCURRENCY', 1))
+puts 'LOADING development puma config'
+workers_count = Integer(ENV.fetch('WEB_CONCURRENCY', 1))
 threads_count = Integer(ENV.fetch('RAILS_MAX_THREADS', 5))
+
+workers workers_count
 threads threads_count, threads_count
 
-preload_app! if ENV.fetch('RAILS_ENV', nil).eql?('production')
+preload_app!
 
 rackup DefaultRackup
-port ENV.fetch('RAILS_ENV', nil).eql?('production') ? ENV['PORT'] : 3000
-environment ENV.fetch('RAILS_ENV', 'development')
+port ENV.fetch("PORT", 3000)
+environment 'development'
 pidfile ENV.fetch('PIDFILE', 'tmp/pids/server.pid')
+
+# Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
 on_worker_boot do
   # Worker specific setup for Rails 4.1+
   # See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+end
+
+on_restart do
+  ActiveRecord::Base.connection.disconnect! if defined?(ActiveRecord::Base)
 end
