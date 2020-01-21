@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SearchFiltersController < ApplicationController
+  load_and_authorize_resource only: %i[new create]
   before_action :set_filter
   after_action :set_back_page_path, only: :new
 
