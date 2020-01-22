@@ -5,7 +5,17 @@ en:
     case_number_label_hint: Search by case number
     defendant_label: Find a defendant
     defendant_label_hint: Search by MAAT number or defendant name
+    no_result:
+      body: There are no matching results.
+      body_guide: 'Improve your search results by:'
+      body_guide_four: searching for something less specific
+      body_guide_one: removing filters
+      body_guide_three: using fewer keywords
+      body_guide_two: double-checking your spelling
     page_title: Search
+    result:
+      caption: Search results
+      table_head: Description
     result_count:
       one: Search for "%{query}" returned 1 result
       other: Search for "%{query}" returned %{count} results

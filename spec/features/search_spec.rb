@@ -50,4 +50,15 @@ RSpec.feature 'Search', type: :feature do
     click_button 'Search'
     expect(page).to have_text 'Search for "Fred Bloggs" returned'
   end
+
+  scenario 'user searches return no results' do
+    allow_any_instance_of(Search).to receive(:execute).and_return([])
+    visit '/'
+
+    choose 'By defendant'
+    click_button 'Continue'
+    fill_in 'search-query-field', with: 'Fred Bloggs'
+    click_button 'Search'
+    expect(page).to have_css('.govuk-body', text: 'There are no matching results')
+  end
 end
