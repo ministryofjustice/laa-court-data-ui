@@ -57,6 +57,11 @@ Rails.application.configure do
   # have puma server output to stdout (when started via `foreman start`)
   config.logger = Logger.new(STDOUT)
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.perform_caching = false
+
   # action mailer options for devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
