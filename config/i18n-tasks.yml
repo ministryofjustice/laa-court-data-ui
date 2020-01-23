@@ -115,6 +115,7 @@ ignore_unused:
 - errors.messages.expired
 - errors.messages.not_found
 - errors.messages.not_locked
+- unauthorized.*
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:

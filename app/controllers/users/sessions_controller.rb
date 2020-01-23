@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  skip_authorization_check only: %i[new create destroy]
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

@@ -25,4 +25,3 @@ RSpec.feature 'Error page', type: :feature do
     end
   end
 end
-

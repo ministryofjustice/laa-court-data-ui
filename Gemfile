@@ -8,6 +8,7 @@ ruby '2.7.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'cancancan'
 gem 'devise', '~> 4.2'
 
 # rails GDS design system form builder

@@ -1,0 +1,53 @@
+# frozen_string_literal: true
+
+module Roles
+  extend ActiveSupport::Concern
+
+  class_methods do
+    def accepts_roles(*roles)
+      cattr_accessor :valid_roles
+      self.valid_roles = roles.map(&:to_s)
+    end
+  end
+
+  included do |klass|
+    if klass.respond_to?(:validate)
+      klass.validate :validate_role_presence
+      klass.validate :validate_role_inclusion
+    end
+  end
+
+  private
+
+  def method_missing(method, *args)
+    if role_booleans.include?(method.to_s)
+      role?(method.to_s.delete('?'))
+    else
+      super
+    end
+  end
+
+  def respond_to_missing?(method, include_private = false)
+    role_booleans.include?(method.to_s) || super
+  end
+
+  def role_booleans
+    self.class.valid_roles.map { |role| role.to_s + '?' }
+  end
+
+  def role?(role)
+    roles.include?(role.to_s)
+  end
+
+  def validate_role_presence
+    errors[:roles].append('must have a role') if roles.blank? || roles.empty?
+  end
+
+  def validate_role_inclusion
+    return if roles.blank? || roles.empty?
+    roles.all? do |role|
+      next if self.class.valid_roles.include?(role)
+      errors[:roles].append("#{role} is not a valid role")
+    end
+  end
+end

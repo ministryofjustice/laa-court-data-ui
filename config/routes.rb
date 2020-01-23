@@ -22,17 +22,16 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
+  resources :users, only: %i[show]
+
   get 'ping', to: 'status#ping', format: :json
 
-  get '/404', to: "errors#not_found"
-  get '/422', to: "errors#unacceptable"
-  get '/500', to: "errors#internal_error"
-
+  get '/404', to: 'errors#not_found'
+  get '/422', to: 'errors#unacceptable'
+  get '/500', to: 'errors#internal_error'
 
   # catch-all route
   # -------------------------------------------------
   # WARNING: do not put routes below this point
-  unless Rails.env.development?
-    match '*path', to: 'errors#not_found', via: :all
-  end
+  match '*path', to: 'errors#not_found', via: :all unless Rails.env.development?
 end
