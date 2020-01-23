@@ -7,9 +7,9 @@ references:
   _restore-bundle: &restore-bundle
     restore_cache:
       keys:
-        - v1-bundle-{{ checksum "Gemfile.lock" }}
+        - v3-bundle-{{ checksum "Gemfile.lock" }}
         # fallback to using the latest cache if no exact match is found
-        - v1-bundle-
+        - v3-bundle-
 
   _install-bundle: &install-bundle
     run:
@@ -17,14 +17,14 @@ references:
       command: |
         bundler_version=$(cat Gemfile.lock | tail -1 | tr -d " ")
         gem install bundler -v $bundler_version
-        bundle config set path 'vendor/bundle'
+        bundle config set path '~/vendor/bundle'
         bundle check || bundle install --jobs=4 --retry=3
 
   _save-bundle: &save-bundle
     save_cache:
-      key: v1-bundle-{{ checksum "Gemfile.lock" }}
+      key: v3-bundle-{{ checksum "Gemfile.lock" }}
       paths:
-        - vendor/bundle
+        - ~/vendor/bundle
 
   _restore-assets: &restore-assets
     restore_cache:
@@ -101,7 +101,7 @@ commands:
     steps:
       - run:
           name: Run rubocop
-          command: bundle exec rubocop --debug
+          command: bundle exec rubocop
 
   brakeman:
     steps:
@@ -146,7 +146,7 @@ jobs:
     steps:
       - checkout
       - build-base
-      # - rubocop
+      - rubocop
       - brakeman
       - rspec
 
