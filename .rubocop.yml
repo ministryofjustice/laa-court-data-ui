@@ -35,7 +35,8 @@ Layout/LineLength:
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*.rb'
+    - spec/**/*.rb
+    - config/routes.rb
 
 Metrics/MethodLength:
   Max: 15
