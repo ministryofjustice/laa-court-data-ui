@@ -22,7 +22,7 @@ RSpec.describe 'users', type: :request do
 
     it 'allows users to update their details' do
       patch "/users/:#{user.id}", params: { user: { user: { first_name: 'updated' } } }
-      expect(response).to have_http_status :redirect
+      expect(response).to redirect_to authenticated_root_path
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe 'users', type: :request do
     it 'allows users to update their password' do
       patch "/users/:#{user.id}", params: { user: { password: 'testing1234',
                                                     password_confirmation: 'testing1234' } }
-      expect(response).to have_http_status :redirect
+      expect(response).to redirect_to authenticated_root_path
     end
   end
 end
