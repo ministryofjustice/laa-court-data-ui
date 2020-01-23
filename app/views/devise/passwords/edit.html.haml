@@ -6,15 +6,13 @@
 
     = f.hidden_field :reset_password_token
 
-    = f.govuk_text_field(:password,
-      type: 'password',
+    = f.govuk_password_field(:password,
       label: { text: 'New password' },
       autofocus: true,
       autocomplete: 'new-password',
       hint_text: "#{@minimum_password_length} characters minimum")
 
-    = f.govuk_text_field(:password_confirmation,
-      type: 'password',
+    = f.govuk_password_field(:password_confirmation,
       label: { text: 'Confirm new password' },
       autocomplete: 'new-password')
 
