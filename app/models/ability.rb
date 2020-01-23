@@ -33,10 +33,12 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     return if user.blank?
 
+    alias_action :change_password, :update_password, to: :manage_password
+
     if user.caseworker?
       can %i[new create], SearchFilter
       can %i[new create], Search
-      can %i[show edit update destroy], User, id: user.id
+      can %i[show edit update manage_password destroy], User, id: user.id
     end
 
     if user.manager?
