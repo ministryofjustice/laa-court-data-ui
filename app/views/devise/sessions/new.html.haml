@@ -6,7 +6,7 @@
 
     = f.govuk_email_field(:email, label: { text: 'Email' }, autofocus: true, autocomplete: 'email')
 
-    = f.govuk_text_field(:password, type: 'password', label: { text: 'Password' }, autocomplete: 'current-password')
+    = f.govuk_password_field(:password, label: { text: 'Password' }, autocomplete: 'current-password')
 
     - if devise_mapping.rememberable?
       = f.govuk_collection_radio_buttons :remember_me,
