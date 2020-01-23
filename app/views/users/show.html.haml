@@ -13,5 +13,5 @@
           = t('users.show.email_label')
         %td
           = mail_to @user.email, @user.email
-  = link_to t('users.show.edit_link'), edit_user_path(current_user)
-  = link_to t('users.show.change_password_link'), change_password_user_path(current_user)
+  = link_to t('users.show.edit_link'), edit_user_path(@user)
+  = link_to t('users.show.change_password_link'), change_password_user_path(@user)
