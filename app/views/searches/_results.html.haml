@@ -1,6 +1,17 @@
 .govuk-heading-l
   = t('search.result_count', query: @query, count: @results.size)
-- @results&.each do |result|
-  .govuk-grid-row
-    .govuk-grid-column-two-thirds
-      = result
+
+- if @results.size.to_i >= 1
+  %table.govuk-table
+    %caption.govuk-table__caption.govuk-visually-hidden
+      = t('search.result.caption')
+    %thead.govuk-table__head
+      %tr.govuk-table__row
+        %th.govuk-table__header{ scope: 'col' }= t('search.result.table_head')
+    %tbody.govuk-table__body
+      - @results&.each do |result|
+        %tr.govuk-table__row
+          %td.govuk-table__cell= result
+
+- else
+  = render 'no_results'

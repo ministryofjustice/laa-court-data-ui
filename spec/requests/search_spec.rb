@@ -25,4 +25,15 @@ RSpec.describe 'search', type: :request do
       expect(response).to have_http_status :ok
     end
   end
+
+  describe 'no result', type: :request do
+    before do
+      allow_any_instance_of(Search).to receive(:execute).and_return([])
+    end
+
+    it 'renders searches/_no_results template' do
+      post '/searches', params: { search: { query: 'T20200001', filter: :case_number } }
+      expect(response).to render_template('searches/_no_results')
+    end
+  end
 end
