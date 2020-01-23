@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
+  resources :users, only: %i[show]
+
   get 'ping', to: 'status#ping', format: :json
 
   get '/404', to: 'errors#not_found'
