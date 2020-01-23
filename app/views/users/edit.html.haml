@@ -1,7 +1,7 @@
 = govuk_page_title(t('users.edit.page_title'))
-  
-.govuk-body 
-  = form_with model: [@user] do |f|
+
+.govuk-body
+  = form_with model: @user, local: true do |f|
     = f.govuk_text_field(:first_name, label: { text: t('users.edit.first_name_label') } )
     = f.govuk_text_field(:last_name, label: { text: t('users.edit.last_name_label') } )
     = f.govuk_text_field(:email, label: { text: t('users.edit.email_label') } )

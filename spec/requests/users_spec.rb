@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.fdescribe 'users', type: :request do
+RSpec.describe 'users', type: :request do
   let(:user) { create(:user) }
 
   before do
@@ -34,7 +34,7 @@ RSpec.fdescribe 'users', type: :request do
 
     it 'allows users to update their password' do
       patch "/users/#{user.id}", params: { user: { password: 'testing1234',
-                                                    password_confirmation: 'testing1234' } }
+                                                   password_confirmation: 'testing1234' } }
       expect(response).to redirect_to authenticated_root_path
     end
   end
