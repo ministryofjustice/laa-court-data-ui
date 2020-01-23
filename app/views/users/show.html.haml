@@ -1,19 +1,17 @@
-= govuk_page_title('Your Account')
+= govuk_page_title(t('users.show.page_title'))
 
 .govuk-body
   %table
-    %caption
-      = 'Your account details'
     %tbody
       %tr
         %th{ scope: 'row' }
-          = 'Name:'
+          = t('users.show.name_label')
         %td
           = @user.name
       %tr
         %th{ scope: 'row' }
-          = 'Email:'
+          = t('users.show.email_label')
         %td
           = mail_to @user.email, @user.email
-  = link_to 'Edit', edit_user_path(current_user)
-  = link_to 'Change Password', change_password_user_path(current_user)
+  = link_to t('users.show.edit_link'), edit_user_path(current_user)
+  = link_to t('users.show.change_password_link'), change_password_user_path(current_user)

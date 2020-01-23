@@ -1,0 +1,21 @@
+---
+en:
+  users:
+    show:
+      page_title: Your Account
+      name_label: Name
+      email_label: Email
+      edit_link: Edit
+      change_password_link: Change Password
+    edit:
+      page_title: Edit User
+      first_name_label: First Name
+      last_name_label: Last Name
+      email_label: Email
+      save_button: Save
+    change_password:
+      page_title: Change Password
+      current_password_label: Current password
+      new_password_label: New password
+      confirm_password_label: Confirm new password
+      change_password_button: Change password
