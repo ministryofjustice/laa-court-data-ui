@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   def change_password; end
 
   def update_password
-    if @user.update(user_params)
+    if @user.update_with_password(user_params)
       bypass_sign_in(@user)
-      redirect_to authenticated_root_path, notice: 'Password successfully updated'
+      redirect_to @user, notice: 'Password successfully updated'
     else
       render :change_password
     end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update!(user_params)
-      redirect_to authenticated_root_path, notice: 'User details successfully updated'
+      redirect_to @user, notice: 'User details successfully updated'
     else
       render :edit
     end
