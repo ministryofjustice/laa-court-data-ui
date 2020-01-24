@@ -27,7 +27,7 @@ RSpec.describe 'authorization', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/You unauthorised to manage other users/)
+        expect(flash.now[:alert]).to match(/You are unauthorised to manage users/)
       end
     end
   end
