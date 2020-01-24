@@ -6,6 +6,7 @@ require:
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.7
+  TargetRailsVersion: 6
   Exclude:
     - tmp/**/*
     - bin/bundle
