@@ -47,6 +47,12 @@ references:
         - node_modules
         - public/packs-test
 
+  _script-build-app-container: &script-build-app-container
+    run:
+        name: Build and push docker image
+        command: |
+          .circleci/build.sh
+
 # ------------------
 # EXECUTORS
 # ------------------
@@ -64,6 +70,13 @@ executors:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: "circleci"
           POSTGRES_DB: laa_court_data_ui_test
+
+  cloud-platform-executor:
+    docker:
+    - image: ${ECR_ENDPOINT}/cloud-platform/tools:circleci
+      environment:
+        GITHUB_TEAM_NAME_SLUG: laa-get-paid
+        REPO_NAME: cccd
 
 # ------------------
 # COMMANDS
@@ -130,6 +143,24 @@ commands:
           path: /tmp/test-results
           destination: test-results
 
+  deploy-to:
+    description: >
+      Deploy image to the specified environment
+    parameters:
+      environment:
+        description: destination environment
+        type: string
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: deploying to << parameters.environment >>
+          command: |
+            .circleci/deploy.sh << parameters.environment >>
+      - slack/status:
+          success_message: ":tada: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> successful!"
+          failure_message: ":red_circle: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> failed!"
+
 # ------------------
 # JOBS
 # ------------------
@@ -150,12 +181,25 @@ jobs:
       - brakeman
       - rspec
 
+  build-app-container:
+    executor: cloud-platform-executor
+    steps:
+      - checkout
+      - setup_remote_docker
+      - *script-build-app-container
+
+  deploy-dev:
+    executor: cloud-platform-executor
+    steps:
+      - deploy-to:
+          environment: dev
+
 # ------------------
 # WORKFLOWS
 # ------------------
 workflows:
   version: 2
-  test-master:
+  test-build-master:
     jobs:
       - build-test-container:
           filters:
@@ -165,8 +209,11 @@ workflows:
       - tests:
           requires:
             - build-test-container
+      - build-app-container:
+          requires:
+            - tests
 
-  test-branch:
+  test-build-branch:
     jobs:
       - build-test-container:
           filters:
@@ -176,3 +223,17 @@ workflows:
       - tests:
           requires:
             - build-test-container
+      - branch-build-approval:
+          type: approval
+          requires:
+            - tests
+          filters:
+            branches:
+              ignore:
+                - master
+      - build-app-container:
+          requires:
+            - branch-build-approval
+      - deploy-dev:
+          requires:
+            - build-app-container
