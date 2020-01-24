@@ -4,4 +4,4 @@ en:
     default: You are not authorised to perform that action
     manage:
       all: You are unauthorised to %{action} %{subject}
-      user: You unauthorised to manage other users
+      user: You are unauthorised to manage users

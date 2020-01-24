@@ -6,7 +6,7 @@ en:
       confirm_password_label: Confirm new password
       current_password_label: Current password
       new_password_label: New password
-      page_title: Change Password
+      page_title: Change password
     edit:
       email_label: Email
       first_name_label: First Name
@@ -14,8 +14,8 @@ en:
       page_title: Edit User
       save_button: Save
     show:
-      change_password_link: Change Password
+      change_password_link: Change password
       edit_link: Edit
       email_label: Email
       name_label: Name
-      page_title: Your Account
+      page_title: Your account
