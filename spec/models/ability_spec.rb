@@ -20,8 +20,9 @@ RSpec.describe Ability, type: :model do
 
     it { is_expected.to be_able_to(%i[new create], SearchFilter) }
     it { is_expected.to be_able_to(%i[new create], Search) }
-    it { is_expected.to be_able_to(%i[show edit update manage_password destroy], themself) }
-    it { is_expected.not_to be_able_to(%i[show edit update destroy], other_user) }
+    it { is_expected.to be_able_to(%i[show manage_password], themself) }
+    it { is_expected.not_to be_able_to(%i[edit update destroy], themself) }
+    it { is_expected.not_to be_able_to(%i[show edit update manage_password destroy], other_user) }
   end
 
   context 'when is a manager' do

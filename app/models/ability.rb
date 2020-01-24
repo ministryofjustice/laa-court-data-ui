@@ -38,7 +38,7 @@ class Ability
     if user.caseworker?
       can %i[new create], SearchFilter
       can %i[new create], Search
-      can %i[show edit update manage_password destroy], User, id: user.id
+      can %i[show manage_password], User, id: user.id
     end
 
     if user.manager?
