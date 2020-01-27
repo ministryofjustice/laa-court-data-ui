@@ -18,4 +18,4 @@ en:
       edit_link: Edit
       email_label: Email
       name_label: Name
-      page_title: Your account
+      page_title: "%{name}'s account"
