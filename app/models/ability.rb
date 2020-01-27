@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/GuardClause,Style/IfUnlessModifier
+# rubocop:disable Style/GuardClause
 class Ability
   include CanCan::Ability
 
@@ -42,8 +42,10 @@ class Ability
     end
 
     if user.manager?
+      can %i[new create], SearchFilter
+      can %i[new create], Search
       can :manage, User
     end
   end
 end
-# rubocop:enable Style/GuardClause,Style/IfUnlessModifier
+# rubocop:enable Style/GuardClause

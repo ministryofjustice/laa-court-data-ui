@@ -37,11 +37,6 @@ RSpec.describe 'authorization', type: :request do
 
     before { sign_in user }
 
-    it 'cannot search' do
-      get new_search_filter_path
-      expect(response).to redirect_to authenticated_root_path
-    end
-
     it 'can manage themselves' do
       get user_path(user)
       expect(response).to render_template('users/show')
