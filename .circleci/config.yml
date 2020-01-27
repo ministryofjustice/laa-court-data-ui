@@ -76,7 +76,7 @@ executors:
     - image: ${ECR_ENDPOINT}/cloud-platform/tools:circleci
       environment:
         GITHUB_TEAM_NAME_SLUG: laa-get-paid
-        REPO_NAME: cccd
+        REPO_NAME: laa-court-data-ui
 
 # ------------------
 # COMMANDS
