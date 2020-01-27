@@ -24,3 +24,4 @@ en:
       email_label: Email
       name_label: Name
       page_title: "%{name}'s account"
+      roles_label: Roles

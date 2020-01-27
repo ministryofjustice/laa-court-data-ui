@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update!(user_params)
+    if @user.update(user_params)
       redirect_to @user, notice: 'User details successfully updated'
     else
       render :edit
@@ -37,13 +37,15 @@ class UsersController < ApplicationController
   end
 
   def user_params
+    params[:user][:roles]&.reject!(&:blank?)
     params.require(:user).permit(
       :last_name,
       :first_name,
       :email,
       :current_password,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      roles: []
     )
   end
 end

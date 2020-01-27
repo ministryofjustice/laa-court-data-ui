@@ -5,4 +5,9 @@
     = f.govuk_text_field(:first_name, label: { text: t('users.edit.first_name_label') } )
     = f.govuk_text_field(:last_name, label: { text: t('users.edit.last_name_label') } )
     = f.govuk_email_field(:email, label: { text: t('users.edit.email_label') } )
+    = f.govuk_collection_check_boxes :roles,
+        User.valid_roles,
+        :to_s,
+        :titlecase,
+        legend: { text: "What roles does the user have?" }
     = f.govuk_submit( t('users.edit.save_button') )

@@ -13,7 +13,11 @@
           = t('users.show.email_label')
         %td
           = mail_to @user.email, @user.email
-
+      %tr
+        %th{ scope: 'row' }
+          = t('users.show.roles_label')
+        %td
+          = @user.roles.map(&:titlecase).join(', ')
   - if can? :edit, @user
     = link_to t('users.show.edit_link'), edit_user_path(@user), class: 'govuk-link'
 

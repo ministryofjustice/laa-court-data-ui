@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.ffeature 'Edit user', type: :feature do
+RSpec.feature 'Edit user', type: :feature do
   before do
     sign_in user
   end
@@ -25,7 +25,7 @@ RSpec.ffeature 'Edit user', type: :feature do
     end
   end
 
-  context 'when manager' do
+  fcontext 'when manager' do
     let(:user) { create(:user, :with_manager_role) }
     let!(:other_user) { create(:user, :with_caseworker_role) }
 
@@ -44,17 +44,27 @@ RSpec.ffeature 'Edit user', type: :feature do
 
       expect(page).to have_govuk_page_title(text: 'Edit user')
       expect(page).to have_field('Email', type: 'email', with: other_user.email)
+      expect(page).to have_field('Caseworker', type: 'checkbox')
+      expect(page).to have_field('Manager', type: 'checkbox')
+      expect(page).to have_field('Admin', type: 'checkbox')
 
+      old_email = other_user.email
+
+      check 'Manager'
       fill_in 'Email', with: 'changed@example.com'
       click_button 'Save'
 
       expect(page).to have_current_path(user_path(other_user))
       expect(page).to have_css('.govuk-error-summary', text: 'User details successfully updated')
 
-      # sends a confirmation email
+      other_user.reload
+      expect(other_user).to be_manager
+      expect(other_user.email).to eql('changed@example.com')
+
+      # sends a warning email
       email = outbox.last
       expect(email.subject).to eql('Email changed')
-      expect(email.to).to include(other_user.email)
+      expect(email.to).to include(old_email)
       expect(email.body.raw_source).to include('your email has been changed to changed@example.com')
     end
   end
