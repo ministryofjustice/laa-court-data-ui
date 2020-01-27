@@ -52,7 +52,7 @@ RSpec.feature 'Password unlock', type: :feature do
     expect(page).to have_link('Didn\'t receive unlock instructions?')
     click_link 'Didn\'t receive unlock instructions?'
 
-    expect(page).to have_css('h1', text: 'Resend unlock instructions')
+    expect(page).to have_govuk_page_title(text: 'Resend unlock instructions')
     fill_in 'Email', with: user.email
     click_button 'Resend unlock instructions'
 

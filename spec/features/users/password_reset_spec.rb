@@ -22,7 +22,7 @@ RSpec.feature 'Password reset', type: :feature do
     expect(page).to have_link('Forgot your password?')
     click_link 'Forgot your password?'
 
-    expect(page).to have_css('h1', text: 'Forgot your password?')
+    expect(page).to have_govuk_page_title(text: 'Forgot your password?')
     fill_in 'Email', with: user.email
     click_button 'Send me reset password instructions'
 
@@ -37,7 +37,7 @@ RSpec.feature 'Password reset', type: :feature do
     email_reset_link = email.body.raw_source.match(/href="(?<url>.+?)">/)[:url]
 
     visit email_reset_link
-    expect(page).to have_css('h1', text: 'Change your password')
+    expect(page).to have_govuk_page_title(text: 'Change your password')
     fill_in 'New password', with: 'my-new-password'
     fill_in 'Confirm new password', with: 'my-new-password'
     click_button 'Change my password'

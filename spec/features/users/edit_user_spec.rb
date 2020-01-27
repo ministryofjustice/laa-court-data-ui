@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Edit user', type: :feature do
+RSpec.ffeature 'Edit user', type: :feature do
   before do
     sign_in user
   end
@@ -13,7 +13,7 @@ RSpec.feature 'Edit user', type: :feature do
     scenario 'cannot navigate to edit themselves' do
       visit user_path(user)
 
-      expect(page).to have_css('h1', text: "#{user.name}'s account")
+      expect(page).to have_govuk_page_title(text: "#{user.name}'s account")
       expect(page).not_to have_link 'Edit'
     end
 
@@ -31,7 +31,7 @@ RSpec.feature 'Edit user', type: :feature do
 
     scenario 'can index, view and edit users' do
       visit users_path
-      expect(page).to have_css('h1', text: 'List of users')
+      expect(page).to have_govuk_page_title(text: 'List of users')
 
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
       expect(row).to have_content(other_user.name)
@@ -42,7 +42,7 @@ RSpec.feature 'Edit user', type: :feature do
         click_link 'Edit'
       end
 
-      expect(page).to have_css('h1', text: 'Edit user')
+      expect(page).to have_govuk_page_title(text: 'Edit user')
       expect(page).to have_field('Email', type: 'email', with: other_user.email)
 
       fill_in 'Email', with: 'changed@example.com'
