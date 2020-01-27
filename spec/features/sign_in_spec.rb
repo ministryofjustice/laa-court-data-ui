@@ -28,7 +28,7 @@ RSpec.feature 'Sign in', type: :feature do
     end
 
     it 'search filters page is displayed' do
-      expect(page).to have_govuk_page_title(text: 'How do you want to search?')
+      expect(page).to have_govuk_page_title(text: 'Search filters')
     end
 
     it 'navigation bar is displayed' do

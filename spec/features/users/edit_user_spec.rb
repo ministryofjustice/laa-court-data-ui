@@ -25,7 +25,7 @@ RSpec.feature 'Edit user', type: :feature do
     end
   end
 
-  fcontext 'when manager' do
+  context 'when manager' do
     let(:user) { create(:user, :with_manager_role) }
     let!(:other_user) { create(:user, :with_caseworker_role) }
 
