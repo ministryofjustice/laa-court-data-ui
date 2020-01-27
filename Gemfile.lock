@@ -78,7 +78,7 @@ GEM
       msgpack (~> 1.0)
     brakeman (4.7.2)
     builder (3.2.4)
-    byebug (11.0.1)
+    byebug (11.1.1)
     cancancan (3.0.2)
     capybara (3.31.0)
       addressable
@@ -187,7 +187,7 @@ GEM
     pg (1.2.2)
     pg (1.2.2-x64-mingw32)
     pg (1.2.2-x86-mingw32)
-    pry-byebug (3.7.0)
+    pry-byebug (3.8.0)
       byebug (~> 11.0)
       pry (~> 0.10)
     pry-rails (0.3.9)
