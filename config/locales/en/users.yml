@@ -25,3 +25,9 @@ en:
       name_label: Name
       page_title: "%{name}'s account"
       roles_label: Roles
+    update:
+      flash:
+        success: User details successfully updated
+    update_password:
+      flash:
+        success: Password successfully updated

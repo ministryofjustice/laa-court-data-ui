@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def update_password
     if @user.update_with_password(user_params)
       bypass_sign_in(@user)
-      redirect_to @user, notice: 'Password successfully updated'
+      redirect_to @user, notice: I18n.t('users.update_password.flash.success')
     else
       render :change_password
     end
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User details successfully updated'
+      redirect_to @user, notice: I18n.t('users.update.flash.success')
     else
       render :edit
     end
