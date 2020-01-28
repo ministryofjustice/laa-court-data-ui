@@ -57,7 +57,7 @@ function _circleci_deploy() {
 
   # apply image specific config
   kubectl apply -f .k8s/${environment}/secrets.yaml
-  kubectl set image -f .k8s/${environment}/deployment.yaml cccd-app=${docker_image_tag} --local -o yaml | kubectl apply -f -
+  kubectl set image -f .k8s/${environment}/deployment.yaml laa-court-data-ui-app=${docker_image_tag} --local -o yaml | kubectl apply -f -
 
   # apply non-image specific config
   kubectl apply \
