@@ -37,7 +37,7 @@ RSpec.feature 'Password unlock', type: :feature do
     visit email_unlock_link
 
     expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_css('.govuk-error-summary', text: unlocked_flash_notice)
+    expect(page).to have_govuk_flash(:notice, text: unlocked_flash_notice)
   end
 
   scenario 'caseworker requests unlock email to be resent' do
@@ -57,7 +57,7 @@ RSpec.feature 'Password unlock', type: :feature do
     click_button 'Resend unlock instructions'
 
     expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_css('.govuk-error-summary', text: resent_flash_notice)
+    expect(page).to have_govuk_flash(:alert, text: resent_flash_notice)
 
     expect(outbox.count).to be 2
 
@@ -71,6 +71,6 @@ RSpec.feature 'Password unlock', type: :feature do
     visit email_unlock_link
 
     expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_css('.govuk-error-summary', text: unlocked_flash_notice)
+    expect(page).to have_govuk_flash(:alert, text: unlocked_flash_notice)
   end
 end

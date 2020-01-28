@@ -27,7 +27,7 @@ RSpec.feature 'Password reset', type: :feature do
     click_button 'Send me reset password instructions'
 
     expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_css('.govuk-error-summary', text: reset_flash_notice)
+    expect(page).to have_govuk_flash(:notice, text: reset_flash_notice)
 
     email = ActionMailer::Base.deliveries.last
     expect(email.subject).to eql('Reset password instructions')
@@ -43,6 +43,6 @@ RSpec.feature 'Password reset', type: :feature do
     click_button 'Change my password'
 
     expect(page).to have_current_path(authenticated_root_path)
-    expect(page).to have_css('.govuk-error-summary', text: changed_flash_notice)
+    expect(page).to have_govuk_flash(:alert, text: changed_flash_notice)
   end
 end

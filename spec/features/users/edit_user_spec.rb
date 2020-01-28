@@ -21,7 +21,7 @@ RSpec.feature 'Edit user', type: :feature do
       visit edit_user_path(user)
 
       expect(page).to have_current_path(authenticated_root_path)
-      expect(page).to have_css('.govuk-error-summary', text: 'unauthorise')
+      expect(page).to have_govuk_flash(:alert, text: 'unauthorise')
     end
   end
 
@@ -55,7 +55,8 @@ RSpec.feature 'Edit user', type: :feature do
       click_button 'Save'
 
       expect(page).to have_current_path(user_path(other_user))
-      expect(page).to have_css('.govuk-error-summary', text: 'User details successfully updated')
+
+      expect(page).to have_govuk_flash(:notice, text: 'User details successfully updated')
 
       other_user.reload
       expect(other_user).to be_manager

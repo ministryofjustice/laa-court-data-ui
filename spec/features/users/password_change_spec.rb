@@ -24,7 +24,7 @@ RSpec.feature 'Password change', type: :feature do
     fill_in 'Confirm new password', with: 'my-new-password'
     click_button 'Change password'
 
-    expect(page).to have_css('.govuk-error-summary', text: 'Password successfully updated')
+    expect(page).to have_govuk_flash(:notice, text: 'Password successfully updated')
     expect(page).to have_current_path(user_path(user))
 
     email = ActionMailer::Base.deliveries.last

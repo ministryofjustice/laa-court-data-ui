@@ -16,5 +16,16 @@ module CapybaraExtensions
     def has_no_govuk_page_title?(options = {})
       has_no_selector?('h1.govuk-heading-xl', options)
     end
+
+    def has_govuk_flash?(key, options)
+      case key
+      when :alert
+        has_selector?('.govuk-error-summary', options)
+      when :notice
+        has_selector?('.lcdui-notice-summary', options)
+      else
+        has_selector?('.govuk-error-summary', options)
+      end
+    end
   end
 end
