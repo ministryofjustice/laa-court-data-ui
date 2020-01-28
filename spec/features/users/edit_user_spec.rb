@@ -21,7 +21,7 @@ RSpec.feature 'Edit user', type: :feature do
       visit edit_user_path(user)
 
       expect(page).to have_current_path(authenticated_root_path)
-      expect(page).to have_govuk_flash(:alert, text: 'unauthorise')
+      expect(page).to have_govuk_flash(:alert, text: 'unauthorised')
     end
   end
 
