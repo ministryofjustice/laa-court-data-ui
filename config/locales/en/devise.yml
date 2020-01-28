@@ -71,6 +71,12 @@ en:
           submit: Sign in
         signed_in: Signed in successfully.
         signed_out: Signed out successfully.
+    shared:
+      links:
+        confirmation_receipt: Didn't receive confirmation instructions?
+        forgot_password: Forgot your password?
+        sign_in: Sign in
+        unlock_receipt: Didn't receive unlock instructions?
     unlocks:
       user:
         form:
