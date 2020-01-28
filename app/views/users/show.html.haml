@@ -1,6 +1,24 @@
-= govuk_page_title(@user.name)
+= govuk_page_title(t('users.show.page_title', name: @user.name))
 
 .govuk-body
-  = @user.name
-  %br
-  = @user.email
+  %table
+    %tbody
+      %tr
+        %th{ scope: 'row' }
+          = t('users.show.name_label')
+        %td
+          = @user.name
+      %tr
+        %th{ scope: 'row' }
+          = t('users.show.email_label')
+        %td
+          = mail_to @user.email, @user.email
+      %tr
+        %th{ scope: 'row' }
+          = t('users.show.roles_label')
+        %td
+          = @user.roles.map(&:titlecase).join(', ')
+  - if can? :edit, @user
+    = link_to t('users.show.edit_link'), edit_user_path(@user), class: 'govuk-link'
+
+  = link_to t('users.show.change_password_link'), change_password_user_path(@user), class: 'govuk-link'

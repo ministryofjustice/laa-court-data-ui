@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
 
-  resources :users, only: %i[show]
+  resources :users, only: %i[index show edit update destroy] do
+    get 'change_password', on: :member
+    patch 'update_password', on: :member
+  end
 
   get 'ping', to: 'status#ping', format: :json
 

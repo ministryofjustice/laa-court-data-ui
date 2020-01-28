@@ -27,7 +27,7 @@ RSpec.describe 'authorization', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/You unauthorised to manage other users/)
+        expect(flash.now[:alert]).to match(/You are unauthorised to manage users/)
       end
     end
   end
@@ -36,11 +36,6 @@ RSpec.describe 'authorization', type: :request do
     let(:user) { create(:user, roles: ['manager']) }
 
     before { sign_in user }
-
-    it 'cannot search' do
-      get new_search_filter_path
-      expect(response).to redirect_to authenticated_root_path
-    end
 
     it 'can manage themselves' do
       get user_path(user)

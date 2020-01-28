@@ -23,7 +23,7 @@ en:
   search_filter:
     label_hint: choose an option
     legend_text: How do you want to search?
-    page_title: Search Filters
+    page_title: Search filters
     radio_case_number_label: By case number
     radio_defendant_label: By defendant
     radio_defendant_label_hint: Name or MAAT reference

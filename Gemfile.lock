@@ -152,6 +152,11 @@ GEM
       terminal-table (>= 1.5.1)
     jaro_winkler (1.5.4)
     jaro_winkler (1.5.4-java)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    launchy (2.4.3-java)
+      addressable (~> 2.3)
+      spoon (~> 0.0.1)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -281,6 +286,8 @@ GEM
     ruby_parser (3.14.1)
       sexp_processor (~> 4.9)
     sexp_processor (4.13.0)
+    spoon (0.0.6)
+      ffi
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -346,6 +353,7 @@ DEPENDENCIES
   govuk_design_system_formbuilder (~> 1.1)
   haml-rails (~> 2.0.1)
   i18n-tasks (~> 0.9.30)
+  launchy
   listen (>= 3.0.5, < 3.3)
   pg (>= 0.18, < 2.0)
   pry!

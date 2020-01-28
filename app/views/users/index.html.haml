@@ -1,0 +1,11 @@
+= govuk_page_title(t('users.index.page_title'))
+
+%table
+  - @users.each do |user|
+    %tr{"data-user-id": "#{user.id}"}
+      %td
+        = link_to user.name, user_path(user)
+      %td
+        = link_to t('users.index.edit'), edit_user_path(user)
+        |
+        = link_to t('users.index.delete'), user_path(user), method: :delete, data: { confirm: t('users.index.delete_confirmation', name: user.name) }

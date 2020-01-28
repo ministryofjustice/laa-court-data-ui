@@ -24,6 +24,6 @@ class SearchFiltersController < ApplicationController
   end
 
   def search_filter_params
-    params.require(:search_filter).permit(:id)
+    params.permit(:search_filter).permit(:id)
   end
 end

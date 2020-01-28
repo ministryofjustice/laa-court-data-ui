@@ -1,0 +1,33 @@
+---
+en:
+  users:
+    change_password:
+      change_password_button: Change password
+      confirm_password_label: Confirm new password
+      current_password_label: Current password
+      new_password_label: New password
+      page_title: Change password
+    edit:
+      email_label: Email
+      first_name_label: First Name
+      last_name_label: Last Name
+      page_title: Edit user
+      save_button: Save
+    index:
+      delete: Delete
+      delete_confirmation: Are you sure you want to delete %{name}'s account?
+      edit: Edit
+      page_title: List of users
+    show:
+      change_password_link: Change password
+      edit_link: Edit
+      email_label: Email
+      name_label: Name
+      page_title: "%{name}'s account"
+      roles_label: Roles
+    update:
+      flash:
+        success: User details successfully updated
+    update_password:
+      flash:
+        success: Password successfully updated

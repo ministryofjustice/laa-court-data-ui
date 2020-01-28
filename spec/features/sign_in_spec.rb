@@ -13,7 +13,7 @@ RSpec.feature 'Sign in', type: :feature do
   before { visit 'users/sign_in' }
 
   it 'page header is displayed' do
-    expect(page).to have_css('h1', text: 'Sign in')
+    expect(page).to have_govuk_page_title(text: 'Sign in')
   end
 
   context 'with success' do
@@ -28,7 +28,7 @@ RSpec.feature 'Sign in', type: :feature do
     end
 
     it 'search filters page is displayed' do
-      expect(page).to have_css('h1', text: 'How do you want to search?')
+      expect(page).to have_govuk_page_title(text: 'Search filters')
     end
 
     it 'navigation bar is displayed' do
@@ -55,7 +55,7 @@ RSpec.feature 'Sign in', type: :feature do
       fill_in 'Email', with: 'billy bob'
       fill_in 'Password', with: user.password
       click_button 'Sign in'
-      expect(page).to have_css('h1', text: 'Sign in')
+      expect(page).to have_govuk_page_title(text: 'Sign in')
       expect(page).to have_text('Invalid email or password')
     end
   end

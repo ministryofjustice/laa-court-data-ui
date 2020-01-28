@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/GuardClause,Style/IfUnlessModifier
+# rubocop:disable Style/GuardClause
 class Ability
   include CanCan::Ability
 
@@ -33,15 +33,19 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     return if user.blank?
 
+    alias_action :change_password, :update_password, to: :manage_password
+
     if user.caseworker?
       can %i[new create], SearchFilter
       can %i[new create], Search
-      can %i[show edit update destroy], User, id: user.id
+      can %i[show manage_password], User, id: user.id
     end
 
     if user.manager?
+      can %i[new create], SearchFilter
+      can %i[new create], Search
       can :manage, User
     end
   end
 end
-# rubocop:enable Style/GuardClause,Style/IfUnlessModifier
+# rubocop:enable Style/GuardClause
