@@ -7,3 +7,13 @@
 $govuk-font-url-function: frontend-font-url;
 $govuk-image-url-function: frontend-image-url;
 @import "~govuk-frontend/govuk/all";
+
+.lcdui-notice-summary {
+  .govuk-error-summary {
+    border-color: $govuk-brand-colour;
+  }
+
+  .govuk-error-message {
+    color: $govuk-brand-colour;
+  }
+}

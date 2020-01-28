@@ -2,13 +2,15 @@
   - case key
     - when 'alert'
       .govuk-error-summary
-        .govuk-error-message
         .govuk-error-summary__title
           = value
         / .govuk-error-summary__body
+        .govuk-error-message
+
     - when 'notice'
-      .govuk-error-summary{ style: 'border-color: #1d70b8' }
-        .govuk-error-message
-        .govuk-error-summary__title
-          = value
-        / .govuk-error-summary__body
+      .lcdui-notice-summary
+        .govuk-error-summary
+          .govuk-error-summary__title
+            = value
+          / .govuk-error-summary__body
+          .govuk-error-message
