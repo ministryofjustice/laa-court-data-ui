@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
-  load_and_authorize_resource only: %i[new create]
   before_action :set_search_args
 
   def new
     @search = Search.new
+    authorize! :new, @search
   end
 
   def create
     @search = Search.new(query: @query, filter: @filter)
+    authorize! :create, @search
+
     @results = @search.execute
     render 'new'
   end
