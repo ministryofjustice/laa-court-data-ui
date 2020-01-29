@@ -2,7 +2,6 @@
 
 class UsersController < ApplicationController
   load_and_authorize_resource except: :create
-  before_action :set_user, only: %i[show edit update change_password update_password]
 
   def index; end
 
@@ -49,10 +48,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def set_user
-    @user = User.find(params[:id])
-  end
 
   def user_params
     params[:user][:roles]&.reject!(&:blank?)
