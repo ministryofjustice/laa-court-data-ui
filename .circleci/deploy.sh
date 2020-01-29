@@ -56,7 +56,7 @@ function _circleci_deploy() {
   docker_image_tag=${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${REPO_NAME}:app-${CIRCLE_SHA1}
 
   # apply image specific config
-  kubectl apply -f .k8s/${environment}/secrets.yaml
+  kubectl apply -f .k8s/${environment}/secrets.yaml 2> /dev/null
   kubectl set image -f .k8s/${environment}/deployment.yaml laa-court-data-ui-app=${docker_image_tag} --local -o yaml | kubectl apply -f -
 
   # apply non-image specific config
