@@ -39,12 +39,14 @@ class Ability
       can %i[new create], SearchFilter
       can %i[new create], Search
       can %i[show manage_password], User, id: user.id
+      can :show, :cases
     end
 
     if user.manager?
       can %i[new create], SearchFilter
       can %i[new create], Search
       can :manage, User
+      can :show, :cases
     end
   end
 end

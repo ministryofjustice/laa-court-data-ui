@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     patch 'update_password', on: :member
   end
 
+  resources :cases, only: %i[show]
+
   get 'ping', to: 'status#ping', format: :json
 
   get '/404', to: 'errors#not_found'

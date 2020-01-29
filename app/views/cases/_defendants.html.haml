@@ -1,0 +1,15 @@
+%h2{ class: 'govuk-heading-l govuk-!-margin-bottom-4' } Defendants
+
+%table{ class: 'govuk-table govuk-!-margin-bottom-9' }
+  %thead.govuk-table__head
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'col' } Name
+      %th.govuk-table__header{ scope: 'col' } Date of birth
+      %th.govuk-table__header{ scope: 'col' } MAAT number
+
+  %tbody.govuk-table__body
+    %tr.govuk-table__row
+      %td.govuk-table__cell
+        = link_to 'Anthony Barnes'
+      %td.govuk-table__cell 09/07/1962
+      %td.govuk-table__cell 4455796
