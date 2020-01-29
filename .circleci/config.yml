@@ -212,6 +212,9 @@ workflows:
       - build-app-container:
           requires:
             - tests
+      - deploy-dev:
+          requires:
+            - build-app-container
 
   test-build-branch:
     jobs:
