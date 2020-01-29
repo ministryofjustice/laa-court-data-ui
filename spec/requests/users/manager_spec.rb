@@ -25,7 +25,7 @@ RSpec.describe 'managers', type: :request do
       get '/users/new'
     end
 
-    it 'redirects to authenticated_root_path' do
+    it 'renders /users/new' do
       expect(response).to render_template('users/new')
     end
   end
