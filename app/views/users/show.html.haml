@@ -12,7 +12,7 @@
         %th{ scope: 'row' }
           = t('users.show.email_label')
         %td
-          = mail_to @user.email, @user.email
+          = mail_to @user.email, @user.email, target: '_blank'
       %tr
         %th{ scope: 'row' }
           = t('users.show.roles_label')
