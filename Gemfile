@@ -10,6 +10,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'cancancan'
 gem 'devise', '~> 4.2'
+gem 'govuk_notify_rails', '~> 2.1.1'
 
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 1.1'

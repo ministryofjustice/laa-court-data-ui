@@ -5,7 +5,7 @@ RSpec.feature 'New user', type: :feature do
     sign_in user
   end
 
-  let(:outbox) { ActionMailer::Base.deliveries }
+  # let(:outbox) { ActionMailer::Base.deliveries }
 
   context 'when caseworker' do
     let(:user) { create(:user, :with_caseworker_role) }
@@ -49,6 +49,9 @@ RSpec.feature 'New user', type: :feature do
       fill_in 'Email', with: 'jim.bob@example.com'
       fill_in 'Confirm email', with: 'jim.bob@example.com'
       check 'Caseworker'
+      expect_any_instance_of(Devise::Mailer).to receive(
+        :reset_password_instructions
+      ).and_call_original
       click_button 'Save'
 
       new_user = User.find_by(email: 'jim.bob@example.com')
@@ -57,12 +60,6 @@ RSpec.feature 'New user', type: :feature do
       expect(page).to have_current_path(user_path(new_user))
       expect(page).to have_govuk_flash(:notice, text: 'User successfully added')
       expect(page).to have_govuk_page_title(text: 'Jim Bob\'s account')
-
-      # sends a password reset email
-      email = outbox.last
-      expect(email.subject).to eql('Reset password instructions')
-      expect(email.to).to include(new_user.email)
-      expect(email.body.raw_source).to include('requested a link to change your password.')
     end
   end
 end

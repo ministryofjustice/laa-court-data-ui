@@ -13,31 +13,20 @@ RSpec.feature 'Password unlock', type: :feature do
     'Please sign in to continue'
   end
 
-  let(:outbox) { ActionMailer::Base.deliveries }
-
   before do
-    outbox.clear
     visit '/'
   end
 
   scenario 'caseworker locks out there account' do
-    Devise.maximum_attempts.times do
+    max_attempts = Devise.maximum_attempts
+    max_attempts.times do |i|
       fill_in 'Email', with: user.email
       fill_in 'Password', with: 'wrong-password'
+      if i + 1 == max_attempts
+        expect_any_instance_of(Devise::Mailer).to receive(:unlock_instructions).and_call_original
+      end
       click_button 'Sign in'
     end
-
-    email = outbox.last
-    expect(email.subject).to eql('Unlock instructions')
-    expect(email.to).to include(user.email)
-    expect(email.body.raw_source).to include('locked due to an excessive number')
-
-    email_unlock_link = email.body.raw_source.match(/href="(?<url>.+?)">/)[:url]
-
-    visit email_unlock_link
-
-    expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_govuk_flash(:notice, text: unlocked_flash_notice)
   end
 
   scenario 'caseworker requests unlock email to be resent' do
@@ -47,30 +36,15 @@ RSpec.feature 'Password unlock', type: :feature do
       click_button 'Sign in'
     end
 
-    expect(outbox.count).to be 1
-
     expect(page).to have_link('Didn\'t receive unlock instructions?')
     click_link 'Didn\'t receive unlock instructions?'
 
     expect(page).to have_govuk_page_title(text: 'Resend unlock instructions')
     fill_in 'Email', with: user.email
+    expect_any_instance_of(Devise::Mailer).to receive(:unlock_instructions).and_call_original
     click_button 'Resend unlock instructions'
 
     expect(page).to have_current_path(new_user_session_path)
     expect(page).to have_govuk_flash(:alert, text: resent_flash_notice)
-
-    expect(outbox.count).to be 2
-
-    email = outbox.last
-    expect(email.subject).to eql('Unlock instructions')
-    expect(email.to).to include(user.email)
-    expect(email.body.raw_source).to include('locked due to an excessive number')
-
-    email_unlock_link = email.body.raw_source.match(/href="(?<url>.+?)">/)[:url]
-
-    visit email_unlock_link
-
-    expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_govuk_flash(:alert, text: unlocked_flash_notice)
   end
 end

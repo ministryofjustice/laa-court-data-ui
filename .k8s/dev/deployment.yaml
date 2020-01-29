@@ -83,3 +83,8 @@ spec:
                 secretKeyRef:
                   name: lcdui-secrets
                   key: CASEWORKER_PASSWORD
+            - name: GOVUK_NOTIFY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-secrets
+                  key: GOVUK_NOTIFY_API_KEY

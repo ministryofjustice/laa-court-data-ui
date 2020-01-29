@@ -5,8 +5,6 @@ RSpec.feature 'Edit user', type: :feature do
     sign_in user
   end
 
-  let(:outbox) { ActionMailer::Base.deliveries }
-
   context 'when caseworker' do
     let(:user) { create(:user, :with_caseworker_role) }
 
@@ -49,25 +47,19 @@ RSpec.feature 'Edit user', type: :feature do
       expect(page).to have_field('Manager', type: 'checkbox')
       expect(page).to have_field('Admin', type: 'checkbox')
 
-      old_email = other_user.email
-
       check 'Manager'
       fill_in 'Email', with: 'changed@example.com'
       fill_in 'Confirm email', with: 'changed@example.com'
+      expect_any_instance_of(Devise::Mailer).to receive(
+        :email_changed
+      ).and_call_original
       click_button 'Save'
 
       expect(page).to have_current_path(user_path(other_user))
       expect(page).to have_govuk_flash(:notice, text: 'User details successfully updated')
-
       other_user.reload
       expect(other_user).to be_manager
       expect(other_user.email).to eql('changed@example.com')
-
-      # sends a warning email
-      email = outbox.last
-      expect(email.subject).to eql('Email changed')
-      expect(email.to).to include(old_email)
-      expect(email.body.raw_source).to include('your email has been changed to changed@example.com')
     end
   end
 end
