@@ -44,7 +44,6 @@ RSpec.describe 'managers', type: :request do
     end
 
     let(:new_user) { User.find_by(email: 'created@example.com') }
-
     let(:request) { post '/users', params: user_params }
     let(:outbox) { ActionMailer::Base.deliveries }
 
@@ -175,6 +174,25 @@ RSpec.describe 'managers', type: :request do
       it 'flashes notice' do
         expect(flash.now[:notice]).to match(/success/)
       end
+    end
+  end
+
+  describe 'Destroy user', type: :request do
+    let!(:other_user) { create(:user, :with_caseworker_role) }
+    let(:request) { delete "/users/#{other_user.id}" }
+
+    it 'deletes the user' do
+      expect { request }.to change(User, :count).by(-1)
+    end
+
+    it 'redirects to users index' do
+      request
+      expect(response).to redirect_to users_path
+    end
+
+    it 'flashes notice' do
+      request
+      expect(flash.now[:notice]).to match(/success/)
     end
   end
 end

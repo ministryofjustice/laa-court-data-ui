@@ -177,4 +177,23 @@ RSpec.describe 'caseworkers', type: :request do
       end
     end
   end
+
+  describe 'Destroy user', type: :request do
+    let!(:other_user) { create(:user, :with_caseworker_role) }
+    let(:request) { delete "/users/#{other_user.id}" }
+
+    it 'does not delete the user' do
+      expect { request }.not_to change(User, :count)
+    end
+
+    it 'redirects to authenticated_root_path' do
+      request
+      expect(response).to redirect_to authenticated_root_path
+    end
+
+    it 'flashes alert' do
+      request
+      expect(flash.now[:alert]).to match(/unauthorised/)
+    end
+  end
 end
