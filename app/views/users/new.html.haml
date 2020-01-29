@@ -1,15 +1,4 @@
 = govuk_page_title(t('users.new.page_title'))
 
 .govuk-body
-  = form_with model: @user, local: true do |f|
-    = f.govuk_error_summary
-    = f.govuk_text_field(:first_name, label: { text: t('users.new.first_name_label') } )
-    = f.govuk_text_field(:last_name, label: { text: t('users.new.last_name_label') } )
-    = f.govuk_email_field(:email, label: { text: t('users.new.email_label') } )
-    = f.govuk_email_field(:email_confirmation, label: { text: t('users.new.email_confirmation_label') } )
-    = f.govuk_collection_check_boxes :roles,
-        User.valid_roles,
-        :to_s,
-        :titlecase,
-        legend: { text: "What roles does the user have?" }
-    = f.govuk_submit( t('users.new.save_button') )
+  = render 'form'
