@@ -12,6 +12,7 @@ en:
         terms: Terms and conditions
       header:
         navigation:
+          manage_users: Manage users
           menu: Menu
           show_hide: Show or hide Top Level Navigation
           sign_out: Sign out

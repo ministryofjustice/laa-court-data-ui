@@ -20,6 +20,58 @@ RSpec.describe 'managers', type: :request do
     end
   end
 
+  describe 'New user', type: :request do
+    before do
+      get '/users/new'
+    end
+
+    it 'redirects to authenticated_root_path' do
+      expect(response).to render_template('users/new')
+    end
+  end
+
+  describe 'Create user', type: :request do
+    let(:user_params) do
+      {
+        user:
+          {
+            first_name: 'Billy',
+            last_name: 'Bob',
+            email: 'created@example.com',
+            email_confirmation: 'created@example.com'
+          }
+      }
+    end
+
+    let(:new_user) { User.find_by(email: 'created@example.com') }
+
+    let(:request) { post '/users', params: user_params }
+    let(:outbox) { ActionMailer::Base.deliveries }
+
+    it 'redirects to user_path' do
+      request
+      expect(response).to redirect_to user_path(new_user)
+    end
+
+    it 'flashes notice' do
+      request
+      expect(flash.now[:notice]).to match(/success/)
+    end
+
+    it 'creates user' do
+      expect { request }.to change(User, :count).by(1)
+    end
+
+    it 'sends an email' do
+      expect { request }.to change(outbox, :count).by(1)
+    end
+
+    it 'sends password reset email' do
+      request
+      expect(outbox.last.subject).to eql('Reset password instructions')
+    end
+  end
+
   describe 'Edit user', type: :request do
     it 'renders /users/:id/edit' do
       get "/users/#{user.id}/edit"
@@ -33,9 +85,13 @@ RSpec.describe 'managers', type: :request do
   end
 
   describe 'Update user', type: :request do
+    let(:user_params) do
+      { user: { email: 'updated@example.com', email_confirmation: 'updated@example.com' } }
+    end
+
     context 'when themself' do
       before do
-        patch "/users/#{user.id}", params: { user: { email: 'updated@example.com' } }
+        patch "/users/#{user.id}", params: user_params
       end
 
       it 'redirects to /users/:id' do
@@ -53,7 +109,7 @@ RSpec.describe 'managers', type: :request do
 
     context 'when other user' do
       before do
-        patch "/users/#{other_user.id}", params: { user: { email: 'updatedother@example.com' } }
+        patch "/users/#{other_user.id}", params: user_params
       end
 
       it 'redirects to /users/:id' do
@@ -65,7 +121,7 @@ RSpec.describe 'managers', type: :request do
       end
 
       it 'updates other user' do
-        expect(other_user.reload.email).to eql 'updatedother@example.com'
+        expect(other_user.reload.email).to eql 'updated@example.com'
       end
     end
   end

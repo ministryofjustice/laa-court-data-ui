@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
   end
 
   # only attributes/methods that are additional to devise user
-  it { is_expected.to respond_to(:first_name, :last_name, :name, :roles) }
+  it { is_expected.to respond_to(:first_name, :last_name, :name, :roles, :email_confirmation) }
 
   describe '#name' do
     subject { user.name }
@@ -35,6 +35,39 @@ RSpec.describe User, type: :model do
 
       it 'returns roles on user object' do
         is_expected.to eq %w[caseworker manager]
+      end
+    end
+  end
+
+  describe '#email' do
+    let(:user) do
+      create(:user,
+             email: 'jim.bob@example.com',
+             email_confirmation: 'jim.bob@example.com')
+    end
+
+    context 'when validating email' do
+      it 'mismatching email confirmation raises error' do
+        expect do
+          user.update!(email: 'john.boy@example.com', email_confirmation: 'jim.bob@example.com')
+        end.to \
+          raise_error ActiveRecord::RecordInvalid, /Email confirmation doesn\'t match Email/
+      end
+
+      it 'blank email confirmation raises error' do
+        expect do
+          user.update!(email: 'john.boy@example.com', email_confirmation: '')
+        end.to \
+          raise_error ActiveRecord::RecordInvalid, /Email confirmation can\'t be blank/
+      end
+    end
+
+    context 'when validating email after changing unrelated field' do
+      it 'does not raise error' do
+        expect do
+          user.update(first_name: 'John', last_name: 'Boy')
+        end.not_to \
+          raise_error
       end
     end
   end

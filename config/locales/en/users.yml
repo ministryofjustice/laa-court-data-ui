@@ -7,17 +7,29 @@ en:
       current_password_label: Current password
       new_password_label: New password
       page_title: Change password
+    create:
+      flash:
+        success: User successfully added and password reset instructions sent
     edit:
+      email_confirmation_label: Confirm email
       email_label: Email
-      first_name_label: First Name
-      last_name_label: Last Name
+      first_name_label: First name
+      last_name_label: Last name
       page_title: Edit user
       save_button: Save
     index:
       delete: Delete
       delete_confirmation: Are you sure you want to delete %{name}'s account?
       edit: Edit
+      new_link: Create a new user
       page_title: List of users
+    new:
+      email_confirmation_label: Confirm email
+      email_label: Email
+      first_name_label: First name
+      last_name_label: Last name
+      page_title: New user
+      save_button: Save
     show:
       change_password_link: Change password
       edit_link: Edit
