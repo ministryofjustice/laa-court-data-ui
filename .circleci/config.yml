@@ -157,9 +157,9 @@ commands:
           name: deploying to << parameters.environment >>
           command: |
             .circleci/deploy.sh << parameters.environment >>
-      # - slack/status:
-      #     success_message: ":tada: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> successful!"
-      #     failure_message: ":red_circle: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> failed!"
+      - slack/status:
+          success_message: ":tada: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> successful!"
+          failure_message: ":red_circle: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> failed!"
 
 # ------------------
 # JOBS
