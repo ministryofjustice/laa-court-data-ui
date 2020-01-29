@@ -43,6 +43,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    redirect_to users_path, notice: I18n.t('users.destroy.flash.success')
+  end
+
   private
 
   def set_user

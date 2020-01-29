@@ -10,6 +10,9 @@ en:
     create:
       flash:
         success: User successfully added and password reset instructions sent
+    destroy:
+      flash:
+        success: User successfully deleted
     edit:
       page_title: Edit user
     form:
