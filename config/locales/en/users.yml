@@ -23,7 +23,12 @@ en:
         last_name_label: Last name
         roles_legend: What roles does the user have?
         save_button: Save
+    generic:
+      action: Action
+      email: Email
+      name: Name
     index:
+      action_aria: "%{name}'s account"
       delete: Delete
       delete_confirmation: Are you sure you want to delete %{name}'s account?
       edit: Edit
@@ -32,8 +37,11 @@ en:
     new:
       page_title: New user
     show:
+      caption: User details
       change_password_link: Change password
+      change_password_link_aria: Change %{name}'s password
       edit_link: Edit
+      edit_link_aria: Edit %{name}'s account
       email_label: Email
       name_label: Name
       page_title: "%{name}'s account"
