@@ -6,6 +6,11 @@
       = link_to current_user.name,
           user_path(current_user),
           class: 'govuk-header__link'
+      - if can?(:index, User)
+        %li.govuk-header__navigation-item
+          = link_to t('layouts.application.header.navigation.manage_users'),
+              users_path,
+              class: 'govuk-header__link'
     %li.govuk-header__navigation-item
       = link_to t('layouts.application.header.navigation.sign_out'),
           destroy_user_session_path,
