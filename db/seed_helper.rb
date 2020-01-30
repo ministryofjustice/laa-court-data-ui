@@ -8,7 +8,7 @@ module SeedHelper
     email = attributes[:email].downcase
     user = User.find_by(email: email)
     if user.blank?
-      attributes.merge!(email_confirmation: email)
+      attributes[:email_confirmation] = email
       user = User.create(attributes) if user.blank?
     end
 
