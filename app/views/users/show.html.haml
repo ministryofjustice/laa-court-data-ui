@@ -12,7 +12,9 @@
         %th{ scope: 'row' }
           = t('users.show.email_label')
         %td
-          = mail_to @user.email, @user.email, target: '_blank'
+          = mail_to @user.email, class: 'govuk-link', target: '_blank' do
+            = @user.email
+            %span.govuk-visually-hidden= t('generic.new_window')
       %tr
         %th{ scope: 'row' }
           = t('users.show.roles_label')
