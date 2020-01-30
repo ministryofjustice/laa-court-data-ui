@@ -21,7 +21,7 @@ RSpec.feature 'Edit user', type: :feature do
       visit edit_user_path(user)
 
       expect(page).to have_current_path(authenticated_root_path)
-      expect(page).to have_govuk_flash(:alert, text: 'unauthorise')
+      expect(page).to have_govuk_flash(:alert, text: 'unauthorised')
     end
   end
 
@@ -44,6 +44,7 @@ RSpec.feature 'Edit user', type: :feature do
 
       expect(page).to have_govuk_page_title(text: 'Edit user')
       expect(page).to have_field('Email', type: 'email', with: other_user.email)
+      expect(page).to have_field('Confirm email', type: 'email', with: other_user.email)
       expect(page).to have_field('Caseworker', type: 'checkbox')
       expect(page).to have_field('Manager', type: 'checkbox')
       expect(page).to have_field('Admin', type: 'checkbox')
@@ -52,10 +53,10 @@ RSpec.feature 'Edit user', type: :feature do
 
       check 'Manager'
       fill_in 'Email', with: 'changed@example.com'
+      fill_in 'Confirm email', with: 'changed@example.com'
       click_button 'Save'
 
       expect(page).to have_current_path(user_path(other_user))
-
       expect(page).to have_govuk_flash(:notice, text: 'User details successfully updated')
 
       other_user.reload

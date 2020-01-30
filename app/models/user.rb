@@ -16,6 +16,9 @@ class User < ApplicationRecord
 
   accepts_roles :caseworker, :manager, :admin
 
+  validates :email, confirmation: true
+  validates :email_confirmation, presence: true, if: :email_changed?
+
   def name
     "#{first_name} #{last_name}"
   end
