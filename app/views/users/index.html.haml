@@ -1,18 +1,39 @@
 = govuk_page_title(t('users.index.page_title'))
 
-= link_to t('users.index.new_link'), new_user_path, class: 'govuk-link'
+= link_to t('users.index.new_link'),
+  new_user_path,
+  class: 'govuk-button',
+  'data-module': 'govuk-button',
+  draggable: 'false',
+  role: 'button'
 
-%hr
-%table
-  - @users.each do |user|
-    %tr{"data-user-id": "#{user.id}"}
-      %td
-        = link_to user.name, user_path(user), class: 'govuk-link'
-      %td
-        = mail_to user.email, class: 'govuk-link', target: '_blank' do
-          = user.email
-          %span.govuk-visually-hidden= t('generic.new_window')
-      %td
-        = link_to t('users.index.edit'), edit_user_path(user), class: 'govuk-link'
-        |
-        = link_to t('users.index.delete'), user_path(user), method: :delete, data: { confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link'
+%table.govuk-table
+  %caption.govuk-table__caption.govuk-visually-hidden
+    = t('users.show.caption')
+
+  %thead.govuk-table__head
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'col' }
+        = t('users.generic.name')
+      %th.govuk-table__header{ scope: 'col' }
+        = t('users.generic.email')
+      %th.govuk-table__header{ scope: 'col' }
+        = t('users.generic.action')
+
+  %tbody.govuk-table__body
+    - @users.each do |user|
+      %tr.govuk-table__row{"data-user-id": "#{user.id}"}
+        %td.govuk-table__cell
+          = link_to user.name, user_path(user), class: 'govuk-link'
+        %td.govuk-table__cell
+          = mail_to user.email, class: 'govuk-link', target: '_blank' do
+            = user.email
+            %span.govuk-visually-hidden= t('generic.new_window')
+        %td.govuk-table__cell
+          = link_to edit_user_path(user), class: 'govuk-link' do
+            = t('users.index.edit')
+            %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
+          |
+          = link_to user_path(user), method: :delete, data: { confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
+            = t('users.index.delete')
+            %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
