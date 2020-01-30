@@ -5,8 +5,12 @@
 module SeedHelper
   # find_or_create_by does not work with devise user model
   def self.find_or_create_user(attributes)
-    user = User.find_by(email: attributes[:email].downcase)
-    user = User.create(attributes) if user.blank?
+    email = attributes[:email].downcase
+    user = User.find_by(email: email)
+    if user.blank?
+      attributes.merge!(email_confirmation: email)
+      user = User.create(attributes) if user.blank?
+    end
 
     return user if user.valid?
     user.errors
