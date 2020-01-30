@@ -9,7 +9,9 @@
       %td
         = link_to user.name, user_path(user), class: 'govuk-link'
       %td
-        = mail_to user.email, user.email, class: 'govuk-link', target: '_blank'
+        = mail_to user.email, class: 'govuk-link', target: '_blank' do
+          = user.email
+          %span.govuk-visually-hidden= t('generic.new_window')
       %td
         = link_to t('users.index.edit'), edit_user_path(user), class: 'govuk-link'
         |
