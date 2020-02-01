@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'laa/court_data_adaptor'
+
 class Search
   include ActiveModel::Model
 
@@ -17,8 +19,8 @@ class Search
   def self.filters
     [
       SearchFilter.new(
-        id: :case_number,
-        name: I18n.t('search_filter.radio_case_number_label'),
+        id: :case_reference,
+        name: I18n.t('search_filter.radio_case_reference_label'),
         description: nil
       ),
       SearchFilter.new(
@@ -30,6 +32,12 @@ class Search
   end
 
   def execute
-    ['first result from CP', 'second result from CP']
+    client.prosecution_case_query(query)
+  end
+
+  private
+
+  def client
+    @client ||= LAA::CourtDataAdaptor.client
   end
 end

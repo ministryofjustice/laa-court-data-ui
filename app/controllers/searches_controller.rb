@@ -30,8 +30,8 @@ class SearchesController < ApplicationController
       @label = I18n.t('search.defendant_label')
       @hint = I18n.t('search.defendant_label_hint')
     else
-      @label = I18n.t('search.case_number_label')
-      @hint = I18n.t('search.case_number_label_hint')
+      @label = I18n.t('search.case_reference_label')
+      @hint = I18n.t('search.case_reference_label_hint')
     end
   end
 

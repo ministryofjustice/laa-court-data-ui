@@ -11,7 +11,7 @@ RSpec.feature 'Search', type: :feature do
     visit '/'
 
     expect(page).to have_text('How do you want to search?')
-    expect(page).to have_css('.govuk-radios__item', text: 'By case number')
+    expect(page).to have_css('.govuk-radios__item', text: 'By case reference')
     expect(page).to have_css('.govuk-radios__item', text: 'By defendant')
   end
 

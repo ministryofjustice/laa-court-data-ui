@@ -1,17 +1,19 @@
 .govuk-heading-l
   = t('search.result_count', query: @query, count: @results.size)
 
-- if @results.size.to_i >= 1
+- if @results.empty?
+  = render 'no_results'
+- else
   %table.govuk-table
     %caption.govuk-table__caption.govuk-visually-hidden
       = t('search.result.caption')
     %thead.govuk-table__head
       %tr.govuk-table__row
-        %th.govuk-table__header{ scope: 'col' }= t('search.result.table_head')
+        - @results.flat_map(&:members).uniq.each do |attribute|
+          %th.govuk-table__header{ scope: 'col' }
+            = attribute.to_s.humanize
     %tbody.govuk-table__body
       - @results&.each do |result|
         %tr.govuk-table__row
-          %td.govuk-table__cell= result
-
-- else
-  = render 'no_results'
+          - result.each_pair do |_attribute, value|
+            %td.govuk-table__cell= value
