@@ -34,13 +34,16 @@ Layout/LineLength:
   IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*']
   AllowHeredoc: true
 
+Metrics/AbcSize:
+  Max: 30
+
 Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
     - config/routes.rb
 
 Metrics/MethodLength:
-  Max: 15
+  Max: 30
 
 # => Rails
 Rails/FilePath:
