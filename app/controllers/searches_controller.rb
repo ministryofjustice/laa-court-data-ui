@@ -20,7 +20,7 @@ class SearchesController < ApplicationController
 
   def set_search_args
     @query = search_params[:query]
-    @filter = search_params[:filter] || 'case_number'
+    @filter = search_params[:filter] || 'case_reference'
     set_view_options
   end
 
