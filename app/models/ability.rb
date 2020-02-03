@@ -41,6 +41,7 @@ class Ability
       can %i[show manage_password], User, id: user.id
       can :show, :cases
       can :show, :defendants
+      can :show, :hearings
     end
 
     if user.manager?
@@ -49,6 +50,7 @@ class Ability
       can :manage, User
       can :show, :cases
       can :show, :defendants
+      can :show, :hearings
     end
   end
 end

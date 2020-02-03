@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   resources :cases, only: %i[show]
   resources :defendants, only: %i[show]
+  resources :hearings, only: %i[show]
 
   get 'ping', to: 'status#ping', format: :json
 
