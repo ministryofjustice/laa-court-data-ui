@@ -40,6 +40,7 @@ class Ability
       can %i[new create], Search
       can %i[show manage_password], User, id: user.id
       can :show, :cases
+      can :show, :defendants
     end
 
     if user.manager?
@@ -47,6 +48,7 @@ class Ability
       can %i[new create], Search
       can :manage, User
       can :show, :cases
+      can :show, :defendants
     end
   end
 end

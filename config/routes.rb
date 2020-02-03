@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :cases, only: %i[show]
+  resources :defendants, only: %i[show]
 
   get 'ping', to: 'status#ping', format: :json
 
