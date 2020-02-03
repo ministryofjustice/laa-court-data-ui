@@ -10,11 +10,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'cancancan'
 gem 'devise', '~> 4.2'
-gem 'faraday', '~> 1.0'
 
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 1.1'
 gem 'haml-rails', '~> 2.0.1'
+gem 'json_api_client', '~> 1.16', '>= 1.16.1'
 gem 'json-schema', '~> 2.8', '>= 2.8.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
@@ -33,6 +33,7 @@ group :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'webmock'
 end
 
 group :development, :test do
