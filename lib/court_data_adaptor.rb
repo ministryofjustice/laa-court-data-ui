@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-require_relative 'json_api/base'
-require_relative 'json_api/prosecution_case'
+require_relative 'court_data_adaptor/resource/base'
+require_relative 'court_data_adaptor/resource/error'
+require_relative 'court_data_adaptor/prosecution_case'
 
 module CourtDataAdaptor
-  module JsonApi
+  module Resource
     Base.connection do |connection|
-      connection.use Faraday::Request::TokenAuthentication, ENV['COURT_DATA_ADAPTOR_BEARER_TOKEN']
+      connection.use FaradayMiddleware::OAuth2, ENV['COURT_DATA_ADAPTOR_BEARER_TOKEN'], token_type: :bearer
 
       # # example setting response logging
       # connection.use Faraday::Response::Logger

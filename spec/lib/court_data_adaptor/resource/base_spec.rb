@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor/json_api'
+require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::JsonApi::Base do
+RSpec.describe CourtDataAdaptor::Resource::Base do
   let(:test_resource) { Class.new(described_class) }
   let(:test_resource_endpoint) do
     'https://laa-court-data-adaptor.apps.live-1.cloud-platform.service.justice.gov.uk/api/v1/test_resources'
@@ -12,7 +12,7 @@ RSpec.describe CourtDataAdaptor::JsonApi::Base do
     subject { test_resource.site }
 
     it 'returns court data adaptor external site' do
-      is_expected.to match %r{/https:\/\/.*laa-court-data-adaptor\..*}
+      is_expected.to match %r{https:\/\/.*laa-court-data-adaptor.*}
     end
   end
 
@@ -45,10 +45,10 @@ RSpec.describe CourtDataAdaptor::JsonApi::Base do
       ).to have_been_made.once
     end
 
-    it 'adds token authentication header to request' do
+    it 'adds OAuth2 Authorization: Bearer token' do
       expect(
         a_request(:get, test_resource_endpoint)
-      .with(headers: { 'Authorization' => 'Token token="not-a-real-bearer-token"' })
+      .with(headers: { 'Authorization' => 'Bearer not-a-real-bearer-token' })
       ).to have_been_made.once
     end
   end

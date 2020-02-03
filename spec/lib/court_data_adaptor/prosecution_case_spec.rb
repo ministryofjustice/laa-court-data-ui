@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor/json_api'
+require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::JsonApi::ProsecutionCase do
+RSpec.describe CourtDataAdaptor::ProsecutionCase do
   let(:prosecution_case_endpoint) do
     'https://laa-court-data-adaptor.apps.live-1.cloud-platform.service.justice.gov.uk/api/v1/prosecution_cases'
   end
@@ -32,9 +32,6 @@ RSpec.describe CourtDataAdaptor::JsonApi::ProsecutionCase do
             'Accept-Encoding' => 'gzip,deflate',
             'Content-Type' => 'application/vnd.api+json',
             'User-Agent' => 'Faraday v0.17.3'
-          },
-          query: {
-            'api_key': 'not-a-real-api-key'
           }
         )
         .to_return(
@@ -46,8 +43,12 @@ RSpec.describe CourtDataAdaptor::JsonApi::ProsecutionCase do
         )
     end
 
-    it 'submits request to api' do
-      is_expected.to have_made_request
+    it "submits request to prosecution_cases endpoint" do
+      subject
+      expect(
+        a_request(:get, prosecution_case_endpoint)
+        .with(headers: { 'Content-Type' => 'application/vnd.api+json' })
+      ).to have_been_made.once
     end
 
     it 'returns JsonApiClient::ResultSet' do

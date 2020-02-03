@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'laa/court_data_adaptor'
+require 'court_data_adaptor'
 
 class Search
   include ActiveModel::Model
@@ -9,7 +9,7 @@ class Search
   attr_accessor :query
 
   def filter
-    @filter || :case_number
+    @filter || :case_reference
   end
 
   def filters
@@ -32,12 +32,11 @@ class Search
   end
 
   def execute
-    client.prosecution_case_query(query)
-  end
-
-  private
-
-  def client
-    @client ||= LAA::CourtDataAdaptor.client
+    case filter
+    when 'case_reference'
+      CourtDataAdaptor::ProsecutionCase.find(prosecution_case_reference: query)
+    else
+      raise CourtDataAdaptor::Resource::NotFound, ''
+    end
   end
 end
