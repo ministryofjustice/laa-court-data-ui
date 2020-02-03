@@ -34,7 +34,7 @@ class Search
   def execute
     case filter
     when 'case_reference'
-      CourtDataAdaptor::ProsecutionCase.find(prosecution_case_reference: query)
+      CourtDataAdaptor::ProsecutionCase.where(prosecution_case_reference: query).all
     else
       raise CourtDataAdaptor::Resource::NotFound, ''
     end

@@ -16,22 +16,56 @@ RSpec.describe CourtDataAdaptor::ProsecutionCase do
   end
 
   describe '.all' do
-    subject(:all) { described_class.all }
-
-    let(:response_body) do
-      File.read(Rails.root.join('spec', 'fixtures', 'prosecution_cases', 'valid_response.json'))
-    end
+    subject(:results) { described_class.all }
 
     let(:case_urn) { 'non-existent-urn' }
+    let(:response_body) { prosecution_cases_fixture('collection_resource_response.json') }
+
+    before do
+      stub_request(:get, prosecution_case_endpoint)
+        .to_return(
+          status: 200,
+          body: response_body,
+          headers: {
+            'Content-Type' => 'application/vnd.api+json'
+          }
+        )
+    end
+
+    it "submits request to prosecution_cases endpoint" do
+      results
+      expect(
+        a_request(:get, prosecution_case_endpoint)
+      ).to have_been_made.once
+    end
+
+    it 'returns JsonApiClient::ResultSet' do
+      is_expected.to be_a JsonApiClient::ResultSet
+    end
+
+    it 'returns a collection of ProsecutionCases' do
+      is_expected.to all(
+        be_instance_of(described_class)
+      )
+    end
+
+    it 'returns all prosecution cases' do
+      expect(
+        results.map(&:prosecution_case_reference)
+      ).to match_array %w[05PP1000915 05PP1000915 06PP1000915]
+    end
+  end
+
+  describe '.where(filter).all' do
+    subject(:result) { described_class.where(prosecution_case_reference: case_urn).all }
 
     before do
       stub_request(:get, prosecution_case_endpoint)
         .with(
-          headers: {
-            'Accept' => 'application/vnd.api+json',
-            'Accept-Encoding' => 'gzip,deflate',
-            'Content-Type' => 'application/vnd.api+json',
-            'User-Agent' => 'Faraday v0.17.3'
+          query: {
+            filter: {
+              prosecution_case_reference: case_urn
+            }
           }
         )
         .to_return(
@@ -43,48 +77,23 @@ RSpec.describe CourtDataAdaptor::ProsecutionCase do
         )
     end
 
-    it "submits request to prosecution_cases endpoint" do
-      subject
-      expect(
-        a_request(:get, prosecution_case_endpoint)
-        .with(headers: { 'Content-Type' => 'application/vnd.api+json' })
-      ).to have_been_made.once
-    end
-
-    it 'returns JsonApiClient::ResultSet' do
-      is_expected.to be_a JsonApiClient::ResultSet
-    end
-
-    it 'returns an collection of ProsecutionCases' do
-      is_expected.to all(be_instance_of(described_class))
-    end
-
-    it 'returns matching prosecution cases' do
-      expect(
-        all.map(&:prosecution_case_reference)
-      ).to
-      match_array %i[05PP1000915 05PP1000915 06PP1000915]
-    end
-  end
-
-  describe '.find' do
-    subject(:find) { described_class.find(case_urn) }
-
     context 'with valid existing URN' do
       let(:case_urn) { '05PP1000915' }
+      let(:response_body) { prosecution_cases_fixture('single_resource_response.json') }
 
       it 'returns matching prosecution cases' do
         expect(
-          find.map(&:prosecution_case_reference)
-        ).to
-        match_array %i[05PP1000915 05PP1000915]
+          result.map(&:prosecution_case_reference)
+        ).to match_array %w[05PP1000915]
       end
     end
 
     context 'with non-existent urn' do
       let(:case_urn) { 'non-existent-urn' }
 
-      it 'returns results for case urn' do
+      let(:response_body) { { data: [] }.to_json }
+
+      it 'returns empty results' do
         is_expected.to be_empty
       end
     end
