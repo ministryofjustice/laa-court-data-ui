@@ -35,7 +35,6 @@ Install on MacOSX:
 make install
 ```
 
-
 Install app dependencies (step-by-step):
 ```
 # install ruby if required
@@ -63,18 +62,21 @@ To run app locally (development mode) you will therefore need to run both the `r
 
 ## Development
 
-To run the app locally you will need to run both a rails server and webpack dev server.
+To run the app locally you can generally use just `rails server`, however optional components can be run depending on your needs.
 
-You can do this in two different terminals
+Run separate servers per terminal
 ```
-# in one terminal
-rails s
+# terminal-1
+rails server
 
-# in another terminal
+# terminal-2 (assets server - this may not be needed?!)
 bin/webpack-dev-server
+
+# terminal-3 (fake adaptor API - see below)
+rackup fake_adaptor.ru
 ```
 
-or using a single terminal and foreman
+or using a single terminal and foreman and includes fake API server
 ```
 foreman start -f Procfile.dev
 
@@ -113,6 +115,32 @@ make run
 
 # run the entire test suite
 make test
+```
+
+## Fake API calling
+
+For development purposes a fake "Court Data Adaptor" API has been provided. This can be used to view
+search results in development. The fake API will need updating or removing in future iterations.
+
+To enable the fake API you must:
+
+- set/amend environment variable to point to it
+```
+# .env.development
+COURT_DATA_ADAPTOR_HOST: http://localhost:9292
+```
+
+- run the fake API using either of the methods below
+
+
+```
+# run in its own console - uses puma
+rackup fake_adaptor.ru
+```
+
+```
+# run along with app - uses webrick
+make run
 ```
 
 ## Notes
