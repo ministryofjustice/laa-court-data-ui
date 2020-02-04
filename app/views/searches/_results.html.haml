@@ -9,11 +9,13 @@
       = t('search.result.caption')
     %thead.govuk-table__head
       %tr.govuk-table__row
-        - @results.flat_map(&:members).uniq.each do |attribute|
-          %th.govuk-table__header{ scope: 'col' }
-            = attribute.to_s.humanize
+        / / # - @results.each do |value|
+        /   %th.govuk-table__header{ scope: 'col' }
+        /     = value.to_s.humanize
     %tbody.govuk-table__body
       - @results&.each do |result|
         %tr.govuk-table__row
-          - result.each_pair do |_attribute, value|
-            %td.govuk-table__cell= value
+          %td.govuk-table__cell= result.prosecution_case_reference
+          %td.govuk-table__cell= result.first_name
+          %td.govuk-table__cell= result.last_name
+          %td.govuk-table__cell= l(result.date_of_birth.to_date)

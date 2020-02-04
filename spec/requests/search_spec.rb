@@ -16,14 +16,14 @@ RSpec.describe 'search', type: :request do
 
   describe 'Search by case', type: :request do
     it 'renders searches#new' do
-      get '/searches/new', params: { search: { filter: :prosecution_case_reference } }
+      get '/searches/new', params: { search: { filter: :case_reference } }
       expect(response).to render_template('searches/new')
     end
 
     context 'when posting a query' do
-      let(:client) { LAA::CourtDataAdaptor.client }
+      let(:client) { CourtDataAdaptor.client }
       let(:search_params) do
-        { search: { query: '05PP1000915', filter: :prosecution_case_reference } }
+        { search: { query: '05PP1000915', filter: :case_reference } }
       end
 
       it 'accepts query paramater' do

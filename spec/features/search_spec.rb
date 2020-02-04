@@ -26,7 +26,7 @@ RSpec.feature 'Search', type: :feature do
   scenario 'user chooses case number filter' do
     visit '/'
 
-    choose 'By case number'
+    choose 'By case reference'
     click_button 'Continue'
     expect(page).to have_text('Find a case')
   end
@@ -34,7 +34,7 @@ RSpec.feature 'Search', type: :feature do
   scenario 'user searches by case' do
     visit '/'
 
-    choose 'By case number'
+    choose 'By case reference'
     click_button 'Continue'
     fill_in 'search-query-field', with: 'T20200001'
     click_button 'Search'
