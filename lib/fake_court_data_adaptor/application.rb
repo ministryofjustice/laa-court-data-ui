@@ -16,7 +16,8 @@ module FakeCourtDataAdaptor
     get '/prosecution_cases' do
       content_type('application/vnd.api+json')
       search = Search::ProsecutionCase.new
-      search.where(params[:filter]) if params
+      filter = params[:filter]
+      search.where(filter) if params
     end
   end
 end
