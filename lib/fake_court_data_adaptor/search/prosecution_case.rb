@@ -18,8 +18,8 @@ module FakeCourtDataAdaptor
 
       def matches?(query, item)
         result = false
-        query.each do |term, value|
-          result = item.dig('attributes', term).match?(%r{#{value}}i)
+        query.each do |attribute, terms|
+          result = item.dig('attributes', attribute).match?(%r{#{terms}}i)
           break if result
         end
         result

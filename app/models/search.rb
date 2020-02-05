@@ -31,12 +31,29 @@ class Search
     ]
   end
 
+  # TODO: abstract (strategy pattern/dependency inversion)
   def execute
     case filter
     when 'case_reference'
-      CourtDataAdaptor::ProsecutionCase.where(prosecution_case_reference: query).all
+      case_reference_search
+    when 'defendant'
+      defendant_search
     else
       raise CourtDataAdaptor::Resource::NotFound, ''
     end
+  end
+
+  private
+
+  def case_reference_search
+    CourtDataAdaptor::ProsecutionCase.where(prosecution_case_reference: query).all
+  end
+
+  def defendant_search
+    results = query.split(' ').each_with_object([]) do |term, results|
+      results.
+        append(CourtDataAdaptor::ProsecutionCase.where(first_name: term, last_name: term).all)
+    end
+    results.flatten.uniq { |r| r.prosecution_case_reference }
   end
 end
