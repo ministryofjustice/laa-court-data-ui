@@ -14,14 +14,13 @@ RSpec.describe 'search', type: :request do
     end
   end
 
-  describe 'Search by case', type: :request do
+  context 'when searching by case', type: :request, stub_no_results: true do
     it 'renders searches#new' do
       get '/searches/new', params: { search: { filter: :case_reference } }
       expect(response).to render_template('searches/new')
     end
 
     context 'when posting a query' do
-      let(:client) { CourtDataAdaptor.client }
       let(:search_params) do
         { search: { query: '05PP1000915', filter: :case_reference } }
       end
@@ -36,25 +35,24 @@ RSpec.describe 'search', type: :request do
         expect(response).to render_template('searches/new')
       end
 
-      it 'renders searches/_results' do
+      it 'assigns array of results', stub_case_reference_results: true do
+        post '/searches', params: search_params
+        expect(assigns(:results)).to include(an_instance_of(CourtDataAdaptor::ProsecutionCase))
+      end
+
+      it 'renders searches/_results', stub_case_reference_results: true do
         post '/searches', params: search_params
         expect(response).to render_template('searches/_results')
       end
 
-      it 'queries JSON API client' do
+      it 'renders searches/_no_results', stub_case_reference_results: true do
         post '/searches', params: search_params
-        expect(client).to have_received(:query).and_return(data)
-      end
-
-      it 'returns array of results' do
-        allow(client).to receive(:query).and_return(data)
-        post '/searches', params: search_params
-        expect(assigns(:results)).to be_an Array
+        expect(response).not_to render_template('searches/_no_results')
       end
     end
   end
 
-  describe 'no result', type: :request do
+  context 'when no results', type: :request do
     before do
       allow_any_instance_of(Search).to receive(:execute).and_return([])
     end
