@@ -15,7 +15,6 @@ en:
     page_title: Search
     result:
       caption: Search results
-      table_head: Description
     result_count:
       one: Search for "%{query}" returned 1 result
       other: Search for "%{query}" returned %{count} results
@@ -25,6 +24,6 @@ en:
     legend_text: How do you want to search?
     page_title: Search filters
     radio_case_reference_label: By case reference
-    radio_case_reference_label_hint:
+    radio_case_reference_label_hint: case URN
     radio_defendant_label: By defendant
-    radio_defendant_label_hint: Name or MAAT reference
+    radio_defendant_label_hint: Name

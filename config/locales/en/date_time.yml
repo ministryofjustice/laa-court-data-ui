@@ -1,6 +1,7 @@
+---
 en:
   date:
     formats:
-      default: "%d/%m/%Y" # 25/06/2015
-      long: "%B %d, %Y"   # June 25, 2015
-      short: "%b %d"      # Jun 25
+      default: "%d/%m/%Y"
+      long: "%B %d, %Y"
+      short: "%b %d"
