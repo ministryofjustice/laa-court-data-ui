@@ -1,9 +1,8 @@
+# frozen_string_literal: true
+
 module FakeCourtDataAdaptor
   module Search
     class ProsecutionCase
-      def initialize
-      end
-
       def where(query = {})
         data = all['data']
         data.keep_if do |item|
@@ -19,7 +18,7 @@ module FakeCourtDataAdaptor
       def matches?(query, item)
         result = false
         query.each do |attribute, terms|
-          result = item.dig('attributes', attribute).match?(%r{#{terms}}i)
+          result = item.dig('attributes', attribute).match?(/#{terms}/i)
           break if result
         end
         result

@@ -32,7 +32,7 @@ RSpec.describe CourtDataAdaptor::ProsecutionCase do
         )
     end
 
-    it "submits request to prosecution_cases endpoint" do
+    it 'submits request to prosecution_cases endpoint' do
       results
       expect(
         a_request(:get, prosecution_case_endpoint)

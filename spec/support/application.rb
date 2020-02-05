@@ -6,14 +6,14 @@
 module Application
   module Helpers
     def fixture_file(file, options = {})
-      base_path = ['spec', 'fixtures']
+      base_path = %w[spec fixtures]
       path = base_path.append(options[:relative_path]).append(file).compact
       File.read(
         Rails.root.join(*path)
       )
     end
 
-    def prosecution_cases_fixture(file, options = {})
+    def prosecution_cases_fixture(file)
       fixture_file(file, relative_path: 'prosecution_cases')
     end
   end

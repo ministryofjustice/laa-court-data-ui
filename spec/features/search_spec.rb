@@ -41,7 +41,7 @@ RSpec.feature 'Search', type: :feature do
     expect(page).to have_text 'Search for "05PP1000915" returned'
 
     within 'tbody.govuk-table__body' do
-      expect(page).to have_content("05PP1000915").twice
+      expect(page).to have_content('05PP1000915').twice
     end
   end
 
@@ -55,7 +55,7 @@ RSpec.feature 'Search', type: :feature do
     expect(page).to have_text 'Search for "Mickey Mouse" returned'
 
     within 'tbody.govuk-table__body' do
-      expect(page).to have_content("Mickey Mouse").twice
+      expect(page).to have_content('Mickey Mouse').twice
     end
   end
 

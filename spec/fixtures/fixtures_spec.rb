@@ -1,35 +1,9 @@
-# RSpec.matcher 'valid resource' do
-#   it 'valid' do
-#     errors = JSON::Validator.fully_validate(
-#       schema,
-#       data,
-#       fragment: fragment_definition,
-#       strict: true,
-#       validate_schema: true
-#     )
-#     expect(errors).to be_empty
-#   end
-# end
+# frozen_string_literal: true
 
-# RSpec.shared_example 'valid single resource' do
-#   let(:fragment_definition) { '#/definitions/prosecution_case/definitions/resource' }
-
-#   it 'valid' do
-#     errors = JSON::Validator.fully_validate(
-#       schema,
-#       data,
-#       fragment: fragment_definition,
-#       strict: true,
-#       validate_schema: true
-#     )
-#     expect(errors).to be_empty
-#   end
-# end
-
-RSpec.fdescribe 'Court data adaptor API fixtures' do
+RSpec.describe 'Court data adaptor API fixtures', type: :feature do
   let(:schema) { File.read './config/schemas/prosecution_case_search_result.json' }
 
-  context 'resource', skip: 'to be checked' do
+  context 'with resource', skip: 'to be checked' do
     let(:fragment) { '#/definitions/prosecution_case/definitions/resource' }
 
     it 'single_resource_response fixture' do
@@ -38,7 +12,7 @@ RSpec.fdescribe 'Court data adaptor API fixtures' do
     end
   end
 
-  context 'resource collection' do
+  context 'with resource collection' do
     let(:fragment) { '#/definitions/prosecution_case/definitions/resource_collection' }
 
     it 'case_reference_results fixture is valid' do

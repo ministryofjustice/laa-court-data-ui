@@ -50,10 +50,9 @@ class Search
   end
 
   def defendant_search
-    results = query.split(' ').each_with_object([]) do |term, results|
-      results.
-        append(CourtDataAdaptor::ProsecutionCase.where(first_name: term, last_name: term).all)
+    results = query.split(' ').each_with_object([]) do |term, arr|
+      arr.append(CourtDataAdaptor::ProsecutionCase.where(first_name: term, last_name: term).all)
     end
-    results.flatten.uniq { |r| r.prosecution_case_reference }
+    results.flatten.uniq(&:prosecution_case_reference)
   end
 end

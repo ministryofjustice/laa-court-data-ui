@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require 'pry'
 require 'pry-byebug'
@@ -14,7 +16,7 @@ module FakeCourtDataAdaptor
     get '/prosecution_cases' do
       content_type('application/vnd.api+json')
       search = Search::ProsecutionCase.new
-      search.where((params[:filter])) if params
+      search.where(params[:filter]) if params
     end
   end
 end
