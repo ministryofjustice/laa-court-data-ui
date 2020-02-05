@@ -32,6 +32,8 @@ test: #: run test suite locally
 	@bundle exec brakeman --quiet --exit-on-warn
 	@bundle exec rubocop
 	@RUBYOPT=-W:no-deprecated bundle exec rspec -fd
+	@yarn run lint-js
+	@yarn run lint-sass
 
 open: #: open localhost:3000 in default browser
 	@open http://localhost:3000
