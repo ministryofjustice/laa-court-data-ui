@@ -73,7 +73,7 @@ rails server
 bin/webpack-dev-server
 
 # terminal-3 (fake adaptor API - see below)
-rackup fake_adaptor.ru
+rackup lib/fake_court_data_adaptor/config.ru
 ```
 
 or using a single terminal and foreman and includes fake API server
@@ -93,7 +93,7 @@ in rails patches in the future:
 ..action_dispatch/middleware/stack.rb:37: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
 ```
 
-To suppress for now you can prefix any call that raises such warnings with `RUBYOPT=-W:no-deprecated`:
+To suppress warnings now you can prefix any call that raises such warnings with `RUBYOPT=-W:no-deprecated`:
 ```
 RUBYOPT=-W:no-deprecated rspec
 RUBYOPT=-W:no-deprecated rails server
@@ -135,13 +135,15 @@ COURT_DATA_ADAPTOR_HOST: http://localhost:9292
 
 ```
 # run in its own console - uses puma
-rackup fake_adaptor.ru
+rackup lib/fake_court_data_adaptor/config.ru
 ```
 
 ```
-# run along with app - uses webrick
+# run along with app
 make run
 ```
+
+Note, running two puma servers requires that they use separate pid files. The fake api is therefore configured to use tmp/pids/fake_adaptor.pid via its `config.ru`. Bear this in mind if amending the `config/puma/development.rb` files `pidfile` entry, to prevent clashes.
 
 ## Notes
 
