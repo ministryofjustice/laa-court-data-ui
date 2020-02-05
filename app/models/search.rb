@@ -53,6 +53,6 @@ class Search
     results = query.split(' ').each_with_object([]) do |term, arr|
       arr.append(CourtDataAdaptor::ProsecutionCase.where(first_name: term, last_name: term).all)
     end
-    results.flatten.uniq(&:prosecution_case_reference)
+    results.flatten.uniq(&:id)
   end
 end

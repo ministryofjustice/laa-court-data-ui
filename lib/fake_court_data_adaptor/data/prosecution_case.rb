@@ -32,6 +32,28 @@ module FakeCourtDataAdaptor
                 },
                 {
                   "type": "prosecution_cases",
+                  "id": "01234561-89ab-cdef-0123-456789abcdef",
+                  "attributes": {
+                    "first_name": "Mickey",
+                    "last_name": "Mouse",
+                    "prosecution_case_reference": "06PP1000915",
+                    "date_of_birth": "1987-05-21",
+                    "national_insurance_number": null
+                  }
+                },
+                {
+                  "type": "prosecution_cases",
+                  "id": "01234562-89ab-cdef-0123-456789abcdef",
+                  "attributes": {
+                    "first_name": "Mickey",
+                    "last_name": "Mouse",
+                    "prosecution_case_reference": "07PP1000915",
+                    "date_of_birth": "1987-05-21",
+                    "national_insurance_number": null
+                  }
+                },
+                {
+                  "type": "prosecution_cases",
                   "id": "01234568-89ab-cdef-0123-456789abcdef",
                   "attributes": {
                     "first_name": "Dodgy",
