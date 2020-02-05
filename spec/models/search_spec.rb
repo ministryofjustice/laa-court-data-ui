@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'court_data_adaptor'
+
 RSpec.describe Search, type: :model do
   subject { described_class.new }
 
@@ -11,31 +13,28 @@ RSpec.describe Search, type: :model do
     it { is_expected.to all(be_a(SearchFilter)) }
   end
 
-  describe '#execute', skip: '#TODO' do
-    context 'when case reference' do
-      it 'returns matching' do
-        1
-      end
+  describe '#execute' do
+    let(:instance) { described_class.new(filter: filter) }
 
-      it 'case insensitive' do
-        2
+    before { allow(instance).to receive(:case_reference_search) }
+
+    context 'when searching by case reference' do
+      let(:filter) { 'case_reference' }
+
+      it 'calls case_reference_search' do
+        instance.execute
+        expect(instance).to have_received(:case_reference_search)
       end
     end
 
-    context 'when defendant name' do
-      context 'with first name' do
-        it 'returns all defendants with first name' do
-        end
-      end
+    context 'when searching by defendant name' do
+      let(:filter) { 'defendant' }
 
-      context 'with last name' do
-        it 'returns all defendants with last name' do
-        end
-      end
+      before { allow(instance).to receive(:defendant_search) }
 
-      context 'with full name' do
-        it 'returns all defendants with full name' do
-        end
+      it 'calls defendant_search' do
+        instance.execute
+        expect(instance).to have_received(:defendant_search)
       end
     end
   end
