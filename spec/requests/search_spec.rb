@@ -64,16 +64,4 @@ RSpec.describe 'search', type: :request do
       expect(response).to render_template('searches/_no_results')
     end
   end
-
-  describe 'validate test json' do
-    let(:schema) { File.read './config/schemas/prosecution_case_search_result.json' }
-    let(:data) do
-      File.read(Rails.root.join('spec', 'fixtures', 'prosecution_cases', 'valid_response.json'))
-    end
-
-    it 'data is valid for schema' do
-      errors = JSON::Validator.fully_validate(schema, data, strict: true, validate_schema: true)
-      expect(errors).to be_empty
-    end
-  end
 end

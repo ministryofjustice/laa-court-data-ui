@@ -19,7 +19,6 @@ module Application
   end
 end
 
-
 RSpec.configure do |c|
   c.include Application::Helpers
 end

@@ -31,24 +31,32 @@ RSpec.feature 'Search', type: :feature do
     expect(page).to have_text('Find a case')
   end
 
-  scenario 'user searches by case' do
+  scenario 'user searches by case', stub_case_reference_results: true do
     visit '/'
 
     choose 'By case reference'
     click_button 'Continue'
-    fill_in 'search-query-field', with: 'T20200001'
+    fill_in 'search-query-field', with: '05PP1000915'
     click_button 'Search'
-    expect(page).to have_text 'Search for "T20200001" returned'
+    expect(page).to have_text 'Search for "05PP1000915" returned'
+
+    within 'tbody.govuk-table__body' do
+      expect(page).to have_content("05PP1000915").twice
+    end
   end
 
-  scenario 'user searches by defendant' do
+  scenario 'user searches by defendant', stub_defendant_results: true do
     visit '/'
 
     choose 'By defendant'
     click_button 'Continue'
-    fill_in 'search-query-field', with: 'Fred Bloggs'
+    fill_in 'search-query-field', with: 'Mickey Mouse'
     click_button 'Search'
-    expect(page).to have_text 'Search for "Fred Bloggs" returned'
+    expect(page).to have_text 'Search for "Mickey Mouse" returned'
+
+    within 'tbody.govuk-table__body' do
+      expect(page).to have_content("Mickey Mouse").twice
+    end
   end
 
   scenario 'user searches return no results' do
