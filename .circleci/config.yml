@@ -119,10 +119,11 @@ commands:
   linter:
     steps:
       - run:
-          name: Run linter
-          command:  |
-            yarn run lint-js
-            yarn run lint-sass
+          name: Run JS-lint
+          command: yarn run lint-js
+      - run:
+          name: Run Sass-lint
+          command: yarn run lint-sass
 
   brakeman:
     steps:
@@ -179,15 +180,22 @@ jobs:
       - checkout
       - build-base
 
-  tests:
+  linter-tests:
     executor: test-executor
     parallelism: 1
     steps:
       - checkout
       - build-base
-      - rubocop
       - linter
+      - rubocop
       - brakeman
+
+  rspec-tests:
+    executor: test-executor
+    parallelism: 1
+    steps:
+      - checkout
+      - build-base
       - rspec
 
   build-app-container:
@@ -215,12 +223,16 @@ workflows:
             branches:
               only:
                 - master
-      - tests:
+      - linter-tests:
+          requires:
+            - build-test-container
+      - rspec-tests:
           requires:
             - build-test-container
       - build-app-container:
           requires:
-            - tests
+            - linter-tests
+            - rspec-tests
       - deploy-dev:
           requires:
             - build-app-container
@@ -232,13 +244,17 @@ workflows:
             branches:
               ignore:
                 - master
-      - tests:
+      - linter-tests:
+          requires:
+            - build-test-container
+      - rspec-tests:
           requires:
             - build-test-container
       - branch-build-approval:
           type: approval
           requires:
-            - tests
+            - linter-tests
+            - rspec-tests
           filters:
             branches:
               ignore:
