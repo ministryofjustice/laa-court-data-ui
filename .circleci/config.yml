@@ -116,6 +116,14 @@ commands:
           name: Run rubocop
           command: bundle exec rubocop
 
+  linter:
+    steps:
+      - run:
+          name: Run linter
+          command:  |
+            yarn run lint-js
+            yarn run lint-sass
+
   brakeman:
     steps:
       - run:
@@ -178,6 +186,7 @@ jobs:
       - checkout
       - build-base
       - rubocop
+      - linter
       - brakeman
       - rspec
 
