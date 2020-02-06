@@ -1,5 +1,3 @@
-// # copy of current laa-court-data-adaptor schema.json
-// #
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": [
