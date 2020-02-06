@@ -5,7 +5,7 @@ require 'court_data_adaptor'
 RSpec.describe CourtDataAdaptor::Resource::Base do
   let(:test_resource) { Class.new(described_class) }
   let(:test_resource_endpoint) do
-    'https://laa-court-data-adaptor.apps.live-1.cloud-platform.service.justice.gov.uk/api/v1/test_resources'
+    [ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil), 'test_resources'].join('/')
   end
 
   describe '.site' do

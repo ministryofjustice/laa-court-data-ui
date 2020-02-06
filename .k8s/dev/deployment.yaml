@@ -55,6 +55,8 @@ spec:
               value: 'production'
             - name: DOMAIN_URL
               value: 'https://dev.view-court-data.service.justice.gov.uk'
+            - name: COURT_DATA_ADAPTOR_API_URL
+              value: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api
             - name: RAILS_SERVE_STATIC_FILES
               value: enabled
             - name: RAILS_LOG_TO_STDOUT

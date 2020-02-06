@@ -4,7 +4,7 @@ require 'court_data_adaptor'
 
 RSpec.describe CourtDataAdaptor::ProsecutionCase do
   let(:prosecution_case_endpoint) do
-    'https://laa-court-data-adaptor.apps.live-1.cloud-platform.service.justice.gov.uk/api/v1/prosecution_cases'
+    [ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil), 'prosecution_cases'].join('/')
   end
 
   describe '.site' do
