@@ -3,7 +3,7 @@
 RSpec.describe 'Court data adaptor API fixtures', type: :feature do
   let(:schema) { File.read './config/schemas/prosecution_case_search_result.json' }
 
-  context 'with resource', skip: 'to be checked' do
+  context 'with resource', skip: 'crimeapps team working on amending schema, 2020-02-06' do
     let(:fragment) { '#/definitions/prosecution_case/definitions/resource' }
 
     it 'single_resource_response fixture' do
