@@ -2,10 +2,9 @@
 
 RSpec.describe 'Court data adaptor API fixtures', type: :feature do
   let(:schema) { File.read './config/schemas/prosecution_case_search_result.json' }
+  let(:fragment) { '#/definitions/prosecution_case/definitions/resource_collection' }
 
-  context 'with resource', skip: 'crimeapps team working on amending schema, 2020-02-06' do
-    let(:fragment) { '#/definitions/prosecution_case/definitions/resource' }
-
+  context 'with resource' do
     it 'single_resource_response fixture' do
       data = prosecution_cases_fixture('single_resource_response.json')
       expect(data).to be_valid_against_schema(fragment: fragment)
@@ -13,8 +12,6 @@ RSpec.describe 'Court data adaptor API fixtures', type: :feature do
   end
 
   context 'with resource collection' do
-    let(:fragment) { '#/definitions/prosecution_case/definitions/resource_collection' }
-
     it 'case_reference_results fixture is valid' do
       data = prosecution_cases_fixture('case_reference_results.json')
       expect(data).to be_valid_against_schema(fragement: fragment)
