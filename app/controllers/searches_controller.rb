@@ -20,7 +20,7 @@ class SearchesController < ApplicationController
 
   def set_search_args
     @query = search_params[:query]
-    @filter = search_params[:filter] || 'case_number'
+    @filter = search_params[:filter] || 'case_reference'
     set_view_options
   end
 
@@ -30,8 +30,8 @@ class SearchesController < ApplicationController
       @label = I18n.t('search.defendant_label')
       @hint = I18n.t('search.defendant_label_hint')
     else
-      @label = I18n.t('search.case_number_label')
-      @hint = I18n.t('search.case_number_label_hint')
+      @label = I18n.t('search.case_reference_label')
+      @hint = I18n.t('search.case_reference_label_hint')
     end
   end
 

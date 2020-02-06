@@ -35,7 +35,6 @@ Install on MacOSX:
 make install
 ```
 
-
 Install app dependencies (step-by-step):
 ```
 # install ruby if required
@@ -63,18 +62,21 @@ To run app locally (development mode) you will therefore need to run both the `r
 
 ## Development
 
-To run the app locally you will need to run both a rails server and webpack dev server.
+To run the app locally you can generally use just `rails server`, however optional components can be run depending on your needs.
 
-You can do this in two different terminals
+Run separate servers per terminal
 ```
-# in one terminal
-rails s
+# terminal-1
+rails server
 
-# in another terminal
+# terminal-2 (assets server - this may not be needed?!)
 bin/webpack-dev-server
+
+# terminal-3 (fake adaptor API - see below)
+rackup lib/fake_court_data_adaptor/config.ru
 ```
 
-or using a single terminal and foreman
+or using a single terminal and foreman and includes fake API server
 ```
 foreman start -f Procfile.dev
 
@@ -91,7 +93,7 @@ in rails patches in the future:
 ..action_dispatch/middleware/stack.rb:37: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
 ```
 
-To suppress for now you can prefix any call that raises such warnings with `RUBYOPT=-W:no-deprecated`:
+To suppress warnings now you can prefix any call that raises such warnings with `RUBYOPT=-W:no-deprecated`:
 ```
 RUBYOPT=-W:no-deprecated rspec
 RUBYOPT=-W:no-deprecated rails server
@@ -114,6 +116,34 @@ make run
 # run the entire test suite
 make test
 ```
+
+## Fake API calling
+
+For development purposes a fake "Court Data Adaptor" API has been provided. This can be used to view
+search results in development. The fake API will need updating or removing in future iterations.
+
+To enable the fake API you must:
+
+- set/amend environment variable to point to it
+```
+# .env.development
+COURT_DATA_ADAPTOR_HOST: http://localhost:9292
+```
+
+- run the fake API using either of the methods below
+
+
+```
+# run in its own console - uses puma
+rackup lib/fake_court_data_adaptor/config.ru
+```
+
+```
+# run along with app
+make run
+```
+
+Note, running two puma servers requires that they use separate pid files. The fake api is therefore configured to use tmp/pids/fake_adaptor.pid via its `config.ru`. Bear this in mind if amending the `config/puma/development.rb` files `pidfile` entry, to prevent clashes.
 
 ## Notes
 

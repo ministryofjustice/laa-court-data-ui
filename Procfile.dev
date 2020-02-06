@@ -2,4 +2,4 @@
 # for local heroku - run `heroku local`
 #
 web: RUBYOPT=-W:no-deprecated rails s -p 3000
-assets: bin/webpack-dev-server
+api: rackup lib/fake_court_data_adaptor/config.ru

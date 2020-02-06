@@ -34,6 +34,12 @@ module LaaCourtDataUi
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # best practice not to autoload or eagerload 'lib'
+    # https://github.com/rails/rails/issues/13142#issuecomment-29744953
+    #
+    # config.autoload_paths << Rails.root.join('lib')
+    # config.eager_load_paths << Rails.root.join('lib')
+
     config.exceptions_app = routes
   end
 end

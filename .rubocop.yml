@@ -61,6 +61,9 @@ RSpec/MultipleExpectations:
   Exclude:
     - spec/features/**/*
 
+RSpec/NestedGroups:
+  Max: 4
+
 # => Style
 Style/Documentation:
   Enabled: false
@@ -68,3 +71,7 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Exclude:
     - app/controllers/users/*controller.rb
+
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+
