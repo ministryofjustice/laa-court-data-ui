@@ -11,7 +11,7 @@ RSpec.describe CourtDataAdaptor::Resource::ProsecutionCase do
     subject { described_class.site }
 
     it 'returns court data adaptor external site' do
-      is_expected.to match %r{https:\/\/.*laa-court-data-adaptor\..*}
+      is_expected.to match %r{https:\/\/.*laa-court-data-adaptor-.*\..*}
     end
   end
 
