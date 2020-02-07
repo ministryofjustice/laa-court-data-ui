@@ -14,7 +14,7 @@ RSpec.describe 'defendant search', type: :request, stub_no_results: true do
 
   context 'when posting a query' do
     let(:search_params) do
-      { search: { query: 'mouse', filter: :defendant } }
+      { search: { term: 'mouse', filter: :defendant } }
     end
 
     it 'accepts query paramater' do
@@ -30,7 +30,8 @@ RSpec.describe 'defendant search', type: :request, stub_no_results: true do
     context 'when results returned', stub_defendant_results: true do
       it 'assigns array of results' do
         post '/searches', params: search_params
-        expect(assigns(:results)).to include(an_instance_of(CourtDataAdaptor::ProsecutionCase))
+        expect(assigns(:results))
+          .to include(an_instance_of(CourtDataAdaptor::Resource::ProsecutionCase))
       end
 
       it 'renders searches/_results' do
@@ -50,7 +51,7 @@ RSpec.describe 'defendant search', type: :request, stub_no_results: true do
       end
 
       it 'renders searches/_no_results template' do
-        post '/searches', params: { search: { query: 'mini mouse', filter: :defendant } }
+        post '/searches', params: { search: { term: 'mini mouse', filter: :defendant } }
         expect(response).to render_template('searches/_no_results')
       end
     end

@@ -1,5 +1,5 @@
 = form_with model: @search, local: true do |f|
   = f.govuk_error_summary
   = f.hidden_field(:filter, value: @filter)
-  = f.govuk_text_field(:query, value: @query, label: { text: @label }, hint_text: @hint )
+  = f.govuk_text_field(:term, value: @term, label: { text: @label }, hint_text: @hint )
   = f.govuk_submit( t('generic.search') )

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'court_data_adaptor'
+
 class SearchesController < ApplicationController
   before_action :set_search_args
 
@@ -9,7 +11,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new(query: @query, filter: @filter)
+    @search = Search.new(adaptor: @adaptor)
     authorize! :create, @search
 
     @results = @search.execute
@@ -19,9 +21,19 @@ class SearchesController < ApplicationController
   private
 
   def set_search_args
-    @query = search_params[:query]
+    @term = search_params[:term]
     @filter = search_params[:filter] || 'case_reference'
+    @adaptor = adaptor_for(@filter, @term)
     set_view_options
+  end
+
+  def adaptor_for(filter, term)
+    case filter
+    when 'defendant'
+      CourtDataAdaptor::Query::Defendant.new(term)
+    else
+      CourtDataAdaptor::Query::ProsecutionCase.new(term)
+    end
   end
 
   def set_view_options
@@ -36,6 +48,6 @@ class SearchesController < ApplicationController
   end
 
   def search_params
-    params.require(:search).permit(:query, :filter)
+    params.require(:search).permit(:term, :filter)
   end
 end

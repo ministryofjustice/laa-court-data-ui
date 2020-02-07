@@ -7,12 +7,12 @@ RSpec.feature 'Defendant search', type: :feature do
     sign_in user
   end
 
-  scenario 'defendant name search with results', stub_defendant_results: true do
+  scenario 'with results', stub_defendant_results: true do
     visit '/'
 
     choose 'By defendant'
     click_button 'Continue'
-    fill_in 'search-query-field', with: 'Mickey Mouse'
+    fill_in 'search-term-field', with: 'Mickey Mouse'
     click_button 'Search'
     expect(page).to have_text 'Search for "Mickey Mouse" returned'
 
@@ -21,12 +21,12 @@ RSpec.feature 'Defendant search', type: :feature do
     end
   end
 
-  scenario 'defendant name search with no results', stub_no_results: true do
+  scenario 'with no results', stub_no_results: true do
     visit '/'
 
     choose 'By defendant'
     click_button 'Continue'
-    fill_in 'search-query-field', with: 'Fred Bloggs'
+    fill_in 'search-term-field', with: 'Fred Bloggs'
     click_button 'Search'
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
   end

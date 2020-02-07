@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'csae reference search', type: :request, stub_no_results: true do
+RSpec.describe 'case reference search', type: :request, stub_no_results: true do
   let(:user) { create(:user) }
 
   before do
@@ -14,7 +14,7 @@ RSpec.describe 'csae reference search', type: :request, stub_no_results: true do
 
   context 'when posting a query' do
     let(:search_params) do
-      { search: { query: '05PP1000915', filter: :case_reference } }
+      { search: { term: '05PP1000915', filter: :case_reference } }
     end
 
     it 'accepts query paramater' do
@@ -30,7 +30,8 @@ RSpec.describe 'csae reference search', type: :request, stub_no_results: true do
     context 'when results returned', stub_case_reference_results: true do
       it 'assigns array of results' do
         post '/searches', params: search_params
-        expect(assigns(:results)).to include(an_instance_of(CourtDataAdaptor::ProsecutionCase))
+        expect(assigns(:results))
+          .to include(an_instance_of(CourtDataAdaptor::Resource::ProsecutionCase))
       end
 
       it 'renders searches/_results' do
@@ -50,7 +51,7 @@ RSpec.describe 'csae reference search', type: :request, stub_no_results: true do
       end
 
       it 'renders searches/_no_results template' do
-        post '/searches', params: { search: { query: 'T20200001', filter: :case_reference } }
+        post '/searches', params: { search: { term: 'T20200001', filter: :case_reference } }
         expect(response).to render_template('searches/_no_results')
       end
     end

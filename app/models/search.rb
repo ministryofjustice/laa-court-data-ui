@@ -5,12 +5,8 @@ require 'court_data_adaptor'
 class Search
   include ActiveModel::Model
 
-  attr_writer :filter
-  attr_accessor :query
-
-  def filter
-    @filter || :case_reference
-  end
+  attr_accessor :adaptor
+  attr_accessor :term
 
   def filters
     self.class.filters
@@ -31,28 +27,7 @@ class Search
     ]
   end
 
-  # TODO: abstract (strategy pattern/dependency inversion)
   def execute
-    case filter
-    when 'case_reference'
-      case_reference_search
-    when 'defendant'
-      defendant_search
-    else
-      raise CourtDataAdaptor::Resource::NotFound, ''
-    end
-  end
-
-  private
-
-  def case_reference_search
-    CourtDataAdaptor::ProsecutionCase.where(prosecution_case_reference: query).all
-  end
-
-  def defendant_search
-    results = query.split(' ').each_with_object([]) do |term, arr|
-      arr.append(CourtDataAdaptor::ProsecutionCase.where(first_name: term, last_name: term).all)
-    end
-    results.flatten.uniq(&:id)
+    adaptor.call
   end
 end

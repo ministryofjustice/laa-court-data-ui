@@ -4,7 +4,7 @@ en:
     case_reference_label: Find a case
     case_reference_label_hint: Search by prosecution case reference
     defendant_label: Find a defendant
-    defendant_label_hint: Search by MAAT number or defendant name
+    defendant_label_hint: Search by defendant name
     no_result:
       body: There are no matching results.
       body_guide: 'Improve your search results by:'
@@ -16,9 +16,9 @@ en:
     result:
       caption: Search results
     result_count:
-      one: Search for "%{query}" returned 1 result
-      other: Search for "%{query}" returned %{count} results
-      zero: Search for "%{query}" returned 0 result
+      one: Search for "%{term}" returned 1 result
+      other: Search for "%{term}" returned %{count} results
+      zero: Search for "%{term}" returned 0 result
   search_filter:
     label_hint: choose an option
     legend_text: How do you want to search?
