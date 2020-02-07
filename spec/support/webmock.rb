@@ -31,4 +31,10 @@ RSpec.configure do |config|
         headers: { 'Content-Type' => 'application/vnd.api+json' }
       )
   end
+
+  config.around(:each, enable_net_connect: true) do |example|
+    WebMock.allow_net_connect!
+    example.run
+    load __FILE__
+  end
 end
