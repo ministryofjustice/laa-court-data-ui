@@ -17,11 +17,21 @@ RSpec.feature 'Error page', type: :feature do
     end
   end
 
-  scenario 'returns 500' do
-    visit '/500'
+  context 'when unexpected error raised' do
+    let(:user) { create(:user) }
 
-    within '.govuk-main-wrapper' do
-      expect(page).to have_css('.govuk-heading-xl', text: I18n.t('error.500_title'))
+    before do
+      sign_in user
+      allow(Rails.env).to receive(:production?).and_return true
+      allow(User).to receive(:find).and_raise(StandardError, 'dummy unexpected error')
+    end
+
+    scenario 'returns 500' do
+      visit user_path(user.id)
+
+      within '.govuk-main-wrapper' do
+        expect(page).to have_css('.govuk-heading-xl', text: I18n.t('error.500_title'))
+      end
     end
   end
 end

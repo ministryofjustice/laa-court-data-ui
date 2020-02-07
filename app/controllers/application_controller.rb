@@ -6,15 +6,10 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   check_authorization
 
-  rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |format|
-      format.json { head :forbidden }
-      format.html do
-        flash[:alert] = exception.message
-        redirect_to_back_or_default
-      end
-    end
-  end
+  # Note: errors checked bottom to top
+  # https://apidock.com/rails/v6.0.0/ActiveSupport/Rescuable/ClassMethods/rescue_from
+  rescue_from Exception, with: :unexpected_exception_handler
+  rescue_from CanCan::AccessDenied, with: :access_denied
 
   def set_back_page_path
     session[:back_page_path] = request.path
@@ -33,4 +28,27 @@ class ApplicationController < ActionController::Base
     controller_name.eql?('searches')
   end
   helper_method :back_page_needed?
+
+  protected
+
+  def access_denied(exception)
+    respond_to do |format|
+      format.json { head :forbidden }
+      format.html do
+        flash[:alert] = exception.message
+        redirect_to_back_or_default
+      end
+    end
+  end
+
+  def unexpected_exception_handler(exception)
+    raise unless Rails.env.production?
+
+    case exception
+    when ActiveRecord::RecordNotFound || ActionController::RoutingError
+      redirect_to controller: :errors, action: :not_found
+    else
+      redirect_to controller: :errors, action: :internal_error
+    end
+  end
 end
