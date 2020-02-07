@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new(adaptor: @adaptor)
+    @search = Search.new(adaptor: adaptor)
     authorize! :create, @search
 
     @results = @search.execute
@@ -19,6 +19,8 @@ class SearchesController < ApplicationController
   end
 
   private
+
+  attr_reader :adaptor
 
   def set_search_args
     @term = search_params[:term]
