@@ -5,7 +5,7 @@ require 'court_data_adaptor'
 RSpec.describe Search, type: :model do
   subject { described_class.new }
 
-  it { is_expected.to respond_to(:query, :filter, :execute, :errors, :valid?) }
+  it { is_expected.to respond_to(:adaptor, :term, :execute, :errors, :valid?) }
 
   describe '.filters' do
     subject { described_class.filters }
@@ -14,27 +14,29 @@ RSpec.describe Search, type: :model do
   end
 
   describe '#execute' do
-    let(:instance) { described_class.new(filter: filter) }
+    let(:term) { 'whatever' }
 
-    before { allow(instance).to receive(:case_reference_search) }
+    context 'when searching by case reference', stub_no_results: true do
+      let(:adaptor) { CourtDataAdaptor::Query::ProsecutionCase.new(term) }
+      let(:instance) { described_class.new(adaptor: adaptor) }
 
-    context 'when searching by case reference' do
-      let(:filter) { 'case_reference' }
+      before { allow(adaptor).to receive(:call) }
 
-      it 'calls case_reference_search' do
+      it 'calls case reference query object' do
         instance.execute
-        expect(instance).to have_received(:case_reference_search)
+        expect(adaptor).to have_received(:call)
       end
     end
 
-    context 'when searching by defendant name' do
-      let(:filter) { 'defendant' }
+    context 'when searching by defendant name', stub_no_results: true do
+      let(:adaptor) { CourtDataAdaptor::Query::Defendant.new(term) }
+      let(:instance) { described_class.new(adaptor: adaptor) }
 
-      before { allow(instance).to receive(:defendant_search) }
+      before { allow(adaptor).to receive(:call) }
 
-      it 'calls defendant_search' do
+      it 'calls defendant query object' do
         instance.execute
-        expect(instance).to have_received(:defendant_search)
+        expect(adaptor).to have_received(:call)
       end
     end
   end

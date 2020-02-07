@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::ProsecutionCase do
+RSpec.describe CourtDataAdaptor::Resource::ProsecutionCase do
   let(:prosecution_case_endpoint) do
     [ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil), 'prosecution_cases'].join('/')
   end
@@ -11,7 +11,7 @@ RSpec.describe CourtDataAdaptor::ProsecutionCase do
     subject { described_class.site }
 
     it 'returns court data adaptor external site' do
-      is_expected.to match %r{https:\/\/.*laa-court-data-adaptor\..*}
+      is_expected.to match %r{https:\/\/.*laa-court-data-adaptor-.*\..*}
     end
   end
 
