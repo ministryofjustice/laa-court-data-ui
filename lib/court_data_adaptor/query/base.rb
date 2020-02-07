@@ -5,14 +5,15 @@ module CourtDataAdaptor
     class Base
       include CourtDataAdaptor::Resource::Queryable
 
-      attr_accessor :term
+      attr_accessor :term, :dob
 
-      def initialize(term)
+      def initialize(term, options = {})
         @term = term
+        @dob = options[:dob]
       end
 
-      def self.call(term)
-        new(term).call
+      def self.call(term, options = {})
+        new(term, options).call
       end
 
       def call

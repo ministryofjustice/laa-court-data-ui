@@ -29,7 +29,8 @@ RSpec.describe Search, type: :model do
     end
 
     context 'when searching by defendant name', stub_no_results: true do
-      let(:adaptor) { CourtDataAdaptor::Query::Defendant.new(term) }
+      let(:dob) { Date.parse('21-05-1987') }
+      let(:adaptor) { CourtDataAdaptor::Query::Defendant.new(term, dob: dob) }
       let(:instance) { described_class.new(adaptor: adaptor) }
 
       before { allow(adaptor).to receive(:call) }

@@ -14,7 +14,7 @@ RSpec.describe 'defendant search', type: :request, stub_no_results: true do
 
   context 'when posting a query' do
     let(:search_params) do
-      { search: { term: 'mouse', filter: :defendant } }
+      { search: { term: 'mouse', dob: '21-05-1987', filter: :defendant } }
     end
 
     it 'accepts query paramater' do

@@ -7,5 +7,5 @@ end
 
 RSpec.shared_examples 'court_data_adaptor query object' do
   it { is_expected.to respond_to :call }
-  it { expect(subject.new(nil)).to respond_to :call, :term }
+  it { expect(subject.new(nil)).to respond_to(:call, :term, :term=, :dob, :dob=) }
 end

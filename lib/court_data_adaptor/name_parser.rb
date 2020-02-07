@@ -10,8 +10,8 @@ module CourtDataAdaptor
 
     def parts
       return @parts if @parts
-      terms = term.split
 
+      terms = term.split
       first = terms.slice!(0)
       last = terms.slice!(-1)
       middle = terms.join(' ') unless terms.empty?
