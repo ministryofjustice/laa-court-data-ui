@@ -9,9 +9,8 @@ module CourtDataAdaptor
       end
 
       module ClassMethods
-        cattr_accessor :resource
-
         def acts_as_resource(resource)
+          cattr_accessor :resource
           self.resource = resource
         end
       end
