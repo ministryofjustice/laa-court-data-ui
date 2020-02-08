@@ -7,6 +7,7 @@ require_relative 'court_data_adaptor/resource/prosecution_case'
 require_relative 'court_data_adaptor/query/base'
 require_relative 'court_data_adaptor/query/defendant'
 require_relative 'court_data_adaptor/query/prosecution_case'
+require_relative 'court_data_adaptor/name_parser'
 
 module CourtDataAdaptor
   module Resource
