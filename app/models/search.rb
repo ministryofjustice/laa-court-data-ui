@@ -5,8 +5,7 @@ require 'court_data_adaptor'
 class Search
   include ActiveModel::Model
 
-  attr_accessor :adaptor
-  attr_accessor :term
+  attr_accessor :filter, :term, :dob
 
   def filters
     self.class.filters
@@ -29,5 +28,19 @@ class Search
 
   def execute
     adaptor.call
+  end
+
+  private
+
+  def adaptor
+    send("#{filter}_adaptor")
+  end
+
+  def defendant_adaptor
+    CourtDataAdaptor::Query::Defendant.new(term, dob: dob)
+  end
+
+  def case_reference_adaptor
+    CourtDataAdaptor::Query::ProsecutionCase.new(term)
   end
 end

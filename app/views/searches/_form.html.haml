@@ -2,4 +2,10 @@
   = f.govuk_error_summary
   = f.hidden_field(:filter, value: @filter)
   = f.govuk_text_field(:term, value: @term, label: { text: @label }, hint_text: @hint )
+
+  - if @filter.eql?('defendant')
+    = f.govuk_date_field :dob,
+      legend: { text: 'Defendant date of birth' },
+      hint_text: 'For example, 31 3 1980'
+
   = f.govuk_submit( t('generic.search') )

@@ -3,5 +3,5 @@ en:
   date:
     formats:
       default: "%d/%m/%Y"
-      long: "%B %d, %Y"
+      long: "%d %B %Y"
       short: "%b %d"

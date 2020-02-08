@@ -4,7 +4,7 @@ en:
     case_reference_label: Find a case
     case_reference_label_hint: Search by prosecution case reference
     defendant_label: Find a defendant
-    defendant_label_hint: Search by defendant name
+    defendant_label_hint: Enter full name of defendant
     no_result:
       body: There are no matching results.
       body_guide: 'Improve your search results by:'
@@ -19,11 +19,15 @@ en:
       one: Search for "%{term}" returned 1 result
       other: Search for "%{term}" returned %{count} results
       zero: Search for "%{term}" returned 0 result
+    result_with_dob_count:
+      one: Search for "%{term}", born on "%{dob}" returned 1 result
+      other: Search for "%{term}", born on "%{dob}" returned %{count} results
+      zero: Search for "%{term}", born on "%{dob}" returned 0 results
   search_filter:
     label_hint: choose an option
     legend_text: How do you want to search?
     page_title: Search filters
-    radio_case_reference_label: By case reference
-    radio_case_reference_label_hint: case URN
-    radio_defendant_label: By defendant
-    radio_defendant_label_hint: Name
+    radio_case_reference_label: Search by case reference
+    radio_case_reference_label_hint: Case URN
+    radio_defendant_label: Search by defendant
+    radio_defendant_label_hint: Name and date of birth

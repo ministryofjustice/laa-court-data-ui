@@ -10,7 +10,7 @@ RSpec.feature 'Case reference search', type: :feature do
   scenario 'with results', stub_case_reference_results: true do
     visit '/'
 
-    choose 'By case reference'
+    choose 'Search by case reference'
     click_button 'Continue'
     fill_in 'search-term-field', with: '05PP1000915'
     click_button 'Search'
@@ -24,7 +24,7 @@ RSpec.feature 'Case reference search', type: :feature do
   scenario 'with no results', stub_no_results: true do
     visit '/'
 
-    choose 'By case reference'
+    choose 'Search by case reference'
     click_button 'Continue'
     fill_in 'search-term-field', with: '05PP1000915'
     click_button 'Search'

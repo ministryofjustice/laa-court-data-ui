@@ -14,7 +14,16 @@ RSpec.describe 'defendant search', type: :request, stub_no_results: true do
 
   context 'when posting a query' do
     let(:search_params) do
-      { search: { term: 'mouse', dob: '21-05-1987', filter: :defendant } }
+      {
+        search:
+        {
+          filter: :defendant,
+          term: 'mini mouse',
+          'dob(3i)': '21',
+          'dob(2i)': '05',
+          'dob(1i)': '1987'
+        }
+      }
     end
 
     it 'accepts query paramater' do
@@ -39,6 +48,11 @@ RSpec.describe 'defendant search', type: :request, stub_no_results: true do
         expect(response).to render_template('searches/_results')
       end
 
+      it 'renders searches/_results_header' do
+        post '/searches', params: search_params
+        expect(response).to render_template('searches/_results_header')
+      end
+
       it 'does not render searches/_no_results' do
         post '/searches', params: search_params
         expect(response).not_to render_template('searches/_no_results')
@@ -50,8 +64,13 @@ RSpec.describe 'defendant search', type: :request, stub_no_results: true do
         allow_any_instance_of(Search).to receive(:execute).and_return([])
       end
 
+      it 'renders searches/_results_header' do
+        post '/searches', params: search_params
+        expect(response).to render_template('searches/_results_header')
+      end
+
       it 'renders searches/_no_results template' do
-        post '/searches', params: { search: { term: 'mini mouse', filter: :defendant } }
+        post '/searches', params: search_params
         expect(response).to render_template('searches/_no_results')
       end
     end
