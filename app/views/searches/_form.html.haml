@@ -5,7 +5,7 @@
 
   - if @filter.eql?('defendant')
     = f.govuk_date_field :dob,
-      legend: { text: 'Defendant date of birth' },
-      hint_text: 'For example, 31 3 1980'
+      legend: { text: t('search.dob.legend_text') },
+      hint_text: t('search.dob.hint_text')
 
   = f.govuk_submit( t('generic.search') )
