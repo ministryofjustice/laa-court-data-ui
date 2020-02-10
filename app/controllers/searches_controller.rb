@@ -40,11 +40,11 @@ class SearchesController < ApplicationController
   def set_view_options
     case filter
     when 'defendant'
-      @label = I18n.t('search.defendant_label')
-      @hint = I18n.t('search.defendant_label_hint')
+      @label = I18n.t('search.term.defendant_label')
+      @hint = I18n.t('search.term.defendant_label_hint')
     else
-      @label = I18n.t('search.case_reference_label')
-      @hint = I18n.t('search.case_reference_label_hint')
+      @label = I18n.t('search.term.case_reference_label')
+      @hint = I18n.t('search.term.case_reference_label_hint')
     end
   end
 

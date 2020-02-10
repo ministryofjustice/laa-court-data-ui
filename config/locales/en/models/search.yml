@@ -1,14 +1,11 @@
-# e.g. custom translsations for non-activerecord models
+---
 en:
   errors:
     models:
       search:
+        dob:
+          blank: Defendant date of birth required
         filter:
           blank: Filter required
         term:
           blank: Search term required
-        dob:
-          blank: Defendants date of birth required
-      search_filter:
-        id:
-          blank: Choose a filter
