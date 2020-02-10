@@ -37,3 +37,6 @@ Brewfile.lock.json
 .env
 .env.local
 .env.**.local
+
+# ignore simplecov output
+/coverage
