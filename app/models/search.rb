@@ -7,10 +7,10 @@ class Search
 
   attr_accessor :filter, :term, :dob
 
-  validates :filter, presence: { message: 'Filter required' }
-  validates :term, presence: { message: 'Search term required' }
+  validates :filter, presence: { message: I18n.t('errors.models.search.filter.blank') }
+  validates :term, presence: { message: I18n.t('errors.models.search.term.blank') }
   validates :dob,
-            presence: { message: 'Defendant date of birth required' },
+            presence: { message: I18n.t('errors.models.search.dob.blank') },
             if: proc { |search| search.filter.eql?('defendant') }
 
   def filters
