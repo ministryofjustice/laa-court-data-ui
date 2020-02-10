@@ -3,7 +3,7 @@
 class SearchFilter
   include ActiveModel::Model
 
-  validates :id, presence: true
+  validates :id, presence: { message: 'Choose a filter' }
 
   attr_accessor :id, :name, :description
 end

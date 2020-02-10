@@ -37,7 +37,28 @@ RSpec.feature 'Defendant search', type: :feature do
     choose 'Search by defendant'
     click_button 'Continue'
     fill_in 'search-term-field', with: 'Fred Bloggs'
+    fill_in 'search_dob_3i', with: '28'
+    fill_in 'search_dob_2i', with: '11'
+    fill_in 'search_dob_1i', with: '1928'
     click_button 'Search'
+
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
+  end
+
+  scenario 'with invalid entries', stub_no_results: true do
+    visit '/'
+
+    choose 'Search by defendant'
+    click_button 'Continue'
+    fill_in 'search-term-field', with: 'Mickey Mouse'
+    click_button 'Search'
+
+    expect(page).not_to have_css('.govuk-body', text: 'There are no matching results')
+    expect(page).to have_css('.govuk-error-summary')
+    within '.govuk-error-summary' do
+      expect(page).to have_content('Defendant date of birth required')
+    end
+
+    expect(page).to have_css('#search-dob-error', text: 'Defendant date of birth required')
   end
 end

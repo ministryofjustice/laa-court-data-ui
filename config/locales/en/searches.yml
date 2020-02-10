@@ -24,7 +24,7 @@ en:
       other: Search for "%{term}", born on "%{dob}" returned %{count} results
       zero: Search for "%{term}", born on "%{dob}" returned 0 results
   search_filter:
-    label_hint: choose an option
+    label_hint: Choose an option
     legend_text: How do you want to search?
     page_title: Search filters
     radio_case_reference_label: Search by case reference

@@ -17,12 +17,7 @@ RSpec::Matchers.define :have_activerecord_error do |attribute, message|
   end
 
   failure_message do |model_instance|
-    if model_instance.errors.messages[attribute.to_sym].empty?
-      msg = "expected activerecord error message on #{attribute} but found none."
-    else model_instance.errors.messages[attribute.to_sym].include?(message)
-      msg = "expected activerecord error message: \"#{message}\" on #{attribute}\n" +
-            "but received: #{model_instance.errors.messages[attribute.to_sym]}"
-    end
-    msg
+    "expected activerecord error message: \"#{message}\" on #{attribute}\n" \
+      "but received: #{model_instance.errors.messages[attribute.to_sym] || 'none'}"
   end
 end

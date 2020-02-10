@@ -2,10 +2,16 @@
 
 require 'court_data_adaptor'
 
-RSpec.fdescribe Search, type: :model do
+RSpec.describe Search, type: :model do
   subject { described_class.new }
 
-  it { is_expected.to respond_to(:filters, :filter, :term, :term=, :dob, :dob=, :execute, :errors, :valid?) }
+  it {
+    is_expected.to \
+      respond_to(:filters, :filter,
+                 :term, :term=,
+                 :dob, :dob=,
+                 :execute, :errors, :valid?)
+  }
 
   describe '.filters' do
     subject(:filters) { described_class.filters }
@@ -67,6 +73,63 @@ RSpec.fdescribe Search, type: :model do
 
       it 'calls defendant query object' do
         expect(adaptor_instance).to have_received(:call)
+      end
+    end
+  end
+
+  context 'when validating' do
+    subject(:search) { described_class.new(filter: filter, term: term, dob: dob) }
+
+    context 'with case reference search' do
+      let(:filter) { 'case_reference' }
+      let(:term) { 'TFL12345' }
+      let(:dob) { nil }
+
+      context 'with blank filter' do
+        let(:filter) { nil }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:filter, 'Filter required') }
+      end
+
+      context 'with blank term' do
+        let(:term) { nil }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:term, 'Search term required') }
+      end
+
+      context 'with blank dob' do
+        let(:dob) { nil }
+
+        it { is_expected.to be_valid }
+      end
+    end
+
+    context 'with defendant search' do
+      let(:filter) { 'defendant' }
+      let(:term) { 'Mickey Mouse' }
+      let(:dob) { Date.current }
+
+      context 'with blank filter' do
+        let(:filter) { nil }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:filter, 'Filter required') }
+      end
+
+      context 'with blank term' do
+        let(:term) { nil }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:term, 'Search term required') }
+      end
+
+      context 'with blank dob' do
+        let(:dob) { nil }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:dob, 'Defendant date of birth required') }
       end
     end
   end

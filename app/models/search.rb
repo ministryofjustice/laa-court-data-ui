@@ -7,6 +7,12 @@ class Search
 
   attr_accessor :filter, :term, :dob
 
+  validates :filter, presence: { message: 'Filter required' }
+  validates :term, presence: { message: 'Search term required' }
+  validates :dob,
+            presence: { message: 'Defendant date of birth required' },
+            if: proc { |search| search.filter.eql?('defendant') }
+
   def filters
     self.class.filters
   end

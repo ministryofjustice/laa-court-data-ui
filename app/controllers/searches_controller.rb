@@ -14,7 +14,7 @@ class SearchesController < ApplicationController
     @search = Search.new(filter: filter, term: term, dob: dob)
     authorize! :create, @search
 
-    @results = @search.execute
+    @results = @search.execute if @search.valid?
     render 'new'
   end
 
