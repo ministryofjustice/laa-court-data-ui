@@ -2,15 +2,27 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe Search, type: :model do
+RSpec.fdescribe Search, type: :model do
   subject { described_class.new }
 
-  it { is_expected.to respond_to(:filter, :term, :term=, :dob, :dob=, :execute, :errors, :valid?) }
+  it { is_expected.to respond_to(:filters, :filter, :term, :term=, :dob, :dob=, :execute, :errors, :valid?) }
 
   describe '.filters' do
-    subject { described_class.filters }
+    subject(:filters) { described_class.filters }
 
     it { is_expected.to all(be_a(SearchFilter)) }
+    it { expect(filters.map(&:id)).to include(:case_reference, :defendant) }
+  end
+
+  describe '#filters' do
+    subject(:filters) { described_class.new.filters }
+
+    before { allow(described_class).to receive(:filters) }
+
+    it 'calls class method' do
+      filters
+      expect(described_class).to have_received(:filters)
+    end
   end
 
   describe '#execute' do
