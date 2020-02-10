@@ -2,6 +2,20 @@
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'simplecov'
+
+SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
+
+SimpleCov.configure do
+  add_filter '_spec.rb'
+  add_filter 'spec/'
+  add_filter 'config/'
+  add_filter 'db/seeds'
+  add_filter %r{^/factories/}
+end
+
+SimpleCov.start
+
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('../config/environment', __dir__)
