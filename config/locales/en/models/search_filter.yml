@@ -1,7 +1,9 @@
 ---
 en:
-  errors:
-    models:
-      search_filter:
-        id:
-          blank: Choose a filter
+  activemodel:
+    errors:
+      models:
+        search_filter:
+          attributes:
+            id:
+              blank: Choose a filter

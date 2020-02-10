@@ -1,11 +1,13 @@
 ---
 en:
-  errors:
-    models:
-      search:
-        dob:
-          blank: Defendant date of birth required
-        filter:
-          blank: Filter required
-        term:
-          blank: Search term required
+  activemodel:
+    errors:
+      models:
+        search:
+          attributes:
+            dob:
+              blank: Defendant date of birth required
+            filter:
+              blank: Filter required
+            term:
+              blank: Search term required
