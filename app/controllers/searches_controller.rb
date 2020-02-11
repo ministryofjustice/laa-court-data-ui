@@ -3,7 +3,7 @@
 require 'court_data_adaptor'
 
 class SearchesController < ApplicationController
-  before_action :set_search_args
+  before_action :set_view_options
 
   def new
     @search = Search.new
@@ -11,45 +11,44 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new(adaptor: adaptor)
+    @search = Search.new(filter: filter, term: term, dob: dob)
     authorize! :create, @search
 
-    @results = @search.execute
+    @results = @search.execute if @search.valid?
     render 'new'
   end
 
   private
 
-  attr_reader :adaptor
-
-  def set_search_args
-    @term = search_params[:term]
-    @filter = search_params[:filter] || 'case_reference'
-    @adaptor = adaptor_for(@filter, @term)
-    set_view_options
+  def filter
+    @filter ||= search_params[:filter] || 'case_reference'
   end
 
-  def adaptor_for(filter, term)
-    case filter
-    when 'defendant'
-      CourtDataAdaptor::Query::Defendant.new(term)
-    else
-      CourtDataAdaptor::Query::ProsecutionCase.new(term)
-    end
+  def term
+    @term ||= search_params[:term]
+  end
+
+  def dob
+    return @dob if @dob
+    year = search_params['dob(1i)']
+    month = search_params['dob(2i)']
+    day = search_params['dob(3i)']
+    @dob = Date.parse([day, month, year].join('-')) \
+      if day.present? && month.present? && year.present?
   end
 
   def set_view_options
-    case @filter
+    case filter
     when 'defendant'
-      @label = I18n.t('search.defendant_label')
-      @hint = I18n.t('search.defendant_label_hint')
+      @label = I18n.t('search.term.defendant_label')
+      @hint = I18n.t('search.term.defendant_label_hint')
     else
-      @label = I18n.t('search.case_reference_label')
-      @hint = I18n.t('search.case_reference_label_hint')
+      @label = I18n.t('search.term.case_reference_label')
+      @hint = I18n.t('search.term.case_reference_label_hint')
     end
   end
 
   def search_params
-    params.require(:search).permit(:term, :filter)
+    params.require(:search).permit(:term, :dob, :filter)
   end
 end

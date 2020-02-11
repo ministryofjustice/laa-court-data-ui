@@ -8,7 +8,7 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
   it_behaves_like 'court_data_adaptor queryable object'
   it_behaves_like 'court_data_adaptor query object'
 
-  describe '#call', stub_no_results: true do
+  describe '#call' do
     subject(:call) { described_class.new(term).call }
 
     let(:term) { 'a-case-urn' }

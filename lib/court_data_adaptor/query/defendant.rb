@@ -6,10 +6,30 @@ module CourtDataAdaptor
       acts_as_resource CourtDataAdaptor::Resource::ProsecutionCase
 
       def call
-        results = term.split(' ').each_with_object([]) do |aterm, arr|
-          arr.append(resource.where(first_name: aterm, last_name: aterm).all)
-        end
-        results.flatten.uniq(&:id)
+        resource
+          .where(
+            first_name: first_name,
+            last_name: last_name,
+            date_of_birth: date_of_birth
+          ).all
+      end
+
+      private
+
+      def name
+        @name ||= NameParser.new(term)
+      end
+
+      def first_name
+        name.first&.capitalize
+      end
+
+      def last_name
+        name.last&.capitalize
+      end
+
+      def date_of_birth
+        Date.parse(dob.to_s).iso8601 if dob
       end
     end
   end

@@ -1,5 +1,4 @@
-.govuk-heading-l
-  = t('search.result_count', term: @term, count: @results.size)
+= render 'results_header'
 
 - if @results.empty?
   = render 'no_results'

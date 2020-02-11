@@ -29,11 +29,15 @@ run: #: run the application locally
 	foreman start -f Procfile.dev
 
 test: #: run test suite locally
-	@bundle exec brakeman --quiet --exit-on-warn
+	@printf "\e[33mMAKE: brakeman...\e[0m\n"
+	@bundle exec brakeman --quiet --exit-on-warn 1> /dev/null
+	@printf "\e[33mMAKE: rubocop...\e[0m\n"
 	@bundle exec rubocop
-	@RUBYOPT=-W:no-deprecated bundle exec rspec -fd
+	@printf "\e[33mMAKE: linters...\e[0m\n"
 	@yarn run lint-js
 	@yarn run lint-sass
+	@printf "\e[33mMAKE: rspec...\e[0m\n"
+	@RUBYOPT=-W:no-deprecated bundle exec rspec --format progress
 
 open: #: open localhost:3000 in default browser
 	@open http://localhost:3000
