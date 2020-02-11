@@ -17,4 +17,4 @@
           %td.govuk-table__cell= result.prosecution_case_reference
           %td.govuk-table__cell= result.first_name
           %td.govuk-table__cell= result.last_name
-          %td.govuk-table__cell= l(result.date_of_birth.to_date)
+          %td.govuk-table__cell= l(result.date_of_birth&.to_date)
