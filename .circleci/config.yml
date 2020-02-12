@@ -157,6 +157,13 @@ commands:
           path: /tmp/test-results
           destination: test-results
 
+  upload-coverage:
+    steps:
+      - run:
+          name: Upload coverage results to Code Climate
+          command: |
+            tmp/cc-test-reporter sum-coverage --output - --parts 1 tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --input -
+
   load-code-climate:
     steps:
       - run:
@@ -224,15 +231,7 @@ jobs:
             - coverage/codeclimate.*.json
       - store_artifacts:
           path: tmp/coverage
-
-  upload-coverage:
-    executor: test-executor
-    steps:
-      - *attach-tmp-workspace
-      - run:
-          name: Upload coverage results to Code Climate
-          command: |
-            tmp/cc-test-reporter sum-coverage --output - --parts 1 tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --input -
+      - upload-coverage
 
   build-app-container:
     executor: cloud-platform-executor
@@ -265,13 +264,10 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - upload-coverage:
-          requires:
-            - rspec-tests
-            - linter-tests
       - build-app-container:
           requires:
-            - upload-coverage
+            - linter-tests
+            - rspec-tests
       - deploy-dev:
           requires:
             - build-app-container
@@ -289,14 +285,11 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - upload-coverage:
-          requires:
-            - rspec-tests
-            - linter-tests
       - branch-build-approval:
           type: approval
           requires:
-            - upload-coverage
+            - linter-tests
+            - rspec-tests
           filters:
             branches:
               ignore:
