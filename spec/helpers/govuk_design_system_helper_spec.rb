@@ -16,7 +16,7 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       end
 
       it ':page_title contains plain text' do
-        expect(helper.content_for(:page_title)).to eql 'My page title'
+        expect(helper.content_for(:page_title)).to eql 'My page title - View court data - GOV.UK'
       end
 
       it ':page_heading contains GDS styled heading' do
@@ -33,7 +33,7 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       end
 
       it ':page_title contains title based on controller action' do
-        expect(helper.content_for(:page_title)).to eql 'Show widget'
+        expect(helper.content_for(:page_title)).to eql 'Show widget - View court data - GOV.UK'
       end
 
       it ':page_heading contains heading based on controller action' do
