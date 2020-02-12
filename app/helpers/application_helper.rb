@@ -6,4 +6,8 @@ module ApplicationHelper
   def service_name
     'View court data'
   end
+
+  def l(date, options = {})
+    super(date, options) if date
+  end
 end
