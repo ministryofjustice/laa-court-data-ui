@@ -1,0 +1,44 @@
+version: "2"
+checks:
+  method-lines:
+    enabled: true
+    config:
+      threshold: 100
+  similar-code:
+    enabled: true
+    config:
+      threshold: 25
+  identical-code:
+    enabled: true
+    config:
+      threshold: 18
+  method-count:
+    config:
+      threshold: 24
+plugins:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        ruby:
+          filters:
+            - "(call _ expose ___)" # exlude expose methods
+  rubocop:
+    enabled: true
+    channel: rubocop-0-76
+    config:
+      file: .rubocop.yml
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: true
+exclude_patterns: # customize
+- bin/rails
+- bin/rake
+- public/
+- spec/
+- tmp/
+- db/*
+- db/migrate/*
+- db/seeds/*
+- Gemfile*

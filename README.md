@@ -1,6 +1,9 @@
 # Court data UI (a.k.a View court data)
 An interace to the [laa-court-data-adaptor](https://github.com/ministryofjustice/laa-court-data-adaptor) for displaying information available from the HMCTS "common platform" API.
 
+[![Code Climate](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/badges/gpa.svg)](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui)
+[![Test Coverage](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/badges/coverage.svg)](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/coverage)
+
 ## System dependencies
 - postgres
 - ruby 2.7.0+

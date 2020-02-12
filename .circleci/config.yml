@@ -47,6 +47,10 @@ references:
         - node_modules
         - public/packs-test
 
+  _attach-tmp-workspace: &attach-tmp-workspace
+    attach_workspace:
+      at: ~/repo/tmp
+
   _script-build-app-container: &script-build-app-container
     run:
         name: Build and push docker image
@@ -138,19 +142,34 @@ commands:
           name: Run rspec tests
           command: |
                 mkdir /tmp/test-results
+                tmp/cc-test-reporter before-build
                 TESTS=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)
-
                 RUBYOPT=-W:no-deprecated \
                 bundle exec rspec \
                   --format progress \
                   --format RspecJunitFormatter \
                   --out /tmp/test-results/rspec.xml \
                   $TEST_FILES
+                tmp/cc-test-reporter format-coverage -t simplecov -o "tmp/coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+  load-code-climate:
+    steps:
+      - run:
+          name: Load and persist code climate
+          command: |
+            mkdir -p tmp/
+            mkdir -p tmp/coverage/
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > tmp/cc-test-reporter
+            chmod +x tmp/cc-test-reporter
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - cc-test-reporter
 
   deploy-to:
     description: >
@@ -178,6 +197,7 @@ jobs:
     executor: test-executor
     steps:
       - checkout
+      - load-code-climate
       - build-base
 
   linter-tests:
@@ -196,7 +216,23 @@ jobs:
     steps:
       - checkout
       - build-base
+      - *attach-tmp-workspace
       - rspec
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - coverage/codeclimate.*.json
+      - store_artifacts:
+          path: tmp/coverage
+
+  upload-coverage:
+    executor: test-executor
+    steps:
+      - *attach-tmp-workspace
+      - run:
+          name: Upload coverage results to Code Climate
+          command: |
+            tmp/cc-test-reporter sum-coverage --output - --parts 1 tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --input -
 
   build-app-container:
     executor: cloud-platform-executor
@@ -229,10 +265,13 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
+      - upload-coverage:
+          requires:
+            - rspec-tests
+            - linter-tests
       - build-app-container:
           requires:
-            - linter-tests
-            - rspec-tests
+            - upload-coverage
       - deploy-dev:
           requires:
             - build-app-container
@@ -250,11 +289,14 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
+      - upload-coverage:
+          requires:
+            - rspec-tests
+            - linter-tests
       - branch-build-approval:
           type: approval
           requires:
-            - linter-tests
-            - rspec-tests
+            - upload-coverage
           filters:
             branches:
               ignore:
