@@ -6,7 +6,10 @@ module CourtDataAdaptor
       acts_as_resource CourtDataAdaptor::Resource::ProsecutionCase
 
       def call
-        resource.where(prosecution_case_reference: term).all
+        resource
+          .where(prosecution_case_reference: term)
+          .includes(:defendants)
+          .all
       end
     end
   end
