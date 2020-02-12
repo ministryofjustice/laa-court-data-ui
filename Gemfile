@@ -24,6 +24,8 @@ gem 'webpacker', '~> 4.0'
 group :test do
   gem 'brakeman'
   gem 'capybara'
+  gem 'climate_control'
+  gem 'codeclimate-test-reporter', require: false
   gem 'i18n-tasks', '~> 0.9.30'
   gem 'launchy'
   gem 'rails-controller-testing'
@@ -33,7 +35,7 @@ group :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'simplecov', require: false
+  gem 'simplecov', '~> 0.17.1', require: false
   gem 'webmock'
 end
 
