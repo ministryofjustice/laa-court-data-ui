@@ -47,6 +47,8 @@ class ApplicationController < ActionController::Base
     case exception
     when ActiveRecord::RecordNotFound || ActionController::RoutingError
       redirect_to controller: :errors, action: :not_found
+    when JsonApiClient::Errors::NotAuthorized
+      redirect_to controller: :errors, action: :unauthorized
     else
       redirect_to controller: :errors, action: :internal_error
     end

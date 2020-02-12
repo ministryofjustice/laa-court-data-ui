@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 RSpec.describe 'error routes', type: :request do
+  describe 'GET #unauthorized', type: :request do
+    before { get '/401' }
+
+    it 'has a status of 401' do
+      expect(response.status).to eq(401)
+    end
+
+    it 'renders the template' do
+      expect(response).to render_template('errors/unauthorized')
+    end
+  end
+
   describe 'GET #not_found', type: :request do
     before { get '/not-exists' }
 

@@ -120,6 +120,86 @@ make run
 make test
 ```
 
+## Local Adaptor and mock API stack setup
+
+- generate OAuth2 `client_credentials` for the UI, via the adaptor
+```
+cd .../laa-court-data-adaptor
+git checkout master
+git pull
+bin/rails console
+> application = Doorkeeper::Application.create(name: 'LAA Court data UI')
+> application.yield_self { |r| [r.uid, r.secret] }
+=> [6FYXUiqrR3Yuid2ispemVNPUT7-8W0LB1sSmB6c0f3k-example, K122aTsBeRj1GuP7u-Fdi3Vm6uSKaD8K2vq0pPRocIo-example]
+
+# These should be put in the `.env.development.local` - see below
+```
+
+- start mock API locally
+
+```
+git clone git@github.com:ministryofjustice/hmcts-common-platform-mock-api.git
+cd .../hmcts-common-platform-mock-api
+```
+
+```
+# create some data
+...todo
+```
+
+```
+# start server
+rackup -p 9293
+```
+
+- start adaptor locally
+```
+git clone git@github.com:ministryofjustice/laa-court-data-adaptor.git
+cd .../laa-court-data-adaptor
+```
+
+```
+# configure adaptor to use local mock API
+# .env.development.local
+COMMON_PLATFORM_URL=http://localhost:9293
+SHARED_SECRET_KEY_LAA_REFERENCE=super-secret-search-laa-reference-key
+SHARED_SECRET_KEY_REPRESENTATION_ORDER=super-secret-search-representation-order-key
+SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE=super-secret-search-prosecution-case-key
+SHARED_SECRET_KEY_HEARING=super-secret-hearing-key
+```
+
+```
+# start server
+rackup -p 9292
+```
+
+- start UI locally
+```
+# clone or cd into
+git clone git@github.com:ministryofjustice/laa-court-data-ui.git
+cd .../laa-court-data-ui
+```
+-  in `.env.development.local`
+```
+# configure UI authentication against local adaptor
+# .env.development.local
+# see 
+COURT_DATA_ADAPTOR_API_URL: https://laa-court-data-adaptor-stage.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1
+COURT_DATA_ADAPTOR_API_UID: 6FYXUiqrR3Yuid2ispemVNPUT7-8W0LB1sSmB6c0f3k-example
+COURT_DATA_ADAPTOR_API_SECRET: K122aTsBeRj1GuP7u-Fdi3Vm6uSKaD8K2vq0pPRocIo-example
+```
+
+```
+# configure UI to use local adaptor
+# .env.development.local
+COURT_DATA_ADAPTOR_API_URL: http://localhost:9292
+```
+
+```
+# start server
+rails s
+```
+
 ## Fake API calling
 
 For development purposes a fake "Court Data Adaptor" API has been provided. This can be used to view

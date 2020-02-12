@@ -6,6 +6,10 @@ class ErrorsController < ApplicationController
 
   respond_to :html
 
+  def unauthorized
+    render status: 401
+  end
+
   def not_found
     render status: 404
   end

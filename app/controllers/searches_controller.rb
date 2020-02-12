@@ -5,6 +5,8 @@ require 'court_data_adaptor'
 class SearchesController < ApplicationController
   before_action :set_view_options
 
+  rescue_from JsonApiClient::Errors::ConnectionError, with: :connection_error
+
   def new
     @search = Search.new
     authorize! :new, @search
@@ -15,6 +17,11 @@ class SearchesController < ApplicationController
     authorize! :create, @search
 
     @results = @search.execute if @search.valid?
+    render 'new'
+  end
+
+  def connection_error
+    @error = I18n.t('search.connection_error')
     render 'new'
   end
 
