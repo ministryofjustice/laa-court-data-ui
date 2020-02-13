@@ -19,7 +19,10 @@ gem 'json-schema', '~> 2.8', '>= 2.8.1'
 gem 'json_api_client', '~> 1.16', '>= 1.16.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
+gem "rack", "~> 2.1.2"
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
+gem 'redis',  '~> 4.1.3'
+gem 'sidekiq', '~> 5.2.7'
 gem 'webpacker', '~> 4.0'
 
 group :test do

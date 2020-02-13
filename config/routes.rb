@@ -3,6 +3,9 @@
 Rails.application.routes.draw do
   authenticated :user do
     root to: 'search_filters#new', as: :authenticated_root
+
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   devise_scope :user do
