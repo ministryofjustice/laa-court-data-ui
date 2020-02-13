@@ -1,5 +1,5 @@
 !!!
-%html.govuk-template.app-html-class{lang: "en"}
+%html.govuk-template{ lang: 'en' }
   %head
     %title
       = content_for?(:page_title) ? yield(:page_title) : service_name
@@ -20,7 +20,7 @@
     %link{href: asset_pack_path("media/images/govuk-apple-touch-icon.png"), rel: "apple-touch-icon"}/
     = tag :meta, property: 'og:image', content: asset_pack_path('media/images/govuk-opengraph-image.png')
     = render partial: 'layouts/google_analytics'
-  %body.govuk-template__body.app-body-class{"data-other" => "report:details"}
+  %body.govuk-template__body{"data-other" => "report:details"}
     :javascript
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     %a.govuk-skip-link{href: "#main-content"}
@@ -36,12 +36,12 @@
 
           = render 'layouts/navigation' if user_signed_in?
 
-    .govuk-width-container.app-width-container--wide
+    .govuk-width-container
       = render 'layouts/phase_banner'
 
       = link_to t('generic.back'), back_page_path, class: 'govuk-back-link' if back_page_needed?
 
-      %main#main-content.govuk-main-wrapper.app-main-class{role: "main"}
+      %main#main-content.govuk-main-wrapper{role: "main"}
         = render partial: 'layouts/flashes' unless flash.empty?
 
         .govuk-grid-row
