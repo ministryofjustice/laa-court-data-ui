@@ -4,6 +4,10 @@ RSpec.feature 'Gov UK Layout', type: :feature do
   scenario 'GDS styled home page' do
     visit '/'
 
+    within 'head', visible: false do
+      expect(page).to have_xpath('/html/head/script[3]', text: 'UA-XXXXXXXXX-XX', visible: false)
+    end
+
     within '.govuk-header' do
       within '.govuk-header__content' do
         expect(page).to have_link('View court data')

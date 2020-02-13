@@ -21,4 +21,12 @@ RSpec.describe 'Root route', type: :request do
       expect(response).to render_template('search_filters/new')
     end
   end
+
+  context 'when page loads' do
+    before { get '/' }
+
+    it 'loads google analytics' do
+      expect(response).to render_template('layouts/_google_analytics')
+    end
+  end
 end
