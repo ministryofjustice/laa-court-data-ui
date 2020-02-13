@@ -6,7 +6,7 @@
 #
 module GovukDesignSystemHelper
   def govuk_page_title(title = nil)
-    content_for :page_title, title || contextual_title
+    content_for :page_title, (title || contextual_title) + " - #{service_name} - GOV.UK"
 
     content_for :page_heading do
       tag.h1(class: 'govuk-heading-xl') do
