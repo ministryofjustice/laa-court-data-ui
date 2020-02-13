@@ -102,6 +102,7 @@ commands:
     steps:
       - install-gems
       - install-compile-assets
+      - install-codeclimate-tt
 
   db-setup:
     steps:
@@ -157,10 +158,17 @@ commands:
           path: /tmp/test-results
           destination: test-results
 
-  load-code-climate:
+  upload-coverage:
     steps:
       - run:
-          name: Load and persist code climate
+          name: Upload coverage results to Code Climate
+          command: |
+            tmp/cc-test-reporter sum-coverage --output - --parts 1 tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --input -
+
+  install-codeclimate-tt:
+    steps:
+      - run:
+          name: Install codeclimate test reporter
           command: |
             mkdir -p tmp/
             mkdir -p tmp/coverage/
@@ -197,7 +205,6 @@ jobs:
     executor: test-executor
     steps:
       - checkout
-      - load-code-climate
       - build-base
 
   linter-tests:
@@ -224,15 +231,7 @@ jobs:
             - coverage/codeclimate.*.json
       - store_artifacts:
           path: tmp/coverage
-
-  upload-coverage:
-    executor: test-executor
-    steps:
-      - *attach-tmp-workspace
-      - run:
-          name: Upload coverage results to Code Climate
-          command: |
-            tmp/cc-test-reporter sum-coverage --output - --parts 1 tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --input -
+      - upload-coverage
 
   build-app-container:
     executor: cloud-platform-executor
@@ -265,13 +264,10 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - upload-coverage:
-          requires:
-            - rspec-tests
-            - linter-tests
       - build-app-container:
           requires:
-            - upload-coverage
+            - linter-tests
+            - rspec-tests
       - deploy-dev:
           requires:
             - build-app-container
@@ -289,14 +285,11 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - upload-coverage:
-          requires:
-            - rspec-tests
-            - linter-tests
       - branch-build-approval:
           type: approval
           requires:
-            - upload-coverage
+            - linter-tests
+            - rspec-tests
           filters:
             branches:
               ignore:
