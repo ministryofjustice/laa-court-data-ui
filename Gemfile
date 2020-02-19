@@ -31,7 +31,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.9'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', '~> 0.79', require: false
+  gem 'rubocop', '~> 0.80', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
