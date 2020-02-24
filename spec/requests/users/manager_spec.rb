@@ -45,7 +45,7 @@ RSpec.describe 'managers', type: :request do
 
     let(:new_user) { User.find_by(email: 'created@example.com') }
     let(:request) { post '/users', params: user_params }
-    let(:outbox) { ActionMailer::Base.deliveries }
+    # let(:outbox) { ActionMailer::Base.deliveries }
 
     it 'redirects to user_path' do
       request
@@ -62,12 +62,10 @@ RSpec.describe 'managers', type: :request do
     end
 
     it 'sends an email' do
-      expect { request }.to change(outbox, :count).by(1)
-    end
-
-    it 'sends password reset email' do
+      expect_any_instance_of(Devise::Mailer).to receive(
+        :reset_password_instructions
+      ).and_call_original
       request
-      expect(outbox.last.subject).to eql('Reset password instructions')
     end
   end
 
