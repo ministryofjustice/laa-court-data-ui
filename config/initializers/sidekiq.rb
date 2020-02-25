@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Sidekiq uses Redis to store all of its job and operational data.
 # By default, Sidekiq tries to connect to Redis at localhost:6379
 #

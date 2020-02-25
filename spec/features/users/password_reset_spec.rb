@@ -24,10 +24,9 @@ RSpec.feature 'Password reset', type: :feature do
 
     expect(page).to have_govuk_page_title(text: 'Forgot your password?')
     fill_in 'Email', with: user.email
-    expect_any_instance_of(Devise::Mailer).to receive(
-      :reset_password_instructions
-    ).and_call_original
-    click_button 'Send me reset password instructions'
+    expect do
+      click_button 'Send me reset password instructions'
+    end.to have_enqueued_job.on_queue('mailers')
     expect(page).to have_current_path(new_user_session_path)
     expect(page).to have_govuk_flash(:notice, text: reset_flash_notice)
   end

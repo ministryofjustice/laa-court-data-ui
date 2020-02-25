@@ -49,10 +49,10 @@ RSpec.feature 'New user', type: :feature do
       fill_in 'Email', with: 'jim.bob@example.com'
       fill_in 'Confirm email', with: 'jim.bob@example.com'
       check 'Caseworker'
-      expect_any_instance_of(Devise::Mailer).to receive(
-        :reset_password_instructions
-      ).and_call_original
-      click_button 'Save'
+
+      expect do
+        click_button 'Save'
+      end.to have_enqueued_job.on_queue('mailers')
 
       new_user = User.find_by(email: 'jim.bob@example.com')
       expect(new_user).to be_persisted

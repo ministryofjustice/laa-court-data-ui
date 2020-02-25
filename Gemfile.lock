@@ -330,19 +330,16 @@ GEM
       sexp_processor (~> 4.9)
     safe_yaml (1.0.5)
     sexp_processor (4.13.0)
-<<<<<<< HEAD
-    simplecov (0.17.1)
-      docile (~> 1.1)
-      json (>= 1.8, < 3)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.2)
-=======
     sidekiq (5.2.7)
       connection_pool (~> 2.2, >= 2.2.2)
       rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
->>>>>>> 897cedc... Background devise email generation
+    simplecov (0.17.1)
+      docile (~> 1.1)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -442,11 +439,8 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
-<<<<<<< HEAD
-  simplecov (~> 0.17.1)
-=======
   sidekiq (~> 5.2.7)
->>>>>>> 897cedc... Background devise email generation
+  simplecov (~> 0.17.1)
   sinatra
   spring
   spring-watcher-listen (~> 2.0.0)

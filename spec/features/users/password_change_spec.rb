@@ -22,8 +22,9 @@ RSpec.feature 'Password change', type: :feature do
     fill_in 'Current password', with: user.password
     fill_in 'New password', with: 'my-new-password'
     fill_in 'Confirm new password', with: 'my-new-password'
-    expect_any_instance_of(Devise::Mailer).to receive(:password_change).and_call_original
-    click_button 'Change password'
+    expect do
+      click_button 'Change password'
+    end.to have_enqueued_job.on_queue('mailers')
     expect(page).to have_govuk_flash(:notice, text: 'Password successfully updated')
     expect(page).to have_current_path(user_path(user))
   end

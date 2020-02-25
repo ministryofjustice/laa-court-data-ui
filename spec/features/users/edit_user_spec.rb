@@ -50,10 +50,10 @@ RSpec.feature 'Edit user', type: :feature do
       check 'Manager'
       fill_in 'Email', with: 'changed@example.com'
       fill_in 'Confirm email', with: 'changed@example.com'
-      expect_any_instance_of(Devise::Mailer).to receive(
-        :email_changed
-      ).and_call_original
-      click_button 'Save'
+
+      expect do
+        click_button 'Save'
+      end.to have_enqueued_job.on_queue('mailers')
 
       expect(page).to have_current_path(user_path(other_user))
       expect(page).to have_govuk_flash(:notice, text: 'User details successfully updated')
