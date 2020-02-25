@@ -36,7 +36,7 @@ group :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'simplecov', '~> 0.17.1', require: false
+  gem 'simplecov', '~> 0.18.4', require: false
   gem 'webmock'
 end
 

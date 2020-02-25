@@ -166,8 +166,6 @@ GEM
       terminal-table (>= 1.5.1)
     jaro_winkler (1.5.4)
     jaro_winkler (1.5.4-java)
-    json (2.3.0)
-    json (2.3.0-java)
     json-schema (2.8.1)
       addressable (>= 2.4)
     json_api_client (1.16.1)
@@ -328,11 +326,10 @@ GEM
       sexp_processor (~> 4.9)
     safe_yaml (1.0.5)
     sexp_processor (4.13.0)
-    simplecov (0.17.1)
+    simplecov (0.18.4)
       docile (~> 1.1)
-      json (>= 1.8, < 3)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.2)
+      simplecov-html (~> 0.11)
+    simplecov-html (0.12.1)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -430,7 +427,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
-  simplecov (~> 0.17.1)
+  simplecov (~> 0.18.4)
   sinatra
   spring
   spring-watcher-listen (~> 2.0.0)
