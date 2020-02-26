@@ -246,6 +246,18 @@ jobs:
       - deploy-to:
           environment: dev
 
+  deploy-staging:
+    executor: cloud-platform-executor
+    steps:
+      - deploy-to:
+          environment: staging
+
+  deploy-prod:
+    executor: cloud-platform-executor
+    steps:
+      - deploy-to:
+          environment: prod
+
 # ------------------
 # WORKFLOWS
 # ------------------
@@ -271,6 +283,20 @@ workflows:
       - deploy-dev:
           requires:
             - build-app-container
+      - hold-staging:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-staging:
+          requires:
+            - hold-staging
+      - hold-prod:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-prod:
+          requires:
+            - hold-prod
 
   test-build-branch:
     jobs:
@@ -297,6 +323,17 @@ workflows:
       - build-app-container:
           requires:
             - branch-build-approval
-      - deploy-dev:
+      - hold-dev:
+          type: approval
           requires:
             - build-app-container
+      - deploy-dev:
+          requires:
+            - hold-dev
+      - hold-staging:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-staging:
+          requires:
+            - hold-staging

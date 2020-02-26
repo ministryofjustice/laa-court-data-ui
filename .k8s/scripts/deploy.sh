@@ -26,7 +26,7 @@ function _deploy() {
   fi
 
   case "$1" in
-    dev)
+    dev | staging | prod)
       environment=$1
       ;;
     *)
