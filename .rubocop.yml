@@ -68,10 +68,18 @@ RSpec/NestedGroups:
 Style/Documentation:
   Enabled: false
 
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
 Style/ClassAndModuleChildren:
   Exclude:
     - app/controllers/users/*controller.rb
 
 Style/RegexpLiteral:
   EnforcedStyle: slashes
-
