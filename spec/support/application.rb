@@ -12,10 +12,6 @@ module Application
         Rails.root.join(*path)
       )
     end
-
-    def prosecution_cases_fixture(file)
-      fixture_file(file, relative_path: 'prosecution_cases')
-    end
   end
 end
 

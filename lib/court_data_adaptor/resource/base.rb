@@ -3,14 +3,21 @@
 module CourtDataAdaptor
   module Resource
     class Base < JsonApiClient::Resource
+      include Configurable
+
       VERSION = '0.0.1'
-      self.site = ENV['COURT_DATA_ADAPTOR_API_URL']
+      self.site = config.api_url
 
       def self.bearer_token
-        # FIXME: use of the ENV var is to prevent OAuth2 errors on test environment loading.
-        # Since loading occurs before spec runs stubbing/mocking can't be used.
-        #
-        ENV['TEST_COURT_DATA_ADAPTOR_API_BEARER_TOKEN'] || Client.new.bearer_token
+        config.test_mode? ? fake_bearer_token : client_bearer_token
+      end
+
+      def self.client_bearer_token
+        Client.new.bearer_token
+      end
+
+      def self.fake_bearer_token
+        'fake-court-data-adaptor-bearer-token'
       end
 
       connection do |conn|
@@ -20,7 +27,7 @@ module CourtDataAdaptor
           token_type: :bearer
         )
 
-        # # example setting response logging
+        # example setting response logging
         # conn.use Faraday::Response::Logger
 
         # example using custom middleware

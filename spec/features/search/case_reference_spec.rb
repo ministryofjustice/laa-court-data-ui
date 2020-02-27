@@ -1,37 +1,37 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Case reference search', type: :feature do
+RSpec.feature 'Case reference search', type: :feature, vcr: true do
   let(:user) { create(:user) }
 
   before do
     sign_in user
   end
 
-  scenario 'with results', stub_case_reference_results: true do
+  scenario 'with multiple defendants on case' do
     visit '/'
 
     choose 'Search by case reference'
     click_button 'Continue'
-    fill_in 'search-term-field', with: '05PP1000915'
+    fill_in 'search-term-field', with: 'MOGUERBXIZ'
     click_button 'Search'
-    expect(page).to have_text 'Search for "05PP1000915" returned'
+    expect(page).to have_text 'Search for "MOGUERBXIZ" returned'
 
     within 'tbody.govuk-table__body' do
-      expect(page).to have_content('05PP1000915').twice
+      expect(page).to have_content('MOGUERBXIZ', count: 4)
     end
   end
 
-  scenario 'with no results', stub_no_results: true do
+  scenario 'with non existent case URN' do
     visit '/'
 
     choose 'Search by case reference'
     click_button 'Continue'
-    fill_in 'search-term-field', with: '05PP1000915'
+    fill_in 'search-term-field', with: 'non-existent-caseURN'
     click_button 'Search'
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
   end
 
-  scenario 'with invalid entries', stub_no_results: true do
+  scenario 'with no case reference provided' do
     visit '/'
 
     choose 'Search by case reference'

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'court_data_adaptor/configuration'
+require_relative 'court_data_adaptor/configurable'
 require_relative 'court_data_adaptor/client'
 require_relative 'court_data_adaptor/resource/base'
 require_relative 'court_data_adaptor/resource/error'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'case reference search', type: :request, stub_no_results: true do
+RSpec.describe 'case reference search', type: :request, vcr: true do
   let(:user) { create(:user) }
 
   before do
@@ -14,45 +14,48 @@ RSpec.describe 'case reference search', type: :request, stub_no_results: true do
 
   context 'when posting a query' do
     let(:search_params) do
-      { search: { term: '05PP1000915', filter: :case_reference } }
+      { search: { term: 'MOGUERBXIZ', filter: :case_reference } }
+    end
+
+    before do
+      post '/searches', params: search_params
     end
 
     it 'accepts query paramater' do
-      post '/searches', params: search_params
       expect(response).to have_http_status :ok
     end
 
     it 'renders searches/new' do
-      post '/searches', params: search_params
       expect(response).to render_template('searches/new')
     end
 
-    context 'when results returned', stub_case_reference_results: true do
+    context 'when results returned' do
       it 'assigns array of results' do
-        post '/searches', params: search_params
         expect(assigns(:results))
           .to include(an_instance_of(CourtDataAdaptor::Resource::ProsecutionCase))
       end
 
       it 'renders searches/_results' do
-        post '/searches', params: search_params
         expect(response).to render_template('searches/_results')
       end
 
-      it 'does not render searches/_no_results' do
-        post '/searches', params: search_params
-        expect(response).not_to render_template('searches/_no_results')
+      it 'renders results/_prosecution_case' do
+        expect(response).to render_template('results/_prosecution_case')
       end
     end
 
-    context 'when no results', type: :request, stub_no_results: true do
+    context 'when no results', stub_no_results: true do
       before do
         allow_any_instance_of(Search).to receive(:execute).and_return([])
+        post '/searches', params: { search: { term: 'T20200001', filter: :case_reference } }
       end
 
-      it 'renders searches/_no_results template' do
-        post '/searches', params: { search: { term: 'T20200001', filter: :case_reference } }
-        expect(response).to render_template('searches/_no_results')
+      it 'renders searches/_results_header' do
+        expect(response).to render_template('searches/_results_header')
+      end
+
+      it 'renders results/_none template' do
+        expect(response).to render_template('results/_none')
       end
     end
   end

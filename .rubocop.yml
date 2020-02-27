@@ -31,7 +31,7 @@ Layout/EmptyLineAfterGuardClause:
 
 Layout/LineLength:
   Max: 100
-  IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*']
+  IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*', "body: '{\".*\":"]
   AllowHeredoc: true
 
 Metrics/BlockLength:

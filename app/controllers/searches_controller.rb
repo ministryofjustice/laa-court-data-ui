@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 class SearchesController < ApplicationController
   before_action :set_view_options
 

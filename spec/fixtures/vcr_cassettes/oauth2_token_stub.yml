@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://test-court-data-adaptor/oauth/token
+    uri: http://localhost:9292/oauth/token
     body:
       encoding: UTF-8
       string: client_id=test-client-id&client_secret=test-client-secret&grant_type=client_credentials

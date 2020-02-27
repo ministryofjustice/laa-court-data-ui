@@ -2,41 +2,22 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::Resource::ProsecutionCase do
+RSpec.describe CourtDataAdaptor::Resource::ProsecutionCase, :vcr do
   let(:prosecution_case_endpoint) do
     [ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil), 'prosecution_cases'].join('/')
   end
+  let(:case_urn) { 'non-existent-urn' }
 
-  describe '.site' do
-    subject { described_class.site }
+  it_behaves_like 'court_data_adaptor resource object', test_class: described_class
 
-    it 'returns court data adaptor external site' do
-      is_expected.to match %r{https:\/\/.*laa-court-data-adaptor-.*\..*}
-    end
-  end
-
-  describe '.all' do
-    subject(:results) { described_class.all }
-
-    let(:case_urn) { 'non-existent-urn' }
-    let(:response_body) { prosecution_cases_fixture('collection_resource_response.json') }
-
-    before do
-      stub_request(:get, prosecution_case_endpoint)
-        .to_return(
-          status: 200,
-          body: response_body,
-          headers: {
-            'Content-Type' => 'application/vnd.api+json'
-          }
-        )
-    end
+  describe '.where(filter).all' do
+    subject(:results) { described_class.where(prosecution_case_reference: case_urn).all }
 
     it 'submits request to prosecution_cases endpoint' do
-      results
-      expect(
-        a_request(:get, prosecution_case_endpoint)
-      ).to have_been_made.once
+      expect(results)
+        .to have_requested(:get, prosecution_case_endpoint)
+        .with(query: { filter: { prosecution_case_reference: 'non-existent-urn' } })
+        .once
     end
 
     it 'returns JsonApiClient::ResultSet' do
@@ -49,52 +30,56 @@ RSpec.describe CourtDataAdaptor::Resource::ProsecutionCase do
       )
     end
 
-    it 'returns all prosecution cases' do
-      expect(
-        results.map(&:prosecution_case_reference)
-      ).to match_array %w[05PP1000915 05PP1000915 06PP1000915]
-    end
-  end
-
-  describe '.where(filter).all' do
-    subject(:result) { described_class.where(prosecution_case_reference: case_urn).all }
-
-    before do
-      stub_request(:get, prosecution_case_endpoint)
-        .with(
-          query: {
-            filter: {
-              prosecution_case_reference: case_urn
-            }
-          }
-        )
-        .to_return(
-          status: 200,
-          body: response_body,
-          headers: {
-            'Content-Type' => 'application/vnd.api+json'
-          }
-        )
-    end
-
-    context 'with valid existing URN' do
-      let(:case_urn) { '05PP1000915' }
-      let(:response_body) { prosecution_cases_fixture('single_resource_response.json') }
-
-      it 'returns matching prosecution cases' do
-        expect(
-          result.map(&:prosecution_case_reference)
-        ).to match_array %w[05PP1000915]
+    context 'with non-existent urn' do
+      it 'returns empty results' do
+        is_expected.to be_empty
       end
     end
 
-    context 'with non-existent urn' do
-      let(:case_urn) { 'non-existent-urn' }
+    context 'with valid existing case URN' do
+      let(:case_urn) { 'MOGUERBXIZ' }
 
-      let(:response_body) { { data: [] }.to_json }
+      it 'returns matching prosecution cases' do
+        expect(
+          results.map(&:prosecution_case_reference)
+        ).to match_array %w[MOGUERBXIZ]
+      end
+    end
+  end
 
-      it 'returns empty results' do
-        is_expected.to be_empty
+  describe '.where(filter).includes(:defendants).all' do
+    subject(:results) do
+      described_class
+        .where(prosecution_case_reference: case_urn)
+        .includes(:defendants)
+        .all
+    end
+
+    let(:query_params) do
+      {
+        filter:
+        { prosecution_case_reference: 'non-existent-urn' },
+        include: 'defendants'
+      }
+    end
+
+    it 'submits request to prosecution_cases endpoint' do
+      expect(results)
+        .to have_requested(:get, prosecution_case_endpoint)
+        .with(query: query_params)
+        .once
+    end
+
+    context 'with valid existing case URN' do
+      let(:case_urn) { 'MOGUERBXIZ' }
+      let(:defendants) { results.flat_map(&:defendants) }
+
+      it 'returns all defendant objects' do
+        expect(
+          defendants
+        ).to all(
+          be_instance_of(CourtDataAdaptor::Resource::Defendant)
+        )
       end
     end
   end

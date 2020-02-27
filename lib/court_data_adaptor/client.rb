@@ -2,6 +2,8 @@
 
 module CourtDataAdaptor
   class Client
+    include Configurable
+
     def initialize
       client
     end
@@ -20,12 +22,6 @@ module CourtDataAdaptor
 
     def bearer_token
       access_token&.token
-    end
-
-    private
-
-    def config
-      CourtDataAdaptor.configuration
     end
   end
 end
