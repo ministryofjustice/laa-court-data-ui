@@ -23,9 +23,12 @@ RSpec.feature 'Password unlock', type: :feature do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: 'wrong-password'
       if i + 1 == max_attempts
-        expect_any_instance_of(Devise::Mailer).to receive(:unlock_instructions).and_call_original
+        expect do
+          click_button 'Sign in'
+        end.to have_enqueued_job.on_queue('mailers')
+      else
+        click_button 'Sign in'
       end
-      click_button 'Sign in'
     end
   end
 
@@ -41,9 +44,9 @@ RSpec.feature 'Password unlock', type: :feature do
 
     expect(page).to have_govuk_page_title(text: 'Resend unlock instructions')
     fill_in 'Email', with: user.email
-    expect_any_instance_of(Devise::Mailer).to receive(:unlock_instructions).and_call_original
-    click_button 'Resend unlock instructions'
-
+    expect do
+      click_button 'Resend unlock instructions'
+    end.to have_enqueued_job.on_queue('mailers')
     expect(page).to have_current_path(new_user_session_path)
     expect(page).to have_govuk_flash(:alert, text: resent_flash_notice)
   end

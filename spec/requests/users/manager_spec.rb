@@ -3,6 +3,7 @@
 RSpec.describe 'managers', type: :request do
   let(:user) { create(:user, :with_manager_role) }
   let(:other_user) { create(:user, :with_caseworker_role) }
+  let(:message_delivery) { instance_double(GovukNotifyRails::Mailer::MessageDelivery) }
 
   before do
     sign_in user
@@ -31,6 +32,11 @@ RSpec.describe 'managers', type: :request do
   end
 
   describe 'Create user', type: :request do
+    before do
+      allow(Devise::Mailer).to receive(:reset_password_instructions).and_return(message_delivery)
+      allow(message_delivery).to receive(:deliver_later)
+    end
+
     let(:user_params) do
       {
         user:
@@ -45,11 +51,15 @@ RSpec.describe 'managers', type: :request do
 
     let(:new_user) { User.find_by(email: 'created@example.com') }
     let(:request) { post '/users', params: user_params }
-    # let(:outbox) { ActionMailer::Base.deliveries }
 
     it 'redirects to user_path' do
       request
       expect(response).to redirect_to user_path(new_user)
+    end
+
+    it 'sends password reset email' do
+      request
+      expect(Devise::Mailer).to have_received(:reset_password_instructions)
     end
 
     it 'flashes notice' do
@@ -59,13 +69,6 @@ RSpec.describe 'managers', type: :request do
 
     it 'creates user' do
       expect { request }.to change(User, :count).by(1)
-    end
-
-    it 'sends an email' do
-      expect_any_instance_of(Devise::Mailer).to receive(
-        :reset_password_instructions
-      ).and_call_original
-      request
     end
   end
 
@@ -88,6 +91,8 @@ RSpec.describe 'managers', type: :request do
 
     context 'when themself' do
       before do
+        allow(Devise::Mailer).to receive(:email_changed).and_return(message_delivery)
+        allow(message_delivery).to receive(:deliver_later)
         patch "/users/#{user.id}", params: user_params
       end
 
@@ -102,10 +107,16 @@ RSpec.describe 'managers', type: :request do
       it 'updates user' do
         expect(user.reload.email).to eql 'updated@example.com'
       end
+
+      it 'sends email changed email' do
+        expect(Devise::Mailer).to have_received(:email_changed)
+      end
     end
 
     context 'when other user' do
       before do
+        allow(Devise::Mailer).to receive(:email_changed).and_return(message_delivery)
+        allow(message_delivery).to receive(:deliver_later)
         patch "/users/#{other_user.id}", params: user_params
       end
 
@@ -119,6 +130,10 @@ RSpec.describe 'managers', type: :request do
 
       it 'updates other user' do
         expect(other_user.reload.email).to eql 'updated@example.com'
+      end
+
+      it 'sends email changed email' do
+        expect(Devise::Mailer).to have_received(:email_changed)
       end
     end
   end
@@ -148,6 +163,8 @@ RSpec.describe 'managers', type: :request do
 
     context 'when themself' do
       before do
+        allow(Devise::Mailer).to receive(:password_change).and_return(message_delivery)
+        allow(message_delivery).to receive(:deliver_later)
         patch "/users/#{user.id}/update_password", params: password_params
       end
 
@@ -158,10 +175,16 @@ RSpec.describe 'managers', type: :request do
       it 'flashes notice' do
         expect(flash.now[:notice]).to match(/success/)
       end
+
+      it 'sends password change email' do
+        expect(Devise::Mailer).to have_received(:password_change)
+      end
     end
 
     context 'when other user' do
       before do
+        allow(Devise::Mailer).to receive(:password_change).and_return(message_delivery)
+        allow(message_delivery).to receive(:deliver_later)
         patch "/users/#{other_user.id}/update_password", params: password_params
       end
 
@@ -171,6 +194,10 @@ RSpec.describe 'managers', type: :request do
 
       it 'flashes notice' do
         expect(flash.now[:notice]).to match(/success/)
+      end
+
+      it 'sends password change email' do
+        expect(Devise::Mailer).to have_received(:password_change)
       end
     end
   end
