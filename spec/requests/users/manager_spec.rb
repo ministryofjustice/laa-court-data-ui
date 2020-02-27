@@ -3,6 +3,7 @@
 RSpec.describe 'managers', type: :request do
   let(:user) { create(:user, :with_manager_role) }
   let(:other_user) { create(:user, :with_caseworker_role) }
+  let(:message_delivery) { instance_double(GovukNotifyRails::Mailer::MessageDelivery) }
 
   before do
     sign_in user
@@ -31,6 +32,11 @@ RSpec.describe 'managers', type: :request do
   end
 
   describe 'Create user', type: :request do
+    before do
+      allow(Devise::Mailer).to receive(:reset_password_instructions).and_return(message_delivery)
+      allow(message_delivery).to receive(:deliver_later)
+    end
+
     let(:user_params) do
       {
         user:
@@ -52,9 +58,6 @@ RSpec.describe 'managers', type: :request do
     end
 
     it 'sends password reset email' do
-      message_delivery = instance_double(GovukNotifyRails::Mailer::MessageDelivery)
-      allow(Devise::Mailer).to receive(:reset_password_instructions).and_return(message_delivery)
-      allow(message_delivery).to receive(:deliver_later)
       request
       expect(Devise::Mailer).to have_received(:reset_password_instructions)
     end
@@ -88,7 +91,6 @@ RSpec.describe 'managers', type: :request do
 
     context 'when themself' do
       before do
-        message_delivery = instance_double(GovukNotifyRails::Mailer::MessageDelivery)
         allow(Devise::Mailer).to receive(:email_changed).and_return(message_delivery)
         allow(message_delivery).to receive(:deliver_later)
         patch "/users/#{user.id}", params: user_params
@@ -113,7 +115,6 @@ RSpec.describe 'managers', type: :request do
 
     context 'when other user' do
       before do
-        message_delivery = instance_double(GovukNotifyRails::Mailer::MessageDelivery)
         allow(Devise::Mailer).to receive(:email_changed).and_return(message_delivery)
         allow(message_delivery).to receive(:deliver_later)
         patch "/users/#{other_user.id}", params: user_params
@@ -162,7 +163,6 @@ RSpec.describe 'managers', type: :request do
 
     context 'when themself' do
       before do
-        message_delivery = instance_double(GovukNotifyRails::Mailer::MessageDelivery)
         allow(Devise::Mailer).to receive(:password_change).and_return(message_delivery)
         allow(message_delivery).to receive(:deliver_later)
         patch "/users/#{user.id}/update_password", params: password_params
@@ -183,7 +183,6 @@ RSpec.describe 'managers', type: :request do
 
     context 'when other user' do
       before do
-        message_delivery = instance_double(GovukNotifyRails::Mailer::MessageDelivery)
         allow(Devise::Mailer).to receive(:password_change).and_return(message_delivery)
         allow(message_delivery).to receive(:deliver_later)
         patch "/users/#{other_user.id}/update_password", params: password_params
