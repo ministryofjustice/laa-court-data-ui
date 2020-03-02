@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": "107ba90b-f3ff-4727-ab7d-dea446ad4713",
+      "type": "defendants",
+      "attributes": {
+        "first_name": "Josefa",
+        "last_name": "Franecki",
+        "date_of_birth": "1961-06-15",
+        "national_insurance_number": "HR669639M",
+        "gender": null,
+        "address_1": null,
+        "address_2": null,
+        "address_3": null,
+        "address_4": null,
+        "address_5": null,
+        "postcode": null
+      },
+      "relationships": {
+        "offences": {
+          "data": [
+            {
+              "id": "6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc",
+              "type": "offences"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
