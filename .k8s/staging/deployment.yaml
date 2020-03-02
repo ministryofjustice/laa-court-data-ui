@@ -4,7 +4,7 @@ metadata:
   name: laa-court-data-ui
   namespace: laa-court-data-ui-staging
 spec:
-  replicas: 2
+  replicas: 4
   strategy:
     type: RollingUpdate
     rollingUpdate:

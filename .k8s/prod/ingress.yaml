@@ -2,10 +2,10 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: laa-court-data-ui-app-ingress
-  namespace: laa-court-data-ui-prod
+  namespace: laa-court-data-ui-production
 spec:
   rules:
-    - host: prod.view-court-data.service.justice.gov.uk
+    - host: view-court-data.service.justice.gov.uk
       http:
         paths:
           - path: /
@@ -14,5 +14,5 @@ spec:
               servicePort: 80
   tls:
     - hosts:
-      - prod.view-court-data.service.justice.gov.uk
-      secretName: laa-court-data-ui-prod-cert
+      - view-court-data.service.justice.gov.uk
+      secretName: laa-court-data-ui-production-cert

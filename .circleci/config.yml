@@ -252,11 +252,11 @@ jobs:
       - deploy-to:
           environment: staging
 
-  deploy-prod:
+  deploy-production:
     executor: cloud-platform-executor
     steps:
       - deploy-to:
-          environment: prod
+          environment: production
 
 # ------------------
 # WORKFLOWS
@@ -290,13 +290,13 @@ workflows:
       - deploy-staging:
           requires:
             - hold-staging
-      - hold-prod:
+      - hold-production:
           type: approval
           requires:
             - build-app-container
-      - deploy-prod:
+      - deploy-production:
           requires:
-            - hold-prod
+            - hold-production
 
   test-build-branch:
     jobs:
