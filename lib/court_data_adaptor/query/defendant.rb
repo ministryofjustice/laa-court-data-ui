@@ -6,12 +6,16 @@ module CourtDataAdaptor
       acts_as_resource CourtDataAdaptor::Resource::ProsecutionCase
 
       def call
-        resource
-          .where(
-            first_name: first_name,
-            last_name: last_name,
-            date_of_birth: date_of_birth
-          ).all
+        cases = resource
+                .includes(:defendants)
+                .where(
+                  first_name: first_name,
+                  last_name: last_name,
+                  date_of_birth: date_of_birth
+                )
+                .all
+
+        matching_defendants(cases)
       end
 
       private
@@ -30,6 +34,17 @@ module CourtDataAdaptor
 
       def date_of_birth
         Date.parse(dob.to_s).iso8601 if dob
+      end
+
+      def matching_defendants(cases)
+        cases.each_with_object([]) do |c, results|
+          c.defendants.each do |d|
+            d.prosecution_case_reference = c.prosecution_case_reference
+            if d.first_name.casecmp(first_name).zero? && d.last_name.casecmp(last_name).zero?
+              results << d
+            end
+          end
+        end
       end
     end
   end

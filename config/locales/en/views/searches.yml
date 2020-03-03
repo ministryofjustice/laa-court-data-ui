@@ -1,6 +1,7 @@
 ---
 en:
   search:
+    connection_error: Connection error, please try again soon!
     dob:
       hint_text: For example, 31 3 1980
       legend_text: Defendant date of birth
@@ -14,6 +15,11 @@ en:
     page_title: Search
     result:
       caption: Search results
+      defendant:
+        date_of_birth: Date of birth
+        name: Name
+        national_insurance_number: NI number
+        prosecution_case_reference: Case URN
     result_count:
       one: Search for "%{term}" returned 1 result
       other: Search for "%{term}" returned %{count} results

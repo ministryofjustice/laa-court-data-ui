@@ -31,7 +31,7 @@ Layout/EmptyLineAfterGuardClause:
 
 Layout/LineLength:
   Max: 100
-  IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*']
+  IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*', "body: '{\".*\":"]
   AllowHeredoc: true
 
 Metrics/BlockLength:
@@ -68,10 +68,18 @@ RSpec/NestedGroups:
 Style/Documentation:
   Enabled: false
 
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
 Style/ClassAndModuleChildren:
   Exclude:
     - app/controllers/users/*controller.rb
 
 Style/RegexpLiteral:
   EnforcedStyle: slashes
-

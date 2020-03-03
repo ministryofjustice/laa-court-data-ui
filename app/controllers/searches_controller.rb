@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 class SearchesController < ApplicationController
   before_action :set_view_options
+
+  rescue_from JsonApiClient::Errors::ConnectionError, with: :connection_error
 
   def new
     @search = Search.new
@@ -15,6 +15,11 @@ class SearchesController < ApplicationController
     authorize! :create, @search
 
     @results = @search.execute if @search.valid?
+    render 'new'
+  end
+
+  def connection_error
+    @error = I18n.t('search.connection_error')
     render 'new'
   end
 
@@ -35,6 +40,8 @@ class SearchesController < ApplicationController
     day = search_params['dob(3i)']
     @dob = Date.parse([day, month, year].join('-')) \
       if day.present? && month.present? && year.present?
+  rescue Date::Error
+    nil
   end
 
   def set_view_options

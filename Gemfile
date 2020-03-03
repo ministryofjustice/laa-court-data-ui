@@ -17,6 +17,7 @@ gem 'govuk_design_system_formbuilder', '~> 1.1'
 gem 'haml-rails', '~> 2.0.1'
 gem 'json-schema', '~> 2.8', '>= 2.8.1'
 gem 'json_api_client', '~> 1.16', '>= 1.16.1'
+gem 'oauth2', '~> 1.4.4'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
@@ -39,6 +40,7 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov', '~> 0.17.1', require: false
+  gem 'vcr'
   gem 'webmock'
 end
 

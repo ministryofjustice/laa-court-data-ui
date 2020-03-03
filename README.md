@@ -120,6 +120,91 @@ make run
 make test
 ```
 
+## Local stack setup
+
+For running the Court data adaptor and a Mock common platform API locally, and consuming by the user interface.
+
+Step-by-step:
+
+#### Local mock common platform API setup
+
+- clone
+```
+git clone git@github.com:ministryofjustice/hmcts-common-platform-mock-api.git
+cd .../hmcts-common-platform-mock-api
+```
+
+- create dummy data
+```
+# create some data
+$ rails console
+Pry> FactoryBot.create(:realistic_prosecution_case, defendants: FactoryBot.create_list(:realistic_defendant, 3))
+```
+
+- start server on port 9293
+```
+# start server
+rackup -p 9293
+```
+
+#### Local adaptor setup
+
+- clone
+
+```
+git clone git@github.com:ministryofjustice/laa-court-data-adaptor.git
+cd .../laa-court-data-adaptor
+```
+
+- generate OAuth2 `client_credentials` - for the UI
+```
+rails console
+> application = Doorkeeper::Application.create(name: 'LAA Court data UI')
+> application.yield_self { |r| [r.uid, r.secret] }
+=> [6FYXUiqrR3Yuid2ispemVNPUT7-8W0LB1sSmB6c0f3k-example, K122aTsBeRj1GuP7u-Fdi3Vm6uSKaD8K2vq0pPRocIo-example]
+
+# These should be put in the UI's `.env.development.local` - see UI setup below
+```
+
+- configure adaptor to use local mock common platform API
+```
+# in .env.development.local
+COMMON_PLATFORM_URL=http://localhost:9293
+SHARED_SECRET_KEY_LAA_REFERENCE=super-secret-search-laa-reference-key
+SHARED_SECRET_KEY_REPRESENTATION_ORDER=super-secret-search-representation-order-key
+SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE=super-secret-search-prosecution-case-key
+SHARED_SECRET_KEY_HEARING=super-secret-hearing-key
+```
+
+- start server
+```
+# start server
+rackup -p 9292
+```
+
+#### Local UI setup
+
+- clone
+```
+# clone or cd into
+git clone git@github.com:ministryofjustice/laa-court-data-ui.git
+cd .../laa-court-data-ui
+```
+
+- configure UI to use and authenticate against local adaptor
+```
+# .env.development.local
+COURT_DATA_ADAPTOR_API_URL: http://localhost:9292
+COURT_DATA_ADAPTOR_API_UID: uid-generated-by-adaptor-above
+COURT_DATA_ADAPTOR_API_SECRET: secret-generated-by-adaptor-above
+```
+
+- start server
+```
+# start server
+rails s
+```
+
 ## Fake API calling
 
 For development purposes a fake "Court Data Adaptor" API has been provided. This can be used to view
@@ -147,6 +232,66 @@ make run
 ```
 
 Note, running two puma servers requires that they use separate pid files. The fake api is therefore configured to use tmp/pids/fake_adaptor.pid via its `config.ru`. Bear this in mind if amending the `config/puma/development.rb` files `pidfile` entry, to prevent clashes.
+
+#### VCR and Webmock
+
+- Strategy
+
+  OAuth2 access token requests should be ignored by VCR to avoid problems with loading of adaptor client. Instead the client is configured to not attempt to retrieve an access token from the adaptor when in `test_mode`. To record new cassettes therefore requires you to switch `test_mode` off.
+
+
+- Creating new cassettes
+
+  - check you can successfully query the adaptor
+
+    You should be able to to retrieve the results you expect against a locally running version of the adaptor, or a hosted one. see the instructions on [local stack setup](#local-stack-setup)
+
+  - setup an `.env.test.local`
+
+    The adaptor used can be running locally or be one of the actual hosted envs for the adaptor, but in either case the uid and secret must be valid for that adaptor API.
+
+    **use `.env.test.local` not `.env.test` to ensure you do not commit/push actual uid and secret to github**
+
+    ```
+    # .env.test.local
+    COURT_DATA_ADAPTOR_API_URL: http://localhost:9292/api/internal/v1
+    COURT_DATA_ADAPTOR_API_UID: uid-from-api-host-above
+    COURT_DATA_ADAPTOR_API_SECRET: secret-from-api-host-above
+    ```
+
+  - add app's default VCR cassette recording options
+
+    The test for which you wish to record a VCR cassette should have a `vcr: true` (or just `:vcr`) option on its block, as below. Nested blocks inherit this behaviour.
+
+    ```
+    describe MyClass, :vcr do
+      it { expect(foo).to eql 'bar' }
+    end
+    ```
+
+    *This calls an `around` rspec hook which records `new_episodes` in a cassette named after the full path of the spec.*
+
+  - turn test mode off
+
+    Test mode needs turning off to enable actual authentication requests to the adaptor. This can be achieved by amending an ENV var. This is necessary since you will be submitting genuine authenticated requests in order to record the response. Note that the oauth token request itself will not be recorded.
+
+    ```
+    # .env.test.local OR .env.test
+    COURT_DATA_ADAPTOR_API_TEST_MODE: false
+    ```
+
+  - run the tests
+
+    this should write a cassette named after the specs filepath in the VCR root  - `spec/fxtures/vcr_cassettes`
+
+  - turn test mode back on
+
+    ```
+    # .env.test.local OR .env.test
+    COURT_DATA_ADAPTOR_API_TEST_MODE: true
+    ```
+
+    This will disable real OAuth2 access token requests. API endpoint requests should now be stubbed and therefore tests should pass with no locally running adaptor API or connectivity to hosted services. Try running tests again with no internet or local servers running.
 
 ## Notes
 
