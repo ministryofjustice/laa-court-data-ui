@@ -60,7 +60,7 @@ spec:
             - name: RAILS_SERVE_STATIC_FILES
               value: enabled
             - name: GA_TRACKING_ID
-              value: 'UA-159586723-1'
+              value: 'UA-131160087-15'
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
             - name: COURT_DATA_ADAPTOR_API_UID
