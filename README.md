@@ -65,21 +65,7 @@ To run app locally (development mode) you will therefore need to run both the `r
 
 ## Development
 
-To run the app locally you can generally use just `rails server`, however optional components can be run depending on your needs.
-
-Run separate servers per terminal
-```
-# terminal-1
-rails server
-
-# terminal-2 (assets server - this may not be needed?!)
-bin/webpack-dev-server
-
-# terminal-3 (fake adaptor API - see below)
-rackup lib/fake_court_data_adaptor/config.ru
-```
-
-or using a single terminal and foreman and includes fake API server
+To run the app locally use just `rails server` or
 ```
 foreman start -f Procfile.dev
 
@@ -100,6 +86,7 @@ To suppress warnings now you can prefix any call that raises such warnings with 
 ```
 RUBYOPT=-W:no-deprecated rspec
 RUBYOPT=-W:no-deprecated rails server
+RUBYOPT=-W:no-deprecated rails console
 ```
 
 
@@ -205,40 +192,11 @@ COURT_DATA_ADAPTOR_API_SECRET: secret-generated-by-adaptor-above
 rails s
 ```
 
-## Fake API calling
-
-For development purposes a fake "Court Data Adaptor" API has been provided. This can be used to view
-search results in development. The fake API will need updating or removing in future iterations.
-
-To enable the fake API you must:
-
-- set/amend environment variable to point to it
-```
-# .env.development
-COURT_DATA_ADAPTOR_HOST: http://localhost:9292
-```
-
-- run the fake API using either of the methods below
-
-
-```
-# run in its own console - uses puma
-rackup lib/fake_court_data_adaptor/config.ru
-```
-
-```
-# run along with app
-make run
-```
-
-Note, running two puma servers requires that they use separate pid files. The fake api is therefore configured to use tmp/pids/fake_adaptor.pid via its `config.ru`. Bear this in mind if amending the `config/puma/development.rb` files `pidfile` entry, to prevent clashes.
-
 #### VCR and Webmock
 
 - Strategy
 
   OAuth2 access token requests should be ignored by VCR to avoid problems with loading of adaptor client. Instead the client is configured to not attempt to retrieve an access token from the adaptor when in `test_mode`. To record new cassettes therefore requires you to switch `test_mode` off.
-
 
 - Creating new cassettes
 
