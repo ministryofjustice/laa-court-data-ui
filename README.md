@@ -5,6 +5,7 @@ An interface to the [laa-court-data-adaptor](https://github.com/ministryofjustic
 [![CircleCI](https://circleci.com/gh/ministryofjustice/laa-court-data-ui.svg?style=svg)](https://circleci.com/gh/ministryofjustice/laa-court-data-ui)
 [![Code Climate](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/badges/gpa.svg)](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui)
 [![Test Coverage](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/badges/coverage.svg)](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/coverage)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## System dependencies
 - postgres
@@ -19,7 +20,6 @@ An interface to the [laa-court-data-adaptor](https://github.com/ministryofjustic
 ```
 make install
 
-# in separate terminal
 make run
 
 make open
