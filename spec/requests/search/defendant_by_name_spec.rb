@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'defendant search', type: :request do
+RSpec.describe 'Defendant by name and dob search', type: :request do
   let(:user) { create(:user) }
 
   before do
