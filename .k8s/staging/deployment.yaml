@@ -56,13 +56,23 @@ spec:
             - name: DOMAIN_URL
               value: 'https://staging.view-court-data.service.justice.gov.uk'
             - name: COURT_DATA_ADAPTOR_API_URL
-              value: https://laa-court-data-adaptor-staging.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1
+              value: https://laa-court-data-adaptor-stage.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1
             - name: RAILS_SERVE_STATIC_FILES
               value: enabled
             - name: GA_TRACKING_ID
               value: 'UA-131160087-14'
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
+            - name: COURT_DATA_ADAPTOR_API_UID
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-secrets
+                  key: COURT_DATA_ADAPTOR_API_UID
+            - name: COURT_DATA_ADAPTOR_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-secrets
+                  key: COURT_DATA_ADAPTOR_API_SECRET
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
