@@ -37,7 +37,9 @@ en:
     label_hint: Choose an option
     legend_text: How do you want to search?
     page_title: Search filters
-    radio_case_reference_label: Search by case reference
+    radio_case_reference_label: Search for a case by URN
     radio_case_reference_label_hint: Case URN
-    radio_defendant_label: Search by defendant
+    radio_defendant_label: Search for a defendant by name and date of birth
     radio_defendant_label_hint: Name and date of birth
+    radio_ni_or_asn_number_label: Search for a defendant by ASN or National Insurance number
+    radio_ni_or_asn_number_label_hint: Name and date of birth

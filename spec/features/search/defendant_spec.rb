@@ -10,7 +10,7 @@ RSpec.feature 'Defendant search', type: :feature do
   scenario 'with one result', :vcr do
     visit '/'
 
-    choose 'Search by defendant'
+    choose 'Search for a defendant by name and date of birth'
     click_button 'Continue'
     fill_in 'search-term-field', with: 'Josefa Franecki'
     fill_in 'search_dob_3i', with: '15'
@@ -34,7 +34,7 @@ RSpec.feature 'Defendant search', type: :feature do
   scenario 'with no results', :vcr do
     visit '/'
 
-    choose 'Search by defendant'
+    choose 'Search for a defendant by name and date of birth'
     click_button 'Continue'
     fill_in 'search-term-field', with: 'Fred Bloggs'
     fill_in 'search_dob_3i', with: '28'
@@ -48,7 +48,7 @@ RSpec.feature 'Defendant search', type: :feature do
   scenario 'with no date of birth specified', :vcr do
     visit '/'
 
-    choose 'Search by defendant'
+    choose 'Search for a defendant by name and date of birth'
     click_button 'Continue'
     fill_in 'search-term-field', with: 'Mickey Mouse'
     click_button 'Search'

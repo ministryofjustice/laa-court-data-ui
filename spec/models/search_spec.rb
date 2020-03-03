@@ -15,7 +15,7 @@ RSpec.describe Search, type: :model do
     subject(:filters) { described_class.filters }
 
     it { is_expected.to all(be_a(SearchFilter)) }
-    it { expect(filters.map(&:id)).to include(:case_reference, :defendant) }
+    it { expect(filters.map(&:id)).to include(:case_reference, :defendant, :ni_or_asn_number) }
   end
 
   describe '#filters' do
