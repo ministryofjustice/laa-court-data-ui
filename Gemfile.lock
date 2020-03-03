@@ -206,8 +206,6 @@ GEM
     multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    mustermann (1.1.1)
-      ruby2_keywords (~> 0.0.1)
     nio4r (2.5.2)
     nio4r (2.5.2-java)
     nokogiri (1.10.8)
@@ -330,7 +328,6 @@ GEM
     rubocop-rspec (1.38.1)
       rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
-    ruby2_keywords (0.0.2)
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
     safe_yaml (1.0.5)
@@ -345,11 +342,6 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    sinatra (2.0.8.1)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.8.1)
-      tilt (~> 2.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -445,7 +437,6 @@ DEPENDENCIES
   rubocop-rspec
   sidekiq (~> 5.2.7)
   simplecov (~> 0.17.1)
-  sinatra
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

@@ -12,7 +12,6 @@ SimpleCov.configure do
   add_filter %r{^/factories/}
 
   # exclude individual files/dirs from test coverage stats
-  add_filter 'lib/fake_court_data_adaptor'
   add_filter 'app/controllers/users/confirmations_controller'
 
   # group functionality for test coverage report

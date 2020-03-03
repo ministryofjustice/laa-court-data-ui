@@ -52,7 +52,7 @@ preload_app!
 rackup DefaultRackup
 port ENV.fetch('PORT', 3000)
 environment 'development'
-# pidfile ENV.fetch('PIDFILE', 'tmp/pids/server.pid')
+pidfile ENV.fetch('PIDFILE', 'tmp/pids/server.pid')
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
