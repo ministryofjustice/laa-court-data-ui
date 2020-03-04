@@ -11,7 +11,7 @@ class Search
   validates :term, presence: true
   validates :dob,
             presence: true,
-            if: proc { |search| search.filter.eql?('defendant') }
+            if: proc { |search| search.filter.eql?('defendant_name') }
 
   def filters
     self.class.filters
@@ -22,30 +22,34 @@ class Search
       SearchFilter.new(id: :case_reference,
                        name: I18n.t('search_filter.radio_case_reference_label'),
                        description: I18n.t('search_filter.radio_case_reference_label_hint')),
-      SearchFilter.new(id: :ni_or_asn_number,
-                       name: I18n.t('search_filter.radio_ni_or_asn_number_label'),
-                       description: I18n.t('search_filter.radio_ni_or_asn_number_label_hint')),
-      SearchFilter.new(id: :defendant,
-                       name: I18n.t('search_filter.radio_defendant_label'),
-                       description: I18n.t('search_filter.radio_defendant_label_hint'))
+      SearchFilter.new(id: :defendant_reference,
+                       name: I18n.t('search_filter.radio_defendant_reference_label'),
+                       description: I18n.t('search_filter.radio_defendant_reference_label_hint')),
+      SearchFilter.new(id: :defendant_name,
+                       name: I18n.t('search_filter.radio_defendant_name_label'),
+                       description: I18n.t('search_filter.radio_defendant_name_label_hint'))
     ]
   end
 
   def execute
-    adaptor.call
+    query.call
   end
 
   private
 
-  def adaptor
-    send("#{filter}_adaptor")
+  def query
+    send("#{filter}_query")
   end
 
-  def defendant_adaptor
-    CourtDataAdaptor::Query::Defendant.new(term, dob: dob)
-  end
-
-  def case_reference_adaptor
+  def case_reference_query
     CourtDataAdaptor::Query::ProsecutionCase.new(term)
+  end
+
+  def defendant_reference_query
+    CourtDataAdaptor::Query::Defendant::ByReference.new(term)
+  end
+
+  def defendant_name_query
+    CourtDataAdaptor::Query::Defendant::ByName.new(term, dob: dob)
   end
 end

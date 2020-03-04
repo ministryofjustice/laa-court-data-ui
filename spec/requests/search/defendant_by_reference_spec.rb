@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Defendant by name and dob search', type: :request do
+RSpec.describe 'Defendant by reference search', type: :request do
   let(:user) { create(:user) }
 
   before do
@@ -8,7 +8,7 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
   end
 
   it 'renders searches#new' do
-    get '/searches/new', params: { search: { filter: :defendant_name } }
+    get '/searches/new', params: { search: { filter: :defendant_reference } }
     expect(response).to render_template('searches/new')
   end
 
@@ -17,11 +17,8 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
       {
         search:
         {
-          filter: :defendant_name,
-          term: 'Josefa Franecki',
-          'dob(3i)': '15',
-          'dob(2i)': '06',
-          'dob(1i)': '1961'
+          filter: :defendant_reference,
+          term: 'HR669639M'
         }
       }
     end
