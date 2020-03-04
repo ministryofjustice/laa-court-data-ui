@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: laa-court-data-ui-app-ingress
+  namespace: laa-court-data-ui-production
+spec:
+  rules:
+    - host: view-court-data.service.justice.gov.uk
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: laa-court-data-ui-app-service
+              servicePort: 80
+  tls:
+    - hosts:
+      - view-court-data.service.justice.gov.uk
+      secretName: laa-court-data-ui-production-cert
