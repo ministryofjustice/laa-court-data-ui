@@ -9,17 +9,23 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
   it_behaves_like 'court_data_adaptor query object'
 
   describe '#call' do
-    subject(:call) { described_class.new(term).call }
+    subject(:call) { instance.call }
 
+    let(:instance) { described_class.new(term) }
     let(:term) { 'a-case-urn' }
     let(:resource) { CourtDataAdaptor::Resource::ProsecutionCase }
     let(:resultset) { instance_double('ResultSet') }
 
     before do
+      allow(instance).to receive(:refresh_token_if_required!)
       allow(resource).to receive(:where).and_return(resultset)
       allow(resultset).to receive(:includes).with(:defendants).and_return(resultset)
       allow(resultset).to receive(:all)
       call
+    end
+
+    it 'refreshes access_token if required' do
+      expect(instance).to have_received(:refresh_token_if_required!)
     end
 
     it 'sends where query to resource' do

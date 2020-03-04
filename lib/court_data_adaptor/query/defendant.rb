@@ -6,6 +6,8 @@ module CourtDataAdaptor
       acts_as_resource CourtDataAdaptor::Resource::ProsecutionCase
 
       def call
+        refresh_token_if_required!
+
         cases = resource
                 .includes(:defendants)
                 .where(

@@ -19,6 +19,13 @@ module CourtDataAdaptor
         def resource
           self.class.resource
         end
+
+        def refresh_token_if_required!
+          resource.connection(true) do |conn|
+            conn.use FaradayMiddleware::OAuth2, resource.client.bearer_token, token_type: :bearer
+            # conn.use Faraday::Response::Logger
+          end
+        end
       end
     end
   end

@@ -15,17 +15,23 @@ RSpec.describe CourtDataAdaptor::Query::Defendant do
   it { expect(instance).to respond_to(:dob, :dob=) }
 
   describe '#call' do
-    subject(:call) { described_class.new(term, dob: dob).call }
+    subject(:call) { instance.call }
 
+    let(:instance) { described_class.new(term, dob: dob) }
     let(:resource) { CourtDataAdaptor::Resource::ProsecutionCase }
     let(:resultset) { instance_double('ResultSet') }
 
     before do
+      allow(instance).to receive(:refresh_token_if_required!)
       allow(resource).to receive(:includes).with(:defendants).and_return(resultset)
       allow(resultset).to receive(:where).and_return(resultset)
       allow(resultset).to receive(:all).and_return(resultset)
       allow(resultset).to receive(:each_with_object).and_return(Array)
       call
+    end
+
+    it 'refreshes access_token if required' do
+      expect(instance).to have_received(:refresh_token_if_required!)
     end
 
     it 'sends includes(:defendants) query to resource' do

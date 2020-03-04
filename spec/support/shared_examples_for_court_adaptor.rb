@@ -3,6 +3,7 @@
 RSpec.shared_examples 'court_data_adaptor queryable object' do
   it { is_expected.to respond_to :acts_as_resource, :resource }
   it { expect(subject.new(nil)).to respond_to :resource }
+  it { expect(subject.new(nil)).to respond_to :refresh_token_if_required! }
 end
 
 RSpec.shared_examples 'court_data_adaptor query object' do
