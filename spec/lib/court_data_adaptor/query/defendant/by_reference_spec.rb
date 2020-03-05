@@ -6,7 +6,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
   subject { described_class }
 
   let(:instance) { described_class.new(nil) }
-  let(:term) { 'Hr669639m' }
+  let(:term) { 'YE744478B' }
 
   it_behaves_like 'court_data_adaptor queryable object'
   it_behaves_like 'court_data_adaptor query object'
@@ -23,6 +23,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
       allow(resource).to receive(:includes).with(:defendants).and_return(resultset)
       allow(resultset).to receive(:where).and_return(resultset)
       allow(resultset).to receive(:all).and_return(resultset)
+      allow(resultset).to receive(:each_with_object).and_return(Array)
       call
     end
 

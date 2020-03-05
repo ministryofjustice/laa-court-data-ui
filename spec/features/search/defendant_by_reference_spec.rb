@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Defendant by reference search', type: :feature do
+RSpec.feature 'Defendant by reference search', type: :feature, vcr: true do
   let(:user) { create(:user) }
 
   before do
@@ -8,36 +8,36 @@ RSpec.feature 'Defendant by reference search', type: :feature do
   end
 
   context 'when searching by national insurance number' do
-    scenario 'with one result', :vcr do
+    scenario 'with one result' do
       visit '/'
 
       choose 'Search for a defendant by ASN or National Insurance number'
       click_button 'Continue'
-      fill_in 'search-term-field', with: 'HR669639M'
+      fill_in 'search-term-field', with: 'GP181930B'
       click_button 'Search'
 
       expect(page).to have_text(
-        'Search for "HR669639M" returned 1 result'
+        'Search for "GP181930B" returned 1 result'
       )
-      expect(page).to have_field('Find a defendant', with: 'HR669639M')
+      expect(page).to have_field('Find a defendant', with: 'GP181930B')
 
       within 'tbody.govuk-table__body' do
-        expect(page).to have_content('HR669639M').once
+        expect(page).to have_content('GP181930B').once
       end
     end
 
-    scenario 'with no results', :vcr do
+    scenario 'with no results' do
       visit '/'
 
       choose 'Search for a defendant by ASN or National Insurance number'
       click_button 'Continue'
-      fill_in 'search-term-field', with: 'HR669639M'
+      fill_in 'search-term-field', with: 'GP999999B'
       click_button 'Search'
 
       expect(page).to have_css('.govuk-body', text: 'There are no matching results')
     end
 
-    scenario 'with no defendant reference specified', :vcr do
+    scenario 'with no defendant reference specified' do
       visit '/'
 
       choose 'Search for a defendant by ASN or National Insurance number'
@@ -51,7 +51,7 @@ RSpec.feature 'Defendant by reference search', type: :feature do
         expect(page).to have_content('Search term required')
       end
 
-      expect(page).to have_css('#search-dob-error', text: 'Search term required')
+      expect(page).to have_css('#search-term-error', text: 'Search term required')
     end
   end
 end

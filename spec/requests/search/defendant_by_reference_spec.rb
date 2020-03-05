@@ -18,7 +18,7 @@ RSpec.describe 'Defendant by reference search', type: :request do
         search:
         {
           filter: :defendant_reference,
-          term: 'HR669639M'
+          term: 'YE744478B'
         }
       }
     end
