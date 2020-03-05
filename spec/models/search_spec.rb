@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.fdescribe Search, type: :model do
+RSpec.describe Search, type: :model do
   subject { described_class.new }
 
   it {

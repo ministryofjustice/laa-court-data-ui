@@ -7,12 +7,14 @@ module CourtDataAdaptor
         acts_as_resource CourtDataAdaptor::Resource::ProsecutionCase
 
         def call
-          cases = resource
-                  .includes(:defendants)
-                  .where(
-                    national_insurance_number: term
-                  )
-                  .all
+          refresh_token_if_required!
+
+          resource
+            .includes(:defendants)
+            .where(
+              national_insurance_number: term
+            )
+            .all
         end
       end
     end

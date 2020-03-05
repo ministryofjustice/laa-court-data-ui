@@ -34,7 +34,7 @@ en:
       defendant_name_label: Find a defendant
       defendant_name_label_hint: Enter full name of defendant
       defendant_reference_label: Find a defendant
-      defendant_reference_label_hint: Enter full nation insurance number or ASN
+      defendant_reference_label_hint: Enter full national insurance number or ASN
   search_filter:
     label_hint: Choose an option
     legend_text: How do you want to search?
