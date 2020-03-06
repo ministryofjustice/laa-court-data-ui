@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Query
-    class Defendant
+    module Defendant
       class ByReference < Base
         acts_as_resource CourtDataAdaptor::Resource::ProsecutionCase
 
