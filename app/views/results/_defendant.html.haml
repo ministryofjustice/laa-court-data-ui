@@ -6,6 +6,7 @@
       %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.name')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.date_of_birth')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.national_insurance_number')
+      %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.arrest_summons_number')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.prosecution_case_reference')
   %tbody.govuk-table__body
     - @results.each do |defendant|
@@ -13,4 +14,5 @@
         %td.govuk-table__cell= defendant.name
         %td.govuk-table__cell= l(defendant.date_of_birth&.to_date)
         %td.govuk-table__cell= defendant.national_insurance_number
+        %td.govuk-table__cell= defendant.arrest_summons_number
         %td.govuk-table__cell= defendant.prosecution_case_reference
