@@ -20,7 +20,7 @@
     %link{href: asset_pack_path("media/images/govuk-apple-touch-icon.png"), rel: "apple-touch-icon"}/
     = tag :meta, property: 'og:image', content: asset_pack_path('media/images/govuk-opengraph-image.png')
     = render partial: 'layouts/google_analytics'
-  %body.govuk-template__body{"data-other" => "report:details"}
+  %body.govuk-template__body
     :javascript
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     %a.govuk-skip-link{href: "#main-content"}
