@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::Query::Defendant do
+RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
   subject { described_class }
 
   let(:instance) { described_class.new(nil) }
@@ -64,7 +64,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant do
 
     it 'populates prosecution_case_reference attribute' do
       case_refs = results.map(&:prosecution_case_reference)
-      expect(case_refs).to all(be_present)
+      expect(case_refs).to be_present.and all(be_present)
     end
   end
 end

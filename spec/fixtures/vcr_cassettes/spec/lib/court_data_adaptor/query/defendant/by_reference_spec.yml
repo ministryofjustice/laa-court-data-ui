@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bnational_insurance_number%5D=YE744478B&include=defendants
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer oOqRCl90GYQAXN9GJndd6dYb1hEtVqkUAPIGqRuACWM
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"f16357e05284c6328812fe85d6a69f72"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - d4ac424d-cb1b-4682-bd41-1051dc48c1ea
+      X-Runtime:
+      - '0.070539'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"id":"45181ba4-0230-4d76-bd1f-8dd283cc2504","type":"prosecution_cases","attributes":{"prosecution_case_reference":"LJSQNTUNNC"},"relationships":{"defendants":{"data":[{"id":"2f7fd30b-3bff-4493-bc0f-254e2bd71734","type":"defendants"},{"id":"1ed04150-0dd8-45a0-80cf-29f0dcf104b5","type":"defendants"},{"id":"e6d2dd73-b95b-4f98-a1ac-795c181791fe","type":"defendants"},{"id":"a21d8531-5eaf-42df-8dc5-348bbd071f07","type":"defendants"}]}}}],"included":[{"id":"2f7fd30b-3bff-4493-bc0f-254e2bd71734","type":"defendants","attributes":{"first_name":"Marion","last_name":"Swift","date_of_birth":"1999-12-30","national_insurance_number":"GX188228C","arrest_summons_number":"N80TNY2CGZGV"},"relationships":{"offences":{"data":[{"id":"f651b45d-5968-4d6b-b615-6f74c1050ca9","type":"offences"}]}}},{"id":"1ed04150-0dd8-45a0-80cf-29f0dcf104b5","type":"defendants","attributes":{"first_name":"Russell","last_name":"Waters","date_of_birth":"1986-12-14","national_insurance_number":"GP592510D","arrest_summons_number":"JRUG82AGN111"},"relationships":{"offences":{"data":[{"id":"15d01c69-e9ee-4243-8398-376b64cff0cb","type":"offences"}]}}},{"id":"e6d2dd73-b95b-4f98-a1ac-795c181791fe","type":"defendants","attributes":{"first_name":"Jolynn","last_name":"Schinner","date_of_birth":"1991-03-01","national_insurance_number":"YE744478B","arrest_summons_number":"A5W1R4OGUX7C"},"relationships":{"offences":{"data":[{"id":"c7726d30-dda1-4b19-8f62-f06529197da3","type":"offences"}]}}},{"id":"a21d8531-5eaf-42df-8dc5-348bbd071f07","type":"defendants","attributes":{"first_name":"Quincy","last_name":"O''Kon","date_of_birth":"1993-09-02","national_insurance_number":"GP181930B","arrest_summons_number":"GFNBCQEY8RBP"},"relationships":{"offences":{"data":[{"id":"d250b0f1-c89c-4715-889e-46045e164753","type":"offences"}]}}}]}'
+    http_version: null
+  recorded_at: Mon, 09 Mar 2020 10:17:26 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Barrest_summons_number%5D=N80TNY2CGZGV&include=defendants
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer oOqRCl90GYQAXN9GJndd6dYb1hEtVqkUAPIGqRuACWM
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"f16357e05284c6328812fe85d6a69f72"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 3a188c2c-6c03-487f-aa31-fde030ea6398
+      X-Runtime:
+      - '0.083873'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"id":"45181ba4-0230-4d76-bd1f-8dd283cc2504","type":"prosecution_cases","attributes":{"prosecution_case_reference":"LJSQNTUNNC"},"relationships":{"defendants":{"data":[{"id":"2f7fd30b-3bff-4493-bc0f-254e2bd71734","type":"defendants"},{"id":"1ed04150-0dd8-45a0-80cf-29f0dcf104b5","type":"defendants"},{"id":"e6d2dd73-b95b-4f98-a1ac-795c181791fe","type":"defendants"},{"id":"a21d8531-5eaf-42df-8dc5-348bbd071f07","type":"defendants"}]}}}],"included":[{"id":"2f7fd30b-3bff-4493-bc0f-254e2bd71734","type":"defendants","attributes":{"first_name":"Marion","last_name":"Swift","date_of_birth":"1999-12-30","national_insurance_number":"GX188228C","arrest_summons_number":"N80TNY2CGZGV"},"relationships":{"offences":{"data":[{"id":"f651b45d-5968-4d6b-b615-6f74c1050ca9","type":"offences"}]}}},{"id":"1ed04150-0dd8-45a0-80cf-29f0dcf104b5","type":"defendants","attributes":{"first_name":"Russell","last_name":"Waters","date_of_birth":"1986-12-14","national_insurance_number":"GP592510D","arrest_summons_number":"JRUG82AGN111"},"relationships":{"offences":{"data":[{"id":"15d01c69-e9ee-4243-8398-376b64cff0cb","type":"offences"}]}}},{"id":"e6d2dd73-b95b-4f98-a1ac-795c181791fe","type":"defendants","attributes":{"first_name":"Jolynn","last_name":"Schinner","date_of_birth":"1991-03-01","national_insurance_number":"YE744478B","arrest_summons_number":"A5W1R4OGUX7C"},"relationships":{"offences":{"data":[{"id":"c7726d30-dda1-4b19-8f62-f06529197da3","type":"offences"}]}}},{"id":"a21d8531-5eaf-42df-8dc5-348bbd071f07","type":"defendants","attributes":{"first_name":"Quincy","last_name":"O''Kon","date_of_birth":"1993-09-02","national_insurance_number":"GP181930B","arrest_summons_number":"GFNBCQEY8RBP"},"relationships":{"offences":{"data":[{"id":"d250b0f1-c89c-4715-889e-46045e164753","type":"offences"}]}}}]}'
+    http_version: null
+  recorded_at: Mon, 09 Mar 2020 10:17:27 GMT
+recorded_with: VCR 5.1.0

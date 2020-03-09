@@ -5,48 +5,59 @@ require 'court_data_adaptor'
 class Search
   include ActiveModel::Model
 
-  attr_accessor :filter, :term, :dob
+  def self.filters
+    [
+      _filter(id: :case_reference,
+              name: I18n.t('search_filter.radio_case_reference_label'),
+              description: I18n.t('search_filter.radio_case_reference_label_hint')),
+      _filter(id: :defendant_reference,
+              name: I18n.t('search_filter.radio_defendant_reference_label'),
+              description: I18n.t('search_filter.radio_defendant_reference_label_hint')),
+      _filter(id: :defendant_name,
+              name: I18n.t('search_filter.radio_defendant_name_label'),
+              description: I18n.t('search_filter.radio_defendant_name_label_hint'))
+    ]
+  end
 
-  validates :filter, presence: true
-  validates :term, presence: true
-  validates :dob,
-            presence: true,
-            if: proc { |search| search.filter.eql?('defendant') }
+  private_class_method def self._filter(args)
+    SearchFilter.new(**args)
+  end
+
+  attr_accessor :filter, :term, :dob
 
   def filters
     self.class.filters
   end
 
-  def self.filters
-    [
-      SearchFilter.new(
-        id: :case_reference,
-        name: I18n.t('search_filter.radio_case_reference_label'),
-        description: I18n.t('search_filter.radio_case_reference_label_hint')
-      ),
-      SearchFilter.new(
-        id: :defendant,
-        name: I18n.t('search_filter.radio_defendant_label'),
-        description: I18n.t('search_filter.radio_defendant_label_hint')
-      )
-    ]
-  end
+  validates :filter, presence: true, inclusion: {
+    in: filters.map { |f| f.id.to_s },
+    message: 'Filter "%{value}" is not recognized'
+  }
+
+  validates :term, presence: true
+  validates :dob,
+            presence: true,
+            if: proc { |search| search.filter.eql?('defendant_name') }
 
   def execute
-    adaptor.call
+    query.call
   end
 
   private
 
-  def adaptor
-    send("#{filter}_adaptor")
+  def query
+    send("#{filter}_query")
   end
 
-  def defendant_adaptor
-    CourtDataAdaptor::Query::Defendant.new(term, dob: dob)
-  end
-
-  def case_reference_adaptor
+  def case_reference_query
     CourtDataAdaptor::Query::ProsecutionCase.new(term)
+  end
+
+  def defendant_reference_query
+    CourtDataAdaptor::Query::Defendant::ByReference.new(term)
+  end
+
+  def defendant_name_query
+    CourtDataAdaptor::Query::Defendant::ByName.new(term, dob: dob)
   end
 end

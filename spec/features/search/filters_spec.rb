@@ -11,14 +11,18 @@ RSpec.feature 'Search filters', type: :feature do
     visit '/'
 
     expect(page).to have_text('How do you want to search?')
-    expect(page).to have_css('.govuk-radios__item', text: 'Search by case reference')
-    expect(page).to have_css('.govuk-radios__item', text: 'Search by defendant')
+    expect(page).to have_css('.govuk-radios__item',
+                             text: 'Search for a case by URN')
+    expect(page).to have_css('.govuk-radios__item',
+                             text: 'Search for a defendant by reference')
+    expect(page).to have_css('.govuk-radios__item',
+                             text: 'Search for a defendant by name and date of birth')
   end
 
   scenario 'user chooses defendant filter' do
     visit '/'
 
-    choose 'Search by defendant'
+    choose 'Search for a defendant by name and date of birth'
     click_button 'Continue'
     expect(page).to have_text('Find a defendant')
   end
@@ -26,7 +30,7 @@ RSpec.feature 'Search filters', type: :feature do
   scenario 'user chooses case number filter' do
     visit '/'
 
-    choose 'Search by case reference'
+    choose 'Search for a case by URN'
     click_button 'Continue'
     expect(page).to have_text('Find a case')
   end
