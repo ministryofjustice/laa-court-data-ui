@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.fdescribe CourtDataAdaptor::Query::Defendant::ByReference do
+RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
   subject { described_class }
 
   let(:instance) { described_class.new(nil) }

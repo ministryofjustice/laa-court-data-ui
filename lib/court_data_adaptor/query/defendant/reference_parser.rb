@@ -18,6 +18,10 @@ module CourtDataAdaptor
         def national_insurance_number?
           value.match?(NINO_REGEXP)
         end
+
+        def kind
+          national_insurance_number? ? :national_insurance_number : :arrest_summons_number
+        end
       end
     end
   end

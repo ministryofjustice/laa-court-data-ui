@@ -12,7 +12,7 @@ module CourtDataAdaptor
           cases = resource
                   .includes(:defendants)
                   .where(
-                    **clause
+                    reference.kind => reference.value
                   )
                   .all
 
@@ -20,11 +20,6 @@ module CourtDataAdaptor
         end
 
         private
-
-        def clause
-          key = reference.national_insurance_number? ? :national_insurance_number : :arrest_summons_number
-          { key => reference.value }
-        end
 
         def reference
           @reference ||= ReferenceParser.new(term)
@@ -34,11 +29,7 @@ module CourtDataAdaptor
           cases.each_with_object([]) do |c, results|
             c.defendants.each do |d|
               d.prosecution_case_reference = c.prosecution_case_reference
-              if reference.national_insurance_number?
-                results << d if d.national_insurance_number.casecmp(reference.value).zero?
-              else
-                results << d if d.arrest_summons_number.casecmp(reference.value).zero?
-              end
+              results << d if d.send(reference.kind).casecmp(reference.value).zero?
             end
           end
         end

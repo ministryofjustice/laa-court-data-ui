@@ -25,6 +25,22 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ReferenceParser do
     end
   end
 
+  describe '#kind' do
+    subject { described_class.new(term).kind }
+
+    context 'with a national insurance number' do
+      let(:term) { "\t ye \r 74 \/ 44  - 78  \n b  " }
+
+      it { is_expected.to be :national_insurance_number }
+    end
+
+    context 'with anything other than national insurance number' do
+      let(:term) { 'anything-else' }
+
+      it { is_expected.to be :arrest_summons_number }
+    end
+  end
+
   describe '#national_insurance_number?' do
     # HMCTS Mock API valid NI:
     # "(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$"
