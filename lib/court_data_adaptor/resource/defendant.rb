@@ -7,7 +7,7 @@ module CourtDataAdaptor
       property :prosecution_case_reference, type: :string
 
       def name
-        first_name + ' ' + last_name
+        "#{first_name} #{last_name}" unless first_name.blank? && last_name.blank?
       end
     end
   end
