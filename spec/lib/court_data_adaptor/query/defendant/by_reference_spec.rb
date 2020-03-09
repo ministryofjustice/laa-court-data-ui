@@ -82,16 +82,16 @@ RSpec.fdescribe CourtDataAdaptor::Query::Defendant::ByReference do
       end
     end
 
-    xcontext 'when arrest summons number' do
-      let(:term) { '93/52HQ/01/123456N' }
+    context 'when arrest summons number' do
+      let(:term) { 'N80TNY2CGZGV' }
 
       it 'returns defendant resources' do
         expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::Defendant))
       end
 
-      it 'returns only defendants with matching national insurance number', skip: 'chck whether we should be displaying this' do
+      it 'returns only defendants with matching arrest summons number' do
         expect(results).to all(
-          have_attributes(arrest_summons_number: '9352HQ01123456N')
+          have_attributes(arrest_summons_number: 'N80TNY2CGZGV')
         )
       end
 
