@@ -19,16 +19,20 @@ class Search
 
   def self.filters
     [
-      SearchFilter.new(id: :case_reference,
-                       name: I18n.t('search_filter.radio_case_reference_label'),
-                       description: I18n.t('search_filter.radio_case_reference_label_hint')),
-      SearchFilter.new(id: :defendant_reference,
-                       name: I18n.t('search_filter.radio_defendant_reference_label'),
-                       description: I18n.t('search_filter.radio_defendant_reference_label_hint')),
-      SearchFilter.new(id: :defendant_name,
-                       name: I18n.t('search_filter.radio_defendant_name_label'),
-                       description: I18n.t('search_filter.radio_defendant_name_label_hint'))
+      _filter(id: :case_reference,
+              name: I18n.t('search_filter.radio_case_reference_label'),
+              description: I18n.t('search_filter.radio_case_reference_label_hint')),
+      _filter(id: :defendant_reference,
+              name: I18n.t('search_filter.radio_defendant_reference_label'),
+              description: I18n.t('search_filter.radio_defendant_reference_label_hint')),
+      _filter(id: :defendant_name,
+              name: I18n.t('search_filter.radio_defendant_name_label'),
+              description: I18n.t('search_filter.radio_defendant_name_label_hint'))
     ]
+  end
+
+  private_class_method def self._filter(args)
+    SearchFilter.new(**args)
   end
 
   def execute
