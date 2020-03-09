@@ -111,6 +111,17 @@ RSpec.describe Search, type: :model do
         it { is_expected.to have_activerecord_error(:filter, 'Filter required') }
       end
 
+      context 'with not included filter' do
+        let(:filter) { 'invalid_filter' }
+
+        it { is_expected.to be_invalid }
+
+        it {
+          is_expected.to \
+            have_activerecord_error(:filter, 'Filter "invalid_filter" is not recognized')
+        }
+      end
+
       context 'with blank term' do
         let(:term) { nil }
 

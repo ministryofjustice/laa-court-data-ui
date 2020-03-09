@@ -68,6 +68,10 @@ RSpec/NestedGroups:
 Style/Documentation:
   Enabled: false
 
+Style/FormatStringToken:
+  Exclude:
+    - app/models/search.rb
+
 Style/HashEachMethods:
   Enabled: true
 

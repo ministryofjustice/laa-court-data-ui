@@ -5,18 +5,6 @@ require 'court_data_adaptor'
 class Search
   include ActiveModel::Model
 
-  attr_accessor :filter, :term, :dob
-
-  validates :filter, presence: true
-  validates :term, presence: true
-  validates :dob,
-            presence: true,
-            if: proc { |search| search.filter.eql?('defendant_name') }
-
-  def filters
-    self.class.filters
-  end
-
   def self.filters
     [
       _filter(id: :case_reference,
@@ -34,6 +22,22 @@ class Search
   private_class_method def self._filter(args)
     SearchFilter.new(**args)
   end
+
+  attr_accessor :filter, :term, :dob
+
+  def filters
+    self.class.filters
+  end
+
+  validates :filter, presence: true, inclusion: {
+    in: filters.map { |f| f.id.to_s },
+    message: 'Filter "%{value}" is not recognized'
+  }
+
+  validates :term, presence: true
+  validates :dob,
+            presence: true,
+            if: proc { |search| search.filter.eql?('defendant_name') }
 
   def execute
     query.call
