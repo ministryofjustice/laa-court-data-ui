@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::NameParser do
+RSpec.describe CourtDataAdaptor::Query::Defendant::NameParser do
   describe '#parts' do
     subject(:parts) { described_class.new(term).parts }
 
