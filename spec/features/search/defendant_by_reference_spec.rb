@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Defendant by reference search', type: :feature, vcr: true do
+RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: true do
   let(:user) { create(:user) }
 
   before do
@@ -24,6 +24,8 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true do
       within 'tbody.govuk-table__body' do
         expect(page).to have_content('GP181930B').once
       end
+
+      expect(page).to be_accessible.within '#main-content'
     end
 
     scenario 'with no results' do
@@ -35,6 +37,8 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true do
       click_button 'Search'
 
       expect(page).to have_css('.govuk-body', text: 'There are no matching results')
+
+      expect(page).to be_accessible.within '#main-content'
     end
 
     scenario 'with no defendant reference specified' do
@@ -52,6 +56,8 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true do
       end
 
       expect(page).to have_css('#search-term-error', text: 'Search term required')
+
+      expect(page).to be_accessible.within '#main-content'
     end
   end
 end

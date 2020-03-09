@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Defendant by name and dob search', type: :feature do
+RSpec.feature 'Defendant by name and dob search', type: :feature, js: true do
   let(:user) { create(:user) }
 
   before do
@@ -29,6 +29,8 @@ RSpec.feature 'Defendant by name and dob search', type: :feature do
     within 'tbody.govuk-table__body' do
       expect(page).to have_content('Josefa Franecki').once
     end
+
+    expect(page).to be_accessible.within '#main-content'
   end
 
   scenario 'with no results', :vcr do
@@ -43,6 +45,8 @@ RSpec.feature 'Defendant by name and dob search', type: :feature do
     click_button 'Search'
 
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
+
+    expect(page).to be_accessible.within '#main-content'
   end
 
   scenario 'with no date of birth specified', :vcr do
@@ -60,5 +64,7 @@ RSpec.feature 'Defendant by name and dob search', type: :feature do
     end
 
     expect(page).to have_css('#search-dob-error', text: 'Defendant date of birth required')
+
+    expect(page).to be_accessible.within '#main-content'
   end
 end

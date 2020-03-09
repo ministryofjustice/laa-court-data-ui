@@ -26,6 +26,7 @@ gem 'sidekiq', '~> 5.2.7'
 gem 'webpacker', '~> 4.0'
 
 group :test do
+  gem 'axe-matchers'
   gem 'brakeman'
   gem 'capybara'
   gem 'climate_control'
@@ -42,6 +43,7 @@ group :test do
   gem 'rubocop-rspec', require: false
   gem 'simplecov', '~> 0.17.1', require: false
   gem 'vcr'
+  gem 'webdrivers'
   gem 'webmock'
 end
 

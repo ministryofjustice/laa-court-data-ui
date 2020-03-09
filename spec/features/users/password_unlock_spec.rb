@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Password unlock', type: :feature do
+RSpec.feature 'Password unlock', type: :feature, js: true do
   let(:user) { create(:user, :with_caseworker_role) }
 
   let(:resent_flash_notice) do
@@ -43,6 +43,7 @@ RSpec.feature 'Password unlock', type: :feature do
     click_link 'Didn\'t receive unlock instructions?'
 
     expect(page).to have_govuk_page_title(text: 'Resend unlock instructions')
+    expect(page).to be_accessible.within '#main-content'
     fill_in 'Email', with: user.email
     expect do
       click_button 'Resend unlock instructions'

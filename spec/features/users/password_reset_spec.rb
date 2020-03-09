@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Password reset', type: :feature do
+RSpec.feature 'Password reset', type: :feature, js: true do
   let(:user) { create(:user, :with_caseworker_role) }
 
   let(:reset_flash_notice) do
@@ -23,6 +23,7 @@ RSpec.feature 'Password reset', type: :feature do
     click_link 'Forgot your password?'
 
     expect(page).to have_govuk_page_title(text: 'Forgot your password?')
+    expect(page).to be_accessible.within '#main-content'
     fill_in 'Email', with: user.email
     expect do
       click_button 'Send me reset password instructions'
