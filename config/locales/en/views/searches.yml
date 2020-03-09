@@ -44,5 +44,5 @@ en:
     radio_case_reference_label_hint: Case URN
     radio_defendant_name_label: Search for a defendant by name and date of birth
     radio_defendant_name_label_hint: Name and date of birth
-    radio_defendant_reference_label: Search for a defendant by ASN or National Insurance number
-    radio_defendant_reference_label_hint: Name and date of birth
+    radio_defendant_reference_label: Search for a defendant by reference
+    radio_defendant_reference_label_hint: National insurance or Arrest summons number

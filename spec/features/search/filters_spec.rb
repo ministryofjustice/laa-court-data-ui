@@ -14,7 +14,7 @@ RSpec.feature 'Search filters', type: :feature do
     expect(page).to have_css('.govuk-radios__item',
                              text: 'Search for a case by URN')
     expect(page).to have_css('.govuk-radios__item',
-                             text: 'Search for a defendant by ASN or National Insurance number')
+                             text: 'Search for a defendant by reference')
     expect(page).to have_css('.govuk-radios__item',
                              text: 'Search for a defendant by name and date of birth')
   end
