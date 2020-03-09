@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
+RSpec.fdescribe CourtDataAdaptor::Query::Defendant::ByReference do
   subject { described_class }
 
   let(:instance) { described_class.new(nil) }
@@ -36,18 +36,22 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
     end
 
     context 'with national insurance number' do
+      let(:term) { 'YE 74 44 78 B' }
+
       it 'sends NI where query to resource' do
         expect(resultset)
           .to have_received(:where)
-          .with(national_insurance_number: term)
+          .with(national_insurance_number: 'YE744478B')
       end
     end
 
-    context 'with ASN number', skip: 'todo' do
+    context 'with ASN number' do
+      let(:term) { '93/52HQ/01/123456N' }
+
       it 'sends ASN where query to resource' do
         expect(resultset)
           .to have_received(:where)
-          .with(arrest_summons_number: term)
+          .with(arrest_summons_number: '9352HQ01123456N')
       end
     end
 
@@ -59,19 +63,42 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
   context 'with results', :vcr do
     subject(:results) { described_class.new(term).call }
 
-    it 'returns defendant resources' do
-      expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::Defendant))
+    context 'when national insurance number' do
+      let(:term) { 'YE744478B' }
+
+      it 'returns defendant resources' do
+        expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::Defendant))
+      end
+
+      it 'returns only defendants with matching national insurance number' do
+        expect(results).to all(
+          have_attributes(national_insurance_number: term)
+        )
+      end
+
+      it 'populates prosecution_case_reference attribute' do
+        case_refs = results.map(&:prosecution_case_reference)
+        expect(case_refs).to be_present.and all(be_present)
+      end
     end
 
-    it 'returns only defendants with matching national insurance number' do
-      expect(results).to all(
-        have_attributes(national_insurance_number: term)
-      )
-    end
+    xcontext 'when arrest summons number' do
+      let(:term) { '93/52HQ/01/123456N' }
 
-    it 'populates prosecution_case_reference attribute' do
-      case_refs = results.map(&:prosecution_case_reference)
-      expect(case_refs).to be_present.and all(be_present)
+      it 'returns defendant resources' do
+        expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::Defendant))
+      end
+
+      it 'returns only defendants with matching national insurance number', skip: 'chck whether we should be displaying this' do
+        expect(results).to all(
+          have_attributes(arrest_summons_number: '9352HQ01123456N')
+        )
+      end
+
+      it 'populates prosecution_case_reference attribute' do
+        case_refs = results.map(&:prosecution_case_reference)
+        expect(case_refs).to be_present.and all(be_present)
+      end
     end
   end
 end
