@@ -15,6 +15,7 @@ en:
           manage_users: Manage users
           menu: Menu
           show_hide: Show or hide Top Level Navigation
+          sidekiq_console: Sidekiq
           sign_out: Sign out
           top_navigation: Top Level Navigation
         phase_banner_html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
