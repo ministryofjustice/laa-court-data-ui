@@ -17,12 +17,19 @@ en:
       caption: Search results
       defendant:
         arrest_summons_number: ASN
+        caption: Defendant details
         date_of_birth: Date of birth
         heading: Defendants
         maat_number: MAAT number
         name: Name
         national_insurance_number: NI number
         prosecution_case_reference: Case URN
+      offence:
+        caption: Offence list
+        heading: Offences
+        description: Offence
+        plea: Plea
+        mode_of_trial: Mode of trial
     result_count:
       one: Search for "%{term}" returned 1 result
       other: Search for "%{term}" returned %{count} results

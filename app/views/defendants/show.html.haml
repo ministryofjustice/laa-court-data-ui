@@ -1,0 +1,27 @@
+= govuk_page_title(@defendant.name)
+
+%table.govuk-table
+  %caption.govuk-table__caption.govuk-visually-hidden
+    = t('search.result.caption')
+  %tbody.govuk-table__body
+    %tr.govuk-table__row
+      %td.govuk-table__cell{ class: 'govuk-!-font-weight-bold'}
+        = t('search.result.defendant.date_of_birth')
+      %td.govuk-table__cell= l(@defendant.date_of_birth&.to_date)
+    %tr.govuk-table__row
+      %td.govuk-table__cell{ class: 'govuk-!-font-weight-bold'}
+        = t('search.result.defendant.prosecution_case_reference')
+      %td.govuk-table__cell= @defendant.prosecution_case_reference
+    %tr.govuk-table__row
+      %td.govuk-table__cell{ class: 'govuk-!-font-weight-bold'}
+        = t('search.result.defendant.national_insurance_number')
+      %td.govuk-table__cell= @defendant.national_insurance_number
+    %tr.govuk-table__row
+      %td.govuk-table__cell{ class: 'govuk-!-font-weight-bold'}
+        = t('search.result.defendant.arrest_summons_number')
+      %td.govuk-table__cell= @defendant.arrest_summons_number
+
+.govuk-heading-m
+  = t('search.result.offence.heading')
+  - @defendant.offences do |offence|
+    = offence

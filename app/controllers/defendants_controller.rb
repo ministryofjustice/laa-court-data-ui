@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
-class ProsecutionCasesController < ApplicationController
+class DefendantsController < ApplicationController
   before_action :load_and_authorize_search
 
   def show
     @results = @search.execute
-    @prosecution_case = @results.first
+    @defendant = @results.first
   end
 
-  private
-
   def load_and_authorize_search
-    @search = Search.new(filter: 'case_reference', term: params[:id])
+    @search = Search.new(filter: 'defendant_reference', term: params[:id])
     authorize! :create, @search
   end
 end

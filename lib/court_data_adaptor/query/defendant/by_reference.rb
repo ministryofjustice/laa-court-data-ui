@@ -11,6 +11,7 @@ module CourtDataAdaptor
 
           cases = resource
                   .includes(:defendants)
+                  .includes(:offences)
                   .where(
                     reference.kind => reference.value
                   )
