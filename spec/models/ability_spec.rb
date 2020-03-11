@@ -38,4 +38,21 @@ RSpec.describe Ability, type: :model do
     it { is_expected.to be_able_to(:manage, themself) }
     it { is_expected.to be_able_to(:manage, other_user) }
   end
+
+  context 'when is an admin' do
+    let(:themself) { create(:user, roles: ['admin']) }
+
+    it { is_expected.to be_able_to(%i[new create], SearchFilter) }
+    it { is_expected.to be_able_to(%i[new create], Search) }
+    it { is_expected.to be_able_to(%i[show manage_password], themself) }
+    it { is_expected.not_to be_able_to(%i[edit update destroy], themself) }
+
+    it {
+      is_expected.not_to \
+        be_able_to(
+          %i[show new create edit update manage_password destroy],
+          other_user
+        )
+    }
+  end
 end

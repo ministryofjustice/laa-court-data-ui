@@ -27,3 +27,12 @@ SeedHelper.find_or_create_user({
   password_confirmation: ENV.fetch('MANAGER_PASSWORD', nil),
   roles: ['caseworker', 'manager']
 })
+
+SeedHelper.find_or_create_user({
+  email: 'admin@example.com',
+  first_name: 'Admin',
+  last_name: 'Worker',
+  password: ENV.fetch('ADMIN_PASSWORD', nil),
+  password_confirmation: ENV.fetch('ADMIN_PASSWORD', nil),
+  roles: ['admin']
+})

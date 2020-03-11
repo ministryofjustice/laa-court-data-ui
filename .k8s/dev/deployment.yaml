@@ -88,11 +88,21 @@ spec:
                 secretKeyRef:
                   name: lcdui-elasticache
                   key: url
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-secrets
+                  key: ADMIN_PASSWORD
             - name: CASEWORKER_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: lcdui-secrets
                   key: CASEWORKER_PASSWORD
+            - name: MANAGER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-secrets
+                  key: MANAGER_PASSWORD
             - name: GOVUK_NOTIFY_API_KEY
               valueFrom:
                 secretKeyRef:

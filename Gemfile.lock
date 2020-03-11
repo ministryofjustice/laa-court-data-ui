@@ -119,6 +119,8 @@ GEM
       railties (>= 4.2.0)
     faker (2.10.2)
       i18n (>= 1.6, < 2)
+    fakeredis (0.8.0)
+      redis (~> 4.1)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.14.0)
@@ -410,6 +412,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  fakeredis
   foreman
   govuk_design_system_formbuilder (~> 1.1)
   govuk_notify_rails (~> 2.1.1)
