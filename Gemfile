@@ -31,7 +31,7 @@ group :test do
   gem 'climate_control'
   gem 'codeclimate-test-reporter', require: false
   gem 'fakeredis', require: 'fakeredis/rspec'
-  gem 'i18n-tasks', '~> 0.9.30'
+  gem 'i18n-tasks', '~> 0.9.31'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.9'
