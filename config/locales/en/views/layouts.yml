@@ -3,6 +3,7 @@ en:
   layouts:
     application:
       footer:
+        built_by_html: Built by <a class="govuk-footer__link" href="https://mojdigital.blog.gov.uk/"><abbr title="Ministry of Justice Digital Services">MOJ Digital Services</abbr></a>
         contact: Contact
         cookies: Cookies
         copyright: "© Crown copyright"

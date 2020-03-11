@@ -1,6 +1,5 @@
 = govuk_page_title(t('search.page_title'))
 
-.govuk-body
-  = render 'form'
-  = render 'error' if @error
-  = render 'results' if @results
+= render 'form'
+= render 'error' if @error
+= render 'results' if @results

@@ -1,22 +1,21 @@
 = govuk_page_title(t('devise.sessions.user.form.page_title'))
 
-.govuk-body
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    = f.govuk_error_summary
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = f.govuk_error_summary
 
-    = f.govuk_email_field(:email, label: { text: 'Email' }, autofocus: true, autocomplete: 'email')
+  = f.govuk_email_field(:email, label: { text: 'Email' }, autofocus: true, autocomplete: 'email')
 
-    = f.govuk_password_field(:password, label: { text: 'Password' }, autocomplete: 'current-password')
+  = f.govuk_password_field(:password, label: { text: 'Password' }, autocomplete: 'current-password')
 
-    - if devise_mapping.rememberable?
-      = f.govuk_collection_radio_buttons :remember_me,
-        [['1', 'Yes'], ['0', 'No']],
-        :first,
-        :last,
-        inline: :true,
-        legend: { text: 'Remember me', size: 's' },
-        hint_text: 'do you want to be remembered on this computer?'
+  - if devise_mapping.rememberable?
+    = f.govuk_collection_radio_buttons :remember_me,
+      [['1', 'Yes'], ['0', 'No']],
+      :first,
+      :last,
+      inline: :true,
+      legend: { text: 'Remember me', size: 's' },
+      hint_text: 'do you want to be remembered on this computer?'
 
-      = f.govuk_submit(t('devise.sessions.user.form.submit'))
+    = f.govuk_submit(t('devise.sessions.user.form.submit'))
 
-  = render "devise/shared/links"
+= render "devise/shared/links"
