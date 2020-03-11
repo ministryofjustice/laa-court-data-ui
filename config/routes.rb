@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :search_filters, only: %i[new create]
   resources :searches, only: %i[new create]
+  resources :prosecution_cases, only: %i[show]
 
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',

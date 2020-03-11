@@ -18,6 +18,8 @@ en:
       defendant:
         arrest_summons_number: ASN
         date_of_birth: Date of birth
+        heading: Defendants
+        maat_number: MAAT number
         name: Name
         national_insurance_number: NI number
         prosecution_case_reference: Case URN
