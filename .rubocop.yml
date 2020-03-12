@@ -37,6 +37,7 @@ Layout/LineLength:
 Metrics/AbcSize:
   Exclude:
     - app/models/ability.rb
+    - spec/features/**/*.rb
 
 Metrics/BlockLength:
   Exclude:
