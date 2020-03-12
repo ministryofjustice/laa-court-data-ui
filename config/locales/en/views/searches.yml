@@ -27,9 +27,9 @@ en:
       offence:
         caption: Offence list
         heading: Offences
-        description: Offence
-        plea: Plea
         mode_of_trial: Mode of trial
+        plea: Plea
+        title: Offence
     result_count:
       one: Search for "%{term}" returned 1 result
       other: Search for "%{term}" returned %{count} results

@@ -14,6 +14,9 @@
     - @results.each do |cse|
       - cse.defendants.each do |defendant|
         %tr.govuk-table__row
-          %td.govuk-table__cell= defendant.name
-          %td.govuk-table__cell= l(defendant.date_of_birth&.to_date)
-          %td.govuk-table__cell= 'Not linked'
+          %td.govuk-table__cell
+            = link_to defendant.name, defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
+          %td.govuk-table__cell
+            = l(defendant.date_of_birth&.to_date)
+          %td.govuk-table__cell
+            = 'Not linked'
