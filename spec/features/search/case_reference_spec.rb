@@ -14,7 +14,7 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true do
     click_button 'Continue'
     fill_in 'search-term-field', with: 'MOGUERBXIZ'
     click_button 'Search'
-    expect(page).to have_text 'Search for "MOGUERBXIZ" returned'
+    expect(page).to have_text 'Search results for "MOGUERBXIZ"'
 
     within 'tbody.govuk-table__body' do
       expect(page).to have_content('MOGUERBXIZ', count: 4)
