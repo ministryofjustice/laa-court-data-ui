@@ -43,9 +43,7 @@ module CourtDataAdaptor
           cases.each_with_object([]) do |c, results|
             c.defendants.each do |d|
               d.prosecution_case_reference = c.prosecution_case_reference
-              if d.first_name.casecmp(first_name).zero? && d.last_name.casecmp(last_name).zero?
-                results << d
-              end
+              results << d if d.first_name.casecmp(first_name).zero? && d.last_name.casecmp(last_name).zero?
             end
           end
         end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Extensions to capybara can be written here
-# and they will be mixed into to existing
+# and they will be mixed into existing
 # helpers/matchers by the `spec/support/capybara.rb`
 #
 # Idea comes from:

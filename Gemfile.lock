@@ -77,6 +77,8 @@ GEM
     bootsnap (1.4.6-java)
       msgpack (~> 1.0)
     brakeman (4.8.0)
+    breadcrumbs_on_rails (4.0.0)
+      rails (>= 5.0)
     builder (3.2.4)
     byebug (11.1.1)
     cancancan (3.1.0)
@@ -403,6 +405,7 @@ DEPENDENCIES
   awesome_print
   bootsnap (>= 1.4.2)
   brakeman
+  breadcrumbs_on_rails
   cancancan
   capybara
   climate_control
