@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Edit user', type: :feature do
+RSpec.feature 'Edit user', type: :feature, js: true do
   before do
     sign_in user
   end
@@ -36,6 +36,8 @@ RSpec.feature 'Edit user', type: :feature do
       expect(row).to have_link(other_user.name, href: user_path(other_user))
       expect(row).to have_link('Edit', href: edit_user_path(other_user))
 
+      expect(page).to be_accessible.within '#main-content'
+
       within(row) do
         click_link 'Edit'
       end
@@ -50,6 +52,8 @@ RSpec.feature 'Edit user', type: :feature do
       check 'Manager'
       fill_in 'Email', with: 'changed@example.com'
       fill_in 'Confirm email', with: 'changed@example.com'
+
+      expect(page).to be_accessible.within '#main-content'
 
       expect do
         click_button 'Save'

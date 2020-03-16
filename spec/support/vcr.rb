@@ -4,11 +4,30 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
 
+  # Ignore requests to
   # ignore/allow oauth requests
   # NOTE: CourtDataAdaptor.configuration.test_mode should be set
   # set to false when recording new stubs, true otherwise
-  #
-  config.ignore_request { |req| URI(req.uri).path.eql?('/oauth/token') }
+  # - webdrivers
+  # - chrome browser requests to localhost port on which it runs
+  # Do not ignore requests to:
+  # - CourtDataAdaptor API endpoints
+
+  config.ignore_request do |request|
+    uri = URI(request.uri)
+    [
+      uri.path == '/oauth/token',
+      uri.path == '/session',
+      uri.path == '/__identify__',
+      [
+        !uri.path.start_with?('/api/')
+      ].all?,
+      [
+        uri.host.eql?('127.0.0.1'),
+        (9515..9999).cover?(uri.port)
+      ].all?
+    ].any?
+  end
 end
 
 # Turn off vcr from the command line, for example:

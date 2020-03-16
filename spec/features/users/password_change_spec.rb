@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Password change', type: :feature do
+RSpec.feature 'Password change', type: :feature, js: true do
   let(:user) { create(:user, :with_caseworker_role) }
 
   before do
@@ -22,6 +22,7 @@ RSpec.feature 'Password change', type: :feature do
     fill_in 'Current password', with: user.password
     fill_in 'New password', with: 'my-new-password'
     fill_in 'Confirm new password', with: 'my-new-password'
+    expect(page).to be_accessible.within '#main-content'
     expect do
       click_button 'Change password'
     end.to have_enqueued_job.on_queue('mailers')

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Case reference search', type: :feature, vcr: true do
+RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
   let(:user) { create(:user) }
 
   before do
@@ -19,6 +19,8 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true do
     within 'tbody.govuk-table__body' do
       expect(page).to have_content('MOGUERBXIZ', count: 4)
     end
+
+    expect(page).to be_accessible.within '#main-content'
   end
 
   scenario 'with non existent case URN' do
@@ -29,6 +31,8 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true do
     fill_in 'search-term-field', with: 'non-existent-caseURN'
     click_button 'Search'
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
+
+    expect(page).to be_accessible.within '#main-content'
   end
 
   scenario 'with no case reference provided' do
@@ -46,5 +50,7 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true do
     end
 
     expect(page).to have_css('#search-term-error', text: 'Search term required')
+
+    expect(page).to be_accessible.within '#main-content'
   end
 end
