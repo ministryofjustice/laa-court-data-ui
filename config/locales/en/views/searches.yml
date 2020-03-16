@@ -34,7 +34,7 @@ en:
         title: Offence
     term:
       case_reference_label: Find a case
-      case_reference_label_hint: Search by prosecution case reference
+      case_reference_label_hint: Enter full case unique reference number
       defendant_name_label: Find a defendant
       defendant_name_label_hint: Enter full name of defendant
       defendant_reference_label: Find a defendant
@@ -44,7 +44,7 @@ en:
     legend_text: How do you want to search?
     page_title: Search filters
     radio_case_reference_label: Search for a case by URN
-    radio_case_reference_label_hint: Case URN
+    radio_case_reference_label_hint: Unique reference number
     radio_defendant_name_label: Search for a defendant by name and date of birth
     radio_defendant_name_label_hint: Name and date of birth
     radio_defendant_reference_label: Search for a defendant by reference
