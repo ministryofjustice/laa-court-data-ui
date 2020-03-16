@@ -108,26 +108,26 @@ RSpec.feature 'Breadcrumb', type: :feature do
   def then_has_case_ref_breadcrumbs
     expect(page).to have_govuk_breadcrumb_link('Search filters')
     expect(page).not_to have_govuk_breadcrumb_link('Case ref search')
-    expect(page).to have_govuk_breadcrumb('Case ref search')
+    expect(page).to have_govuk_breadcrumb('Case ref search', aria_current: true)
   end
 
   def then_has_defendant_ref_breadcrumbs
     expect(page).to have_govuk_breadcrumb_link('Search filters')
     expect(page).not_to have_govuk_breadcrumb_link('Defendant ref search')
-    expect(page).to have_govuk_breadcrumb('Defendant ref search')
+    expect(page).to have_govuk_breadcrumb('Defendant ref search', aria_current: true)
   end
 
   def then_has_defendant_name_breadcrumbs
     expect(page).to have_govuk_breadcrumb_link('Search filters')
     expect(page).not_to have_govuk_breadcrumb_link('Defendant name search')
-    expect(page).to have_govuk_breadcrumb('Defendant name search')
+    expect(page).to have_govuk_breadcrumb('Defendant name search', aria_current: true)
   end
 
   def then_has_case_details_breadcrumbs
     expect(page).to have_govuk_breadcrumb_link('Search filters')
     expect(page).to have_govuk_breadcrumb_link('Case ref search')
     expect(page).not_to have_govuk_breadcrumb_link('Case details')
-    expect(page).to have_govuk_breadcrumb('Case details')
+    expect(page).to have_govuk_breadcrumb('Case details', aria_current: true)
   end
 
   def then_has_defendant_details_breadcrumbs(defendant_name)
@@ -135,6 +135,6 @@ RSpec.feature 'Breadcrumb', type: :feature do
     expect(page).to have_govuk_breadcrumb_link('Case ref search')
     expect(page).to have_govuk_breadcrumb_link('Case details')
     expect(page).not_to have_govuk_breadcrumb_link(defendant_name)
-    expect(page).to have_govuk_breadcrumb(defendant_name)
+    expect(page).to have_govuk_breadcrumb(defendant_name, aria_current: true)
   end
 end

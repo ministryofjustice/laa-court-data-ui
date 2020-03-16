@@ -30,18 +30,28 @@ module CapybaraExtensions
 
     def has_govuk_breadcrumb?(text = nil, options = {})
       text ? options[:text] = text : options
-      has_selector?(
-        'div.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item',
-        options
-      )
+      selector = options.delete(:aria_current) ? current_breadcrumb_selector : breadcrumb_selector
+
+      has_selector?(selector, options)
     end
 
     def has_govuk_breadcrumb_link?(text = nil, options = {})
       text ? options[:text] = text : options
-      has_selector?(
-        'div.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item a',
-        options
-      )
+      has_selector?(breadcrumb_link_selector, options)
+    end
+
+    private
+
+    def breadcrumb_selector
+      'div.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item'
+    end
+
+    def current_breadcrumb_selector
+      "#{breadcrumb_selector}[aria-current=\"page\"]"
+    end
+
+    def breadcrumb_link_selector
+      "#{breadcrumb_selector} a.govuk-breadcrumbs__link"
     end
   end
 end

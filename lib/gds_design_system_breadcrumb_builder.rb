@@ -26,6 +26,9 @@ class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builde
                 )
               end
 
-    @context.content_tag(:li, content, class: 'govuk-breadcrumbs__list-item')
+    tag_options = {}
+    tag_options[:class] = 'govuk-breadcrumbs__list-item'
+    tag_options['aria-current'] = 'page' if @context.current_page?(compute_path(element))
+    @context.content_tag(:li, content, tag_options)
   end
 end
