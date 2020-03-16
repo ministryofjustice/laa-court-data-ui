@@ -27,5 +27,21 @@ module CapybaraExtensions
         has_selector?('.govuk-error-summary', options)
       end
     end
+
+    def has_govuk_breadcrumb?(text = nil, options = {})
+      text ? options[:text] = text : options
+      has_selector?(
+        'div.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item',
+        options
+      )
+    end
+
+    def has_govuk_breadcrumb_link?(text = nil, options = {})
+      text ? options[:text] = text : options
+      has_selector?(
+        'div.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item a',
+        options
+      )
+    end
   end
 end

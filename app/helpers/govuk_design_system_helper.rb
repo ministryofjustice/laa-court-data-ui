@@ -4,6 +4,8 @@
 # for producing markup of non-form
 # related markup.
 #
+require 'gds_design_system_breadcrumb_builder'
+
 module GovukDesignSystemHelper
   def govuk_page_title(title = nil)
     content_for :page_title, (title || contextual_title) + " - #{service_name} - GOV.UK"
@@ -13,6 +15,10 @@ module GovukDesignSystemHelper
         title || contextual_title
       end
     end
+  end
+
+  def govuk_breadcrumb_builder
+    GdsDesignSystemBreadcrumbBuilder
   end
 
   private

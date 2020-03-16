@@ -106,45 +106,35 @@ RSpec.feature 'Breadcrumb', type: :feature do
   end
 
   def then_has_case_ref_breadcrumbs
-    within_breadcrumbs do
-      expect(page).to have_link('Search filters')
-      expect(page).not_to have_link('Case ref search')
-      expect(page).to have_content('Case ref search')
-    end
+    expect(page).to have_govuk_breadcrumb_link('Search filters')
+    expect(page).not_to have_govuk_breadcrumb_link('Case ref search')
+    expect(page).to have_govuk_breadcrumb('Case ref search')
   end
 
   def then_has_defendant_ref_breadcrumbs
-    within_breadcrumbs do
-      expect(page).to have_link('Search filters')
-      expect(page).not_to have_link('Defendant ref search')
-      expect(page).to have_content('Defendant ref search')
-    end
+    expect(page).to have_govuk_breadcrumb_link('Search filters')
+    expect(page).not_to have_govuk_breadcrumb_link('Defendant ref search')
+    expect(page).to have_govuk_breadcrumb('Defendant ref search')
   end
 
   def then_has_defendant_name_breadcrumbs
-    within_breadcrumbs do
-      expect(page).to have_link('Search filters')
-      expect(page).not_to have_link('Defendant name search')
-      expect(page).to have_content('Defendant name search')
-    end
+    expect(page).to have_govuk_breadcrumb_link('Search filters')
+    expect(page).not_to have_govuk_breadcrumb_link('Defendant name search')
+    expect(page).to have_govuk_breadcrumb('Defendant name search')
   end
 
   def then_has_case_details_breadcrumbs
-    within_breadcrumbs do
-      expect(page).to have_link('Search filters')
-      expect(page).to have_link('Case ref search')
-      expect(page).not_to have_link('Case details')
-      expect(page).to have_content('Case details')
-    end
+    expect(page).to have_govuk_breadcrumb_link('Search filters')
+    expect(page).to have_govuk_breadcrumb_link('Case ref search')
+    expect(page).not_to have_govuk_breadcrumb_link('Case details')
+    expect(page).to have_govuk_breadcrumb('Case details')
   end
 
   def then_has_defendant_details_breadcrumbs(defendant_name)
-    within_breadcrumbs do
-      expect(page).to have_link('Search filters')
-      expect(page).to have_link('Case ref search')
-      expect(page).to have_link('Case details')
-      expect(page).not_to have_link(defendant_name)
-      expect(page).to have_content(defendant_name)
-    end
+    expect(page).to have_govuk_breadcrumb_link('Search filters')
+    expect(page).to have_govuk_breadcrumb_link('Case ref search')
+    expect(page).to have_govuk_breadcrumb_link('Case details')
+    expect(page).not_to have_govuk_breadcrumb_link(defendant_name)
+    expect(page).to have_govuk_breadcrumb(defendant_name)
   end
 end

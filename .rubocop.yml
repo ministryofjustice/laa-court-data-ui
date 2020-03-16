@@ -51,6 +51,10 @@ Metrics/MethodLength:
 Rails/FilePath:
   Enabled: false
 
+Rails/OutputSafety:
+  Exclude:
+    - lib/gds_design_system_breadcrumb_builder.rb
+
 RSpec/AnyInstance:
   Enabled: false
 
