@@ -8,6 +8,7 @@ ruby '2.7.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'breadcrumbs_on_rails'
 gem 'cancancan'
 gem 'devise', '~> 4.2'
 gem 'govuk_notify_rails', '~> 2.1.1'

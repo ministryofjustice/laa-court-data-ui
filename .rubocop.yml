@@ -30,13 +30,14 @@ Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
 Layout/LineLength:
-  Max: 100
+  Max: 110
   IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*', "body: '{\".*\":"]
   AllowHeredoc: true
 
 Metrics/AbcSize:
   Exclude:
     - app/models/ability.rb
+    - spec/features/**/*.rb
 
 Metrics/BlockLength:
   Exclude:
@@ -49,6 +50,10 @@ Metrics/MethodLength:
 # => Rails
 Rails/FilePath:
   Enabled: false
+
+Rails/OutputSafety:
+  Exclude:
+    - lib/gds_design_system_breadcrumb_builder.rb
 
 RSpec/AnyInstance:
   Enabled: false

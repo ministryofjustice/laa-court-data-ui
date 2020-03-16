@@ -11,23 +11,31 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, with: :unexpected_exception_handler
   rescue_from CanCan::AccessDenied, with: :access_denied
 
-  def set_back_page_path
-    session[:back_page_path] = request.path
+  def current_search_filter=(arg)
+    session[:current_search_filter] = arg
   end
 
-  def redirect_to_back_or_default(options = {})
-    redirect_to back_page_path, options
+  def current_search_filter
+    session[:current_search_filter]
   end
+  helper_method :current_search_filter
 
-  def back_page_path
-    session[:back_page_path] || authenticated_root_path
+  def search_breadcrumb_name
+    case current_search_filter
+    when 'case_reference'
+      'Case ref search'
+    when 'defendant_reference'
+      'Defendant ref search'
+    when 'defendant_name'
+      'Defendant name search'
+    end
   end
-  helper_method :back_page_path
+  helper_method :search_breadcrumb_name
 
-  def back_page_needed?
-    controller_name.eql?('searches')
+  def search_breadcrumb_path
+    new_search_path(search: { filter: current_search_filter })
   end
-  helper_method :back_page_needed?
+  helper_method :search_breadcrumb_path
 
   protected
 
@@ -36,7 +44,7 @@ class ApplicationController < ActionController::Base
       format.json { head :forbidden }
       format.html do
         flash[:alert] = exception.message
-        redirect_to_back_or_default
+        redirect_to authenticated_root_path
       end
     end
   end

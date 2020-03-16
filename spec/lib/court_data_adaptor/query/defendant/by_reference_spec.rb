@@ -21,6 +21,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
     before do
       allow(instance).to receive(:refresh_token_if_required!)
       allow(resource).to receive(:includes).with(:defendants).and_return(resultset)
+      allow(resultset).to receive(:includes).with('defendants.offences').and_return(resultset)
       allow(resultset).to receive(:where).and_return(resultset)
       allow(resultset).to receive(:all).and_return(resultset)
       allow(resultset).to receive(:each_with_object).and_return(Array)
@@ -33,6 +34,10 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
 
     it 'sends includes(:defendants) query to resource' do
       expect(resource).to have_received(:includes).with(:defendants)
+    end
+
+    it 'sends includes(\'defendants.offences\') query to resource' do
+      expect(resultset).to have_received(:includes).with('defendants.offences')
     end
 
     context 'with national insurance number' do
@@ -79,6 +84,10 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
       it 'populates prosecution_case_reference attribute' do
         case_refs = results.map(&:prosecution_case_reference)
         expect(case_refs).to be_present.and all(be_present)
+      end
+
+      it 'includes offences' do
+        expect(results).to all(respond_to(:offences))
       end
     end
 

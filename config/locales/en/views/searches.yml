@@ -17,18 +17,21 @@ en:
       caption: Search results
       defendant:
         arrest_summons_number: ASN
+        caption: Defendant details
         date_of_birth: Date of birth
+        heading: Defendants
+        maat_number: MAAT number
         name: Name
         national_insurance_number: NI number
         prosecution_case_reference: Case URN
-    result_count:
-      one: Search for "%{term}" returned 1 result
-      other: Search for "%{term}" returned %{count} results
-      zero: Search for "%{term}" returned 0 result
-    result_with_dob_count:
-      one: Search for "%{term}", born on "%{dob}" returned 1 result
-      other: Search for "%{term}", born on "%{dob}" returned %{count} results
-      zero: Search for "%{term}", born on "%{dob}" returned 0 results
+      heading: Search results for "%{term}"
+      heading_with_dob: Search results for "%{term}, %{dob}"
+      offence:
+        caption: Offence list
+        heading: Offences
+        mode_of_trial: Mode of trial
+        plea: Plea
+        title: Offence
     term:
       case_reference_label: Find a case
       case_reference_label_hint: Search by prosecution case reference

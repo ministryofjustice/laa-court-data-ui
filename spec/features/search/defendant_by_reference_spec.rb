@@ -17,7 +17,7 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: tr
       click_button 'Search'
 
       expect(page).to have_text(
-        'Search for "GP181930B" returned 1 result'
+        'Search results for "GP181930B"'
       )
       expect(page).to have_field('Find a defendant', with: 'GP181930B')
 

@@ -5,6 +5,9 @@ class SearchesController < ApplicationController
 
   rescue_from JsonApiClient::Errors::ConnectionError, with: :connection_error
 
+  add_breadcrumb 'Search filters', :new_search_filter_path
+  add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+
   def new
     @search = Search.new
     authorize! :new, @search
@@ -24,6 +27,10 @@ class SearchesController < ApplicationController
   end
 
   private
+
+  def search_params
+    params.require(:search).permit(:term, :dob, :filter)
+  end
 
   def filter
     @filter ||= search_params[:filter] || 'case_reference'
@@ -56,9 +63,5 @@ class SearchesController < ApplicationController
       @label = I18n.t('search.term.case_reference_label')
       @hint = I18n.t('search.term.case_reference_label_hint')
     end
-  end
-
-  def search_params
-    params.require(:search).permit(:term, :dob, :filter)
   end
 end

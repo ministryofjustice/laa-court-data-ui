@@ -1,5 +1,5 @@
 .govuk-heading-m
   - if @dob
-    = t('search.result_with_dob_count', term: @term, dob: l(@dob, format: :long), count: @results.size)
+    = t('search.result.heading_with_dob', term: @term, dob: l(@dob, format: :long))
   - else
-    = t('search.result_count', term: @term, count: @results.size)
+    = t('search.result.heading', term: @term)

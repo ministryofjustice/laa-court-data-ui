@@ -19,7 +19,7 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, js: true do
     click_button 'Search'
 
     expect(page).to have_text(
-      'Search for "Josefa Franecki", born on "15 June 1961" returned 1 result'
+      'Search results for "Josefa Franecki, 15 June 1961"'
     )
     expect(page).to have_field('Find a defendant', with: 'Josefa Franecki')
     expect(page).to have_field('Day', with: '15')
