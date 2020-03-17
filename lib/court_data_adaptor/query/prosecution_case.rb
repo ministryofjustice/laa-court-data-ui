@@ -9,9 +9,15 @@ module CourtDataAdaptor
         refresh_token_if_required!
 
         resource
-          .where(prosecution_case_reference: term)
+          .where(prosecution_case_reference: urn)
           .includes(:defendants)
           .all
+      end
+
+      private
+
+      def urn
+        term.delete("\s\t\r\n\/\-").upcase
       end
     end
   end

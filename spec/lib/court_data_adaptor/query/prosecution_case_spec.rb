@@ -12,7 +12,7 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
     subject(:call) { instance.call }
 
     let(:instance) { described_class.new(term) }
-    let(:term) { 'a-case-urn' }
+    let(:term) { 'ACASEURN' }
     let(:resource) { CourtDataAdaptor::Resource::ProsecutionCase }
     let(:resultset) { instance_double('ResultSet') }
 
@@ -31,7 +31,7 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
     it 'sends where query to resource' do
       expect(resource)
         .to have_received(:where)
-        .with(prosecution_case_reference: term)
+        .with(prosecution_case_reference: 'ACASEURN')
     end
 
     it 'sends includes(:defendants) query to resultset' do
@@ -40,6 +40,16 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
 
     it 'sends all message to resultset' do
       expect(resultset).to have_received(:all)
+    end
+
+    context 'with dirty term' do
+      let(:term) { 'a /case-URN' }
+
+      it 'strips whitespace and some symbols' do
+        expect(resource)
+          .to have_received(:where)
+          .with(prosecution_case_reference: 'ACASEURN')
+      end
     end
   end
 
