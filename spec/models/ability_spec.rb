@@ -3,12 +3,16 @@
 require 'cancan/matchers'
 
 RSpec.configure do |config|
-  config.alias_it_behaves_like_to :it_is_able_to, 'is able to'
+  config.alias_it_behaves_like_to :is_able_to, 'is able to'
 end
 
 RSpec.shared_examples 'perform search' do
   it { is_expected.to be_able_to(%i[new create], SearchFilter) }
   it { is_expected.to be_able_to(%i[new create], Search) }
+end
+
+RSpec.shared_examples 'link maat reference' do
+  it { is_expected.to be_able_to(:create, :link_maat_reference) }
 end
 
 RSpec.shared_examples 'manage themselves only' do
@@ -26,7 +30,8 @@ RSpec.shared_examples 'not manage others' do
   }
 end
 
-RSpec.fdescribe Ability, type: :model do
+# rubocop:disable RSpec/EmptyExampleGroup
+RSpec.describe Ability, type: :model do
   subject(:ability) { described_class.new(themself) }
 
   let(:other_user) { create(:user, roles: ['caseworker']) }
@@ -42,9 +47,10 @@ RSpec.fdescribe Ability, type: :model do
   context 'when a caseworker' do
     let(:themself) { create(:user, roles: ['caseworker']) }
 
-    it_is_able_to 'manage themselves only'
-    it_is_able_to 'not manage others'
-    it_is_able_to 'perform search'
+    is_able_to 'manage themselves only'
+    is_able_to 'not manage others'
+    is_able_to 'perform search'
+    is_able_to 'link maat reference'
   end
 
   context 'when a manager' do
@@ -52,14 +58,18 @@ RSpec.fdescribe Ability, type: :model do
 
     it { is_expected.to be_able_to(:manage, themself) }
     it { is_expected.to be_able_to(:manage, other_user) }
-    it_is_able_to 'perform search'
+
+    is_able_to 'perform search'
+    is_able_to 'link maat reference'
   end
 
   context 'when an admin' do
     let(:themself) { create(:user, roles: ['admin']) }
 
-    it_is_able_to 'manage themselves only'
-    it_is_able_to 'not manage others'
-    it_is_able_to 'perform search'
+    is_able_to 'manage themselves only'
+    is_able_to 'not manage others'
+    is_able_to 'perform search'
+    is_able_to 'link maat reference'
   end
 end
+# rubocop:enable RSpec/EmptyExampleGroup

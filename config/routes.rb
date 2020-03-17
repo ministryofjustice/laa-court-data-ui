@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :searches, only: %i[new create]
   resources :prosecution_cases, only: %i[show]
   resources :defendants, only: %i[show]
+  resources :laa_references, only: %i[create destroy]
 
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',

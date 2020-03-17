@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/GuardClause
 class Ability
   include CanCan::Ability
 
@@ -38,31 +37,39 @@ class Ability
 
     alias_action :change_password, :update_password, to: :manage_password
 
-    if user.caseworker?
-      can_search
-      can_manage_self
-    end
-
-    if user.manager?
-      can_search
-      can :manage, User
-    end
-
-    if user.admin?
-      can_search
-      can_manage_self
-    end
+    caseworker_abilities if user.caseworker?
+    manager_abilities if user.manager?
+    admin_abilities if user.admin?
   end
 
   private
+
+  def caseworker_abilities
+    can_search
+    can_manage_links
+    can_manage_self
+  end
+
+  def manager_abilities
+    can_search
+    can_manage_links
+    can :manage, User
+  end
+
+  def admin_abilities
+    caseworker_abilities
+  end
 
   def can_search
     can %i[new create], SearchFilter
     can %i[new create], Search
   end
 
+  def can_manage_links
+    can :create, :link_maat_reference
+  end
+
   def can_manage_self
     can %i[show manage_password], User, id: user.id
   end
 end
-# rubocop:enable Style/GuardClause

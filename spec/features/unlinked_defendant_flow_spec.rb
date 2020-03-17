@@ -30,6 +30,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, vcr: true do
     then_defendant_view_displayed_for('Josefa Franecki')
     then_has_defendant_details
     then_has_offence_details
+    then_has_laa_reference_forms
   end
 
   def when_viewing_case(case_urn)
@@ -91,5 +92,10 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, vcr: true do
       expect(page).to have_css('.govuk-table__header', text: 'Plea')
       expect(page).to have_css('.govuk-table__header', text: 'Mode of trial')
     end
+  end
+
+  def then_has_laa_reference_forms
+    expect(page).to have_field('MAAT ID')
+    expect(page).to have_button('Create link to court data')
   end
 end
