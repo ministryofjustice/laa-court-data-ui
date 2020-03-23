@@ -36,8 +36,15 @@ module CapybaraExtensions
     end
 
     def has_govuk_breadcrumb_link?(text = nil, options = {})
+      href = options.delete(:href)
       text ? options[:text] = text : options
-      has_selector?(breadcrumb_link_selector, options)
+      result = has_selector?(breadcrumb_link_selector, options)
+
+      if href
+        actual_href = find(breadcrumb_link_selector, text: text)['href']
+        result = CGI.unescape(href).eql?(CGI.unescape(actual_href))
+      end
+      result
     end
 
     private

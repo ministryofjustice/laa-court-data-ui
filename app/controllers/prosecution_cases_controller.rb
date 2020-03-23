@@ -3,7 +3,7 @@
 class ProsecutionCasesController < ApplicationController
   before_action :load_and_authorize_search
 
-  add_breadcrumb 'Search filters', :new_search_filter_path
+  add_breadcrumb :new_search_filter_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
   def show

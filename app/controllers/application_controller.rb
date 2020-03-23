@@ -20,15 +20,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_search_filter
 
+  def new_search_filter_name
+    I18n.t('search_filter.breadcrumb')
+  end
+  helper_method :new_search_filter_name
+
   def search_breadcrumb_name
-    case current_search_filter
-    when 'case_reference'
-      'Case ref search'
-    when 'defendant_reference'
-      'Defendant ref search'
-    when 'defendant_name'
-      'Defendant name search'
-    end
+    I18n.t('search.breadcrumb')
   end
   helper_method :search_breadcrumb_name
 
