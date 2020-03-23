@@ -4,7 +4,8 @@
   "version": "1.21.1",
   "scripts": {
     "lint-js": "standard",
-    "lint-sass": "sass-lint -v"
+    "lint-sass": "sass-lint -v",
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@rails/ujs": "^6.0.0",
@@ -12,11 +13,21 @@
     "govuk-frontend": "^3.6.0"
   },
   "devDependencies": {
+    "jest": "^25.1.0",
     "sass-lint": "^1.13.1",
     "standard": "^14.3.3",
     "webpack-dev-server": "^3.10.3"
   },
   "resolutions": {
     "minimist": "^1.2.2"
+  },
+  "jest": {
+    "roots": [
+      "spec/javascript"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "app/webpack/javascript"
+    ]
   }
 }

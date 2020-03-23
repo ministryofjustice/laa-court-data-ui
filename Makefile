@@ -36,6 +36,8 @@ test: #: run test suite locally
 	@printf "\e[33mMAKE: linters...\e[0m\n"
 	@yarn run lint-js
 	@yarn run lint-sass
+	@printf "\e[33mMAKE: jest...\e[0m\n"
+	@yarn test
 	@printf "\e[33mMAKE: rspec...\e[0m\n"
 	@RUBYOPT=-W:no-deprecated bundle exec rspec --format progress
 
