@@ -18,5 +18,10 @@ module Breadcrumbs
       new_search_path(search: { filter: current_search_filter })
     end
     helper_method :search_breadcrumb_path
+
+    def prosecution_case_name(reference)
+      I18n.t('prosecution_case.breadcrumb', prosecution_case_reference: reference)
+    end
+    helper_method :prosecution_case_name
   end
 end

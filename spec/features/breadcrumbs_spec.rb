@@ -55,17 +55,17 @@ RSpec.feature 'Breadcrumb', type: :feature do
       click_link('MOGUERBXIZ', match: :first)
       expect(page).to have_current_path(prosecution_case_path('MOGUERBXIZ'))
 
-      then_has_case_details_breadcrumbs
+      then_has_case_details_breadcrumbs('MOGUERBXIZ')
 
       click_link('Josefa Franecki')
       expect(page).to have_current_path(%r{\/defendants\/.+})
 
-      then_has_defendant_details_breadcrumbs('Josefa Franecki')
+      then_has_defendant_details_breadcrumbs('MOGUERBXIZ', 'Josefa Franecki')
 
-      click_breadcrumb 'Case details'
+      click_breadcrumb 'Case MOGUERBXIZ'
 
       expect(page).to have_current_path(prosecution_case_path('MOGUERBXIZ'))
-      then_has_case_details_breadcrumbs
+      then_has_case_details_breadcrumbs('MOGUERBXIZ')
 
       click_breadcrumb 'Search'
       expect(page).to have_current_path(new_search_path(search: { filter: 'case_reference' }))
@@ -123,17 +123,17 @@ RSpec.feature 'Breadcrumb', type: :feature do
     expect(page).to have_govuk_breadcrumb('Search', aria_current: true)
   end
 
-  def then_has_case_details_breadcrumbs
+  def then_has_case_details_breadcrumbs(case_ref)
     expect(page).to have_govuk_breadcrumb_link('Home')
     expect(page).to have_govuk_breadcrumb_link('Search', href: '/searches/new?search[filter]=case_reference')
-    expect(page).not_to have_govuk_breadcrumb_link('Case details')
-    expect(page).to have_govuk_breadcrumb('Case details', aria_current: true)
+    expect(page).not_to have_govuk_breadcrumb_link(/Case/)
+    expect(page).to have_govuk_breadcrumb("Case #{case_ref}", aria_current: true)
   end
 
-  def then_has_defendant_details_breadcrumbs(defendant_name)
+  def then_has_defendant_details_breadcrumbs(case_ref, defendant_name)
     expect(page).to have_govuk_breadcrumb_link('Home')
     expect(page).to have_govuk_breadcrumb_link('Search')
-    expect(page).to have_govuk_breadcrumb_link('Case details')
+    expect(page).to have_govuk_breadcrumb_link("Case #{case_ref}")
     expect(page).not_to have_govuk_breadcrumb_link(defendant_name)
     expect(page).to have_govuk_breadcrumb(defendant_name, aria_current: true)
   end

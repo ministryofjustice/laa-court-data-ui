@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
 
   rescue_from JsonApiClient::Errors::ConnectionError, with: :connection_error
 
-  add_breadcrumb :new_search_filter_name, :new_search_filter_path
+  add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
   def new
