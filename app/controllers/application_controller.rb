@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Breadcrumbs
+
   default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
   protect_from_forgery prepend: true, with: :exception
   before_action :authenticate_user!
@@ -19,21 +21,6 @@ class ApplicationController < ActionController::Base
     session[:current_search_filter]
   end
   helper_method :current_search_filter
-
-  def new_search_filter_name
-    I18n.t('search_filter.breadcrumb')
-  end
-  helper_method :new_search_filter_name
-
-  def search_breadcrumb_name
-    I18n.t('search.breadcrumb')
-  end
-  helper_method :search_breadcrumb_name
-
-  def search_breadcrumb_path
-    new_search_path(search: { filter: current_search_filter })
-  end
-  helper_method :search_breadcrumb_path
 
   protected
 
