@@ -42,12 +42,7 @@ en:
       defendant_reference_label_hint: Enter full national insurance number or arrest summons number
   search_filter:
     breadcrumb: Home
-    label_hint: Choose an option
-    legend_text: How do you want to search?
-    page_title: Search filters
-    radio_case_reference_label: Search for a case by URN
-    radio_case_reference_label_hint: Unique reference number
-    radio_defendant_name_label: Search for a defendant by name and date of birth
-    radio_defendant_name_label_hint: Name and date of birth
-    radio_defendant_reference_label: Search for a defendant by reference
-    radio_defendant_reference_label_hint: National insurance or Arrest summons number
+    legend_text: Search for
+    radio_case_reference_label: A case by URN
+    radio_defendant_name_label_html: A defendant by name <b>and</b> date of birth
+    radio_defendant_reference_label_html: A defendant by ASN <b>or</b> National insurance number

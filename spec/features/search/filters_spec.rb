@@ -10,13 +10,13 @@ RSpec.feature 'Search filters', type: :feature, js: true do
   scenario 'user visits search filter options' do
     visit '/'
 
-    expect(page).to have_text('How do you want to search?')
+    expect(page).to have_css('h1', text: 'Search for')
     expect(page).to have_css('.govuk-radios__item',
-                             text: 'Search for a case by URN')
+                             text: 'A case by URN')
     expect(page).to have_css('.govuk-radios__item',
-                             text: 'Search for a defendant by reference')
+                             text: 'A defendant by ASN or National insurance number')
     expect(page).to have_css('.govuk-radios__item',
-                             text: 'Search for a defendant by name and date of birth')
+                             text: 'A defendant by name and date of birth')
 
     expect(page).to be_accessible.within '#main-content'
   end
@@ -24,7 +24,7 @@ RSpec.feature 'Search filters', type: :feature, js: true do
   scenario 'user chooses defendant filter' do
     visit '/'
 
-    choose 'Search for a defendant by name and date of birth'
+    choose 'A defendant by name and date of birth'
     click_button 'Continue'
     expect(page).to have_text('Find a defendant')
 
@@ -34,7 +34,7 @@ RSpec.feature 'Search filters', type: :feature, js: true do
   scenario 'user chooses case number filter' do
     visit '/'
 
-    choose 'Search for a case by URN'
+    choose 'A case by URN'
     click_button 'Continue'
     expect(page).to have_text('Find a case')
 

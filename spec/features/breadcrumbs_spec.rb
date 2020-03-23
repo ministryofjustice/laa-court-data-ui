@@ -29,27 +29,27 @@ RSpec.feature 'Breadcrumb', type: :feature do
 
     context 'when on case reference search page' do
       scenario 'expected breadcrumbs are displayed' do
-        when_i_choose_search_filter 'Search for a case by URN'
+        when_i_choose_search_filter 'A case by URN'
         then_has_case_ref_search_breadcrumbs
       end
     end
 
     context 'when on defendant reference search page' do
       scenario 'expected breadcrumbs are displayed' do
-        when_i_choose_search_filter 'Search for a defendant by reference'
+        when_i_choose_search_filter 'A defendant by ASN or National insurance number'
         then_has_defendant_ref_search_breadcrumbs
       end
     end
 
     context 'when on defendant name and dob search page' do
       scenario 'expected breadcrumbs are displayed' do
-        when_i_choose_search_filter 'Search for a defendant by name and date of birth'
+        when_i_choose_search_filter 'A defendant by name and date of birth'
         then_has_defendant_name_search_breadcrumbs
       end
     end
 
     scenario 'user navigates search, prosecution case and defendant details pages', :vcr do
-      when_i_choose_search_filter 'Search for a case by URN'
+      when_i_choose_search_filter 'A case by URN'
       when_i_search_for 'MOGUERBXIZ'
 
       click_link('MOGUERBXIZ', match: :first)

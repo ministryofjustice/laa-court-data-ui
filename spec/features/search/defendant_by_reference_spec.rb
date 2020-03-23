@@ -11,7 +11,7 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: tr
     scenario 'with one result' do
       visit '/'
 
-      choose 'Search for a defendant by reference'
+      choose 'A defendant by ASN or National insurance number'
       click_button 'Continue'
       fill_in 'search-term-field', with: 'GP181930B'
       click_button 'Search'
@@ -31,7 +31,7 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: tr
     scenario 'with no results' do
       visit '/'
 
-      choose 'Search for a defendant by reference'
+      choose 'A defendant by ASN or National insurance number'
       click_button 'Continue'
       fill_in 'search-term-field', with: 'GP999999B'
       click_button 'Search'
@@ -44,7 +44,7 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: tr
     scenario 'with no defendant reference specified' do
       visit '/'
 
-      choose 'Search for a defendant by reference'
+      choose 'A defendant by ASN or National insurance number'
       click_button 'Continue'
       fill_in 'search-term-field', with: ''
       click_button 'Search'

@@ -10,7 +10,7 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
   scenario 'with multiple defendants on case' do
     visit '/'
 
-    choose 'Search for a case by URN'
+    choose 'A case by URN'
     click_button 'Continue'
     fill_in 'search-term-field', with: 'MOGUERBXIZ'
     click_button 'Search'
@@ -26,7 +26,7 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
   scenario 'with non existent case URN' do
     visit '/'
 
-    choose 'Search for a case by URN'
+    choose 'A case by URN'
     click_button 'Continue'
     fill_in 'search-term-field', with: 'non-existent-caseURN'
     click_button 'Search'
@@ -38,7 +38,7 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
   scenario 'with no case reference provided' do
     visit '/'
 
-    choose 'Search for a case by URN'
+    choose 'A case by URN'
     click_button 'Continue'
     fill_in 'search-term-field', with: ''
     click_button 'Search'
