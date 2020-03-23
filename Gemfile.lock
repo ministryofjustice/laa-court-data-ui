@@ -259,7 +259,7 @@ GEM
       nio4r (~> 2.0)
     puma (4.3.3-java)
       nio4r (~> 2.0)
-    rack (2.0.9)
+    rack (2.2.2)
     rack-contrib (2.1.0)
       rack (~> 2.0)
     rack-protection (2.0.8.1)
@@ -356,11 +356,11 @@ GEM
       rubyzip (>= 1.2.2)
     semantic_range (2.3.0)
     sexp_processor (4.14.1)
-    sidekiq (5.2.8)
-      connection_pool (~> 2.2, >= 2.2.2)
-      rack (< 2.1.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 5)
+    sidekiq (6.0.5)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      rack-protection (>= 2.0.0)
+      redis (>= 4.1.0)
     simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -472,7 +472,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
-  sidekiq (~> 5.2.7)
+  sidekiq (~> 6.0.5)
   simplecov (~> 0.17.1)
   spring
   spring-watcher-listen (~> 2.0.0)
