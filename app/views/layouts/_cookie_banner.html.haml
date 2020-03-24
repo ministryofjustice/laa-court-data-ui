@@ -1,0 +1,14 @@
+.app-cookie-banner.app-cookie-banner--hidden{ 'aria-label': 'cookie banner', 'data-module': 'app-cookie-banner', role: 'region' }
+  .govuk-width-container
+    .govuk-grid-row
+      .govuk-grid-column-two-thirds
+        .cookie-banner__message
+          %p.govuk-body
+            =t('layouts.application.cookies.cookie_banner_message_html', page_path: cookies_path)
+
+        .cookie-banner__button
+          %button.govuk-button{ 'data-accept-cookies': 'true', 'data-module': 'govuk-button' }
+            =t('layouts.application.cookies.accept_cookies')
+
+          %button.govuk-button{ 'data-reject-cookies': 'true', 'data-module': 'govuk-button'}
+            =t('layouts.application.cookies.refuse_cookies')
