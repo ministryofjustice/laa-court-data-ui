@@ -9,6 +9,7 @@
   "dependencies": {
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.0.1",
+    "dotenv": "^8.2.0",
     "govuk-frontend": "^3.6.0"
   },
   "devDependencies": {
@@ -18,5 +19,11 @@
   },
   "resolutions": {
     "minimist": "^1.2.2"
+  },
+  "standard": {
+    "globals": [
+      "dataLayer",
+      "googleTrackingID"
+    ]
   }
 }

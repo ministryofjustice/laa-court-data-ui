@@ -4,9 +4,14 @@
 // that code so it'll be compiled.
 
 import '../stylesheets/application.scss'
+import { loadAnalytics } from '../javascripts/analytics.js'
+import CookieBanner from '../javascripts/cookie-banner'
+require('dotenv').config()
 require('@rails/ujs').start()
 require('govuk-frontend').initAll()
 require.context('govuk-frontend/govuk/assets')
+loadAnalytics()
+new CookieBanner() // eslint-disable-line
 // require("@rails/activestorage").start();
 // require("channels");
 
