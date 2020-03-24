@@ -34,7 +34,7 @@ Brewfile.lock.json
 
 # dotenv (gem) ignores
 # check https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
-.env
+# .env
 .env.local
 .env.**.local
 
