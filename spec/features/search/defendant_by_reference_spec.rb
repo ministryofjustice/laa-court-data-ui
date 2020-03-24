@@ -19,7 +19,7 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: tr
       expect(page).to have_text(
         'Search results for "GP181930B"'
       )
-      expect(page).to have_field('Find a defendant', with: 'GP181930B')
+      expect(page).to have_field('Defendant ASN or National insurance number', with: 'GP181930B')
 
       within 'tbody.govuk-table__body' do
         expect(page).to have_content('GP181930B').once

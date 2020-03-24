@@ -36,12 +36,9 @@ en:
         plea: Plea
         title: Offence
     term:
-      case_reference_label: Find a case
-      case_reference_label_hint: Enter full case unique reference number
-      defendant_name_label: Find a defendant
-      defendant_name_label_hint: Enter full name of defendant
-      defendant_reference_label: Find a defendant
-      defendant_reference_label_hint: Enter full national insurance number or arrest summons number
+      case_reference_label: Unique reference number
+      defendant_name_label: Defendant name
+      defendant_reference_label: Defendant ASN or National insurance number
   search_filter:
     breadcrumb: Home
     legend_text: Search for

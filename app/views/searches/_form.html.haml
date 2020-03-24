@@ -1,7 +1,7 @@
 = form_with model: @search, local: true do |f|
   = f.govuk_error_summary
   = f.hidden_field(:filter, value: @filter)
-  = f.govuk_text_field(:term, value: @term, label: { text: @label }, hint_text: @hint )
+  = f.govuk_text_field(:term, value: @term, label: { text: @label })
 
   - if @filter.eql?('defendant_name')
     = f.govuk_date_field :dob,

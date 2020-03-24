@@ -21,7 +21,7 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, js: true do
     expect(page).to have_text(
       'Search results for "Josefa Franecki, 15 June 1961"'
     )
-    expect(page).to have_field('Find a defendant', with: 'Josefa Franecki')
+    expect(page).to have_field('Defendant name', with: 'Josefa Franecki')
     expect(page).to have_field('Day', with: '15')
     expect(page).to have_field('Month', with: '6')
     expect(page).to have_field('Year', with: '1961')

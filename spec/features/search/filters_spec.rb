@@ -21,12 +21,22 @@ RSpec.feature 'Search filters', type: :feature, js: true do
     expect(page).to be_accessible.within '#main-content'
   end
 
-  scenario 'user chooses defendant filter' do
+  scenario 'user chooses defendant ASN or NI filter' do
+    visit '/'
+
+    choose 'A defendant by ASN or National insurance number'
+    click_button 'Continue'
+    expect(page).to have_text('Defendant ASN or National insurance number')
+
+    expect(page).to be_accessible.within '#main-content'
+  end
+
+  scenario 'user chooses defendant name filter' do
     visit '/'
 
     choose 'A defendant by name and date of birth'
     click_button 'Continue'
-    expect(page).to have_text('Find a defendant')
+    expect(page).to have_text('Defendant name')
 
     expect(page).to be_accessible.within '#main-content'
   end
@@ -36,7 +46,7 @@ RSpec.feature 'Search filters', type: :feature, js: true do
 
     choose 'A case by URN'
     click_button 'Continue'
-    expect(page).to have_text('Find a case')
+    expect(page).to have_text('Unique reference number')
 
     expect(page).to be_accessible.within '#main-content'
   end
