@@ -6,7 +6,6 @@ en:
     breadcrumb: Search
     connection_error: Connection error, please try again soon!
     dob:
-      hint_text: For example, 31 3 1980
       legend_text: Defendant date of birth
     no_result:
       body: There are no matching results.

@@ -1,0 +1,4 @@
+.govuk-date-fieldset-m .govuk-fieldset__heading {
+  @include govuk-font($size: 19)
+  margin-bottom: govuk-spacing(1);
+}

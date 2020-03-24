@@ -4,8 +4,8 @@
   = f.govuk_text_field(:term, value: @term, label: { text: @label })
 
   - if @filter.eql?('defendant_name')
-    = f.govuk_date_field :dob,
-      legend: { text: t('search.dob.legend_text') },
-      hint_text: t('search.dob.hint_text')
+    .govuk-date-fieldset-m
+      = f.govuk_date_field :dob,
+        legend: { text: t('search.dob.legend_text') }
 
   = f.govuk_submit( t('generic.search') )
