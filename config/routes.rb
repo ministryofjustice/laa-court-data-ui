@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   end
 
   resources :search_filters, only: %i[new create]
-  resources :searches, only: %i[new create]
+  resources :searches, only: %i[new create] do
+    get :create, on: :collection
+  end
+
   resources :prosecution_cases, only: %i[show]
   resources :defendants, only: %i[show]
   resources :laa_references, only: %i[create destroy]

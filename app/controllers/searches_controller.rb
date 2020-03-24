@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
-  before_action :set_view_options
+  before_action :set_search_options
 
   rescue_from JsonApiClient::Errors::ConnectionError, with: :connection_error
 
@@ -49,6 +49,14 @@ class SearchesController < ApplicationController
       if day.present? && month.present? && year.present?
   rescue Date::Error
     nil
+  end
+
+  def set_search_options
+    filter
+    term
+    dob
+    set_view_options
+    self.current_search_params = search_params
   end
 
   def set_view_options

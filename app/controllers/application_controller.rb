@@ -13,14 +13,14 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, with: :unexpected_exception_handler
   rescue_from CanCan::AccessDenied, with: :access_denied
 
-  def current_search_filter=(arg)
-    session[:current_search_filter] = arg
+  def current_search_params=(params)
+    session[:current_search_params] = params
   end
 
-  def current_search_filter
-    session[:current_search_filter]
+  def current_search_params
+    session[:current_search_params]
   end
-  helper_method :current_search_filter
+  helper_method :current_search_params
 
   protected
 

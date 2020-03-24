@@ -15,7 +15,7 @@ module Breadcrumbs
     helper_method :search_breadcrumb_name
 
     def search_breadcrumb_path
-      new_search_path(search: { filter: current_search_filter })
+      searches_path(search: current_search_params)
     end
     helper_method :search_breadcrumb_path
 
