@@ -8,27 +8,27 @@ class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builde
   def render
     @context.content_tag(:div, class: 'govuk-breadcrumbs') do
       @context.content_tag(:ol, class: 'govuk-breadcrumbs__list') do
-        @elements.collect do |element|
-          render_element(element)
+        @elements.collect.with_index do |element, idx|
+          render_element(element, last: idx.eql?(@elements.size - 1))
         end.join('').html_safe
       end
     end
   end
 
-  def render_element(element)
+  def render_element(element, last: false)
     content = if element.path.nil?
                 compute_name(element)
               else
-                @context.link_to_unless_current(
-                  compute_name(element),
-                  compute_path(element),
-                  element.options.merge(class: 'govuk-breadcrumbs__link')
-                )
+                name = compute_name(element)
+                path = compute_path(element)
+                options = element.options.merge(class: 'govuk-breadcrumbs__link')
+                is_current = @context.current_page?(path) || last
+                @context.link_to_unless(is_current, name, path, options)
               end
 
     tag_options = {}
     tag_options[:class] = 'govuk-breadcrumbs__list-item'
-    tag_options['aria-current'] = 'page' if @context.current_page?(compute_path(element))
+    tag_options['aria-current'] = 'page' if is_current
     @context.content_tag(:li, content, tag_options)
   end
 end

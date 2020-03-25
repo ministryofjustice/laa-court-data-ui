@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.ffeature 'Breadcrumb', type: :feature do
+RSpec.feature 'Breadcrumb', type: :feature do
   let(:user) { create(:user) }
 
   context 'when not signed in' do
@@ -68,7 +68,14 @@ RSpec.ffeature 'Breadcrumb', type: :feature do
       then_has_case_details_breadcrumbs('MOGUERBXIZ')
 
       click_breadcrumb 'Search'
-      expect(page).to have_current_path(searches_path(search: { filter: 'case_reference', term: 'MOGUERBXIZ' }))
+      expect(page).to have_current_path(
+        searches_path(
+          search: {
+            filter: 'case_reference',
+            term: 'MOGUERBXIZ'
+          }
+        )
+      )
       then_has_case_ref_search_breadcrumbs
 
       click_breadcrumb 'Home'
@@ -125,7 +132,10 @@ RSpec.ffeature 'Breadcrumb', type: :feature do
 
   def then_has_case_details_breadcrumbs(case_ref)
     expect(page).to have_govuk_breadcrumb_link('Home')
-    expect(page).to have_govuk_breadcrumb_link('Search', href: "/searches?search[filter]=case_reference&search[term]=#{case_ref}")
+    expect(page).to have_govuk_breadcrumb_link(
+      'Search',
+      href: %r{\/searches\?search.*#{case_ref}}
+    )
     expect(page).not_to have_govuk_breadcrumb_link(/Case/)
     expect(page).to have_govuk_breadcrumb("Case #{case_ref}", aria_current: true)
   end
