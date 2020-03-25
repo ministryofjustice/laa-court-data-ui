@@ -36,7 +36,7 @@ group :test do
   gem 'i18n-tasks', '~> 0.9.31'
   gem 'launchy'
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0'
   gem 'rspec_junit_formatter'
   gem 'rubocop', '~> 0.80', require: false
   gem 'rubocop-performance', require: false
