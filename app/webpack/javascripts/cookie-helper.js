@@ -26,11 +26,11 @@ const checkConsentedToCookieExists = () => {
 }
 
 const removeAllPreviousUsedCookies = () => {
-  const constentCookieExist = String(getCookie('cookies_preferences_set')) === 'true'
+  const consentCookieExist = String(getCookie('cookies_preferences_set')) === 'true'
 
   const cookies = document.cookie.split(/;/)
 
-  if (constentCookieExist === false) {
+  if (consentCookieExist === false) {
     for (let i = 0, len = cookies.length; i < len; i++) {
       const cookie = cookies[i].split(/=/)
       const cookieName = cookie[0].trim()

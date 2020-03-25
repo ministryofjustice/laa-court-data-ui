@@ -1,7 +1,7 @@
 ---
 en:
   cookies:
-    page_title: Cookies on View court data
+    page_title: Cookies on %{service_name}
     section_four:
       paragraph_one: These essential cookies do things like remember your progress during your session.
       section_heading: Strictly necessary cookies
