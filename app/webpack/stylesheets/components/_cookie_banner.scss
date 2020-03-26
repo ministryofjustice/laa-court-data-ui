@@ -1,0 +1,14 @@
+.app-cookie-banner {
+  @include govuk-media-query($media-type: print) {
+    display: none;
+  }
+
+  &--hidden {
+    display: none;
+  }
+
+  .govuk-body {
+    @include govuk-responsive-margin(4, "top");
+  }
+}
+

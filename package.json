@@ -18,5 +18,11 @@
   },
   "resolutions": {
     "minimist": "^1.2.2"
+  },
+  "standard": {
+    "globals": [
+      "dataLayer",
+      "googleTrackingID"
+    ]
   }
 }

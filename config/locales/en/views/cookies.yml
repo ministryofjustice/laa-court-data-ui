@@ -1,0 +1,20 @@
+---
+en:
+  cookies:
+    page_title: Cookies on %{service_name}
+    section_four:
+      paragraph_one: These essential cookies do things like remember your progress during your session.
+      section_heading: Strictly necessary cookies
+    section_one:
+      paragraph_one: Cookies are files saved on your phone, tablet or computer when you visit a website.
+      paragraph_two: We use cookies to store information about how you use this website, such as the pages you visit.
+    section_three:
+      paragraph_one: These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.
+      section_heading: Cookies that remember your settings
+    section_two:
+      list_item_one: how you got to the site
+      list_item_three: what you click on while you're visiting the site
+      list_item_two: the pages you visit on this service
+      paragraph_one: We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
+      paragraph_two: Google Analytics sets cookies that store anonymised information about:\
+      section_heading: Cookies that measure website use

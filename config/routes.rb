@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     patch 'update_password', on: :member
   end
 
+  get 'cookies', to: 'help#cookies'
+
   get 'ping', to: 'status#ping', format: :json
 
   get '/401', to: 'errors#unauthorized'
