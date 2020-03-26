@@ -64,6 +64,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, vcr: true do
         cells = row.all('.govuk-table__cell')
         expect(cells[0]).to have_link(nil, href: %r{\/defendants\/.*})
         expect(cells[1].text).to match(%r{[0-3][0-9]\/[0-1][0-9]\/[1-2][0|9](?:[0-9]{2})?})
+        expect(cells[2].text).to eql 'Not linked'
       end
     end
   end

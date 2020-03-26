@@ -26,6 +26,7 @@ en:
         name: Name
         national_insurance_number: NI number
         prosecution_case_reference: Case URN
+        unlinked: Not linked
       heading: Search results for "%{term}"
       heading_with_dob: Search results for "%{term}, %{dob}"
       offence:

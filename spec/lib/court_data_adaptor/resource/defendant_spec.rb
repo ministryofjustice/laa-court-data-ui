@@ -31,4 +31,32 @@ RSpec.describe CourtDataAdaptor::Resource::Defendant do
       end
     end
   end
+
+  describe '#linked?' do
+    subject { defendant.linked? }
+
+    context 'when is_linked true' do
+      let(:defendant) { described_class.load(is_linked: true) }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context 'when is_linked false' do
+      let(:defendant) { described_class.load(is_linked: false) }
+
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when is_linked nil' do
+      let(:defendant) { described_class.load(is_linked: nil) }
+
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when is_linked not present' do
+      let(:defendant) { described_class.load(first_name: nil, last_name: nil) }
+
+      it { is_expected.to be_falsey }
+    end
+  end
 end

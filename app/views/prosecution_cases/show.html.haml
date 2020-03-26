@@ -19,4 +19,7 @@
           %td.govuk-table__cell
             = l(defendant.date_of_birth&.to_date)
           %td.govuk-table__cell
-            = 'Not linked'
+            - if defendant.linked?
+              = 'TODO: retrieve MAAT reference'
+            - else
+              = t('search.result.defendant.unlinked')
