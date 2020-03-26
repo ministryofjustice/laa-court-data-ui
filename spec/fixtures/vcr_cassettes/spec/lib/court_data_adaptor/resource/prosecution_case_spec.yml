@@ -14,7 +14,7 @@ http_interactions:
       Accept:
       - application/vnd.api+json
       Authorization:
-      - Bearer RYc0X-CeP3YX2ZF3jCJYlJDntSW3NWcHhGFQDRORrAA
+      - Bearer <BEARER_TOKEN>
       Accept-Encoding:
       - gzip,deflate
   response:
@@ -35,22 +35,22 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Content-Type:
-      - application/json; charset=utf-8
+      - application/vnd.api+json; charset=utf-8
       Etag:
       - W/"ba5f3ea40e95f49bce11942f375ebd38"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - fafbc50a-4845-4cee-8fdc-b7ba935fc92c
+      - 3fc02c1a-8a78-4a77-9665-22a2f1cf4a5d
       X-Runtime:
-      - '0.044258'
-      Transfer-Encoding:
-      - chunked
+      - '0.033565'
+      Content-Length:
+      - '13'
     body:
       encoding: UTF-8
       string: '{"data":null}'
     http_version: null
-  recorded_at: Sat, 29 Feb 2020 17:19:39 GMT
+  recorded_at: Thu, 26 Mar 2020 14:57:37 GMT
 - request:
     method: get
     uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ
@@ -65,7 +65,7 @@ http_interactions:
       Accept:
       - application/vnd.api+json
       Authorization:
-      - Bearer RYc0X-CeP3YX2ZF3jCJYlJDntSW3NWcHhGFQDRORrAA
+      - Bearer <BEARER_TOKEN>
       Accept-Encoding:
       - gzip,deflate
   response:
@@ -86,22 +86,22 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Content-Type:
-      - application/json; charset=utf-8
+      - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"218320cf0f76fec75e2e5253b03139e5"
+      - W/"d725e0745fec01859c8a2859a605c710"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - a28ee461-3463-49bd-acb6-6096cb4c471e
+      - a370277c-76c9-4345-ab2d-e488b970d309
       X-Runtime:
-      - '0.134274'
-      Transfer-Encoding:
-      - chunked
+      - '0.088029'
+      Content-Length:
+      - '446'
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"2dc8dd46-d930-4878-a0a6-68ae8642cd9e","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants"},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants"},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants"},{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants"}]},"hearing_summaries":{"data":[]}}}]}'
+      string: '{"data":[{"id":"2dc8dd46-d930-4878-a0a6-68ae8642cd9e","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants"},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants"},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants"},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants"}]}}}]}'
     http_version: null
-  recorded_at: Sat, 29 Feb 2020 17:19:39 GMT
+  recorded_at: Thu, 26 Mar 2020 14:57:37 GMT
 - request:
     method: get
     uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=non-existent-urn&include=defendants
@@ -116,7 +116,7 @@ http_interactions:
       Accept:
       - application/vnd.api+json
       Authorization:
-      - Bearer RYc0X-CeP3YX2ZF3jCJYlJDntSW3NWcHhGFQDRORrAA
+      - Bearer <BEARER_TOKEN>
       Accept-Encoding:
       - gzip,deflate
   response:
@@ -137,22 +137,22 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Content-Type:
-      - application/json; charset=utf-8
+      - application/vnd.api+json; charset=utf-8
       Etag:
       - W/"ba5f3ea40e95f49bce11942f375ebd38"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 6abc4515-c874-47a1-9d98-b60ee9c09214
+      - 46cad776-6cd3-4588-aea3-b0b6a4bf99d7
       X-Runtime:
-      - '0.036029'
-      Transfer-Encoding:
-      - chunked
+      - '0.032146'
+      Content-Length:
+      - '13'
     body:
       encoding: UTF-8
       string: '{"data":null}'
     http_version: null
-  recorded_at: Sat, 29 Feb 2020 17:19:39 GMT
+  recorded_at: Thu, 26 Mar 2020 14:57:37 GMT
 - request:
     method: get
     uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ&include=defendants
@@ -167,7 +167,7 @@ http_interactions:
       Accept:
       - application/vnd.api+json
       Authorization:
-      - Bearer RYc0X-CeP3YX2ZF3jCJYlJDntSW3NWcHhGFQDRORrAA
+      - Bearer <BEARER_TOKEN>
       Accept-Encoding:
       - gzip,deflate
   response:
@@ -188,20 +188,20 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Content-Type:
-      - application/json; charset=utf-8
+      - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"14ec228bcd364bfe53d83c4b03e9a04f"
+      - W/"7497a3636a45f300c84f93f31487f802"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 550f2c42-3ffa-4ec2-8bc7-4b101c785935
+      - 10562c3d-e4b8-48d8-b696-1d4b5c7a32ea
       X-Runtime:
-      - '0.080084'
-      Transfer-Encoding:
-      - chunked
+      - '0.075560'
+      Content-Length:
+      - '1878'
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"2dc8dd46-d930-4878-a0a6-68ae8642cd9e","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants"},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants"},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants"},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants"}]},"hearing_summaries":{"data":[]}}}],"included":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants","attributes":{"first_name":"Andy","last_name":"Sawayn","date_of_birth":"1987-10-19","national_insurance_number":"EA382617F","gender":null,"address_1":null,"address_2":null,"address_3":null,"address_4":null,"address_5":null,"postcode":null},"relationships":{"offences":{"data":[{"id":"5aff5a05-8f43-40e0-82e6-08c658ffca00","type":"offences"}]}}},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants","attributes":{"first_name":"Aracely","last_name":"Zulauf","date_of_birth":"1955-09-27","national_insurance_number":"HH481835D","gender":null,"address_1":null,"address_2":null,"address_3":null,"address_4":null,"address_5":null,"postcode":null},"relationships":{"offences":{"data":[{"id":"0fcb44b6-1ca7-4360-b6ed-1d57ff9423e0","type":"offences"}]}}},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants","attributes":{"first_name":"Florene","last_name":"DuBuque","date_of_birth":"1983-10-17","national_insurance_number":"XE675428D","gender":null,"address_1":null,"address_2":null,"address_3":null,"address_4":null,"address_5":null,"postcode":null},"relationships":{"offences":{"data":[{"id":"45d5e934-72d0-4a14-b43c-cad750d4ff3c","type":"offences"}]}}},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants","attributes":{"first_name":"Josefa","last_name":"Franecki","date_of_birth":"1961-06-15","national_insurance_number":"HR669639M","gender":null,"address_1":null,"address_2":null,"address_3":null,"address_4":null,"address_5":null,"postcode":null},"relationships":{"offences":{"data":[{"id":"6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc","type":"offences"}]}}}]}'
+      string: '{"data":[{"id":"2dc8dd46-d930-4878-a0a6-68ae8642cd9e","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants"},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants"},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants"},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants"}]}}}],"included":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants","attributes":{"first_name":"Andy","last_name":"Sawayn","date_of_birth":"1987-10-19","national_insurance_number":"EA382617F","arrest_summons_number":"KX5SWEFJQ3DL","is_linked":false},"relationships":{"offences":{"data":[{"id":"5aff5a05-8f43-40e0-82e6-08c658ffca00","type":"offences"}]}}},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants","attributes":{"first_name":"Aracely","last_name":"Zulauf","date_of_birth":"1955-09-27","national_insurance_number":"HH481835D","arrest_summons_number":"F79K0TDDZK40","is_linked":false},"relationships":{"offences":{"data":[{"id":"0fcb44b6-1ca7-4360-b6ed-1d57ff9423e0","type":"offences"}]}}},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants","attributes":{"first_name":"Florene","last_name":"DuBuque","date_of_birth":"1983-10-17","national_insurance_number":"XE675428D","arrest_summons_number":"C2ZXXPBNGVR0","is_linked":false},"relationships":{"offences":{"data":[{"id":"45d5e934-72d0-4a14-b43c-cad750d4ff3c","type":"offences"}]}}},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants","attributes":{"first_name":"Josefa","last_name":"Franecki","date_of_birth":"1961-06-15","national_insurance_number":"HR669639D","arrest_summons_number":"Y1NDQNW9NCN6","is_linked":false},"relationships":{"offences":{"data":[{"id":"6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc","type":"offences"}]}}}]}'
     http_version: null
-  recorded_at: Sat, 29 Feb 2020 17:19:39 GMT
+  recorded_at: Thu, 26 Mar 2020 14:57:38 GMT
 recorded_with: VCR 5.1.0

@@ -27,7 +27,7 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, js: true do
     expect(page).to have_field('Year', with: '1961')
 
     within 'tbody.govuk-table__body' do
-      expect(page).to have_content('Josefa Franecki').once
+      expect(page).to have_content('Josefa Franecki', minimum: 1)
     end
 
     expect(page).to be_accessible.within '#main-content'
