@@ -126,6 +126,11 @@ RUBYOPT=-W:no-deprecated rails server
 RUBYOPT=-W:no-deprecated rails console
 ```
 
+Alternatively there is an `.env` file in the root app to set this generally
+```
+source .env
+```
+
 ### A note on assets
 
 The rails asset pipeline is disabled and all related config is commented out (it does not seem possible to remove sprockets entirely). We are using `webpacker` gem wrapper for `webpack`, and `yarn` for js dependency management.

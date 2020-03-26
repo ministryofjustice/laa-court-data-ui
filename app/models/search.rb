@@ -5,19 +5,18 @@ require 'court_data_adaptor'
 class Search
   include ActiveModel::Model
 
+  # rubocop:disable Rails/OutputSafety
   def self.filters
     [
       _filter(id: :case_reference,
-              name: I18n.t('search_filter.radio_case_reference_label'),
-              description: I18n.t('search_filter.radio_case_reference_label_hint')),
+              name: I18n.t('search_filter.radio_case_reference_label')),
       _filter(id: :defendant_reference,
-              name: I18n.t('search_filter.radio_defendant_reference_label'),
-              description: I18n.t('search_filter.radio_defendant_reference_label_hint')),
+              name: I18n.t('search_filter.radio_defendant_reference_label_html').html_safe),
       _filter(id: :defendant_name,
-              name: I18n.t('search_filter.radio_defendant_name_label'),
-              description: I18n.t('search_filter.radio_defendant_name_label_hint'))
+              name: I18n.t('search_filter.radio_defendant_name_label_html').html_safe)
     ]
   end
+  # rubocop:enable Rails/OutputSafety
 
   private_class_method def self._filter(args)
     SearchFilter.new(**args)

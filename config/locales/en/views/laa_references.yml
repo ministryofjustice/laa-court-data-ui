@@ -1,0 +1,7 @@
+---
+en:
+  laa_reference:
+    maat_reference:
+      hint: Enter the MAAT ID so this case can be linked to the court data source
+      label: MAAT ID
+    submit: Create link to court data

@@ -3,9 +3,9 @@
 class DefendantsController < ApplicationController
   before_action :load_and_authorize_search
 
-  add_breadcrumb 'Search filters', :new_search_filter_path
+  add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
-  add_breadcrumb 'Case details',
+  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.prosecution_case_reference) }),
                  (proc { |v| v.prosecution_case_path(v.controller.defendant.prosecution_case_reference) })
 
   def show

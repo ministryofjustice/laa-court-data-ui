@@ -1,0 +1,10 @@
+= form_with(url: '/laa_references', local: true) do |f|
+  = f.hidden_field(:id, value: params[:id])
+  = f.hidden_field(:defendant_id, value: @defendant.id)
+
+  = f.govuk_text_field :maat_reference,
+    value: nil,
+    label: { text: t('laa_reference.maat_reference.label') },
+    hint_text: t('laa_reference.maat_reference.hint')
+
+  = f.govuk_submit(t('laa_reference.submit'))

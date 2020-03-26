@@ -10,7 +10,7 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, js: true do
   scenario 'with one result', :vcr do
     visit '/'
 
-    choose 'Search for a defendant by name and date of birth'
+    choose 'A defendant by name and date of birth'
     click_button 'Continue'
     fill_in 'search-term-field', with: 'Josefa Franecki'
     fill_in 'search_dob_3i', with: '15'
@@ -21,13 +21,13 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, js: true do
     expect(page).to have_text(
       'Search results for "Josefa Franecki, 15 June 1961"'
     )
-    expect(page).to have_field('Find a defendant', with: 'Josefa Franecki')
+    expect(page).to have_field('Defendant name', with: 'Josefa Franecki')
     expect(page).to have_field('Day', with: '15')
     expect(page).to have_field('Month', with: '6')
     expect(page).to have_field('Year', with: '1961')
 
     within 'tbody.govuk-table__body' do
-      expect(page).to have_content('Josefa Franecki').once
+      expect(page).to have_content('Josefa Franecki', minimum: 1)
     end
 
     expect(page).to be_accessible.within '#main-content'
@@ -36,7 +36,7 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, js: true do
   scenario 'with no results', :vcr do
     visit '/'
 
-    choose 'Search for a defendant by name and date of birth'
+    choose 'A defendant by name and date of birth'
     click_button 'Continue'
     fill_in 'search-term-field', with: 'Fred Bloggs'
     fill_in 'search_dob_3i', with: '28'
@@ -52,7 +52,7 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, js: true do
   scenario 'with no date of birth specified', :vcr do
     visit '/'
 
-    choose 'Search for a defendant by name and date of birth'
+    choose 'A defendant by name and date of birth'
     click_button 'Continue'
     fill_in 'search-term-field', with: 'Mickey Mouse'
     click_button 'Search'

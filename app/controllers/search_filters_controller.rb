@@ -18,7 +18,6 @@ class SearchFiltersController < ApplicationController
 
   def set_filter
     @search_filter = SearchFilter.new(id: params.fetch(:search_filter, nil)&.fetch(:id, nil))
-    self.current_search_filter = @search_filter.id
   end
 
   def search_filter_params

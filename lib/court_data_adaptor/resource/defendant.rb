@@ -9,6 +9,12 @@ module CourtDataAdaptor
       def name
         "#{first_name} #{last_name}" unless first_name.blank? && last_name.blank?
       end
+
+      def linked?
+        is_linked
+      rescue NameError
+        false
+      end
     end
   end
 end

@@ -29,49 +29,56 @@ RSpec.feature 'Breadcrumb', type: :feature do
 
     context 'when on case reference search page' do
       scenario 'expected breadcrumbs are displayed' do
-        when_i_choose_search_filter 'Search for a case by URN'
-        then_has_case_ref_breadcrumbs
+        when_i_choose_search_filter 'A case by URN'
+        then_has_case_ref_search_breadcrumbs
       end
     end
 
     context 'when on defendant reference search page' do
       scenario 'expected breadcrumbs are displayed' do
-        when_i_choose_search_filter 'Search for a defendant by reference'
-        then_has_defendant_ref_breadcrumbs
+        when_i_choose_search_filter 'A defendant by ASN or National insurance number'
+        then_has_defendant_ref_search_breadcrumbs
       end
     end
 
     context 'when on defendant name and dob search page' do
       scenario 'expected breadcrumbs are displayed' do
-        when_i_choose_search_filter 'Search for a defendant by name and date of birth'
-        then_has_defendant_name_breadcrumbs
+        when_i_choose_search_filter 'A defendant by name and date of birth'
+        then_has_defendant_name_search_breadcrumbs
       end
     end
 
     scenario 'user navigates search, prosecution case and defendant details pages', :vcr do
-      when_i_choose_search_filter 'Search for a case by URN'
+      when_i_choose_search_filter 'A case by URN'
       when_i_search_for 'MOGUERBXIZ'
 
       click_link('MOGUERBXIZ', match: :first)
       expect(page).to have_current_path(prosecution_case_path('MOGUERBXIZ'))
 
-      then_has_case_details_breadcrumbs
+      then_has_case_details_breadcrumbs('MOGUERBXIZ')
 
       click_link('Josefa Franecki')
       expect(page).to have_current_path(%r{\/defendants\/.+})
 
-      then_has_defendant_details_breadcrumbs('Josefa Franecki')
+      then_has_defendant_details_breadcrumbs('MOGUERBXIZ', 'Josefa Franecki')
 
-      click_breadcrumb 'Case details'
+      click_breadcrumb 'Case MOGUERBXIZ'
 
       expect(page).to have_current_path(prosecution_case_path('MOGUERBXIZ'))
-      then_has_case_details_breadcrumbs
+      then_has_case_details_breadcrumbs('MOGUERBXIZ')
 
-      click_breadcrumb 'Case ref search'
-      expect(page).to have_current_path(new_search_path(search: { filter: 'case_reference' }))
-      then_has_case_ref_breadcrumbs
+      click_breadcrumb 'Search'
+      expect(page).to have_current_path(
+        searches_path(
+          search: {
+            filter: 'case_reference',
+            term: 'MOGUERBXIZ'
+          }
+        )
+      )
+      then_has_case_ref_search_breadcrumbs
 
-      click_breadcrumb 'Search filters'
+      click_breadcrumb 'Home'
       expect(page).to have_current_path(new_search_filter_path)
       then_breadcrumbs_are_not_displayed
     end
@@ -105,35 +112,38 @@ RSpec.feature 'Breadcrumb', type: :feature do
     end
   end
 
-  def then_has_case_ref_breadcrumbs
-    expect(page).to have_govuk_breadcrumb_link('Search filters')
-    expect(page).not_to have_govuk_breadcrumb_link('Case ref search')
-    expect(page).to have_govuk_breadcrumb('Case ref search', aria_current: true)
+  def then_has_case_ref_search_breadcrumbs
+    expect(page).to have_govuk_breadcrumb_link('Home', href: '/search_filters/new')
+    expect(page).not_to have_govuk_breadcrumb_link('Search')
+    expect(page).to have_govuk_breadcrumb('Search', aria_current: true)
   end
 
-  def then_has_defendant_ref_breadcrumbs
-    expect(page).to have_govuk_breadcrumb_link('Search filters')
-    expect(page).not_to have_govuk_breadcrumb_link('Defendant ref search')
-    expect(page).to have_govuk_breadcrumb('Defendant ref search', aria_current: true)
+  def then_has_defendant_ref_search_breadcrumbs
+    expect(page).to have_govuk_breadcrumb_link('Home')
+    expect(page).not_to have_govuk_breadcrumb_link('Search')
+    expect(page).to have_govuk_breadcrumb('Search', aria_current: true)
   end
 
-  def then_has_defendant_name_breadcrumbs
-    expect(page).to have_govuk_breadcrumb_link('Search filters')
-    expect(page).not_to have_govuk_breadcrumb_link('Defendant name search')
-    expect(page).to have_govuk_breadcrumb('Defendant name search', aria_current: true)
+  def then_has_defendant_name_search_breadcrumbs
+    expect(page).to have_govuk_breadcrumb_link('Home')
+    expect(page).not_to have_govuk_breadcrumb_link('Search')
+    expect(page).to have_govuk_breadcrumb('Search', aria_current: true)
   end
 
-  def then_has_case_details_breadcrumbs
-    expect(page).to have_govuk_breadcrumb_link('Search filters')
-    expect(page).to have_govuk_breadcrumb_link('Case ref search')
-    expect(page).not_to have_govuk_breadcrumb_link('Case details')
-    expect(page).to have_govuk_breadcrumb('Case details', aria_current: true)
+  def then_has_case_details_breadcrumbs(case_ref)
+    expect(page).to have_govuk_breadcrumb_link('Home')
+    expect(page).to have_govuk_breadcrumb_link(
+      'Search',
+      href: %r{\/searches\?search.*#{case_ref}}
+    )
+    expect(page).not_to have_govuk_breadcrumb_link(/Case/)
+    expect(page).to have_govuk_breadcrumb("Case #{case_ref}", aria_current: true)
   end
 
-  def then_has_defendant_details_breadcrumbs(defendant_name)
-    expect(page).to have_govuk_breadcrumb_link('Search filters')
-    expect(page).to have_govuk_breadcrumb_link('Case ref search')
-    expect(page).to have_govuk_breadcrumb_link('Case details')
+  def then_has_defendant_details_breadcrumbs(case_ref, defendant_name)
+    expect(page).to have_govuk_breadcrumb_link('Home')
+    expect(page).to have_govuk_breadcrumb_link('Search')
+    expect(page).to have_govuk_breadcrumb_link("Case #{case_ref}")
     expect(page).not_to have_govuk_breadcrumb_link(defendant_name)
     expect(page).to have_govuk_breadcrumb(defendant_name, aria_current: true)
   end

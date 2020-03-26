@@ -4,12 +4,14 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
 
-  # Ignore requests to
-  # ignore/allow oauth requests
   # NOTE: CourtDataAdaptor.configuration.test_mode should be set
   # set to false when recording new stubs, true otherwise
+  #
+  # Ignore requests to:
+  # - ignore/allow oauth requests
   # - webdrivers
   # - chrome browser requests to localhost port on which it runs
+  #
   # Do not ignore requests to:
   # - CourtDataAdaptor API endpoints
 
@@ -27,6 +29,12 @@ VCR.configure do |config|
         (9515..9999).cover?(uri.port)
       ].all?
     ].any?
+  end
+
+  config.filter_sensitive_data('<BEARER_TOKEN>') do |interaction|
+    authorization_header = interaction.request.headers['Authorization'].first
+    a_match = authorization_header.match(/^Bearer\s+([^,\s]+)/)
+    a_match&.captures&.first
   end
 end
 

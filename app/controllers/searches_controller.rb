@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
-  before_action :set_view_options
+  before_action :set_search_options
 
   rescue_from JsonApiClient::Errors::ConnectionError, with: :connection_error
 
-  add_breadcrumb 'Search filters', :new_search_filter_path
+  add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
   def new
@@ -51,17 +51,22 @@ class SearchesController < ApplicationController
     nil
   end
 
+  def set_search_options
+    filter
+    term
+    dob
+    set_view_options
+    self.current_search_params = search_params
+  end
+
   def set_view_options
-    case filter
-    when 'defendant_reference'
-      @label = I18n.t('search.term.defendant_reference_label')
-      @hint = I18n.t('search.term.defendant_reference_label_hint')
-    when 'defendant_name'
-      @label = I18n.t('search.term.defendant_name_label')
-      @hint = I18n.t('search.term.defendant_name_label_hint')
-    else
-      @label = I18n.t('search.term.case_reference_label')
-      @hint = I18n.t('search.term.case_reference_label_hint')
-    end
+    @label = case filter
+             when 'defendant_reference'
+               I18n.t('search.term.defendant_reference_label')
+             when 'defendant_name'
+               I18n.t('search.term.defendant_name_label')
+             else
+               I18n.t('search.term.case_reference_label')
+             end
   end
 end

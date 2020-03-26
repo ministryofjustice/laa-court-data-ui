@@ -36,11 +36,22 @@ module CapybaraExtensions
     end
 
     def has_govuk_breadcrumb_link?(text = nil, options = {})
+      href = options.delete(:href)
       text ? options[:text] = text : options
-      has_selector?(breadcrumb_link_selector, options)
+      selector = options.delete(:aria_current) ? current_breadcrumb_link_selector : breadcrumb_link_selector
+      result = has_selector?(selector, options)
+
+      if href
+        actual_href = find(breadcrumb_link_selector, text: text)['href']
+        result = href_match?(href, actual_href)
+      end
+      result
     end
 
-    private
+    def href_match?(expected, actual)
+      return actual.match?(expected) if expected.is_a?(Regexp)
+      CGI.unescape(expected).eql?(CGI.unescape(actual))
+    end
 
     def breadcrumb_selector
       'div.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item'
@@ -50,8 +61,16 @@ module CapybaraExtensions
       "#{breadcrumb_selector}[aria-current=\"page\"]"
     end
 
+    def breadcrumb_link
+      'a.govuk-breadcrumbs__link'
+    end
+
     def breadcrumb_link_selector
-      "#{breadcrumb_selector} a.govuk-breadcrumbs__link"
+      "#{breadcrumb_selector} #{breadcrumb_link}"
+    end
+
+    def current_breadcrumb_link_selector
+      "#{breadcrumb_selector}[aria-current=\"page\"] #{breadcrumb_link}"
     end
   end
 end

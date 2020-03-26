@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Breadcrumbs
+
   default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
   protect_from_forgery prepend: true, with: :exception
   before_action :authenticate_user!
@@ -11,31 +13,14 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, with: :unexpected_exception_handler
   rescue_from CanCan::AccessDenied, with: :access_denied
 
-  def current_search_filter=(arg)
-    session[:current_search_filter] = arg
+  def current_search_params=(params)
+    session[:current_search_params] = params
   end
 
-  def current_search_filter
-    session[:current_search_filter]
+  def current_search_params
+    session[:current_search_params]
   end
-  helper_method :current_search_filter
-
-  def search_breadcrumb_name
-    case current_search_filter
-    when 'case_reference'
-      'Case ref search'
-    when 'defendant_reference'
-      'Defendant ref search'
-    when 'defendant_name'
-      'Defendant name search'
-    end
-  end
-  helper_method :search_breadcrumb_name
-
-  def search_breadcrumb_path
-    new_search_path(search: { filter: current_search_filter })
-  end
-  helper_method :search_breadcrumb_path
+  helper_method :current_search_params
 
   protected
 
