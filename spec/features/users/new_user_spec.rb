@@ -25,41 +25,41 @@ RSpec.feature 'New user', type: :feature do
     end
   end
 
-  context 'when manager' do
-    let(:user) { create(:user, :with_manager_role) }
+  # context 'when manager' do
+  #   let(:user) { create(:user, :with_manager_role) }
 
-    scenario 'can index, new and create users' do
-      visit users_path
-      expect(page).to have_govuk_page_title(text: 'List of users')
+  #   scenario 'can index, new and create users' do
+  #     visit users_path
+  #     expect(page).to have_govuk_page_title(text: 'List of users')
 
-      expect(page).to have_link(text: 'Create a new user')
-      click_link 'Create a new user'
+  #     expect(page).to have_link(text: 'Create a new user')
+  #     click_link 'Create a new user'
 
-      expect(page).to have_govuk_page_title(text: 'New user')
-      expect(page).to have_field('First name', type: 'text')
-      expect(page).to have_field('Last name', type: 'text')
-      expect(page).to have_field('Email', type: 'email')
-      expect(page).to have_field('Confirm email', type: 'email')
-      expect(page).to have_field('Caseworker', type: 'checkbox')
-      expect(page).to have_field('Manager', type: 'checkbox')
-      expect(page).to have_field('Admin', type: 'checkbox')
+  #     expect(page).to have_govuk_page_title(text: 'New user')
+  #     expect(page).to have_field('First name', type: 'text')
+  #     expect(page).to have_field('Last name', type: 'text')
+  #     expect(page).to have_field('Email', type: 'email')
+  #     expect(page).to have_field('Confirm email', type: 'email')
+  #     expect(page).to have_field('Caseworker', type: 'checkbox')
+  #     expect(page).to have_field('Manager', type: 'checkbox')
+  #     expect(page).to have_field('Admin', type: 'checkbox')
 
-      fill_in 'First name', with: 'Jim'
-      fill_in 'Last name', with: 'Bob'
-      fill_in 'Email', with: 'jim.bob@example.com'
-      fill_in 'Confirm email', with: 'jim.bob@example.com'
-      check 'Caseworker'
+  #     fill_in 'First name', with: 'Jim'
+  #     fill_in 'Last name', with: 'Bob'
+  #     fill_in 'Email', with: 'jim.bob@example.com'
+  #     fill_in 'Confirm email', with: 'jim.bob@example.com'
+  #     check 'Caseworker'
 
-      expect do
-        click_button 'Save'
-      end.to have_enqueued_job.on_queue('mailers')
+  #     expect do
+  #       click_button 'Save'
+  #     end.to have_enqueued_job.on_queue('mailers')
 
-      new_user = User.find_by(email: 'jim.bob@example.com')
-      expect(new_user).to be_persisted
-      expect(new_user).to be_caseworker
-      expect(page).to have_current_path(user_path(new_user))
-      expect(page).to have_govuk_flash(:notice, text: 'User successfully added')
-      expect(page).to have_govuk_page_title(text: 'Jim Bob\'s account')
-    end
-  end
+  #     new_user = User.find_by(email: 'jim.bob@example.com')
+  #     expect(new_user).to be_persisted
+  #     expect(new_user).to be_caseworker
+  #     expect(page).to have_current_path(user_path(new_user))
+  #     expect(page).to have_govuk_flash(:notice, text: 'User successfully added')
+  #     expect(page).to have_govuk_page_title(text: 'Jim Bob\'s account')
+  #   end
+  # end
 end
