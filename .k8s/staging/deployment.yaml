@@ -108,3 +108,8 @@ spec:
                 secretKeyRef:
                   name: lcdui-secrets
                   key: GOVUK_NOTIFY_API_KEY
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-secrets
+                  key: SENTRY_DSN
