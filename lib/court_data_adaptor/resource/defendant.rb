@@ -11,7 +11,7 @@ module CourtDataAdaptor
       end
 
       def linked?
-        is_linked
+        maat_reference&.present?
       rescue NameError
         false
       end
