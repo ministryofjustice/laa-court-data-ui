@@ -42,6 +42,7 @@ RSpec.describe Ability, type: :model do
     it { is_expected.not_to be_able_to(:manage, User) }
     it { is_expected.not_to be_able_to(%i[new create], SearchFilter) }
     it { is_expected.not_to be_able_to(%i[new create], Search) }
+    it { is_expected.not_to be_able_to(:create, :link_maat_reference) }
   end
 
   context 'when a caseworker' do
