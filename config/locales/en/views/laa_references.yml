@@ -1,6 +1,9 @@
 ---
 en:
   laa_reference:
+    linking:
+      failure: A link to the court data source could not be created %{error_messages}
+      success: You have successfully linked to the court data source
     maat_reference:
       hint: Enter the MAAT ID so this case can be linked to the court data source
       label: MAAT ID

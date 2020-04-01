@@ -1,11 +1,11 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bnational_insurance_number%5D=JC123456A&include=defendants,defendants.offences
+    method: post
+    uri: http://localhost:9292/api/internal/v1/laa_references
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"2123456"}}}'
     headers:
       User-Agent:
       - Faraday v0.17.3
@@ -19,8 +19,57 @@ http_interactions:
       - gzip,deflate
   response:
     status:
-      code: 200
-      message: OK
+      code: 202
+      message: Accepted
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 0efb6870-754f-4c08-baff-c948c41ee1ce
+      X-Runtime:
+      - '0.004290'
+      Content-Length:
+      - '1'
+    body:
+      encoding: UTF-8
+      string: " "
+    http_version: null
+  recorded_at: Wed, 01 Apr 2020 22:09:01 GMT
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v1/laa_references
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"invalid-defendant-id","maat_reference":"2123456"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 400
+      message: Bad Request
     headers:
       X-Frame-Options:
       - SAMEORIGIN
@@ -36,28 +85,25 @@ http_interactions:
       - strict-origin-when-cross-origin
       Content-Type:
       - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"43a55ca2d2765fddb370779a15b78b27"
       Cache-Control:
-      - max-age=0, private, must-revalidate
+      - no-cache
       X-Request-Id:
-      - fbe1e4ee-5531-468f-96a7-945a8068d791
+      - 6602e666-9a99-4a2b-8060-8bfe491e14c4
       X-Runtime:
-      - '0.174285'
+      - '0.005721'
       Content-Length:
-      - '4688'
+      - '37'
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJkYXRhIjpbeyJpZCI6IjIzOWEyZTlmLTcxMzQtNDAyNC04NzEwLTJhMTI4N2QxNjlkMyIsInR5cGUiOiJwcm9zZWN1dGlvbl9jYXNlcyIsImF0dHJpYnV0ZXMiOnsicHJvc2VjdXRpb25fY2FzZV9yZWZlcmVuY2UiOiJURVNUMTIzNDUifSwicmVsYXRpb25zaGlwcyI6eyJkZWZlbmRhbnRzIjp7ImRhdGEiOlt7ImlkIjoiNDFmY2IxY2QtNTE2ZS00MzhlLTg4N2EtNTk4N2Q5MmVmOTBmIiwidHlwZSI6ImRlZmVuZGFudHMifSx7ImlkIjoiZGE5MWQ1NjUtOTQwZi00MTViLTgwYWMtZjAzZTI3N2Q1YTQ2IiwidHlwZSI6ImRlZmVuZGFudHMifSx7ImlkIjoiMTE4Mzk1OTYtNGFkYi00ZTIwLWEzMWItMmVjODFiMTA0NmNmIiwidHlwZSI6ImRlZmVuZGFudHMifSx7ImlkIjoiZDFmM2QwZTUtM2FmZC00NmJjLWJkYzgtZjE1ZWJiMGZkZjdmIiwidHlwZSI6ImRlZmVuZGFudHMifV19fX0seyJpZCI6IjAzMDNjNjViLWE0ZGItNDlhMi04ZmZjLTIzNDA5YWFiZTA2YSIsInR5cGUiOiJwcm9zZWN1dGlvbl9jYXNlcyIsImF0dHJpYnV0ZXMiOnsicHJvc2VjdXRpb25fY2FzZV9yZWZlcmVuY2UiOiJURVNUNTQzMjEifSwicmVsYXRpb25zaGlwcyI6eyJkZWZlbmRhbnRzIjp7ImRhdGEiOlt7ImlkIjoiMGQ1ODY1NDMtM2Q1MS00OTQ2LTkwZjctZDBkOWQ2ZmVkZWRkIiwidHlwZSI6ImRlZmVuZGFudHMifSx7ImlkIjoiYTRhNWZlOGEtOWQ3OC00YWE4LWFhYjAtODRmMWJhMzE1MmRlIiwidHlwZSI6ImRlZmVuZGFudHMifSx7ImlkIjoiMmQ4NTZkOGItZTM3OS00Yjg0LWJkZDEtOWU3MzlkZjgwNzgwIiwidHlwZSI6ImRlZmVuZGFudHMifV19fX1dLCJpbmNsdWRlZCI6W3siaWQiOiI0MWZjYjFjZC01MTZlLTQzOGUtODg3YS01OTg3ZDkyZWY5MGYiLCJ0eXBlIjoiZGVmZW5kYW50cyIsImF0dHJpYnV0ZXMiOnsiZmlyc3RfbmFtZSI6IkphbW15IiwibGFzdF9uYW1lIjoiRG9kZ2VyIiwiZGF0ZV9vZl9iaXJ0aCI6IjE5ODctMDUtMjEiLCJuYXRpb25hbF9pbnN1cmFuY2VfbnVtYmVyIjoiSkMxMjM0NTZBIiwiYXJyZXN0X3N1bW1vbnNfbnVtYmVyIjoiMFRTUVQxTE1JN0NSIiwibWFhdF9yZWZlcmVuY2UiOiIyMTIzNDU2In0sInJlbGF0aW9uc2hpcHMiOnsib2ZmZW5jZXMiOnsiZGF0YSI6W3siaWQiOiIwNDQ0ZTg4MC0zYTRjLTQ1ZDItYjAyNS0wNGJkMzc4ODcxMTUiLCJ0eXBlIjoib2ZmZW5jZXMifV19fX0seyJpZCI6ImRhOTFkNTY1LTk0MGYtNDE1Yi04MGFjLWYwM2UyNzdkNWE0NiIsInR5cGUiOiJkZWZlbmRhbnRzIiwiYXR0cmlidXRlcyI6eyJmaXJzdF9uYW1lIjoiSG9iZXJ0IiwibGFzdF9uYW1lIjoiQnJvd24iLCJkYXRlX29mX2JpcnRoIjoiMTk4MS0wMy0yNCIsIm5hdGlvbmFsX2luc3VyYW5jZV9udW1iZXIiOiJNUjYxMDY5MUIiLCJhcnJlc3Rfc3VtbW9uc19udW1iZXIiOiJMWURBTzBTQjdTMlAiLCJtYWF0X3JlZmVyZW5jZSI6bnVsbH0sInJlbGF0aW9uc2hpcHMiOnsib2ZmZW5jZXMiOnsiZGF0YSI6W3siaWQiOiIyYzEwYzFhNy0zODU3LTRlMzctYTQ2ZS01MzYwODYzODE5MGQiLCJ0eXBlIjoib2ZmZW5jZXMifV19fX0seyJpZCI6IjExODM5NTk2LTRhZGItNGUyMC1hMzFiLTJlYzgxYjEwNDZjZiIsInR5cGUiOiJkZWZlbmRhbnRzIiwiYXR0cmlidXRlcyI6eyJmaXJzdF9uYW1lIjoiUmljaGllIiwibGFzdF9uYW1lIjoiS3NobGVyaW4iLCJkYXRlX29mX2JpcnRoIjoiMTk3Mi0wOS0yNyIsIm5hdGlvbmFsX2luc3VyYW5jZV9udW1iZXIiOiJIQjk5ODAxNEQiLCJhcnJlc3Rfc3VtbW9uc19udW1iZXIiOiJNWFZVVjM2N1Y2RFQiLCJtYWF0X3JlZmVyZW5jZSI6bnVsbH0sInJlbGF0aW9uc2hpcHMiOnsib2ZmZW5jZXMiOnsiZGF0YSI6W3siaWQiOiI4OTNlNjk1ZS1lNWIyLTRjYjktODgxYi1mMjlmNjkxYjMzMTMiLCJ0eXBlIjoib2ZmZW5jZXMifV19fX0seyJpZCI6ImQxZjNkMGU1LTNhZmQtNDZiYy1iZGM4LWYxNWViYjBmZGY3ZiIsInR5cGUiOiJkZWZlbmRhbnRzIiwiYXR0cmlidXRlcyI6eyJmaXJzdF9uYW1lIjoiRG9yZWVuIiwibGFzdF9uYW1lIjoiTGVhbm5vbiIsImRhdGVfb2ZfYmlydGgiOiIxOTY0LTA1LTEwIiwibmF0aW9uYWxfaW5zdXJhbmNlX251bWJlciI6IlJMNjAxNzMzQiIsImFycmVzdF9zdW1tb25zX251bWJlciI6IlFESFIwN0VCTFpGWiIsIm1hYXRfcmVmZXJlbmNlIjpudWxsfSwicmVsYXRpb25zaGlwcyI6eyJvZmZlbmNlcyI6eyJkYXRhIjpbeyJpZCI6IjQ3NmRjMjI1LTBjNzgtNGNmZC1hZjJjLTg2YjMyYWM0MmE0ZiIsInR5cGUiOiJvZmZlbmNlcyJ9XX19fSx7ImlkIjoiMDQ0NGU4ODAtM2E0Yy00NWQyLWIwMjUtMDRiZDM3ODg3MTE1IiwidHlwZSI6Im9mZmVuY2VzIiwiYXR0cmlidXRlcyI6eyJjb2RlIjoiUmFuZG9tIHN0cmluZyIsIm9yZGVyX2luZGV4IjoxLCJ0aXRsZSI6IkFmZnJheSIsIm1vZGVfb2ZfdHJpYWwiOiJSYW5kb20gc3RyaW5nIn19LHsiaWQiOiIyYzEwYzFhNy0zODU3LTRlMzctYTQ2ZS01MzYwODYzODE5MGQiLCJ0eXBlIjoib2ZmZW5jZXMiLCJhdHRyaWJ1dGVzIjp7ImNvZGUiOiJSYW5kb20gc3RyaW5nIiwib3JkZXJfaW5kZXgiOjEsInRpdGxlIjoiQ29udHJvbGxpbmcgYSBjaGlsZCBwcm9zdGl0dXRlIiwibW9kZV9vZl90cmlhbCI6IlJhbmRvbSBzdHJpbmcifX0seyJpZCI6Ijg5M2U2OTVlLWU1YjItNGNiOS04ODFiLWYyOWY2OTFiMzMxMyIsInR5cGUiOiJvZmZlbmNlcyIsImF0dHJpYnV0ZXMiOnsiY29kZSI6IlJhbmRvbSBzdHJpbmciLCJvcmRlcl9pbmRleCI6MSwidGl0bGUiOiJPZmZlbmNlIiwibW9kZV9vZl90cmlhbCI6IlJhbmRvbSBzdHJpbmcifX0seyJpZCI6IjQ3NmRjMjI1LTBjNzgtNGNmZC1hZjJjLTg2YjMyYWM0MmE0ZiIsInR5cGUiOiJvZmZlbmNlcyIsImF0dHJpYnV0ZXMiOnsiY29kZSI6IlJhbmRvbSBzdHJpbmciLCJvcmRlcl9pbmRleCI6MSwidGl0bGUiOiJBcnNvbiAob3RoZXIgdGhhbiBhZ2dyYXZhdGVkIGFyc29uKSB3aGVyZSB2YWx1ZSBkb2VzIG5vdCBleGNlZWQgwqMzMCwwMDAiLCJtb2RlX29mX3RyaWFsIjoiUmFuZG9tIHN0cmluZyJ9fSx7ImlkIjoiMGQ1ODY1NDMtM2Q1MS00OTQ2LTkwZjctZDBkOWQ2ZmVkZWRkIiwidHlwZSI6ImRlZmVuZGFudHMiLCJhdHRyaWJ1dGVzIjp7ImZpcnN0X25hbWUiOiJKYW1teSIsImxhc3RfbmFtZSI6IkRvZGdlciIsImRhdGVfb2ZfYmlydGgiOiIxOTg3LTA1LTIxIiwibmF0aW9uYWxfaW5zdXJhbmNlX251bWJlciI6IkpDMTIzNDU2QSIsImFycmVzdF9zdW1tb25zX251bWJlciI6IkxBQTBMTFFJRFZHUSIsIm1hYXRfcmVmZXJlbmNlIjpudWxsfSwicmVsYXRpb25zaGlwcyI6eyJvZmZlbmNlcyI6eyJkYXRhIjpbeyJpZCI6IjM4MGQyOTlkLTIxMTQtNGQyMy05NmUxLWI3NGQ5OGI2OWM0NCIsInR5cGUiOiJvZmZlbmNlcyJ9XX19fSx7ImlkIjoiYTRhNWZlOGEtOWQ3OC00YWE4LWFhYjAtODRmMWJhMzE1MmRlIiwidHlwZSI6ImRlZmVuZGFudHMiLCJhdHRyaWJ1dGVzIjp7ImZpcnN0X25hbWUiOiJBdWRyeSIsImxhc3RfbmFtZSI6IlNjaGlsbGVyIiwiZGF0ZV9vZl9iaXJ0aCI6IjE5NzMtMDgtMDEiLCJuYXRpb25hbF9pbnN1cmFuY2VfbnVtYmVyIjoiRUgyNTY1ODhCIiwiYXJyZXN0X3N1bW1vbnNfbnVtYmVyIjoiNlFIVzdEQjdQME41IiwibWFhdF9yZWZlcmVuY2UiOm51bGx9LCJyZWxhdGlvbnNoaXBzIjp7Im9mZmVuY2VzIjp7ImRhdGEiOlt7ImlkIjoiMmVjODg1NWYtZTEzMy00OTlmLWFiYjEtOGYwZjNiMTNmZWYwIiwidHlwZSI6Im9mZmVuY2VzIn1dfX19LHsiaWQiOiIyZDg1NmQ4Yi1lMzc5LTRiODQtYmRkMS05ZTczOWRmODA3ODAiLCJ0eXBlIjoiZGVmZW5kYW50cyIsImF0dHJpYnV0ZXMiOnsiZmlyc3RfbmFtZSI6IlphY2hhcmlhaCIsImxhc3RfbmFtZSI6IkdvbGRuZXIiLCJkYXRlX29mX2JpcnRoIjoiMTk3Ny0wNy0xNCIsIm5hdGlvbmFsX2luc3VyYW5jZV9udW1iZXIiOiJBVzEyMjgyMUEiLCJhcnJlc3Rfc3VtbW9uc19udW1iZXIiOiJWUUVGVDIwWVZHUE8iLCJtYWF0X3JlZmVyZW5jZSI6bnVsbH0sInJlbGF0aW9uc2hpcHMiOnsib2ZmZW5jZXMiOnsiZGF0YSI6W3siaWQiOiIzMzE5MWRmNS03YWU1LTQ2MGMtOWMxNi0wNTFmY2Q2NDcxMzYiLCJ0eXBlIjoib2ZmZW5jZXMifV19fX0seyJpZCI6IjM4MGQyOTlkLTIxMTQtNGQyMy05NmUxLWI3NGQ5OGI2OWM0NCIsInR5cGUiOiJvZmZlbmNlcyIsImF0dHJpYnV0ZXMiOnsiY29kZSI6IlJhbmRvbSBzdHJpbmciLCJvcmRlcl9pbmRleCI6MSwidGl0bGUiOiJTZXh1YWwgaW50ZXJjb3Vyc2Ugd2l0aCBnaXJsIHVuZGVyIDE2IiwibW9kZV9vZl90cmlhbCI6IlJhbmRvbSBzdHJpbmcifX0seyJpZCI6IjJlYzg4NTVmLWUxMzMtNDk5Zi1hYmIxLThmMGYzYjEzZmVmMCIsInR5cGUiOiJvZmZlbmNlcyIsImF0dHJpYnV0ZXMiOnsiY29kZSI6IlJhbmRvbSBzdHJpbmciLCJvcmRlcl9pbmRleCI6MSwidGl0bGUiOiJTZXh1YWwgaW50ZXJjb3Vyc2Ugd2l0aCBkZWZlY3RpdmUiLCJtb2RlX29mX3RyaWFsIjoiUmFuZG9tIHN0cmluZyJ9fSx7ImlkIjoiMzMxOTFkZjUtN2FlNS00NjBjLTljMTYtMDUxZmNkNjQ3MTM2IiwidHlwZSI6Im9mZmVuY2VzIiwiYXR0cmlidXRlcyI6eyJjb2RlIjoiUmFuZG9tIHN0cmluZyIsIm9yZGVyX2luZGV4IjoxLCJ0aXRsZSI6IkFiYW5kb25tZW50IG9mIGNoaWxkcmVuIHVuZGVyIHR3byIsIm1vZGVfb2ZfdHJpYWwiOiJSYW5kb20gc3RyaW5nIn19XX0=
+      encoding: UTF-8
+      string: '{"defendant_id":["not a valid uuid"]}'
     http_version: null
-  recorded_at: Wed, 01 Apr 2020 10:54:10 GMT
+  recorded_at: Wed, 01 Apr 2020 22:09:01 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"laa_references","attributes":{"maat_reference":"2123456","defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f"}}}'
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"A2123456"}}}'
     headers:
       User-Agent:
       - Faraday v0.17.3
@@ -71,8 +117,8 @@ http_interactions:
       - gzip,deflate
   response:
     status:
-      code: 202
-      message: Accepted
+      code: 400
+      message: Bad Request
     headers:
       X-Frame-Options:
       - SAMEORIGIN
@@ -87,257 +133,18 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Content-Type:
-      - text/plain; charset=utf-8
+      - application/vnd.api+json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - b6fd2600-981e-477c-a623-d47a24bade0d
+      - 409c117b-f583-410b-9832-6059882a93e8
       X-Runtime:
-      - '26.455196'
+      - '0.003891'
       Content-Length:
-      - '1'
+      - '41'
     body:
       encoding: UTF-8
-      string: " "
+      string: '{"maat_reference":["must be an integer"]}'
     http_version: null
-  recorded_at: Wed, 01 Apr 2020 14:13:38 GMT
-- request:
-    method: post
-    uri: http://localhost:9292/api/internal/v1/laa_references
-    body:
-      encoding: UTF-8
-      string: '{"data":{"type":"laa_references","attributes":{"maat_reference":"2123456","defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f"}}}'
-    headers:
-      User-Agent:
-      - Faraday v0.17.3
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 202
-      message: Accepted
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Content-Type:
-      - text/plain; charset=utf-8
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - 035a946d-580a-4e60-9414-d9320eeb4ee5
-      X-Runtime:
-      - '2.249570'
-      Content-Length:
-      - '1'
-    body:
-      encoding: UTF-8
-      string: " "
-    http_version: null
-  recorded_at: Wed, 01 Apr 2020 14:13:53 GMT
-- request:
-    method: patch
-    uri: http://localhost:9292/api/internal/v1/laa_references/JC123456A
-    body:
-      encoding: UTF-8
-      string: '{"data":{"id":"JC123456A","type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"2123456"}}}'
-    headers:
-      User-Agent:
-      - Faraday v0.17.3
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Content-Type:
-      - application/vnd.api+json; charset=UTF-8
-      X-Request-Id:
-      - 55dd4877-d6e0-433c-98f0-10aa51749e69
-      X-Runtime:
-      - '0.067402'
-      Content-Length:
-      - '7041'
-    body:
-      encoding: UTF-8
-      string: '{"status":404,"error":"Not Found","exception":"#\u003cActionController::RoutingError:
-        No route matches [PATCH] \"/api/internal/v1/laa_references/JC123456A\"\u003e","traces":{"Application
-        Trace":[],"Framework Trace":[{"exception_object_id":70288826903840,"id":0,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call''"},{"exception_object_id":70288826903840,"id":1,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call''"},{"exception_object_id":70288826903840,"id":2,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app''"},{"exception_object_id":70288826903840,"id":3,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call''"},{"exception_object_id":70288826903840,"id":4,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged''"},{"exception_object_id":70288826903840,"id":5,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged''"},{"exception_object_id":70288826903840,"id":6,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged''"},{"exception_object_id":70288826903840,"id":7,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:26:in `call''"},{"exception_object_id":70288826903840,"id":8,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call''"},{"exception_object_id":70288826903840,"id":9,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call''"},{"exception_object_id":70288826903840,"id":10,"trace":"rack
-        (2.2.2) lib/rack/runtime.rb:22:in `call''"},{"exception_object_id":70288826903840,"id":11,"trace":"activesupport
-        (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in
-        `call''"},{"exception_object_id":70288826903840,"id":12,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call''"},{"exception_object_id":70288826903840,"id":13,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call''"},{"exception_object_id":70288826903840,"id":14,"trace":"rack
-        (2.2.2) lib/rack/sendfile.rb:110:in `call''"},{"exception_object_id":70288826903840,"id":15,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call''"},{"exception_object_id":70288826903840,"id":16,"trace":"railties
-        (6.0.2.2) lib/rails/engine.rb:526:in `call''"},{"exception_object_id":70288826903840,"id":17,"trace":"rack
-        (2.2.2) lib/rack/tempfile_reaper.rb:15:in `call''"},{"exception_object_id":70288826903840,"id":18,"trace":"rack
-        (2.2.2) lib/rack/lint.rb:50:in `_call''"},{"exception_object_id":70288826903840,"id":19,"trace":"rack
-        (2.2.2) lib/rack/lint.rb:38:in `call''"},{"exception_object_id":70288826903840,"id":20,"trace":"rack
-        (2.2.2) lib/rack/show_exceptions.rb:23:in `call''"},{"exception_object_id":70288826903840,"id":21,"trace":"rack
-        (2.2.2) lib/rack/common_logger.rb:38:in `call''"},{"exception_object_id":70288826903840,"id":22,"trace":"rack
-        (2.2.2) lib/rack/content_length.rb:17:in `call''"},{"exception_object_id":70288826903840,"id":23,"trace":"puma
-        (4.3.3) lib/puma/configuration.rb:228:in `call''"},{"exception_object_id":70288826903840,"id":24,"trace":"puma
-        (4.3.3) lib/puma/server.rb:682:in `handle_request''"},{"exception_object_id":70288826903840,"id":25,"trace":"puma
-        (4.3.3) lib/puma/server.rb:472:in `process_client''"},{"exception_object_id":70288826903840,"id":26,"trace":"puma
-        (4.3.3) lib/puma/server.rb:328:in `block in run''"},{"exception_object_id":70288826903840,"id":27,"trace":"puma
-        (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread''"}],"Full Trace":[{"exception_object_id":70288826903840,"id":0,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call''"},{"exception_object_id":70288826903840,"id":1,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call''"},{"exception_object_id":70288826903840,"id":2,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app''"},{"exception_object_id":70288826903840,"id":3,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call''"},{"exception_object_id":70288826903840,"id":4,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged''"},{"exception_object_id":70288826903840,"id":5,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged''"},{"exception_object_id":70288826903840,"id":6,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged''"},{"exception_object_id":70288826903840,"id":7,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:26:in `call''"},{"exception_object_id":70288826903840,"id":8,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call''"},{"exception_object_id":70288826903840,"id":9,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call''"},{"exception_object_id":70288826903840,"id":10,"trace":"rack
-        (2.2.2) lib/rack/runtime.rb:22:in `call''"},{"exception_object_id":70288826903840,"id":11,"trace":"activesupport
-        (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in
-        `call''"},{"exception_object_id":70288826903840,"id":12,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call''"},{"exception_object_id":70288826903840,"id":13,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call''"},{"exception_object_id":70288826903840,"id":14,"trace":"rack
-        (2.2.2) lib/rack/sendfile.rb:110:in `call''"},{"exception_object_id":70288826903840,"id":15,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call''"},{"exception_object_id":70288826903840,"id":16,"trace":"railties
-        (6.0.2.2) lib/rails/engine.rb:526:in `call''"},{"exception_object_id":70288826903840,"id":17,"trace":"rack
-        (2.2.2) lib/rack/tempfile_reaper.rb:15:in `call''"},{"exception_object_id":70288826903840,"id":18,"trace":"rack
-        (2.2.2) lib/rack/lint.rb:50:in `_call''"},{"exception_object_id":70288826903840,"id":19,"trace":"rack
-        (2.2.2) lib/rack/lint.rb:38:in `call''"},{"exception_object_id":70288826903840,"id":20,"trace":"rack
-        (2.2.2) lib/rack/show_exceptions.rb:23:in `call''"},{"exception_object_id":70288826903840,"id":21,"trace":"rack
-        (2.2.2) lib/rack/common_logger.rb:38:in `call''"},{"exception_object_id":70288826903840,"id":22,"trace":"rack
-        (2.2.2) lib/rack/content_length.rb:17:in `call''"},{"exception_object_id":70288826903840,"id":23,"trace":"puma
-        (4.3.3) lib/puma/configuration.rb:228:in `call''"},{"exception_object_id":70288826903840,"id":24,"trace":"puma
-        (4.3.3) lib/puma/server.rb:682:in `handle_request''"},{"exception_object_id":70288826903840,"id":25,"trace":"puma
-        (4.3.3) lib/puma/server.rb:472:in `process_client''"},{"exception_object_id":70288826903840,"id":26,"trace":"puma
-        (4.3.3) lib/puma/server.rb:328:in `block in run''"},{"exception_object_id":70288826903840,"id":27,"trace":"puma
-        (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread''"}]}}'
-    http_version: null
-  recorded_at: Wed, 01 Apr 2020 14:24:39 GMT
-- request:
-    method: patch
-    uri: http://localhost:9292/api/internal/v1/laa_references/JC123456A
-    body:
-      encoding: UTF-8
-      string: '{"data":{"id":"JC123456A","type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"2123456"}}}'
-    headers:
-      User-Agent:
-      - Faraday v0.17.3
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Content-Type:
-      - application/vnd.api+json; charset=UTF-8
-      X-Request-Id:
-      - d65d54d7-05ee-46bc-8039-d5d3adeb1ed8
-      X-Runtime:
-      - '0.022139'
-      Content-Length:
-      - '7041'
-    body:
-      encoding: UTF-8
-      string: '{"status":404,"error":"Not Found","exception":"#\u003cActionController::RoutingError:
-        No route matches [PATCH] \"/api/internal/v1/laa_references/JC123456A\"\u003e","traces":{"Application
-        Trace":[],"Framework Trace":[{"exception_object_id":70288779716940,"id":0,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call''"},{"exception_object_id":70288779716940,"id":1,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call''"},{"exception_object_id":70288779716940,"id":2,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app''"},{"exception_object_id":70288779716940,"id":3,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call''"},{"exception_object_id":70288779716940,"id":4,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged''"},{"exception_object_id":70288779716940,"id":5,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged''"},{"exception_object_id":70288779716940,"id":6,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged''"},{"exception_object_id":70288779716940,"id":7,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:26:in `call''"},{"exception_object_id":70288779716940,"id":8,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call''"},{"exception_object_id":70288779716940,"id":9,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call''"},{"exception_object_id":70288779716940,"id":10,"trace":"rack
-        (2.2.2) lib/rack/runtime.rb:22:in `call''"},{"exception_object_id":70288779716940,"id":11,"trace":"activesupport
-        (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in
-        `call''"},{"exception_object_id":70288779716940,"id":12,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call''"},{"exception_object_id":70288779716940,"id":13,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call''"},{"exception_object_id":70288779716940,"id":14,"trace":"rack
-        (2.2.2) lib/rack/sendfile.rb:110:in `call''"},{"exception_object_id":70288779716940,"id":15,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call''"},{"exception_object_id":70288779716940,"id":16,"trace":"railties
-        (6.0.2.2) lib/rails/engine.rb:526:in `call''"},{"exception_object_id":70288779716940,"id":17,"trace":"rack
-        (2.2.2) lib/rack/tempfile_reaper.rb:15:in `call''"},{"exception_object_id":70288779716940,"id":18,"trace":"rack
-        (2.2.2) lib/rack/lint.rb:50:in `_call''"},{"exception_object_id":70288779716940,"id":19,"trace":"rack
-        (2.2.2) lib/rack/lint.rb:38:in `call''"},{"exception_object_id":70288779716940,"id":20,"trace":"rack
-        (2.2.2) lib/rack/show_exceptions.rb:23:in `call''"},{"exception_object_id":70288779716940,"id":21,"trace":"rack
-        (2.2.2) lib/rack/common_logger.rb:38:in `call''"},{"exception_object_id":70288779716940,"id":22,"trace":"rack
-        (2.2.2) lib/rack/content_length.rb:17:in `call''"},{"exception_object_id":70288779716940,"id":23,"trace":"puma
-        (4.3.3) lib/puma/configuration.rb:228:in `call''"},{"exception_object_id":70288779716940,"id":24,"trace":"puma
-        (4.3.3) lib/puma/server.rb:682:in `handle_request''"},{"exception_object_id":70288779716940,"id":25,"trace":"puma
-        (4.3.3) lib/puma/server.rb:472:in `process_client''"},{"exception_object_id":70288779716940,"id":26,"trace":"puma
-        (4.3.3) lib/puma/server.rb:328:in `block in run''"},{"exception_object_id":70288779716940,"id":27,"trace":"puma
-        (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread''"}],"Full Trace":[{"exception_object_id":70288779716940,"id":0,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call''"},{"exception_object_id":70288779716940,"id":1,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call''"},{"exception_object_id":70288779716940,"id":2,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app''"},{"exception_object_id":70288779716940,"id":3,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call''"},{"exception_object_id":70288779716940,"id":4,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged''"},{"exception_object_id":70288779716940,"id":5,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged''"},{"exception_object_id":70288779716940,"id":6,"trace":"activesupport
-        (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged''"},{"exception_object_id":70288779716940,"id":7,"trace":"railties
-        (6.0.2.2) lib/rails/rack/logger.rb:26:in `call''"},{"exception_object_id":70288779716940,"id":8,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call''"},{"exception_object_id":70288779716940,"id":9,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call''"},{"exception_object_id":70288779716940,"id":10,"trace":"rack
-        (2.2.2) lib/rack/runtime.rb:22:in `call''"},{"exception_object_id":70288779716940,"id":11,"trace":"activesupport
-        (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in
-        `call''"},{"exception_object_id":70288779716940,"id":12,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call''"},{"exception_object_id":70288779716940,"id":13,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call''"},{"exception_object_id":70288779716940,"id":14,"trace":"rack
-        (2.2.2) lib/rack/sendfile.rb:110:in `call''"},{"exception_object_id":70288779716940,"id":15,"trace":"actionpack
-        (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call''"},{"exception_object_id":70288779716940,"id":16,"trace":"railties
-        (6.0.2.2) lib/rails/engine.rb:526:in `call''"},{"exception_object_id":70288779716940,"id":17,"trace":"rack
-        (2.2.2) lib/rack/tempfile_reaper.rb:15:in `call''"},{"exception_object_id":70288779716940,"id":18,"trace":"rack
-        (2.2.2) lib/rack/lint.rb:50:in `_call''"},{"exception_object_id":70288779716940,"id":19,"trace":"rack
-        (2.2.2) lib/rack/lint.rb:38:in `call''"},{"exception_object_id":70288779716940,"id":20,"trace":"rack
-        (2.2.2) lib/rack/show_exceptions.rb:23:in `call''"},{"exception_object_id":70288779716940,"id":21,"trace":"rack
-        (2.2.2) lib/rack/common_logger.rb:38:in `call''"},{"exception_object_id":70288779716940,"id":22,"trace":"rack
-        (2.2.2) lib/rack/content_length.rb:17:in `call''"},{"exception_object_id":70288779716940,"id":23,"trace":"puma
-        (4.3.3) lib/puma/configuration.rb:228:in `call''"},{"exception_object_id":70288779716940,"id":24,"trace":"puma
-        (4.3.3) lib/puma/server.rb:682:in `handle_request''"},{"exception_object_id":70288779716940,"id":25,"trace":"puma
-        (4.3.3) lib/puma/server.rb:472:in `process_client''"},{"exception_object_id":70288779716940,"id":26,"trace":"puma
-        (4.3.3) lib/puma/server.rb:328:in `block in run''"},{"exception_object_id":70288779716940,"id":27,"trace":"puma
-        (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread''"}]}}'
-    http_version: null
-  recorded_at: Wed, 01 Apr 2020 14:25:00 GMT
+  recorded_at: Wed, 01 Apr 2020 22:09:01 GMT
 recorded_with: VCR 5.1.0

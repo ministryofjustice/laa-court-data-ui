@@ -52,12 +52,27 @@ RSpec.configure do |config|
 
   config.around(:each, :vcr) do |example|
     if VCR.turned_on?
-      cassette = Pathname.new(example.metadata[:file_path]).cleanpath.sub_ext('').to_s
+      cassette = cassette_name(example)
       VCR.use_cassette(cassette, record: :new_episodes) do
         example.run
       end
     else
       example.run
     end
+  end
+
+  config.around(:each, :vcr_post_request) do |example|
+    if VCR.turned_on?
+      cassette = cassette_name(example)
+      VCR.use_cassette(cassette, record: :new_episodes, match_requests_on: [:body_as_json]) do
+        example.run
+      end
+    else
+      example.run
+    end
+  end
+
+  def cassette_name(example)
+    Pathname.new(example.metadata[:file_path]).cleanpath.sub_ext('').to_s
   end
 end
