@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module CourtDataAdaptor
+  class BadRequestHandler
+    def self.call(env)
+      raise CourtDataAdaptor::Resource::BadRequest.new('Bad request', env.response)
+    end
+  end
+
   module Resource
     class Base < JsonApiClient::Resource
       include Configurable
@@ -10,6 +16,10 @@ module CourtDataAdaptor
 
       cattr_accessor :client
       self.client = Client.new
+
+      connection_options[:status_handlers] = {
+        400 => BadRequestHandler
+      }
 
       connection do |conn|
         conn.use(
