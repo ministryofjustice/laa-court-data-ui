@@ -24,7 +24,7 @@ gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0.2'
 gem 'redis', '~> 4.1.3'
 gem 'sentry-raven'
-gem 'sidekiq', '~> 5.2.7'
+gem 'sidekiq', '~> 6.0.6'
 gem 'webpacker', '~> 5.0'
 
 group :test do
