@@ -23,14 +23,42 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, vcr: true do
     then_case_view_displayed
     click_link('Josefa Franecki')
     then_defendant_view_displayed_for('Josefa Franecki')
+    then_unlinked_defendant_page_displayed
   end
 
   scenario 'user views defendant details' do
     when_viewing_defendant(defendant_nino)
     then_defendant_view_displayed_for('Josefa Franecki')
+    then_unlinked_defendant_page_displayed
+  end
+
+  scenario 'user links defendant' do
+    when_viewing_defendant(defendant_nino)
+    then_defendant_view_displayed_for('Josefa Franecki')
+    then_unlinked_defendant_page_displayed
+    when_user_links_maat_reference_on_defendant
+    then_linked_defendant_page_displayed
+  end
+
+  def when_user_links_maat_reference_on_defendant
+    fill_in 'maat-reference-field', with: '2123456'
+    click_button 'Create link to court data'
+
+    expect(page).to have_govuk_flash(:notice, text: 'You have successfully linked to the court data source')
+  end
+
+  def then_unlinked_defendant_page_displayed
     then_has_defendant_details
     then_has_offence_details
-    then_has_laa_reference_forms
+    then_has_laa_reference_form
+  end
+
+  # TODO
+  def then_linked_defendant_page_displayed
+    # has rep order details
+    # has offence details
+    # expect(page).to have_link('Remove link to court data')
+    # expect(page).to have_content('Removing the link will stop hearing updates being received.')
   end
 
   def when_viewing_case(case_urn)
@@ -95,7 +123,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, vcr: true do
     end
   end
 
-  def then_has_laa_reference_forms
+  def then_has_laa_reference_form
     expect(page).to have_field('MAAT ID')
     expect(page).to have_button('Create link to court data')
   end
