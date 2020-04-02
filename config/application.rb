@@ -42,5 +42,6 @@ module LaaCourtDataUi
 
     config.exceptions_app = routes
     config.active_job.queue_adapter = :sidekiq
+    config.x.support_email_address = 'laa-get-paid@digital.justice.gov.uk'
   end
 end
