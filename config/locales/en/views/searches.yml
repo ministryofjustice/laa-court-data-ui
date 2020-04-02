@@ -35,6 +35,12 @@ en:
         mode_of_trial: Mode of trial
         plea: Plea
         title: Offence
+      representation_order:
+        caption: Representation order list
+        granted_at: Date granted
+        heading: Representation orders
+        maat_number: MAAT number
+        provider: Provider
     term:
       case_reference_label: Unique reference number
       defendant_name_label: Defendant name

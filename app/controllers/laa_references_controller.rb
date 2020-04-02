@@ -4,9 +4,9 @@ class LaaReferencesController < ApplicationController
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
     if link_laa_reference
-      flash[:notice] = I18n.t('laa_reference.linking.success')
+      flash[:notice] = I18n.t('laa_reference.link.success')
     else
-      flash[:alert] = I18n.t('laa_reference.linking.failure', error_messages: error_messages)
+      flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
     end
     redirect_to defendant_path(laa_reference_params[:id])
   end

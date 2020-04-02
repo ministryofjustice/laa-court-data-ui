@@ -76,8 +76,8 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_post_request
       expect(response).to redirect_to new_user_session_path
     end
 
-    xit 'flashes alert' do
-      expect(flash.now[:notice]).to match(/unauthorised/)
+    it 'flashes alert' do
+      expect(flash.now[:alert]).to match(/sign in before continuing/)
     end
   end
 end
