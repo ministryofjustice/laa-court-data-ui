@@ -16,7 +16,7 @@ class LaaReferencesController < ApplicationController
   def link_laa_reference
     laa_reference = resource.new(**resource_params)
     laa_reference.save
-  rescue CourtDataAdaptor::Resource::BadRequest => e
+  rescue CourtDataAdaptor::Errors::BadRequest => e
     @errors = e.errors
     false
   end

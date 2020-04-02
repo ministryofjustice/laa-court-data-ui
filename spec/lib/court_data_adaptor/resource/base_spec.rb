@@ -61,7 +61,7 @@ RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
 
       it 'applies custom handler' do
         expect { test_resource_class.all }.to \
-          raise_error CourtDataAdaptor::Resource::BadRequest, 'Bad request'
+          raise_error CourtDataAdaptor::Errors::BadRequest, 'Bad request'
       end
     end
   end

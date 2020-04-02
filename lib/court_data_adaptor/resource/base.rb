@@ -3,7 +3,7 @@
 module CourtDataAdaptor
   class BadRequestHandler
     def self.call(env)
-      raise CourtDataAdaptor::Resource::BadRequest.new('Bad request', env.response)
+      raise CourtDataAdaptor::Errors::BadRequest.new('Bad request', env.response)
     end
   end
 

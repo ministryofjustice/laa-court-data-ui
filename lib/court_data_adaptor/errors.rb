@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 module CourtDataAdaptor
-  module Resource
+  module Errors
     class Error < StandardError; end
-    class NotFound < Error; end
 
     class BadRequest < Error
       def initialize(msg, response)
