@@ -250,8 +250,8 @@ http_interactions:
       - gzip,deflate
   response:
     status:
-      code: 401
-      message: Unauthorized
+      code: 202
+      message: Accepted
     headers:
       X-Frame-Options:
       - SAMEORIGIN
@@ -265,24 +265,19 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
-      Cache-Control:
-      - private, no-store
-      Pragma:
-      - no-cache
-      Www-Authenticate:
-      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
-        token is invalid"
       Content-Type:
-      - text/html
+      - text/plain; charset=utf-8
+      Cache-Control:
+      - no-cache
       X-Request-Id:
-      - 25802c73-0736-4080-8d5c-fdc0333d21be
+      - 56f0e6be-bfc7-44c8-adb5-38783d863ee4
       X-Runtime:
-      - '0.058972'
+      - '0.006333'
       Content-Length:
-      - '0'
+      - '1'
     body:
       encoding: UTF-8
-      string: ''
+      string: " "
     http_version: null
-  recorded_at: Thu, 02 Apr 2020 08:53:29 GMT
+  recorded_at: Thu, 02 Apr 2020 10:05:04 GMT
 recorded_with: VCR 5.1.0
