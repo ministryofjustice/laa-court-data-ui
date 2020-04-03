@@ -34,6 +34,12 @@ Layout/LineLength:
   IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*', "body: '{\".*\":"]
   AllowHeredoc: true
 
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
 Metrics/AbcSize:
   Exclude:
     - app/models/ability.rb
