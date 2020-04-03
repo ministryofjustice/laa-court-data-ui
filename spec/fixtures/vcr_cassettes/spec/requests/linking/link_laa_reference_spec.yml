@@ -1,0 +1,150 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v1/laa_references
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"2123456"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 0efb6870-754f-4c08-baff-c948c41ee1ce
+      X-Runtime:
+      - '0.004290'
+      Content-Length:
+      - '1'
+    body:
+      encoding: UTF-8
+      string: " "
+    http_version: null
+  recorded_at: Wed, 01 Apr 2020 22:09:01 GMT
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v1/laa_references
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"invalid-defendant-id","maat_reference":"2123456"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 6602e666-9a99-4a2b-8060-8bfe491e14c4
+      X-Runtime:
+      - '0.005721'
+      Content-Length:
+      - '37'
+    body:
+      encoding: UTF-8
+      string: '{"defendant_id":["not a valid uuid"]}'
+    http_version: null
+  recorded_at: Wed, 01 Apr 2020 22:09:01 GMT
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v1/laa_references
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"A2123456"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 409c117b-f583-410b-9832-6059882a93e8
+      X-Runtime:
+      - '0.003891'
+      Content-Length:
+      - '41'
+    body:
+      encoding: UTF-8
+      string: '{"maat_reference":["must be an integer"]}'
+    http_version: null
+  recorded_at: Wed, 01 Apr 2020 22:09:01 GMT
+recorded_with: VCR 5.1.0

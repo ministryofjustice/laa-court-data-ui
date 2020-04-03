@@ -1,7 +1,14 @@
 ---
 en:
   laa_reference:
-    maat_reference:
-      hint: Enter the MAAT ID so this case can be linked to the court data source
-      label: MAAT ID
-    submit: Create link to court data
+    link:
+      failure: A link to the court data source could not be created %{error_messages}
+      form:
+        maat_reference:
+          hint: Enter the MAAT ID so this case can be linked to the court data source
+          label: MAAT ID
+        submit: Create link to court data
+      success: You have successfully linked to the court data source
+    unlink:
+      label: Remove link to court data
+      warning: Removing the link will stop hearing updates being received

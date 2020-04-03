@@ -47,4 +47,22 @@ RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
       ).to have_been_made.once
     end
   end
+
+  describe 'connection options' do
+    context 'when bad request responses' do
+      before do
+        allow(test_resource_class).to receive(:name).and_return('TestResource')
+        stub_request(:get, test_resource_endpoint)
+          .to_return(
+            status: 400,
+            body: { field: %w[error1 error2] }.to_json
+          )
+      end
+
+      it 'applies custom handler' do
+        expect { test_resource_class.all }.to \
+          raise_error CourtDataAdaptor::Errors::BadRequest, 'Bad request'
+      end
+    end
+  end
 end
