@@ -24,12 +24,6 @@
         = t('search.result.defendant.arrest_summons_number')
       %td.govuk-table__cell
         = @defendant.arrest_summons_number
-    - if @defendant.linked?
-      %tr.govuk-table__row
-        %td.govuk-table__cell{ class: 'govuk-!-font-weight-bold' }
-          = t('search.result.defendant.maat_number')
-        %td.govuk-table__cell
-          = @defendant.maat_reference
 
 = render('representation_orders', locals: @defendant) if @defendant.linked?
 
