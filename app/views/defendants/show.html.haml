@@ -13,7 +13,7 @@
       %td.govuk-table__cell{ class: 'govuk-!-font-weight-bold' }
         = t('search.result.defendant.prosecution_case_reference')
       %td.govuk-table__cell
-        = link_to @defendant.prosecution_case_reference, prosecution_case_path(@defendant.prosecution_case_reference)
+        = @defendant.prosecution_case_reference
     %tr.govuk-table__row
       %td.govuk-table__cell{ class: 'govuk-!-font-weight-bold' }
         = t('search.result.defendant.national_insurance_number')
@@ -24,6 +24,8 @@
         = t('search.result.defendant.arrest_summons_number')
       %td.govuk-table__cell
         = @defendant.arrest_summons_number
+
+= link_to 'View case', prosecution_case_path(@defendant.prosecution_case_reference), class: 'govuk-button govuk-button--secondary'
 
 = render('representation_orders', locals: @defendant) if @defendant.linked?
 

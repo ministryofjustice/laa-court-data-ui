@@ -117,13 +117,12 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
       rows = page.all('.govuk-table__row')
       expect(rows[0]).to have_content('Date of birth')
       expect(rows[0]).to have_content(%r{[0-3][0-9]\/[0-1][0-9]\/[1-2][0|9](?:[0-9]{2})?})
-
       expect(rows[1]).to have_content('Case URN')
-      expect(rows[1]).to have_link(nil, href: %r{\/prosecution_cases\/.*})
-
       expect(rows[2]).to have_content('NI number')
       expect(rows[3]).to have_content('ASN')
     end
+
+    expect(page).to have_link('View case', href: %r{\/prosecution_cases\/.*})
   end
 
   def then_has_offence_details(table_number: 1)
