@@ -71,7 +71,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     then_has_representation_order_details(table_number: 1)
     then_has_offence_details(table_number: 2)
     expect(page).to have_link('Remove link to court data')
-    expect(page).to have_content('Removing the link will stop hearing updates being received')
+    expect(page).to have_govuk_warning('Removing the link will stop hearing updates being received')
   end
 
   def when_viewing_case(case_urn)

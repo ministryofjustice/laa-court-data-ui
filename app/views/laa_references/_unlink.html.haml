@@ -1,2 +1,9 @@
-= link_to t('laa_reference.unlink.label'), 'TODO'
-= t('laa_reference.unlink.warning')
+= link_to t('laa_reference.unlink.label'), '', class: 'govuk-link'
+%br
+%br
+.govuk-warning-text
+  %span.govuk-warning-text__icon{"aria-hidden" => "true"} !
+  %strong.govuk-warning-text__text
+    %span.govuk-warning-text__assistive
+      = t('generic.warning')
+    = t('laa_reference.unlink.warning')

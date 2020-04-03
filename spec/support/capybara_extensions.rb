@@ -48,6 +48,14 @@ module CapybaraExtensions
       result
     end
 
+    def has_govuk_warning?(text = nil)
+      [
+        has_selector?('.govuk-warning-text strong.govuk-warning-text__text', text: text),
+        has_selector?('.govuk-warning-text span.govuk-warning-text__icon', text: '!'),
+        has_selector?('.govuk-warning-text span.govuk-warning-text__assistive', text: 'Warning')
+      ].all?
+    end
+
     def href_match?(expected, actual)
       return actual.match?(expected) if expected.is_a?(Regexp)
       CGI.unescape(expected).eql?(CGI.unescape(actual))
