@@ -80,6 +80,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
 
   def then_case_view_displayed
     expect(page).to have_css('h1', text: 'TEST12345')
+    expect(page).to have_css('.govuk-caption-xl', text: 'Case')
     expect(page).to have_css('.govuk-heading-m', text: 'Defendants')
   end
 
@@ -89,6 +90,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
 
   def then_defendant_view_displayed_for(name)
     expect(page).to have_css('h1', text: name)
+    expect(page).to have_css('.govuk-caption-xl', text: 'Defendant')
     expect(page).to have_css('.govuk-table', minimum: 2)
   end
 

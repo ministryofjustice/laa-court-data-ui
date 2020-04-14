@@ -2,7 +2,9 @@
 en:
   generic:
     alpha: alpha
+    case: Case
     continue: Continue
+    defendant: Defendant
     new_window: opens in a new window
     search: Search
     warning: Warning
