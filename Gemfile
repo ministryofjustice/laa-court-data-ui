@@ -25,7 +25,7 @@ gem 'rails', '~> 6.0.2'
 gem 'redis', '~> 4.1.3'
 gem 'sentry-raven'
 gem 'sidekiq', '~> 5.2.7'
-gem 'webpacker', '~> 5.0'
+gem 'webpacker', '~> 5.1'
 
 group :test do
   gem 'axe-matchers'
