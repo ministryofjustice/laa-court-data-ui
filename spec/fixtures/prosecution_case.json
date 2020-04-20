@@ -40,8 +40,7 @@
       "id": "107ba90b-f3ff-4727-ab7d-dea446ad4713",
       "type": "defendants",
       "attributes": {
-        "first_name": "Josefa",
-        "last_name": "Franecki",
+        "name": "Josefa Franecki",
         "date_of_birth": "1961-06-15",
         "national_insurance_number": "HR669639M",
         "gender": null,
@@ -67,8 +66,7 @@
       "id": "e695c7d3-64b4-4acf-a55e-5dac7c91ec13",
       "type": "defendants",
       "attributes": {
-        "first_name": "Florene",
-        "last_name": "DuBuque",
+        "name": "Florene DuBuque",
         "date_of_birth": "1983-10-17",
         "national_insurance_number": "XE675428D",
         "gender": null,
@@ -94,8 +92,7 @@
       "id": "121cba19-de86-470d-8903-946423684587",
       "type": "defendants",
       "attributes": {
-        "first_name": "Aracely",
-        "last_name": "Zulauf",
+        "name": "Aracely Zulauf",
         "date_of_birth": "1955-09-27",
         "national_insurance_number": "HH481835D",
         "gender": null,
@@ -121,8 +118,7 @@
       "id": "9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9",
       "type": "defendants",
       "attributes": {
-        "first_name": "Andy",
-        "last_name": "Sawayn",
+        "name": "Andy Sawayn",
         "date_of_birth": "1987-10-19",
         "national_insurance_number": "EA382617F",
         "gender": null,
@@ -187,8 +183,7 @@
       "id": "107ba90b-f3ff-4727-ab7d-dea446ad4713",
       "type": "defendants",
       "attributes": {
-        "first_name": "Josefa",
-        "last_name": "Franecki",
+        "name": "Josefa Franecki",
         "date_of_birth": "1961-06-15",
         "national_insurance_number": "HR669639M",
         "gender": null,
@@ -214,8 +209,7 @@
       "id": "e695c7d3-64b4-4acf-a55e-5dac7c91ec13",
       "type": "defendants",
       "attributes": {
-        "first_name": "Florene",
-        "last_name": "DuBuque",
+        "name": "Florene DuBuque",
         "date_of_birth": "1983-10-17",
         "national_insurance_number": "XE675428D",
         "gender": null,
@@ -241,8 +235,7 @@
       "id": "121cba19-de86-470d-8903-946423684587",
       "type": "defendants",
       "attributes": {
-        "first_name": "Aracely",
-        "last_name": "Zulauf",
+        "name": "Aracely Zulauf",
         "date_of_birth": "1955-09-27",
         "national_insurance_number": "HH481835D",
         "gender": null,
@@ -268,8 +261,7 @@
       "id": "9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9",
       "type": "defendants",
       "attributes": {
-        "first_name": "Andy",
-        "last_name": "Sawayn",
+        "name": "Andy Sawayn",
         "date_of_birth": "1987-10-19",
         "national_insurance_number": "EA382617F",
         "gender": null,

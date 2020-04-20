@@ -5,10 +5,7 @@ module CourtDataAdaptor
     class Defendant < Base
       belongs_to :prosecution_case
       property :prosecution_case_reference, type: :string
-
-      def name
-        "#{first_name} #{last_name}" unless first_name.blank? && last_name.blank?
-      end
+      property :name, type: :string
 
       def linked?
         maat_reference&.present?
