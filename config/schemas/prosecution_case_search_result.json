@@ -51,11 +51,8 @@
             "object"
           ],
           "properties": {
-            "first_name": {
-              "$ref": "#/definitions/prosecution_case/definitions/first_name"
-            },
-            "last_name": {
-              "$ref": "#/definitions/prosecution_case/definitions/last_name"
+            "name": {
+              "$ref": "#/definitions/prosecution_case/definitions/name"
             },
             "prosecution_case_reference": {
               "$ref": "#/definitions/prosecution_case/definitions/prosecution_case_reference"
@@ -94,18 +91,10 @@
             "string"
           ]
         },
-        "first_name": {
+        "name": {
           "readOnly": true,
           "example": "Elaf",
-          "description": "The fore name when the defendant is a person",
-          "type": [
-            "string"
-          ]
-        },
-        "last_name": {
-          "readOnly": true,
-          "example": "Alvi",
-          "description": "The last name when the defendant is a person",
+          "description": "The full name when the defendant is a person",
           "type": [
             "string"
           ]
@@ -204,11 +193,8 @@
             },
             {
               "properties": {
-                "first_name": {
-                  "$ref": "#/definitions/prosecution_case/definitions/first_name"
-                },
-                "last_name": {
-                  "$ref": "#/definitions/prosecution_case/definitions/last_name"
+                "name": {
+                  "$ref": "#/definitions/prosecution_case/definitions/name"
                 },
                 "date_of_birth": {
                   "$ref": "#/definitions/prosecution_case/definitions/date_of_birth"
@@ -217,11 +203,8 @@
             },
             {
               "properties": {
-                "first_name": {
-                  "$ref": "#/definitions/prosecution_case/definitions/first_name"
-                },
-                "last_name": {
-                  "$ref": "#/definitions/prosecution_case/definitions/last_name"
+                "name": {
+                  "$ref": "#/definitions/prosecution_case/definitions/name"
                 },
                 "date_of_next_hearing": {
                   "$ref": "#/definitions/prosecution_case/definitions/date_of_next_hearing"

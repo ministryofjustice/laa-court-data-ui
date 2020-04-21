@@ -102,4 +102,109 @@ http_interactions:
       string: '{"data":null}'
     http_version: null
   recorded_at: Tue, 31 Mar 2020 11:16:27 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bdate_of_birth%5D=1961-06-15&filter%5Bname%5D=Josefa%20Franecki&include=defendants
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"8272b189c01ca429abee072bd011f76b"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 062e32ff-f22f-4648-b9ee-eb908de368d1
+      X-Runtime:
+      - '0.076054'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"id":"db3c94f1-bc26-4674-9385-c0df45e48493","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants"},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants"},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants"},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants"}]}}}],"included":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants","attributes":{"name":"Josefa
+        Franecki","date_of_birth":"1961-06-15","national_insurance_number":"YE744478B","arrest_summons_number":"Y1NDQNW9NCN6","maat_reference":null},"relationships":{"offences":{"data":[{"id":"43b560f0-8aa8-4de5-b0e5-aab7b8078d1e","type":"offences"}]}}},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants","attributes":{"name":"Weldon
+        Leffler Deckow","date_of_birth":"1962-06-18","national_insurance_number":"GG367471A","arrest_summons_number":"NYC1FXJTLWFE","maat_reference":null},"relationships":{"offences":{"data":[{"id":"4e8f8627-60b1-4f14-a7ca-49d01914b160","type":"offences"}]}}},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants","attributes":{"name":"Amada
+        Cruickshank Abshire","date_of_birth":"1977-08-20","national_insurance_number":"HE708741C","arrest_summons_number":"UEDOC8A64W7I","maat_reference":null},"relationships":{"offences":{"data":[{"id":"c1c8fcdf-c7f2-46f4-8fe4-f86400eac211","type":"offences"}]}}},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"WWVHYGO7CMZ1","maat_reference":null},"relationships":{"offences":{"data":[{"id":"9f14c8ce-78e7-41e5-8ceb-4e7872b86c51","type":"offences"}]}}}]}'
+    http_version: null
+  recorded_at: Mon, 20 Apr 2020 13:40:18 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bdate_of_birth%5D=1928-11-28&filter%5Bname%5D=Fred%20Bloggs&include=defendants
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"ba5f3ea40e95f49bce11942f375ebd38"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - ca3144ca-77ad-4182-b2ec-266519a5ee90
+      X-Runtime:
+      - '0.036533'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":null}'
+    http_version: null
+  recorded_at: Mon, 20 Apr 2020 13:40:21 GMT
 recorded_with: VCR 5.1.0

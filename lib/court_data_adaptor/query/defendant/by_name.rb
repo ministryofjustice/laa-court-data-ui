@@ -12,8 +12,7 @@ module CourtDataAdaptor
           cases = resource
                   .includes(:defendants)
                   .where(
-                    first_name: first_name,
-                    last_name: last_name,
+                    name: name,
                     date_of_birth: date_of_birth
                   )
                   .all
@@ -24,15 +23,7 @@ module CourtDataAdaptor
         private
 
         def name
-          @name ||= NameParser.new(term)
-        end
-
-        def first_name
-          name.first&.capitalize
-        end
-
-        def last_name
-          name.last&.capitalize
+          term.strip
         end
 
         def date_of_birth
@@ -43,7 +34,7 @@ module CourtDataAdaptor
           cases.each_with_object([]) do |c, results|
             c.defendants.each do |d|
               d.prosecution_case_reference = c.prosecution_case_reference
-              results << d if d.first_name.casecmp(first_name).zero? && d.last_name.casecmp(last_name).zero?
+              results << d if d.name.casecmp(name).zero?
             end
           end
         end

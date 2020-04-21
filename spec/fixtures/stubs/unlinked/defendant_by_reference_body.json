@@ -35,8 +35,7 @@
          "id":"41fcb1cd-516e-438e-887a-5987d92ef90f",
          "type":"defendants",
          "attributes":{
-            "first_name":"Jammy",
-            "last_name":"Dodger",
+            "name":"Jammy Dodger",
             "date_of_birth":"1987-05-21",
             "national_insurance_number":"JC123456A",
             "arrest_summons_number":"0TSQT1LMI7CR",
@@ -57,8 +56,7 @@
          "id":"da91d565-940f-415b-80ac-f03e277d5a46",
          "type":"defendants",
          "attributes":{
-            "first_name":"Hobert",
-            "last_name":"Brown",
+            "name":"Hobert Brown",
             "date_of_birth":"1981-03-24",
             "national_insurance_number":"MR610691B",
             "arrest_summons_number":"LYDAO0SB7S2P",
@@ -79,8 +77,7 @@
          "id":"11839596-4adb-4e20-a31b-2ec81b1046cf",
          "type":"defendants",
          "attributes":{
-            "first_name":"Richie",
-            "last_name":"Kshlerin",
+            "name":"Richie Kshlerin",
             "date_of_birth":"1972-09-27",
             "national_insurance_number":"HB998014D",
             "arrest_summons_number":"MXVUV367V6DT",
@@ -101,8 +98,7 @@
          "id":"d1f3d0e5-3afd-46bc-bdc8-f15ebb0fdf7f",
          "type":"defendants",
          "attributes":{
-            "first_name":"Doreen",
-            "last_name":"Leannon",
+            "name":"Doreen Leannon",
             "date_of_birth":"1964-05-10",
             "national_insurance_number":"RL601733B",
             "arrest_summons_number":"QDHR07EBLZFZ",

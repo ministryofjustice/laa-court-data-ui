@@ -12,26 +12,6 @@ RSpec.describe CourtDataAdaptor::Resource::Defendant do
   it { is_expected.to respond_to(:prosecution_case_reference, :prosecution_case_reference=) }
   it { is_expected.to respond_to(:name) }
 
-  describe '#name' do
-    subject { defendant.name }
-
-    context 'when defendant is a person' do
-      let(:defendant) { described_class.load(first_name: 'John', last_name: 'Smith') }
-
-      it 'returns Firstname Surname' do
-        is_expected.to eql 'John Smith'
-      end
-    end
-
-    context 'when defendant is organisation' do
-      let(:defendant) { described_class.load(first_name: nil, last_name: nil) }
-
-      it 'returns Firstname Surname' do
-        is_expected.to be nil
-      end
-    end
-  end
-
   describe '#linked?' do
     subject { defendant.linked? }
 
@@ -42,7 +22,7 @@ RSpec.describe CourtDataAdaptor::Resource::Defendant do
     end
 
     context 'when maat_reference not present' do
-      let(:defendant) { described_class.load(first_name: 'Jammy', last_name: 'Dodger') }
+      let(:defendant) { described_class.load(name: 'Jammy Dodger') }
 
       it { is_expected.to be_falsey }
     end

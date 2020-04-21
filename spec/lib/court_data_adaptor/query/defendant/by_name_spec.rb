@@ -6,7 +6,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
   subject { described_class }
 
   let(:instance) { described_class.new(nil) }
-  let(:term) { 'josefa  theadore FRanecki  ' }
+  let(:term) { 'josefa theadore FRanecki  ' }
   let(:dob) { Date.parse('15-06-1961') }
 
   it_behaves_like 'court_data_adaptor queryable object'
@@ -41,7 +41,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
     it 'sends where query to resource' do
       expect(resultset)
         .to have_received(:where)
-        .with(first_name: 'Josefa', last_name: 'Franecki', date_of_birth: '1961-06-15')
+        .with(name: 'josefa theadore FRanecki', date_of_birth: '1961-06-15')
     end
 
     it 'sends all message to resultset' do
@@ -56,9 +56,9 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
       expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::Defendant))
     end
 
-    it 'returns only defendants with matching first name, last name and date_of_birth' do
+    it 'returns only defendants with matching name and date_of_birth' do
       expect(results).to all(
-        have_attributes(first_name: 'Josefa', last_name: 'Franecki', date_of_birth: '1961-06-15')
+        have_attributes(name: 'Josefa theadore Franecki', date_of_birth: '1961-06-15')
       )
     end
 

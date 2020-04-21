@@ -4,8 +4,7 @@
       "id": "107ba90b-f3ff-4727-ab7d-dea446ad4713",
       "type": "defendants",
       "attributes": {
-        "first_name": "Josefa",
-        "last_name": "Franecki",
+        "name": "Josefa Franecki",
         "date_of_birth": "1961-06-15",
         "national_insurance_number": "HR669639M",
         "gender": null,
