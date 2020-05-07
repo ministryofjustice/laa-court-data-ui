@@ -7,7 +7,7 @@
     "lint-sass": "sass-lint -v"
   },
   "dependencies": {
-    "@rails/ujs": "^6.0.0",
+    "@rails/ujs": "^6.0.3",
     "@rails/webpacker": "5.1.1",
     "govuk-frontend": "^3.6.0"
   },
