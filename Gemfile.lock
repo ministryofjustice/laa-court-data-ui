@@ -175,8 +175,6 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
     ice_nine (0.11.2)
-    jaro_winkler (1.5.4)
-    jaro_winkler (1.5.4-java)
     json (2.3.0)
     json (2.3.0-java)
     json-schema (2.8.1)
@@ -235,7 +233,7 @@ GEM
       rack (>= 1.2, < 3)
     orm_adapter (0.5.0)
     parallel (1.19.1)
-    parser (2.7.1.1)
+    parser (2.7.1.2)
       ast (~> 2.4.0)
     pg (1.2.3)
     pg (1.2.3-x64-mingw32)
@@ -329,8 +327,7 @@ GEM
     rspec-support (3.9.2)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (0.82.0)
-      jaro_winkler (~> 1.5.1)
+    rubocop (0.83.0)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -471,7 +468,7 @@ DEPENDENCIES
   redis (~> 4.1.4)
   rspec-rails (~> 4.0)
   rspec_junit_formatter
-  rubocop (~> 0.82)
+  rubocop (~> 0.83)
   rubocop-performance
   rubocop-rails
   rubocop-rspec
