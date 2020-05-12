@@ -16,7 +16,7 @@ RSpec.feature 'Cookies', type: :feature do
       visit cookies_path
       click_button 'Accept cookies'
 
-      expect(page).to have_selector('.app-cookie-banner', visible: false)
+      expect(page).to have_selector('.app-cookie-banner--hidden')
     end
   end
 
