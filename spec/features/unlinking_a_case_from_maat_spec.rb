@@ -33,7 +33,7 @@ describe 'unlinking a case from MAAT', type: :feature do
       context 'with a pre-existing link' do
         let(:defendant_fixture) { 'linked/defendant_by_reference_body.json' }
         let(:stub) do
-          json_api_data = {
+          _json_api_data = {
             data: [{
               attributes: {
                 user_name: user.email,
@@ -43,12 +43,15 @@ describe 'unlinking a case from MAAT', type: :feature do
             }]
           }
 
-          stub_request(:patch, "#{api_url}/defendants/#{defendant_asn}")
-            .with(body: json_api_data.to_json)
+          stub_request(:patch, "#{api_url}/defendants/41fcb1cd-516e-438e-887a-5987d92ef90f")
+          # TODO: make it clear why it's this string
+          # stub_request(:patch, "#{api_url}/defendants/41fcb1cd-516e-438e-887a-5987d92ef90f")
+          #   .with(body: json_api_data.to_json)
         end
 
+        before { stub }
+
         it 'does not show the option to link to a MAAT ID' do
-          stub
           expect(page).not_to have_content('Enter the MAAT ID')
         end
 
