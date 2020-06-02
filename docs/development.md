@@ -54,10 +54,7 @@ rails console
 ```
 # in .env.development.local
 COMMON_PLATFORM_URL=http://localhost:9293
-SHARED_SECRET_KEY_LAA_REFERENCE=super-secret-search-laa-reference-key
-SHARED_SECRET_KEY_REPRESENTATION_ORDER=super-secret-search-representation-order-key
-SHARED_SECRET_KEY_SEARCH_PROSECUTION_CASE=super-secret-search-prosecution-case-key
-SHARED_SECRET_KEY_HEARING=super-secret-hearing-key
+SHARED_SECRET_KEY=super-secret-key
 ```
 
 - start server
