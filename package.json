@@ -9,7 +9,7 @@
   "dependencies": {
     "@rails/ujs": "^6.0.3",
     "@rails/webpacker": "5.1.1",
-    "govuk-frontend": "^3.6.0"
+    "govuk-frontend": "^3.7.0"
   },
   "devDependencies": {
     "sass-lint": "^1.13.1",
