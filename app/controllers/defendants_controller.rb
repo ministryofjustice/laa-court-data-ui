@@ -16,8 +16,8 @@ class DefendantsController < ApplicationController
   def remove_link
     defendant.update(
       user_name: 'example',
-      unlink_reason_code: '',
-      unlink_reason_text: 'unknown'
+      unlink_reason_code: 1,
+      unlink_reason_text: 'Wrong MAAT ID'
     )
 
     redirect_to defendant_path(defendant.arrest_summons_number)

@@ -37,8 +37,8 @@ describe 'unlinking a case from MAAT', type: :feature do
             data: [{
               attributes: {
                 user_name: user.email,
-                unlink_reason_code: '',
-                unlink_reason_text: 'unknown'
+                unlink_reason_code: 1,
+                unlink_reason_text: 'Wrong MAAT ID'
               }
             }]
           }
