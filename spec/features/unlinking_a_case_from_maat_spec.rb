@@ -32,24 +32,10 @@ describe 'unlinking a case from MAAT', type: :feature do
 
       context 'with a pre-existing link' do
         let(:defendant_fixture) { 'linked/defendant_by_reference_body.json' }
-        let(:stub) do
-          _json_api_data = {
-            data: [{
-              attributes: {
-                user_name: user.email,
-                unlink_reason_code: 1,
-                unlink_reason_text: 'Wrong MAAT ID'
-              }
-            }]
-          }
+        let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+        let(:path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
 
-          stub_request(:patch, "#{api_url}/defendants/41fcb1cd-516e-438e-887a-5987d92ef90f")
-          # TODO: make it clear why it's this string
-          # stub_request(:patch, "#{api_url}/defendants/41fcb1cd-516e-438e-887a-5987d92ef90f")
-          #   .with(body: json_api_data.to_json)
-        end
-
-        before { stub }
+        before { stub_request(:patch, path) }
 
         it 'does not show the option to link to a MAAT ID' do
           expect(page).not_to have_content('Enter the MAAT ID')
@@ -57,7 +43,24 @@ describe 'unlinking a case from MAAT', type: :feature do
 
         it 'sends an unlink request to the adapter when I choose to unlink' do
           click_on 'Remove link to court data'
-          expect(stub).to have_been_requested
+
+          expected_data = {
+            data:
+            {
+              id: defendant_id_from_fixture,
+              type: 'defendants',
+              attributes: {
+                prosecution_case_reference: 'TEST12345',
+                user_name: 'example',
+                unlink_reason_code: 1,
+                unlink_reason_text: 'Wrong MAAT ID'
+              }
+            }
+          }
+
+          expect(a_request(:patch, path)
+            .with { |req| req.body == expected_data.to_json })
+            .to have_been_made
         end
       end
     end
