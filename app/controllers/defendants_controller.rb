@@ -13,6 +13,16 @@ class DefendantsController < ApplicationController
                    defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
   end
 
+  def remove_link
+    defendant.update(
+      user_name: 'example',
+      unlink_reason_code: 1,
+      unlink_reason_text: 'Wrong MAAT ID'
+    )
+
+    redirect_to defendant_path(defendant.arrest_summons_number)
+  end
+
   def defendant
     @defendant ||= @search.execute.first
   end

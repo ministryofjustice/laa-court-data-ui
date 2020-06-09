@@ -5,10 +5,6 @@ require 'court_data_adaptor'
 RSpec.describe CourtDataAdaptor::Resource::Defendant do
   it_behaves_like 'court_data_adaptor resource object', test_class: described_class
 
-  it 'belongs_to prosecution_case' do
-    is_expected.to respond_to(:prosecution_case_id, :prosecution_case_id=)
-  end
-
   it { is_expected.to respond_to(:prosecution_case_reference, :prosecution_case_reference=) }
   it { is_expected.to respond_to(:name) }
 
