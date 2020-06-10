@@ -23,4 +23,12 @@ RSpec.shared_examples 'court_data_adaptor resource object' do |options|
       is_expected.to eql ENV['COURT_DATA_ADAPTOR_API_URL']
     end
   end
+
+  describe '.client' do
+    subject { options[:test_class].client }
+
+    it 'returns instance of client' do
+      is_expected.to be_an_instance_of(CourtDataAdaptor::Client)
+    end
+  end
 end
