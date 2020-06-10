@@ -10,6 +10,7 @@ module CourtDataAdaptor
   module Resource
     class Base < JsonApiClient::Resource
       include Configurable
+      include ActsAsResource
 
       VERSION = '0.0.1'
       self.site = config.api_url

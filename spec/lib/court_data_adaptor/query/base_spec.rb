@@ -9,6 +9,10 @@ RSpec.describe CourtDataAdaptor::Query::Base do
     end
   end
 
-  it_behaves_like 'court_data_adaptor queryable object'
+  it_behaves_like 'court_data_adaptor acts_as_resource object', resource: :nil_resource do
+    let(:klass) { test_class }
+    let(:instance) { test_class.new(nil) }
+  end
+
   it_behaves_like 'court_data_adaptor query object'
 end

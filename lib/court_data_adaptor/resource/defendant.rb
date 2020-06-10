@@ -3,6 +3,8 @@
 module CourtDataAdaptor
   module Resource
     class Defendant < Base
+      acts_as_resource self
+
       property :prosecution_case_reference, type: :string
       property :name, type: :string
       property :user_name

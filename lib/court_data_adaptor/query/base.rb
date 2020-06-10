@@ -3,7 +3,7 @@
 module CourtDataAdaptor
   module Query
     class Base
-      include CourtDataAdaptor::Resource::Queryable
+      include CourtDataAdaptor::ActsAsResource
 
       attr_accessor :term, :dob
 

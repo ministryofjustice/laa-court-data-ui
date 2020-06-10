@@ -9,7 +9,15 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
   let(:term) { 'josefa theadore FRanecki  ' }
   let(:dob) { Date.parse('15-06-1961') }
 
-  it_behaves_like 'court_data_adaptor queryable object'
+  def self.resource
+    CourtDataAdaptor::Resource::ProsecutionCase
+  end
+
+  it_behaves_like 'court_data_adaptor acts_as_resource object', resource: resource do
+    let(:klass) { described_class }
+    let(:instance) { described_class.new(nil) }
+  end
+
   it_behaves_like 'court_data_adaptor query object'
 
   it { expect(instance).to respond_to(:dob, :dob=) }
@@ -18,7 +26,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
     subject(:call) { instance.call }
 
     let(:instance) { described_class.new(term, dob: dob) }
-    let(:resource) { CourtDataAdaptor::Resource::ProsecutionCase }
+    let(:resource) { self.class.resource }
     let(:resultset) { instance_double('ResultSet') }
 
     before do

@@ -5,7 +5,15 @@ require 'court_data_adaptor'
 RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
   subject { described_class }
 
-  it_behaves_like 'court_data_adaptor queryable object'
+  def self.resource
+    CourtDataAdaptor::Resource::ProsecutionCase
+  end
+
+  it_behaves_like 'court_data_adaptor acts_as_resource object', resource: resource do
+    let(:klass) { described_class }
+    let(:instance) { described_class.new(nil) }
+  end
+
   it_behaves_like 'court_data_adaptor query object'
 
   describe '#call' do
@@ -13,7 +21,7 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
 
     let(:instance) { described_class.new(term) }
     let(:term) { 'ACASEURN' }
-    let(:resource) { CourtDataAdaptor::Resource::ProsecutionCase }
+    let(:resource) { self.class.resource }
     let(:resultset) { instance_double('ResultSet') }
 
     before do

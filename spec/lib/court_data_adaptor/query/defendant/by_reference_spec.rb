@@ -8,14 +8,22 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
   let(:instance) { described_class.new(nil) }
   let(:term) { 'YE744478B' }
 
-  it_behaves_like 'court_data_adaptor queryable object'
+  def self.resource
+    CourtDataAdaptor::Resource::ProsecutionCase
+  end
+
+  it_behaves_like 'court_data_adaptor acts_as_resource object', resource: resource do
+    let(:klass) { described_class }
+    let(:instance) { described_class.new(nil) }
+  end
+
   it_behaves_like 'court_data_adaptor query object'
 
   describe '#call' do
     subject(:call) { instance.call }
 
     let(:instance) { described_class.new(term) }
-    let(:resource) { CourtDataAdaptor::Resource::ProsecutionCase }
+    let(:resource) { self.class.resource }
     let(:resultset) { instance_double('ResultSet') }
 
     before do
