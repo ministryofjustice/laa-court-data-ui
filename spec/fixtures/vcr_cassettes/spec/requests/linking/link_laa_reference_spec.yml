@@ -39,16 +39,15 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 0efb6870-754f-4c08-baff-c948c41ee1ce
+      - 207f86db-f79e-4268-82ad-9f5d991ceae0
       X-Runtime:
-      - '0.004290'
+      - '0.007800'
       Content-Length:
       - '1'
     body:
       encoding: UTF-8
       string: " "
-    http_version: null
-  recorded_at: Wed, 01 Apr 2020 22:09:01 GMT
+  recorded_at: Wed, 10 Jun 2020 15:56:39 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -88,16 +87,15 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 6602e666-9a99-4a2b-8060-8bfe491e14c4
+      - f270774e-4365-48fe-97fc-f5a46262560a
       X-Runtime:
-      - '0.005721'
+      - '0.008315'
       Content-Length:
-      - '37'
+      - '40'
     body:
       encoding: UTF-8
-      string: '{"defendant_id":["not a valid uuid"]}'
-    http_version: null
-  recorded_at: Wed, 01 Apr 2020 22:09:01 GMT
+      string: '{"defendant_id":["is not a valid uuid"]}'
+  recorded_at: Wed, 10 Jun 2020 15:56:39 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -137,14 +135,13 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 409c117b-f583-410b-9832-6059882a93e8
+      - 675be0b2-a853-4d58-adbf-94d6d29595d5
       X-Runtime:
-      - '0.003891'
+      - '0.007280'
       Content-Length:
       - '41'
     body:
       encoding: UTF-8
       string: '{"maat_reference":["must be an integer"]}'
-    http_version: null
-  recorded_at: Wed, 01 Apr 2020 22:09:01 GMT
-recorded_with: VCR 5.1.0
+  recorded_at: Wed, 10 Jun 2020 15:56:39 GMT
+recorded_with: VCR 6.0.0
