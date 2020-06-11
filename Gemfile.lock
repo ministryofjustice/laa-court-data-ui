@@ -103,7 +103,7 @@ GEM
     crass (1.0.6)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (4.7.1)
+    devise (4.7.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -302,7 +302,7 @@ GEM
       ffi (~> 1.0)
     redis (4.1.4)
     regexp_parser (1.7.1)
-    responders (3.0.0)
+    responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
@@ -444,7 +444,7 @@ DEPENDENCIES
   climate_control
   codeclimate-test-reporter
   colorize
-  devise (~> 4.2)
+  devise (~> 4.7)
   dotenv-rails
   factory_bot_rails
   faker
