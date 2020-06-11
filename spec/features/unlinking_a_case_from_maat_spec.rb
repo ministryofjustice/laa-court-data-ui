@@ -51,7 +51,7 @@ describe 'unlinking a case from MAAT', type: :feature do
               type: 'defendants',
               attributes: {
                 prosecution_case_reference: 'TEST12345',
-                user_name: 'example',
+                user_name: user.unique_user_reference,
                 unlink_reason_code: 1,
                 unlink_reason_text: 'Wrong MAAT ID'
               }

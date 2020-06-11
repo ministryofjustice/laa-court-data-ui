@@ -9,7 +9,10 @@ RSpec.describe User, type: :model do
   end
 
   # only attributes/methods that are additional to devise user
-  it { is_expected.to respond_to(:first_name, :last_name, :name, :roles, :email_confirmation) }
+  it {
+    is_expected.to respond_to(:first_name, :last_name, :name, :roles, :email_confirmation,
+                              :unique_user_reference)
+  }
 
   describe '#name' do
     subject { user.name }
@@ -69,6 +72,22 @@ RSpec.describe User, type: :model do
         end.not_to \
           raise_error
       end
+    end
+  end
+
+  describe '#unique_user_reference' do
+    let(:unique_user_reference) { SecureRandom.hex(5) }
+
+    it 'generates a random hex string when creating a user' do
+      user = create(:user)
+      expect(user.unique_user_reference).not_to eq(nil)
+    end
+
+    it 'raises an error when creating a user with the same unique user reference' do
+      expect do
+        create(:user, unique_user_reference: unique_user_reference)
+        create(:user, unique_user_reference: unique_user_reference)
+      end.to raise_error ActiveRecord::RecordInvalid
     end
   end
 end
