@@ -7,9 +7,10 @@ RSpec.describe FeedbackMailer, type: :mailer do
   let(:comment) { 'A feedback comment' }
   let(:email) { 'feedback.user@example.com' }
   let(:rating) { 1 }
+  let(:environment) { 'test' }
 
   describe 'Feedback Email' do
-    subject(:mail) { described_class.notify(comment, email, rating) }
+    subject(:mail) { described_class.notify(comment, email, rating, environment) }
 
     it 'is a govuk_notify delivery' do
       expect(mail.delivery_method).to be_a(GovukNotifyRails::Delivery)
@@ -22,7 +23,7 @@ RSpec.describe FeedbackMailer, type: :mailer do
     it 'sets the personalisation' do
       expect(
         mail.govuk_notify_personalisation.keys.sort
-      ).to eq %i[comment email rating]
+      ).to eq %i[comment email environment rating]
     end
 
     it 'sets the template' do

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class FeedbackMailer < GovukNotifyRails::Mailer
-  def notify(email, rating, comment)
+  def notify(email, rating, comment, environment)
     set_template('5fcd84b1-8d05-4b6c-86a8-9fc391efa754')
     set_personalisation(
       email: email,
       rating: rating,
-      comment: comment
+      comment: comment,
+      environment: environment
     )
     mail(to: support_email_address)
   end

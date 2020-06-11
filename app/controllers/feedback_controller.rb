@@ -23,10 +23,15 @@ class FeedbackController < ApplicationController
   def submit_feedback
     FeedbackMailer.notify(feedback_params[:email],
                           feedback_params[:rating],
-                          feedback_params[:comment]).deliver_later!
+                          feedback_params[:comment],
+                          environment).deliver_later!
   end
 
   def feedback_params
-    params.require(:feedback).permit(:comment, :email, :rating)
+    params.require(:feedback).permit(:comment, :email, :rating, :subject)
+  end
+
+  def environment
+    ENV['ENV']
   end
 end
