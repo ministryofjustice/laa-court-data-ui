@@ -69,25 +69,42 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_post_request
       end
     end
 
-    context 'with stubbed requests', vcr_post_request: false do
-      let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
-      let(:link_request) do
-        {
-          path: "#{api_url}/laa_references",
-          body: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"2123456"}}}'
-        }
+    context 'with stubbed requests' do
+      context 'when MAAT reference submitted' do
+        before do
+          stub_request(:post, link_request[:path])
+          post '/laa_references', params: params
+        end
+
+        let(:link_request) do
+          {
+            path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
+            body: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"2123456"}}}'
+          }
+        end
+
+        it 'sends link request with filtered params' do
+          expect(
+            a_request(:post, link_request[:path])
+              .with(body: link_request[:body])
+          ).to have_been_made.once
+        end
       end
 
-      before do
-        stub_request(:post, link_request[:path])
-        post '/laa_references', params: params
-      end
+      context 'when oauth token expired', :stub_oauth_token do
+        before do
+          config = instance_double(CourtDataAdaptor::Configuration)
+          allow_any_instance_of(CourtDataAdaptor::Client).to receive(:config).and_return config
+          allow(config).to receive(:test_mode?).and_return false
+          allow_any_instance_of(OAuth2::AccessToken).to receive(:expired?).and_return true
+          post '/laa_references', params: params
+        end
 
-      it 'sends link request' do
-        expect(
-          a_request(:post, link_request[:path])
-            .with(body: link_request[:body])
-        ).to have_been_made.once
+        it 'sends token request' do
+          expect(
+            a_request(:post, %r{.*/oauth/token})
+          ).to have_been_made.once
+        end
       end
     end
   end
