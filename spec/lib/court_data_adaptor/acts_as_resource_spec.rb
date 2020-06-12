@@ -2,10 +2,10 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::Resource::Queryable, :concern do
+RSpec.describe CourtDataAdaptor::ActsAsResource, :concern do
   let(:test_class) do
     Class.new do
-      include CourtDataAdaptor::Resource::Queryable
+      include CourtDataAdaptor::ActsAsResource
       acts_as_resource :my_resource_class
     end
   end

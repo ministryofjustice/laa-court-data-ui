@@ -9,7 +9,13 @@ module CourtDataAdaptor
 
   module Resource
     class Base < JsonApiClient::Resource
+      include JsonApiClient::Helpers::Callbacks
       include Configurable
+      include ActsAsResource
+
+      before_save do
+        refresh_token_if_required!
+      end
 
       VERSION = '0.0.1'
       self.site = config.api_url
