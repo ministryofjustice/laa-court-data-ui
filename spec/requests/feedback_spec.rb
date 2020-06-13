@@ -3,7 +3,7 @@
 RSpec.describe 'feedback', type: :request do
   let(:message_delivery) { instance_double(FeedbackMailer::MessageDelivery) }
 
-  describe 'when clicking the feedback link', type: :request do
+  context 'when clicking the feedback link', type: :request do
     before { get '/feedback/new' }
 
     it 'renders feedback/new' do
@@ -11,13 +11,13 @@ RSpec.describe 'feedback', type: :request do
     end
   end
 
-  describe 'Create feedback', type: :request do
+  context 'when submitting feedback', type: :request do
     let(:feedback_params) do
       {
         feedback:
           {
             comment: 'A feedback comment',
-            rating: 1,
+            rating: '1',
             email: 'feedback.user@example.com'
           }
       }
@@ -26,11 +26,16 @@ RSpec.describe 'feedback', type: :request do
     before do
       allow(FeedbackMailer).to receive(:notify).and_return(message_delivery)
       allow(message_delivery).to receive(:deliver_later!)
+      allow_any_instance_of(FeedbackController).to receive(:environment).and_return 'test'
       post '/feedback', params: feedback_params
     end
 
-    it 'sends feedback email' do
+    it 'supplies personalisation' do
       expect(FeedbackMailer).to have_received(:notify)
+        .with({ comment: 'A feedback comment',
+                rating: '1',
+                email: 'feedback.user@example.com',
+                environment: 'test' })
     end
 
     it 'flashes notice' do

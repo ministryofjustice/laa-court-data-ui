@@ -21,10 +21,12 @@ class FeedbackController < ApplicationController
   private
 
   def submit_feedback
-    FeedbackMailer.notify(email: feedback_params[:email],
-                          rating: feedback_params[:rating],
-                          comment: feedback_params[:comment],
-                          environment: environment).deliver_later!
+    FeedbackMailer.notify(
+      email: feedback_params[:email],
+      rating: feedback_params[:rating],
+      comment: feedback_params[:comment],
+      environment: environment
+    ).deliver_later!
   end
 
   def feedback_params
