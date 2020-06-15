@@ -8,6 +8,7 @@ FactoryBot.define do
     password_confirmation { 'testing123' }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
+    username { "#{last_name[0, 4]}-#{first_name[0, 1]}".downcase }
     roles { ['caseworker'] }
 
     trait :with_caseworker_role do
