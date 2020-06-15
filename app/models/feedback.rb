@@ -13,6 +13,5 @@ class Feedback
   }.freeze
 
   attr_accessor :comment, :rating, :email
-  validates :comment, presence: true
   validates :rating, inclusion: { in: RATINGS.keys.map(&:to_s), message: 'Please select a valid rating' }
 end
