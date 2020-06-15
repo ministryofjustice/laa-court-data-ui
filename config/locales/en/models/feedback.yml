@@ -1,0 +1,9 @@
+---
+en:
+  activemodel:
+    errors:
+      models:
+        feedback:
+          attributes:
+            rating:
+              invalid: Choose a rating
