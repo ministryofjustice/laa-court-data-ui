@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.fdescribe User, type: :model do
+RSpec.describe User, type: :model do
   let(:user) do
     build(:user,
           email: 'john.smith@example.com',

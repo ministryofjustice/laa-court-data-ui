@@ -21,6 +21,7 @@ en:
         email_label: Email
         first_name_label: First name
         last_name_label: Last name
+        login_label: Username or email
         roles_legend: What roles does the user have?
         save_button: Save
     generic:

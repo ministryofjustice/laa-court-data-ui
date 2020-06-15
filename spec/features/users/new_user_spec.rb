@@ -36,6 +36,7 @@ RSpec.feature 'New user', type: :feature do
       expect(page).to have_govuk_page_title(text: 'New user')
       expect(page).to have_field('First name', type: 'text')
       expect(page).to have_field('Last name', type: 'text')
+      expect(page).to have_field('Username', type: 'text')
       expect(page).to have_field('Email', type: 'email')
       expect(page).to have_field('Confirm email', type: 'email')
       expect(page).to have_field('Caseworker', type: 'checkbox')
@@ -44,6 +45,7 @@ RSpec.feature 'New user', type: :feature do
 
       fill_in 'First name', with: 'Jim'
       fill_in 'Last name', with: 'Bob'
+      fill_in 'Username', with: 'bob-j'
       fill_in 'Email', with: 'jim.bob@example.com'
       fill_in 'Confirm email', with: 'jim.bob@example.com'
       check 'Caseworker'
