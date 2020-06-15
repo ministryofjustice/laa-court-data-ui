@@ -6,4 +6,4 @@ en:
         feedback:
           attributes:
             rating:
-              invalid: Choose a rating
+              inclusion: Choose a rating

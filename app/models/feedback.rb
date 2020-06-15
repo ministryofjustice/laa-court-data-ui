@@ -13,5 +13,5 @@ class Feedback
   }.freeze
 
   attr_accessor :comment, :rating, :email
-  validates :rating, inclusion: { in: RATINGS.keys.map(&:to_s), message: :invalid }
+  validates :rating, inclusion: { in: RATINGS.keys.map(&:to_s) }
 end
