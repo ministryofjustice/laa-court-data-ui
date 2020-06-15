@@ -5,8 +5,6 @@ RSpec.feature 'New user', type: :feature do
     sign_in user
   end
 
-  # let(:outbox) { ActionMailer::Base.deliveries }
-
   context 'when caseworker' do
     let(:user) { create(:user, :with_caseworker_role) }
 
