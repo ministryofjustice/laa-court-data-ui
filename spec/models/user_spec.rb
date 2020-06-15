@@ -51,14 +51,14 @@ RSpec.describe User, type: :model do
         expect do
           user.update!(email: 'john.boy@example.com', email_confirmation: 'jim.bob@example.com')
         end.to \
-          raise_error ActiveRecord::RecordInvalid, /Email confirmation doesn\'t match Email/
+          raise_error ActiveRecord::RecordInvalid, /Email confirmation doesn't match Email/
       end
 
       it 'blank email confirmation raises error' do
         expect do
           user.update!(email: 'john.boy@example.com', email_confirmation: '')
         end.to \
-          raise_error ActiveRecord::RecordInvalid, /Email confirmation can\'t be blank/
+          raise_error ActiveRecord::RecordInvalid, /Email confirmation can't be blank/
       end
     end
 

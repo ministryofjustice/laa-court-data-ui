@@ -45,7 +45,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   def stub_linked_defendant
     stub_request(
       :get,
-      %r{http.*\/api\/internal\/v1\/prosecution_cases\?filter.*}
+      %r{http.*/api/internal/v1/prosecution_cases\?filter.*}
     ).to_return(
       status: 200,
       body: load_json_stub('linked/defendant_by_reference_body.json'),
@@ -103,8 +103,8 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
       rows = page.all('.govuk-table__row')
       rows.each do |row|
         cells = row.all('.govuk-table__cell')
-        expect(cells[0]).to have_link(nil, href: %r{\/defendants\/.*})
-        expect(cells[1].text).to match(%r{[0-3][0-9]\/[0-1][0-9]\/[1-2][0|9](?:[0-9]{2})?})
+        expect(cells[0]).to have_link(nil, href: %r{/defendants/.*})
+        expect(cells[1].text).to match(%r{[0-3][0-9]/[0-1][0-9]/[1-2][0|9](?:[0-9]{2})?})
         expect(cells[2].text).to eql 'Not linked'
       end
     end
@@ -116,13 +116,13 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     within defendant_details do
       rows = page.all('.govuk-table__row')
       expect(rows[0]).to have_content('Date of birth')
-      expect(rows[0]).to have_content(%r{[0-3][0-9]\/[0-1][0-9]\/[1-2][0|9](?:[0-9]{2})?})
+      expect(rows[0]).to have_content(%r{[0-3][0-9]/[0-1][0-9]/[1-2][0|9](?:[0-9]{2})?})
       expect(rows[1]).to have_content('Case URN')
       expect(rows[2]).to have_content('NI number')
       expect(rows[3]).to have_content('ASN')
     end
 
-    expect(page).to have_link('View case', href: %r{\/prosecution_cases\/.*})
+    expect(page).to have_link('View case', href: %r{/prosecution_cases/.*})
   end
 
   def then_has_offence_details(table_number: 1)
