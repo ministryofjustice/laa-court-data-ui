@@ -4,9 +4,8 @@ class User < ApplicationRecord
   include Roles
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :registerable and :omniauthable
   devise  :database_authenticatable,
-          # :registerable,
           :recoverable,
           :rememberable,
           :timeoutable,
@@ -18,6 +17,12 @@ class User < ApplicationRecord
 
   validates :email, confirmation: true
   validates :email_confirmation, presence: true, if: :email_changed?
+
+  attr_writer :login
+
+  def login
+    @login || username || email
+  end
 
   def name
     "#{first_name} #{last_name}"

@@ -1,21 +1,52 @@
 # frozen_string_literal: true
 
-RSpec.describe User, type: :model do
+RSpec.fdescribe User, type: :model do
   let(:user) do
     build(:user,
           email: 'john.smith@example.com',
           first_name: 'John',
-          last_name: 'Smith')
+          last_name: 'Smith',
+          username: 'smit-j1')
   end
 
   # only attributes/methods that are additional to devise user
-  it { is_expected.to respond_to(:first_name, :last_name, :name, :roles, :email_confirmation) }
+  it { is_expected.to respond_to(:first_name, :last_name, :login, :name, :roles, :email_confirmation) }
 
   describe '#name' do
     subject { user.name }
 
     it 'returns "firstname lastname"' do
       is_expected.to eql 'John Smith'
+    end
+  end
+
+  describe '#login' do
+    subject { user.login }
+
+    context 'when login has been set' do
+      before { user.login = 'bobi-j' }
+
+      it 'uses the login username provided' do
+        is_expected.to eql 'bobi-j'
+      end
+    end
+
+    context 'when no login set' do
+      before { user.login = nil }
+
+      context 'with user with username' do
+        it 'uses the users username attribute' do
+          is_expected.to eql 'smit-j1'
+        end
+      end
+
+      context 'with user with no username' do
+        before { user.username = nil }
+
+        it 'uses the users email attribute' do
+          is_expected.to eql 'john.smith@example.com'
+        end
+      end
     end
   end
 
