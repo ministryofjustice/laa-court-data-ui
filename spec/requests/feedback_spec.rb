@@ -41,5 +41,9 @@ RSpec.describe 'feedback', type: :request do
     it 'flashes notice' do
       expect(flash.now[:notice]).to match(/Your feedback has been submitted/)
     end
+
+    it 'redirects to authenticated_root_path' do
+      expect(response).to redirect_to authenticated_root_path
+    end
   end
 end

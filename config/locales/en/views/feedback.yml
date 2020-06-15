@@ -7,3 +7,5 @@ en:
     email_label: What is your email address? (Optional)
     page_title: Help us improve this service
     ratings_label: Overall, how satisfied were you with this service?
+    submitted:
+      success: Your feedback has been submitted

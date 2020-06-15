@@ -23,6 +23,6 @@ RSpec.feature 'Feedback', type: :feature do
     end.to have_enqueued_job.on_queue('mailers')
 
     expect(page).to have_govuk_flash(:notice, text: 'Your feedback has been submitted')
-    expect(page).to have_current_path(new_feedback_path)
+    expect(page).to have_current_path(authenticated_root_path)
   end
 end

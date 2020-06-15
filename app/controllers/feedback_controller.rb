@@ -12,7 +12,7 @@ class FeedbackController < ApplicationController
     @feedback = Feedback.new feedback_params
     if @feedback.valid?
       submit_feedback
-      redirect_to new_feedback_path, notice: 'Your feedback has been submitted'
+      redirect_to authenticated_root_path, notice: I18n.t('feedback.submitted.success')
     else
       render new_feedback_path
     end
