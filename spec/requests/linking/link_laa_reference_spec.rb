@@ -39,11 +39,11 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_post_request
       let(:defendant_id) { 'invalid-defendant-id' }
 
       it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/A link to the court data source could not be created/)
+        expect(flash.now[:alert]).to match(/A link to the court data source could not be created\./)
       end
 
       it 'flashes returned error' do
-        expect(flash.now[:alert]).to match(/defendant_id is not a valid uuid/i)
+        expect(flash.now[:alert]).to match(/Defendant is not a valid uuid/i)
       end
 
       it 'redirects to defendant path' do
@@ -61,7 +61,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_post_request
       end
 
       it 'flashes returned error' do
-        expect(flash.now[:alert]).to match(/maat_reference must be an integer/i)
+        expect(flash.now[:alert]).to match(/MAAT reference must be an integer/)
       end
 
       it 'redirects to defendant path' do

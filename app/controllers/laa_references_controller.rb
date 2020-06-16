@@ -38,6 +38,6 @@ class LaaReferencesController < ApplicationController
   end
 
   def error_messages
-    @errors.map { |k, v| "#{k} #{v.join(', ')}" }.join("\n")
+    @errors.map { |k, v| "#{k.humanize} #{v.join(', ')}" }.join("\n")
   end
 end
