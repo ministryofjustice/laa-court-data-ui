@@ -12,6 +12,9 @@ RSpec.describe User, type: :model do
   # only attributes/methods that are additional to devise user
   it { is_expected.to respond_to(:first_name, :last_name, :login, :name, :roles, :email_confirmation) }
 
+  it { is_expected.to validate_presence_of(:email).with_message(/Enter an email address/) }
+  it { is_expected.to validate_presence_of(:username).with_message(/Enter a username/) }
+
   describe '#name' do
     subject { user.name }
 

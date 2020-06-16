@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   accepts_roles :caseworker, :manager, :admin
 
+  validates :username, presence: true
   validates :email, confirmation: true
   validates :email_confirmation, presence: true, if: :email_changed?
 
