@@ -15,7 +15,7 @@ class DefendantsController < ApplicationController
 
   def remove_link
     defendant.update(
-      user_name: 'example',
+      user_name: current_user.username,
       unlink_reason_code: 1,
       unlink_reason_text: 'Wrong MAAT ID'
     )

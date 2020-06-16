@@ -55,7 +55,7 @@ RSpec.describe 'Unlinking a defendant from MAAT', type: :feature do
                 type: 'defendants',
                 attributes: {
                   prosecution_case_reference: 'TEST12345',
-                  user_name: 'example',
+                  user_name: user.username,
                   unlink_reason_code: 1,
                   unlink_reason_text: 'Wrong MAAT ID'
                 }
