@@ -49,6 +49,7 @@ en:
       name_label: Name
       page_title: "%{name}'s account"
       roles_label: Roles
+      username_label: Username
     update:
       flash:
         success: User details successfully updated

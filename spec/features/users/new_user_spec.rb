@@ -26,7 +26,7 @@ RSpec.feature 'New user', type: :feature do
   context 'when manager' do
     let(:user) { create(:user, :with_manager_role) }
 
-    scenario 'can index, new and create users' do
+    scenario 'can index, show, new and create users' do
       visit users_path
       expect(page).to have_govuk_page_title(text: 'List of users')
 
@@ -49,6 +49,7 @@ RSpec.feature 'New user', type: :feature do
       fill_in 'Email', with: 'jim.bob@example.com'
       fill_in 'Confirm email', with: 'jim.bob@example.com'
       check 'Caseworker'
+      check 'Admin'
 
       expect do
         click_button 'Save'
@@ -59,7 +60,12 @@ RSpec.feature 'New user', type: :feature do
       expect(new_user).to be_caseworker
       expect(page).to have_current_path(user_path(new_user))
       expect(page).to have_govuk_flash(:notice, text: 'User successfully added')
+
       expect(page).to have_govuk_page_title(text: 'Jim Bob\'s account')
+      expect(page).to have_selector('.govuk-table__cell', text: 'Jim Bob')
+      expect(page).to have_selector('.govuk-table__cell', text: 'jim.bob@example.com')
+      expect(page).to have_selector('.govuk-table__cell', text: 'bob-j')
+      expect(page).to have_selector('.govuk-table__cell', text: 'Caseworker, Admin')
     end
   end
 end
