@@ -43,6 +43,7 @@ RSpec.describe 'managers', type: :request do
           {
             first_name: 'Billy',
             last_name: 'Bob',
+            username: 'bob-b',
             email: 'created@example.com',
             email_confirmation: 'created@example.com'
           }

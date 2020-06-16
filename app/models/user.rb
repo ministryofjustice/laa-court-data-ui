@@ -15,7 +15,12 @@ class User < ApplicationRecord
 
   accepts_roles :caseworker, :manager, :admin
 
-  validates :username, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :username,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            format: { with: /\A[\w-]{1,10}\z/ }
   validates :email, confirmation: true
   validates :email_confirmation, presence: true, if: :email_changed?
 
