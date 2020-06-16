@@ -15,19 +15,30 @@ class DefendantsController < ApplicationController
 
   # TODO: this would be better as an update action IMO
   def remove_link
-    if defendant.update(unlink_attributes)
+    if unlink!
       flash[:notice] = I18n.t('defendant.unlink.success')
     else
-      flash[:alert] = I18n.t('defendant.unlink.failure')
+      flash[:alert] = I18n.t('defendant.unlink.failure', error_messages: error_messages)
     end
 
     redirect_to defendant_path(defendant.arrest_summons_number)
+  end
+
+  def unlink!
+    defendant.update(unlink_attributes)
+  rescue CourtDataAdaptor::Errors::BadRequest => e
+    @errors = e.errors
+    false
   end
 
   def unlink_attributes
     { user_name: current_user.username,
       unlink_reason_code: 1,
       unlink_reason_text: 'Wrong MAAT ID' }
+  end
+
+  def error_messages
+    @errors.map { |k, v| "#{k.humanize} #{v.join(', ')}" }.join("\n")
   end
 
   def defendant
