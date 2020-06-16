@@ -3,10 +3,6 @@
     %li
       = link_to t('devise.shared.links.sign_in'), new_session_path(resource_name), class: 'govuk-link'
 
-    / - if devise_mapping.registerable? && controller_name != 'registrations'
-    / %li
-    / = link_to "Sign up", new_registration_path(resource_name)
-
   - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
     %li
       = link_to t('devise.shared.links.forgot_password'), new_password_path(resource_name), class: 'govuk-link'
