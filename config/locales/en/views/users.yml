@@ -21,11 +21,11 @@ en:
         email_label: Email
         first_name_label: First name
         last_name_label: Last name
-        username_label: Username
-        username_hint: Use MAAT/MLRA username
         login_label: Username or email
         roles_legend: What roles does the user have?
         save_button: Save
+        username_hint: Use MAAT/MLRA username
+        username_label: Username
     generic:
       action: Action
       email: Email
