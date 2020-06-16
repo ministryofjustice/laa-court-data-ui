@@ -1,0 +1,6 @@
+---
+en:
+  defendant:
+    unlink:
+      failure: Unlinking from the court data source was unsuccessful
+      success: You have successfully unlinked from the court data source

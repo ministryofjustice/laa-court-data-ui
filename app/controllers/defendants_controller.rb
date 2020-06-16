@@ -13,14 +13,21 @@ class DefendantsController < ApplicationController
                    defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
   end
 
+  # TODO: this would be better as an update action IMO
   def remove_link
-    defendant.update(
-      user_name: current_user.username,
-      unlink_reason_code: 1,
-      unlink_reason_text: 'Wrong MAAT ID'
-    )
+    if defendant.update(unlink_attributes)
+      flash[:notice] = I18n.t('defendant.unlink.success')
+    else
+      flash[:alert] = I18n.t('defendant.unlink.failure')
+    end
 
     redirect_to defendant_path(defendant.arrest_summons_number)
+  end
+
+  def unlink_attributes
+    { user_name: current_user.username,
+      unlink_reason_code: 1,
+      unlink_reason_text: 'Wrong MAAT ID' }
   end
 
   def defendant
