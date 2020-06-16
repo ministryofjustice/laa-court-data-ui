@@ -15,8 +15,34 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of(:first_name).with_message(/Enter a first name/) }
   it { is_expected.to validate_presence_of(:last_name).with_message(/Enter a last name/) }
 
-  it { is_expected.to validate_presence_of(:email).with_message(/Enter an email address/) }
-  it { is_expected.to validate_uniqueness_of(:email).case_insensitive.with_message(/Email already taken/) }
+  context 'when validating email' do
+    it { is_expected.to validate_presence_of(:email).with_message(/Enter an email address/) }
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive.with_message(/Email already taken/) }
+
+    # see config/initializers/devise.rb
+    context 'with upper case chars' do
+      before { user.email = 'John.Smith@example.com' }
+
+      it 'downcases username during validation' do
+        expect { user.valid? }.to \
+          change(user, :email)
+          .from('John.Smith@example.com')
+          .to('john.smith@example.com')
+      end
+    end
+
+    # see config/initializers/devise.rb
+    context 'with whitespace chars' do
+      before { user.email = '   john.smith@example.com   ' }
+
+      it 'strips whitespace during validation' do
+        expect { user.valid? }.to \
+          change(user, :email)
+          .from('   john.smith@example.com   ')
+          .to('john.smith@example.com')
+      end
+    end
+  end
 
   context 'when validating username' do
     it {
@@ -45,16 +71,27 @@ RSpec.describe User, type: :model do
         .with_message(/Username format is invalid/)
     }
 
+    # see config/initializers/devise.rb
     context 'with upper case chars' do
-      before do
-        user.username = 'Bob-J'
+      before { user.username = 'Bob-J' }
+
+      it 'downcases username during validation' do
+        expect { user.valid? }.to \
+          change(user, :username)
+          .from('Bob-J')
+          .to('bob-j')
       end
+    end
 
-      it { expect(user.username).to eql 'Bob-J' }
+    # see config/initializers/devise.rb
+    context 'with whitespace chars' do
+      before { user.username = '   bob-J ' }
 
-      it 'downcases username before validating' do
-        user.valid?
-        expect(user.username).to eql 'bob-j'
+      it 'strips whitespace during validation' do
+        expect { user.valid? }.to \
+          change(user, :username)
+          .from('   bob-J ')
+          .to('bob-j')
       end
     end
   end
