@@ -34,6 +34,6 @@ class FeedbackController < ApplicationController
   end
 
   def environment
-    ENV['ENV']
+    ENV['ENV'] || ''
   end
 end
