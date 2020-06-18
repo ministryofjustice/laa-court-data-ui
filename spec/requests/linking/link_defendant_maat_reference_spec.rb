@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'link defendant maat reference', type: :request, vcr_post_request: true do
+RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request: true do
   let(:user) { create(:user) }
 
   let(:nino) { 'JC123456A' }

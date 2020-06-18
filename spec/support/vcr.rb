@@ -64,7 +64,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.around(:each, :vcr_post_request) do |example|
+  config.around(:each, :vcr_cud_request) do |example|
     if VCR.turned_on?
       cassette = cassette_name(example)
       VCR.use_cassette(cassette, record: :new_episodes, match_requests_on: [:body_as_json]) do
