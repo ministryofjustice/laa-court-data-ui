@@ -37,11 +37,20 @@ RSpec.feature 'Edit user', type: :feature, js: true do
       end
 
       expect(page).to have_govuk_page_title(text: 'Edit user')
+      expect(page).to have_field('First name', type: 'text')
+      expect(page).to have_field('Last name', type: 'text')
+      expect(page).to have_field('Username', type: 'text')
       expect(page).to have_field('Email', type: 'email', with: other_user.email)
       expect(page).to have_field('Confirm email', type: 'email', with: other_user.email)
       expect(page).to have_field('Caseworker', type: 'checkbox')
       expect(page).to have_field('Manager', type: 'checkbox')
       expect(page).to have_field('Admin', type: 'checkbox')
+
+      fill_in 'Confirm email', with: ''
+
+      click_button 'Save'
+      expect(page).to have_govuk_error_summary('doesn\'t match Email')
+      expect(page).to have_govuk_error_field(:user, :email_confirmation, 'doesn\'t match Email')
 
       check 'Manager'
       fill_in 'Email', with: 'changed@example.com'

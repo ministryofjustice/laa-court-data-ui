@@ -26,12 +26,13 @@ RSpec.feature 'New user', type: :feature do
   context 'when manager' do
     let(:user) { create(:user, :with_manager_role) }
 
-    scenario 'can index, show, new and create users' do
+    scenario 'can new and create users' do
       visit users_path
       expect(page).to have_govuk_page_title(text: 'List of users')
 
       expect(page).to have_link(text: 'Create a new user')
       click_link 'Create a new user'
+      expect(page).to have_current_path(new_user_path)
 
       expect(page).to have_govuk_page_title(text: 'New user')
       expect(page).to have_field('First name', type: 'text')
@@ -45,11 +46,16 @@ RSpec.feature 'New user', type: :feature do
 
       fill_in 'First name', with: 'Jim'
       fill_in 'Last name', with: 'Bob'
-      fill_in 'Username', with: 'bob-j'
       fill_in 'Email', with: 'jim.bob@example.com'
       fill_in 'Confirm email', with: 'jim.bob@example.com'
       check 'Caseworker'
       check 'Admin'
+
+      click_button 'Save'
+      expect(page).to have_govuk_error_summary('Enter a username')
+      expect(page).to have_govuk_error_field(:user, :username, 'Enter a username')
+
+      fill_in 'Username', with: 'bob-j'
 
       expect do
         click_button 'Save'

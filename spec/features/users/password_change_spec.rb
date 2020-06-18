@@ -19,10 +19,19 @@ RSpec.feature 'Password change', type: :feature, js: true do
     click_link 'Change password'
 
     expect(page).to have_govuk_page_title(text: 'Change password')
+    expect(page).to be_accessible.within '#main-content'
+
+    fill_in 'Current password', with: user.password
+    fill_in 'New password', with: 'my-new-password'
+
+    click_button 'Change password'
+    expect(page).to have_govuk_error_summary('doesn\'t match Password')
+    expect(page).to have_govuk_error_field(:user, :password_confirmation, 'doesn\'t match Password')
+
     fill_in 'Current password', with: user.password
     fill_in 'New password', with: 'my-new-password'
     fill_in 'Confirm new password', with: 'my-new-password'
-    expect(page).to be_accessible.within '#main-content'
+
     expect do
       click_button 'Change password'
     end.to have_enqueued_job.on_queue('mailers')
