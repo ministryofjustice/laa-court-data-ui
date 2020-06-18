@@ -77,7 +77,6 @@ RSpec.describe 'Unlinking a defendant from MAAT', type: :feature do
           }
         end
 
-        # TODO: this is more of a request spec and should be moved there
         it 'sends an unlink request to the adapter' do
           expect(a_request(:patch, path)
             .with(body: payload.to_json))
@@ -92,7 +91,6 @@ RSpec.describe 'Unlinking a defendant from MAAT', type: :feature do
 
       context 'when unlinking with failure' do
         before do
-          # TODO: this is a made up error - get a real one
           stub_request(:patch, path)
             .to_return(
               status: 400,
