@@ -23,13 +23,14 @@ RSpec.feature 'Edit user', type: :feature, js: true do
     end
   end
 
-  fcontext 'when manager' do
+  context 'when manager' do
     let(:user) { create(:user, :with_manager_role) }
     let!(:other_user) { create(:user, :with_caseworker_role) }
 
-    scenario 'can index, view and edit users' do
+    scenario 'can index, edit and delete users' do
       visit users_path
 
+      # Index
       expect(page).to have_govuk_page_title(text: 'List of users')
 
       within '.govuk-table__head' do
@@ -49,6 +50,7 @@ RSpec.feature 'Edit user', type: :feature, js: true do
 
       expect(page).to be_accessible.within '#main-content'
 
+      # Edit
       within(row) do
         click_link 'Edit'
       end
