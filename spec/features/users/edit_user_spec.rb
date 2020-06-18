@@ -27,30 +27,11 @@ RSpec.feature 'Edit user', type: :feature, js: true do
     let(:user) { create(:user, :with_manager_role) }
     let!(:other_user) { create(:user, :with_caseworker_role) }
 
-    scenario 'can index, edit and delete users' do
+    scenario 'can index and edit users' do
       visit users_path
 
-      # Index
-      expect(page).to have_govuk_page_title(text: 'List of users')
-
-      within '.govuk-table__head' do
-        expect(page).to have_selector('.govuk-table__header', text: 'Name')
-        expect(page).to have_selector('.govuk-table__header', text: 'Username')
-        expect(page).to have_selector('.govuk-table__header', text: 'Email')
-        expect(page).to have_selector('.govuk-table__header', text: 'Action')
-      end
-
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
-      expect(row).to have_link(other_user.name, href: user_path(other_user))
-      expect(row).to have_link(other_user.username, href: user_path(other_user))
-      expect(row).to have_link(other_user.email, href: "mailto:#{other_user.email}")
-      expect(row).to have_link('Edit', href: edit_user_path(other_user))
-      expect(row).to have_link('Delete', href: user_path(other_user))
-      expect(row).to have_selector('a.govuk-link[data-method="delete"]', text: 'Delete', count: 1)
 
-      expect(page).to be_accessible.within '#main-content'
-
-      # Edit
       within(row) do
         click_link 'Edit'
       end
