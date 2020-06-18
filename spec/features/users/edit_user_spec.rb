@@ -27,27 +27,30 @@ RSpec.feature 'Edit user', type: :feature, js: true do
     let(:user) { create(:user, :with_manager_role) }
     let!(:other_user) { create(:user, :with_caseworker_role) }
 
-    scenario 'can index, view and edit users' do
+    scenario 'can index and edit users' do
       visit users_path
-      expect(page).to have_govuk_page_title(text: 'List of users')
 
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
-      expect(row).to have_content(other_user.name)
-      expect(row).to have_link(other_user.name, href: user_path(other_user))
-      expect(row).to have_link('Edit', href: edit_user_path(other_user))
-
-      expect(page).to be_accessible.within '#main-content'
 
       within(row) do
         click_link 'Edit'
       end
 
       expect(page).to have_govuk_page_title(text: 'Edit user')
+      expect(page).to have_field('First name', type: 'text')
+      expect(page).to have_field('Last name', type: 'text')
+      expect(page).to have_field('Username', type: 'text')
       expect(page).to have_field('Email', type: 'email', with: other_user.email)
       expect(page).to have_field('Confirm email', type: 'email', with: other_user.email)
       expect(page).to have_field('Caseworker', type: 'checkbox')
       expect(page).to have_field('Manager', type: 'checkbox')
       expect(page).to have_field('Admin', type: 'checkbox')
+
+      fill_in 'Confirm email', with: ''
+
+      click_button 'Save'
+      expect(page).to have_govuk_error_summary('doesn\'t match Email')
+      expect(page).to have_govuk_error_field(:user, :email_confirmation, 'doesn\'t match Email')
 
       check 'Manager'
       fill_in 'Email', with: 'changed@example.com'

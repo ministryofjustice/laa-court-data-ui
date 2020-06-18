@@ -56,6 +56,20 @@ module CapybaraExtensions
       ].all?
     end
 
+    def has_govuk_error_summary?(error_text = nil)
+      summary = find('.govuk-error-summary[role="alert"]')
+      [
+        summary.has_selector?('#error-summary-title', text: 'There is a problem'),
+        summary.has_link?(error_text)
+      ].all?
+    end
+
+    def has_govuk_error_field?(model, field, error_text = nil)
+      model = model.to_s.tr('_', '-')
+      field = field.to_s.tr('_', '-')
+      has_selector?(".govuk-error-message##{model}-#{field}-error", text: error_text)
+    end
+
     def href_match?(expected, actual)
       return actual.match?(expected) if expected.is_a?(Regexp)
       CGI.unescape(expected).eql?(CGI.unescape(actual))

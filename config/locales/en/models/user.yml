@@ -1,0 +1,18 @@
+---
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: Enter an email address
+              taken: Email already taken
+            first_name:
+              blank: Enter a first name
+            last_name:
+              blank: Enter a last name
+            username:
+              blank: Enter a username
+              invalid: Username format is invalid
+              taken: Username already taken

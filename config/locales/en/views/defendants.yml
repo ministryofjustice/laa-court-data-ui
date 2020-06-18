@@ -1,0 +1,6 @@
+---
+en:
+  defendant:
+    unlink:
+      failure: The link to the court data source could not be removed. %{error_messages}
+      success: You have successfully unlinked from the court data source

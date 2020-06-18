@@ -16,6 +16,8 @@
       %th.govuk-table__header{ scope: 'col' }
         = t('users.generic.name')
       %th.govuk-table__header{ scope: 'col' }
+        = t('users.generic.username')
+      %th.govuk-table__header{ scope: 'col' }
         = t('users.generic.email')
       %th.govuk-table__header{ scope: 'col' }
         = t('users.generic.action')
@@ -25,6 +27,8 @@
       %tr.govuk-table__row{"data-user-id": "#{user.id}"}
         %td.govuk-table__cell
           = link_to user.name, user_path(user), class: 'govuk-link'
+        %td.govuk-table__cell
+          = link_to user.username.to_s, user_path(user), class: 'govuk-link'
         %td.govuk-table__cell
           = mail_to user.email, class: 'govuk-link', target: '_blank' do
             = user.email

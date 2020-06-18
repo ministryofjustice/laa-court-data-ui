@@ -34,20 +34,22 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 7dfc27fd-37e9-4fe0-ac29-db912b242ee7
       Content-Type:
       - text/plain; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 207f86db-f79e-4268-82ad-9f5d991ceae0
+      - 7dfc27fd-37e9-4fe0-ac29-db912b242ee7
       X-Runtime:
-      - '0.007800'
+      - '0.884620'
       Content-Length:
       - '1'
     body:
       encoding: UTF-8
       string: " "
-  recorded_at: Wed, 10 Jun 2020 15:56:39 GMT
+  recorded_at: Thu, 18 Jun 2020 09:14:30 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -82,20 +84,22 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 1ac88383-64ad-414a-9c22-a9e182317732
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - f270774e-4365-48fe-97fc-f5a46262560a
+      - 1ac88383-64ad-414a-9c22-a9e182317732
       X-Runtime:
-      - '0.008315'
+      - '0.009572'
       Content-Length:
       - '40'
     body:
       encoding: UTF-8
       string: '{"defendant_id":["is not a valid uuid"]}'
-  recorded_at: Wed, 10 Jun 2020 15:56:39 GMT
+  recorded_at: Thu, 18 Jun 2020 09:14:30 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -130,18 +134,20 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 12e6cbaf-57f6-4dc4-8573-2850e79659e2
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 675be0b2-a853-4d58-adbf-94d6d29595d5
+      - 12e6cbaf-57f6-4dc4-8573-2850e79659e2
       X-Runtime:
-      - '0.007280'
+      - '0.008794'
       Content-Length:
       - '41'
     body:
       encoding: UTF-8
       string: '{"maat_reference":["must be an integer"]}'
-  recorded_at: Wed, 10 Jun 2020 15:56:39 GMT
+  recorded_at: Thu, 18 Jun 2020 09:14:30 GMT
 recorded_with: VCR 6.0.0

@@ -21,12 +21,16 @@ en:
         email_label: Email
         first_name_label: First name
         last_name_label: Last name
+        login_label: Username or email
         roles_legend: What roles does the user have?
         save_button: Save
+        username_hint: Use MAAT/MLRA username
+        username_label: Username
     generic:
       action: Action
       email: Email
       name: Name
+      username: Username
     index:
       action_aria: "%{name}'s account"
       delete: Delete
@@ -46,6 +50,7 @@ en:
       name_label: Name
       page_title: "%{name}'s account"
       roles_label: Roles
+      username_label: Username
     update:
       flash:
         success: User details successfully updated

@@ -1,21 +1,136 @@
 # frozen_string_literal: true
 
 RSpec.describe User, type: :model do
-  let(:user) do
+  subject(:user) do
     build(:user,
           email: 'john.smith@example.com',
           first_name: 'John',
-          last_name: 'Smith')
+          last_name: 'Smith',
+          username: 'smit-j1')
   end
 
   # only attributes/methods that are additional to devise user
-  it { is_expected.to respond_to(:first_name, :last_name, :name, :roles, :email_confirmation) }
+  it { is_expected.to respond_to(:first_name, :last_name, :login, :name, :roles, :email_confirmation) }
+
+  it { is_expected.to validate_presence_of(:first_name).with_message(/Enter a first name/) }
+  it { is_expected.to validate_presence_of(:last_name).with_message(/Enter a last name/) }
+
+  context 'when validating email' do
+    it { is_expected.to validate_presence_of(:email).with_message(/Enter an email address/) }
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive.with_message(/Email already taken/) }
+
+    # see config/initializers/devise.rb
+    context 'with upper case chars' do
+      before { user.email = 'John.Smith@example.com' }
+
+      it 'downcases username during validation' do
+        expect { user.valid? }.to \
+          change(user, :email)
+          .from('John.Smith@example.com')
+          .to('john.smith@example.com')
+      end
+    end
+
+    # see config/initializers/devise.rb
+    context 'with whitespace chars' do
+      before { user.email = '   john.smith@example.com   ' }
+
+      it 'strips whitespace during validation' do
+        expect { user.valid? }.to \
+          change(user, :email)
+          .from('   john.smith@example.com   ')
+          .to('john.smith@example.com')
+      end
+    end
+  end
+
+  context 'when validating username' do
+    it {
+      is_expected.to \
+        validate_presence_of(:username)
+        .with_message(/Enter a username/)
+    }
+
+    it {
+      is_expected.to \
+        validate_uniqueness_of(:username)
+        .case_insensitive
+        .with_message(/Username already taken/)
+    }
+
+    it {
+      is_expected.to \
+        allow_value('bob-j', 'bobi-j', 'bobi-j1', 'a' * 10, '1' * 10)
+        .for(:username)
+    }
+
+    it {
+      is_expected.not_to \
+        allow_value('bob@example.com', 'a' * 11, '1' * 11)
+        .for(:username)
+        .with_message(/Username format is invalid/)
+    }
+
+    # see config/initializers/devise.rb
+    context 'with upper case chars' do
+      before { user.username = 'Bob-J' }
+
+      it 'downcases username during validation' do
+        expect { user.valid? }.to \
+          change(user, :username)
+          .from('Bob-J')
+          .to('bob-j')
+      end
+    end
+
+    # see config/initializers/devise.rb
+    context 'with whitespace chars' do
+      before { user.username = '   bob-J ' }
+
+      it 'strips whitespace during validation' do
+        expect { user.valid? }.to \
+          change(user, :username)
+          .from('   bob-J ')
+          .to('bob-j')
+      end
+    end
+  end
 
   describe '#name' do
     subject { user.name }
 
     it 'returns "firstname lastname"' do
       is_expected.to eql 'John Smith'
+    end
+  end
+
+  describe '#login' do
+    subject { user.login }
+
+    context 'when login has been set' do
+      before { user.login = 'bobi-j' }
+
+      it 'uses the login username provided' do
+        is_expected.to eql 'bobi-j'
+      end
+    end
+
+    context 'when no login set' do
+      before { user.login = nil }
+
+      context 'with user with username' do
+        it 'uses the users username attribute' do
+          is_expected.to eql 'smit-j1'
+        end
+      end
+
+      context 'with user with no username' do
+        before { user.username = nil }
+
+        it 'uses the users email attribute' do
+          is_expected.to eql 'john.smith@example.com'
+        end
+      end
     end
   end
 

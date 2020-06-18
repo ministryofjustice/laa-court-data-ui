@@ -20,7 +20,7 @@ RSpec.feature 'Password unlock', type: :feature, js: true do
   scenario 'caseworker locks out there account' do
     max_attempts = Devise.maximum_attempts
     max_attempts.times do |i|
-      fill_in 'Email', with: user.email
+      fill_in 'Username or email', with: user.email
       fill_in 'Password', with: 'wrong-password'
       if i + 1 == max_attempts
         expect do
@@ -34,7 +34,7 @@ RSpec.feature 'Password unlock', type: :feature, js: true do
 
   scenario 'caseworker requests unlock email to be resent' do
     Devise.maximum_attempts.times do
-      fill_in 'Email', with: user.email
+      fill_in 'Username or email', with: user.email
       fill_in 'Password', with: 'wrong-password'
       click_button 'Sign in'
     end

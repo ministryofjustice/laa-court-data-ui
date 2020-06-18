@@ -3,7 +3,10 @@
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   = f.govuk_error_summary
 
-  = f.govuk_email_field(:email, label: { text: 'Email' }, autofocus: true, autocomplete: 'email')
+  = f.govuk_text_field(:login,
+    label: { text: t('users.form.fields.login_label') },
+    autofocus: true,
+    autocomplete: 'email')
 
   = f.govuk_password_field(:password, label: { text: 'Password' }, autocomplete: 'current-password')
 
