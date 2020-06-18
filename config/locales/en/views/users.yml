@@ -30,6 +30,7 @@ en:
       action: Action
       email: Email
       name: Name
+      username: Username
     index:
       action_aria: "%{name}'s account"
       delete: Delete
