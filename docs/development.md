@@ -50,11 +50,11 @@ rails console
 # These should be put in the UI's `.env.development.local` - see UI setup below
 ```
 
-- configure adaptor to use local mock common platform API
+- configure local adaptor to use local mock common platform API and, optionally, inline sidekiq jobs
 ```
 # in .env.development.local
 COMMON_PLATFORM_URL=http://localhost:9293
-SHARED_SECRET_KEY=super-secret-key
+INLINE_SIDEKIQ=true
 ```
 
 - start server
@@ -85,6 +85,7 @@ COURT_DATA_ADAPTOR_API_SECRET: secret-generated-by-adaptor-above
 # start server
 rails s
 ```
+Note: sidekiq is configured to run jobs inline in development. See `config/initializers/sidekiq.rb`
 
 ## Development notes
 
