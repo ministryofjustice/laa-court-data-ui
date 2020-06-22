@@ -2,7 +2,7 @@
 
 ## Running
 
-To run the app locally see [Installation and running](docs/installation.md)
+To run the app locally see [Installation and running](installation.md)
 
 ## Local stack setup
 
@@ -75,7 +75,7 @@ cd .../laa-court-data-ui
 - configure UI to use and authenticate against local adaptor
 ```
 # .env.development.local
-COURT_DATA_ADAPTOR_API_URL: http://localhost:9292
+COURT_DATA_ADAPTOR_API_URL: hhttp://localhost:9292/api/internal/v1
 COURT_DATA_ADAPTOR_API_UID: uid-generated-by-adaptor-above
 COURT_DATA_ADAPTOR_API_SECRET: secret-generated-by-adaptor-above
 ```
