@@ -12,3 +12,7 @@ en:
     unlink:
       label: Remove link to court data
       warning: Removing the link will stop hearing updates being received
+    missing_maat_id:
+      label: The MAAT id is missing
+      description: If you are confident that this is the correct defendant, then you can still link
+      submit: Create link without MAAT ID
