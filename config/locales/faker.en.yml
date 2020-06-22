@@ -1,0 +1,11 @@
+en:
+  faker:
+    unlink_reason:
+      description:
+        - Linked to wrong Case ID (Correct Defendant)
+        - Linked to wrong Case ID (Incorrect Defendant)
+        - Appeal to Crown Court case
+        - Initially processed on Libra
+        - Duplicate MAAT record for same case
+        - Transfer to Another Area
+        - Other

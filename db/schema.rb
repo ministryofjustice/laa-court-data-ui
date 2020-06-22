@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_115713) do
+ActiveRecord::Schema.define(version: 2020_06_22_144829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "unlink_reasons", force: :cascade do |t|
+    t.integer "code", null: false
+    t.string "description", null: false
+    t.boolean "text_required", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_unlink_reasons_on_code", unique: true
+    t.index ["description"], name: "index_unlink_reasons_on_description", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
