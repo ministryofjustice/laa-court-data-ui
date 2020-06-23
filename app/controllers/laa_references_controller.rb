@@ -14,6 +14,7 @@ class LaaReferencesController < ApplicationController
   private
 
   def link_laa_reference
+    resource_params.delete(:maat_reference) if no_maat_id?
     laa_reference = resource.new(**resource_params)
     laa_reference.save
   rescue CourtDataAdaptor::Errors::BadRequest => e
@@ -35,6 +36,10 @@ class LaaReferencesController < ApplicationController
 
   def resource_params
     @resource_params ||= laa_reference_params.select! { |k, _v| k.in? %w[maat_reference defendant_id] }
+  end
+
+  def no_maat_id?
+    params[:commit] == 'Create link without MAAT ID'
   end
 
   def error_messages
