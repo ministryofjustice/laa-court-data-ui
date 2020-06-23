@@ -2,5 +2,12 @@
 en:
   defendant:
     unlink:
+      errors:
+        unlink_reason:
+          attributes:
+            code:
+              inclusion: must be selected
+            other_reason_text:
+              presence: must specify an 'other' reason
       failure: The link to the court data source could not be removed. %{error_messages}
       success: You have successfully unlinked from the court data source

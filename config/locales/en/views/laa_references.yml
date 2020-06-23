@@ -14,5 +14,11 @@ en:
       label: The MAAT id is missing
       submit: Create link without MAAT ID
     unlink:
-      label: Remove link to court data
+      detail_link: Remove link to court data
+      form:
+        code:
+          label: Reason for unlinking
+        other_reason_text:
+          label: Other reason
+        submit: Remove link to court data
       warning: Removing the link will stop hearing updates being received
