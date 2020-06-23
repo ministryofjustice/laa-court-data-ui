@@ -65,8 +65,9 @@ function _deploy() {
   # apply secrets first so changes can be picked up by deployment
   kubectl apply -f .k8s/${environment}/secrets.yaml
 
-  # apply image specific config
+  # apply deployment with specfied image
   kubectl set image -f .k8s/${environment}/deployment.yaml ${repo_name}-app=${docker_image_tag} --local --output yaml | kubectl apply -f -
+  kubectl set image -f .k8s/${environment}/deployment-worker.yaml ${repo_name}-worker=${docker_image_tag} --local --output yaml | kubectl apply -f -
 
   # apply non-image specific config
   kubectl apply \
