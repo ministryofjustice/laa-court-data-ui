@@ -1,0 +1,103 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v1/laa_references
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 3bf1da23-c49c-4510-bbf2-6f288733dca9
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 3bf1da23-c49c-4510-bbf2-6f288733dca9
+      X-Runtime:
+      - '0.014121'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: " "
+  recorded_at: Tue, 23 Jun 2020 10:18:57 GMT
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v1/laa_references
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"invalid-defendant-id"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 2ded8ea1-2f05-4ea0-b9a3-87df54824e62
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 2ded8ea1-2f05-4ea0-b9a3-87df54824e62
+      X-Runtime:
+      - '0.009379'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"defendant_id":["is not a valid uuid"]}'
+  recorded_at: Tue, 23 Jun 2020 10:18:57 GMT
+recorded_with: VCR 6.0.0
