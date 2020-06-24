@@ -48,4 +48,29 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
       end
     end
   end
+
+  context 'with stubbed requests' do
+    before { sign_in user }
+
+    context 'when no MAAT reference submitted' do
+      before do
+        stub_request(:post, link_request[:path])
+        post '/laa_references', params: params
+      end
+
+      let(:link_request) do
+        {
+          path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
+          body: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f"}}}'
+        }
+      end
+
+      it 'sends link request with filtered params' do
+        expect(
+          a_request(:post, link_request[:path])
+            .with(body: link_request[:body])
+        ).to have_been_made.once
+      end
+    end
+  end
 end
