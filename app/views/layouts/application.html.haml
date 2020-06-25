@@ -53,3 +53,5 @@
             = yield
 
     = render 'layouts/footer'
+
+  = content_for?(:custom_packs) ? yield(:custom_packs) : ''

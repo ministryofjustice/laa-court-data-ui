@@ -1,5 +1,8 @@
 = govuk_page_title(@defendant.name, t('generic.defendant'))
 
+- content_for :custom_packs do
+  = javascript_pack_tag 'unlink', defer: true
+
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden
     = t('search.result.defendant.caption')
