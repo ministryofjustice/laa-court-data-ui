@@ -8,7 +8,7 @@ class LaaReferencesController < ApplicationController
     else
       flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
     end
-    redirect_to defendant_path(laa_reference_params[:id])
+    redirect_to edit_defendant_path(laa_reference_params[:id])
   end
 
   private

@@ -1,18 +1,20 @@
-%details.govuk-details{ 'data-module': 'govuk-details' }
+%details.govuk-details{ 'data-module': 'govuk-details', 'open': '' }
   %summary.govuk-details__summary
     %span.govuk-details__summary-text
       = t('laa_reference.unlink.detail_link')
   .govuk-details__text
     %p
-    = form_with(url: defendant_path(@defendant.arrest_summons_number), local: true, method: 'patch') do |f|
-      = f.govuk_collection_select :unlink_reason_code,
+    = form_with(model: @unlink_attempt, url: defendant_path(@defendant.arrest_summons_number), local: true, method: 'patch') do |f|
+      = f.govuk_error_summary
+
+      = f.govuk_collection_select :reason_code,
         @unlink_reasons,
         :code,
         :description,
         options: { include_blank: t('generic.form.select.blank_option') },
         label: { text: t('laa_reference.unlink.form.code.label') }
 
-      = f.govuk_text_field :unlink_other_reason_text,
+      = f.govuk_text_field :other_reason_text,
         label: { text: t('laa_reference.unlink.form.other_reason_text.label') }
 
       = f.govuk_submit(t('laa_reference.unlink.form.submit'))
