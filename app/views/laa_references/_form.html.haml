@@ -8,3 +8,9 @@
     hint_text: t('laa_reference.link.form.maat_reference.hint')
 
   = f.govuk_submit(t('laa_reference.link.form.submit'))
+
+  %details.govuk-details
+    %summary.govuk-details__summary
+      %span.govuk-details__summary-text=t('laa_reference.missing_maat_id.label')
+    %p.govuk-details__details-text=t('laa_reference.missing_maat_id.description')
+    = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true)
