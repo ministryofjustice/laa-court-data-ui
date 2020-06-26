@@ -23,7 +23,9 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
 
       it ':page_heading contains GDS styled heading' do
         markup = helper.content_for(:page_heading)
-        expect(markup).to eql '<h1 class="govuk-heading-xl">My page title</h1>'
+        expect(markup).to have_tag(:h1, with: { class: 'govuk-heading-xl' }) do
+          with_text 'My page title'
+        end
       end
     end
 
@@ -67,7 +69,9 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
 
       it ':page_heading contains heading based on controller action' do
         markup = helper.content_for(:page_heading)
-        expect(markup).to eql '<h1 class="govuk-heading-xl">Show widget</h1>'
+        expect(markup).to have_tag(:h1, with: { class: 'govuk-heading-xl' }) do
+          with_text 'Show widget'
+        end
       end
     end
   end
