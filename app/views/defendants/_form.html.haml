@@ -1,31 +1,26 @@
 = form_with(model: @unlink_attempt, url: defendant_path(@defendant.arrest_summons_number), local: true, method: 'patch') do |f|
   = f.govuk_error_summary
 
-  = render 'defendant', locals: @defendant
+  = render 'defendants/defendant'
 
-  = render('representation_orders', locals: @defendant)
+  = render 'defendants/representation_orders'
 
-  = render 'offences', locals: @defendant
+  = render 'defendants/offences'
 
-  %details.govuk-details{ 'data-module': 'govuk-details' }
-    %summary.govuk-details__summary
-      %span.govuk-details__summary-text
-        = t('laa_reference.unlink.detail_link')
-    .govuk-details__text
-      %p
-      = f.govuk_collection_select :reason_code,
-        @unlink_reasons,
-        :code,
-        :description,
-        options: { include_blank: t('generic.form.select.blank_option') },
-        label: { text: t('defendant.form.reason_code.label') }
+  = govuk_detail(t('laa_reference.unlink.detail_link'), @unlink_attempt.errors.present?) do
+    = f.govuk_collection_select :reason_code,
+      @unlink_reasons,
+      :code,
+      :description,
+      options: { include_blank: t('generic.form.select.blank_option') },
+      label: { text: t('defendant.form.reason_code.label') }
 
-      = f.govuk_text_area :other_reason_text,
-        label: { text: t('defendant.form.other_reason_text.label') },
-        hint_text: t('defendant.form.other_reason_text.hint'),
-        rows: 5
+    = f.govuk_text_area :other_reason_text,
+      label: { text: t('defendant.form.other_reason_text.label') },
+      hint_text: t('defendant.form.other_reason_text.hint'),
+      rows: 5
 
-      = f.govuk_submit(t('laa_reference.unlink.form.submit'))
+    = f.govuk_submit(t('laa_reference.unlink.form.submit'))
 
   %br
   %br

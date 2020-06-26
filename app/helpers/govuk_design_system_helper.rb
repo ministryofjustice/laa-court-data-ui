@@ -21,7 +21,27 @@ module GovukDesignSystemHelper
     GdsDesignSystemBreadcrumbBuilder
   end
 
+  def govuk_detail(summary_text = nil, open = false, tag_options = {}, &block)
+    tag_options = prepend_classes('govuk-details', tag_options)
+    tag_options[:data] = { module: 'govuk-details' }
+    tag_options[:open] = '' if open
+
+    summary = tag.span(summary_text, class: 'govuk-details__summary-text')
+    content = capture(&block)
+    tag.detail(tag_options) do
+      concat tag.summary(summary, class: 'govuk-details__summary')
+      concat tag.div(content, class: 'govuk-details__text')
+    end
+  end
+
   private
+
+  def prepend_classes(classes_to_prepend, options = {})
+    classes = options[:class].present? ? options[:class].split(' ') : []
+    classes.prepend(classes_to_prepend.split(' '))
+    options[:class] = classes.join(' ')
+    options
+  end
 
   def contextual_title
     [action_name.titleize, controller_name.downcase.singularize].join(' ')
