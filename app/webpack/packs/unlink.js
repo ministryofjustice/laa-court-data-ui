@@ -1,23 +1,25 @@
 function Unlinking () {
-  const unlinkReasonCode = document.getElementById('unlink-attempt-reason-code-field')
-  const unlinkOtherReasonText = document.getElementById('unlink-attempt-other-reason-text-field')
+  // rely on `name`` because id changes in error state
+  //
+  const unlinkReasonCode = document.getElementsByName('unlink_attempt[reason_code]')[0]
+  const unlinkOtherReasonText = document.getElementsByName('unlink_attempt[other_reason_text]')[0]
+  const otherReasonCode = '7'
 
-  if (!unlinkReasonCode) { return }
+  if (!unlinkReasonCode.value) { hide() };
+  if (unlinkReasonCode.value === otherReasonCode) { show() };
 
-  if (unlinkOtherReasonText) { setAttr() }
-
-  // TODO: should really rely on a data-text-required flag set by backend
+  // TODO: should really rely on a data-text-required flag ir similar set by backend
   //
   unlinkReasonCode.onchange = function () {
-    (this.value === '7') ? removeAttr() : setAttr()
+    (this.value === otherReasonCode) ? show() : hide()
   }
 
-  function removeAttr () {
+  function show () {
     unlinkOtherReasonText.parentElement.classList.remove('govuk-select__conditional--hidden')
     unlinkOtherReasonText.parentElement.removeAttribute('aria-hidden')
   }
 
-  function setAttr () {
+  function hide () {
     unlinkOtherReasonText.parentElement.classList.add('govuk-select__conditional--hidden')
     unlinkOtherReasonText.parentElement.setAttribute('aria-hidden', 'false')
   }
