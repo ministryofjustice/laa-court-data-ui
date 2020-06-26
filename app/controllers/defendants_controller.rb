@@ -19,9 +19,9 @@ class DefendantsController < ApplicationController
   def update
     if @unlink_attempt.valid?
       if unlink
-        flash[:notice] = I18n.t('defendant.unlink.success')
+        flash[:notice] = I18n.t('defendants.unlink.success')
       else
-        flash[:alert] = I18n.t('defendant.unlink.failure', error_messages: error_messages)
+        flash[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
       end
 
       redirect_to edit_defendant_path(@defendant.arrest_summons_number)

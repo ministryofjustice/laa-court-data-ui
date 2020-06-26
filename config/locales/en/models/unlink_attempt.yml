@@ -5,8 +5,8 @@ en:
       models:
         unlink_attempt:
           attributes:
+            other_reason_text:
+              blank: Enter the reason for unlinking
             reason_code:
               blank: Choose a reason for unlinking
               inclusion: Choose a reason for unlinking from list
-            other_reason_text:
-              blank: Enter the reason for unlinking

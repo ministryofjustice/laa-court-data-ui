@@ -7,20 +7,20 @@
 
   = render 'defendants/offences'
 
-  = govuk_detail(t('laa_reference.unlink.detail_link'), @unlink_attempt.errors.present?) do
+  = govuk_detail(t('defendants.unlink.detail'), @unlink_attempt.errors.present?) do
     = f.govuk_collection_select :reason_code,
       @unlink_reasons,
       :code,
       :description,
       options: { include_blank: t('generic.form.select.blank_option') },
-      label: { text: t('defendant.form.reason_code.label') }
+      label: { text: t('defendants.form.reason_code.label') }
 
     = f.govuk_text_area :other_reason_text,
-      label: { text: t('defendant.form.other_reason_text.label') },
-      hint_text: t('defendant.form.other_reason_text.hint'),
+      label: { text: t('defendants.form.other_reason_text.label') },
+      hint_text: t('defendants.form.other_reason_text.hint'),
       rows: 5
 
-    = f.govuk_submit(t('laa_reference.unlink.form.submit'))
+    = f.govuk_submit(t('defendants.form.submit'))
 
   %br
   %br
@@ -29,4 +29,4 @@
     %strong.govuk-warning-text__text
       %span.govuk-warning-text__assistive
         = t('generic.warning')
-      = t('laa_reference.unlink.warning')
+      = t('defendants.unlink.warning')
