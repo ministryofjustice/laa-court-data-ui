@@ -42,9 +42,9 @@ RSpec.feature 'Edit user', type: :feature, js: true do
       expect(page).to have_field('Username', type: 'text')
       expect(page).to have_field('Email', type: 'email', with: other_user.email)
       expect(page).to have_field('Confirm email', type: 'email', with: other_user.email)
-      expect(page).to have_field('Caseworker', type: 'checkbox')
-      expect(page).to have_field('Manager', type: 'checkbox')
-      expect(page).to have_field('Admin', type: 'checkbox')
+      expect(page).to have_field('Caseworker', type: 'checkbox', visible: :hidden)
+      expect(page).to have_field('Manager', type: 'checkbox', visible: :hidden)
+      expect(page).to have_field('Admin', type: 'checkbox', visible: :hidden)
 
       fill_in 'Confirm email', with: ''
 
