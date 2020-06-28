@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
 RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
-  let(:defendant_asn) { '0TSQT1LMI7CR' }
+  let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
   let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
 
   let(:user) { create(:user) }
 
   before do
     sign_in user
+
     create(:unlink_reason,
            code: 1,
            description: 'Linked to wrong case ID (correct defendant)',
            text_required: false)
     create(:unlink_reason, code: 7, description: 'Other', text_required: true)
 
-    query = hash_including({ filter: { arrest_summons_number: defendant_asn } })
+    query = hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } })
     body = load_json_stub(defendant_fixture)
     json_api_header = { 'Content-Type' => 'application/vnd.api+json' }
 
@@ -22,7 +23,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
       .with(query: query)
       .to_return(body: body, headers: json_api_header)
 
-    visit "defendants/#{defendant_asn}"
+    visit "defendants/#{defendant_asn_from_fixture}/edit"
   end
 
   context 'when user views unlinked defendant' do
@@ -58,11 +59,11 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
       expect(page).not_to have_content('Enter the MAAT ID')
     end
 
-    it 'displays the remove MAAT ID link' do
+    it 'displays the remove link detail' do
       expect(page).to have_govuk_detail_summary('Remove link to court data')
     end
 
-    it 'displays the remove MAAT ID warning' do
+    it 'displays the remove link warning' do
       expect(page).to have_govuk_warning('Removing the link will stop hearing updates being received')
     end
 

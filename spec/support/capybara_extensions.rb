@@ -84,7 +84,7 @@ module CapybaraExtensions
     end
 
     def detail_summary_selector
-      'details.govuk-details summary.govuk-details__summary span.govuk-details__summary-text'
+      'detail.govuk-details summary.govuk-details__summary span.govuk-details__summary-text'
     end
 
     def href_match?(expected, actual)
