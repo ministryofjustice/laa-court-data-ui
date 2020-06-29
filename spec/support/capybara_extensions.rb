@@ -70,6 +70,23 @@ module CapybaraExtensions
       has_selector?(".govuk-error-message##{model}-#{field}-error", text: error_text)
     end
 
+    def has_govuk_detail_summary?(text, options = {})
+      has_selector?(detail_summary_selector, options.merge(text: text))
+    end
+
+    def has_no_govuk_detail_summary?(text, options = {})
+      has_no_selector?(detail_summary_selector, options.merge(text: text))
+    end
+
+    def click_govuk_detail_summary(text, options = {})
+      detail_summary = find(detail_summary_selector, options.merge(text: text))
+      detail_summary.click
+    end
+
+    def detail_summary_selector
+      'detail.govuk-details summary.govuk-details__summary span.govuk-details__summary-text'
+    end
+
     def href_match?(expected, actual)
       return actual.match?(expected) if expected.is_a?(Regexp)
       CGI.unescape(expected).eql?(CGI.unescape(actual))

@@ -1,6 +1,15 @@
 ---
 en:
-  defendant:
+  defendants:
+    form:
+      other_reason_text:
+        hint: Specify reason for unlinking
+        label: Other reason
+      reason_code:
+        label: Reason for unlinking
+      submit: Remove link to court data
     unlink:
+      detail: Remove link to court data
       failure: The link to the court data source could not be removed. %{error_messages}
       success: You have successfully unlinked from the court data source
+      warning: Removing the link will stop hearing updates being received

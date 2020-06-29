@@ -116,6 +116,9 @@ Style/ClassAndModuleChildren:
   Exclude:
     - app/controllers/users/*controller.rb
 
+Style/RedundantFetchBlock:
+  Enabled: true
+
 Style/RedundantRegexpCharacterClass:
   Enabled: true
 

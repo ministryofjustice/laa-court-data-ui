@@ -5,6 +5,9 @@ en:
     case: Case
     continue: Continue
     defendant: Defendant
+    form:
+      select:
+        blank_option: Please select
     new_window: opens in a new window
     search: Search
     warning: Warning

@@ -1,85 +1,107 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Unlinking a defendant from MAAT', type: :feature do
-  let(:defendant_asn) { '0TSQT1LMI7CR' }
+RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
+  let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
   let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
 
-  context 'when viewing defendant details' do
-    let(:user) { create(:user) }
+  let(:user) { create(:user) }
 
-    before do
-      sign_in user
-      query = hash_including({ filter: { arrest_summons_number: defendant_asn } })
-      body = load_json_stub(defendant_fixture)
-      json_api_header = { 'Content-Type' => 'application/vnd.api+json' }
+  before do
+    sign_in user
 
-      stub_request(:get, "#{api_url}/prosecution_cases")
-        .with(query: query)
-        .to_return(body: body, headers: json_api_header)
+    create(:unlink_reason,
+           code: 1,
+           description: 'Linked to wrong case ID (correct defendant)',
+           text_required: false)
+    create(:unlink_reason, code: 7, description: 'Other', text_required: true)
 
-      visit "defendants/#{defendant_asn}"
+    query = hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } })
+    body = load_json_stub(defendant_fixture)
+    json_api_header = { 'Content-Type' => 'application/vnd.api+json' }
+
+    stub_request(:get, "#{api_url}/prosecution_cases")
+      .with(query: query)
+      .to_return(body: body, headers: json_api_header)
+
+    visit "defendants/#{defendant_asn_from_fixture}/edit"
+  end
+
+  context 'when user views unlinked defendant' do
+    let(:defendant_fixture) { 'unlinked/defendant_by_reference_body.json' }
+
+    it 'displays the MAAT ID field' do
+      expect(page).to have_field('MAAT ID')
     end
 
-    context 'with unlinked defendant' do
-      let(:defendant_fixture) { 'unlinked/defendant_by_reference_body.json' }
-
-      it 'asks the user to link to a MAAT ID' do
-        expect(page).to have_content('Enter the MAAT ID')
-      end
+    it 'displays the MAAT ID field hint' do
+      expect(page).to have_content('Enter the MAAT ID')
     end
 
-    context 'with linked defendant' do
-      let(:defendant_fixture) { 'linked/defendant_by_reference_body.json' }
-      let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-      let(:path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
+    it 'does not display the Remove link' do
+      expect(page).not_to have_govuk_detail_summary('Remove link to court data')
+    end
 
-      it 'does not display the field to a MAAT ID field' do
-        expect(page).not_to have_field('MAAT ID')
+    it 'does not display the remove MAAT ID warning' do
+      expect(page).not_to have_govuk_warning('Removing the link will stop hearing updates being received')
+    end
+  end
+
+  context 'when user views linked defendant' do
+    let(:defendant_fixture) { 'linked/defendant_by_reference_body.json' }
+    let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+    let(:path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
+
+    it 'does not display the MAAT ID field' do
+      expect(page).not_to have_field('MAAT ID')
+    end
+
+    it 'does not display the MAAT ID field hint' do
+      expect(page).not_to have_content('Enter the MAAT ID')
+    end
+
+    it 'displays the remove link detail' do
+      expect(page).to have_govuk_detail_summary('Remove link to court data')
+    end
+
+    it 'displays the remove link warning' do
+      expect(page).to have_govuk_warning('Removing the link will stop hearing updates being received')
+    end
+
+    context 'when user unlinks with success' do
+      before do
+        stub_request(:patch, path)
+          .to_return(
+            status: 202,
+            body: '',
+            headers: { 'Content-Type' => 'text/plain; charset=utf-8' }
+          )
       end
 
-      it 'does not display the MAAT ID field hint' do
-        expect(page).not_to have_content('Enter the MAAT ID')
-      end
-
-      it 'displays the remove MAAT ID link' do
-        expect(page).to have_link('Remove link to court data')
-      end
-
-      it 'displays the remove MAAT ID warning' do
-        expect(page).to have_govuk_warning('Removing the link will stop hearing updates being received')
-      end
-
-      context 'when unlinking successfully' do
-        before do
-          stub_request(:patch, path)
-            .to_return(
-              status: 202,
-              body: '',
-              headers: { 'Content-Type' => 'text/plain; charset=utf-8' }
-            )
-
-          click_on 'Remove link to court data'
-        end
-
-        let(:payload) do
+      let(:adaptor_request_payload) do
+        {
+          data:
           {
-            data:
-            {
-              id: defendant_id_from_fixture,
-              type: 'defendants',
-              attributes: {
-                prosecution_case_reference: 'TEST12345',
-                user_name: user.username,
-                unlink_reason_code: 1,
-                unlink_reason_text: 'Wrong MAAT ID'
-              }
+            id: defendant_id_from_fixture,
+            type: 'defendants',
+            attributes: {
+              prosecution_case_reference: 'TEST12345',
+              user_name: user.username,
+              unlink_reason_code: 1
             }
           }
+        }
+      end
+
+      context 'with standard reason' do
+        before do
+          click_govuk_detail_summary 'Remove link to court data'
+          select 'Linked to wrong case ID (correct defendant)', from: 'Reason for unlinking'
+          click_button 'Remove link to court data'
         end
 
         it 'sends an unlink request to the adapter' do
           expect(a_request(:patch, path)
-            .with(body: payload.to_json))
+            .with(body: adaptor_request_payload.to_json))
             .to have_been_made
         end
 
@@ -89,33 +111,71 @@ RSpec.describe 'Unlinking a defendant from MAAT', type: :feature do
         end
       end
 
-      context 'when unlinking with failure' do
+      context 'with other reason' do
+        let(:adaptor_request_payload) do
+          {
+            data:
+            {
+              id: defendant_id_from_fixture,
+              type: 'defendants',
+              attributes: {
+                prosecution_case_reference: 'TEST12345',
+                user_name: user.username,
+                unlink_reason_code: 7,
+                unlink_other_reason_text: 'Case already concluded'
+              }
+            }
+          }
+        end
+
         before do
-          stub_request(:patch, path)
-            .to_return(
-              status: 400,
-              body: '{"user_name":["must not exceed 10 characters"]}',
-              headers: { 'Content-Type' => 'application/vnd.api+json; charset=utf-8' }
-            )
-
-          click_on 'Remove link to court data'
+          click_govuk_detail_summary 'Remove link to court data'
+          select 'Other', from: 'Reason for unlinking'
+          fill_in 'Other reason', with: 'Case already concluded'
+          click_button 'Remove link to court data'
         end
 
-        it 'flashes alert' do
+        it 'sends an unlink request to the adapter' do
+          expect(a_request(:patch, path)
+            .with(body: adaptor_request_payload.to_json))
+            .to have_been_made
+        end
+
+        it 'flashes notice' do
           expect(page).to \
-            have_govuk_flash(
-              :alert,
-              text: /The link to the court data source could not be removed\./
-            )
+            have_govuk_flash(:notice, text: 'You have successfully unlinked from the court data source')
         end
+      end
+    end
 
-        it 'flashes returned error' do
-          expect(page).to \
-            have_govuk_flash(
-              :alert,
-              text: /User name must not exceed 10 characters/
-            )
-        end
+    context 'when user unlinks defendant with failure' do
+      before do
+        stub_request(:patch, path)
+          .to_return(
+            status: 400,
+            body: '{"user_name":["must not exceed 10 characters"]}',
+            headers: { 'Content-Type' => 'application/vnd.api+json; charset=utf-8' }
+          )
+
+        click_govuk_detail_summary 'Remove link to court data'
+        select 'Linked to wrong case ID (correct defendant)', from: 'Reason for unlinking'
+        click_button 'Remove link to court data'
+      end
+
+      it 'flashes alert' do
+        expect(page).to \
+          have_govuk_flash(
+            :alert,
+            text: /The link to the court data source could not be removed\./
+          )
+      end
+
+      it 'flashes returned error' do
+        expect(page).to \
+          have_govuk_flash(
+            :alert,
+            text: /User name must not exceed 10 characters/
+          )
       end
     end
   end

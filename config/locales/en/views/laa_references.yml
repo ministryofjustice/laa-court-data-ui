@@ -13,6 +13,3 @@ en:
       description: If you are confident that this is the correct defendant, then you can still link
       label: The MAAT id is missing
       submit: Create link without MAAT ID
-    unlink:
-      label: Remove link to court data
-      warning: Removing the link will stop hearing updates being received

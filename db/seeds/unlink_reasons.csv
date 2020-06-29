@@ -1,0 +1,8 @@
+code,description,text_required
+1,Linked to wrong case ID (correct defendant),false
+2,Linked to wrong Case ID (incorrect defendant),false
+3,Appeal to Crown Court case,false
+4,Initially processed on Libra,false
+5,Duplicate MAAT record for same case,false
+6,Transfer to another area,false
+7,Other,true

@@ -22,11 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :prosecution_cases, only: %i[show]
-
-  resources :defendants, only: %i[show] do
-    delete :remove_link, on: :member
-  end
-
+  resources :defendants, only: %i[edit update]
   resources :laa_references, only: %i[create]
 
   devise_for :users, controllers: {

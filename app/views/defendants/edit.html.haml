@@ -1,0 +1,9 @@
+= govuk_page_title(@defendant.name, t('generic.defendant'))
+
+- content_for :custom_packs do
+  = javascript_pack_tag 'unlink', defer: true
+
+- if @defendant.linked?
+  = render('defendants/form', locals: @defendant)
+- else
+  = render('laa_references/form', locals: @defendant)

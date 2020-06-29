@@ -1,5 +1,3 @@
-= govuk_page_title(@defendant.name, t('generic.defendant'))
-
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden
     = t('search.result.defendant.caption')
@@ -26,12 +24,3 @@
         = @defendant.arrest_summons_number
 
 = link_to 'View case', prosecution_case_path(@defendant.prosecution_case_reference), class: 'govuk-button govuk-button--secondary'
-
-= render('representation_orders', locals: @defendant) if @defendant.linked?
-
-= render 'offences', locals: @defendant
-
-= render 'laa_references/unlink', locals: @defendant if @defendant.linked?
-
-= render('laa_references/form', locals: @defendant) unless @defendant.linked?
-

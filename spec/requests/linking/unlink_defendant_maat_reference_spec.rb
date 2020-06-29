@@ -1,17 +1,54 @@
 # frozen_string_literal: true
 
-RSpec.describe 'unlink defendant maat reference', type: :request do
-  let(:user) { create(:user) }
+RSpec.shared_examples 'invalid unlink_attempt request' do
+  before do
+    patch "/defendants/#{defendant_asn_from_fixture}", params: params
+  end
 
+  it 'does NOT send an unlink request to the adapter' do
+    expect(a_request(:patch, adaptor_request_path)
+      .with(body: adaptor_request_payload.to_json))
+      .not_to have_been_made
+  end
+
+  it 'renders edit' do
+    expect(response).to render_template(:edit)
+  end
+
+  it 'displays error summary with other_reason_text presence error' do
+    expect(response.body).to have_tag(:div, with: { class: 'govuk-error-summary' }) do
+      with_text error_message
+    end
+  end
+end
+
+RSpec.describe 'unlink defendant maat reference', type: :request do
+  include RSpecHtmlMatchers
+
+  before do
+    create(:unlink_reason, code: 1, description: 'Reason not requiring text', text_required: false)
+    create(:unlink_reason, code: 7, description: 'Reason requiring text', text_required: true)
+  end
+
+  let(:user) { create(:user) }
   let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
   let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
   let(:json_api_content) { { 'Content-Type' => 'application/vnd.api+json' } }
   let(:plain_content) { { 'Content-Type' => 'text/plain; charset=utf-8' } }
-
   let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
   let(:defendant_nino_from_fixture) { 'JC123456A' }
   let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:prosecution_case_reference_from_fixture) { 'TEST12345' }
+
+  let(:params) do
+    {
+      unlink_attempt:
+      {
+        reason_code: '1',
+        other_reason_text: ''
+      }
+    }
+  end
 
   let(:adaptor_request_path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
   let(:adaptor_request_payload) do
@@ -23,8 +60,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         attributes: {
           prosecution_case_reference: prosecution_case_reference_from_fixture,
           user_name: user.username,
-          unlink_reason_code: 1,
-          unlink_reason_text: 'Wrong MAAT ID'
+          unlink_reason_code: 1
         }
       }
     }
@@ -46,13 +82,13 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        delete "/defendants/#{defendant_asn_from_fixture}/remove_link"
+        patch "/defendants/#{defendant_asn_from_fixture}", params: params
       end
 
       it 'sends an unlink request to the adapter' do
         expect(a_request(:patch, adaptor_request_path)
           .with(body: adaptor_request_payload.to_json))
-          .to have_been_made
+          .to have_been_made.once
       end
 
       it 'returns status 302' do
@@ -60,10 +96,10 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to defendant_path(defendant_asn_from_fixture)
+        expect(response).to redirect_to edit_defendant_path(defendant_asn_from_fixture)
       end
 
-      it 'flashes alert' do
+      it 'flashes notice' do
         expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
       end
     end
@@ -75,13 +111,13 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        delete "/defendants/#{defendant_nino_from_fixture}/remove_link"
+        patch "/defendants/#{defendant_nino_from_fixture}", params: params
       end
 
       it 'sends an unlink request to the adapter' do
         expect(a_request(:patch, adaptor_request_path)
           .with(body: adaptor_request_payload.to_json))
-          .to have_been_made
+          .to have_been_made.once
       end
 
       it 'returns status 302' do
@@ -89,10 +125,10 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to defendant path (using ASN)' do
-        expect(response).to redirect_to defendant_path(defendant_asn_from_fixture)
+        expect(response).to redirect_to edit_defendant_path(defendant_asn_from_fixture)
       end
 
-      it 'flashes alert' do
+      it 'flashes notice' do
         expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
       end
     end
@@ -108,7 +144,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
             headers: json_api_content
           )
 
-        delete "/defendants/#{defendant_asn_from_fixture}/remove_link"
+        patch "/defendants/#{defendant_asn_from_fixture}", params: params
       end
 
       it 'flashes alert' do
@@ -120,7 +156,51 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to defendant_path(defendant_asn_from_fixture)
+        expect(response).to redirect_to edit_defendant_path(defendant_asn_from_fixture)
+      end
+    end
+
+    context 'with valid reason_code' do
+      let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
+      let(:params) { { unlink_attempt: { reason_code: '1', other_reason_text: '' } } }
+
+      before do
+        stub_request(:patch, adaptor_request_path)
+          .to_return(status: 202, body: '', headers: plain_content)
+
+        patch "/defendants/#{defendant_asn_from_fixture}", params: params
+      end
+
+      it 'flashes notice' do
+        expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
+      end
+
+      it 'redirects to defendant path (using ASN)' do
+        expect(response).to redirect_to edit_defendant_path(defendant_asn_from_fixture)
+      end
+    end
+
+    context 'with invalid reason_code' do
+      it_behaves_like 'invalid unlink_attempt request' do
+        let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
+        let(:params) { { unlink_attempt: { reason_code: '101', other_reason_text: '' } } }
+        let(:error_message) { 'Choose a reason for unlinking from list' }
+      end
+    end
+
+    context 'with blank reason_code' do
+      it_behaves_like 'invalid unlink_attempt request' do
+        let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
+        let(:params) { { unlink_attempt: { reason_code: '', other_reason_text: '' } } }
+        let(:error_message) { 'Choose a reason for unlinking' }
+      end
+    end
+
+    context 'with blank other_reason_text for reason that requires it' do
+      it_behaves_like 'invalid unlink_attempt request' do
+        let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
+        let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: '' } } }
+        let(:error_message) { 'Enter the reason for unlinking' }
       end
     end
 
@@ -136,7 +216,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        delete "/defendants/#{defendant_asn_from_fixture}/remove_link"
+        patch "/defendants/#{defendant_asn_from_fixture}", params: params
       end
 
       it 'sends token request' do
@@ -148,7 +228,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   end
 
   context 'when not authenticated' do
-    before { delete "/defendants/#{defendant_asn_from_fixture}/remove_link" }
+    before { patch "/defendants/#{defendant_asn_from_fixture}", params: params }
 
     it 'redirects to sign in page' do
       expect(response).to redirect_to new_user_session_path

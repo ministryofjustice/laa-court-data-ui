@@ -1,4 +1,9 @@
 = form_with(url: '/laa_references', local: true) do |f|
+
+  = render 'defendants/defendant'
+
+  = render 'defendants/offences'
+
   = f.hidden_field(:id, value: params[:id])
   = f.hidden_field(:defendant_id, value: @defendant.id)
 

@@ -33,6 +33,5 @@ Capybara.configure do |config|
   # https://www.rubydoc.info/github/jnicklas/capybara/Capybara.configure
   config.automatic_label_click = true
   config.default_max_wait_time = 1
-  config.ignore_hidden_elements = false # Fix: matchers not finding elements
   config.javascript_driver = :selenium_chrome_headless
 end

@@ -1,4 +1,10 @@
 .govuk-date-fieldset-m .govuk-fieldset__heading {
-  @include govuk-font($size: 19)
+  @include govuk-font($size: 19);
   margin-bottom: govuk-spacing(1);
+}
+
+.govuk-select__conditional {
+  .js-enabled &--hidden {
+    display: none;
+  }
 }
