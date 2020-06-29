@@ -1,6 +1,12 @@
 ---
 en:
   defendant:
+    form:
+      reason_code:
+        label: Reason for unlinking
+      other_reason_text:
+        label: Other reason
+        hint: Specify reason for unlinking
     unlink:
       errors:
         unlink_reason:

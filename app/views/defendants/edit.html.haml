@@ -34,7 +34,6 @@
 
 = render 'offences', locals: @defendant
 
-= render 'laa_references/unlink', locals: @defendant if @defendant.linked?
+= render('defendants/unlink', locals: @defendant) if @defendant.linked?
 
 = render('laa_references/form', locals: @defendant) unless @defendant.linked?
-

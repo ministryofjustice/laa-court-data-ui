@@ -1,0 +1,15 @@
+%details.govuk-details{ 'data-module': 'govuk-details' }
+  %summary.govuk-details__summary
+    %span.govuk-details__summary-text
+      = t('laa_reference.unlink.detail_link')
+  .govuk-details__text
+    %p
+    = render 'defendants/form'
+%br
+%br
+.govuk-warning-text
+  %span.govuk-warning-text__icon{"aria-hidden" => "true"} !
+  %strong.govuk-warning-text__text
+    %span.govuk-warning-text__assistive
+      = t('generic.warning')
+    = t('laa_reference.unlink.warning')
