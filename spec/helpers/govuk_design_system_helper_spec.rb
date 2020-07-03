@@ -80,25 +80,25 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
     subject(:markup) { helper.govuk_detail('My detail summary text') { 'My content' } }
 
     it 'adds detail with govuk class' do
-      is_expected.to have_tag(:detail, with: { class: 'govuk-details' })
+      is_expected.to have_tag(:details, with: { class: 'govuk-details' })
     end
 
     it 'adds detail without open attribute' do
-      is_expected.not_to have_tag(:detail, with: { 'open': 'open' })
+      is_expected.not_to have_tag(:details, with: { 'open': 'open' })
     end
 
     it 'adds detail govuk data-module' do
-      is_expected.to have_tag(:detail, with: { 'data-module': 'govuk-details' })
+      is_expected.to have_tag(:details, with: { 'data-module': 'govuk-details' })
     end
 
     it 'adds nested summary tag with govuk class' do
-      is_expected.to have_tag(:detail) do
+      is_expected.to have_tag(:details) do
         with_tag(:summary, with: { class: 'govuk-details__summary' })
       end
     end
 
     it 'adds nested span in summary tag with govuk class' do
-      is_expected.to have_tag(:detail) do
+      is_expected.to have_tag(:details) do
         with_tag(:summary) do
           with_tag(:span, with: { class: 'govuk-details__summary-text' })
         end
@@ -106,7 +106,7 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
     end
 
     it 'adds summary_text to nested span' do
-      is_expected.to have_tag(:detail) do
+      is_expected.to have_tag(:details) do
         with_tag(:summary) do
           with_tag(:span, text: 'My detail summary text')
         end
@@ -114,13 +114,13 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
     end
 
     it 'adds nested div tag with govuk class' do
-      is_expected.to have_tag(:detail) do
+      is_expected.to have_tag(:details) do
         with_tag(:div, with: { class: 'govuk-details__text' })
       end
     end
 
     it 'yields content to nested div tag' do
-      is_expected.to have_tag(:detail) do
+      is_expected.to have_tag(:details) do
         with_tag(:div, with: { class: 'govuk-details__text' }) do
           with_text 'My content'
         end
@@ -131,7 +131,7 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       subject(:markup) { helper.govuk_detail('My detail summary text', true) { 'my content' } }
 
       it 'adds detail with open attribute' do
-        is_expected.to have_tag(:detail, with: { 'open': 'open' })
+        is_expected.to have_tag(:details, with: { 'open': 'open' })
       end
     end
 
@@ -143,7 +143,7 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       end
 
       it 'adds detail with custom classes, prepended by govuk class' do
-        is_expected.to have_tag(:detail, with: { class: 'govuk-details my-custom-class1 my-custom-class2' })
+        is_expected.to have_tag(:details, with: { class: 'govuk-details my-custom-class1 my-custom-class2' })
       end
     end
   end
