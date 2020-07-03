@@ -28,7 +28,7 @@ module GovukDesignSystemHelper
 
     summary = tag.span(summary_text, class: 'govuk-details__summary-text')
     content = capture(&block)
-    tag.detail(tag_options) do
+    tag.details(tag_options) do
       concat tag.summary(summary, class: 'govuk-details__summary')
       concat tag.div(content, class: 'govuk-details__text')
     end
