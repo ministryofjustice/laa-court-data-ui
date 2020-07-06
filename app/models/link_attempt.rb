@@ -2,9 +2,8 @@
 
 class LinkAttempt
   include ActiveModel::Model
-  attr_accessor :id, :maat_reference, :no_maat_id
+  attr_accessor :id, :defendant_id, :defendant_asn, :maat_reference, :no_maat_id
 
   validates :maat_reference,
-            presence: { unless: :no_maat_id },
-            format: { with: /\A[2-9][0-9]{6}\z/ }
+            format: { with: /\A[0-9]{7}\z/, unless: :no_maat_id  }
 end

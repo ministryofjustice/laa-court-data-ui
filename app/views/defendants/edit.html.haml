@@ -4,6 +4,6 @@
   = javascript_pack_tag 'unlink', defer: true
 
 - if @defendant.linked?
-  = render('defendants/form', locals: @defendant)
+  = render('defendants/unlink_form', locals: @defendant)
 - else
-  = render('laa_references/form', locals: @defendant)
+  = render('defendants/link_form', locals: @defendant)

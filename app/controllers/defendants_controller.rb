@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class DefendantsController < ApplicationController
-  before_action :load_and_authorize_search
+  before_action :set_defendant_asn_if_required,
+                :load_and_authorize_search
   before_action :set_unlink_reasons,
+                :set_link_attempt,
                 :set_unlink_attempt,
                 :set_defendant_if_required
 
@@ -16,7 +18,23 @@ class DefendantsController < ApplicationController
                    defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
   end
 
+  def create
+    authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
+    set_link_attempt
+    if @link_attempt.valid?
+      if link_laa_reference
+        flash[:notice] = I18n.t('laa_reference.link.success')
+      else
+        flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
+      end
+      redirect_to edit_defendant_path(@defendant.arrest_summons_number)
+    else
+      render 'edit'
+    end
+  end
+
   def update
+    set_unlink_attempt
     if @unlink_attempt.valid?
       if unlink
         flash[:notice] = I18n.t('defendants.unlink.success')
@@ -43,12 +61,39 @@ class DefendantsController < ApplicationController
 
   private
 
+  def link_laa_reference
+    resource_params.delete(:maat_reference) if no_maat_id?
+    laa_reference = resource.new(**resource_params)
+    laa_reference.save
+  rescue CourtDataAdaptor::Errors::BadRequest => e
+    @errors = e.errors
+    false
+  end
+
+  def resource
+    CourtDataAdaptor::Resource::LaaReference
+  end
+
+  def resource_params
+    @resource_params ||= link_attempt_params.select! { |k, _v| k.in? %w[maat_reference defendant_id] }
+  end
+
+  def no_maat_id?
+    params[:commit] == 'Create link without MAAT ID'
+  end
+
   def defendant_params
-    params.permit(:id, unlink_attempt: %i[reason_code other_reason_text])
+    params.permit(:id, 
+                  unlink_attempt: %i[reason_code other_reason_text], 
+                  link_attempt: %i[id defendant_id maat_reference defendant_asn])
   end
 
   def unlink_attempt_params
     defendant_params[:unlink_attempt]
+  end
+
+  def link_attempt_params
+    defendant_params[:link_attempt]
   end
 
   def unlink_attempt_attributes
@@ -66,13 +111,17 @@ class DefendantsController < ApplicationController
   end
 
   def load_and_authorize_search
-    @search = Search.new(filter: 'defendant_reference', term: defendant_params[:id])
+    @search = Search.new(filter: 'defendant_reference', term: @defendant_asn)
     authorize! :create, @search
   end
 
   def set_defendant_if_required
     defendant
   end
+
+  def set_defendant_asn_if_required
+    defendant_asn
+  end  
 
   def set_unlink_reasons
     @unlink_reasons = UnlinkReason.all
@@ -84,5 +133,23 @@ class DefendantsController < ApplicationController
                       else
                         UnlinkAttempt.new
                       end
+  end
+
+  def link_attempt_attributes
+    return unless link_attempt_params
+
+    link_attempt_params.merge(no_maat_id: no_maat_id?)
+  end
+
+  def set_link_attempt
+    @link_attempt = if link_attempt_attributes
+                      LinkAttempt.new(link_attempt_attributes)
+                    else
+                      LinkAttempt.new
+                    end
+  end
+
+  def defendant_asn
+    @defendant_asn ||= defendant_params[:id] || link_attempt_params[:defendant_asn] || link_attempt_params[:id]
   end
 end
