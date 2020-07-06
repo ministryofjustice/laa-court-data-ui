@@ -1,0 +1,11 @@
+---
+en:
+  activemodel:
+    errors:
+      models:
+        link_attempt:
+          attributes:
+            maat_reference:
+              blank: Enter a maat id in the correct format
+              invalid: Enter a maat id in the correct format
+            
