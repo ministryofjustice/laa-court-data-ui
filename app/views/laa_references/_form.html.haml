@@ -1,4 +1,6 @@
-= form_with(url: '/laa_references', local: true) do |f|
+= form_with(model: @link_attempt, url: '/laa_references', local: true) do |f|
+  - if @link_attempt
+    =f.govuk_error_summary
 
   = render 'defendants/defendant'
 

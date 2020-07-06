@@ -1,14 +1,26 @@
 # frozen_string_literal: true
 
 class LaaReferencesController < ApplicationController
+  before_action :load_and_authorize_search
+  before_action :set_defendant_if_required
+
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
-    if link_laa_reference
-      flash[:notice] = I18n.t('laa_reference.link.success')
+    set_link_attempt
+    if @link_attempt.valid?
+      if link_laa_reference
+        flash[:notice] = I18n.t('laa_reference.link.success')
+      else
+        flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
+      end
+      redirect_to edit_defendant_path(laa_reference_params[:id])
     else
-      flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
+      render 'defendants/edit'
     end
-    redirect_to edit_defendant_path(laa_reference_params[:id])
+  end
+
+  def defendant
+    @defendant ||= @search.execute.first
   end
 
   private
@@ -44,5 +56,26 @@ class LaaReferencesController < ApplicationController
 
   def error_messages
     @errors.map { |k, v| "#{k.humanize} #{v.join(', ')}" }.join("\n")
+  end
+
+  def load_and_authorize_search
+    @search = Search.new(filter: 'defendant_reference', term: laa_reference_params[:id])
+    authorize! :create, @search
+  end
+
+  def set_defendant_if_required
+    defendant
+  end
+
+  def link_attempt_attributes
+    laa_reference_params.except(:defendant_id).merge(no_maat_id: no_maat_id?)
+  end
+
+  def set_link_attempt
+    @link_attempt = if link_attempt_attributes
+                      LinkAttempt.new(link_attempt_attributes)
+                    else
+                      LinkAttempt.new
+                    end
   end
 end
