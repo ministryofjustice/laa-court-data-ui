@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laa-court-data-ui-worker
-  namespace: laa-court-data-ui-dev
+  namespace: laa-court-data-ui-staging
 spec:
   replicas: 2
   strategy:
