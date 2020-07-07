@@ -252,6 +252,12 @@ jobs:
       - deploy-to:
           environment: staging
 
+  deploy-uat:
+    executor: cloud-platform-executor
+    steps:
+      - deploy-to:
+          environment: uat
+
   deploy-production:
     executor: cloud-platform-executor
     steps:
@@ -290,6 +296,13 @@ workflows:
       - deploy-staging:
           requires:
             - hold-staging
+      - hold-uat:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-uat:
+          requires:
+            - hold-uat
       - hold-production:
           type: approval
           requires:
@@ -337,3 +350,10 @@ workflows:
       - deploy-staging:
           requires:
             - hold-staging
+      - hold-uat:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-uat:
+          requires:
+            - hold-uat
