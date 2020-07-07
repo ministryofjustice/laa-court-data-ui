@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laa-court-data-ui-worker
-  namespace: laa-court-data-ui-staging
+  namespace: laa-court-data-ui-uat
 spec:
   replicas: 2
   strategy:
@@ -37,15 +37,15 @@ spec:
             periodSeconds: 30
           env:
             - name: ENV
-              value: 'staging'
+              value: 'uat'
             - name: RACK_ENV
               value: 'production'
             - name: RAILS_ENV
               value: 'production'
             - name: DOMAIN_URL
-              value: 'https://staging.view-court-data.service.justice.gov.uk'
+              value: 'https://uat.view-court-data.service.justice.gov.uk'
             - name: COURT_DATA_ADAPTOR_API_URL
-              value: https://laa-court-data-adaptor-stage.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1
+              value: https://laa-court-data-adaptor-uat.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1
             - name: RAILS_SERVE_STATIC_FILES
               value: enabled
             - name: RAILS_LOG_TO_STDOUT

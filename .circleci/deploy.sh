@@ -28,7 +28,7 @@ function _circleci_deploy() {
 
   # Cloud platforms circle ci solution does not handle hyphenated names
   case "$1" in
-    dev | staging | production)
+    dev | staging | uat | production)
       environment=$1
       cp_context=$environment
       ;;
