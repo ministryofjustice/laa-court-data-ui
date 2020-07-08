@@ -24,7 +24,7 @@ class DefendantsController < ApplicationController
         flash[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
       end
 
-      redirect_to edit_defendant_path(@defendant.arrest_summons_number)
+      redirect_to new_laa_reference_path(id: @defendant.arrest_summons_number || @defendant.national_insurance_number)
     else
       render 'edit'
     end

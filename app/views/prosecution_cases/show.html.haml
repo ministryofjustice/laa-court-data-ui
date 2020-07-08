@@ -15,7 +15,10 @@
       - cse.defendants.each do |defendant|
         %tr.govuk-table__row
           %td.govuk-table__cell
-            = link_to defendant.name, edit_defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
+            - if defendant.linked?
+              = link_to defendant.name, edit_defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
+            - else
+              = link_to defendant.name, new_laa_reference_path(id: defendant.arrest_summons_number || defendant.national_insurance_number)
           %td.govuk-table__cell
             = l(defendant.date_of_birth&.to_date)
           %td.govuk-table__cell

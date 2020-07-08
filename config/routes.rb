@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :prosecution_cases, only: %i[show]
   resources :defendants, only: %i[edit update]
-  resources :laa_references, only: %i[create]
+  resources :laa_references, only: %i[new create]
 
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
