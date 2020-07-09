@@ -1,25 +1,28 @@
 # frozen_string_literal: true
 
 class LaaReferencesController < ApplicationController
-  before_action :load_and_authorize_search,
+  before_action :set_defendant_identifier_if_required,
+                :load_and_authorize_search,
                 :set_defendant_if_required
 
   def new
-    ap "File: #{File.basename(__FILE__)}, Method: #{__method__}, Line: #{__LINE__}"
-    puts params
-    ap "File: #{File.basename(__FILE__)}, Method: #{__method__}, Line: #{__LINE__}"
+    @link_attempt = LinkAttempt.new
   end
 
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
 
-    if link_laa_reference
-      flash[:notice] = I18n.t('laa_reference.link.success')
+    @link_attempt = LinkAttempt.new link_attempt_params
+    if @link_attempt.valid?
+      if link_laa_reference
+        flash[:notice] = I18n.t('laa_reference.link.success')
+        redirect_to edit_defendant_path(link_attempt_params[:defendant_identifier])
+      else
+        flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
+      end
     else
-      flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
+      render 'laa_references/new'
     end
-
-    redirect_to edit_defendant_path(laa_reference_params[:id])
   end
 
   private
@@ -37,8 +40,16 @@ class LaaReferencesController < ApplicationController
     params.permit(
       :id,
       :defendant_id,
-      :maat_reference
+      link_attempt: %i[id defendant_id maat_reference defendant_identifier]
     )
+  end
+
+  def link_attempt_params
+    laa_reference_params[:link_attempt].merge(no_maat_id: no_maat_id?)
+  end
+
+  def defendant_identifier
+    @defendant_identifier = laa_reference_params[:id] || link_attempt_params[:defendant_identifier]
   end
 
   def resource
@@ -46,7 +57,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def resource_params
-    @resource_params ||= laa_reference_params.select! { |k, _v| k.in? %w[maat_reference defendant_id] }
+    @resource_params ||= link_attempt_params.select! { |k, _v| k.in? %w[maat_reference defendant_id] }
   end
 
   def no_maat_id?
@@ -58,8 +69,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def load_and_authorize_search
-    puts laa_reference_params
-    @search = Search.new(filter: 'defendant_reference', term: laa_reference_params[:id])
+    @search = Search.new(filter: 'defendant_reference', term: @defendant_identifier)
     authorize! :create, @search
   end
 
@@ -70,5 +80,8 @@ class LaaReferencesController < ApplicationController
   def set_defendant_if_required
     defendant
   end
-end
 
+  def set_defendant_identifier_if_required
+    defendant_identifier
+  end
+end

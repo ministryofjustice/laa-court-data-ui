@@ -1,4 +1,5 @@
-= form_with(url: '/laa_references', local: true) do |f|
+= form_with(model: @link_attempt, url: '/laa_references', local: true) do |f|
+  = f.govuk_error_summary
 
   = render 'defendants/defendant'
 
@@ -6,6 +7,7 @@
 
   = f.hidden_field(:id, value: params[:id])
   = f.hidden_field(:defendant_id, value: @defendant.id)
+  = f.hidden_field(:defendant_identifier, value: @defendant_identifier)
 
   = f.govuk_text_field :maat_reference,
     value: nil,
