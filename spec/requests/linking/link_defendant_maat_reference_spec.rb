@@ -6,11 +6,16 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
   let(:nino) { 'JC123456A' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:maat_reference) { '2123456' }
+  let(:defendant_identifier) { nino }
   let(:params) do
     {
-      id: nino,
-      defendant_id: defendant_id,
-      maat_reference: maat_reference
+      link_attempt:
+      {
+        id: nino,
+        defendant_id: defendant_id,
+        maat_reference: maat_reference,
+        defendant_identifier: defendant_identifier
+      }
     }
   end
 
@@ -26,7 +31,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(nino)
+        expect(response).to redirect_to edit_defendant_path(defendant_identifier)
       end
 
       it 'flashes alert' do
@@ -46,23 +51,19 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(nino)
+        expect(response).to redirect_to new_laa_reference_path(id: nino)
       end
     end
 
     context 'with invalid maat_reference' do
       let(:maat_reference) { 'A2123456' }
 
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/A link to the court data source could not be created/)
+      it 'displays error summary with invalid error' do
+        expect(response.body).to include('Enter a maat reference in the correct format')
       end
 
-      it 'flashes returned error' do
-        expect(flash.now[:alert]).to match(/MAAT reference must be an integer/)
-      end
-
-      it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(nino)
+      it 'renders laa_referencer/new' do
+        expect(response).to render_template 'laa_references/new'
       end
     end
   end
@@ -117,7 +118,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       it 'sends token request' do
         expect(
           a_request(:post, %r{.*/oauth/token})
-        ).to have_been_made.once
+        ).to have_been_made.twice
       end
     end
   end

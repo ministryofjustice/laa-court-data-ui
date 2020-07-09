@@ -95,8 +95,8 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         expect(response).to have_http_status :redirect
       end
 
-      it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(defendant_asn_from_fixture)
+      it 'redirects to new_laa_reference path' do
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_asn_from_fixture)
       end
 
       it 'flashes notice' do
@@ -125,7 +125,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to defendant path (using ASN)' do
-        expect(response).to redirect_to edit_defendant_path(defendant_asn_from_fixture)
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_asn_from_fixture)
       end
 
       it 'flashes notice' do
@@ -156,7 +156,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(defendant_asn_from_fixture)
+        expect(response).to redirect_to edit_defendant_path(id: defendant_asn_from_fixture)
       end
     end
 
@@ -176,7 +176,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to defendant path (using ASN)' do
-        expect(response).to redirect_to edit_defendant_path(defendant_asn_from_fixture)
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_asn_from_fixture)
       end
     end
 

@@ -85,7 +85,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   end
 
   def when_viewing_defendant(defendant_nino_or_asn)
-    visit "defendants/#{defendant_nino_or_asn}/edit"
+    visit new_laa_reference_path(id: defendant_nino_or_asn)
   end
 
   def then_defendant_view_displayed_for(name)
@@ -105,7 +105,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
       rows = page.all('.govuk-table__row')
       rows.each do |row|
         cells = row.all('.govuk-table__cell')
-        expect(cells[0]).to have_link(nil, href: %r{/defendants/.*})
+        expect(cells[0]).to have_link(nil, href: %r{/laa_references/.*})
         expect(cells[1].text).to match(%r{[0-3][0-9]/[0-1][0-9]/[1-2][0|9](?:[0-9]{2})?})
         expect(cells[2].text).to eql 'Not linked'
       end

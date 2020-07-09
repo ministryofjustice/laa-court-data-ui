@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class DefendantsController < ApplicationController
+  include DefendantHelpers
+
   before_action :load_and_authorize_search
   before_action :set_unlink_reasons,
                 :set_unlink_attempt,
@@ -8,10 +10,9 @@ class DefendantsController < ApplicationController
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
-  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.prosecution_case_reference) }),
-                 (proc { |v| v.prosecution_case_path(v.controller.defendant.prosecution_case_reference) })
 
   def edit
+    add_defendant_case_breadcrumb
     add_breadcrumb defendant.name,
                    defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
   end
@@ -19,12 +20,12 @@ class DefendantsController < ApplicationController
   def update
     if @unlink_attempt.valid?
       if unlink
+        redirect_to new_laa_reference_path(id: defendant_identifier)
         flash[:notice] = I18n.t('defendants.unlink.success')
       else
+        redirect_to edit_defendant_path(id: defendant_identifier)
         flash[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
       end
-
-      redirect_to new_laa_reference_path(id: @defendant.arrest_summons_number || @defendant.national_insurance_number)
     else
       render 'edit'
     end
@@ -35,10 +36,6 @@ class DefendantsController < ApplicationController
   rescue CourtDataAdaptor::Errors::BadRequest => e
     @errors = e.errors
     false
-  end
-
-  def defendant
-    @defendant ||= @search.execute.first
   end
 
   private
@@ -65,15 +62,6 @@ class DefendantsController < ApplicationController
     @errors.map { |k, v| "#{k.to_s.humanize} #{v.join(', ')}" }.join("\n")
   end
 
-  def load_and_authorize_search
-    @search = Search.new(filter: 'defendant_reference', term: defendant_params[:id])
-    authorize! :create, @search
-  end
-
-  def set_defendant_if_required
-    defendant
-  end
-
   def set_unlink_reasons
     @unlink_reasons = UnlinkReason.all
   end
@@ -84,5 +72,9 @@ class DefendantsController < ApplicationController
                       else
                         UnlinkAttempt.new
                       end
+  end
+
+  def defendant_identifier
+    @defendant.arrest_summons_number || @defendant.national_insurance_number
   end
 end

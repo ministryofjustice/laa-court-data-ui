@@ -1,6 +1,75 @@
 ---
 http_interactions:
 - request:
+    method: get
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bnational_insurance_number%5D=JC123456A&include=defendants,defendants.offences
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 559dca21-76a3-4a9c-aa77-ee040b95e120
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"47c696bc67a066eae844975e432a20ad"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 559dca21-76a3-4a9c-aa77-ee040b95e120
+      X-Runtime:
+      - '0.149006'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"id":"59a3b8bd-ccbe-4fc9-9e17-4b8bcc957d5e","type":"prosecution_cases","attributes":{"prosecution_case_reference":"TEST12345"},"relationships":{"defendants":{"data":[{"id":"18d96472-c63d-474d-ba72-3fc4fae0deb2","type":"defendants"},{"id":"9f655798-b6c7-4d59-8f54-65f70fd784e1","type":"defendants"},{"id":"b3221b46-b98c-47b7-a285-be681d2cac4e","type":"defendants"},{"id":"393af47e-8298-442d-8c39-e33b65d2aebf","type":"defendants"}]},"hearing_summaries":{"data":[]}}},{"id":"d79c8463-d665-4cdb-8379-b8ee0b0963c1","type":"prosecution_cases","attributes":{"prosecution_case_reference":"TEST54321"},"relationships":{"defendants":{"data":[{"id":"14047f07-e65e-4cfa-80fb-a2b951d57443","type":"defendants"},{"id":"f7d3e402-9084-47c6-804e-89a544d53001","type":"defendants"},{"id":"d0b175d6-a1a9-4fcf-9fc2-44216d5e642e","type":"defendants"}]},"hearing_summaries":{"data":[]}}}],"included":[{"id":"18d96472-c63d-474d-ba72-3fc4fae0deb2","type":"defendants","attributes":{"name":"Tresa
+        Rohan Homenick","date_of_birth":"1985-12-27","national_insurance_number":"PH378048A","arrest_summons_number":"XH77GEBQYB7Q","maat_reference":"A10000015","representation_order_date":"2020-06-29T00:00:00.000Z"},"relationships":{"offences":{"data":[{"id":"c963bcb2-6d7b-4047-aa2f-12b18e7a8176","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"9f655798-b6c7-4d59-8f54-65f70fd784e1","type":"defendants","attributes":{"name":"Danial
+        Pacocha Lemke","date_of_birth":"1989-03-21","national_insurance_number":"RJ435385A","arrest_summons_number":"B58TR4ZVX8F0","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"755d9c2f-5f71-481f-ba7a-58bf5fa480d1","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"b3221b46-b98c-47b7-a285-be681d2cac4e","type":"defendants","attributes":{"name":"Jesus
+        D''Amore O''Reilly","date_of_birth":"1992-06-03","national_insurance_number":"EL059689D","arrest_summons_number":"DMGJ9IJW8PHP","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"1b3a9f10-cf0a-43aa-b0bb-9e4ecd1e94c0","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"393af47e-8298-442d-8c39-e33b65d2aebf","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"9N3TY7G9A79A","maat_reference":"3757575","representation_order_date":"2020-06-29T00:00:00.000Z"},"relationships":{"offences":{"data":[{"id":"26f5b1ee-c191-4c49-8008-5bfcd20c6ee6","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"c963bcb2-6d7b-4047-aa2f-12b18e7a8176","type":"offences","attributes":{"code":"Random
+        string","order_index":1,"title":"Committing offence with intent to commit
+        sexual offence","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"755d9c2f-5f71-481f-ba7a-58bf5fa480d1","type":"offences","attributes":{"code":"Random
+        string","order_index":1,"title":"Fabrication of evidence with intent to mislead
+        a tribunal","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"1b3a9f10-cf0a-43aa-b0bb-9e4ecd1e94c0","type":"offences","attributes":{"code":"Random
+        string","order_index":1,"title":"Bomb hoax","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"26f5b1ee-c191-4c49-8008-5bfcd20c6ee6","type":"offences","attributes":{"code":"Random
+        string","order_index":1,"title":"Prison mutiny","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"14047f07-e65e-4cfa-80fb-a2b951d57443","type":"defendants","attributes":{"name":"Aaron
+        Ruecker Wiegand","date_of_birth":"1987-11-30","national_insurance_number":"HH511739C","arrest_summons_number":"488KAEA6SXOR","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"a1df4106-23d5-496d-b1c8-7ffb61f5609f","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"f7d3e402-9084-47c6-804e-89a544d53001","type":"defendants","attributes":{"name":"Harris
+        Kunze Kulas","date_of_birth":"1984-12-10","national_insurance_number":"HP186221D","arrest_summons_number":"RRF3616D98GJ","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"fb82aa24-c93e-4e29-a5c8-2e17aad7df22","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"d0b175d6-a1a9-4fcf-9fc2-44216d5e642e","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"QRXNLAG99RJW","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"eb04542a-f10c-401a-8b38-fc830810cbf8","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"a1df4106-23d5-496d-b1c8-7ffb61f5609f","type":"offences","attributes":{"code":"Random
+        string","order_index":1,"title":"Attempting to injure or alarm the Sovereign","mode_of_trial":"Random
+        string","plea":null,"plea_date":null}},{"id":"fb82aa24-c93e-4e29-a5c8-2e17aad7df22","type":"offences","attributes":{"code":"Random
+        string","order_index":1,"title":"Indecent assault on a man","mode_of_trial":"Random
+        string","plea":null,"plea_date":null}},{"id":"eb04542a-f10c-401a-8b38-fc830810cbf8","type":"offences","attributes":{"code":"Random
+        string","order_index":1,"title":"Personation of jurors","mode_of_trial":"Random
+        string","plea":null,"plea_date":null}}]}'
+  recorded_at: Thu, 09 Jul 2020 10:49:30 GMT
+- request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
     body:
@@ -35,21 +104,21 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 3bf1da23-c49c-4510-bbf2-6f288733dca9
+      - ac1ac2b4-29f7-49ba-a3dc-86dfa97c87be
       Content-Type:
       - text/plain; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 3bf1da23-c49c-4510-bbf2-6f288733dca9
+      - ac1ac2b4-29f7-49ba-a3dc-86dfa97c87be
       X-Runtime:
-      - '0.014121'
+      - '0.015402'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: " "
-  recorded_at: Tue, 23 Jun 2020 10:18:57 GMT
+  recorded_at: Thu, 09 Jul 2020 10:49:30 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -85,19 +154,19 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 2ded8ea1-2f05-4ea0-b9a3-87df54824e62
+      - 2e024f96-9d00-4c10-8e75-a1c64fd7393c
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 2ded8ea1-2f05-4ea0-b9a3-87df54824e62
+      - 2e024f96-9d00-4c10-8e75-a1c64fd7393c
       X-Runtime:
-      - '0.009379'
+      - '0.029091'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"defendant_id":["is not a valid uuid"]}'
-  recorded_at: Tue, 23 Jun 2020 10:18:57 GMT
+  recorded_at: Thu, 09 Jul 2020 10:49:31 GMT
 recorded_with: VCR 6.0.0
