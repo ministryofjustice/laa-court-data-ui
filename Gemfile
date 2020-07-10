@@ -31,6 +31,7 @@ group :test do
   gem 'axe-matchers'
   gem 'brakeman'
   gem 'capybara'
+  gem 'capybara_table'
   gem 'climate_control'
   gem 'codeclimate-test-reporter', require: false
   gem 'fakeredis', require: 'fakeredis/rspec'

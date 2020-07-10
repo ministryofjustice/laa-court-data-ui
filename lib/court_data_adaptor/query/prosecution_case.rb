@@ -9,8 +9,12 @@ module CourtDataAdaptor
         refresh_token_if_required!
 
         resource
+          .includes(:defendants,
+                    'defendants.offences',
+                    :hearing_summaries,
+                    :hearings,
+                    'hearings.hearing_events')
           .where(prosecution_case_reference: urn)
-          .includes(:defendants)
           .all
       end
 

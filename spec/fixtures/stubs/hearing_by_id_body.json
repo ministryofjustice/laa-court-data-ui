@@ -1,0 +1,407 @@
+{
+  "data": {
+    "id": "345be88a-31cf-4a30-9de3-da98e973367e",
+    "type": "hearings",
+    "attributes": {
+      "court_name": "Warrington CCU (Decom)",
+      "hearing_type": "Application to Break Fixture (BFA)",
+      "hearing_days": [
+        "2019-10-23T16:19:15.000Z",
+        "2019-10-24T08:30:00.000Z",
+        "2019-10-25T10:45:00.000Z"
+      ],
+      "defendant_names": [
+        "Mauricio Ledner",
+        "Toby Lind",
+        "Connie Swift",
+        "Jammy Dodger"
+      ],
+      "judge_names": [],
+      "prosecution_advocate_names": null,
+      "defence_advocate_names": [
+        "Valentine Lakin",
+        "Joel Hickle"
+      ]
+    },
+    "relationships": {
+      "hearing_events": {
+        "data": [
+          {
+            "id": "0fc164f5-21ee-460b-add0-d3f04c9dabd5",
+            "type": "hearing_events"
+          },
+          {
+            "id": "d9914cdc-fdb0-4da4-ac01-82e99ec744bc",
+            "type": "hearing_events"
+          },
+          {
+            "id": "2af8c327-1808-4db8-8b0d-54793c470063",
+            "type": "hearing_events"
+          },
+          {
+            "id": "bdd4a3f2-02fb-4c9c-ab08-abe65c24edf5",
+            "type": "hearing_events"
+          },
+          {
+            "id": "d907f3ad-145f-429b-a5a2-63c9e6b01f31",
+            "type": "hearing_events"
+          },
+          {
+            "id": "02303768-b8c2-4145-96f9-44d6b1e3285f",
+            "type": "hearing_events"
+          },
+          {
+            "id": "68ecc4e4-9263-4574-88e7-cf632e22c9c1",
+            "type": "hearing_events"
+          },
+          {
+            "id": "1785dbed-e0ac-47f9-94b1-b307f3a123a7",
+            "type": "hearing_events"
+          },
+          {
+            "id": "8cbb6058-b792-4f65-b1e2-feb20c7cb8ce",
+            "type": "hearing_events"
+          },
+          {
+            "id": "a6b77163-d318-4ff2-982f-7f6942912a04",
+            "type": "hearing_events"
+          },
+          {
+            "id": "57c9ec39-9bab-43c7-a19d-d885f4a9db9f",
+            "type": "hearing_events"
+          },
+          {
+            "id": "3d9b944d-d0cb-4083-8db9-56b9e0f351cb",
+            "type": "hearing_events"
+          },
+          {
+            "id": "a78a4f49-a7e3-4533-8884-b78eebe14b28",
+            "type": "hearing_events"
+          },
+          {
+            "id": "5a55d671-06d9-4b72-a815-63f828b09d41",
+            "type": "hearing_events"
+          },
+          {
+            "id": "eec009c0-0dd5-4cfb-93d9-104e3eda5214",
+            "type": "hearing_events"
+          },
+          {
+            "id": "82f0a03e-69f9-45b2-b7eb-7bda4aabe907",
+            "type": "hearing_events"
+          },
+          {
+            "id": "31aa7bd7-6d0c-4162-bd8c-6b6349c462cd",
+            "type": "hearing_events"
+          },
+          {
+            "id": "f2cf5116-ff9f-4fec-b057-c5ef456977f5",
+            "type": "hearing_events"
+          },
+          {
+            "id": "cc3256bb-ea66-4ba4-8f79-2eda2e28df94",
+            "type": "hearing_events"
+          },
+          {
+            "id": "f31fc7ef-74a0-4cd1-92f5-8b6aba583092",
+            "type": "hearing_events"
+          },
+          {
+            "id": "37251f09-2ead-42e7-aa74-71bf3c0d1e46",
+            "type": "hearing_events"
+          },
+          {
+            "id": "f921b93d-9086-433d-a3ed-1a428fdae65a",
+            "type": "hearing_events"
+          },
+          {
+            "id": "47e42c65-a60e-4155-a149-bccee5157833",
+            "type": "hearing_events"
+          },
+          {
+            "id": "0be0f3bb-4c44-4757-9c3b-31c28d170b7a",
+            "type": "hearing_events"
+          },
+          {
+            "id": "babc6bcb-a11a-4328-a5de-11b012b0c487",
+            "type": "hearing_events"
+          },
+          {
+            "id": "a06f0eca-5137-4ece-863d-9698be114af0",
+            "type": "hearing_events"
+          },
+          {
+            "id": "7e3d5784-d7ee-45c0-97dd-44592a761436",
+            "type": "hearing_events"
+          },
+          {
+            "id": "2e46a0a6-d01a-4a8c-a403-7ef43216346c",
+            "type": "hearing_events"
+          },
+          {
+            "id": "5068a8b1-81a0-43cb-a51d-2fd9267611b2",
+            "type": "hearing_events"
+          },
+          {
+            "id": "c3010e49-53ce-4d43-a0e6-18a5e7597bc8",
+            "type": "hearing_events"
+          }
+        ]
+      },
+      "providers": {
+        "data": [
+          {
+            "id": "9603a373-32f9-4403-a84b-209577913e60",
+            "type": "providers"
+          },
+          {
+            "id": "4e0ce9ef-df5e-40ff-b6f4-2ad7bc17f22e",
+            "type": "providers"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "0fc164f5-21ee-460b-add0-d3f04c9dabd5",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 0",
+        "occurred_at": "2019-10-23T16:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "d9914cdc-fdb0-4da4-ac01-82e99ec744bc",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 1",
+        "occurred_at": "2019-10-23T17:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "2af8c327-1808-4db8-8b0d-54793c470063",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 2",
+        "occurred_at": "2019-10-23T18:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "bdd4a3f2-02fb-4c9c-ab08-abe65c24edf5",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 3",
+        "occurred_at": "2019-10-23T19:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "d907f3ad-145f-429b-a5a2-63c9e6b01f31",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 4",
+        "occurred_at": "2019-10-23T20:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "02303768-b8c2-4145-96f9-44d6b1e3285f",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 5",
+        "occurred_at": "2019-10-23T21:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "68ecc4e4-9263-4574-88e7-cf632e22c9c1",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 6",
+        "occurred_at": "2019-10-23T22:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "1785dbed-e0ac-47f9-94b1-b307f3a123a7",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 7",
+        "occurred_at": "2019-10-23T23:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "8cbb6058-b792-4f65-b1e2-feb20c7cb8ce",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 8",
+        "occurred_at": "2019-10-23T00:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "a6b77163-d318-4ff2-982f-7f6942912a04",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 9",
+        "occurred_at": "2019-10-23T01:19:15.000+00:00"
+      }
+    },
+    {
+      "id": "57c9ec39-9bab-43c7-a19d-d885f4a9db9f",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 0",
+        "occurred_at": "2019-10-24T08:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "3d9b944d-d0cb-4083-8db9-56b9e0f351cb",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 1",
+        "occurred_at": "2019-10-24T09:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "a78a4f49-a7e3-4533-8884-b78eebe14b28",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 2",
+        "occurred_at": "2019-10-24T10:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "5a55d671-06d9-4b72-a815-63f828b09d41",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 3",
+        "occurred_at": "2019-10-24T11:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "eec009c0-0dd5-4cfb-93d9-104e3eda5214",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 4",
+        "occurred_at": "2019-10-24T12:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "82f0a03e-69f9-45b2-b7eb-7bda4aabe907",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 5",
+        "occurred_at": "2019-10-24T13:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "31aa7bd7-6d0c-4162-bd8c-6b6349c462cd",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 6",
+        "occurred_at": "2019-10-24T14:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "f2cf5116-ff9f-4fec-b057-c5ef456977f5",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 7",
+        "occurred_at": "2019-10-24T15:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "cc3256bb-ea66-4ba4-8f79-2eda2e28df94",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 8",
+        "occurred_at": "2019-10-24T16:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "f31fc7ef-74a0-4cd1-92f5-8b6aba583092",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 9",
+        "occurred_at": "2019-10-24T17:30:00.000+00:00"
+      }
+    },
+    {
+      "id": "37251f09-2ead-42e7-aa74-71bf3c0d1e46",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 0",
+        "occurred_at": "2019-10-25T10:45:00.000+00:00"
+      }
+    },
+    {
+      "id": "f921b93d-9086-433d-a3ed-1a428fdae65a",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 1",
+        "occurred_at": "2019-10-25T11:45:00.000+00:00"
+      }
+    },
+    {
+      "id": "47e42c65-a60e-4155-a149-bccee5157833",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 2",
+        "occurred_at": "2019-10-25T12:45:00.000+00:00"
+      }
+    },
+    {
+      "id": "0be0f3bb-4c44-4757-9c3b-31c28d170b7a",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 3",
+        "occurred_at": "2019-10-25T13:45:00.000+00:00"
+      }
+    },
+    {
+      "id": "babc6bcb-a11a-4328-a5de-11b012b0c487",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 4",
+        "occurred_at": "2019-10-25T14:45:00.000+00:00"
+      }
+    },
+    {
+      "id": "a06f0eca-5137-4ece-863d-9698be114af0",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 5",
+        "occurred_at": "2019-10-25T15:45:00.000+00:00"
+      }
+    },
+    {
+      "id": "7e3d5784-d7ee-45c0-97dd-44592a761436",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 6",
+        "occurred_at": "2019-10-25T16:45:00.000+00:00"
+      }
+    },
+    {
+      "id": "2e46a0a6-d01a-4a8c-a403-7ef43216346c",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 7",
+        "occurred_at": "2019-10-25T17:45:00.000+00:00"
+      }
+    },
+    {
+      "id": "5068a8b1-81a0-43cb-a51d-2fd9267611b2",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 8",
+        "occurred_at": "2019-10-25T18:45:00.000+00:00"
+      }
+    },
+    {
+      "id": "c3010e49-53ce-4d43-a0e6-18a5e7597bc8",
+      "type": "hearing_events",
+      "attributes": {
+        "description": "Hearing event 9",
+        "occurred_at": "2019-10-25T19:45:00.000+00:00"
+      }
+    }
+  ]
+}

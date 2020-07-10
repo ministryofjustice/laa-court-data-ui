@@ -1,0 +1,18 @@
+---
+en:
+  hearings:
+    show:
+      attendees:
+        caption: Attendees
+        defence: Defence advocates
+        defendants: Defendants
+        heading: Attendees
+        judges: Judges
+        prosecution: Prosecution advocates
+      court: Court
+      events:
+        caption: Hearing events
+        event: Event
+        time: Time
+      hearing_type: Hearing type
+      time_listed: Time listed

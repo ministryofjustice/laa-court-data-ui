@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'court_data_adaptor acts_as_resource object' do |options|
-  it { expect(klass).to respond_to :acts_as_resource, :resource }
-  it { expect(instance).to respond_to :resource }
-  it { expect(instance).to respond_to :refresh_token_if_required! }
+  it { expect(klass).to respond_to :acts_as_resource, :resource, :refresh_token_if_required! }
+  it { expect(instance).to respond_to :resource, :refresh_token_if_required! }
 
   it "acts as #{options[:resource]}" do
     expect(instance.resource).to eql options[:resource]

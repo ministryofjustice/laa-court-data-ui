@@ -12,12 +12,12 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
 
     choose 'A case by URN'
     click_button 'Continue'
-    fill_in 'search-term-field', with: 'MOGUERBXIZ'
+    fill_in 'search-term-field', with: 'TEST12345'
     click_button 'Search'
-    expect(page).to have_text 'Search results for "MOGUERBXIZ"'
+    expect(page).to have_text 'Search results for "TEST12345"'
 
     within 'tbody.govuk-table__body' do
-      expect(page).to have_content('MOGUERBXIZ', count: 4)
+      expect(page).to have_content('TEST12345', count: 4)
     end
 
     expect(page).to be_accessible.within '#main-content'

@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Breadcrumb', type: :feature do
+RSpec.feature 'Breadcrumb', type: :feature, stub_unlinked: true do
   let(:user) { create(:user) }
+  let(:case_urn) { 'TEST12345' }
+  let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+  let(:hearing_id_from_fixture) { '345be88a-31cf-4a30-9de3-da98e973367e' }
 
   context 'when not signed in' do
     before { visit unauthenticated_root_path }
@@ -48,31 +51,67 @@ RSpec.feature 'Breadcrumb', type: :feature do
       end
     end
 
-    scenario 'user navigates search, prosecution case and defendant details pages', :vcr do
+    context 'when on case details page' do
+      scenario 'expected breadcrumbs are displayed' do
+        when_i_choose_search_filter 'A case by URN'
+        when_i_search_for case_urn
+
+        click_link(case_urn, match: :first)
+        expect(page).to have_current_path(prosecution_case_path(case_urn))
+        then_has_case_details_breadcrumbs(case_urn)
+      end
+    end
+
+    context 'when on defendant details page' do
+      scenario 'expected breadcrumbs are displayed' do
+        when_i_choose_search_filter 'A case by URN'
+        when_i_search_for case_urn
+
+        click_link(case_urn, match: :first)
+        click_link('Jammy Dodger')
+        expect(page).to have_current_path(%r{/laa_references/.+})
+        then_has_defendant_details_breadcrumbs(case_urn, 'Jammy Dodger')
+      end
+    end
+
+    context 'when on hearing details page' do
+      scenario 'expected breadcrumbs are displayed' do
+        when_i_choose_search_filter 'A case by URN'
+        when_i_search_for case_urn
+
+        click_link(case_urn, match: :first)
+        click_link('23/10/2019', match: :first)
+        expect(page).to have_current_path(hearing_path(hearing_id_from_fixture, urn: case_urn))
+        then_has_hearing_details_breadcrumbs(case_urn, '23/10/2019')
+      end
+    end
+
+    scenario 'user navigates search, prosecution case, defendant and hearings pages' do
       when_i_choose_search_filter 'A case by URN'
-      when_i_search_for 'MVIFVOIPYU'
+      when_i_search_for case_urn
 
-      click_link('MVIFVOIPYU', match: :first)
-      expect(page).to have_current_path(prosecution_case_path('MVIFVOIPYU'))
+      click_link(case_urn, match: :first)
+      expect(page).to have_current_path(prosecution_case_path(case_urn))
+      then_has_case_details_breadcrumbs(case_urn)
 
-      then_has_case_details_breadcrumbs('MVIFVOIPYU')
-
-      click_link('Lawerence Predovic Ortiz')
+      click_link('Jammy Dodger')
       expect(page).to have_current_path(%r{/laa_references/.+})
+      then_has_defendant_details_breadcrumbs(case_urn, 'Jammy Dodger')
 
-      then_has_defendant_details_breadcrumbs('MVIFVOIPYU', 'Lawerence Predovic Ortiz')
+      click_breadcrumb 'Case TEST12345'
+      expect(page).to have_current_path(prosecution_case_path(case_urn))
+      then_has_case_details_breadcrumbs(case_urn)
 
-      click_breadcrumb 'Case MVIFVOIPYU'
-
-      expect(page).to have_current_path(prosecution_case_path('MVIFVOIPYU'))
-      then_has_case_details_breadcrumbs('MVIFVOIPYU')
+      click_link('23/10/2019', match: :first)
+      expect(page).to have_current_path(hearing_path(hearing_id_from_fixture, urn: case_urn))
+      then_has_hearing_details_breadcrumbs(case_urn, '23/10/2019')
 
       click_breadcrumb 'Search'
       expect(page).to have_current_path(
         searches_path(
           search: {
             filter: 'case_reference',
-            term: 'MVIFVOIPYU'
+            term: case_urn
           }
         )
       )
@@ -140,11 +179,18 @@ RSpec.feature 'Breadcrumb', type: :feature do
     expect(page).to have_govuk_breadcrumb("Case #{case_ref}", aria_current: true)
   end
 
-  def then_has_defendant_details_breadcrumbs(_case_ref, defendant_name)
+  def then_has_defendant_details_breadcrumbs(case_ref, defendant_name)
     expect(page).to have_govuk_breadcrumb_link('Home')
     expect(page).to have_govuk_breadcrumb_link('Search')
-    # expect(page).to have_govuk_breadcrumb_link("Case #{case_ref}")
+    expect(page).to have_govuk_breadcrumb_link("Case #{case_ref}")
     expect(page).not_to have_govuk_breadcrumb_link(defendant_name)
     expect(page).to have_govuk_breadcrumb(defendant_name, aria_current: true)
+  end
+
+  def then_has_hearing_details_breadcrumbs(case_ref, hearing_day)
+    expect(page).to have_govuk_breadcrumb_link('Home')
+    expect(page).to have_govuk_breadcrumb_link('Search')
+    expect(page).to have_govuk_breadcrumb_link("Case #{case_ref}")
+    expect(page).to have_govuk_breadcrumb("Hearing #{hearing_day}", aria_current: true)
   end
 end

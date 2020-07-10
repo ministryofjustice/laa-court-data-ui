@@ -1,18 +1,18 @@
 = govuk_page_title(@prosecution_case.prosecution_case_reference, t('generic.case'))
 
-.govuk-heading-m
+%h2.govuk-heading-m
   = t('search.result.defendant.heading')
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden
-    = t('search.result.caption')
+    = t('search.result.defendant.caption')
   %thead.govuk-table__head
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.name')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.date_of_birth')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.maat_number')
   %tbody.govuk-table__body
-    - @results.each do |cse|
-      - cse.defendants.each do |defendant|
+    - @results.each do |prosecution_case|
+      - prosecution_case.defendants.each do |defendant|
         %tr.govuk-table__row
           %td.govuk-table__cell
             = link_to defendant.name, defendant_link_path(defendant, @prosecution_case.prosecution_case_reference)
@@ -20,3 +20,62 @@
             = l(defendant.date_of_birth&.to_date)
           %td.govuk-table__cell
             = defendant.maat_reference || t('search.result.defendant.unlinked')
+
+%h2.govuk-heading-m
+  = t('search.result.hearing.heading')
+%table.govuk-table
+  %caption.govuk-table__caption.govuk-visually-hidden
+    = t('search.result.hearing.caption')
+  %thead.govuk-table__head
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_day')
+      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_type')
+      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.providers')
+  %tbody.govuk-table__body
+    - @results.each do |prosecution_case|
+      - prosecution_case.hearing_summaries.each do |hearing_summary|
+        - hearing_summary.hearing_days.each do |hearing_day|
+          %tr.govuk-table__row
+            %td.govuk-table__cell
+              = link_to hearing_day.to_date.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id, urn: prosecution_case.prosecution_case_reference)
+            %td.govuk-table__cell
+              = hearing_summary.hearing_type
+            %td.govuk-table__cell
+              - hearing = prosecution_case.hearings.find { |h| h.id == hearing_summary.id}
+              = hearing&.defence_advocate_names&.join(', ') || 'not set'
+
+%br
+%br
+= govuk_detail('View raw data') do
+  - @results.each do |prosecution_case|
+    %h3='Prosecution case'
+    %pre
+      = JSON.pretty_generate(prosecution_case.as_json)
+
+    %h3='Defendants'
+    %pre
+      - prosecution_case.defendants.each.with_index do |defendant, idx|
+        %h4="defendant #{idx}"
+        = JSON.pretty_generate(defendant.attributes)
+        %h4="Offences for defendant #{idx}"
+        - defendant.offences.each do |offence|
+          = JSON.pretty_generate(offence.attributes)
+
+    %h3='Hearing summaries'
+    - prosecution_case.hearing_summaries.each do |hearing_summary|
+      %pre
+        = JSON.pretty_generate(hearing_summary.attributes)
+
+    %h3='Hearings'
+    - prosecution_case.hearings.each.with_index do |hearing, hidx|
+      %h4="hearing #{hidx}"
+      %pre
+        = JSON.pretty_generate(hearing.attributes)
+
+      %h4="Hearing events for hearing #{hidx}"
+      = 'none' if hearing.hearing_events.empty?
+      - hearing.hearing_events.each.with_index do |event, eidx|
+        %h5= # "Hearing event #{eidx} for hearing #{hidx}"
+        %pre
+          = JSON.pretty_generate(event.attributes)
+

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ&include=defendants
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events
     body:
       encoding: US-ASCII
       string: ''
@@ -34,24 +34,30 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - ad85e960-d96f-4ef4-a3f5-247308f6d026
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"76deac2de18434100f33d0ece178fe75"
+      - W/"9e9ddcabce612d127e0fe3f6f7f1374a"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 9f82a2df-9199-496e-ade4-c432546863f1
+      - ad85e960-d96f-4ef4-a3f5-247308f6d026
       X-Runtime:
-      - '0.080499'
+      - '0.073852'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"db3c94f1-bc26-4674-9385-c0df45e48493","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants"},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants"},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants"},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants"}]}}}],"included":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants","attributes":{"name":"Josefa
-        Franecki","date_of_birth":"1961-06-15","national_insurance_number":"YE744478B","arrest_summons_number":"US7FIK88TA9X","maat_reference":null},"relationships":{"offences":{"data":[{"id":"43b560f0-8aa8-4de5-b0e5-aab7b8078d1e","type":"offences"}]}}},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants","attributes":{"name":"Weldon
-        Leffler Deckow","date_of_birth":"1962-06-18","national_insurance_number":"GG367471A","arrest_summons_number":"NYC1FXJTLWFE","maat_reference":null},"relationships":{"offences":{"data":[{"id":"4e8f8627-60b1-4f14-a7ca-49d01914b160","type":"offences"}]}}},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants","attributes":{"name":"Amada
-        Cruickshank Abshire","date_of_birth":"1977-08-20","national_insurance_number":"HE708741C","arrest_summons_number":"UEDOC8A64W7I","maat_reference":null},"relationships":{"offences":{"data":[{"id":"c1c8fcdf-c7f2-46f4-8fe4-f86400eac211","type":"offences"}]}}},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"WWVHYGO7CMZ1","maat_reference":null},"relationships":{"offences":{"data":[{"id":"9f14c8ce-78e7-41e5-8ceb-4e7872b86c51","type":"offences"}]}}}]}'
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 13:35:09 GMT
-recorded_with: VCR 5.1.0
+      string: '{"data":[{"id":"2dc8dd46-d930-4878-a0a6-68ae8642cd9e","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants"},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants"},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants"},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants"}]},"hearing_summaries":{"data":[]},"hearings":{"data":[]}}}],"included":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants","attributes":{"name":"Andy
+        Mosciski Sawayn","date_of_birth":"1987-10-19","national_insurance_number":"EA382617F","arrest_summons_number":"KX5SWEFJQ3DL","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"5aff5a05-8f43-40e0-82e6-08c658ffca00","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants","attributes":{"name":"Aracely
+        Bins Zulauf","date_of_birth":"1955-09-27","national_insurance_number":"HH481835D","arrest_summons_number":"F79K0TDDZK40","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"0fcb44b6-1ca7-4360-b6ed-1d57ff9423e0","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants","attributes":{"name":"Florene
+        Conn DuBuque","date_of_birth":"1983-10-17","national_insurance_number":"XE675428D","arrest_summons_number":"C2ZXXPBNGVR0","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"45d5e934-72d0-4a14-b43c-cad750d4ff3c","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants","attributes":{"name":"Josefa
+        Rohan Franecki","date_of_birth":"1961-06-15","national_insurance_number":"HR669639D","arrest_summons_number":"Y1NDQNW9NCN6","maat_reference":"2123456","representation_order_date":null},"relationships":{"offences":{"data":[{"id":"6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"5aff5a05-8f43-40e0-82e6-08c658ffca00","type":"offences","attributes":{"code":"PT00011","order_index":1,"title":"Random
+        string","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"0fcb44b6-1ca7-4360-b6ed-1d57ff9423e0","type":"offences","attributes":{"code":"PT00011","order_index":1,"title":"Random
+        string","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"45d5e934-72d0-4a14-b43c-cad750d4ff3c","type":"offences","attributes":{"code":"PT00011","order_index":1,"title":"Random
+        string","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc","type":"offences","attributes":{"code":"PT00011","order_index":1,"title":"Random
+        string","mode_of_trial":"Random string","plea":null,"plea_date":null}}]}'
+  recorded_at: Tue, 04 Aug 2020 13:13:30 GMT
+recorded_with: VCR 6.0.0
