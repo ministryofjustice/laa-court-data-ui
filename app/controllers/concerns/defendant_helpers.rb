@@ -9,6 +9,10 @@ module DefendantHelpers
 
   private
 
+  def defendant_identifier
+    defendant.arrest_summons_number || defendant.national_insurance_number
+  end
+
   def load_and_authorize_search
     @search = Search.new(filter: 'defendant_reference', term: term)
     authorize! :create, @search
@@ -19,7 +23,7 @@ module DefendantHelpers
   end
 
   def term
-    @defendant_identifier || defendant_params[:id]
+    @defendant_asn_or_nino || defendant_params[:id]
   end
 
   def add_defendant_case_breadcrumb

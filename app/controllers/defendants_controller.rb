@@ -73,8 +73,4 @@ class DefendantsController < ApplicationController
                         UnlinkAttempt.new
                       end
   end
-
-  def defendant_identifier
-    @defendant.arrest_summons_number || @defendant.national_insurance_number
-  end
 end

@@ -6,7 +6,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
   let(:nino) { 'JC123456A' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:maat_reference) { '2123456' }
-  let(:defendant_identifier) { nino }
+  let(:defendant_asn_or_nino) { nino }
   let(:params) do
     {
       link_attempt:
@@ -14,7 +14,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
         id: nino,
         defendant_id: defendant_id,
         maat_reference: maat_reference,
-        defendant_identifier: defendant_identifier
+        defendant_asn_or_nino: defendant_asn_or_nino
       }
     }
   end
@@ -31,7 +31,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(defendant_identifier)
+        expect(response).to redirect_to edit_defendant_path(defendant_asn_or_nino)
       end
 
       it 'flashes alert' do

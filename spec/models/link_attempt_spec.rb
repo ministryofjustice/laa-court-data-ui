@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe LinkAttempt, type: :model do
-  it { is_expected.to respond_to(:id, :maat_reference, :defendant_id, :no_maat_id, :defendant_identifier) }
+  it { is_expected.to respond_to(:id, :maat_reference, :defendant_id, :no_maat_id, :defendant_asn_or_nino) }
 
   context 'when validating link_attempt' do
     it {

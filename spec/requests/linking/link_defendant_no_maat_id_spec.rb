@@ -5,7 +5,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
 
   let(:nino) { 'JC123456A' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-  let(:defendant_identifier) { nino }
+  let(:defendant_asn_or_nino) { nino }
   let(:commit) { 'Create link without MAAT ID' }
   let(:params) do
     {
@@ -14,7 +14,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
       {
         id: nino,
         defendant_id: defendant_id,
-        defendant_identifier: defendant_identifier
+        defendant_asn_or_nino: defendant_asn_or_nino
       }
     }
   end

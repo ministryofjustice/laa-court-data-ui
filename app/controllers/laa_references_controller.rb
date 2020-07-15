@@ -3,7 +3,7 @@
 class LaaReferencesController < ApplicationController
   include DefendantHelpers
 
-  before_action :set_defendant_identifier_if_required,
+  before_action :set_defendant_asn_or_nino_if_required,
                 :load_and_authorize_search,
                 :set_link_attempt,
                 :set_defendant_if_required
@@ -23,13 +23,13 @@ class LaaReferencesController < ApplicationController
     if @link_attempt.valid?
       if link_laa_reference
         flash[:notice] = I18n.t('laa_reference.link.success')
-        redirect_to edit_defendant_path(@defendant_identifier)
+        redirect_to edit_defendant_path(@defendant_asn_or_nino)
       else
         flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
-        redirect_to new_laa_reference_path(id: @defendant_identifier)
+        redirect_to new_laa_reference_path(id: @defendant_asn_or_nino)
       end
     else
-      render :new
+      render 'new'
     end
   end
 
@@ -45,11 +45,8 @@ class LaaReferencesController < ApplicationController
   end
 
   def laa_reference_params
-    params.permit(
-      :id,
-      :defendant_id,
-      link_attempt: %i[id defendant_id maat_reference defendant_identifier]
-    )
+    params.permit(:id,
+                  link_attempt: %i[defendant_asn_or_nino defendant_id maat_reference defendant_asn_or_nino])
   end
 
   def link_attempt_params
@@ -58,8 +55,8 @@ class LaaReferencesController < ApplicationController
     laa_reference_params[:link_attempt].merge(no_maat_id: no_maat_id?)
   end
 
-  def defendant_identifier
-    @defendant_identifier = laa_reference_params[:id] || link_attempt_params[:defendant_identifier]
+  def defendant_asn_or_nino
+    @defendant_asn_or_nino = laa_reference_params[:id] || link_attempt_params[:defendant_asn_or_nino]
   end
 
   def resource
@@ -78,8 +75,8 @@ class LaaReferencesController < ApplicationController
     @errors.map { |k, v| "#{k.humanize} #{v.join(', ')}" }.join("\n")
   end
 
-  def set_defendant_identifier_if_required
-    defendant_identifier
+  def set_defendant_asn_or_nino_if_required
+    defendant_asn_or_nino
   end
 
   def set_link_attempt
