@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DefendantHelpers
+module DefendantSearchable
   extend ActiveSupport::Concern
 
   def defendant
@@ -24,10 +24,5 @@ module DefendantHelpers
 
   def term
     @defendant_asn_or_nino || defendant_params[:id]
-  end
-
-  def add_defendant_case_breadcrumb
-    add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.prosecution_case_reference) }),
-                   (proc { |v| v.prosecution_case_path(v.controller.defendant.prosecution_case_reference) })
   end
 end

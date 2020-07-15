@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LaaReferencesController < ApplicationController
-  include DefendantHelpers
+  include DefendantSearchable
 
   before_action :set_defendant_asn_or_nino_if_required,
                 :load_and_authorize_search,
@@ -11,8 +11,10 @@ class LaaReferencesController < ApplicationController
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
+  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.prosecution_case_reference) }),
+                 (proc { |v| v.prosecution_case_path(v.controller.defendant.prosecution_case_reference) })
+
   def new
-    add_defendant_case_breadcrumb
     add_breadcrumb defendant.name,
                    defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
   end
@@ -23,7 +25,7 @@ class LaaReferencesController < ApplicationController
     if @link_attempt.valid?
       if link_laa_reference
         flash[:notice] = I18n.t('laa_reference.link.success')
-        redirect_to edit_defendant_path(@defendant_asn_or_nino)
+        redirect_to edit_defendant_path(id: @defendant_asn_or_nino)
       else
         flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
         redirect_to new_laa_reference_path(id: @defendant_asn_or_nino)
@@ -56,7 +58,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def defendant_asn_or_nino
-    @defendant_asn_or_nino = laa_reference_params[:id] || link_attempt_params[:defendant_asn_or_nino]
+    @defendant_asn_or_nino ||= laa_reference_params[:id] || link_attempt_params[:defendant_asn_or_nino]
   end
 
   def resource
