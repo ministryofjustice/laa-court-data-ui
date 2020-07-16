@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'renders common defendant details' do
-  it { expect(response).to render_template('defendants/edit') }
   it { expect(response).to render_template('defendants/_defendant') }
   it { expect(response.body).to include('Jammy Dodger') }
   it { expect(response).to render_template('defendants/_offences') }
@@ -20,11 +19,13 @@ RSpec.describe 'defendants', type: :request do
           body: defendant_fixture,
           headers: { 'Content-Type' => 'application/vnd.api+json' }
         )
-
-      get "/defendants/#{defendant_asn_from_fixture}/edit"
     end
 
     context 'with unlinked defendant' do
+      before do
+        get "/laa_references/new?id=#{defendant_asn_from_fixture}"
+      end
+
       let(:defendant_fixture) { load_json_stub('unlinked/defendant_by_reference_body.json') }
 
       include_examples 'renders common defendant details'
@@ -34,6 +35,10 @@ RSpec.describe 'defendants', type: :request do
     end
 
     context 'with linked defendant' do
+      before do
+        get "/defendants/#{defendant_asn_from_fixture}/edit"
+      end
+
       let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
 
       include_examples 'renders common defendant details'

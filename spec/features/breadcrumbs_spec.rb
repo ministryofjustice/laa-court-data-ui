@@ -58,7 +58,7 @@ RSpec.feature 'Breadcrumb', type: :feature do
       then_has_case_details_breadcrumbs('MOGUERBXIZ')
 
       click_link('Josefa Franecki')
-      expect(page).to have_current_path(%r{/defendants/.+})
+      expect(page).to have_current_path(%r{/laa_references/.+})
 
       then_has_defendant_details_breadcrumbs('MOGUERBXIZ', 'Josefa Franecki')
 

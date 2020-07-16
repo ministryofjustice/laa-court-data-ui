@@ -22,12 +22,12 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
     stub_request(:get, "#{api_url}/prosecution_cases")
       .with(query: query)
       .to_return(body: body, headers: json_api_header)
-
-    visit "defendants/#{defendant_asn_from_fixture}/edit"
+    visit(url)
   end
 
   context 'when user views unlinked defendant' do
     let(:defendant_fixture) { 'unlinked/defendant_by_reference_body.json' }
+    let(:url) { "laa_references/new?id=#{defendant_asn_from_fixture}" }
 
     it 'displays the MAAT ID field' do
       expect(page).to have_field('MAAT ID')
@@ -49,6 +49,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
   context 'when user views linked defendant' do
     let(:defendant_fixture) { 'linked/defendant_by_reference_body.json' }
     let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+    let(:url) { "defendants/#{defendant_asn_from_fixture}/edit" }
     let(:path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
 
     it 'does not display the MAAT ID field' do

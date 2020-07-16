@@ -1,14 +1,14 @@
-= form_with(url: '/laa_references', local: true) do |f|
+= form_with(model: @link_attempt, url: '/laa_references', local: true) do |f|
+  = f.govuk_error_summary
 
   = render 'defendants/defendant'
 
   = render 'defendants/offences'
 
-  = f.hidden_field(:id, value: params[:id])
+  = f.hidden_field(:defendant_asn_or_nino, value: (params[:id] || @defendant_asn_or_nino))
   = f.hidden_field(:defendant_id, value: @defendant.id)
 
   = f.govuk_text_field :maat_reference,
-    value: nil,
     label: { text: t('laa_reference.link.form.maat_reference.label') },
     hint_text: t('laa_reference.link.form.maat_reference.hint')
 
