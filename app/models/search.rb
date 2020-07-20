@@ -13,7 +13,9 @@ class Search
       _filter(id: :defendant_reference,
               name: I18n.t('search_filter.radio_defendant_reference_label_html').html_safe),
       _filter(id: :defendant_name,
-              name: I18n.t('search_filter.radio_defendant_name_label_html').html_safe)
+              name: I18n.t('search_filter.radio_defendant_name_label_html').html_safe),
+      _filter(id: :defendant_uuid,
+              name: I18n.t('search_filter.defendant_uuid'))
     ]
   end
   # rubocop:enable Rails/OutputSafety
@@ -58,5 +60,9 @@ class Search
 
   def defendant_name_query
     CourtDataAdaptor::Query::Defendant::ByName.new(term, dob: dob)
+  end
+
+  def defendant_uuid_query
+    CourtDataAdaptor::Query::Defendant::ByUuid.new(term)
   end
 end
