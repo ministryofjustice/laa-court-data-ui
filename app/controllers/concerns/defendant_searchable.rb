@@ -10,7 +10,7 @@ module DefendantSearchable
   private
 
   def defendant_identifier
-    defendant.arrest_summons_number || defendant.national_insurance_number
+    defendant.id
   end
 
   def load_and_authorize_search
@@ -23,6 +23,6 @@ module DefendantSearchable
   end
 
   def term
-    @defendant_asn_or_nino || defendant_params[:id]
+    laa_reference_params[:id] || defendant_params[:id]
   end
 end
