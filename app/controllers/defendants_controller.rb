@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class DefendantsController < ApplicationController
-  include DefendantSearchable
-
   before_action :load_and_authorize_search
   before_action :set_unlink_reasons,
                 :set_unlink_attempt,
@@ -40,6 +38,10 @@ class DefendantsController < ApplicationController
     false
   end
 
+  def defendant
+    @defendant ||= DefendantSearcher.call(@search)
+  end
+
   private
 
   def defendant_params
@@ -74,5 +76,18 @@ class DefendantsController < ApplicationController
                       else
                         UnlinkAttempt.new
                       end
+  end
+
+  def defendant_identifier
+    defendant.arrest_summons_number || defendant.national_insurance_number
+  end
+
+  def set_defendant_if_required
+    defendant
+  end
+
+  def load_and_authorize_search
+    @search = Search.new(filter: 'defendant_reference', term: defendant_params[:id])
+    authorize! :create, @search
   end
 end

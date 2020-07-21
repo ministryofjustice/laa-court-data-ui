@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class LaaReferencesController < ApplicationController
-  include DefendantSearchable
-
   before_action :set_defendant_asn_or_nino_if_required,
                 :load_and_authorize_search,
                 :set_link_attempt,
@@ -33,6 +31,10 @@ class LaaReferencesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def defendant
+    @defendant ||= DefendantSearcher.call(@search)
   end
 
   private
@@ -87,5 +89,14 @@ class LaaReferencesController < ApplicationController
                     else
                       LinkAttempt.new
                     end
+  end
+
+  def set_defendant_if_required
+    defendant
+  end
+
+  def load_and_authorize_search
+    @search = Search.new(filter: 'defendant_reference', term: @defendant_asn_or_nino)
+    authorize! :create, @search
   end
 end
