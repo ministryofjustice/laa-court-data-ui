@@ -3,7 +3,7 @@
 class LaaReferencesController < ApplicationController
   include DefendantSearchable
 
-  before_action :set_defendant_asn_or_nino_if_required,
+  before_action :set_defendant_uuid_if_required,
                 :load_and_authorize_search,
                 :set_link_attempt,
                 :set_defendant_if_required
@@ -50,7 +50,7 @@ class LaaReferencesController < ApplicationController
 
   def laa_reference_params
     params.permit(:id,
-                  link_attempt: %i[defendant_asn_or_nino defendant_id maat_reference defendant_asn_or_nino])
+                  link_attempt: %i[defendant_id maat_reference defendant_uuid])
   end
 
   def link_attempt_params
@@ -59,8 +59,8 @@ class LaaReferencesController < ApplicationController
     laa_reference_params[:link_attempt].merge(no_maat_id: no_maat_id?)
   end
 
-  def defendant_asn_or_nino
-    @defendant_asn_or_nino ||= laa_reference_params[:id] || link_attempt_params[:defendant_asn_or_nino]
+  def defendant_uuid
+    @defendant_uuid ||= laa_reference_params[:id] || link_attempt_params[:defendant_uuid]
   end
 
   def resource
@@ -79,8 +79,8 @@ class LaaReferencesController < ApplicationController
     @errors.map { |k, v| "#{k.humanize} #{v.join(', ')}" }.join("\n")
   end
 
-  def set_defendant_asn_or_nino_if_required
-    defendant_asn_or_nino
+  def set_defendant_uuid_if_required
+    defendant_uuid
   end
 
   def set_link_attempt
