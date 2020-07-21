@@ -19,21 +19,23 @@ class LaaReferencesController < ApplicationController
                    defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
 
     if @link_attempt.valid?
       if link_laa_reference
+        redirect_to edit_defendant_path(id: defendant_identifier)
         flash[:notice] = I18n.t('laa_reference.link.success')
-        redirect_to edit_defendant_path(id: @defendant_asn_or_nino)
       else
+        redirect_to new_laa_reference_path(id: defendant_identifier)
         flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
-        redirect_to new_laa_reference_path(id: @defendant_asn_or_nino)
       end
     else
       render 'new'
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
