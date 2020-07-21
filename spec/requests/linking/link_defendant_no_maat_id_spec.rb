@@ -6,6 +6,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
   let(:nino) { 'JC123456A' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:defendant_asn_or_nino) { nino }
+  let(:asn) { '9N3TY7G9A79A' }
   let(:commit) { 'Create link without MAAT ID' }
   let(:params) do
     {
@@ -31,7 +32,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(nino)
+        expect(response).to redirect_to edit_defendant_path(asn)
       end
 
       it 'flashes alert' do
@@ -51,7 +52,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path(id: nino)
+        expect(response).to redirect_to new_laa_reference_path(id: asn)
       end
     end
   end
