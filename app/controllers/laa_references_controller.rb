@@ -48,7 +48,7 @@ class LaaReferencesController < ApplicationController
 
   def laa_reference_params
     params.permit(:id,
-                  link_attempt: %i[defendant_asn_or_nino defendant_id maat_reference defendant_asn_or_nino])
+                  link_attempt: %i[defendant_id maat_reference defendant_asn_or_nino])
   end
 
   def link_attempt_params
