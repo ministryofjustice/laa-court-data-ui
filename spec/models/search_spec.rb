@@ -17,7 +17,10 @@ RSpec.describe Search, type: :model do
     it { is_expected.to all(be_a(SearchFilter)) }
 
     it {
-      expect(filters.map(&:id)).to include(:case_reference, :defendant_name, :defendant_reference, :defendant_uuid)
+      expect(filters.map(&:id)).to include(:case_reference,
+                                           :defendant_name,
+                                           :defendant_reference,
+                                           :defendant_uuid)
     }
   end
 

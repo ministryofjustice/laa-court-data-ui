@@ -16,22 +16,24 @@ class DefendantsController < ApplicationController
 
   def edit
     add_breadcrumb defendant.name,
-                   defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
+                   defendant_path(defendant.id)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def update
     if @unlink_attempt.valid?
       if unlink
-        redirect_to new_laa_reference_path(id: defendant_identifier)
+        redirect_to new_laa_reference_path(id: defendant.id)
         flash[:notice] = I18n.t('defendants.unlink.success')
       else
-        redirect_to edit_defendant_path(id: defendant_identifier)
+        redirect_to edit_defendant_path(id: defendant.id)
         flash[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
       end
     else
       render 'edit'
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def unlink
     defendant.update(@unlink_attempt.to_unlink_attributes)

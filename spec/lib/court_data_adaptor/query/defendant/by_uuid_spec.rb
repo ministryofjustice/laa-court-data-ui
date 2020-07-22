@@ -54,22 +54,22 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByUuid do
     end
   end
 
-#   context 'with results', :vcr do
-#     subject(:results) { described_class.new(term).call }
+  #   context 'with results', :vcr do
+  #     subject(:results) { described_class.new(term).call }
 
-#     it 'returns defendant resources' do
-#       expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::Defendant))
-#     end
+  #     it 'returns defendant resources' do
+  #       expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::Defendant))
+  #     end
 
-#     it 'returns only defendants with matching uuid' do
-#       expect(results).to all(
-#         have_attributes(name: '107ba90b-f3ff-4727-ab7d-dea446ad4713')
-#       )
-#     end
+  #     it 'returns only defendants with matching uuid' do
+  #       expect(results).to all(
+  #         have_attributes(name: '107ba90b-f3ff-4727-ab7d-dea446ad4713')
+  #       )
+  #     end
 
-#     it 'populates prosecution_case_reference attribute' do
-#       case_refs = results.map(&:prosecution_case_reference)
-#       expect(case_refs).to be_present.and all(be_present)
-#     end
-#   end
+  #     it 'populates prosecution_case_reference attribute' do
+  #       case_refs = results.map(&:prosecution_case_reference)
+  #       expect(case_refs).to be_present.and all(be_present)
+  #     end
+  #   end
 end
