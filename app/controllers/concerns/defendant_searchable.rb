@@ -9,12 +9,8 @@ module DefendantSearchable
 
   private
 
-  def defendant_identifier
-    defendant.id
-  end
-
   def load_and_authorize_search
-    @search = Search.new(filter: 'defendant_reference', term: term)
+    @search = Search.new(filter: 'defendant_uuid', term: term)
     authorize! :create, @search
   end
 
@@ -23,6 +19,6 @@ module DefendantSearchable
   end
 
   def term
-    laa_reference_params[:id] || defendant_params[:id]
+    @defendant_uuid || defendant_params[:id]
   end
 end

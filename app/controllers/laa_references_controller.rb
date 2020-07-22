@@ -16,7 +16,7 @@ class LaaReferencesController < ApplicationController
 
   def new
     add_breadcrumb defendant.name,
-                   defendant_path(defendant.arrest_summons_number || defendant.national_insurance_number)
+                   defendant_path(defendant.id)
   end
 
   # rubocop:disable Metrics/AbcSize
@@ -25,10 +25,10 @@ class LaaReferencesController < ApplicationController
 
     if @link_attempt.valid?
       if link_laa_reference
-        redirect_to edit_defendant_path(id: defendant_identifier)
+        redirect_to edit_defendant_path(id: defendant.id)
         flash[:notice] = I18n.t('laa_reference.link.success')
       else
-        redirect_to new_laa_reference_path(id: defendant_identifier)
+        redirect_to new_laa_reference_path(id: defendant.id)
         flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
       end
     else
@@ -50,7 +50,7 @@ class LaaReferencesController < ApplicationController
 
   def laa_reference_params
     params.permit(:id,
-                  link_attempt: %i[defendant_id maat_reference defendant_uuid])
+                  link_attempt: %i[maat_reference defendant_uuid])
   end
 
   def link_attempt_params

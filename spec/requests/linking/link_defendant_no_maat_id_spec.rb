@@ -32,7 +32,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(asn)
+        expect(response).to redirect_to edit_defendant_path(defendant_id)
       end
 
       it 'flashes alert' do
@@ -52,7 +52,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path(id: asn)
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_id)
       end
     end
   end
