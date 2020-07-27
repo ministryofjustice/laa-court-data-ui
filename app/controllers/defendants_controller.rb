@@ -11,8 +11,8 @@ class DefendantsController < ApplicationController
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
-  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.prosecution_case_reference) }),
-                 (proc { |v| v.prosecution_case_path(v.controller.defendant.prosecution_case_reference) })
+  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.id) }),
+                 (proc { |v| v.prosecution_case_path(v.controller.defendant.id) })
 
   def edit
     add_breadcrumb defendant.name,
@@ -42,7 +42,26 @@ class DefendantsController < ApplicationController
     false
   end
 
+  def defendant
+    @defendant ||= defendant_resource.find(term).first
+    # @defendant ||= @search.call.first
+  end
+
   private
+
+  def set_defendant_if_required
+    defendant
+  end
+
+  def defendant_resource
+    CourtDataAdaptor::Resource::Defendant
+    # CourtDataAdaptor::Query::DefendantByUuid
+  end
+
+  def load_and_authorize_search
+    @search = defendant_resource
+    authorize! :create, @search
+  end
 
   def defendant_params
     params.permit(:id, unlink_attempt: %i[reason_code other_reason_text])

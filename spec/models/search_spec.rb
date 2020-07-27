@@ -17,10 +17,7 @@ RSpec.describe Search, type: :model do
     it { is_expected.to all(be_a(SearchFilter)) }
 
     it {
-      expect(filters.map(&:id)).to include(:case_reference,
-                                           :defendant_name,
-                                           :defendant_reference,
-                                           :defendant_uuid)
+      expect(filters.map(&:id)).to include(:case_reference, :defendant_name, :defendant_reference)
     }
   end
 
@@ -98,24 +95,6 @@ RSpec.describe Search, type: :model do
       end
     end
   end
-
-  # context 'when searching by defendant uuid', stub_no_results: true do
-  #   subject(:search_instance) { described_class.new(filter: filter, term: term) }
-
-  #   let(:filter) { 'defendant_uuid' }
-  #   let(:term) { 'defendant-uuid' }
-
-  #   let(:query_class) { CourtDataAdaptor::Query::Defendant::ByUuid }
-  #   let(:query_instance) { instance_double(query_class) }
-
-  #   it 'sends term to defendant query object' do
-  #     expect(query_class).to have_received(:new).with(term)
-  #   end
-
-  #   it 'calls defendant query object' do
-  #     expect(query_instance).to have_received(:call)
-  #   end
-  # end
 
   context 'when validating' do
     subject(:search) { described_class.new(filter: filter, term: term, dob: dob) }
@@ -201,32 +180,6 @@ RSpec.describe Search, type: :model do
 
         it { is_expected.to be_invalid }
         it { is_expected.to have_activerecord_error(:term, 'Search term required') }
-      end
-    end
-
-    context 'with defendant uuid search' do
-      let(:filter) { 'defendant_uuid' }
-      let(:term) { '12abc3de-456f-789g-012h-3456i78jk90l' }
-      let(:dob) { nil }
-
-      context 'with blank filter' do
-        let(:filter) { nil }
-
-        it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:filter, 'Filter required') }
-      end
-
-      context 'with blank term' do
-        let(:term) { nil }
-
-        it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:term, 'Search term required') }
-      end
-
-      context 'with blank dob' do
-        let(:dob) { nil }
-
-        it { is_expected.to be_valid }
       end
     end
   end

@@ -5,7 +5,7 @@
 
   = render 'defendants/offences'
 
-  = f.hidden_field(:defendant_uuid, value: (params[:id] || @defendant_uuid))
+  = f.hidden_field(:defendant_id, value: (params[:id] || @defendant_uuid))
 
   = f.govuk_text_field :maat_reference,
     label: { text: t('laa_reference.link.form.maat_reference.label') },

@@ -11,8 +11,8 @@ class LaaReferencesController < ApplicationController
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
-  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.prosecution_case_reference) }),
-                 (proc { |v| v.prosecution_case_path(v.controller.defendant.prosecution_case_reference) })
+  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.id) }),
+                 (proc { |v| v.prosecution_case_path(v.controller.defendant.id) })
 
   def new
     add_breadcrumb defendant.name,
@@ -37,7 +37,26 @@ class LaaReferencesController < ApplicationController
   end
   # rubocop:enable Metrics/AbcSize
 
+  def defendant
+    @defendant ||= defendant_resource.find(term).first
+    # @defendant ||= @search.call.first
+  end
+
   private
+
+  def set_defendant_if_required
+    defendant
+  end
+
+  def defendant_resource
+    CourtDataAdaptor::Resource::Defendant
+    # CourtDataAdaptor::Query::DefendantByUuid
+  end
+
+  def load_and_authorize_search
+    @search = defendant_resource
+    authorize! :create, @search
+  end
 
   def link_laa_reference
     resource_params.delete(:maat_reference) if no_maat_id?
@@ -50,7 +69,7 @@ class LaaReferencesController < ApplicationController
 
   def laa_reference_params
     params.permit(:id,
-                  link_attempt: %i[maat_reference defendant_uuid])
+                  link_attempt: %i[maat_reference defendant_id])
   end
 
   def link_attempt_params
@@ -60,7 +79,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def defendant_uuid
-    @defendant_uuid ||= laa_reference_params[:id] || link_attempt_params[:defendant_uuid]
+    @defendant_uuid ||= laa_reference_params[:id] || link_attempt_params[:defendant_id]
   end
 
   def resource

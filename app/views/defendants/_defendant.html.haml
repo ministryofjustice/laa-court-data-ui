@@ -23,4 +23,4 @@
       %td.govuk-table__cell
         = @defendant.arrest_summons_number
 
-= link_to 'View case', prosecution_case_path(@defendant.prosecution_case_reference), class: 'govuk-button govuk-button--secondary'
+= link_to 'View case', prosecution_case_path(@defendant.id), class: 'govuk-button govuk-button--secondary'

@@ -51,4 +51,3 @@ en:
     radio_case_reference_label: A case by URN
     radio_defendant_name_label_html: A defendant by name <b>and</b> date of birth
     radio_defendant_reference_label_html: A defendant by ASN <b>or</b> National insurance number
-    defendant_uuid: A defendant by uuid
