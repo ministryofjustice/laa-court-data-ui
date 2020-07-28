@@ -76,6 +76,6 @@ class Ability
   end
 
   def can_show_defendant
-    can %i[new create show], CourtDataAdaptor::Resource::Defendant
+    can %i[show], CourtDataAdaptor::Resource::Defendant
   end
 end

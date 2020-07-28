@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 class LaaReferencesController < ApplicationController
-  include DefendantSearchable
-
   before_action :set_defendant_uuid_if_required,
-                :load_and_authorize_search,
+                :authorize_defendant_search,
                 :set_link_attempt,
                 :set_defendant_if_required
 
@@ -38,8 +36,7 @@ class LaaReferencesController < ApplicationController
   # rubocop:enable Metrics/AbcSize
 
   def defendant
-    @defendant ||= defendant_resource.find(term).first
-    # @defendant ||= @search.call.first
+    @defendant ||= @defendant_search.find(@defendant_uuid).first
   end
 
   private
@@ -50,12 +47,11 @@ class LaaReferencesController < ApplicationController
 
   def defendant_resource
     CourtDataAdaptor::Resource::Defendant
-    # CourtDataAdaptor::Query::DefendantByUuid
   end
 
-  def load_and_authorize_search
-    @search = defendant_resource
-    authorize! :create, @search
+  def authorize_defendant_search
+    @defendant_search = defendant_resource
+    authorize! :show, @defendant_search
   end
 
   def link_laa_reference

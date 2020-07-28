@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class DefendantsController < ApplicationController
-  include DefendantSearchable
-
-  before_action :load_and_authorize_search
+  before_action :authorize_defendant_search
   before_action :set_unlink_reasons,
                 :set_unlink_attempt,
                 :set_defendant_if_required
@@ -43,8 +41,7 @@ class DefendantsController < ApplicationController
   end
 
   def defendant
-    @defendant ||= defendant_resource.find(term).first
-    # @defendant ||= @search.call.first
+    @defendant ||= @defendant_search.find(defendant_params[:id]).first
   end
 
   private
@@ -55,12 +52,11 @@ class DefendantsController < ApplicationController
 
   def defendant_resource
     CourtDataAdaptor::Resource::Defendant
-    # CourtDataAdaptor::Query::DefendantByUuid
   end
 
-  def load_and_authorize_search
-    @search = defendant_resource
-    authorize! :create, @search
+  def authorize_defendant_search
+    @defendant_search = defendant_resource
+    authorize! :show, @defendant_search
   end
 
   def defendant_params
