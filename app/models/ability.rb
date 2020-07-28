@@ -77,6 +77,5 @@ class Ability
 
   def can_show_defendant
     can %i[new create show], CourtDataAdaptor::Resource::Defendant
-    can %i[new create show], CourtDataAdaptor::Query::DefendantByUuid
   end
 end
