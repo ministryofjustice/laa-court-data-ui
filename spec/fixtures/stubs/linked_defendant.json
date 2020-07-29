@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
+      "type": "defendants",
+      "attributes": {
+        "name": "Jammy Dodger",
+        "date_of_birth": "1961-06-15",
+        "national_insurance_number":"JC123456A",
+        "arrest_summons_number":"0TSQT1LMI7CR",
+        "maat_reference":"2123456",
+        "gender": null,
+        "address_1": null,
+        "address_2": null,
+        "address_3": null,
+        "address_4": null,
+        "address_5": null,
+        "postcode": null
+      },
+      "relationships": {
+        "offences": {
+          "data": [
+            {
+              "id": "6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc",
+              "type": "offences"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -44,6 +44,15 @@ RSpec.configure do |config|
 
     stub_request(
       :get,
+      %r{http.*/api/internal/v1/defendants/#{defendant_id}}
+    ).to_return(
+      status: 200,
+      body: load_json_stub('unlinked_defendant.json'),
+      headers: { 'Content-Type' => 'application/vnd.api+json' }
+    )
+
+    stub_request(
+      :get,
       %r{http.*/api/internal/v1/prosecution_cases\?filter.*national_insurance_number.*#{defendant_nino}&include=defendants,defendants.offences}
     ).to_return(
       status: 200,

@@ -9,8 +9,8 @@ class LaaReferencesController < ApplicationController
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
-  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.id) }),
-                 (proc { |v| v.prosecution_case_path(v.controller.defendant.id) })
+  # add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.asn) }),
+  #                (proc { |v| v.prosecution_case_path(v.controller.defendant.id) })
 
   def new
     add_breadcrumb defendant.name,
@@ -45,12 +45,8 @@ class LaaReferencesController < ApplicationController
     defendant
   end
 
-  def defendant_resource
-    CourtDataAdaptor::Resource::Defendant
-  end
-
   def authorize_defendant_search
-    @defendant_search = defendant_resource
+    @defendant_search = CourtDataAdaptor::Resource::Defendant
     authorize! :show, @defendant_search
   end
 

@@ -6,6 +6,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   let(:defendant_nino) { 'JC123456A' }
   let(:defendant_asn) { '0TSQT1LMI7CR' }
   let(:defendant_name) { 'Jammy Dodger' }
+  let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
 
   before do
     sign_in user
@@ -84,8 +85,8 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     expect(page).to have_css('.govuk-heading-m', text: 'Defendants')
   end
 
-  def when_viewing_defendant(defendant_nino_or_asn)
-    visit new_laa_reference_path(id: defendant_nino_or_asn)
+  def when_viewing_defendant(_defendant_nino_or_asn)
+    visit new_laa_reference_path(id: defendant_id)
   end
 
   def then_defendant_view_displayed_for(name)

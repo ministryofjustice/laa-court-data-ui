@@ -1,21 +1,18 @@
 # frozen_string_literal: true
 
-RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request: true do
-  let(:user) { create(:user) }
+require 'court_data_adaptor'
 
-  let(:nino) { 'JC123456A' }
-  let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request: true do
+  let(:user) { create(:user, roles: %w[caseworker]) }
+
+  let(:defendant_id) { 'b3221b46-b98c-47b7-a285-be681d2cac4e' }
   let(:maat_reference) { '2123456' }
-  let(:defendant_asn_or_nino) { nino }
-  let(:asn) { '9N3TY7G9A79A' }
   let(:params) do
     {
       link_attempt:
       {
-        id: nino,
         defendant_id: defendant_id,
-        maat_reference: maat_reference,
-        defendant_asn_or_nino: defendant_asn_or_nino
+        maat_reference: maat_reference
       }
     }
   end
@@ -52,7 +49,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path(id: defendant_id)
+        expect(response).to redirect_to new_laa_reference_path(id: 'b3221b46-b98c-47b7-a285-be681d2cac4e')
       end
     end
 
@@ -84,18 +81,33 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
   end
 
   context 'with stubbed requests' do
+    let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+
     before { sign_in user }
 
     context 'when MAAT reference submitted' do
       before do
         stub_request(:post, link_request[:path])
+        stub_request(:get, defendants_request[:path])
+          .to_return(
+            body: defendant_by_id_fixture,
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
+          )
         post '/laa_references', params: params
       end
+
+      let(:defendant_by_id_fixture) { load_json_stub('unlinked_defendant.json') }
 
       let(:link_request) do
         {
           path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
           body: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"2123456"}}}'
+        }
+      end
+
+      let(:defendants_request) do
+        {
+          path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/defendants/#{defendant_id}"
         }
       end
 

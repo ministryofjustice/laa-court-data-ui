@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'court_data_adaptor'
+
 RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
   let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
   let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
@@ -17,17 +19,24 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
 
     query = hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } })
     body = load_json_stub(defendant_fixture)
+    defendant_body = load_json_stub(defendant_by_id_fixture)
     json_api_header = { 'Content-Type' => 'application/vnd.api+json' }
 
     stub_request(:get, "#{api_url}/prosecution_cases")
       .with(query: query)
       .to_return(body: body, headers: json_api_header)
+
+    stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}")
+      .to_return(body: defendant_body, headers: json_api_header)
+
     visit(url)
   end
 
   context 'when user views unlinked defendant' do
     let(:defendant_fixture) { 'unlinked/defendant_by_reference_body.json' }
-    let(:url) { "laa_references/new?id=#{defendant_asn_from_fixture}" }
+    let(:defendant_by_id_fixture) { 'unlinked_defendant.json' }
+    let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+    let(:url) { "laa_references/new?id=#{defendant_id_from_fixture}" }
 
     it 'displays the MAAT ID field' do
       expect(page).to have_field('MAAT ID')
@@ -48,8 +57,9 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
 
   context 'when user views linked defendant' do
     let(:defendant_fixture) { 'linked/defendant_by_reference_body.json' }
+    let(:defendant_by_id_fixture) { 'linked_defendant.json' }
     let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-    let(:url) { "defendants/#{defendant_asn_from_fixture}/edit" }
+    let(:url) { "defendants/#{defendant_id_from_fixture}/edit" }
     let(:path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
 
     it 'does not display the MAAT ID field' do

@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'court_data_adaptor'
+
 RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request: true do
   let(:user) { create(:user) }
 
   let(:nino) { 'JC123456A' }
-  let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+  let(:defendant_id) { 'b3221b46-b98c-47b7-a285-be681d2cac4e' }
   let(:defendant_asn_or_nino) { nino }
   let(:asn) { '9N3TY7G9A79A' }
   let(:commit) { 'Create link without MAAT ID' }
@@ -52,7 +54,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path(id: defendant_id)
+        expect(response).to redirect_to new_laa_reference_path(id: 'b3221b46-b98c-47b7-a285-be681d2cac4e')
       end
     end
   end
