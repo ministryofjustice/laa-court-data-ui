@@ -18,7 +18,8 @@
     = f.govuk_text_area :other_reason_text,
       label: { text: t('defendants.form.other_reason_text.label') },
       hint_text: t('defendants.form.other_reason_text.hint'),
-      rows: 5
+      rows: 5,
+      max_chars: 500
 
     = f.govuk_submit(t('defendants.form.submit'))
 

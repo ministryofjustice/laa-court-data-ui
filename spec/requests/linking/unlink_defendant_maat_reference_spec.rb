@@ -204,6 +204,15 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
     end
 
+    context 'with over the maximum other_reason_text for reason that requires it' do
+      it_behaves_like 'invalid unlink_attempt request' do
+        max_character = Faker::Lorem.characters(number: 501)
+        let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
+        let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: max_character } } }
+        let(:error_message) { 'Unlinking reason is too long' }
+      end
+    end
+
     context 'with expired oauth token', :stub_oauth_token do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
