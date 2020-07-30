@@ -9,6 +9,8 @@ class DefendantsController < ApplicationController
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
+  # TODO: I have (temporarily) removed the case breadcrumb as this was
+  #       causing issues.
   # add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.@defendant.asn) }),
   #                (proc { |v| v.prosecution_case_path(v.controller.defendant.id) })
 

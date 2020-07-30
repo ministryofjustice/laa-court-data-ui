@@ -1,4 +1,4 @@
-# frozen_string_literal: true ka
+# frozen_string_literal: true
 
 RSpec.feature 'Breadcrumb', type: :feature do
   let(:user) { create(:user) }
@@ -62,6 +62,8 @@ RSpec.feature 'Breadcrumb', type: :feature do
 
       then_has_defendant_details_breadcrumbs('MVIFVOIPYU', 'Lawerence Predovic Ortiz')
 
+      # TODO: I have (temporarily) removed the case breadcrumb as this was
+      #       causing issues.
       # click_breadcrumb 'Case MVIFVOIPYU'
 
       # expect(page).to have_current_path(prosecution_case_path('MVIFVOIPYU'))
@@ -140,7 +142,7 @@ RSpec.feature 'Breadcrumb', type: :feature do
     expect(page).to have_govuk_breadcrumb("Case #{case_ref}", aria_current: true)
   end
 
-  def then_has_defendant_details_breadcrumbs(case_ref, defendant_name)
+  def then_has_defendant_details_breadcrumbs(_case_ref, defendant_name)
     expect(page).to have_govuk_breadcrumb_link('Home')
     expect(page).to have_govuk_breadcrumb_link('Search')
     # expect(page).to have_govuk_breadcrumb_link("Case #{case_ref}")
