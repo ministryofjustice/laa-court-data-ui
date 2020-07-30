@@ -19,8 +19,8 @@ http_interactions:
       - gzip,deflate
   response:
     status:
-      code: 200
-      message: OK
+      code: 401
+      message: Unauthorized
     headers:
       X-Frame-Options:
       - SAMEORIGIN
@@ -34,29 +34,30 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"8272b189c01ca429abee072bd011f76b"
+      Laa-Transaction-Id:
+      - dac2a046-e47f-49d6-8129-7f8a83b652f5
       Cache-Control:
-      - max-age=0, private, must-revalidate
+      - private, no-store
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
       X-Request-Id:
-      - '093028be-d07a-4f0f-a2e5-cacb60c6f59a'
+      - dac2a046-e47f-49d6-8129-7f8a83b652f5
       X-Runtime:
-      - '0.056642'
+      - '0.007283'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"db3c94f1-bc26-4674-9385-c0df45e48493","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants"},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants"},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants"},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants"}]}}}],"included":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants","attributes":{"name":"Josefa
-        Franecki","date_of_birth":"1961-06-15","national_insurance_number":"YE744478B","arrest_summons_number":"Y1NDQNW9NCN6","maat_reference":null},"relationships":{"offences":{"data":[{"id":"43b560f0-8aa8-4de5-b0e5-aab7b8078d1e","type":"offences"}]}}},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants","attributes":{"name":"Weldon
-        Leffler Deckow","date_of_birth":"1962-06-18","national_insurance_number":"GG367471A","arrest_summons_number":"NYC1FXJTLWFE","maat_reference":null},"relationships":{"offences":{"data":[{"id":"4e8f8627-60b1-4f14-a7ca-49d01914b160","type":"offences"}]}}},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants","attributes":{"name":"Amada
-        Cruickshank Abshire","date_of_birth":"1977-08-20","national_insurance_number":"HE708741C","arrest_summons_number":"UEDOC8A64W7I","maat_reference":null},"relationships":{"offences":{"data":[{"id":"c1c8fcdf-c7f2-46f4-8fe4-f86400eac211","type":"offences"}]}}},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"WWVHYGO7CMZ1","maat_reference":null},"relationships":{"offences":{"data":[{"id":"9f14c8ce-78e7-41e5-8ceb-4e7872b86c51","type":"offences"}]}}}]}'
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 13:39:50 GMT
+      string: ''
+  recorded_at: Thu, 30 Jul 2020 10:27:26 GMT
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ&include=defendants
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MVIFVOIPYU&include=defendants
     body:
       encoding: US-ASCII
       string: ''
@@ -88,29 +89,28 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 1b257b8a-499e-404d-a9ff-420857e1a5be
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"8272b189c01ca429abee072bd011f76b"
+      - W/"999e1b340b0802533285c6ce9bcd4e8a"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 66af3900-d75e-4d01-9cf7-8a6757c74db6
+      - 1b257b8a-499e-404d-a9ff-420857e1a5be
       X-Runtime:
-      - '0.070113'
+      - '0.087546'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"db3c94f1-bc26-4674-9385-c0df45e48493","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants"},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants"},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants"},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants"}]}}}],"included":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants","attributes":{"name":"Josefa
-        Franecki","date_of_birth":"1961-06-15","national_insurance_number":"YE744478B","arrest_summons_number":"Y1NDQNW9NCN6","maat_reference":null},"relationships":{"offences":{"data":[{"id":"43b560f0-8aa8-4de5-b0e5-aab7b8078d1e","type":"offences"}]}}},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants","attributes":{"name":"Weldon
-        Leffler Deckow","date_of_birth":"1962-06-18","national_insurance_number":"GG367471A","arrest_summons_number":"NYC1FXJTLWFE","maat_reference":null},"relationships":{"offences":{"data":[{"id":"4e8f8627-60b1-4f14-a7ca-49d01914b160","type":"offences"}]}}},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants","attributes":{"name":"Amada
-        Cruickshank Abshire","date_of_birth":"1977-08-20","national_insurance_number":"HE708741C","arrest_summons_number":"UEDOC8A64W7I","maat_reference":null},"relationships":{"offences":{"data":[{"id":"c1c8fcdf-c7f2-46f4-8fe4-f86400eac211","type":"offences"}]}}},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"WWVHYGO7CMZ1","maat_reference":null},"relationships":{"offences":{"data":[{"id":"9f14c8ce-78e7-41e5-8ceb-4e7872b86c51","type":"offences"}]}}}]}'
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 13:39:50 GMT
+      string: '{"data":[{"id":"f217c138-f604-478f-ae3e-effdf18c1293","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MVIFVOIPYU"},"relationships":{"defendants":{"data":[{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants"}]},"hearing_summaries":{"data":[{"id":"ef8b6837-3819-4497-87ef-ad292c33b125","type":"hearing_summaries"}]}}}],"included":[{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants","attributes":{"name":"Lawerence
+        Predovic Ortiz","date_of_birth":"1958-01-11","national_insurance_number":"RC973812D","arrest_summons_number":"HPNODIOGCH0O","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"81aafd5f-8f3c-4bbf-8e94-5356450cc150","type":"offences"}]},"defence_organisation":{"data":null}}}]}'
+  recorded_at: Thu, 30 Jul 2020 11:11:47 GMT
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Barrest_summons_number%5D=Y1NDQNW9NCN6&include=defendants,defendants.offences
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MVIFVOIPYU&include=defendants
     body:
       encoding: US-ASCII
       string: ''
@@ -142,37 +142,28 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 3e6b32c1-2176-49f7-a945-145b96791efc
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"cbc60ab3771e162aed8117d6aed70917"
+      - W/"999e1b340b0802533285c6ce9bcd4e8a"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 0eff23af-8a26-4470-8352-0ac581b5274e
+      - 3e6b32c1-2176-49f7-a945-145b96791efc
       X-Runtime:
-      - '0.057106'
+      - '0.052167'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"db3c94f1-bc26-4674-9385-c0df45e48493","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants"},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants"},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants"},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants"}]}}}],"included":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants","attributes":{"name":"Josefa
-        Franecki","date_of_birth":"1961-06-15","national_insurance_number":"YE744478B","arrest_summons_number":"Y1NDQNW9NCN6","maat_reference":null},"relationships":{"offences":{"data":[{"id":"43b560f0-8aa8-4de5-b0e5-aab7b8078d1e","type":"offences"}]}}},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants","attributes":{"name":"Weldon
-        Leffler Deckow","date_of_birth":"1962-06-18","national_insurance_number":"GG367471A","arrest_summons_number":"NYC1FXJTLWFE","maat_reference":null},"relationships":{"offences":{"data":[{"id":"4e8f8627-60b1-4f14-a7ca-49d01914b160","type":"offences"}]}}},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants","attributes":{"name":"Amada
-        Cruickshank Abshire","date_of_birth":"1977-08-20","national_insurance_number":"HE708741C","arrest_summons_number":"UEDOC8A64W7I","maat_reference":null},"relationships":{"offences":{"data":[{"id":"c1c8fcdf-c7f2-46f4-8fe4-f86400eac211","type":"offences"}]}}},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"WWVHYGO7CMZ1","maat_reference":null},"relationships":{"offences":{"data":[{"id":"9f14c8ce-78e7-41e5-8ceb-4e7872b86c51","type":"offences"}]}}},{"id":"43b560f0-8aa8-4de5-b0e5-aab7b8078d1e","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Possession of offensive weapon","mode_of_trial":"Random
-        string"}},{"id":"4e8f8627-60b1-4f14-a7ca-49d01914b160","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Indecent assault on a man","mode_of_trial":"Random
-        string"}},{"id":"c1c8fcdf-c7f2-46f4-8fe4-f86400eac211","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Assaulting prison officer whilst possessing
-        firearm etc.","mode_of_trial":"Random string"}},{"id":"9f14c8ce-78e7-41e5-8ceb-4e7872b86c51","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Acquisition by or supply of firearms to person
-        denied them","mode_of_trial":"Random string"}}]}'
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 13:39:50 GMT
+      string: '{"data":[{"id":"f217c138-f604-478f-ae3e-effdf18c1293","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MVIFVOIPYU"},"relationships":{"defendants":{"data":[{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants"}]},"hearing_summaries":{"data":[{"id":"ef8b6837-3819-4497-87ef-ad292c33b125","type":"hearing_summaries"}]}}}],"included":[{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants","attributes":{"name":"Lawerence
+        Predovic Ortiz","date_of_birth":"1958-01-11","national_insurance_number":"RC973812D","arrest_summons_number":"HPNODIOGCH0O","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"81aafd5f-8f3c-4bbf-8e94-5356450cc150","type":"offences"}]},"defence_organisation":{"data":null}}}]}'
+  recorded_at: Thu, 30 Jul 2020 11:11:47 GMT
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ&include=defendants
+    uri: http://localhost:9292/api/internal/v1/defendants/69a73434-ae4b-4728-97b8-6a0c60f37930
     body:
       encoding: US-ASCII
       string: ''
@@ -204,29 +195,28 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 91c8316f-0738-4219-9611-a0543afe3156
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"8272b189c01ca429abee072bd011f76b"
+      - W/"1c74439490e55271243bbcd4df3f2175"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - b4d0eb2c-3284-426e-850d-45cad370c8f1
+      - 91c8316f-0738-4219-9611-a0543afe3156
       X-Runtime:
-      - '0.058232'
+      - '0.005881'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"db3c94f1-bc26-4674-9385-c0df45e48493","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants"},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants"},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants"},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants"}]}}}],"included":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants","attributes":{"name":"Josefa
-        Franecki","date_of_birth":"1961-06-15","national_insurance_number":"YE744478B","arrest_summons_number":"Y1NDQNW9NCN6","maat_reference":null},"relationships":{"offences":{"data":[{"id":"43b560f0-8aa8-4de5-b0e5-aab7b8078d1e","type":"offences"}]}}},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants","attributes":{"name":"Weldon
-        Leffler Deckow","date_of_birth":"1962-06-18","national_insurance_number":"GG367471A","arrest_summons_number":"NYC1FXJTLWFE","maat_reference":null},"relationships":{"offences":{"data":[{"id":"4e8f8627-60b1-4f14-a7ca-49d01914b160","type":"offences"}]}}},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants","attributes":{"name":"Amada
-        Cruickshank Abshire","date_of_birth":"1977-08-20","national_insurance_number":"HE708741C","arrest_summons_number":"UEDOC8A64W7I","maat_reference":null},"relationships":{"offences":{"data":[{"id":"c1c8fcdf-c7f2-46f4-8fe4-f86400eac211","type":"offences"}]}}},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"WWVHYGO7CMZ1","maat_reference":null},"relationships":{"offences":{"data":[{"id":"9f14c8ce-78e7-41e5-8ceb-4e7872b86c51","type":"offences"}]}}}]}'
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 13:39:50 GMT
+      string: '{"data":{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants","attributes":{"name":"Lawerence
+        Predovic Ortiz","date_of_birth":"1958-01-11","national_insurance_number":"RC973812D","arrest_summons_number":"HPNODIOGCH0O","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"81aafd5f-8f3c-4bbf-8e94-5356450cc150","type":"offences"}]},"defence_organisation":{"data":null}}}}'
+  recorded_at: Thu, 30 Jul 2020 11:13:29 GMT
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ&include=defendants
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MVIFVOIPYU&include=defendants
     body:
       encoding: US-ASCII
       string: ''
@@ -258,24 +248,23 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 2c62a5ac-99f6-48d5-ab07-b9db9bdf37bf
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"8272b189c01ca429abee072bd011f76b"
+      - W/"999e1b340b0802533285c6ce9bcd4e8a"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 3d3562c3-db64-4ba4-8426-6377d710211d
+      - 2c62a5ac-99f6-48d5-ab07-b9db9bdf37bf
       X-Runtime:
-      - '0.068323'
+      - '0.051400'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"db3c94f1-bc26-4674-9385-c0df45e48493","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants"},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants"},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants"},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants"}]}}}],"included":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants","attributes":{"name":"Josefa
-        Franecki","date_of_birth":"1961-06-15","national_insurance_number":"YE744478B","arrest_summons_number":"Y1NDQNW9NCN6","maat_reference":null},"relationships":{"offences":{"data":[{"id":"43b560f0-8aa8-4de5-b0e5-aab7b8078d1e","type":"offences"}]}}},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants","attributes":{"name":"Weldon
-        Leffler Deckow","date_of_birth":"1962-06-18","national_insurance_number":"GG367471A","arrest_summons_number":"NYC1FXJTLWFE","maat_reference":null},"relationships":{"offences":{"data":[{"id":"4e8f8627-60b1-4f14-a7ca-49d01914b160","type":"offences"}]}}},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants","attributes":{"name":"Amada
-        Cruickshank Abshire","date_of_birth":"1977-08-20","national_insurance_number":"HE708741C","arrest_summons_number":"UEDOC8A64W7I","maat_reference":null},"relationships":{"offences":{"data":[{"id":"c1c8fcdf-c7f2-46f4-8fe4-f86400eac211","type":"offences"}]}}},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"WWVHYGO7CMZ1","maat_reference":null},"relationships":{"offences":{"data":[{"id":"9f14c8ce-78e7-41e5-8ceb-4e7872b86c51","type":"offences"}]}}}]}'
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 13:39:50 GMT
-recorded_with: VCR 5.1.0
+      string: '{"data":[{"id":"f217c138-f604-478f-ae3e-effdf18c1293","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MVIFVOIPYU"},"relationships":{"defendants":{"data":[{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants"}]},"hearing_summaries":{"data":[{"id":"ef8b6837-3819-4497-87ef-ad292c33b125","type":"hearing_summaries"}]}}}],"included":[{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants","attributes":{"name":"Lawerence
+        Predovic Ortiz","date_of_birth":"1958-01-11","national_insurance_number":"RC973812D","arrest_summons_number":"HPNODIOGCH0O","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"81aafd5f-8f3c-4bbf-8e94-5356450cc150","type":"offences"}]},"defence_organisation":{"data":null}}}]}'
+  recorded_at: Thu, 30 Jul 2020 11:15:28 GMT
+recorded_with: VCR 6.0.0
