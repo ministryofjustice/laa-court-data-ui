@@ -30,13 +30,13 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   end
 
   scenario 'user views defendant details' do
-    when_viewing_defendant(defendant_nino)
+    when_viewing_defendant(defendant_id)
     then_defendant_view_displayed_for(defendant_name)
     then_unlinked_defendant_page_displayed
   end
 
   scenario 'user links defendant', :stub_link_success do
-    when_viewing_defendant(defendant_nino)
+    when_viewing_defendant(defendant_id)
     then_defendant_view_displayed_for(defendant_name)
     then_unlinked_defendant_page_displayed
     when_user_links_maat_reference_on_defendant
@@ -85,7 +85,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     expect(page).to have_css('.govuk-heading-m', text: 'Defendants')
   end
 
-  def when_viewing_defendant(_defendant_nino_or_asn)
+  def when_viewing_defendant(defendant_id)
     visit new_laa_reference_path(id: defendant_id)
   end
 
