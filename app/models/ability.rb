@@ -48,13 +48,11 @@ class Ability
     can_search
     can_manage_links
     can_manage_self
-    can_show_defendant
   end
 
   def manager_abilities
     can_search
     can_manage_links
-    can_show_defendant
     can :manage, User
   end
 
@@ -65,6 +63,7 @@ class Ability
   def can_search
     can %i[new create], SearchFilter
     can %i[new create], Search
+    can %i[show], CourtDataAdaptor::Resource::Defendant
   end
 
   def can_manage_links
@@ -73,9 +72,5 @@ class Ability
 
   def can_manage_self
     can %i[show manage_password], User, id: user.id
-  end
-
-  def can_show_defendant
-    can %i[show], CourtDataAdaptor::Resource::Defendant
   end
 end

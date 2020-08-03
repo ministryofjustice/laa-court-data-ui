@@ -2,7 +2,7 @@
 
 class LaaReferencesController < ApplicationController
   before_action :set_defendant_uuid_if_required,
-                :authorize_defendant_search,
+                :load_and_authorize_defendant_search,
                 :set_link_attempt,
                 :set_defendant_if_required
 
@@ -39,7 +39,7 @@ class LaaReferencesController < ApplicationController
     defendant
   end
 
-  def authorize_defendant_search
+  def load_and_authorize_defendant_search
     @defendant_search = CourtDataAdaptor::Resource::Defendant
     authorize! :show, @defendant_search
   end

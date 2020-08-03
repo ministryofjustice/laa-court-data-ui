@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DefendantsController < ApplicationController
-  before_action :authorize_defendant_search
+  before_action :load_and_authorize_defendant_search
   before_action :set_unlink_reasons,
                 :set_unlink_attempt,
                 :set_defendant_if_required
@@ -44,7 +44,7 @@ class DefendantsController < ApplicationController
     defendant
   end
 
-  def authorize_defendant_search
+  def load_and_authorize_defendant_search
     @defendant_search = CourtDataAdaptor::Resource::Defendant
     authorize! :show, @defendant_search
   end
