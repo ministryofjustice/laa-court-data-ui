@@ -3,7 +3,7 @@
 require 'court_data_adaptor'
 
 RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request: true do
-  let(:user) { create(:user, roles: %w[caseworker]) }
+  let(:user) { create(:user) }
 
   let(:defendant_id) { 'b3221b46-b98c-47b7-a285-be681d2cac4e' }
   let(:maat_reference) { '2123456' }
@@ -83,41 +83,28 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
   context 'with stubbed requests' do
     before { sign_in user }
 
-    # TODO: I think this test is now failing because
-    #      we are now doing a get /defendants/ before
-    #      the post /laa_references
-    #
-    # context 'when MAAT reference submitted' do
-    #   before do
-    #     stub_request(:post, link_request[:path])
+    context 'when MAAT reference submitted' do
+      before do
+        stub_request(:post, link_request[:path])
+        post '/laa_references', params: params
+      end
 
-    #     stub_request(
-    #       :get,
-    #       "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/defendants/#{defendant_id}"
-    #     ).to_return(
-    #       status: 200,
-    #       body: load_json_stub('unlinked_defendant.json'),
-    #       headers: { 'Content-Type' => 'application/vnd.api+json' }
-    #     )
+      let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
 
-    #     post '/laa_references', params: params
-    #   end
+      let(:link_request) do
+        {
+          path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
+          body: '{"data":{"type":"laa_references","attributes":{"maat_reference":"2123456","defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f"}}}'
+        }
+      end
 
-    #   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-    #   let(:link_request) do
-    #     {
-    #       path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
-    #       body: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"2123456"}}}'
-    #     }
-    #   end
-
-    #   it 'sends link request with filtered params' do
-    #     expect(
-    #       a_request(:post, link_request[:path])
-    #         .with(body: link_request[:body])
-    #     ).to have_been_made.once
-    #   end
-    # end
+      it 'sends link request with filtered params' do
+        expect(
+          a_request(:post, link_request[:path])
+            .with(body: link_request[:body])
+        ).to have_been_made.once
+      end
+    end
 
     context 'when oauth token expired', :stub_oauth_token do
       before do

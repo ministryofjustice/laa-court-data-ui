@@ -95,7 +95,6 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
             id: defendant_id_from_fixture,
             type: 'defendants',
             attributes: {
-              prosecution_case_reference: 'TEST12345',
               user_name: user.username,
               unlink_reason_code: 1
             }
@@ -110,14 +109,16 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
           click_button 'Remove link to court data'
         end
 
-        # TODO: I think this test is now failing because
-        # we are now doing a get /defendants/ before
-        # the post /laa_references
-        # it 'sends an unlink request to the adapter' do
-        #   expect(a_request(:patch, path)
-        #     .with(body: adaptor_request_payload.to_json))
-        #     .to have_been_made
-        # end
+        it 'sends an unlink request to the adapter' do
+          expect(a_request(:patch, path)
+            .with(body: adaptor_request_payload.to_json))
+            .to have_been_made
+        end
+
+        it 'sends a get request to the adapter' do
+          expect(a_request(:get, path))
+            .to have_been_made.at_least_once
+        end
 
         it 'flashes notice' do
           expect(page).to \
@@ -133,7 +134,6 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
               id: defendant_id_from_fixture,
               type: 'defendants',
               attributes: {
-                prosecution_case_reference: 'TEST12345',
                 user_name: user.username,
                 unlink_reason_code: 7,
                 unlink_other_reason_text: 'Case already concluded'
@@ -149,14 +149,11 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
           click_button 'Remove link to court data'
         end
 
-        # TODO: I think this test is now failing because
-        # we are now doing a get /defendants/ before
-        # the post /laa_references
-        # it 'sends an unlink request to the adapter' do
-        #   expect(a_request(:patch, path)
-        #     .with(body: adaptor_request_payload.to_json))
-        #     .to have_been_made
-        # end
+        it 'sends an unlink request to the adapter' do
+          expect(a_request(:patch, path)
+            .with(body: adaptor_request_payload.to_json))
+            .to have_been_made
+        end
 
         it 'flashes notice' do
           expect(page).to \

@@ -62,7 +62,6 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         id: defendant_id_from_fixture,
         type: 'defendants',
         attributes: {
-          prosecution_case_reference: prosecution_case_reference_from_fixture,
           user_name: user.username,
           unlink_reason_code: 1
         }
@@ -92,15 +91,11 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         patch "/defendants/#{defendant_id_from_fixture}", params: params
       end
 
-      # TODO: I think this test is now failing because
-      # we are now doing a get /defendants/ before
-      # the post /laa_references
-      #
-      # it 'sends an unlink request to the adapter' do
-      #   expect(a_request(:patch, adaptor_request_path)
-      #     .with(body: adaptor_request_payload.to_json))
-      #     .to have_been_made.once
-      # end
+      it 'sends an unlink request to the adapter' do
+        expect(a_request(:patch, adaptor_request_path)
+          .with(body: adaptor_request_payload.to_json))
+          .to have_been_made.once
+      end
 
       it 'returns status 302' do
         expect(response).to have_http_status :redirect

@@ -5,19 +5,14 @@ require 'court_data_adaptor'
 RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request: true do
   let(:user) { create(:user) }
 
-  let(:nino) { 'JC123456A' }
   let(:defendant_id) { 'b3221b46-b98c-47b7-a285-be681d2cac4e' }
-  let(:defendant_asn_or_nino) { nino }
-  let(:asn) { '9N3TY7G9A79A' }
   let(:commit) { 'Create link without MAAT ID' }
   let(:params) do
     {
       commit: commit,
       link_attempt:
       {
-        id: nino,
-        defendant_id: defendant_id,
-        defendant_asn_or_nino: defendant_asn_or_nino
+        defendant_id: defendant_id
       }
     }
   end
@@ -59,32 +54,30 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
     end
   end
 
-  # TODO: I think this test is now failing because
-  # we are now doing a get /defendants/ before
-  # the post /laa_references
-  #
-  #   context 'with stubbed requests' do
-  #     before { sign_in user }
+  context 'with stubbed requests' do
+    before { sign_in user }
 
-  #     context 'when no MAAT reference submitted' do
-  #       before do
-  #         stub_request(:post, link_request[:path])
-  #         post '/laa_references', params: params
-  #       end
+    context 'when no MAAT reference submitted' do
+      before do
+        stub_request(:post, link_request[:path])
+        post '/laa_references', params: params
+      end
 
-  #       let(:link_request) do
-  #         {
-  #           path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
-  #           body: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f"}}}'
-  #         }
-  #       end
+      let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
 
-  #       it 'sends link request with filtered params' do
-  #         expect(
-  #           a_request(:post, link_request[:path])
-  #             .with(body: link_request[:body])
-  #         ).to have_been_made.once
-  #       end
-  #     end
-  # end
+      let(:link_request) do
+        {
+          path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
+          body: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f"}}}'
+        }
+      end
+
+      it 'sends link request with filtered params' do
+        expect(
+          a_request(:post, link_request[:path])
+            .with(body: link_request[:body])
+        ).to have_been_made.once
+      end
+    end
+  end
 end
