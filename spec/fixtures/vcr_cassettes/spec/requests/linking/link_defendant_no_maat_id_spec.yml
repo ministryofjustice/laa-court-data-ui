@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/defendants/b3221b46-b98c-47b7-a285-be681d2cac4e
+    uri: http://localhost:9292/api/internal/v1/defendants/b3221b46-b98c-47b7-a285-be681d2cac4e?include=offences
     body:
       encoding: US-ASCII
       string: ''
@@ -35,7 +35,7 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 54573c99-2d8b-41e1-9641-2538586501e6
+      - a14535fa-a6f3-4d1a-b2f8-3376c0f3c010
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
@@ -43,16 +43,16 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 54573c99-2d8b-41e1-9641-2538586501e6
+      - a14535fa-a6f3-4d1a-b2f8-3376c0f3c010
       X-Runtime:
-      - '0.006535'
+      - '0.006039'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"data":{"id":"b3221b46-b98c-47b7-a285-be681d2cac4e","type":"defendants","attributes":{"name":"Jesus
         D''Amore O''Reilly","date_of_birth":"1992-06-03","national_insurance_number":"EL059689D","arrest_summons_number":"DMGJ9IJW8PHP","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"1b3a9f10-cf0a-43aa-b0bb-9e4ecd1e94c0","type":"offences"}]},"defence_organisation":{"data":null}}}}'
-  recorded_at: Wed, 29 Jul 2020 07:35:17 GMT
+  recorded_at: Tue, 04 Aug 2020 08:51:27 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -88,21 +88,21 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 6c9256fe-b9fe-46b1-b4c8-07d1bf16176b
+      - 02b71ab1-206d-4eac-a520-d2a12f7abcd3
       Content-Type:
       - text/plain; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 6c9256fe-b9fe-46b1-b4c8-07d1bf16176b
+      - 02b71ab1-206d-4eac-a520-d2a12f7abcd3
       X-Runtime:
-      - '0.008080'
+      - '0.007450'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: " "
-  recorded_at: Wed, 29 Jul 2020 07:35:17 GMT
+  recorded_at: Tue, 04 Aug 2020 08:51:27 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -138,19 +138,19 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 74ae8ebe-62c0-4233-b76d-25e4d713653a
+      - 29087190-b3bd-4e7e-9c37-71369750eea2
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 74ae8ebe-62c0-4233-b76d-25e4d713653a
+      - 29087190-b3bd-4e7e-9c37-71369750eea2
       X-Runtime:
-      - '0.007960'
+      - '0.008910'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"defendant_id":["is not a valid uuid"]}'
-  recorded_at: Wed, 29 Jul 2020 07:35:18 GMT
+  recorded_at: Tue, 04 Aug 2020 08:51:27 GMT
 recorded_with: VCR 6.0.0

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/defendants/b3221b46-b98c-47b7-a285-be681d2cac4e
+    uri: http://localhost:9292/api/internal/v1/defendants/b3221b46-b98c-47b7-a285-be681d2cac4e?include=offences
     body:
       encoding: US-ASCII
       string: ''
@@ -35,7 +35,7 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - fe8c0972-b7fc-486e-b1a5-a044e64b5f57
+      - c5c513b1-fb1e-4c8f-ac08-aba7aedccc77
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
@@ -43,16 +43,16 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - fe8c0972-b7fc-486e-b1a5-a044e64b5f57
+      - c5c513b1-fb1e-4c8f-ac08-aba7aedccc77
       X-Runtime:
-      - '0.006502'
+      - '0.006488'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"data":{"id":"b3221b46-b98c-47b7-a285-be681d2cac4e","type":"defendants","attributes":{"name":"Jesus
         D''Amore O''Reilly","date_of_birth":"1992-06-03","national_insurance_number":"EL059689D","arrest_summons_number":"DMGJ9IJW8PHP","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"1b3a9f10-cf0a-43aa-b0bb-9e4ecd1e94c0","type":"offences"}]},"defence_organisation":{"data":null}}}}'
-  recorded_at: Tue, 28 Jul 2020 15:51:54 GMT
+  recorded_at: Tue, 04 Aug 2020 08:45:27 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -88,21 +88,21 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 3e74c063-cfd7-4df2-9aee-546573570cbd
+      - df5cc3fb-392c-4b02-a393-5b7ae4928bdb
       Content-Type:
       - text/plain; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 3e74c063-cfd7-4df2-9aee-546573570cbd
+      - df5cc3fb-392c-4b02-a393-5b7ae4928bdb
       X-Runtime:
-      - '0.009330'
+      - '0.009180'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: " "
-  recorded_at: Tue, 28 Jul 2020 15:51:54 GMT
+  recorded_at: Tue, 04 Aug 2020 08:45:27 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -138,74 +138,19 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - d423bb39-9937-445b-8bfd-137fbb87143a
+      - dd2e7ded-6081-4c55-838a-a95c508dcf20
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - d423bb39-9937-445b-8bfd-137fbb87143a
+      - dd2e7ded-6081-4c55-838a-a95c508dcf20
       X-Runtime:
-      - '0.010174'
+      - '0.009734'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"defendant_id":["is not a valid uuid"]}'
-  recorded_at: Tue, 28 Jul 2020 15:51:54 GMT
-- request:
-    method: post
-    uri: http://localhost:9292/api/internal/v1/laa_references
-    body:
-      encoding: UTF-8
-      string: '{"data":{"type":"laa_references","attributes":{"maat_reference":"2123456","defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f"}}}'
-    headers:
-      User-Agent:
-      - Faraday v0.17.3
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 891a26be-cf08-4050-9828-60a997423a7d
-      Cache-Control:
-      - private, no-store
-      Pragma:
-      - no-cache
-      Www-Authenticate:
-      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
-        token is invalid"
-      Content-Type:
-      - text/html
-      X-Request-Id:
-      - 891a26be-cf08-4050-9828-60a997423a7d
-      X-Runtime:
-      - '0.016799'
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: ''
-  recorded_at: Wed, 29 Jul 2020 07:32:15 GMT
+  recorded_at: Tue, 04 Aug 2020 08:45:27 GMT
 recorded_with: VCR 6.0.0

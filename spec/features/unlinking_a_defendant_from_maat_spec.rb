@@ -26,7 +26,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
       .with(query: query)
       .to_return(body: body, headers: json_api_header)
 
-    stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}")
+    stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}?include=offences")
       .to_return(body: defendant_body, headers: json_api_header)
 
     visit(url)
@@ -113,11 +113,6 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
           expect(a_request(:patch, path)
             .with(body: adaptor_request_payload.to_json))
             .to have_been_made
-        end
-
-        it 'sends a get request to the adapter' do
-          expect(a_request(:get, path))
-            .to have_been_made.at_least_once
         end
 
         it 'flashes notice' do

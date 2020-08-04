@@ -77,7 +77,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         .with(query: query)
         .to_return(body: defendant_fixture, headers: json_api_content)
 
-      stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}")
+      stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}?include=offences")
         .to_return(body: defendant_by_id_fixture, headers: json_api_content)
     end
 
