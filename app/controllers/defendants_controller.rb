@@ -4,20 +4,17 @@ class DefendantsController < ApplicationController
   before_action :load_and_authorize_defendant_search
   before_action :set_unlink_reasons,
                 :set_unlink_attempt,
-                :set_defendant_if_required
+                :set_defendant_if_required,
+                :set_prosecution_case_reference_if_required
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.prosecution_case_reference) }),
+                 (proc { |v| v.prosecution_case_path(v.controller.prosecution_case_reference) })
+  add_breadcrumb (proc { |v| v.controller.defendant.name }),
+                 (proc { |v| v.defendant_path(v.controller.defendant.id) })
 
-  # TODO: I have (temporarily) removed the case breadcrumb as this was
-  #       causing issues.
-  # add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.@defendant.asn) }),
-  #                (proc { |v| v.prosecution_case_path(v.controller.defendant.id) })
-
-  def edit
-    add_breadcrumb defendant.name,
-                   defendant_path(defendant.id)
-  end
+  def edit; end
 
   def update
     if @unlink_attempt.valid?
@@ -38,10 +35,18 @@ class DefendantsController < ApplicationController
     @defendant ||= @defendant_search.find(defendant_params[:id]).first
   end
 
+  def prosecution_case_reference
+    @prosecution_case_reference ||= defendant_params[:urn]
+  end
+
   private
 
   def set_defendant_if_required
     defendant
+  end
+
+  def set_prosecution_case_reference_if_required
+    prosecution_case_reference
   end
 
   def load_and_authorize_defendant_search
@@ -50,7 +55,9 @@ class DefendantsController < ApplicationController
   end
 
   def defendant_params
-    params.permit(:id, unlink_attempt: %i[reason_code other_reason_text])
+    params.permit(:id,
+                  :urn,
+                  unlink_attempt: %i[reason_code other_reason_text])
   end
 
   def unlink_attempt_params
@@ -85,10 +92,10 @@ class DefendantsController < ApplicationController
 
   def redirect_after_unlink
     if unlink
-      redirect_to new_laa_reference_path(id: defendant.id)
+      redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
       flash[:notice] = I18n.t('defendants.unlink.success')
     else
-      redirect_to edit_defendant_path(id: defendant.id)
+      redirect_to edit_defendant_path(id: defendant.id, urn: prosecution_case_reference)
       flash[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
     end
   end

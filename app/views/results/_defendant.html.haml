@@ -12,7 +12,7 @@
     - @results.each do |defendant|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = link_to defendant.name, defendant_link_path(defendant)
+          = link_to defendant.name, defendant_link_path(defendant, defendant.prosecution_case_reference)
         %td.govuk-table__cell
           = link_to defendant.prosecution_case_reference, prosecution_case_path(defendant.prosecution_case_reference)
         %td.govuk-table__cell

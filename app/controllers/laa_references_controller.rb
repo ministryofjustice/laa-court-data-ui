@@ -1,23 +1,20 @@
 # frozen_string_literal: true
 
 class LaaReferencesController < ApplicationController
-  before_action :set_defendant_uuid_if_required,
-                :load_and_authorize_defendant_search,
-                :set_link_attempt,
-                :set_defendant_if_required
+  before_action :load_and_authorize_defendant_search,
+                :set_defendant_uuid_if_required,
+                :set_defendant_if_required,
+                :set_prosecution_case_reference_if_required,
+                :set_link_attempt
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.prosecution_case_reference) }),
+                 (proc { |v| v.prosecution_case_path(v.controller.prosecution_case_reference) })
+  add_breadcrumb (proc { |v| v.controller.defendant.name }),
+                 (proc { |v| v.defendant_path(v.controller.defendant.id) })
 
-  # TODO: I have (temporarily) removed the case breadcrumb as this was
-  #       causing issues.
-  # add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.defendant.asn) }),
-  #                (proc { |v| v.prosecution_case_path(v.controller.defendant.id) })
-
-  def new
-    add_breadcrumb defendant.name,
-                   defendant_path(defendant.id)
-  end
+  def new; end
 
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
@@ -29,14 +26,30 @@ class LaaReferencesController < ApplicationController
     end
   end
 
+  def defendant_uuid
+    @defendant_uuid ||= laa_reference_params[:id] || link_attempt_params[:defendant_id]
+  end
+
   def defendant
     @defendant ||= @defendant_search.find(@defendant_uuid).first
   end
 
+  def prosecution_case_reference
+    @prosecution_case_reference ||= laa_reference_params[:urn]
+  end
+
   private
+
+  def set_defendant_uuid_if_required
+    defendant_uuid
+  end
 
   def set_defendant_if_required
     defendant
+  end
+
+  def set_prosecution_case_reference_if_required
+    prosecution_case_reference
   end
 
   def load_and_authorize_defendant_search
@@ -55,6 +68,7 @@ class LaaReferencesController < ApplicationController
 
   def laa_reference_params
     params.permit(:id,
+                  :urn,
                   link_attempt: %i[maat_reference defendant_id])
   end
 
@@ -62,10 +76,6 @@ class LaaReferencesController < ApplicationController
     return unless laa_reference_params[:link_attempt]
 
     laa_reference_params[:link_attempt].merge(no_maat_id: no_maat_id?)
-  end
-
-  def defendant_uuid
-    @defendant_uuid ||= laa_reference_params[:id] || link_attempt_params[:defendant_id]
   end
 
   def resource
@@ -84,10 +94,6 @@ class LaaReferencesController < ApplicationController
     @errors.map { |k, v| "#{k.humanize} #{v.join(', ')}" }.join("\n")
   end
 
-  def set_defendant_uuid_if_required
-    defendant_uuid
-  end
-
   def set_link_attempt
     @link_attempt = if link_attempt_params
                       LinkAttempt.new(link_attempt_params)
@@ -98,10 +104,10 @@ class LaaReferencesController < ApplicationController
 
   def redirect_after_link
     if link_laa_reference
-      redirect_to edit_defendant_path(id: defendant.id)
+      redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
       flash[:notice] = I18n.t('laa_reference.link.success')
     else
-      redirect_to new_laa_reference_path(id: defendant.id)
+      redirect_to new_laa_reference_path(defendant.id, urn: prosecution_case_reference)
       flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
     end
   end
