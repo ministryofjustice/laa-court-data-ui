@@ -8,7 +8,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
   let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
   let(:maat_reference) { '2123456' }
   let(:urn) { 'MVIFVOIPYU' }
-  
+
   let(:params) do
     {
       urn: urn,
@@ -32,7 +32,8 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(id: defendant_id, urn: urn)
+        expect(response).to redirect_to edit_defendant_path(id: defendant_id,
+                                                            urn: urn)
       end
 
       it 'flashes alert' do
@@ -52,7 +53,8 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path('69a73434-ae4b-4728-97b8-6a0c60f37930', urn: urn)
+        expect(response).to redirect_to new_laa_reference_path('69a73434-ae4b-4728-97b8-6a0c60f37930',
+                                                               urn: urn)
       end
     end
 

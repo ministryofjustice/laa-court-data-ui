@@ -51,7 +51,8 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path('69a73434-ae4b-4728-97b8-6a0c60f37930', urn: urn)
+        expect(response).to redirect_to new_laa_reference_path('69a73434-ae4b-4728-97b8-6a0c60f37930',
+                                                               urn: urn)
       end
     end
   end

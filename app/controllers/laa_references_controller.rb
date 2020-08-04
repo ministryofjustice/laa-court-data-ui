@@ -20,7 +20,11 @@ class LaaReferencesController < ApplicationController
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
 
     if @link_attempt.valid?
-      redirect_after_link
+      if link_laa_reference
+        redirect_after_link
+      else
+        redirect_after_failed_link
+      end
     else
       render 'new'
     end
@@ -53,7 +57,6 @@ class LaaReferencesController < ApplicationController
   end
 
   def load_and_authorize_defendant_search
-
     @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_uuid)
     authorize! :show, @defendant_search
   end
@@ -104,12 +107,12 @@ class LaaReferencesController < ApplicationController
   end
 
   def redirect_after_link
-    if link_laa_reference
-      redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
-      flash[:notice] = I18n.t('laa_reference.link.success')
-    else
-      redirect_to new_laa_reference_path(defendant.id, urn: prosecution_case_reference)
-      flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
-    end
+    redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
+    flash[:notice] = I18n.t('laa_reference.link.success')
+  end
+
+  def redirect_after_failed_link
+    redirect_to new_laa_reference_path(defendant.id, urn: prosecution_case_reference)
+    flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
   end
 end

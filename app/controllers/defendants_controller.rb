@@ -18,7 +18,11 @@ class DefendantsController < ApplicationController
 
   def update
     if @unlink_attempt.valid?
-      redirect_after_unlink
+      if unlink
+        redirect_after_unlink
+      else
+        redirect_after_failed_unlink
+      end
     else
       render 'edit'
     end
@@ -50,7 +54,6 @@ class DefendantsController < ApplicationController
   end
 
   def load_and_authorize_defendant_search
-
     @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_params[:id])
     authorize! :show, @defendant_search
   end
@@ -92,12 +95,12 @@ class DefendantsController < ApplicationController
   end
 
   def redirect_after_unlink
-    if unlink
-      redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
-      flash[:notice] = I18n.t('defendants.unlink.success')
-    else
-      redirect_to edit_defendant_path(id: defendant.id, urn: prosecution_case_reference)
-      flash[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
-    end
+    redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
+    flash[:notice] = I18n.t('defendants.unlink.success')
+  end
+
+  def redirect_after_failed_unlink
+    redirect_to edit_defendant_path(id: defendant.id, urn: prosecution_case_reference)
+    flash[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
   end
 end
