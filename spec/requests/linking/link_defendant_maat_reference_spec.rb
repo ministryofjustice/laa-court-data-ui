@@ -118,7 +118,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       it 'sends token request' do
         expect(
           a_request(:post, %r{.*/oauth/token})
-        ).to have_been_made.once
+        ).to have_been_made.twice
       end
     end
   end

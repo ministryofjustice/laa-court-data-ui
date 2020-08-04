@@ -35,7 +35,7 @@ class DefendantsController < ApplicationController
   end
 
   def defendant
-    @defendant ||= @defendant_search.find(defendant_params[:id]).first
+    @defendant ||= @defendant_search.call
   end
 
   private
@@ -45,7 +45,7 @@ class DefendantsController < ApplicationController
   end
 
   def load_and_authorize_defendant_search
-    @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid
+    @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_params[:id])
     authorize! :show, @defendant_search
   end
 

@@ -10,14 +10,14 @@ module CourtDataAdaptor
           refresh_token_if_required!
 
           resource
-            .find(defendant_id)
+            .includes('offences')
+            .find(id)
             .first
-
         end
 
         private
 
-        def defendant_id
+        def id
           term
         end
       end
