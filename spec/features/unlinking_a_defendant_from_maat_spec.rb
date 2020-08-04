@@ -115,11 +115,6 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
             .to have_been_made
         end
 
-        # it 'sends a get request to the adapter' do
-        #   expect(a_request(:get, path))
-        #     .to have_been_made.at_least_once
-        # end
-
         it 'flashes notice' do
           expect(page).to \
             have_govuk_flash(:notice, text: 'You have successfully unlinked from the court data source')
