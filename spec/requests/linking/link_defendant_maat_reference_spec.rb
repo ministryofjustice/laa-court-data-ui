@@ -5,10 +5,13 @@ require 'court_data_adaptor'
 RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request: true do
   let(:user) { create(:user) }
 
-  let(:defendant_id) { 'b3221b46-b98c-47b7-a285-be681d2cac4e' }
+  let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
   let(:maat_reference) { '2123456' }
+  let(:urn) { 'MVIFVOIPYU' }
+  
   let(:params) do
     {
+      urn: urn,
       link_attempt:
       {
         defendant_id: defendant_id,
@@ -29,7 +32,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(defendant_id)
+        expect(response).to redirect_to edit_defendant_path(id: defendant_id, urn: urn)
       end
 
       it 'flashes alert' do
@@ -49,7 +52,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path(id: 'b3221b46-b98c-47b7-a285-be681d2cac4e')
+        expect(response).to redirect_to new_laa_reference_path('69a73434-ae4b-4728-97b8-6a0c60f37930', urn: urn)
       end
     end
 
@@ -89,12 +92,12 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
         post '/laa_references', params: params
       end
 
-      let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+      let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
 
       let(:link_request) do
         {
           path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
-          body: '{"data":{"type":"laa_references","attributes":{"maat_reference":"2123456","defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f"}}}'
+          body: '{"data":{"type":"laa_references","attributes":{"maat_reference":"2123456","defendant_id":"69a73434-ae4b-4728-97b8-6a0c60f37930"}}}'
         }
       end
 

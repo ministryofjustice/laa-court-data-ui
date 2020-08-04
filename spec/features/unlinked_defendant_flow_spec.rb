@@ -86,7 +86,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   end
 
   def when_viewing_defendant(defendant_id)
-    visit new_laa_reference_path(id: defendant_id)
+    visit new_laa_reference_path(id: defendant_id, urn: case_urn)
   end
 
   def then_defendant_view_displayed_for(name)

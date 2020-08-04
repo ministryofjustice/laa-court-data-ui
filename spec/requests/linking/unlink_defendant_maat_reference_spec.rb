@@ -4,7 +4,7 @@ require 'court_data_adaptor'
 
 RSpec.shared_examples 'invalid unlink_attempt request' do
   before do
-    patch "/defendants/#{defendant_id_from_fixture}", params: params
+    patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}", params: params
   end
 
   it 'does NOT send an unlink request to the adapter' do
@@ -88,7 +88,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        patch "/defendants/#{defendant_id_from_fixture}", params: params
+        patch "/defendants/#{defendant_id_from_fixture}?urn", params: params
       end
 
       it 'sends an unlink request to the adapter' do

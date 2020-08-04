@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/defendants/b3221b46-b98c-47b7-a285-be681d2cac4e?include=offences
+    uri: http://localhost:9292/api/internal/v1/defendants/69a73434-ae4b-4728-97b8-6a0c60f37930?include=offences
     body:
       encoding: US-ASCII
       string: ''
@@ -35,30 +35,30 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - a14535fa-a6f3-4d1a-b2f8-3376c0f3c010
+      - 841041bc-3ff0-4eb1-be79-55e4d0905bfe
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"8a5a37ff0751d533b43da7d1e8610e74"
+      - W/"1c74439490e55271243bbcd4df3f2175"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - a14535fa-a6f3-4d1a-b2f8-3376c0f3c010
+      - 841041bc-3ff0-4eb1-be79-55e4d0905bfe
       X-Runtime:
-      - '0.006039'
+      - '0.005509'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"b3221b46-b98c-47b7-a285-be681d2cac4e","type":"defendants","attributes":{"name":"Jesus
-        D''Amore O''Reilly","date_of_birth":"1992-06-03","national_insurance_number":"EL059689D","arrest_summons_number":"DMGJ9IJW8PHP","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"1b3a9f10-cf0a-43aa-b0bb-9e4ecd1e94c0","type":"offences"}]},"defence_organisation":{"data":null}}}}'
-  recorded_at: Tue, 04 Aug 2020 08:51:27 GMT
+      string: '{"data":{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants","attributes":{"name":"Lawerence
+        Predovic Ortiz","date_of_birth":"1958-01-11","national_insurance_number":"RC973812D","arrest_summons_number":"HPNODIOGCH0O","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"81aafd5f-8f3c-4bbf-8e94-5356450cc150","type":"offences"}]},"defence_organisation":{"data":null}}}}'
+  recorded_at: Tue, 04 Aug 2020 15:37:41 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"b3221b46-b98c-47b7-a285-be681d2cac4e"}}}'
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"69a73434-ae4b-4728-97b8-6a0c60f37930"}}}'
     headers:
       User-Agent:
       - Faraday v0.17.3
@@ -88,21 +88,21 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 02b71ab1-206d-4eac-a520-d2a12f7abcd3
+      - 57a1ea17-7065-42ca-b80b-134d5be3a9ed
       Content-Type:
       - text/plain; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 02b71ab1-206d-4eac-a520-d2a12f7abcd3
+      - 57a1ea17-7065-42ca-b80b-134d5be3a9ed
       X-Runtime:
-      - '0.007450'
+      - '0.007985'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: " "
-  recorded_at: Tue, 04 Aug 2020 08:51:27 GMT
+  recorded_at: Tue, 04 Aug 2020 15:37:41 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -138,19 +138,19 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 29087190-b3bd-4e7e-9c37-71369750eea2
+      - a6a17109-8d8e-4622-9fa0-99d8e8ff700a
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 29087190-b3bd-4e7e-9c37-71369750eea2
+      - a6a17109-8d8e-4622-9fa0-99d8e8ff700a
       X-Runtime:
-      - '0.008910'
+      - '0.008045'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"defendant_id":["is not a valid uuid"]}'
-  recorded_at: Tue, 04 Aug 2020 08:51:27 GMT
+  recorded_at: Tue, 04 Aug 2020 15:37:41 GMT
 recorded_with: VCR 6.0.0
