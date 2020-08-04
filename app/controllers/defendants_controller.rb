@@ -45,7 +45,7 @@ class DefendantsController < ApplicationController
   end
 
   def load_and_authorize_defendant_search
-    @defendant_search = CourtDataAdaptor::Resource::Defendant
+    @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid
     authorize! :show, @defendant_search
   end
 
