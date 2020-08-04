@@ -62,12 +62,10 @@ RSpec.feature 'Breadcrumb', type: :feature do
 
       then_has_defendant_details_breadcrumbs('MVIFVOIPYU', 'Lawerence Predovic Ortiz')
 
-      # TODO: I have (temporarily) removed the case breadcrumb as this was
-      #       causing issues.
-      # click_breadcrumb 'Case MVIFVOIPYU'
+      click_breadcrumb 'Case MVIFVOIPYU'
 
-      # expect(page).to have_current_path(prosecution_case_path('MVIFVOIPYU'))
-      # then_has_case_details_breadcrumbs('MVIFVOIPYU')
+      expect(page).to have_current_path(prosecution_case_path('MVIFVOIPYU'))
+      then_has_case_details_breadcrumbs('MVIFVOIPYU')
 
       click_breadcrumb 'Search'
       expect(page).to have_current_path(
