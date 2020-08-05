@@ -1,4 +1,4 @@
-= form_with(model: @unlink_attempt, url: defendant_path(@defendant.arrest_summons_number), local: true, method: 'patch') do |f|
+= form_with(model: @unlink_attempt, url: defendant_path(@defendant.id), local: true, method: 'patch') do |f|
   = f.govuk_error_summary
 
   = render 'defendants/defendant'
@@ -6,6 +6,8 @@
   = render 'defendants/representation_orders'
 
   = render 'defendants/offences'
+
+  = hidden_field_tag(:urn, params[:urn])
 
   = govuk_detail(t('defendants.unlink.detail'), @unlink_attempt.errors.present?) do
     = f.govuk_collection_select :reason_code,

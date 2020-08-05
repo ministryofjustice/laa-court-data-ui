@@ -1,158 +1,8 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: http://localhost:9292/api/internal/v1/laa_references
-    body:
-      encoding: UTF-8
-      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"2123456"}}}'
-    headers:
-      User-Agent:
-      - Faraday v0.17.3
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 202
-      message: Accepted
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 7dfc27fd-37e9-4fe0-ac29-db912b242ee7
-      Content-Type:
-      - text/plain; charset=utf-8
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - 7dfc27fd-37e9-4fe0-ac29-db912b242ee7
-      X-Runtime:
-      - '0.884620'
-      Content-Length:
-      - '1'
-    body:
-      encoding: UTF-8
-      string: " "
-  recorded_at: Thu, 18 Jun 2020 09:14:30 GMT
-- request:
-    method: post
-    uri: http://localhost:9292/api/internal/v1/laa_references
-    body:
-      encoding: UTF-8
-      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"invalid-defendant-id","maat_reference":"2123456"}}}'
-    headers:
-      User-Agent:
-      - Faraday v0.17.3
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 400
-      message: Bad Request
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 1ac88383-64ad-414a-9c22-a9e182317732
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - 1ac88383-64ad-414a-9c22-a9e182317732
-      X-Runtime:
-      - '0.009572'
-      Content-Length:
-      - '40'
-    body:
-      encoding: UTF-8
-      string: '{"defendant_id":["is not a valid uuid"]}'
-  recorded_at: Thu, 18 Jun 2020 09:14:30 GMT
-- request:
-    method: post
-    uri: http://localhost:9292/api/internal/v1/laa_references
-    body:
-      encoding: UTF-8
-      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"41fcb1cd-516e-438e-887a-5987d92ef90f","maat_reference":"A2123456"}}}'
-    headers:
-      User-Agent:
-      - Faraday v0.17.3
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 400
-      message: Bad Request
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 12e6cbaf-57f6-4dc4-8573-2850e79659e2
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Cache-Control:
-      - no-cache
-      X-Request-Id:
-      - 12e6cbaf-57f6-4dc4-8573-2850e79659e2
-      X-Runtime:
-      - '0.008794'
-      Content-Length:
-      - '41'
-    body:
-      encoding: UTF-8
-      string: '{"maat_reference":["must be an integer"]}'
-  recorded_at: Thu, 18 Jun 2020 09:14:30 GMT
-- request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bnational_insurance_number%5D=JC123456A&include=defendants,defendants.offences
+    uri: http://localhost:9292/api/internal/v1/defendants/69a73434-ae4b-4728-97b8-6a0c60f37930?include=offences
     body:
       encoding: US-ASCII
       string: ''
@@ -185,38 +35,122 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - aaafce1d-225e-4879-afa9-7741a9afd621
+      - 0d0a6fab-1cd1-46d1-aec9-426e6af372a2
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"47c696bc67a066eae844975e432a20ad"
+      - W/"1c74439490e55271243bbcd4df3f2175"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - aaafce1d-225e-4879-afa9-7741a9afd621
+      - 0d0a6fab-1cd1-46d1-aec9-426e6af372a2
       X-Runtime:
-      - '0.164556'
+      - '0.005441'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"59a3b8bd-ccbe-4fc9-9e17-4b8bcc957d5e","type":"prosecution_cases","attributes":{"prosecution_case_reference":"TEST12345"},"relationships":{"defendants":{"data":[{"id":"18d96472-c63d-474d-ba72-3fc4fae0deb2","type":"defendants"},{"id":"9f655798-b6c7-4d59-8f54-65f70fd784e1","type":"defendants"},{"id":"b3221b46-b98c-47b7-a285-be681d2cac4e","type":"defendants"},{"id":"393af47e-8298-442d-8c39-e33b65d2aebf","type":"defendants"}]},"hearing_summaries":{"data":[]}}},{"id":"d79c8463-d665-4cdb-8379-b8ee0b0963c1","type":"prosecution_cases","attributes":{"prosecution_case_reference":"TEST54321"},"relationships":{"defendants":{"data":[{"id":"14047f07-e65e-4cfa-80fb-a2b951d57443","type":"defendants"},{"id":"f7d3e402-9084-47c6-804e-89a544d53001","type":"defendants"},{"id":"d0b175d6-a1a9-4fcf-9fc2-44216d5e642e","type":"defendants"}]},"hearing_summaries":{"data":[]}}}],"included":[{"id":"18d96472-c63d-474d-ba72-3fc4fae0deb2","type":"defendants","attributes":{"name":"Tresa
-        Rohan Homenick","date_of_birth":"1985-12-27","national_insurance_number":"PH378048A","arrest_summons_number":"XH77GEBQYB7Q","maat_reference":"A10000015","representation_order_date":"2020-06-29T00:00:00.000Z"},"relationships":{"offences":{"data":[{"id":"c963bcb2-6d7b-4047-aa2f-12b18e7a8176","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"9f655798-b6c7-4d59-8f54-65f70fd784e1","type":"defendants","attributes":{"name":"Danial
-        Pacocha Lemke","date_of_birth":"1989-03-21","national_insurance_number":"RJ435385A","arrest_summons_number":"B58TR4ZVX8F0","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"755d9c2f-5f71-481f-ba7a-58bf5fa480d1","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"b3221b46-b98c-47b7-a285-be681d2cac4e","type":"defendants","attributes":{"name":"Jesus
-        D''Amore O''Reilly","date_of_birth":"1992-06-03","national_insurance_number":"EL059689D","arrest_summons_number":"DMGJ9IJW8PHP","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"1b3a9f10-cf0a-43aa-b0bb-9e4ecd1e94c0","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"393af47e-8298-442d-8c39-e33b65d2aebf","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"9N3TY7G9A79A","maat_reference":"3757575","representation_order_date":"2020-06-29T00:00:00.000Z"},"relationships":{"offences":{"data":[{"id":"26f5b1ee-c191-4c49-8008-5bfcd20c6ee6","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"c963bcb2-6d7b-4047-aa2f-12b18e7a8176","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Committing offence with intent to commit
-        sexual offence","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"755d9c2f-5f71-481f-ba7a-58bf5fa480d1","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Fabrication of evidence with intent to mislead
-        a tribunal","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"1b3a9f10-cf0a-43aa-b0bb-9e4ecd1e94c0","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Bomb hoax","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"26f5b1ee-c191-4c49-8008-5bfcd20c6ee6","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Prison mutiny","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"14047f07-e65e-4cfa-80fb-a2b951d57443","type":"defendants","attributes":{"name":"Aaron
-        Ruecker Wiegand","date_of_birth":"1987-11-30","national_insurance_number":"HH511739C","arrest_summons_number":"488KAEA6SXOR","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"a1df4106-23d5-496d-b1c8-7ffb61f5609f","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"f7d3e402-9084-47c6-804e-89a544d53001","type":"defendants","attributes":{"name":"Harris
-        Kunze Kulas","date_of_birth":"1984-12-10","national_insurance_number":"HP186221D","arrest_summons_number":"RRF3616D98GJ","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"fb82aa24-c93e-4e29-a5c8-2e17aad7df22","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"d0b175d6-a1a9-4fcf-9fc2-44216d5e642e","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"QRXNLAG99RJW","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"eb04542a-f10c-401a-8b38-fc830810cbf8","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"a1df4106-23d5-496d-b1c8-7ffb61f5609f","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Attempting to injure or alarm the Sovereign","mode_of_trial":"Random
-        string","plea":null,"plea_date":null}},{"id":"fb82aa24-c93e-4e29-a5c8-2e17aad7df22","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Indecent assault on a man","mode_of_trial":"Random
-        string","plea":null,"plea_date":null}},{"id":"eb04542a-f10c-401a-8b38-fc830810cbf8","type":"offences","attributes":{"code":"Random
-        string","order_index":1,"title":"Personation of jurors","mode_of_trial":"Random
-        string","plea":null,"plea_date":null}}]}'
-  recorded_at: Thu, 09 Jul 2020 10:05:22 GMT
+      string: '{"data":{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants","attributes":{"name":"Lawerence
+        Predovic Ortiz","date_of_birth":"1958-01-11","national_insurance_number":"RC973812D","arrest_summons_number":"HPNODIOGCH0O","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"81aafd5f-8f3c-4bbf-8e94-5356450cc150","type":"offences"}]},"defence_organisation":{"data":null}}}}'
+  recorded_at: Tue, 04 Aug 2020 15:23:05 GMT
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v1/laa_references
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"laa_references","attributes":{"maat_reference":"2123456","defendant_id":"69a73434-ae4b-4728-97b8-6a0c60f37930"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 13d2c198-efaf-48be-b278-325a213e9f1c
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 13d2c198-efaf-48be-b278-325a213e9f1c
+      X-Runtime:
+      - '0.008307'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: " "
+  recorded_at: Tue, 04 Aug 2020 15:23:05 GMT
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v1/laa_references
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"laa_references","attributes":{"maat_reference":"2123456","defendant_id":"invalid-defendant-id"}}}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - ae1335df-6d68-497d-9bea-af3cb6f0c862
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - ae1335df-6d68-497d-9bea-af3cb6f0c862
+      X-Runtime:
+      - '0.007924'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"defendant_id":["is not a valid uuid"]}'
+  recorded_at: Tue, 04 Aug 2020 15:23:05 GMT
 recorded_with: VCR 6.0.0

@@ -11,7 +11,7 @@
       %td.govuk-table__cell{ class: 'govuk-!-font-weight-bold' }
         = t('search.result.defendant.prosecution_case_reference')
       %td.govuk-table__cell
-        = @defendant.prosecution_case_reference
+        = @prosecution_case_reference
     %tr.govuk-table__row
       %td.govuk-table__cell{ class: 'govuk-!-font-weight-bold' }
         = t('search.result.defendant.national_insurance_number')
@@ -23,4 +23,4 @@
       %td.govuk-table__cell
         = @defendant.arrest_summons_number
 
-= link_to 'View case', prosecution_case_path(@defendant.prosecution_case_reference), class: 'govuk-button govuk-button--secondary'
+= link_to 'View case', prosecution_case_path(@prosecution_case_reference), class: 'govuk-button govuk-button--secondary'

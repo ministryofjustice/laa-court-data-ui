@@ -4,30 +4,44 @@ require 'court_data_adaptor'
 
 RSpec.describe DefendantHelper, type: :helper do
   describe '#defendant_link_path' do
-    subject { helper.defendant_link_path(defendant) }
-
+    let(:prosecution_case_reference) { 'TEST12345' }
     let(:defendant_class) { CourtDataAdaptor::Resource::Defendant }
     # rubocop:disable RSpec/VerifiedDoubles
     let(:defendant) { double(defendant_class) }
     # rubocop:enable RSpec/VerifiedDoubles
-    let(:arrest_summons_number) { 'ABCD1EFG2HIJ' }
+    let(:id) { '12abc3de-456f-789g-012h-3456i78jk90l' }
 
-    context 'when defendant linked' do
-      before do
-        allow(defendant).to receive(:linked?).and_return(true)
-        allow(defendant).to receive(:arrest_summons_number).and_return(arrest_summons_number)
+    context 'with URN specified' do
+      subject { helper.defendant_link_path(defendant, prosecution_case_reference) }
+
+      context 'when defendant linked' do
+        before do
+          allow(defendant).to receive(:linked?).and_return(true)
+          allow(defendant).to receive(:id).and_return(id)
+        end
+
+        it { is_expected.to eql "/defendants/#{id}/edit?urn=#{prosecution_case_reference}" }
       end
 
-      it { is_expected.to eql "/defendants/#{arrest_summons_number}/edit" }
+      context 'when defendant not linked' do
+        before do
+          allow(defendant).to receive(:linked?).and_return(false)
+          allow(defendant).to receive(:id).and_return(id)
+        end
+
+        it { is_expected.to eql "/laa_references/new?id=#{id}&urn=#{prosecution_case_reference}" }
+      end
     end
 
-    context 'when defendant not linked' do
+    context 'without URN specified' do
+      subject { helper.defendant_link_path(defendant) }
+
       before do
-        allow(defendant).to receive(:linked?).and_return(false)
-        allow(defendant).to receive(:arrest_summons_number).and_return(arrest_summons_number)
+        allow(defendant).to receive(:linked?).and_return(true)
+        allow(defendant).to receive(:id).and_return(id)
       end
 
-      it { is_expected.to eql "/laa_references/new?id=#{arrest_summons_number}" }
+      it { is_expected.to eql "/defendants/#{id}/edit" }
     end
   end
 end
