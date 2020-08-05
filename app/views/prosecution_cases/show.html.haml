@@ -44,38 +44,39 @@
               - hearing = prosecution_case.hearings.find { |h| h.id == hearing_summary.id}
               = hearing&.defence_advocate_names&.join(', ') || 'not set'
 
-%br
-%br
-= govuk_detail('View raw data') do
-  - @results.each do |prosecution_case|
-    %h3='Prosecution case'
-    %pre
-      = JSON.pretty_generate(prosecution_case.as_json)
-
-    %h3='Defendants'
-    %pre
-      - prosecution_case.defendants.each.with_index do |defendant, idx|
-        %h4="defendant #{idx}"
-        = JSON.pretty_generate(defendant.attributes)
-        %h4="Offences for defendant #{idx}"
-        - defendant.offences.each do |offence|
-          = JSON.pretty_generate(offence.attributes)
-
-    %h3='Hearing summaries'
-    - prosecution_case.hearing_summaries.each do |hearing_summary|
+- if Rails.configuration.x.display_raw_responses
+  %br
+  %br
+  = govuk_detail('View raw data') do
+    - @results.each do |prosecution_case|
+      %h3='Prosecution case'
       %pre
-        = JSON.pretty_generate(hearing_summary.attributes)
+        = JSON.pretty_generate(prosecution_case.as_json)
 
-    %h3='Hearings'
-    - prosecution_case.hearings.each.with_index do |hearing, hidx|
-      %h4="hearing #{hidx}"
+      %h3='Defendants'
       %pre
-        = JSON.pretty_generate(hearing.attributes)
+        - prosecution_case.defendants.each.with_index do |defendant, idx|
+          %h4="defendant #{idx}"
+          = JSON.pretty_generate(defendant.attributes)
+          %h4="Offences for defendant #{idx}"
+          - defendant.offences.each do |offence|
+            = JSON.pretty_generate(offence.attributes)
 
-      %h4="Hearing events for hearing #{hidx}"
-      = 'none' if hearing.hearing_events.empty?
-      - hearing.hearing_events.each.with_index do |event, eidx|
-        %h5= # "Hearing event #{eidx} for hearing #{hidx}"
+      %h3='Hearing summaries'
+      - prosecution_case.hearing_summaries.each do |hearing_summary|
         %pre
-          = JSON.pretty_generate(event.attributes)
+          = JSON.pretty_generate(hearing_summary.attributes)
+
+      %h3='Hearings'
+      - prosecution_case.hearings.each.with_index do |hearing, hidx|
+        %h4="hearing #{hidx}"
+        %pre
+          = JSON.pretty_generate(hearing.attributes)
+
+        %h4="Hearing events for hearing #{hidx}"
+        = 'none' if hearing.hearing_events.empty?
+        - hearing.hearing_events.each.with_index do |event, eidx|
+          %h5= # "Hearing event #{eidx} for hearing #{hidx}"
+          %pre
+            = JSON.pretty_generate(event.attributes)
 

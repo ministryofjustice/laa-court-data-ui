@@ -43,5 +43,6 @@ module LaaCourtDataUi
     config.exceptions_app = routes
     config.active_job.queue_adapter = :sidekiq
     config.x.support_email_address = 'laa-get-paid@digital.justice.gov.uk'
+    config.x.display_raw_responses = %w[enabled true].include?(ENV['DISPLAY_RAW_RESPONSES'])
   end
 end
