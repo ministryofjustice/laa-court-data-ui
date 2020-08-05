@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_dependency 'court_data_adaptor'
+
 class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
                 :set_hearing
