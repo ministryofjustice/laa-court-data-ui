@@ -89,7 +89,8 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        patch "/defendants/#{defendant_id_from_fixture}?urn", params: params
+        patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
+              params: params
       end
 
       it 'sends an unlink request to the adapter' do
@@ -103,7 +104,8 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to new_laa_reference path' do
-        expect(response).to redirect_to new_laa_reference_path(id: defendant_id_from_fixture)
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_id_from_fixture,
+                                                               urn: prosecution_case_reference_from_fixture)
       end
 
       it 'flashes notice' do
@@ -122,7 +124,8 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
             headers: json_api_content
           )
 
-        patch "/defendants/#{defendant_id_from_fixture}", params: params
+        patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
+              params: params
       end
 
       it 'flashes alert' do
@@ -133,8 +136,8 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         expect(flash.now[:alert]).to match(/User name must not exceed 10 characters/i)
       end
 
-      it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(id: defendant_id_from_fixture)
+      it 'renders laa_reference path and does not redirect' do
+        expect(response).to have_http_status :ok
       end
     end
 
@@ -153,7 +156,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
       end
 
-      it 'redirects to defendant path (using ASN)' do
+      it 'redirects to defendant path' do
         expect(response).to redirect_to new_laa_reference_path(id: defendant_id_from_fixture)
       end
     end
