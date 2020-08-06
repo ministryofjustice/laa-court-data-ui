@@ -20,12 +20,8 @@ class DefendantsController < ApplicationController
 
   def update
     if @unlink_attempt.valid?
-      if unlink
-        redirect_after_unlink
-        return
-      else
-        flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
-      end
+      redirect_after_unlink and return if unlink
+      flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
     end
     render 'edit'
   end

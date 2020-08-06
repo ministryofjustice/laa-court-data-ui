@@ -20,12 +20,8 @@ class LaaReferencesController < ApplicationController
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
 
     if @link_attempt.valid?
-      if link_laa_reference
-        redirect_after_link
-        return
-      else
-        flash.now[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
-      end
+      redirect_after_link and return if link_laa_reference
+      flash.now[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
     end
     render 'new'
   end
