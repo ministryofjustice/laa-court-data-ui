@@ -3,8 +3,6 @@
 RSpec.describe 'Linking a defendant with no MAAT id', type: :feature, stub_unlinked: true do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
-  let(:defendant_nino) { 'JC123456A' }
-  let(:defendant_asn) { '0TSQT1LMI7CR' }
   let(:defendant_name) { 'Jammy Dodger' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
 

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ&include=defendants
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events
     body:
       encoding: US-ASCII
       string: ''
@@ -34,29 +34,204 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 7594f4dc-d18a-41c6-93a1-603f5ec6dbd0
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"8272b189c01ca429abee072bd011f76b"
+      - W/"2ef667a7a67bc36f607e58615e686698"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - ff71968e-678e-4758-9ac7-281b4879c17d
+      - 7594f4dc-d18a-41c6-93a1-603f5ec6dbd0
       X-Runtime:
-      - '0.144481'
+      - '1.721920'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"db3c94f1-bc26-4674-9385-c0df45e48493","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants"},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants"},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants"},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants"}]}}}],"included":[{"id":"d95fb19b-7af4-46a5-bc73-79cfe9eb511c","type":"defendants","attributes":{"name":"Josefa
-        Franecki","date_of_birth":"1961-06-15","national_insurance_number":"YE744478B","arrest_summons_number":"Y1NDQNW9NCN6","maat_reference":null},"relationships":{"offences":{"data":[{"id":"43b560f0-8aa8-4de5-b0e5-aab7b8078d1e","type":"offences"}]}}},{"id":"2a9e8891-bfae-465d-95d0-483b0970e269","type":"defendants","attributes":{"name":"Weldon
-        Leffler Deckow","date_of_birth":"1962-06-18","national_insurance_number":"GG367471A","arrest_summons_number":"NYC1FXJTLWFE","maat_reference":null},"relationships":{"offences":{"data":[{"id":"4e8f8627-60b1-4f14-a7ca-49d01914b160","type":"offences"}]}}},{"id":"69813351-658f-4d75-b6b6-3e8811be0be1","type":"defendants","attributes":{"name":"Amada
-        Cruickshank Abshire","date_of_birth":"1977-08-20","national_insurance_number":"HE708741C","arrest_summons_number":"UEDOC8A64W7I","maat_reference":null},"relationships":{"offences":{"data":[{"id":"c1c8fcdf-c7f2-46f4-8fe4-f86400eac211","type":"offences"}]}}},{"id":"0100d486-b3a2-4988-81aa-0e1c99b98ee2","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"WWVHYGO7CMZ1","maat_reference":null},"relationships":{"offences":{"data":[{"id":"9f14c8ce-78e7-41e5-8ceb-4e7872b86c51","type":"offences"}]}}}]}'
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 13:41:36 GMT
+      string: '{"data":[{"id":"7b786214-4dc0-4952-9b23-e01ac62f1f9b","type":"prosecution_cases","attributes":{"prosecution_case_reference":"TEST12345"},"relationships":{"defendants":{"data":[{"id":"b9d5cd93-0ac8-401d-8c6c-02377c3e75b3","type":"defendants"},{"id":"ad31a1d7-4130-466b-87a9-bf2d39f8f145","type":"defendants"},{"id":"2fd28ad2-d06a-4dbc-9f85-7febb2a775e1","type":"defendants"},{"id":"0ce5e803-75a8-4e7a-b943-786b4e8abb4a","type":"defendants"}]},"hearing_summaries":{"data":[{"id":"345be88a-31cf-4a30-9de3-da98e973367e","type":"hearing_summaries"},{"id":"1170bb83-b57e-4b58-b7f1-4122899fecd3","type":"hearing_summaries"},{"id":"7f5c51a9-7cc9-4455-abe6-70ad73639b8f","type":"hearing_summaries"},{"id":"85ce63d0-3840-49f8-a60f-8e1b9840b7e0","type":"hearing_summaries"},{"id":"72206a29-4c12-48c5-a7b3-bdb6dc66ed74","type":"hearing_summaries"}]},"hearings":{"data":[{"id":"345be88a-31cf-4a30-9de3-da98e973367e","type":"hearings"},{"id":"1170bb83-b57e-4b58-b7f1-4122899fecd3","type":"hearings"},{"id":"7f5c51a9-7cc9-4455-abe6-70ad73639b8f","type":"hearings"},{"id":"85ce63d0-3840-49f8-a60f-8e1b9840b7e0","type":"hearings"},{"id":"72206a29-4c12-48c5-a7b3-bdb6dc66ed74","type":"hearings"}]}}}],"included":[{"id":"b9d5cd93-0ac8-401d-8c6c-02377c3e75b3","type":"defendants","attributes":{"name":"Jammy  Dodger","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","arrest_summons_number":"4YEK9NWXV9KI","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"903d8a58-c909-4964-9694-e8d415e07e63","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"ad31a1d7-4130-466b-87a9-bf2d39f8f145","type":"defendants","attributes":{"name":"Connie
+        Bartoletti Swift","date_of_birth":"1959-06-28","national_insurance_number":"EZ082693A","arrest_summons_number":"5X3O4F7TW9GS","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"f0908b50-7b87-49d3-8102-dff9d461a8ff","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"2fd28ad2-d06a-4dbc-9f85-7febb2a775e1","type":"defendants","attributes":{"name":"Toby
+        Larson Lind","date_of_birth":"1963-05-24","national_insurance_number":"BH682553A","arrest_summons_number":"5ZKBBWQR4MTN","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"4486f694-b86a-4dda-8f7b-6b9fae8932bd","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"0ce5e803-75a8-4e7a-b943-786b4e8abb4a","type":"defendants","attributes":{"name":"Mauricio
+        Koepp Ledner","date_of_birth":"1959-08-05","national_insurance_number":"OK862895D","arrest_summons_number":"S3MS9QM787M9","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"2cbc350e-1185-4efa-81ff-207217015aa0","type":"offences"}]},"defence_organisation":{"data":null}}},{"id":"903d8a58-c909-4964-9694-e8d415e07e63","type":"offences","attributes":{"code":"PT00011","order_index":1,"title":"Administering
+        poison etc. so as to endanger life","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"f0908b50-7b87-49d3-8102-dff9d461a8ff","type":"offences","attributes":{"code":"PT00011","order_index":1,"title":"Fraud
+        by false representation","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"4486f694-b86a-4dda-8f7b-6b9fae8932bd","type":"offences","attributes":{"code":"PT00011","order_index":1,"title":"Offences
+        of publication of obscene matter","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"2cbc350e-1185-4efa-81ff-207217015aa0","type":"offences","attributes":{"code":"PT00011","order_index":1,"title":"Soliciting
+        to commit murder","mode_of_trial":"Random string","plea":null,"plea_date":null}},{"id":"345be88a-31cf-4a30-9de3-da98e973367e","type":"hearing_summaries","attributes":{"hearing_type":"Application
+        to Break Fixture (BFA)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"]}},{"id":"1170bb83-b57e-4b58-b7f1-4122899fecd3","type":"hearing_summaries","attributes":{"hearing_type":"Mention
+        - Defendant to Attend (MDA)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"]}},{"id":"7f5c51a9-7cc9-4455-abe6-70ad73639b8f","type":"hearing_summaries","attributes":{"hearing_type":"Plea
+        and Trial Prepation (PTP)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"]}},{"id":"85ce63d0-3840-49f8-a60f-8e1b9840b7e0","type":"hearing_summaries","attributes":{"hearing_type":"Application
+        to Break Fixture (BFA)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"]}},{"id":"72206a29-4c12-48c5-a7b3-bdb6dc66ed74","type":"hearing_summaries","attributes":{"hearing_type":"Application
+        to Break Fixture (BFA)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"]}},{"id":"345be88a-31cf-4a30-9de3-da98e973367e","type":"hearings","attributes":{"court_name":"Warrington
+        CCU (Decom)","hearing_type":"Application to Break Fixture (BFA)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"],"defendant_names":["Jammy
+        Dodger","Connie Swift","Toby Lind","Mauricio Ledner"],"judge_names":[],"prosecution_advocate_names":null,"defence_advocate_names":["Valentine
+        Lakin","Joel Hickle"]},"relationships":{"hearing_events":{"data":[{"id":"0fc164f5-21ee-460b-add0-d3f04c9dabd5","type":"hearing_events"},{"id":"d9914cdc-fdb0-4da4-ac01-82e99ec744bc","type":"hearing_events"},{"id":"2af8c327-1808-4db8-8b0d-54793c470063","type":"hearing_events"},{"id":"bdd4a3f2-02fb-4c9c-ab08-abe65c24edf5","type":"hearing_events"},{"id":"d907f3ad-145f-429b-a5a2-63c9e6b01f31","type":"hearing_events"},{"id":"02303768-b8c2-4145-96f9-44d6b1e3285f","type":"hearing_events"},{"id":"68ecc4e4-9263-4574-88e7-cf632e22c9c1","type":"hearing_events"},{"id":"1785dbed-e0ac-47f9-94b1-b307f3a123a7","type":"hearing_events"},{"id":"8cbb6058-b792-4f65-b1e2-feb20c7cb8ce","type":"hearing_events"},{"id":"a6b77163-d318-4ff2-982f-7f6942912a04","type":"hearing_events"},{"id":"57c9ec39-9bab-43c7-a19d-d885f4a9db9f","type":"hearing_events"},{"id":"3d9b944d-d0cb-4083-8db9-56b9e0f351cb","type":"hearing_events"},{"id":"a78a4f49-a7e3-4533-8884-b78eebe14b28","type":"hearing_events"},{"id":"5a55d671-06d9-4b72-a815-63f828b09d41","type":"hearing_events"},{"id":"eec009c0-0dd5-4cfb-93d9-104e3eda5214","type":"hearing_events"},{"id":"82f0a03e-69f9-45b2-b7eb-7bda4aabe907","type":"hearing_events"},{"id":"31aa7bd7-6d0c-4162-bd8c-6b6349c462cd","type":"hearing_events"},{"id":"f2cf5116-ff9f-4fec-b057-c5ef456977f5","type":"hearing_events"},{"id":"cc3256bb-ea66-4ba4-8f79-2eda2e28df94","type":"hearing_events"},{"id":"f31fc7ef-74a0-4cd1-92f5-8b6aba583092","type":"hearing_events"},{"id":"37251f09-2ead-42e7-aa74-71bf3c0d1e46","type":"hearing_events"},{"id":"f921b93d-9086-433d-a3ed-1a428fdae65a","type":"hearing_events"},{"id":"47e42c65-a60e-4155-a149-bccee5157833","type":"hearing_events"},{"id":"0be0f3bb-4c44-4757-9c3b-31c28d170b7a","type":"hearing_events"},{"id":"babc6bcb-a11a-4328-a5de-11b012b0c487","type":"hearing_events"},{"id":"a06f0eca-5137-4ece-863d-9698be114af0","type":"hearing_events"},{"id":"7e3d5784-d7ee-45c0-97dd-44592a761436","type":"hearing_events"},{"id":"2e46a0a6-d01a-4a8c-a403-7ef43216346c","type":"hearing_events"},{"id":"5068a8b1-81a0-43cb-a51d-2fd9267611b2","type":"hearing_events"},{"id":"c3010e49-53ce-4d43-a0e6-18a5e7597bc8","type":"hearing_events"}]},"providers":{"data":[{"id":"9603a373-32f9-4403-a84b-209577913e60","type":"providers"},{"id":"4e0ce9ef-df5e-40ff-b6f4-2ad7bc17f22e","type":"providers"}]}}},{"id":"1170bb83-b57e-4b58-b7f1-4122899fecd3","type":"hearings","attributes":{"court_name":"Warrington
+        CCU (Decom)","hearing_type":"Mention - Defendant to Attend (MDA)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"],"defendant_names":["Jammy
+        Dodger","Connie Swift","Toby Lind","Mauricio Ledner"],"judge_names":[],"prosecution_advocate_names":null,"defence_advocate_names":["Lakiesha
+        McGlynn","Melodi Douglas"]},"relationships":{"hearing_events":{"data":[{"id":"03a7063e-299d-4743-b317-e5e02789b261","type":"hearing_events"},{"id":"4e50e47a-d2f4-4c23-b4c1-2d2f09e809d0","type":"hearing_events"},{"id":"e305900b-3055-483e-8a15-fdaa632c1a8c","type":"hearing_events"},{"id":"142a02db-7ce6-4b08-a907-8d2654162284","type":"hearing_events"},{"id":"dd787bd4-59c8-4357-a030-38d5c496301a","type":"hearing_events"},{"id":"b63d16d7-be19-4701-9b71-8ec1729bd88a","type":"hearing_events"},{"id":"ad2e01e4-af25-4a76-8fa2-74b332f1e3a1","type":"hearing_events"},{"id":"ac2cd45f-6b7b-486e-b151-86c23a5f1959","type":"hearing_events"},{"id":"6260c900-90fb-4ccf-8c4c-5bd0e38bf6b9","type":"hearing_events"},{"id":"ee8be2c5-fe1e-4b14-8e7d-07d09c8df33a","type":"hearing_events"},{"id":"b409a7f7-e571-44dd-b05d-c8584444a7d3","type":"hearing_events"},{"id":"2712e2a1-fcb2-486d-93c7-e60a2bbfe91c","type":"hearing_events"},{"id":"e256b6d1-f56a-46ea-b36e-4cad1d3bf7e7","type":"hearing_events"},{"id":"5a6a61be-f751-47db-8630-f5047e52e52f","type":"hearing_events"},{"id":"41005459-3dd4-4af0-9899-3eb8f63e200c","type":"hearing_events"},{"id":"44bc25a8-9e8f-4724-883d-e18a776bdd16","type":"hearing_events"},{"id":"757fead3-0a63-4950-a23f-0f9ac819d08d","type":"hearing_events"},{"id":"13c43128-ffa3-4c74-91a7-83f4ec74d59c","type":"hearing_events"},{"id":"f895a030-6b10-4f55-bcb7-6b265049120f","type":"hearing_events"},{"id":"7b93abb8-6f95-40f0-b3e5-9f8e06fde861","type":"hearing_events"},{"id":"50fbf4a7-5748-42f6-b967-49d2d8d97af9","type":"hearing_events"},{"id":"3c1b2a0b-8670-4134-a150-068925771289","type":"hearing_events"},{"id":"2c396d44-5c67-41df-a81d-5e29f7ba65c3","type":"hearing_events"},{"id":"8a55b997-8ba7-4cb7-9a40-bb3ecbeccab4","type":"hearing_events"},{"id":"7b87b06d-7029-47e6-9da2-d1c5fcefe8b2","type":"hearing_events"},{"id":"b0e29f30-fd6d-4633-aa4a-ac5095a54099","type":"hearing_events"},{"id":"0ec17c15-c536-4aee-ad8f-630256e74fc0","type":"hearing_events"},{"id":"c9c83e21-a80f-432d-847a-7be37f42e671","type":"hearing_events"},{"id":"740e571f-af7c-4bc9-9575-0116089db4d9","type":"hearing_events"},{"id":"75d3543b-a773-45f7-a01a-a5d46a444732","type":"hearing_events"}]},"providers":{"data":[{"id":"312e676a-f94e-47e3-b116-cdb8916a6c9a","type":"providers"},{"id":"6f377995-0381-454e-ac47-fe1d0fdba556","type":"providers"}]}}},{"id":"7f5c51a9-7cc9-4455-abe6-70ad73639b8f","type":"hearings","attributes":{"court_name":"Warrington
+        CCU (Decom)","hearing_type":"Plea and Trial Prepation (PTP)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"],"defendant_names":["Jammy
+        Dodger","Connie Swift","Toby Lind","Mauricio Ledner"],"judge_names":[],"prosecution_advocate_names":null,"defence_advocate_names":["Richelle
+        Feil","Clint Shanahan"]},"relationships":{"hearing_events":{"data":[{"id":"09e2e795-79a9-4b41-ad03-dd678c553a30","type":"hearing_events"},{"id":"d64f104f-45bd-4b97-baa2-a2a7e7c77b6d","type":"hearing_events"},{"id":"93f66273-3005-4149-89e6-909c665a0e5d","type":"hearing_events"},{"id":"864331e2-d29a-4530-b8b9-d7b6ae048445","type":"hearing_events"},{"id":"ab9b2921-5f76-4036-8adf-bd8dd6ce26eb","type":"hearing_events"},{"id":"b43df69a-222d-4912-9709-e4462876148f","type":"hearing_events"},{"id":"2cd65f04-faaa-422d-9bdd-83f008570cae","type":"hearing_events"},{"id":"4ef0e2a3-b575-4f1a-8ab7-07692105e154","type":"hearing_events"},{"id":"de890f19-c4cc-4b43-b5d6-6d1b46b0185f","type":"hearing_events"},{"id":"46b68036-13bd-4b73-806b-03c3b91ee5e1","type":"hearing_events"},{"id":"d6efa214-4e40-40bd-a644-df97a486bbb6","type":"hearing_events"},{"id":"984e2a4e-5207-4123-b3a6-66fc10078d0c","type":"hearing_events"},{"id":"b475cc7e-fd30-4e47-9ca1-519cceb1c7f2","type":"hearing_events"},{"id":"64db936e-d8c1-4208-9c8e-d4f3c5d35a46","type":"hearing_events"},{"id":"3b9f6d10-f8b7-469e-84c8-5fdd42eea012","type":"hearing_events"},{"id":"255b852a-cf23-4b26-bfdf-8bfe70b9d4c5","type":"hearing_events"},{"id":"167e29c1-95c0-4dae-bc6d-efc9ea01c7fa","type":"hearing_events"},{"id":"9a4c0034-6708-4d2a-9450-04e8d128d4bb","type":"hearing_events"},{"id":"3ad1ba0c-5eb0-42f3-b6aa-3c63cac41550","type":"hearing_events"},{"id":"2377d92a-df3c-45de-9d25-6abb862f8bef","type":"hearing_events"},{"id":"9e4742f9-a87c-4463-99e7-ddb024dfa062","type":"hearing_events"},{"id":"0f8ffa8e-ff04-465e-be70-c8bec1cac0b5","type":"hearing_events"},{"id":"473acbf3-6b7e-448c-b392-684a64aaa66e","type":"hearing_events"},{"id":"bf30c7b1-096f-4dd6-8ab7-3f88a74a41b0","type":"hearing_events"},{"id":"58268bea-8133-451f-abfc-ebed91d148f4","type":"hearing_events"},{"id":"f98e09d4-4626-4f9d-9b68-b8cece54590d","type":"hearing_events"},{"id":"aa5889e6-5e51-44fb-9ae8-3283bc9415bf","type":"hearing_events"},{"id":"2f68d74e-54b5-4848-938d-858e6b6a4892","type":"hearing_events"},{"id":"32ec8c67-900e-40b7-bf61-1a032df2ae4a","type":"hearing_events"},{"id":"4ffda018-5601-45a4-b0f0-f2fdc5fc170f","type":"hearing_events"}]},"providers":{"data":[{"id":"f254ca95-a960-4c95-9ea5-f373dcb1523c","type":"providers"},{"id":"455a8fd6-99c6-4071-9440-8b6b3fa0df29","type":"providers"}]}}},{"id":"85ce63d0-3840-49f8-a60f-8e1b9840b7e0","type":"hearings","attributes":{"court_name":"Warrington
+        CCU (Decom)","hearing_type":"Application to Break Fixture (BFA)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"],"defendant_names":["Jammy
+        Dodger","Connie Swift","Toby Lind","Mauricio Ledner"],"judge_names":[],"prosecution_advocate_names":null,"defence_advocate_names":["Lauren
+        Mosciski","Monte Bayer"]},"relationships":{"hearing_events":{"data":[{"id":"9a9fefcb-5b17-41f3-b04b-076d80517485","type":"hearing_events"},{"id":"30ef557b-c11a-40ca-b9da-1cca01f114c0","type":"hearing_events"},{"id":"d2ba1b0b-8e78-477f-ac7a-3957f9105d93","type":"hearing_events"},{"id":"b6e43177-be59-42c5-9001-cb9d9970cfe9","type":"hearing_events"},{"id":"dbbb5c18-a6b7-4d02-b9ec-ca372834268c","type":"hearing_events"},{"id":"f7057180-3030-4306-9f12-def5225d01b4","type":"hearing_events"},{"id":"fe560429-2f83-4d5b-9ed5-be7484446ed8","type":"hearing_events"},{"id":"7fc6495a-9a1d-4483-9613-844b9d20ed6a","type":"hearing_events"},{"id":"f74d6ab1-b5be-4db5-9e07-4e62d4fb806c","type":"hearing_events"},{"id":"8587e500-34ca-4707-acfc-7336692386a5","type":"hearing_events"},{"id":"b21cc868-0ec3-40ae-a588-b32ba555be88","type":"hearing_events"},{"id":"30f95c20-0d6a-45de-abf7-d727e83d3e36","type":"hearing_events"},{"id":"43d61a85-75b0-4868-9e80-227ec524656f","type":"hearing_events"},{"id":"ae9b700e-9a4e-48a7-8d31-4bcd74c73d3f","type":"hearing_events"},{"id":"1b9c1590-97ba-450f-a3c0-8bf4e8034a5b","type":"hearing_events"},{"id":"e0edb69d-204f-449d-b812-5123e9fe4c94","type":"hearing_events"},{"id":"4d5bca9d-8148-4c6a-9689-b3c02e939ca6","type":"hearing_events"},{"id":"f77dc682-3973-4230-abdb-b4b835187727","type":"hearing_events"},{"id":"54595be4-cda7-458f-8a5c-fdb41e221f54","type":"hearing_events"},{"id":"c0bc5711-a7cb-41ff-9fe1-ad3eb93764f7","type":"hearing_events"},{"id":"cf3ca0a6-e5ce-4720-96cd-8b274789a102","type":"hearing_events"},{"id":"741b01a2-4499-42d9-8125-d42cd14c418e","type":"hearing_events"},{"id":"d3e394d2-8a2d-4afa-b9c0-154ca9c0ea68","type":"hearing_events"},{"id":"c7a74313-49c3-40a1-b43c-6b27a3b42e48","type":"hearing_events"},{"id":"70562c0a-1f3e-40eb-b5e9-c06e16651f29","type":"hearing_events"},{"id":"6ee39720-1c01-4372-914b-23abcf0cf7eb","type":"hearing_events"},{"id":"c32088af-1dfb-42e0-9f82-d21acbfb13b0","type":"hearing_events"},{"id":"88feb4dc-c5f0-498e-9166-b1c32d4f486f","type":"hearing_events"},{"id":"99b0cd24-b6e2-4be2-b2ab-867fd5304654","type":"hearing_events"},{"id":"d77abe99-1623-4574-8bfa-68c0abc8afa2","type":"hearing_events"}]},"providers":{"data":[{"id":"b7eb456a-ff4e-4e42-8cdb-44de53318d55","type":"providers"},{"id":"4d2e1e39-29e9-4fdd-b33d-067e1829f9a6","type":"providers"}]}}},{"id":"72206a29-4c12-48c5-a7b3-bdb6dc66ed74","type":"hearings","attributes":{"court_name":"Warrington
+        CCU (Decom)","hearing_type":"Application to Break Fixture (BFA)","hearing_days":["2019-10-23T16:19:15.000Z","2019-10-24T08:30:00.000Z","2019-10-25T10:45:00.000Z"],"defendant_names":["Mauricio
+        Ledner","Toby Lind","Connie Swift","Jammy Dodger"],"judge_names":[],"prosecution_advocate_names":null,"defence_advocate_names":["Lena
+        White","Jesus Schultz"]},"relationships":{"hearing_events":{"data":[{"id":"0665159e-8af9-421e-b37b-cdf3d02fafd2","type":"hearing_events"},{"id":"d1f7f4e0-2586-435d-9b76-3a8b5af55f48","type":"hearing_events"},{"id":"17c3635e-3a2c-43ce-9b79-1e464575c903","type":"hearing_events"},{"id":"8441a35b-a5cb-4b49-83f1-c64c9e270bf4","type":"hearing_events"},{"id":"0707cc87-7311-47b8-8c87-d98aef104585","type":"hearing_events"},{"id":"0bb45707-0342-4727-a92d-d18189962954","type":"hearing_events"},{"id":"ebba5f5e-e419-4c8b-9592-760e077ea45e","type":"hearing_events"},{"id":"7077bf8a-f5f2-402c-b461-8c8220088ff8","type":"hearing_events"},{"id":"3899a60f-2a5b-4446-997f-6f54004b127c","type":"hearing_events"},{"id":"aa11126d-3471-42d0-bb95-f3c53577f76d","type":"hearing_events"},{"id":"56daaa18-39ae-42a9-a5f8-894adeb4c98c","type":"hearing_events"},{"id":"5a90cd69-f743-4400-aed6-b4bfbb6e657b","type":"hearing_events"},{"id":"db725094-80b8-485a-a4ef-2a18a31ae46b","type":"hearing_events"},{"id":"ba5f429d-3178-45b7-b87b-fb2aa4d3cb1e","type":"hearing_events"},{"id":"e9e6d1f7-d8fc-4309-b1fd-070879b53a04","type":"hearing_events"},{"id":"247854c8-7e90-46b6-a7fa-811e72a85a29","type":"hearing_events"},{"id":"e070a52a-05c8-4f4d-9b51-d89abc5ffbd6","type":"hearing_events"},{"id":"cf1e05e5-4998-4c3d-b4f1-913e8b9f9969","type":"hearing_events"},{"id":"f6ed7249-10ba-44ac-8080-96157338440d","type":"hearing_events"},{"id":"76521751-dec3-4d2f-83cc-68ae808a2dc0","type":"hearing_events"},{"id":"20293e40-9f3a-40f2-a3b0-e9078c0747aa","type":"hearing_events"},{"id":"967c9544-f37f-4db3-a1fb-435772e4458c","type":"hearing_events"},{"id":"097d9834-a422-4cc4-b5d1-60a66e021395","type":"hearing_events"},{"id":"53481aa5-fdf7-4cad-871a-7076faac30e6","type":"hearing_events"},{"id":"b93ac66b-6def-4f5a-9f3e-23ff53159529","type":"hearing_events"},{"id":"66d9189c-f31a-4ba1-aad3-03df49d2d47a","type":"hearing_events"},{"id":"87930332-817e-4dac-b33e-bec39ff43f72","type":"hearing_events"},{"id":"444593b3-377b-48e5-ae8e-18469eb607fe","type":"hearing_events"},{"id":"29d6dadc-4fd5-4dc5-a872-8d9dc26a33a1","type":"hearing_events"},{"id":"0eff0d63-be5c-48f7-8dbf-4b3de9797a0c","type":"hearing_events"}]},"providers":{"data":[{"id":"106375f1-bb30-42f0-a8de-2d7c589c5452","type":"providers"},{"id":"d1241d74-adda-4e53-a2dc-4078a416aa60","type":"providers"}]}}},{"id":"0fc164f5-21ee-460b-add0-d3f04c9dabd5","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-23T16:19:15.000+00:00"}},{"id":"d9914cdc-fdb0-4da4-ac01-82e99ec744bc","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-23T17:19:15.000+00:00"}},{"id":"2af8c327-1808-4db8-8b0d-54793c470063","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-23T18:19:15.000+00:00"}},{"id":"bdd4a3f2-02fb-4c9c-ab08-abe65c24edf5","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-23T19:19:15.000+00:00"}},{"id":"d907f3ad-145f-429b-a5a2-63c9e6b01f31","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-23T20:19:15.000+00:00"}},{"id":"02303768-b8c2-4145-96f9-44d6b1e3285f","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-23T21:19:15.000+00:00"}},{"id":"68ecc4e4-9263-4574-88e7-cf632e22c9c1","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-23T22:19:15.000+00:00"}},{"id":"1785dbed-e0ac-47f9-94b1-b307f3a123a7","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-23T23:19:15.000+00:00"}},{"id":"8cbb6058-b792-4f65-b1e2-feb20c7cb8ce","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-23T00:19:15.000+00:00"}},{"id":"a6b77163-d318-4ff2-982f-7f6942912a04","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-23T01:19:15.000+00:00"}},{"id":"57c9ec39-9bab-43c7-a19d-d885f4a9db9f","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-24T08:30:00.000+00:00"}},{"id":"3d9b944d-d0cb-4083-8db9-56b9e0f351cb","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-24T09:30:00.000+00:00"}},{"id":"a78a4f49-a7e3-4533-8884-b78eebe14b28","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-24T10:30:00.000+00:00"}},{"id":"5a55d671-06d9-4b72-a815-63f828b09d41","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-24T11:30:00.000+00:00"}},{"id":"eec009c0-0dd5-4cfb-93d9-104e3eda5214","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-24T12:30:00.000+00:00"}},{"id":"82f0a03e-69f9-45b2-b7eb-7bda4aabe907","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-24T13:30:00.000+00:00"}},{"id":"31aa7bd7-6d0c-4162-bd8c-6b6349c462cd","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-24T14:30:00.000+00:00"}},{"id":"f2cf5116-ff9f-4fec-b057-c5ef456977f5","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-24T15:30:00.000+00:00"}},{"id":"cc3256bb-ea66-4ba4-8f79-2eda2e28df94","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-24T16:30:00.000+00:00"}},{"id":"f31fc7ef-74a0-4cd1-92f5-8b6aba583092","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-24T17:30:00.000+00:00"}},{"id":"37251f09-2ead-42e7-aa74-71bf3c0d1e46","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-25T10:45:00.000+00:00"}},{"id":"f921b93d-9086-433d-a3ed-1a428fdae65a","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-25T11:45:00.000+00:00"}},{"id":"47e42c65-a60e-4155-a149-bccee5157833","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-25T12:45:00.000+00:00"}},{"id":"0be0f3bb-4c44-4757-9c3b-31c28d170b7a","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-25T13:45:00.000+00:00"}},{"id":"babc6bcb-a11a-4328-a5de-11b012b0c487","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-25T14:45:00.000+00:00"}},{"id":"a06f0eca-5137-4ece-863d-9698be114af0","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-25T15:45:00.000+00:00"}},{"id":"7e3d5784-d7ee-45c0-97dd-44592a761436","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-25T16:45:00.000+00:00"}},{"id":"2e46a0a6-d01a-4a8c-a403-7ef43216346c","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-25T17:45:00.000+00:00"}},{"id":"5068a8b1-81a0-43cb-a51d-2fd9267611b2","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-25T18:45:00.000+00:00"}},{"id":"c3010e49-53ce-4d43-a0e6-18a5e7597bc8","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-25T19:45:00.000+00:00"}},{"id":"03a7063e-299d-4743-b317-e5e02789b261","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-23T16:19:15.000+00:00"}},{"id":"4e50e47a-d2f4-4c23-b4c1-2d2f09e809d0","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-23T17:19:15.000+00:00"}},{"id":"e305900b-3055-483e-8a15-fdaa632c1a8c","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-23T18:19:15.000+00:00"}},{"id":"142a02db-7ce6-4b08-a907-8d2654162284","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-23T19:19:15.000+00:00"}},{"id":"dd787bd4-59c8-4357-a030-38d5c496301a","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-23T20:19:15.000+00:00"}},{"id":"b63d16d7-be19-4701-9b71-8ec1729bd88a","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-23T21:19:15.000+00:00"}},{"id":"ad2e01e4-af25-4a76-8fa2-74b332f1e3a1","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-23T22:19:15.000+00:00"}},{"id":"ac2cd45f-6b7b-486e-b151-86c23a5f1959","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-23T23:19:15.000+00:00"}},{"id":"6260c900-90fb-4ccf-8c4c-5bd0e38bf6b9","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-23T00:19:15.000+00:00"}},{"id":"ee8be2c5-fe1e-4b14-8e7d-07d09c8df33a","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-23T01:19:15.000+00:00"}},{"id":"b409a7f7-e571-44dd-b05d-c8584444a7d3","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-24T08:30:00.000+00:00"}},{"id":"2712e2a1-fcb2-486d-93c7-e60a2bbfe91c","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-24T09:30:00.000+00:00"}},{"id":"e256b6d1-f56a-46ea-b36e-4cad1d3bf7e7","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-24T10:30:00.000+00:00"}},{"id":"5a6a61be-f751-47db-8630-f5047e52e52f","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-24T11:30:00.000+00:00"}},{"id":"41005459-3dd4-4af0-9899-3eb8f63e200c","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-24T12:30:00.000+00:00"}},{"id":"44bc25a8-9e8f-4724-883d-e18a776bdd16","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-24T13:30:00.000+00:00"}},{"id":"757fead3-0a63-4950-a23f-0f9ac819d08d","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-24T14:30:00.000+00:00"}},{"id":"13c43128-ffa3-4c74-91a7-83f4ec74d59c","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-24T15:30:00.000+00:00"}},{"id":"f895a030-6b10-4f55-bcb7-6b265049120f","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-24T16:30:00.000+00:00"}},{"id":"7b93abb8-6f95-40f0-b3e5-9f8e06fde861","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-24T17:30:00.000+00:00"}},{"id":"50fbf4a7-5748-42f6-b967-49d2d8d97af9","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-25T10:45:00.000+00:00"}},{"id":"3c1b2a0b-8670-4134-a150-068925771289","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-25T11:45:00.000+00:00"}},{"id":"2c396d44-5c67-41df-a81d-5e29f7ba65c3","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-25T12:45:00.000+00:00"}},{"id":"8a55b997-8ba7-4cb7-9a40-bb3ecbeccab4","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-25T13:45:00.000+00:00"}},{"id":"7b87b06d-7029-47e6-9da2-d1c5fcefe8b2","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-25T14:45:00.000+00:00"}},{"id":"b0e29f30-fd6d-4633-aa4a-ac5095a54099","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-25T15:45:00.000+00:00"}},{"id":"0ec17c15-c536-4aee-ad8f-630256e74fc0","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-25T16:45:00.000+00:00"}},{"id":"c9c83e21-a80f-432d-847a-7be37f42e671","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-25T17:45:00.000+00:00"}},{"id":"740e571f-af7c-4bc9-9575-0116089db4d9","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-25T18:45:00.000+00:00"}},{"id":"75d3543b-a773-45f7-a01a-a5d46a444732","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-25T19:45:00.000+00:00"}},{"id":"09e2e795-79a9-4b41-ad03-dd678c553a30","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-23T16:19:15.000+00:00"}},{"id":"d64f104f-45bd-4b97-baa2-a2a7e7c77b6d","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-23T17:19:15.000+00:00"}},{"id":"93f66273-3005-4149-89e6-909c665a0e5d","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-23T18:19:15.000+00:00"}},{"id":"864331e2-d29a-4530-b8b9-d7b6ae048445","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-23T19:19:15.000+00:00"}},{"id":"ab9b2921-5f76-4036-8adf-bd8dd6ce26eb","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-23T20:19:15.000+00:00"}},{"id":"b43df69a-222d-4912-9709-e4462876148f","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-23T21:19:15.000+00:00"}},{"id":"2cd65f04-faaa-422d-9bdd-83f008570cae","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-23T22:19:15.000+00:00"}},{"id":"4ef0e2a3-b575-4f1a-8ab7-07692105e154","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-23T23:19:15.000+00:00"}},{"id":"de890f19-c4cc-4b43-b5d6-6d1b46b0185f","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-23T00:19:15.000+00:00"}},{"id":"46b68036-13bd-4b73-806b-03c3b91ee5e1","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-23T01:19:15.000+00:00"}},{"id":"d6efa214-4e40-40bd-a644-df97a486bbb6","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-24T08:30:00.000+00:00"}},{"id":"984e2a4e-5207-4123-b3a6-66fc10078d0c","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-24T09:30:00.000+00:00"}},{"id":"b475cc7e-fd30-4e47-9ca1-519cceb1c7f2","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-24T10:30:00.000+00:00"}},{"id":"64db936e-d8c1-4208-9c8e-d4f3c5d35a46","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-24T11:30:00.000+00:00"}},{"id":"3b9f6d10-f8b7-469e-84c8-5fdd42eea012","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-24T12:30:00.000+00:00"}},{"id":"255b852a-cf23-4b26-bfdf-8bfe70b9d4c5","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-24T13:30:00.000+00:00"}},{"id":"167e29c1-95c0-4dae-bc6d-efc9ea01c7fa","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-24T14:30:00.000+00:00"}},{"id":"9a4c0034-6708-4d2a-9450-04e8d128d4bb","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-24T15:30:00.000+00:00"}},{"id":"3ad1ba0c-5eb0-42f3-b6aa-3c63cac41550","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-24T16:30:00.000+00:00"}},{"id":"2377d92a-df3c-45de-9d25-6abb862f8bef","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-24T17:30:00.000+00:00"}},{"id":"9e4742f9-a87c-4463-99e7-ddb024dfa062","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-25T10:45:00.000+00:00"}},{"id":"0f8ffa8e-ff04-465e-be70-c8bec1cac0b5","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-25T11:45:00.000+00:00"}},{"id":"473acbf3-6b7e-448c-b392-684a64aaa66e","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-25T12:45:00.000+00:00"}},{"id":"bf30c7b1-096f-4dd6-8ab7-3f88a74a41b0","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-25T13:45:00.000+00:00"}},{"id":"58268bea-8133-451f-abfc-ebed91d148f4","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-25T14:45:00.000+00:00"}},{"id":"f98e09d4-4626-4f9d-9b68-b8cece54590d","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-25T15:45:00.000+00:00"}},{"id":"aa5889e6-5e51-44fb-9ae8-3283bc9415bf","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-25T16:45:00.000+00:00"}},{"id":"2f68d74e-54b5-4848-938d-858e6b6a4892","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-25T17:45:00.000+00:00"}},{"id":"32ec8c67-900e-40b7-bf61-1a032df2ae4a","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-25T18:45:00.000+00:00"}},{"id":"4ffda018-5601-45a4-b0f0-f2fdc5fc170f","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-25T19:45:00.000+00:00"}},{"id":"9a9fefcb-5b17-41f3-b04b-076d80517485","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-23T16:19:15.000+00:00"}},{"id":"30ef557b-c11a-40ca-b9da-1cca01f114c0","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-23T17:19:15.000+00:00"}},{"id":"d2ba1b0b-8e78-477f-ac7a-3957f9105d93","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-23T18:19:15.000+00:00"}},{"id":"b6e43177-be59-42c5-9001-cb9d9970cfe9","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-23T19:19:15.000+00:00"}},{"id":"dbbb5c18-a6b7-4d02-b9ec-ca372834268c","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-23T20:19:15.000+00:00"}},{"id":"f7057180-3030-4306-9f12-def5225d01b4","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-23T21:19:15.000+00:00"}},{"id":"fe560429-2f83-4d5b-9ed5-be7484446ed8","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-23T22:19:15.000+00:00"}},{"id":"7fc6495a-9a1d-4483-9613-844b9d20ed6a","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-23T23:19:15.000+00:00"}},{"id":"f74d6ab1-b5be-4db5-9e07-4e62d4fb806c","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-23T00:19:15.000+00:00"}},{"id":"8587e500-34ca-4707-acfc-7336692386a5","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-23T01:19:15.000+00:00"}},{"id":"b21cc868-0ec3-40ae-a588-b32ba555be88","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-24T08:30:00.000+00:00"}},{"id":"30f95c20-0d6a-45de-abf7-d727e83d3e36","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-24T09:30:00.000+00:00"}},{"id":"43d61a85-75b0-4868-9e80-227ec524656f","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-24T10:30:00.000+00:00"}},{"id":"ae9b700e-9a4e-48a7-8d31-4bcd74c73d3f","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-24T11:30:00.000+00:00"}},{"id":"1b9c1590-97ba-450f-a3c0-8bf4e8034a5b","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-24T12:30:00.000+00:00"}},{"id":"e0edb69d-204f-449d-b812-5123e9fe4c94","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-24T13:30:00.000+00:00"}},{"id":"4d5bca9d-8148-4c6a-9689-b3c02e939ca6","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-24T14:30:00.000+00:00"}},{"id":"f77dc682-3973-4230-abdb-b4b835187727","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-24T15:30:00.000+00:00"}},{"id":"54595be4-cda7-458f-8a5c-fdb41e221f54","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-24T16:30:00.000+00:00"}},{"id":"c0bc5711-a7cb-41ff-9fe1-ad3eb93764f7","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-24T17:30:00.000+00:00"}},{"id":"cf3ca0a6-e5ce-4720-96cd-8b274789a102","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-25T10:45:00.000+00:00"}},{"id":"741b01a2-4499-42d9-8125-d42cd14c418e","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-25T11:45:00.000+00:00"}},{"id":"d3e394d2-8a2d-4afa-b9c0-154ca9c0ea68","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-25T12:45:00.000+00:00"}},{"id":"c7a74313-49c3-40a1-b43c-6b27a3b42e48","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-25T13:45:00.000+00:00"}},{"id":"70562c0a-1f3e-40eb-b5e9-c06e16651f29","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-25T14:45:00.000+00:00"}},{"id":"6ee39720-1c01-4372-914b-23abcf0cf7eb","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-25T15:45:00.000+00:00"}},{"id":"c32088af-1dfb-42e0-9f82-d21acbfb13b0","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-25T16:45:00.000+00:00"}},{"id":"88feb4dc-c5f0-498e-9166-b1c32d4f486f","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-25T17:45:00.000+00:00"}},{"id":"99b0cd24-b6e2-4be2-b2ab-867fd5304654","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-25T18:45:00.000+00:00"}},{"id":"d77abe99-1623-4574-8bfa-68c0abc8afa2","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-25T19:45:00.000+00:00"}},{"id":"0665159e-8af9-421e-b37b-cdf3d02fafd2","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-23T16:19:15.000+00:00"}},{"id":"d1f7f4e0-2586-435d-9b76-3a8b5af55f48","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-23T17:19:15.000+00:00"}},{"id":"17c3635e-3a2c-43ce-9b79-1e464575c903","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-23T18:19:15.000+00:00"}},{"id":"8441a35b-a5cb-4b49-83f1-c64c9e270bf4","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-23T19:19:15.000+00:00"}},{"id":"0707cc87-7311-47b8-8c87-d98aef104585","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-23T20:19:15.000+00:00"}},{"id":"0bb45707-0342-4727-a92d-d18189962954","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-23T21:19:15.000+00:00"}},{"id":"ebba5f5e-e419-4c8b-9592-760e077ea45e","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-23T22:19:15.000+00:00"}},{"id":"7077bf8a-f5f2-402c-b461-8c8220088ff8","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-23T23:19:15.000+00:00"}},{"id":"3899a60f-2a5b-4446-997f-6f54004b127c","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-23T00:19:15.000+00:00"}},{"id":"aa11126d-3471-42d0-bb95-f3c53577f76d","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-23T01:19:15.000+00:00"}},{"id":"56daaa18-39ae-42a9-a5f8-894adeb4c98c","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-24T08:30:00.000+00:00"}},{"id":"5a90cd69-f743-4400-aed6-b4bfbb6e657b","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-24T09:30:00.000+00:00"}},{"id":"db725094-80b8-485a-a4ef-2a18a31ae46b","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-24T10:30:00.000+00:00"}},{"id":"ba5f429d-3178-45b7-b87b-fb2aa4d3cb1e","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-24T11:30:00.000+00:00"}},{"id":"e9e6d1f7-d8fc-4309-b1fd-070879b53a04","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-24T12:30:00.000+00:00"}},{"id":"247854c8-7e90-46b6-a7fa-811e72a85a29","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-24T13:30:00.000+00:00"}},{"id":"e070a52a-05c8-4f4d-9b51-d89abc5ffbd6","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-24T14:30:00.000+00:00"}},{"id":"cf1e05e5-4998-4c3d-b4f1-913e8b9f9969","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-24T15:30:00.000+00:00"}},{"id":"f6ed7249-10ba-44ac-8080-96157338440d","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-24T16:30:00.000+00:00"}},{"id":"76521751-dec3-4d2f-83cc-68ae808a2dc0","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-24T17:30:00.000+00:00"}},{"id":"20293e40-9f3a-40f2-a3b0-e9078c0747aa","type":"hearing_events","attributes":{"description":"Hearing
+        event 0","occurred_at":"2019-10-25T10:45:00.000+00:00"}},{"id":"967c9544-f37f-4db3-a1fb-435772e4458c","type":"hearing_events","attributes":{"description":"Hearing
+        event 1","occurred_at":"2019-10-25T11:45:00.000+00:00"}},{"id":"097d9834-a422-4cc4-b5d1-60a66e021395","type":"hearing_events","attributes":{"description":"Hearing
+        event 2","occurred_at":"2019-10-25T12:45:00.000+00:00"}},{"id":"53481aa5-fdf7-4cad-871a-7076faac30e6","type":"hearing_events","attributes":{"description":"Hearing
+        event 3","occurred_at":"2019-10-25T13:45:00.000+00:00"}},{"id":"b93ac66b-6def-4f5a-9f3e-23ff53159529","type":"hearing_events","attributes":{"description":"Hearing
+        event 4","occurred_at":"2019-10-25T14:45:00.000+00:00"}},{"id":"66d9189c-f31a-4ba1-aad3-03df49d2d47a","type":"hearing_events","attributes":{"description":"Hearing
+        event 5","occurred_at":"2019-10-25T15:45:00.000+00:00"}},{"id":"87930332-817e-4dac-b33e-bec39ff43f72","type":"hearing_events","attributes":{"description":"Hearing
+        event 6","occurred_at":"2019-10-25T16:45:00.000+00:00"}},{"id":"444593b3-377b-48e5-ae8e-18469eb607fe","type":"hearing_events","attributes":{"description":"Hearing
+        event 7","occurred_at":"2019-10-25T17:45:00.000+00:00"}},{"id":"29d6dadc-4fd5-4dc5-a872-8d9dc26a33a1","type":"hearing_events","attributes":{"description":"Hearing
+        event 8","occurred_at":"2019-10-25T18:45:00.000+00:00"}},{"id":"0eff0d63-be5c-48f7-8dbf-4b3de9797a0c","type":"hearing_events","attributes":{"description":"Hearing
+        event 9","occurred_at":"2019-10-25T19:45:00.000+00:00"}}]}'
+  recorded_at: Tue, 04 Aug 2020 15:02:48 GMT
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=NONEXISTENTCASEURN&include=defendants
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=NONEXISTENTCASEURN&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events
     body:
       encoding: US-ASCII
       string: ''
@@ -88,6 +263,8 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 5eeb8cc4-d141-4464-8ac5-8204d1e31871
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
@@ -95,14 +272,13 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 948a60fa-e8aa-4d82-ab4e-8bfc77547198
+      - 5eeb8cc4-d141-4464-8ac5-8204d1e31871
       X-Runtime:
-      - '0.015980'
+      - '0.026921'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"data":null}'
-    http_version: null
-  recorded_at: Mon, 20 Apr 2020 13:41:39 GMT
-recorded_with: VCR 5.1.0
+  recorded_at: Tue, 04 Aug 2020 15:02:50 GMT
+recorded_with: VCR 6.0.0

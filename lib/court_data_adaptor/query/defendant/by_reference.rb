@@ -10,8 +10,7 @@ module CourtDataAdaptor
           refresh_token_if_required!
 
           cases = resource
-                  .includes(:defendants)
-                  .includes('defendants.offences')
+                  .includes(:defendants, defendants: :offences)
                   .where(
                     reference.kind => reference.value
                   )
@@ -30,7 +29,7 @@ module CourtDataAdaptor
           cases.each_with_object([]) do |c, results|
             c.defendants.each do |d|
               d.prosecution_case_reference = c.prosecution_case_reference
-              results << d if d.send(reference.kind).casecmp(reference.value).zero?
+              results << d if d.send(reference.kind)&.casecmp(reference.value)&.zero?
             end
           end
         end

@@ -26,6 +26,22 @@
                      "type":"defendants"
                   }
                ]
+            },
+            "hearing_summaries": {
+               "data": [
+                 {
+                   "id": "345be88a-31cf-4a30-9de3-da98e973367e",
+                   "type": "hearing_summaries"
+                 }
+               ]
+            },
+            "hearings": {
+               "data": [
+                  {
+                   "id": "345be88a-31cf-4a30-9de3-da98e973367e",
+                     "type": "hearings"
+                  }
+               ]
             }
          }
       }
@@ -45,7 +61,7 @@
             "offences":{
                "data":[
                   {
-                     "id":"0444e880-3a4c-45d2-b025-04bd37887115",
+                     "id":"f0908b50-7b87-49d3-8102-dff9d461a8ff",
                      "type":"offences"
                   }
                ]
@@ -66,7 +82,7 @@
             "offences":{
                "data":[
                   {
-                     "id":"2c10c1a7-3857-4e37-a46e-53608638190d",
+                     "id":"f0908b50-7b87-49d3-8102-dff9d461a8ff",
                      "type":"offences"
                   }
                ]
@@ -87,7 +103,7 @@
             "offences":{
                "data":[
                   {
-                     "id":"893e695e-e5b2-4cb9-881b-f29f691b3313",
+                     "id":"f0908b50-7b87-49d3-8102-dff9d461a8ff",
                      "type":"offences"
                   }
                ]
@@ -108,11 +124,79 @@
             "offences":{
                "data":[
                   {
-                     "id":"476dc225-0c78-4cfd-af2c-86b32ac42a4f",
+                     "id":"f0908b50-7b87-49d3-8102-dff9d461a8ff",
                      "type":"offences"
                   }
                ]
             }
+         }
+      },
+      {
+         "id": "f0908b50-7b87-49d3-8102-dff9d461a8ff",
+         "type": "offences",
+         "attributes": {
+            "code": "PT00011",
+            "order_index": 1,
+            "title": "Fraud by false representation",
+            "mode_of_trial": "Random string",
+            "plea": null,
+            "plea_date": null
+         }
+      },
+      {
+         "type": "hearing_summaries",
+         "id": "345be88a-31cf-4a30-9de3-da98e973367e",
+         "attributes":{
+            "hearing_type": "Application to Break Fixture (BFA)",
+            "hearing_days": [
+               "2019-10-23T16:19:15.000Z",
+               "2019-10-24T08:30:00.000Z",
+               "2019-10-25T10:45:00.000Z"
+            ]
+         }
+      },
+      {
+         "type": "hearings",
+         "id": "345be88a-31cf-4a30-9de3-da98e973367e",
+         "attributes":{
+            "court_name": "Warrington CCU (Decom)",
+            "hearing_type": "Application to Break Fixture (BFA)",
+            "hearing_days": [
+               "2019-10-23T16:19:15.000Z",
+               "2019-10-24T08:30:00.000Z",
+               "2019-10-25T10:45:00.000Z"
+            ],
+            "defendant_names": [
+               "Jammy Dodger",
+               "Connie Swift",
+               "Toby Lind",
+               "Mauricio Ledner"
+            ],
+            "judge_names": [
+            ],
+            "prosecution_advocate_names": null,
+            "defence_advocate_names": [
+               "Valentine Lakin",
+               "Joel Hickle"
+            ]
+         },
+         "relationships":{
+            "hearing_events":{
+               "data":[
+                  {
+                     "id":"476dc225-0c78-4cfd-af2c-86b32ac42a4f",
+                     "type":"hearing_events"
+                  }
+               ]
+            }
+         }
+      },
+      {
+         "id": "476dc225-0c78-4cfd-af2c-86b32ac42a4f",
+         "type": "hearing_events",
+         "attributes": {
+            "description": "Hearing event 8",
+            "occurred_at": "2019-10-25T18:45:00.000+00:00"
          }
       }
    ]

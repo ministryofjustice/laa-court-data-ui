@@ -26,8 +26,8 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
 
     before do
       allow(instance).to receive(:refresh_token_if_required!)
-      allow(resource).to receive(:where).and_return(resultset)
-      allow(resultset).to receive(:includes).with(:defendants).and_return(resultset)
+      allow(resource).to receive(:includes).and_return(resultset)
+      allow(resultset).to receive(:where).and_return(resultset)
       allow(resultset).to receive(:all)
       call
     end
@@ -36,14 +36,16 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
       expect(instance).to have_received(:refresh_token_if_required!)
     end
 
-    it 'sends where query to resource' do
-      expect(resource)
-        .to have_received(:where)
-        .with(prosecution_case_reference: 'ACASEURN')
+    it 'sends inclusion request to resource' do
+      expect(resource).to have_received(:includes)
+        .with(:defendants, 'defendants.offences',
+              :hearing_summaries, :hearings, 'hearings.hearing_events')
     end
 
-    it 'sends includes(:defendants) query to resultset' do
-      expect(resultset).to have_received(:includes).with(:defendants)
+    it 'sends where query to resource' do
+      expect(resultset)
+        .to have_received(:where)
+        .with(prosecution_case_reference: 'ACASEURN')
     end
 
     it 'sends all message to resultset' do
@@ -54,7 +56,7 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
       let(:term) { 'a /case-URN' }
 
       it 'strips whitespace and some symbols' do
-        expect(resource)
+        expect(resultset)
           .to have_received(:where)
           .with(prosecution_case_reference: 'ACASEURN')
       end

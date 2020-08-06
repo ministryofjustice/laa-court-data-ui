@@ -28,8 +28,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
 
     before do
       allow(instance).to receive(:refresh_token_if_required!)
-      allow(resource).to receive(:includes).with(:defendants).and_return(resultset)
-      allow(resultset).to receive(:includes).with('defendants.offences').and_return(resultset)
+      allow(resource).to receive(:includes).and_return(resultset)
       allow(resultset).to receive(:where).and_return(resultset)
       allow(resultset).to receive(:all).and_return(resultset)
       allow(resultset).to receive(:each_with_object).and_return(Array)
@@ -40,12 +39,8 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByReference do
       expect(instance).to have_received(:refresh_token_if_required!)
     end
 
-    it 'sends includes(:defendants) query to resource' do
-      expect(resource).to have_received(:includes).with(:defendants)
-    end
-
-    it 'sends includes(\'defendants.offences\') query to resource' do
-      expect(resultset).to have_received(:includes).with('defendants.offences')
+    it 'sends request with inclusions to resource' do
+      expect(resource).to have_received(:includes).with(:defendants, defendants: :offences)
     end
 
     context 'with national insurance number' do

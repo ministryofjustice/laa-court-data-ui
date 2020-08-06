@@ -30,16 +30,15 @@ RSpec.describe CourtDataAdaptor::ActsAsResource, :concern do
     it { is_expected.to be :my_resource_class }
   end
 
-  describe '#refresh_token_if_required!' do
-    subject(:refresh) { resource_instance.refresh_token_if_required! }
+  describe '.refresh_token_if_required!' do
+    subject(:refresh) { test_class.refresh_token_if_required! }
 
-    let(:resource_instance) { test_class.new }
     let(:resource) { class_double('MyResource') }
     let(:client) { instance_double(CourtDataAdaptor::Client) }
 
     before do
       conn = instance_double(JsonApiClient::Connection)
-      allow(resource_instance).to receive(:resource).and_return(resource)
+      allow(test_class).to receive(:resource).and_return(resource)
       allow(resource).to receive(:connection).and_yield(conn)
       allow(conn).to receive(:use)
       allow(resource).to receive(:client).and_return(client)
@@ -53,6 +52,21 @@ RSpec.describe CourtDataAdaptor::ActsAsResource, :concern do
 
     it 'calls client bearer_token, which refreshes if required' do
       expect(client).to have_received(:bearer_token)
+    end
+  end
+
+  describe '#refresh_token_if_required!' do
+    subject(:refresh) { resource_instance.refresh_token_if_required! }
+
+    let(:resource_instance) { test_class.new }
+
+    before do
+      allow(test_class).to receive(:refresh_token_if_required!)
+    end
+
+    it 'calls .refresh_token_if_required!' do
+      resource_instance.refresh_token_if_required!
+      expect(test_class).to have_received(:refresh_token_if_required!)
     end
   end
 end

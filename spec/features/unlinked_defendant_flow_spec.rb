@@ -3,10 +3,9 @@
 RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: true do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
-  let(:defendant_nino) { 'JC123456A' }
-  let(:defendant_asn) { '0TSQT1LMI7CR' }
   let(:defendant_name) { 'Jammy Dodger' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+  let(:hearing_day) { '23/10/2019' }
 
   before do
     sign_in user
@@ -27,6 +26,13 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     click_link(defendant_name)
     then_defendant_view_displayed_for(defendant_name)
     then_unlinked_defendant_page_displayed
+  end
+
+  scenario 'user navigates from case to hearings view', stub_hearing: true do
+    when_viewing_case(case_urn)
+    then_case_view_displayed
+    click_link(hearing_day)
+    then_hearing_view_displayed_for(hearing_day)
   end
 
   scenario 'user views defendant details' do
@@ -80,9 +86,14 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   end
 
   def then_case_view_displayed
+    has_case_heading
+    then_defendant_list_displayed
+    then_hearing_summary_list_displayed
+  end
+
+  def has_case_heading
     expect(page).to have_css('h1', text: 'TEST12345')
     expect(page).to have_css('.govuk-caption-xl', text: 'Case')
-    expect(page).to have_css('.govuk-heading-m', text: 'Defendants')
   end
 
   def when_viewing_defendant(defendant_id)
@@ -95,20 +106,118 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     expect(page).to have_css('.govuk-table', minimum: 2)
   end
 
+  def then_hearing_summary_list_displayed
+    has_hearing_summary_table
+    has_hearing_summary_table_headers
+    has_hearing_summary_table_row_cells
+  end
+
+  def has_hearing_summary_table
+    expect(page).to have_css('.govuk-heading-m', text: 'Hearings')
+    expect(page).to have_table('Hearings')
+  end
+
+  def has_hearing_summary_table_headers
+    within :table, 'Hearings' do
+      expect(page).to have_css('.govuk-table__header', text: 'Date')
+      expect(page).to have_css('.govuk-table__header', text: 'Hearing type')
+      expect(page).to have_css('.govuk-table__header', text: 'Providers attending')
+    end
+  end
+
+  def has_hearing_summary_table_row_cells
+    within :table, 'Hearings' do
+      rows = find_all('tbody .govuk-table__row')
+      rows.each do |row|
+        cells = row.all('.govuk-table__cell')
+        expect(cells[0]).to have_link(nil, href: %r{/hearings/.*})
+        expect(cells[1].text).to be_a String
+        expect(cells[2].text).to be_a String
+      end
+    end
+  end
+
+  def then_hearing_view_displayed_for(hearing_day)
+    has_hearing_heading(hearing_day)
+    has_hearing_table
+    has_hearing_table_row_header_columns
+    has_attendee_table
+    has_attendee_table_row_header_columns
+    has_hearing_event_table
+    has_hearing_event_table_headers
+  end
+
+  def has_hearing_heading(hearing_day)
+    expect(page).to have_css('.govuk-caption-xl', text: 'Hearing')
+    expect(page).to have_css('h1.govuk-heading-xl', text: hearing_day)
+  end
+
+  def has_hearing_table
+    expect(page).to have_table('Hearing')
+  end
+
+  def has_hearing_table_row_header_columns
+    within :table, 'Hearing' do
+      rows = find_all('tbody .govuk-table__row')
+      expect(rows[0].first('.govuk-table__header')).to have_text 'Hearing type'
+      expect(rows[1].first('.govuk-table__header')).to have_text 'Court'
+      expect(rows[2].first('.govuk-table__header')).to have_text 'Time listed'
+    end
+  end
+
+  def has_attendee_table
+    expect(page).to have_css('.govuk-heading-m', text: 'Attendees')
+    expect(page).to have_table('Attendees')
+  end
+
+  def has_attendee_table_row_header_columns
+    within :table, 'Attendees' do
+      rows = find_all('tbody .govuk-table__row')
+      expect(rows[0].first('.govuk-table__header')).to have_text 'Defendants'
+      expect(rows[1].first('.govuk-table__header')).to have_text 'Defence advocates'
+      expect(rows[2].first('.govuk-table__header')).to have_text 'Prosecution advocates'
+      expect(rows[3].first('.govuk-table__header')).to have_text 'Judges'
+    end
+  end
+
+  def has_hearing_event_table
+    expect(page).to have_table('Hearing events')
+  end
+
+  def has_hearing_event_table_headers
+    within :table, 'Hearing events' do
+      expect(page).to have_css('.govuk-table__header', text: 'Time')
+      expect(page).to have_css('.govuk-table__header', text: 'Event')
+    end
+  end
+
   def then_defendant_list_displayed
-    within 'thead.govuk-table__head' do
+    has_defendant_table
+    has_defendant_table_headers
+    has_defendant_table_row_cells
+  end
+
+  def has_defendant_table
+    expect(page).to have_css('.govuk-heading-m', text: 'Defendant')
+    expect(page).to have_table('Defendants')
+  end
+
+  def has_defendant_table_headers
+    within :table, 'Defendants' do
       expect(page).to have_css('.govuk-table__header', text: 'Name')
       expect(page).to have_css('.govuk-table__header', text: 'Date of birth')
       expect(page).to have_css('.govuk-table__header', text: 'MAAT number')
     end
+  end
 
-    within 'tbody.govuk-table__body' do
-      rows = page.all('.govuk-table__row')
+  def has_defendant_table_row_cells
+    within :table, 'Defendants' do
+      rows = find_all('tbody .govuk-table__row')
       rows.each do |row|
         cells = row.all('.govuk-table__cell')
         expect(cells[0]).to have_link(nil, href: %r{/laa_references/.*})
         expect(cells[1].text).to match(%r{[0-3][0-9]/[0-1][0-9]/[1-2][0|9](?:[0-9]{2})?})
-        expect(cells[2].text).to eql 'Not linked'
+        expect(cells[2].text).to eql('Not linked').or match(/\A[0-9]{7}\z/)
       end
     end
   end

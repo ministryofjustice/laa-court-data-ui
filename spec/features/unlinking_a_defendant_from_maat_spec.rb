@@ -3,9 +3,8 @@
 require 'court_data_adaptor'
 
 RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
-  let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
+  let(:defendant_nino_from_fixture) { 'JC123456A' }
   let(:case_reference_from_fixture) { 'TEST12345' }
-
   let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
 
   let(:user) { create(:user) }
@@ -19,7 +18,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
            text_required: false)
     create(:unlink_reason, code: 7, description: 'Other', text_required: true)
 
-    query = hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } })
+    query = hash_including({ filter: { national_insurance_number: defendant_nino_from_fixture } })
     body = load_json_stub(defendant_fixture)
     defendant_body = load_json_stub(defendant_by_id_fixture)
     json_api_header = { 'Content-Type' => 'application/vnd.api+json' }

@@ -26,19 +26,10 @@ RSpec.configure do |config|
   config.before(:each, stub_unlinked: true) do
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=#{case_urn}&include=defendants}
+      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=#{case_urn}&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events}
     ).to_return(
       status: 200,
       body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
-    )
-
-    stub_request(
-      :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter.*arrest_summons_number.*#{defendant_asn}&include=defendants,defendants.offences}
-    ).to_return(
-      status: 200,
-      body: load_json_stub('unlinked/defendant_by_reference_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
 
@@ -53,10 +44,10 @@ RSpec.configure do |config|
 
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter.*national_insurance_number.*#{defendant_nino}&include=defendants,defendants.offences}
+      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events}
     ).to_return(
       status: 200,
-      body: load_json_stub('unlinked/defendant_by_reference_body.json'),
+      body: load_json_stub('hearing_by_id_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end
@@ -81,6 +72,17 @@ RSpec.configure do |config|
     ).to_return(
       status: 200,
       body: load_json_stub('linked/defendant_by_reference_body.json'),
+      headers: { 'Content-Type' => 'application/vnd.api+json' }
+    )
+  end
+
+  config.before(:each, stub_hearing: true) do
+    stub_request(
+      :get,
+      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events}
+    ).to_return(
+      status: 200,
+      body: load_json_stub('hearing_by_id_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end

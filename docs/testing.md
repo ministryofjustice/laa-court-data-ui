@@ -30,12 +30,12 @@ make test
 
 Since the primary function of the app is to search data via an API, webmock and VCR play a significant role in testing. For this application's purposes the test suite should pass without any connectivity. If not writing stubs manually then VCR cassettes must be generated against actual running adaptor APIs.
 
-The API requires OAuth2 authentication using app-specific `client_credentials`. see [Local stack setup]() for details on obtaining and configuring `client_credentials`.
+The API requires OAuth2 authentication using app-specific `client_credentials`. see [Local stack setup](docs/development.md) for details on obtaining and configuring `client_credentials`.
 
 OAuth2 access token requests are configured to be be ignored by VCR to avoid problems with loading of the client. Instead the client is configured to not attempt to retrieve an access token from the adaptor when in `test_mode`. To record new cassettes therefore requires:
 
 - Creating new cassettes (Quickstart)
-    * switch `test_mode` off,
+    * switch `test_mode` off - see below
     * *optionally, empty or delete existing cassette if rerecording*
     * run the test (with `:vcr` tag) to (re)record the cassette
     * switch `test_mode` on
@@ -44,7 +44,7 @@ OAuth2 access token requests are configured to be be ignored by VCR to avoid pro
 
   - check you can successfully query the adaptor
 
-    You should be able to to retrieve the results you expect against a locally running version of the adaptor, or a hosted one. see the instructions on [local stack setup](#local-stack-setup)
+    You should be able to to retrieve the results you expect against a locally running version of the adaptor, or a hosted one. see the instructions on [local stack setup](docs/development.md)
 
   - setup an `.env.test.local`
 

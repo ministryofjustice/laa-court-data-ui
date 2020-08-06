@@ -19,7 +19,7 @@ en:
       caption: Search results
       defendant:
         arrest_summons_number: ASN
-        caption: Defendant details
+        caption: Defendants
         date_of_birth: Date of birth
         heading: Defendants
         maat_number: MAAT number
@@ -29,6 +29,12 @@ en:
         unlinked: Not linked
       heading: Search results for "%{term}"
       heading_with_dob: Search results for "%{term}, %{dob}"
+      hearing:
+        caption: Hearings
+        heading: Hearings
+        hearing_day: Date
+        hearing_type: Hearing type
+        providers: Providers attending
       offence:
         caption: Offence list
         heading: Offences
