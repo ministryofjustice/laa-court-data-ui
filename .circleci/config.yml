@@ -269,7 +269,7 @@ jobs:
 # ------------------
 workflows:
   version: 2
-  test-build-master:
+  test-build-deploy-master:
     jobs:
       - build-test-container:
           filters:
@@ -311,7 +311,7 @@ workflows:
           requires:
             - hold-production
 
-  test-build-branch:
+  test-branch:
     jobs:
       - build-test-container:
           filters:
@@ -324,11 +324,11 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
+      
+  build-deploy-branch:
+    jobs:
       - branch-build-approval:
           type: approval
-          requires:
-            - linter-tests
-            - rspec-tests
           filters:
             branches:
               ignore:
