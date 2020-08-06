@@ -1,6 +1,6 @@
 # View court data
 
-A service to enable Legal Aid Agency (LAA) caseworkers to view and "link" Court data related to a claim for remuneration. This is primarily an interface to the [laa-court-data-adaptor](https://github.com/ministryofjustice/laa-court-data-adaptor) API, which in turn is a conduit providing a layer of abstraction around the HMCTS "common platform" API.
+test A service to enable Legal Aid Agency (LAA) caseworkers to view and "link" Court data related to a claim for remuneration. This is primarily an interface to the [laa-court-data-adaptor](https://github.com/ministryofjustice/laa-court-data-adaptor) API, which in turn is a conduit providing a layer of abstraction around the HMCTS "common platform" API.
 
 [![CircleCI](https://circleci.com/gh/ministryofjustice/laa-court-data-ui.svg?style=svg)](https://circleci.com/gh/ministryofjustice/laa-court-data-ui)
 [![Code Climate](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/badges/gpa.svg)](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui)
