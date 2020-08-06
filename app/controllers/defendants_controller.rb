@@ -23,7 +23,8 @@ class DefendantsController < ApplicationController
       if unlink
         redirect_after_unlink
       else
-        redirect_after_failed_unlink
+        flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
+        render 'edit'
       end
     else
       render 'edit'
@@ -99,10 +100,5 @@ class DefendantsController < ApplicationController
   def redirect_after_unlink
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
     flash[:notice] = I18n.t('defendants.unlink.success')
-  end
-
-  def redirect_after_failed_unlink
-    redirect_to edit_defendant_path(id: defendant.id, urn: prosecution_case_reference)
-    flash[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
   end
 end

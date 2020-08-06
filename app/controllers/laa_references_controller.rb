@@ -23,7 +23,8 @@ class LaaReferencesController < ApplicationController
       if link_laa_reference
         redirect_after_link
       else
-        redirect_after_failed_link
+        flash.now[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
+        render 'new'
       end
     else
       render 'new'
@@ -109,10 +110,5 @@ class LaaReferencesController < ApplicationController
   def redirect_after_link
     redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
     flash[:notice] = I18n.t('laa_reference.link.success')
-  end
-
-  def redirect_after_failed_link
-    redirect_to new_laa_reference_path(defendant.id, urn: prosecution_case_reference)
-    flash[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
   end
 end
