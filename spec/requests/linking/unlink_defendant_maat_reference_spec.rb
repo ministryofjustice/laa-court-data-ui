@@ -136,8 +136,8 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         expect(flash.now[:alert]).to match(/User name must not exceed 10 characters/i)
       end
 
-      it 'renders laa_reference path and does not redirect' do
-        expect(response).to have_http_status :ok
+      it 'renders edit_defendant_path' do
+        expect(response).to render_template('edit')
       end
     end
 

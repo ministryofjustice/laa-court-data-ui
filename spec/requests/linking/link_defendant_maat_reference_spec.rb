@@ -52,8 +52,8 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
         expect(flash.now[:alert]).to match(/Defendant is not a valid uuid/i)
       end
 
-      it 'renders laa_reference_path and does not redirect' do
-        expect(response).to have_http_status :ok
+      it 'renders laa_reference_path' do
+        expect(response).to render_template('new')
       end
     end
 

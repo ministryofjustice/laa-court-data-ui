@@ -22,13 +22,12 @@ class LaaReferencesController < ApplicationController
     if @link_attempt.valid?
       if link_laa_reference
         redirect_after_link
+        return
       else
         flash.now[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
-        render 'new'
       end
-    else
-      render 'new'
     end
+    render 'new'
   end
 
   def defendant_uuid
