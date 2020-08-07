@@ -21,7 +21,7 @@ class DefendantsController < ApplicationController
   def edit; end
 
   def update
-    unlink_and_redirect and return if @unlink_attempt.valid?
+    unlink_and_redirect && return if @unlink_attempt.valid?
     render 'edit'
   end
 

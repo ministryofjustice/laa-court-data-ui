@@ -21,7 +21,7 @@ class LaaReferencesController < ApplicationController
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
 
-    link_laa_reference_and_redirect and return if @link_attempt.valid?
+    link_laa_reference_and_redirect && return if @link_attempt.valid?
     render 'new'
   end
 
