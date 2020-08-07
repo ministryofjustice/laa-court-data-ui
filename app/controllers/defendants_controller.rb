@@ -16,21 +16,20 @@ class DefendantsController < ApplicationController
   add_breadcrumb (proc { |v| v.controller.defendant.name }),
                  (proc { |v| v.defendant_path(v.controller.defendant.id) })
 
+  rescue_from CourtDataAdaptor::Errors::BadRequest, with: :adaptor_error_handler
+
   def edit; end
 
   def update
-    if @unlink_attempt.valid?
-      redirect_after_unlink and return if unlink
-      flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
-    end
+    unlink_and_redirect and return if @unlink_attempt.valid?
     render 'edit'
   end
 
-  def unlink
+  def unlink_and_redirect
     defendant.update(@unlink_attempt.to_unlink_attributes)
-  rescue CourtDataAdaptor::Errors::BadRequest => e
-    @errors = e.errors
-    false
+
+    redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
+    flash[:notice] = I18n.t('defendants.unlink.success')
   end
 
   def defendant
@@ -92,8 +91,9 @@ class DefendantsController < ApplicationController
                       end
   end
 
-  def redirect_after_unlink
-    redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
-    flash[:notice] = I18n.t('defendants.unlink.success')
+  def adaptor_error_handler(exception)
+    @errors = exception.errors
+    flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
+    render 'edit'
   end
 end

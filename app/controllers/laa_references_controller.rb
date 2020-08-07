@@ -14,15 +14,14 @@ class LaaReferencesController < ApplicationController
   add_breadcrumb (proc { |v| v.controller.defendant.name }),
                  (proc { |v| v.defendant_path(v.controller.defendant.id) })
 
+  rescue_from CourtDataAdaptor::Errors::BadRequest, with: :adaptor_error_handler
+
   def new; end
 
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
 
-    if @link_attempt.valid?
-      redirect_after_link and return if link_laa_reference
-      flash.now[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
-    end
+    link_laa_reference_and_redirect and return if @link_attempt.valid?
     render 'new'
   end
 
@@ -57,13 +56,13 @@ class LaaReferencesController < ApplicationController
     authorize! :show, @defendant_search
   end
 
-  def link_laa_reference
+  def link_laa_reference_and_redirect
     resource_params.delete(:maat_reference) if no_maat_id?
     laa_reference = resource.new(**resource_params)
     laa_reference.save
-  rescue CourtDataAdaptor::Errors::BadRequest => e
-    @errors = e.errors
-    false
+
+    redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
+    flash[:notice] = I18n.t('laa_reference.link.success')
   end
 
   def laa_reference_params
@@ -102,8 +101,9 @@ class LaaReferencesController < ApplicationController
                     end
   end
 
-  def redirect_after_link
-    redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
-    flash[:notice] = I18n.t('laa_reference.link.success')
+  def adaptor_error_handler(exception)
+    @errors = exception.errors
+    flash.now[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
+    render 'new'
   end
 end
