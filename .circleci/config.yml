@@ -324,7 +324,7 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      
+
   build-deploy-branch:
     jobs:
       - branch-build-approval:
