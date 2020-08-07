@@ -186,4 +186,36 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '.find_for_database_authentication' do
+    subject { described_class.find_for_database_authentication(warden_conditions) }
+
+    before { user.save! }
+
+    context 'when passing login condition' do
+      context 'with email' do
+        let(:warden_conditions) { { login: user.email } }
+
+        it { is_expected.to eql user }
+      end
+
+      context 'with username' do
+        let(:warden_conditions) { { login: user.username } }
+
+        it { is_expected.to eql user }
+      end
+    end
+
+    context 'when passing email condition' do
+      let(:warden_conditions) { { email: user.email } }
+
+      it { is_expected.to eql user }
+    end
+
+    context 'when passing username condition' do
+      let(:warden_conditions) { { username: user.username } }
+
+      it { is_expected.to eql user }
+    end
+  end
 end
