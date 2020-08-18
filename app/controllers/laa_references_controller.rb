@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_dependency 'court_data_adaptor'
+
 class LaaReferencesController < ApplicationController
   before_action :load_and_authorize_defendant_search,
                 :set_defendant_uuid_if_required,
