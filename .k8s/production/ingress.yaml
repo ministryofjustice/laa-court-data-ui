@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: laa-court-data-ui-app-ingress
   namespace: laa-court-data-ui-production
+  annotations:
+    kubernetes.io/ingress.class: laa-court-data-ui-production
 spec:
   rules:
     - host: view-court-data.service.justice.gov.uk
