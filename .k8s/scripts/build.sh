@@ -25,7 +25,7 @@ function _build() {
   printf "\e[33mRegistry tag: $docker_registry_tag\e[0m\n"
   printf "\e[33m------------------------------------------------------------------------\e[0m\n"
   printf '\e[33mDocker login to registry (ECR)...\e[0m\n'
-  docker login -u AWS -p $(aws ecr get-login-password --profile "$aws_profile" --region "$region") $docker_endpoint
+  aws ecr get-login-password --profile "$aws_profile" --region "$region" | docker login --username AWS --password-stdin ${docker_endpoint}
 
   printf '\e[33mBuilding app container image locally...\e[0m\n'
   docker build \
