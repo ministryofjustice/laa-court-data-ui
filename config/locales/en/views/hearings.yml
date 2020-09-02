@@ -14,5 +14,8 @@ en:
         caption: Hearing events
         event: Event
         time: Time
+      flash:
+        notice:
+          no_hearing_details: No hearing details available
       hearing_type: Hearing type
       time_listed: Time listed
