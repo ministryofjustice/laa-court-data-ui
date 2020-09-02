@@ -34,4 +34,24 @@ RSpec.describe 'hearings', type: :request do
       expect(response).to redirect_to new_user_session_path
     end
   end
+
+  context 'when no hearing data available' do
+    before do
+      stub_request(:get, %r{#{ENV['COURT_DATA_ADAPTOR_API_URL']}/hearings/.*})
+        .to_return(
+          body: '',
+          headers: { 'Content-Type' => 'application/text' }
+        )
+      sign_in user
+      get "/hearings/#{hearing_id_from_fixture}?urn=#{case_reference}"
+    end
+
+    it 'redirects back to prosecution case page' do
+      expect(response).to redirect_to prosecution_case_path(case_reference)
+    end
+
+    it 'flashes notice' do
+      expect(flash.now[:notice]).to match(/No hearing details available/)
+    end
+  end
 end
