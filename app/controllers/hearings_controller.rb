@@ -14,9 +14,11 @@ class HearingsController < ApplicationController
   def show
     add_breadcrumb "Hearing #{@hearing_day&.strftime('%d/%m/%Y')}", ''
 
-    unless @hearing
-      redirect_back(fallback_location: prosecution_case_path(prosecution_case_reference), allow_other_host: false, notice: 'No hearing details available')
-    end
+    return if @hearing
+
+    redirect_back(fallback_location: prosecution_case_path(prosecution_case_reference),
+                  allow_other_host: false,
+                  notice: 'No hearing details available')
   end
 
   def prosecution_case_reference
