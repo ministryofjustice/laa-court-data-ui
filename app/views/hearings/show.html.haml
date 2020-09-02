@@ -8,17 +8,17 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.hearing_type')
       %td.govuk-table__cell
-        = @hearing&.hearing_type || 'not set'
+        = @hearing&.hearing_type || t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.court')
       %td.govuk-table__cell
-        = @hearing&.court_name || 'not set'
+        = @hearing&.court_name || t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.time_listed')
       %td.govuk-table__cell
-        = @hearing_day&.strftime('%H:%M') || 'not set'
+        = @hearing_day&.strftime('%H:%M') || t('generic.not_available')
 
 %h2.govuk-heading-m
   = t('hearings.show.attendees.heading')
@@ -31,22 +31,22 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defendants')
       %td.govuk-table__cell
-        = @hearing&.defendant_names&.join(', ') || 'not set'
+        = @hearing&.defendant_names&.join(', ') || t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defence')
       %td.govuk-table__cell
-        = @hearing&.defence_advocate_names&.join(', ') || 'not set'
+        = @hearing&.defence_advocate_names&.join(', ') || t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.prosecution')
       %td.govuk-table__cell
-        = @hearing&.prosecution_advocate_names&.join(', ') || 'not set'
+        = @hearing&.prosecution_advocate_names&.join(', ') || t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.judges')
       %td.govuk-table__cell
-        = @hearing&.judge_names&.join(', ') || 'not set'
+        = @hearing&.judge_names&.join(', ') || t('generic.not_available')
 
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden

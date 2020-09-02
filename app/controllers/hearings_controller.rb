@@ -18,7 +18,7 @@ class HearingsController < ApplicationController
 
     redirect_back(fallback_location: prosecution_case_path(prosecution_case_reference),
                   allow_other_host: false,
-                  notice: 'No hearing details available')
+                  notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
   end
 
   def prosecution_case_reference
