@@ -8,17 +8,17 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.hearing_type')
       %td.govuk-table__cell
-        = @hearing.hearing_type
+        = @hearing&.hearing_type || 'not set'
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.court')
       %td.govuk-table__cell
-        = @hearing.court_name || 'not set'
+        = @hearing&.court_name || 'not set'
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.time_listed')
       %td.govuk-table__cell
-        = @hearing_day&.strftime('%H:%M')
+        = @hearing_day&.strftime('%H:%M') || 'not set'
 
 %h2.govuk-heading-m
   = t('hearings.show.attendees.heading')
@@ -31,22 +31,22 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defendants')
       %td.govuk-table__cell
-        = @hearing.defendant_names.join(', ')
+        = @hearing&.defendant_names&.join(', ') || 'not set'
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defence')
       %td.govuk-table__cell
-        = @hearing.defence_advocate_names&.join(', ') || 'not set'
+        = @hearing&.defence_advocate_names&.join(', ') || 'not set'
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.prosecution')
       %td.govuk-table__cell
-        = @hearing.prosecution_advocate_names&.join(', ') || 'not set'
+        = @hearing&.prosecution_advocate_names&.join(', ') || 'not set'
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.judges')
       %td.govuk-table__cell
-        = @hearing.judge_names.join(', ')
+        = @hearing&.judge_names&.join(', ') || 'not set'
 
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden
@@ -56,7 +56,7 @@
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.time')
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.event')
   %tbody.govuk-table__body
-    - @hearing.hearing_events.sort {|a,b| a.occurred_at <=> b.occurred_at }.each do |event|
+    - @hearing&.hearing_events&.sort {|a,b| a.occurred_at <=> b.occurred_at }&.each do |event|
       %tr.govuk-table__row
         %td.govuk-table__cell
           = event.occurred_at.to_datetime.strftime('%H:%M')
@@ -69,7 +69,7 @@
   = govuk_detail('View raw data') do
     %h3='Hearings'
     %pre
-      = JSON.pretty_generate(@hearing.attributes)
+      = JSON.pretty_generate(@hearing&.attributes)
     %h3='Hearing events'
     %pre
-      = JSON.pretty_generate(@hearing.hearing_events.map(&:attributes))
+      = JSON.pretty_generate(@hearing&.hearing_events&.map(&:attributes))
