@@ -7,19 +7,10 @@
 
         %ul.govuk-footer__inline-list
           %li.govuk-footer__inline-list-item
-            %a.govuk-footer__link{href: "#1"}
-              = t('layouts.application.footer.help')
-
-          %li.govuk-footer__inline-list-item
             = link_to t('layouts.application.footer.cookies'), cookies_path, class: 'govuk-footer__link'
 
           %li.govuk-footer__inline-list-item
-            %a.govuk-footer__link{href: "#3"}
-              = t('layouts.application.footer.contact')
-
-          %li.govuk-footer__inline-list-item
-            %a.govuk-footer__link{href: "#4"}
-              = t('layouts.application.footer.terms')
+            = link_to t('layouts.application.footer.contact'), contact_us_path, class: 'govuk-footer__link'
 
           %li.govuk-footer__inline-list-item
             = t('layouts.application.footer.built_by_html')
