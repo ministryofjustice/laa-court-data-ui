@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resources :feedback, only: %i[new create]
 
   get 'cookies', to: 'help#cookies'
+  get '/contact_us', to: 'pages#contact_us'
 
   get 'ping', to: 'status#ping', format: :json
 

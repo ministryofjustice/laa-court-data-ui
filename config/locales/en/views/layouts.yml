@@ -11,10 +11,8 @@ en:
         contact: Contact
         cookies: Cookies
         copyright: "© Crown copyright"
-        help: Help
         licence_html: All content is available under the <a class="govuk-footer__link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>
         support: Support links
-        terms: Terms and conditions
       header:
         navigation:
           manage_users: Manage users
