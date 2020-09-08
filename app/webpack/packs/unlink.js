@@ -5,9 +5,9 @@ function Unlinking () {
   const unlinkOtherReasonText = document.getElementsByName('unlink_attempt[other_reason_text]')[0]
   const otherReasonCode = '7'
 
-  if (!unlinkReasonCode) { return false };
-  if (!unlinkReasonCode.value) { hide() };
-  if (unlinkReasonCode.value === otherReasonCode) { show() };
+  if (!unlinkReasonCode) { return false }
+  if (!unlinkReasonCode.value) { hide() }
+  if (unlinkReasonCode.value === otherReasonCode) { show() }
 
   // TODO: should really rely on a data-text-required flag ir similar set by backend
   //
