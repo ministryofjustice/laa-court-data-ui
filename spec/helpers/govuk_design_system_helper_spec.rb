@@ -127,17 +127,43 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       end
     end
 
-    context 'with open true' do
-      subject(:markup) { helper.govuk_detail('My detail summary text', true) { 'my content' } }
+    context 'when using open option' do
+      shared_examples 'adds details without open attribute' do
+        it 'adds detail without open attribute' do
+          is_expected.to have_tag(:details, without: { 'open': 'open' })
+        end
+      end
 
-      it 'adds detail with open attribute' do
-        is_expected.to have_tag(:details, with: { 'open': 'open' })
+      context 'with open true' do
+        subject(:markup) { helper.govuk_detail('My detail summary text', open: true) { 'my content' } }
+
+        it 'adds detail with open attribute' do
+          is_expected.to have_tag(:details, with: { 'open': 'open' })
+        end
+      end
+
+      context 'with open false' do
+        subject(:markup) { helper.govuk_detail('My detail summary text', open: false) { 'my content' } }
+
+        include_examples 'adds details without open attribute'
+      end
+
+      context 'with open nil' do
+        subject(:markup) { helper.govuk_detail('My detail summary text', open: nil) { 'my content' } }
+
+        include_examples 'adds details without open attribute'
+      end
+
+      context 'with open not specified' do
+        subject(:markup) { helper.govuk_detail('My detail summary text') { 'my content' } }
+
+        include_examples 'adds details without open attribute'
       end
     end
 
     context 'with custom classes' do
       subject(:markup) do
-        helper.govuk_detail('My detail summary text', false, class: 'my-custom-class1 my-custom-class2') do
+        helper.govuk_detail('My detail summary text', class: 'my-custom-class1 my-custom-class2') do
           'my content'
         end
       end
