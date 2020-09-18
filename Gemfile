@@ -16,8 +16,8 @@ gem 'govuk_notify_rails', '~> 2.1.1'
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 1.2'
 gem 'haml-rails', '~> 2.0.1'
-gem 'json-schema', '~> 2.8', '>= 2.8.1'
 gem 'json_api_client', '~> 1.16', '>= 1.16.1'
+gem 'json-schema', '~> 2.8', '>= 2.8.1'
 gem 'oauth2', '~> 1.4.4'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 5.0'
@@ -39,9 +39,9 @@ group :test do
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.9.2'
-  gem 'rspec-rails', '~> 4.0'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', '~> 0.86', require: false
+  gem 'rspec-rails', '~> 4.0'
+  gem 'rubocop', '~> 0.91', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false

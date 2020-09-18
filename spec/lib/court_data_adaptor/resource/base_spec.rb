@@ -3,11 +3,11 @@
 require 'court_data_adaptor'
 
 RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
-  # rubocop:disable Style/ClassAndModuleChildren, RSpec/LeakyConstantDeclaration
+  # rubocop:disable Style/ClassAndModuleChildren, RSpec/LeakyConstantDeclaration, Lint/ConstantDefinitionInBlock
   class CourtDataAdaptor::Resource::MockResource < described_class
     acts_as_resource self
   end
-  # rubocop:enable Style/ClassAndModuleChildren, RSpec/LeakyConstantDeclaration
+  # rubocop:enable Style/ClassAndModuleChildren, RSpec/LeakyConstantDeclaration, Lint/ConstantDefinitionInBlock
 
   let(:mock_resource_endpoint) do
     [ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil), 'mock_resources'].join('/')

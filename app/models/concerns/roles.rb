@@ -28,12 +28,12 @@ module Roles
     end
   end
 
-  def respond_to_missing?(method, include_private = false)
+  def respond_to_missing?(method, *args)
     role_booleans.include?(method.to_s) || super
   end
 
   def role_booleans
-    self.class.valid_roles.map { |role| role.to_s + '?' }
+    self.class.valid_roles.map { |role| "#{role}?" }
   end
 
   def role?(role)

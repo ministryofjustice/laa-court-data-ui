@@ -21,10 +21,9 @@ module GovukDesignSystemHelper
     GdsDesignSystemBreadcrumbBuilder
   end
 
-  def govuk_detail(summary_text = nil, open = false, tag_options = {}, &block)
+  def govuk_detail(summary_text = nil, tag_options = {}, &block)
     tag_options = prepend_classes('govuk-details', tag_options)
     tag_options[:data] = { module: 'govuk-details' }
-    tag_options[:open] = '' if open
 
     summary = tag.span(summary_text, class: 'govuk-details__summary-text')
     content = capture(&block)
