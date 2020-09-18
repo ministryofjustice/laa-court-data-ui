@@ -55,7 +55,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # have puma server output to stdout (when started via `foreman start`)
-  config.logger = Logger.new(STDOUT)
+  config.logger = Logger.new($stdout)
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
