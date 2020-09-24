@@ -34,6 +34,9 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  # To enable Devise emails to be delivered in the background.
+  # https://github.com/heartcombo/devise#activejob-integration
+  #
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
   end
