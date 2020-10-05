@@ -78,10 +78,10 @@ executors:
   cloud-platform-executor:
     resource_class: small
     docker:
-    - image: ${ECR_ENDPOINT}/cloud-platform/tools:circleci
-      environment:
-        GITHUB_TEAM_NAME_SLUG: laa-get-paid
-        REPO_NAME: laa-court-data-ui
+      - image: ministryofjustice/cloud-platform-tools:1.23
+        environment:
+          GITHUB_TEAM_NAME_SLUG: laa-get-paid
+          REPO_NAME: laa-court-data-ui
 
 # ------------------
 # COMMANDS
