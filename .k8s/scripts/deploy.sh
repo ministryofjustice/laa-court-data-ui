@@ -19,6 +19,12 @@ function _deploy() {
     deploy.sh dev <commit-sha>
     "
 
+  # exit when any command fails, keep track of the last for output
+  # https://intoli.com/blog/exit-on-errors-in-bash-scripts/
+  set -e
+  trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+  trap 'echo "\"${last_command}\" command completed with exit code $?."' EXIT
+
   if [ $# -gt 2 ]
   then
     echo "$usage"
@@ -75,12 +81,18 @@ function _deploy() {
     -f .k8s/${environment}/ingress.yaml
 
   kubectl annotate deployments/${repo_name} kubernetes.io/change-cause="$(date) - deploying: $docker_image_tag via local machine"
+  kubectl annotate deployments/${repo_name}-worker kubernetes.io/change-cause="$(date) - deploying: $docker_image_tag via local machine"
 
   # Forcibly restart the app regardless of whether
   # there are changes to apply new secrets, at least.
   # - requires kubectl verion 1.15+
   #
   kubectl rollout restart deployments/${repo_name}
+  kubectl rollout restart deployments/${repo_name}-worker
+
+  # wait for rollout to succeed or fail/timeout
+  kubectl rollout status deployments/${repo_name} --timeout=600s
+  kubectl rollout status deployments/${repo_name}-worker --timeout=600s
 }
 
 _deploy $@
