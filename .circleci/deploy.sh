@@ -9,6 +9,10 @@ function _circleci_deploy() {
     deploy.sh dev
     "
 
+  # exit when any command fails
+  set -e
+  trap 'echo command at lineno $LINENO completed with exit code $?.' EXIT
+
   if [[ -z "${ECR_ENDPOINT}" ]] || \
       [[ -z "${GIT_CRYPT_KEY}" ]] || \
       [[ -z "${AWS_DEFAULT_REGION}" ]] || \
@@ -68,6 +72,11 @@ function _circleci_deploy() {
   -f .k8s/${environment}/ingress.yaml
 
   kubectl annotate deployments/${REPO_NAME} kubernetes.io/change-cause="$(date +%Y-%m-%dT%H:%M:%S%z) - deploying: $docker_image_tag via CircleCI"
+  kubectl annotate deployments/${REPO_NAME}-worker kubernetes.io/change-cause="$(date +%Y-%m-%dT%H:%M:%S%z) - deploying: $docker_image_tag via CircleCI"
+
+  # wait for rollout to succeed or fail/timeout
+  kubectl rollout status deployments/${REPO_NAME}
+  kubectl rollout status deployments/${REPO_NAME}-worker
 }
 
 _circleci_deploy $@
