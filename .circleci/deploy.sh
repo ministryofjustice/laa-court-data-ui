@@ -43,7 +43,7 @@ function _circleci_deploy() {
   esac
 
   # Cloud platform required setup
-  $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
+  aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
   setup-kube-auth
   kubectl config use-context ${cp_context}
 
