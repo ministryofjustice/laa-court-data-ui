@@ -24,6 +24,7 @@ function _circleci_build() {
   printf "\e[33m------------------------------------------------------------------------\e[0m\n"
   printf '\e[33mDocker login to registry (ECR)...\e[0m\n'
   aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
+  setup-kube-auth
 
   docker build \
     --build-arg BUILD_DATE=$(date +%Y-%m-%dT%H:%M:%S%z) \
