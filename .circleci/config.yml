@@ -76,6 +76,7 @@ executors:
           POSTGRES_DB: laa_court_data_ui_test
 
   cloud-platform-executor:
+    resource_class: small
     docker:
     - image: ${ECR_ENDPOINT}/cloud-platform/tools:circleci
       environment:
