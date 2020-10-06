@@ -42,9 +42,6 @@ function _circleci_deploy() {
       ;;
   esac
 
-  echo "${GIT_CRYPT_KEY}" | base64 -d > git-crypt.key
-  git-crypt unlock git-crypt.key
-
   # apply
   printf "\e[33m--------------------------------------------------\e[0m\n"
   printf "\e[33mEnvironment: $environment\e[0m\n"
@@ -58,7 +55,9 @@ function _circleci_deploy() {
 
   docker_image_tag=${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${REPO_NAME}:app-${CIRCLE_SHA1}
 
-  # apply secrets first so changes can be picked up by deployment
+  # decrypt and apply secrets first so changes can be picked up by deployment
+  echo "${GIT_CRYPT_KEY}" | base64 -d > git-crypt.key
+  git-crypt unlock git-crypt.key
   kubectl apply -f .k8s/${environment}/secrets.yaml 2> /dev/null
 
   # apply deployment with specfied image
