@@ -42,11 +42,6 @@ function _circleci_deploy() {
       ;;
   esac
 
-  # Cloud platform required setup
-  aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
-  setup-kube-auth
-  kubectl config use-context ${cp_context}
-
   echo "${GIT_CRYPT_KEY}" | base64 -d > git-crypt.key
   git-crypt unlock git-crypt.key
 
@@ -56,6 +51,10 @@ function _circleci_deploy() {
   printf "\e[33mCommit: $CIRCLE_SHA1\e[0m\n"
   printf "\e[33mBranch: $CIRCLE_BRANCH\e[0m\n"
   printf "\e[33m--------------------------------------------------\e[0m\n"
+  printf '\e[33mDocker login to registry (ECR)...\e[0m\n'
+  aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
+  setup-kube-auth
+  kubectl config use-context ${cp_context}
 
   docker_image_tag=${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${REPO_NAME}:app-${CIRCLE_SHA1}
 
