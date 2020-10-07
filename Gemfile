@@ -38,7 +38,7 @@ group :test do
   gem 'i18n-tasks', '~> 0.9.31'
   gem 'launchy'
   gem 'rails-controller-testing'
-  gem 'rspec-html-matchers', '~> 0.9.3'
+  gem 'rspec-html-matchers', '~> 0.9.4'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', '~> 0.92', require: false
