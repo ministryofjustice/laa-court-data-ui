@@ -33,7 +33,7 @@ RSpec.feature 'Sign in', type: :feature, js: true do
       end
 
       it 'search filters page is displayed' do
-        expect(page).to have_selector('h1', text: 'Search for')
+        expect(page).to have_selector('legend', text: 'Search for')
       end
 
       it 'navigation bar is displayed' do
