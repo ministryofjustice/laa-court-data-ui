@@ -38,12 +38,9 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
 
     it 'sends inclusion request to resource' do
       expect(resource).to have_received(:includes)
-        .with(:defendants,
-              'defendants.offences',
+        .with(:defendants, 'defendants.offences',
               :hearing_summaries,
-              :hearings,
-              'hearings.hearing_events',
-              'hearings.providers')
+              :hearings, 'hearings.hearing_events', 'hearings.providers')
     end
 
     it 'sends where query to resource' do
@@ -67,10 +64,10 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
     end
   end
 
-  context 'with results', :vcr do
+  context 'with results', stub_case_search_test12345: true do
     subject(:results) { described_class.new(term).call }
 
-    let(:term) { 'MOGUERBXIZ' }
+    let(:term) { 'TEST12345' }
 
     it 'returns prosecution case resources' do
       expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::ProsecutionCase))
@@ -78,7 +75,7 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
 
     it 'returns only prosecution cases with matching prosecution_case_reference' do
       expect(results).to all(
-        have_attributes(prosecution_case_reference: 'MOGUERBXIZ')
+        have_attributes(prosecution_case_reference: term)
       )
     end
   end
