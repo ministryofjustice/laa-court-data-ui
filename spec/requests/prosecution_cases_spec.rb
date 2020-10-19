@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe 'prosecution cases', type: :request, vcr: true do
+RSpec.describe 'prosecution cases', type: :request, stub_case_search: true do
   let(:user) { create(:user) }
-  let(:case_urn) { 'MOGUERBXIZ' }
+  let(:case_urn) { 'THISISSTUBBED' }
 
   context 'when authenticated' do
     before do
