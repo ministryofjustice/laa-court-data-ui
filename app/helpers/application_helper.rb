@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def l(date, options = {})
-    super(date, options) if date
+    super(date, **options) if date
   end
 end

@@ -10,21 +10,21 @@
 module CapybaraExtensions
   module Matchers
     def has_govuk_page_title?(options = {})
-      has_selector?('h1.govuk-heading-xl', options)
+      has_selector?('h1.govuk-heading-xl', **options)
     end
 
     def has_no_govuk_page_title?(options = {})
-      has_no_selector?('h1.govuk-heading-xl', options)
+      has_no_selector?('h1.govuk-heading-xl', **options)
     end
 
     def has_govuk_flash?(key, options)
       case key
       when :alert
-        has_selector?('.govuk-error-summary', options)
+        has_selector?('.govuk-error-summary', **options)
       when :notice
-        has_selector?('.lcdui-notice-summary', options)
+        has_selector?('.lcdui-notice-summary', **options)
       else
-        has_selector?('.govuk-error-summary', options)
+        has_selector?('.govuk-error-summary', **options)
       end
     end
 
@@ -32,14 +32,14 @@ module CapybaraExtensions
       text ? options[:text] = text : options
       selector = options.delete(:aria_current) ? current_breadcrumb_selector : breadcrumb_selector
 
-      has_selector?(selector, options)
+      has_selector?(selector, **options)
     end
 
     def has_govuk_breadcrumb_link?(text = nil, options = {})
       href = options.delete(:href)
       text ? options[:text] = text : options
       selector = options.delete(:aria_current) ? current_breadcrumb_link_selector : breadcrumb_link_selector
-      result = has_selector?(selector, options)
+      result = has_selector?(selector, **options)
 
       if href
         actual_href = find(breadcrumb_link_selector, text: text)['href']
@@ -71,15 +71,15 @@ module CapybaraExtensions
     end
 
     def has_govuk_detail_summary?(text, options = {})
-      has_selector?(detail_summary_selector, options.merge(text: text))
+      has_selector?(detail_summary_selector, **options.merge(text: text))
     end
 
     def has_no_govuk_detail_summary?(text, options = {})
-      has_no_selector?(detail_summary_selector, options.merge(text: text))
+      has_no_selector?(detail_summary_selector, **options.merge(text: text))
     end
 
     def click_govuk_detail_summary(text, options = {})
-      detail_summary = find(detail_summary_selector, options.merge(text: text))
+      detail_summary = find(detail_summary_selector, **options.merge(text: text))
       detail_summary.click
     end
 
