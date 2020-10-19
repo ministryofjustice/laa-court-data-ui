@@ -38,7 +38,7 @@ RSpec.describe CourtDataAdaptor::Query::Hearing do
 
     it 'sends inclusion request to resource' do
       expect(resource).to have_received(:includes)
-        .with(:hearing_events)
+        .with(:hearing_events, :providers)
     end
 
     it 'sends find query to resource' do
@@ -63,6 +63,10 @@ RSpec.describe CourtDataAdaptor::Query::Hearing do
 
     it 'returns resource that responds to hearing_events' do
       expect(result).to respond_to :hearing_events
+    end
+
+    it 'returns resource that responds to providers' do
+      expect(result).to respond_to :providers
     end
   end
 end

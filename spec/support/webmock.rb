@@ -77,7 +77,7 @@ RSpec.configure do |config|
 
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events}
+      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events,providers}
     ).to_return(
       status: 200,
       body: load_json_stub('hearing_by_id_body.json'),
@@ -112,7 +112,7 @@ RSpec.configure do |config|
   config.before(:each, stub_hearing: true) do
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events}
+      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events,providers}
     ).to_return(
       status: 200,
       body: load_json_stub('hearing_by_id_body.json'),
