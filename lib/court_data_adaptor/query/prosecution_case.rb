@@ -13,7 +13,8 @@ module CourtDataAdaptor
                     'defendants.offences',
                     :hearing_summaries,
                     :hearings,
-                    'hearings.hearing_events')
+                    'hearings.hearing_events',
+                    'hearings.providers')
           .where(prosecution_case_reference: urn)
           .all
       end
