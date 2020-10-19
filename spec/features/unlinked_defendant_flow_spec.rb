@@ -132,7 +132,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
         cells = row.all('.govuk-table__cell')
         expect(cells[0]).to have_link(nil, href: %r{/hearings/.*})
         expect(cells[1].text).to be_a String
-        expect(cells[2].text).to be_a String
+        expect(cells[2]).to have_text(/\(.*counsel.*\)/)
       end
     end
   end
@@ -143,6 +143,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     has_hearing_table_row_header_columns
     has_attendee_table
     has_attendee_table_row_header_columns
+    has_attendance_table_entry(row: 1, text: /\(.*counsel.*\)/)
     has_hearing_event_table
     has_hearing_event_table_headers
   end
@@ -177,6 +178,13 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
       expect(rows[1].first('.govuk-table__header')).to have_text 'Defence advocates'
       expect(rows[2].first('.govuk-table__header')).to have_text 'Prosecution advocates'
       expect(rows[3].first('.govuk-table__header')).to have_text 'Judges'
+    end
+  end
+
+  def has_attendance_table_entry(row:, text:)
+    within :table, 'Attendees' do
+      rows = find_all('tbody .govuk-table__row')
+      expect(rows[row]).to have_text text
     end
   end
 

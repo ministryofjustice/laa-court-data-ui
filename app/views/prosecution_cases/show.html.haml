@@ -42,7 +42,8 @@
               = hearing_summary.hearing_type
             %td.govuk-table__cell
               - hearing = prosecution_case.hearings.find { |h| h.id == hearing_summary.id}
-              = hearing&.defence_advocate_names&.join(', ') || t('generic.not_available')
+              - providers = hearing.providers.map { |p| "#{p.name} (#{p.role})" }.join('<br>').html_safe
+              = providers || t('generic.not_available')
 
 - if Rails.configuration.x.display_raw_responses
   %br
