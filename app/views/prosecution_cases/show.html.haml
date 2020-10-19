@@ -76,7 +76,11 @@
         %h4="Hearing events for hearing #{hidx}"
         = 'none' if hearing.hearing_events.empty?
         - hearing.hearing_events.each.with_index do |event, eidx|
-          %h5= # "Hearing event #{eidx} for hearing #{hidx}"
           %pre
             = JSON.pretty_generate(event.attributes)
 
+        %h4="Providers for hearing #{hidx}"
+        = 'none' if hearing.providers.empty?
+        - hearing.providers.each.with_index do |event, pidx|
+          %pre
+            = JSON.pretty_generate(event.attributes)
