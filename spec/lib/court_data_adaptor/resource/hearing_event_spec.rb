@@ -13,4 +13,11 @@ RSpec.describe CourtDataAdaptor::Resource::HearingEvent do
   include_examples 'court_data_adaptor resource callbacks' do
     let(:instance) { described_class.new(hearing_id: nil) }
   end
+
+  context 'with properties' do
+    subject(:instance) { described_class.new(hearing_id: nil) }
+
+    it { is_expected.to respond_to :description }
+    it { is_expected.to respond_to :occurred_at }
+  end
 end
