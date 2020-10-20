@@ -37,7 +37,7 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defence')
       %td.govuk-table__cell
-        - provider_list = @hearing&.providers&.map(&:name_and_role)
+        - provider_list = @hearing&.provider_list
         = provider_list.present? ? safe_join(provider_list, tag(:br)) : t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
