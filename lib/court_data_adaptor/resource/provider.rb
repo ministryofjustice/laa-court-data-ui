@@ -9,6 +9,10 @@ module CourtDataAdaptor
 
       property :name, type: :string
       property :role, type: :string
+
+      def name_and_role
+        "#{name} (#{role})"
+      end
     end
   end
 end
