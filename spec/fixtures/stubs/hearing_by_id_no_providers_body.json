@@ -147,18 +147,6 @@
             "type": "hearing_events"
           }
         ]
-      },
-      "providers": {
-        "data": [
-          {
-            "id": "9603a373-32f9-4403-a84b-209577913e60",
-            "type": "providers"
-          },
-          {
-            "id": "4e0ce9ef-df5e-40ff-b6f4-2ad7bc17f22e",
-            "type": "providers"
-          }
-        ]
       }
     }
   },
@@ -401,22 +389,6 @@
       "attributes": {
         "description": "Hearing event 9",
         "occurred_at": "2019-10-25T19:45:00.000+00:00"
-      }
-    },
-    {
-      "id": "9603a373-32f9-4403-a84b-209577913e60",
-      "type": "providers",
-      "attributes": {
-        "name": "Cristen Parker",
-        "role": "Junior counsel"
-      }
-    },
-    {
-      "id": "4e0ce9ef-df5e-40ff-b6f4-2ad7bc17f22e",
-      "type": "providers",
-      "attributes": {
-        "name": "Darrell Berge",
-        "role": "Junior counsel"
       }
     }
   ]

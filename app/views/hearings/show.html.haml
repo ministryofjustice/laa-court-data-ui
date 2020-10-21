@@ -31,12 +31,14 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defendants')
       %td.govuk-table__cell
-        = @hearing&.defendant_names&.join(', ') || t('generic.not_available')
+        - defendant_names = safe_join(@hearing&.defendant_names, tag(:br))
+        = defendant_names.present? ? defendant_names : t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defence')
       %td.govuk-table__cell
-        = @hearing&.defence_advocate_names&.join(', ') || t('generic.not_available')
+        - provider_list = @hearing&.provider_list
+        = provider_list.present? ? safe_join(provider_list, tag(:br)) : t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.prosecution')

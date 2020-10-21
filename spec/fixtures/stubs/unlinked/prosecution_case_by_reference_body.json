@@ -188,6 +188,14 @@
                      "type":"hearing_events"
                   }
                ]
+            },
+            "providers": {
+              "data": [
+                {
+                  "id": "9603a373-32f9-4403-a84b-209577913e60",
+                  "type": "providers"
+                }
+              ]
             }
          }
       },
@@ -197,6 +205,14 @@
          "attributes": {
             "description": "Hearing event 8",
             "occurred_at": "2019-10-25T18:45:00.000+00:00"
+         }
+      },
+      {
+         "id": "9603a373-32f9-4403-a84b-209577913e60",
+         "type": "providers",
+         "attributes": {
+            "name": "Cristen Parker",
+            "role": "Junior counsel"
          }
       }
    ]

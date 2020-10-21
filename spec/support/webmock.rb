@@ -26,7 +26,18 @@ RSpec.configure do |config|
   config.before(:each, stub_case_search: true) do
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=.*&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events}
+      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=.*&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
+    ).to_return(
+      status: 200,
+      body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
+      headers: { 'Content-Type' => 'application/vnd.api+json' }
+    )
+  end
+
+  config.before(:each, stub_case_search_test12345: true) do
+    stub_request(
+      :get,
+      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
     ).to_return(
       status: 200,
       body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
@@ -59,7 +70,7 @@ RSpec.configure do |config|
   config.before(:each, stub_unlinked: true) do
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=#{case_urn}&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events}
+      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=#{case_urn}&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
     ).to_return(
       status: 200,
       body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
@@ -77,7 +88,7 @@ RSpec.configure do |config|
 
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events}
+      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events,providers}
     ).to_return(
       status: 200,
       body: load_json_stub('hearing_by_id_body.json'),
@@ -112,10 +123,21 @@ RSpec.configure do |config|
   config.before(:each, stub_hearing: true) do
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events}
+      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events,providers}
     ).to_return(
       status: 200,
       body: load_json_stub('hearing_by_id_body.json'),
+      headers: { 'Content-Type' => 'application/vnd.api+json' }
+    )
+  end
+
+  config.before(:each, stub_hearing_no_providers: true) do
+    stub_request(
+      :get,
+      %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events,providers}
+    ).to_return(
+      status: 200,
+      body: load_json_stub('hearing_by_id_no_providers_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'case reference search', type: :request, vcr: true do
+RSpec.describe 'case reference search', type: :request, stub_case_search: true do
   let(:user) { create(:user) }
 
   before do
