@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "sass-lint": "^1.13.1",
-    "standard": "^14.3.4",
+    "standard": "^15.0.0",
     "webpack-dev-server": "^3.11.0"
   },
   "resolutions": {
