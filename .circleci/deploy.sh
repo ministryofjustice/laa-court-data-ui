@@ -67,6 +67,7 @@ function _circleci_deploy() {
   # apply non-image specific config
   kubectl apply \
   -f .k8s/${environment}/service.yaml \
+  -f .k8s/${environment}/service-metrics.yaml \
   -f .k8s/${environment}/ingress.yaml
 
   kubectl annotate deployments/${REPO_NAME} kubernetes.io/change-cause="$(date +%Y-%m-%dT%H:%M:%S%z) - deploying: $docker_image_tag via CircleCI"
