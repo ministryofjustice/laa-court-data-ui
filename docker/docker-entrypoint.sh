@@ -13,6 +13,9 @@ else
   printf '\e[33mINFO: Using remote redis-server specified in REDIS_URL\e[0m\n'
 fi
 
+printf '\e[33mINFO: Starting Prometheus\e[0m\n'
+bundle exec prometheus_exporter
+
 # NOTE: "RUBYOPT=-W:no-deprecated" removes verbose
 # warnings raised by rails using ruby 2.7
 #
