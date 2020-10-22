@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laa-court-data-ui-metrics
+  namespace: laa-court-data-ui-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laa-court-data-ui
+      tier: metrics
+  template:
+    metadata:
+      labels:
+        app: laa-court-data-ui
+        tier: metrics
+    spec:
+      containers:
+        - name: metrics
+          imagePullPolicy: Always
+          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-get-paid/laa-court-data-ui:set-me
+          command: ['bundle', 'exec', 'prometheus_exporter']
+          ports:
+          - containerPort: 9394
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 9394
+            initialDelaySeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: 9394
+            initialDelaySeconds: 10
+            periodSeconds: 60
+          resources:
+            limits:
+              cpu: 50m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
