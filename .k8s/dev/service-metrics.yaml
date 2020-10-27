@@ -9,5 +9,6 @@ spec:
   ports:
     - port: 9394
       protocol: TCP
+      name: metrics
   selector:
     app: laa-court-data-ui

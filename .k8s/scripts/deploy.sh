@@ -73,11 +73,13 @@ function _deploy() {
 
   # apply deployment with specfied image
   kubectl set image -f .k8s/${environment}/deployment.yaml ${repo_name}-app=${docker_image_tag} --local --output yaml | kubectl apply -f -
+  kubectl set image -f .k8s/${environment}/deployment-metrics.yaml ${repo_name}-app=${docker_image_tag} --local --output yaml | kubectl apply -f -
   kubectl set image -f .k8s/${environment}/deployment-worker.yaml ${repo_name}-worker=${docker_image_tag} --local --output yaml | kubectl apply -f -
 
   # apply non-image specific config
   kubectl apply \
     -f .k8s/${environment}/service.yaml \
+    -f .k8s/${environment}/service-metrics.yaml \
     -f .k8s/${environment}/ingress.yaml
 
   kubectl annotate deployments/${repo_name} kubernetes.io/change-cause="$(date) - deploying: $docker_image_tag via local machine"

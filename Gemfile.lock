@@ -474,11 +474,7 @@ DEPENDENCIES
   meta_request (~> 0.7.2)
   oauth2 (~> 1.4.4)
   pg (>= 0.18, < 2.0)
-<<<<<<< HEAD
-  prometheus-client
-=======
   prometheus_exporter
->>>>>>> 772e052... Add prometheus_exporter gem and config
   pry
   pry-byebug
   pry-rails
