@@ -9,7 +9,7 @@
     label: { text: 'New password' },
     autofocus: true,
     autocomplete: 'new-password',
-    hint_text: "#{@minimum_password_length} characters minimum")
+    hint: { text: "#{@minimum_password_length} characters minimum" })
 
   = f.govuk_password_field(:password_confirmation,
     label: { text: 'Confirm new password' },

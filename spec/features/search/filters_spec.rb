@@ -10,7 +10,7 @@ RSpec.feature 'Search filters', type: :feature, js: true do
   scenario 'user visits search filter options' do
     visit '/'
 
-    expect(page).to have_css('h1', text: 'Search for')
+    expect(page).to have_css('legend', text: 'Search for')
     expect(page).to have_css('.govuk-radios__item',
                              text: 'A case by URN')
     expect(page).to have_css('.govuk-radios__item',
