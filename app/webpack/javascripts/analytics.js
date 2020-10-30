@@ -7,7 +7,7 @@ import {
  */
 const loadAnalytics = () => {
   if (fetchConsentedToCookieValue()) {
-    var analyticsScriptTag = document.createElement('script')
+    const analyticsScriptTag = document.createElement('script')
     analyticsScriptTag.async = ''
     analyticsScriptTag.src = `https://www.googletagmanager.com/gtag/js?id=${googleTrackingID}`
     document.head.appendChild(analyticsScriptTag)
