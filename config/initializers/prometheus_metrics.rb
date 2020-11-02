@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-unless Rails.env.test?
+if Rails.env.production?
   require 'prometheus_exporter/instrumentation'
   require 'prometheus_exporter/middleware'
 
