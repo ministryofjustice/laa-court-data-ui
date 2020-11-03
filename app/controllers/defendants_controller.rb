@@ -3,7 +3,7 @@
 require_dependency 'court_data_adaptor'
 
 class DefendantsController < ApplicationController
-  before_action :load_and_authorize_defendant_search
+  before_action :load_and_authorize_case_search
   before_action :set_unlink_reasons,
                 :set_unlink_attempt,
                 :set_defendant_if_required,
@@ -33,7 +33,10 @@ class DefendantsController < ApplicationController
   end
 
   def defendant
-    @defendant ||= @defendant_search.call
+    return @defendant if @defendant
+
+    pc = @prosecution_case_search.call.first
+    @defendant = pc.defendants.find { |d| d.id.eql?(defendant_params[:id]) }
   end
 
   def prosecution_case_reference
@@ -50,9 +53,9 @@ class DefendantsController < ApplicationController
     prosecution_case_reference
   end
 
-  def load_and_authorize_defendant_search
-    @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_params[:id])
-    authorize! :show, @defendant_search
+  def load_and_authorize_case_search
+    @prosecution_case_search = CourtDataAdaptor::Query::ProsecutionCase.new(prosecution_case_reference)
+    authorize! :show, @prosecution_case_search
   end
 
   def defendant_params

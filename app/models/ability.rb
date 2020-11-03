@@ -63,7 +63,7 @@ class Ability
   def can_search
     can %i[new create], SearchFilter
     can %i[new create], Search
-    can %i[show], CourtDataAdaptor::Query::Defendant::ByUuid
+    can %i[show], CourtDataAdaptor::Query::ProsecutionCase
     can %i[show], CourtDataAdaptor::Query::Hearing
   end
 
