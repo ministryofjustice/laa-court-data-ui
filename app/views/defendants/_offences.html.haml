@@ -15,6 +15,8 @@
         %td.govuk-table__cell
           = offence.title
         %td.govuk-table__cell
-          Not yet available
+          = offence.plea || t('generic.not_available')
         %td.govuk-table__cell
-          = offence.mode_of_trial
+          = "#{offence.mode_of_trial}:"
+          %br
+          = offence.mode_of_trial_reason || t('generic.not_available')
