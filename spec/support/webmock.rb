@@ -51,7 +51,7 @@ RSpec.configure do |config|
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[(arrest_summons_number|national_insurance_number)\]=.*&include=defendants.*}
     ).to_return(
       status: 200,
-      body: load_json_stub('linked/defendant_by_reference_body.json'),
+      body: load_json_stub('linked/defendant_on_case_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end
@@ -62,7 +62,7 @@ RSpec.configure do |config|
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[date_of_birth\]=.*&filter\[name\]=.*&include=defendants.*}
     ).to_return(
       status: 200,
-      body: load_json_stub('linked/defendant_by_reference_body.json'),
+      body: load_json_stub('linked/defendant_on_case_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end
@@ -73,18 +73,18 @@ RSpec.configure do |config|
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=#{case_urn}&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
     ).to_return(
       status: 200,
-      body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
+      body: load_json_stub('unlinked/defendant_on_case_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
 
-    stub_request(
-      :get,
-      %r{http.*/api/internal/v1/defendants/#{defendant_id}}
-    ).to_return(
-      status: 200,
-      body: load_json_stub('unlinked_defendant.json'),
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
-    )
+    # stub_request(
+    #   :get,
+    #   %r{http.*/api/internal/v1/defendants/#{defendant_id}}
+    # ).to_return(
+    #   status: 200,
+    #   body: load_json_stub('unlinked_defendant.json'),
+    #   headers: { 'Content-Type' => 'application/vnd.api+json' }
+    # )
 
     stub_request(
       :get,
@@ -103,10 +103,19 @@ RSpec.configure do |config|
   config.before(:each, stub_linked: true) do
     stub_request(
       :get,
+      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=#{case_urn}&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
+    ).to_return(
+      status: 200,
+      body: load_json_stub('linked/defendant_on_case_body.json'),
+      headers: { 'Content-Type' => 'application/vnd.api+json' }
+    )
+
+    stub_request(
+      :get,
       %r{http.*/api/internal/v1/prosecution_cases\?filter.*arrest_summons_number.*#{defendant_asn}&include=defendants,defendants.offences}
     ).to_return(
       status: 200,
-      body: load_json_stub('linked/defendant_by_reference_body.json'),
+      body: load_json_stub('linked/defendant_on_case_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
 
@@ -115,7 +124,7 @@ RSpec.configure do |config|
       %r{http.*/api/internal/v1/prosecution_cases\?filter.*national_insurance_number.*#{defendant_nino}&include=defendants,defendants.offences}
     ).to_return(
       status: 200,
-      body: load_json_stub('linked/defendant_by_reference_body.json'),
+      body: load_json_stub('linked/defendant_on_case_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end

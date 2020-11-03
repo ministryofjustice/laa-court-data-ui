@@ -35,7 +35,7 @@ RSpec.describe 'defendants', type: :request do
         get "/laa_references/new?id=#{defendant_id_from_fixture}&urn=#{case_reference_from_fixture}"
       end
 
-      let(:defendant_fixture) { load_json_stub('unlinked/defendant_by_reference_body.json') }
+      let(:defendant_fixture) { load_json_stub('unlinked/defendant_on_case_body.json') }
       let(:defendant_by_id_fixture) { load_json_stub('unlinked_defendant.json') }
 
       include_examples 'renders common defendant details'
@@ -49,7 +49,7 @@ RSpec.describe 'defendants', type: :request do
         get "/defendants/#{defendant_id_from_fixture}/edit?urn=#{case_reference_from_fixture}"
       end
 
-      let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
+      let(:defendant_fixture) { load_json_stub('linked/defendant_on_case_body.json') }
       let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
 
       include_examples 'renders common defendant details'

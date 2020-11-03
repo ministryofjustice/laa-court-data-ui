@@ -3,41 +3,28 @@
 require 'court_data_adaptor'
 
 RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
-  let(:defendant_nino_from_fixture) { 'JC123456A' }
   let(:case_reference_from_fixture) { 'TEST12345' }
+  let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
 
   let(:user) { create(:user) }
 
   before do
-    sign_in user
-
     create(:unlink_reason,
            code: 1,
            description: 'Linked to wrong case ID (correct defendant)',
            text_required: false)
+
     create(:unlink_reason, code: 7, description: 'Other', text_required: true)
 
-    query = hash_including({ filter: { national_insurance_number: defendant_nino_from_fixture } })
-    body = load_json_stub(defendant_fixture)
-    defendant_body = load_json_stub(defendant_by_id_fixture)
-    json_api_header = { 'Content-Type' => 'application/vnd.api+json' }
-
-    stub_request(:get, "#{api_url}/prosecution_cases")
-      .with(query: query)
-      .to_return(body: body, headers: json_api_header)
-
-    stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}?include=offences")
-      .to_return(body: defendant_body, headers: json_api_header)
-
+    sign_in user
     visit(url)
   end
 
-  context 'when user views unlinked defendant' do
-    let(:defendant_fixture) { 'unlinked/defendant_by_reference_body.json' }
-    let(:defendant_by_id_fixture) { 'unlinked_defendant.json' }
-    let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-    let(:url) { "laa_references/new?id=#{defendant_id_from_fixture}&urn=#{case_reference_from_fixture}" }
+  context 'when user views unlinked defendant', stub_unlinked: true do
+    let(:case_urn) { case_reference_from_fixture }
+    let(:defendant_id) { defendant_id_from_fixture }
+    let(:url) { "laa_references/new?id=#{defendant_id}&urn=#{case_urn}" }
 
     it 'displays the MAAT ID field' do
       expect(page).to have_field('MAAT ID')
@@ -56,12 +43,11 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
     end
   end
 
-  context 'when user views linked defendant' do
-    let(:defendant_fixture) { 'linked/defendant_by_reference_body.json' }
-    let(:defendant_by_id_fixture) { 'linked_defendant.json' }
-    let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-    let(:url) { "defendants/#{defendant_id_from_fixture}/edit?urn=#{case_reference_from_fixture}" }
-    let(:path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
+  context 'when user views linked defendant', stub_linked: true do
+    let(:case_urn) { case_reference_from_fixture }
+    let(:defendant_id) { defendant_id_from_fixture }
+    let(:url) { "defendants/#{defendant_id}/edit?urn=#{case_urn}" }
+    let(:path) { "#{api_url}/defendants/#{defendant_id}" }
 
     it 'does not display the MAAT ID field' do
       expect(page).not_to have_field('MAAT ID')

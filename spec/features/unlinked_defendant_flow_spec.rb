@@ -55,7 +55,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
       %r{http.*/api/internal/v1/prosecution_cases\?filter.*}
     ).to_return(
       status: 200,
-      body: load_json_stub('linked/defendant_by_reference_body.json'),
+      body: load_json_stub('linked/defendant_on_case_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end
