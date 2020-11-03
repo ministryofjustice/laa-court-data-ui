@@ -29,7 +29,7 @@ RSpec.configure do |config|
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=.*&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
     ).to_return(
       status: 200,
-      body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
+      body: load_json_stub('unlinked/defendant_on_case_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end
@@ -40,7 +40,7 @@ RSpec.configure do |config|
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
     ).to_return(
       status: 200,
-      body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
+      body: load_json_stub('unlinked/defendant_on_case_body.json'),
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end
