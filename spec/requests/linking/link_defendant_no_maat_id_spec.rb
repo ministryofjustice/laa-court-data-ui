@@ -5,18 +5,14 @@ require 'court_data_adaptor'
 RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request: true do
   let(:user) { create(:user) }
 
-  let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
-  let(:urn) { 'MVIFVOIPYU' }
+  let(:defendant_id) { defendant_id_from_cassette }
+  let(:defendant_id_from_cassette) { 'caac5861-efb8-40ef-9f30-45d890fd4103' }
+  let(:urn) { 'TEST12345' }
   let(:commit) { 'Create link without MAAT ID' }
   let(:params) do
-    {
-      commit: commit,
+    { commit: commit,
       urn: urn,
-      link_attempt:
-      {
-        defendant_id: defendant_id
-      }
-    }
+      link_attempt: { defendant_id: defendant_id } }
   end
 
   context 'when authenticated' do
@@ -38,22 +34,6 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
         expect(flash.now[:notice]).to match(/You have successfully linked to the court data source/)
       end
     end
-
-    context 'with invalid defendant_id' do
-      let(:defendant_id) { 'invalid-defendant-id' }
-
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/A link to the court data source could not be created\./)
-      end
-
-      it 'flashes returned error' do
-        expect(flash.now[:alert]).to match(/Defendant is not a valid uuid/i)
-      end
-
-      it 'renders laa_reference_path' do
-        expect(response).to render_template('new')
-      end
-    end
   end
 
   context 'with stubbed requests' do
@@ -65,16 +45,17 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
         post '/laa_references', params: params
       end
 
-      let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
-
+      let(:defendant_id) { defendant_id_from_cassette }
+      let(:payload) do
+        { data:
+          { type: 'laa_references',
+            attributes: { defendant_id: defendant_id } } }.to_json
+      end
       let(:link_request) do
-        {
-          path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
-          body: '{"data":{"type":"laa_references","attributes":{"defendant_id":"69a73434-ae4b-4728-97b8-6a0c60f37930"}}}'
-        }
+        { path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references", body: payload }
       end
 
-      it 'sends link request with filtered params' do
+      it 'sends link request with no maat_reference param' do
         expect(
           a_request(:post, link_request[:path])
             .with(body: link_request[:body])

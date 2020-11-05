@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/defendants/69a73434-ae4b-4728-97b8-6a0c60f37930?include=offences
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers
     body:
       encoding: US-ASCII
       string: ''
@@ -35,30 +35,134 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 841041bc-3ff0-4eb1-be79-55e4d0905bfe
+      - e97431bc-d107-4ea5-96b4-9e8d01aaa610
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"1c74439490e55271243bbcd4df3f2175"
+      - W/"eaf13c78a91079bae9f33accf6b90488"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 841041bc-3ff0-4eb1-be79-55e4d0905bfe
+      - e97431bc-d107-4ea5-96b4-9e8d01aaa610
       X-Runtime:
-      - '0.005509'
+      - '1.042790'
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"69a73434-ae4b-4728-97b8-6a0c60f37930","type":"defendants","attributes":{"name":"Lawerence
-        Predovic Ortiz","date_of_birth":"1958-01-11","national_insurance_number":"RC973812D","arrest_summons_number":"HPNODIOGCH0O","maat_reference":null,"representation_order_date":null},"relationships":{"offences":{"data":[{"id":"81aafd5f-8f3c-4bbf-8e94-5356450cc150","type":"offences"}]},"defence_organisation":{"data":null}}}}'
-  recorded_at: Tue, 04 Aug 2020 15:37:41 GMT
+      base64_string: |
+        H4sIAMYgpF8AA9xdbW+bx3L9KwQ/5aLeYt9f/M0vQWwnaV1HuU1uYAj7arOl
+        SJeinGsE/u89Q9mWbEnUWks8TWoghgQ9Ws7OzpxzZp5Z5495ids4v//bH/NF
+        md+f2xq8jU0xzptkWurEQtaOZR6CD1zxFOP83nz77k3F028269Oaz7aL9eo4
+        x9N6ih/F7XazSGdbfHP/jytPHG9qq5u6yvTrR9/+dCSk0mb+/t58U5eRHjt9
+        vXiz+9WCJ1clrrbn331mZvRFVWMKa60UpotKzCdbWWgucO4j7AwXZl5a6f29
+        DysomUMxvjEjY2Daac9i05wFbls1VtRazf4VspVGy+QYD9wxbZ1nKRvFosHD
+        2RvtlLtlhRiz8Vaw2pJnmteGDSjOtCnwdStacHX9Ci/hsNc1bharV8enZycn
+        +Kpe46biY2vSC2Z4SUwLEVlSxTBfbAnFVa5SuviAqwt+srS1JIt0gRWPDWtX
+        LUspC1Z0Mty6HGJqXQuJ7JrI8LO1OTNdo2a+6spENU7g3FqxZu9Cl3Z+qA2P
+        7nN0e7tdvX//8t58scrLs1LLAQL9y0RcxRN64sW7uJq9WKe62Z7OHsbNdr2s
+        2+0Cj8OR9XjdjtNis31NWwkIaMGZ0PjhapeacXm8WJ2ebSLS93h1doJV8ODD
+        7zTywKuH9JmbTT3d7s4LmXzxjAyPnj759vtn3//MKSdOYtxeRoLV2XJJCPAG
+        v11X292HHa83pW6OyayPD1wBk37Iug5g1q3Rx18TRtIaFbzxrCiFMKiccEEG
+        lriRQcL/zlxKzE/r7IJzdwbwz3rzKq4Wp7uPvPgE2sj7qzu5eOAgODxHOI0j
+        3Q0h9Ayf1RarOHscN3X2E56pm7aoy3JtEFlEkGDS3RJE3/2CeBPBP9oTROon
+        9Q/3+NdnP/7Hw2d/gSDynEcuU2HeIZK0rJIlogtpRAtJ59ou88OfPIjuTHY3
+        BNHRupTZ92dp9qyu/hvxcG3sGEcAtOPAfbHz5IlA5Hi+D4DMd0c2fP/wyYPH
+        T5//BWJHSeurAvvwQAAEnQAeA5m1xl2IIBkX7V8ndu4qc24CoHhy8m42e7wu
+        r3C21wWOR5waJsUtgfPs0U592gd7AueXvz89+vUX/+LB0yf/uCZw5g8Epz+B
+        WPjPEz/BBi98FYxnq0FgkEBJBw8czrXECkZof534uSMbfxk9eV3o58+PcFyC
+        QuP8fBarUv85vy+wwGK7pCcerc9WxGl1sYU6mz06O92uT05nZZ3PTup5XJ5g
+        LQo5rB+X+JWnq7LI25iWdbZeLd99+QQiJp6SF+c/rH+fvY3LMzx3bueMHqDf
+        +6Bxl+/2rXD8YROv14ki/82yxk+xha8vBduF++7IQwPue/OO/Nbi8rTOkHbb
+        zc5vs98X29f4fouvR1z4+CNAzDJygQ5ktl1/cN+72fly+71n//lWffLe/N/+
+        /ej4u5+f/nD06/wzL84ll2AfzYScX1ZTd0LmO3vzRczYwPIdi69ebeJbWFZm
+        8fQ0ni2vc+K3cHHdzH6PN/vvPFr2uOcinG4NrTvCzJ2d8SSuypJi65TqltXs
+        1XpdrkvHDjdcijdG8fYxH28JnaVJp72JN1p9f+mmj098+IXnm8qOyMTZi/p2
+        UX+fffP86MXf5heNgRLf4fd+QxyLQEJKmiPB72tzn/N/haeJzj79SB9xf1/x
+        636kjoS9L8J9Yc5/9PL9wdoCt+zwfHffHL34YdptjTYpbtnWj8AsEN2MzS6g
+        DAj2AIXUqsy++fHxg2m3e8emydUsPttsjz9otP+EnsJTW2zz0aOfZ988rnl9
+        cnlb/9dBfO9CaO5s3n3IrjvyWVfkU7H7eZ27K18uSpdzRfpBkGLp/zrDVx+X
+        vSr9Ynm7ziRaP3vio+667qfXqb+PHqpv67U90sxdkaIEuKwgOTMqccAxFFhy
+        VUrvfSnlahR/WO1CPShbIveBecuRCzFhlRo5qyknb2VOVl+TC1+uUgoUmymW
+        SUttLI4jiaRBgtde+YwjcR22KFmMBagw551iWsvIgkiSqVpk9lCUQl0DN1+u
+        Ip0U1ifDuPMI96wFbOGKhVAFD0Il4cTtq1hdlExZsqD9eSnDPDcwjRtnpQq6
+        Stvh3Qo84YlkMfVmQsgsOB6YSzFYLVIpgt++Sg7OZAGfVid3CexZxLlA5hWf
+        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
+  recorded_at: Thu, 05 Nov 2020 15:56:54 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"69a73434-ae4b-4728-97b8-6a0c60f37930"}}}'
+      string: '{"data":{"type":"laa_references","attributes":{"defendant_id":"caac5861-efb8-40ef-9f30-45d890fd4103"}}}'
     headers:
       User-Agent:
       - Faraday v0.17.3
@@ -88,21 +192,27 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 57a1ea17-7065-42ca-b80b-134d5be3a9ed
+      - d8cfecb2-5509-4934-a113-cc983a4bf11e
       Content-Type:
       - text/plain; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 57a1ea17-7065-42ca-b80b-134d5be3a9ed
+      - d8cfecb2-5509-4934-a113-cc983a4bf11e
       X-Runtime:
-      - '0.007985'
+      - '0.007749'
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: " "
-  recorded_at: Tue, 04 Aug 2020 15:37:41 GMT
+      base64_string: 'H4sIAMYgpF8AA1IAAAAA//8DAEXPbOkBAAAA
+
+        '
+  recorded_at: Thu, 05 Nov 2020 15:56:54 GMT
 - request:
     method: post
     uri: http://localhost:9292/api/internal/v1/laa_references
@@ -138,19 +248,25 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - a6a17109-8d8e-4622-9fa0-99d8e8ff700a
+      - 7644fa77-140b-4e54-9e19-a33d4b2add5e
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - a6a17109-8d8e-4622-9fa0-99d8e8ff700a
+      - 7644fa77-140b-4e54-9e19-a33d4b2add5e
       X-Runtime:
-      - '0.008045'
+      - '0.007239'
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"defendant_id":["is not a valid uuid"]}'
-  recorded_at: Tue, 04 Aug 2020 15:37:41 GMT
+      base64_string: |
+        H4sIAMYgpF8AA6pWSklNS81LScwric9MUbKKVsosVsjLL1FIVChLzMlMUSgt
+        BQrH1gIAAAD//wMA2se24CgAAAA=
+  recorded_at: Thu, 05 Nov 2020 15:56:54 GMT
 recorded_with: VCR 6.0.0
