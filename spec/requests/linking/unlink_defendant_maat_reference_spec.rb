@@ -3,14 +3,11 @@
 require 'court_data_adaptor'
 
 RSpec.shared_examples 'invalid unlink_attempt request' do
-  before do
-    patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
-          params: params
-  end
+  before { patch defendant_path_with_urn, params: params }
 
   it 'does NOT send an unlink request to the adapter' do
-    expect(a_request(:patch, adaptor_request_path)
-      .with(body: adaptor_request_payload.to_json))
+    expect(a_request(:patch, adaptor_defendant_path)
+      .with(body: adaptor_defendant_payload.to_json))
       .not_to have_been_made
   end
 
@@ -25,6 +22,13 @@ RSpec.shared_examples 'invalid unlink_attempt request' do
   end
 end
 
+RSpec.configure do |config|
+  config.before(:each, stub_unlink_success: true) do
+    stub_request(:patch, adaptor_defendant_path)
+      .to_return(status: 202, body: '', headers: { 'Content-Type' => 'text/plain; charset=utf-8' })
+  end
+end
+
 RSpec.describe 'unlink defendant maat reference', type: :request do
   include RSpecHtmlMatchers
 
@@ -34,68 +38,42 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   end
 
   let(:user) { create(:user) }
-  let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
-  let(:defendant_fixture) { load_json_stub('linked/defendant_on_case_body.json') }
-  let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
   let(:json_api_content) { { 'Content-Type' => 'application/vnd.api+json' } }
-  let(:plain_content) { { 'Content-Type' => 'text/plain; charset=utf-8' } }
   let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
   let(:defendant_nino_from_fixture) { 'JC123456A' }
   let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:prosecution_case_reference_from_fixture) { 'TEST12345' }
+  let(:params) { { unlink_attempt: { reason_code: '1', other_reason_text: '' } } }
 
-  let(:params) do
-    {
-      unlink_attempt:
-      {
-        reason_code: '1',
-        other_reason_text: ''
-      }
-    }
+  let(:defendant_path_with_urn) do
+    "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}"
   end
 
-  let(:adaptor_request_path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
+  let(:adaptor_defendant_path) do
+    "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/defendants/#{defendant_id_from_fixture}"
+  end
 
-  let(:adaptor_request_payload) do
-    {
-      data:
-      {
-        id: defendant_id_from_fixture,
+  let(:adaptor_defendant_payload) do
+    { data:
+      { id: defendant_id_from_fixture,
         type: 'defendants',
-        attributes: {
-          user_name: user.username,
-          unlink_reason_code: 1
-        }
-      }
-    }
+        attributes: { user_name: user.username,
+                      unlink_reason_code: 1 } } }
   end
 
-  context 'when authenticated' do
-    before do
-      sign_in user
+  context 'when authenticated', stub_linked: true do
+    let(:case_urn) { prosecution_case_reference_from_fixture }
+    let(:defendant_asn) { defendant_asn_from_fixture }
+    let(:defendant_nino) { defendant_nino_from_fixture }
 
-      stub_request(:get, "#{api_url}/prosecution_cases")
-        .with(query: query)
-        .to_return(body: defendant_fixture, headers: json_api_content)
+    before { sign_in user }
 
-      stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}?include=offences")
-        .to_return(body: defendant_by_id_fixture, headers: json_api_content)
-    end
-
-    context 'with valid id' do
-      let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-
-      before do
-        stub_request(:patch, adaptor_request_path)
-          .to_return(status: 202, body: '', headers: plain_content)
-
-        patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
-              params: params
-      end
+    context 'with valid id', stub_unlink_success: true do
+      before { patch defendant_path_with_urn, params: params }
 
       it 'sends an unlink request to the adapter' do
-        expect(a_request(:patch, adaptor_request_path)
-          .with(body: adaptor_request_payload.to_json))
+        expect(a_request(:patch, adaptor_defendant_path)
+          .with(body: adaptor_defendant_payload.to_json))
           .to have_been_made.once
       end
 
@@ -114,18 +92,15 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
     end
 
     context 'with username exceeding 10 characters' do
-      let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-
       before do
-        stub_request(:patch, adaptor_request_path)
+        stub_request(:patch, adaptor_defendant_path)
           .to_return(
             status: 400,
             body: '{"user_name":["must not exceed 10 characters"]}',
             headers: json_api_content
           )
 
-        patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
-              params: params
+        patch defendant_path_with_urn, params: params
       end
 
       it 'flashes alert' do
@@ -141,29 +116,23 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
     end
 
-    context 'with valid reason_code' do
-      let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
+    context 'with valid reason_code', stub_unlink_success: true do
       let(:params) { { unlink_attempt: { reason_code: '1', other_reason_text: '' } } }
 
-      before do
-        stub_request(:patch, adaptor_request_path)
-          .to_return(status: 202, body: '', headers: plain_content)
-
-        patch "/defendants/#{defendant_id_from_fixture}", params: params
-      end
+      before { patch defendant_path_with_urn, params: params }
 
       it 'flashes notice' do
         expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path(id: defendant_id_from_fixture)
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_id_from_fixture,
+                                                               urn: prosecution_case_reference_from_fixture)
       end
     end
 
     context 'with invalid reason_code' do
       it_behaves_like 'invalid unlink_attempt request' do
-        let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
         let(:params) { { unlink_attempt: { reason_code: '101', other_reason_text: '' } } }
         let(:error_message) { 'Choose a reason for unlinking from list' }
       end
@@ -171,7 +140,6 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
 
     context 'with blank reason_code' do
       it_behaves_like 'invalid unlink_attempt request' do
-        let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
         let(:params) { { unlink_attempt: { reason_code: '', other_reason_text: '' } } }
         let(:error_message) { 'Choose a reason for unlinking' }
       end
@@ -179,7 +147,6 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
 
     context 'with blank other_reason_text for reason that requires it' do
       it_behaves_like 'invalid unlink_attempt request' do
-        let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
         let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: '' } } }
         let(:error_message) { 'Enter the reason for unlinking' }
       end
@@ -188,25 +155,19 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
     context 'with over the maximum other_reason_text for reason that requires it' do
       it_behaves_like 'invalid unlink_attempt request' do
         max_character = Faker::Lorem.characters(number: 501)
-        let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
         let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: max_character } } }
         let(:error_message) { 'Unlinking reason is too long' }
       end
     end
 
-    context 'with expired oauth token', :stub_oauth_token do
-      let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-
+    context 'with expired oauth token', stub_oauth_token: true, stub_unlink_success: true do
       before do
         config = instance_double(CourtDataAdaptor::Configuration)
         allow_any_instance_of(CourtDataAdaptor::Client).to receive(:config).and_return config
         allow(config).to receive(:test_mode?).and_return false
         allow_any_instance_of(OAuth2::AccessToken).to receive(:expired?).and_return true
 
-        stub_request(:patch, adaptor_request_path)
-          .to_return(status: 202, body: '', headers: plain_content)
-
-        patch "/defendants/#{defendant_id_from_fixture}", params: params
+        patch defendant_path_with_urn, params: params
       end
 
       it 'sends token request' do
@@ -218,7 +179,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   end
 
   context 'when not authenticated' do
-    before { patch "/defendants/#{defendant_id_from_fixture}", params: params }
+    before { patch defendant_path_with_urn, params: params }
 
     it 'redirects to sign in page' do
       expect(response).to redirect_to new_user_session_path
