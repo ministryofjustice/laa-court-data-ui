@@ -4,12 +4,8 @@ A service to enable Legal Aid Agency (LAA) caseworkers to view and "link" Court 
 
 [![CircleCI](https://circleci.com/gh/ministryofjustice/laa-court-data-ui.svg?style=svg)](https://circleci.com/gh/ministryofjustice/laa-court-data-ui)
 [![Code Climate](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/badges/gpa.svg)](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui)
-[![Test Coverage](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/badges/coverage.svg)](
-https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/coverage)
-[![CodeScene Code Health](https://codescene.io/projects/10478/status-badges/code-health)](https://codescene.io/projects/10478)
-[![CodeScene System Mastery](https://codescene.io/projects/10478/status-badges/system-mastery)](https://codescene.io/projects/10478)
+[![Test Coverage](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/badges/coverage.svg)](https://codeclimate.com/github/ministryofjustice/laa-court-data-ui/coverage)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
 
 ## Quick start (on macosx)
 ```
