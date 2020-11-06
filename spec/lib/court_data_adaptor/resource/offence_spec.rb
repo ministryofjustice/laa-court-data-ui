@@ -13,4 +13,6 @@ RSpec.describe CourtDataAdaptor::Resource::Offence do
   include_examples 'court_data_adaptor resource callbacks' do
     let(:instance) { described_class.new(defendant_id: nil) }
   end
+
+  it { is_expected.to respond_to(:title, :plea, :plea_date, :mode_of_trial, :mode_of_trial_reason) }
 end
