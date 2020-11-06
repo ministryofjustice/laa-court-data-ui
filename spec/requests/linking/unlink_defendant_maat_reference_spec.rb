@@ -22,13 +22,6 @@ RSpec.shared_examples 'invalid unlink_attempt request' do
   end
 end
 
-RSpec.configure do |config|
-  config.before(:each, stub_unlink_success: true) do
-    stub_request(:patch, adaptor_defendant_path)
-      .to_return(status: 202, body: '', headers: { 'Content-Type' => 'text/plain; charset=utf-8' })
-  end
-end
-
 RSpec.describe 'unlink defendant maat reference', type: :request do
   include RSpecHtmlMatchers
 
