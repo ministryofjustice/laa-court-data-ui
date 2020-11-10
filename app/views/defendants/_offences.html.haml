@@ -13,7 +13,7 @@
     - @defendant.offences.each do |offence|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = offence.title
+          = offence.title || t('generic.not_available')
         %td.govuk-table__cell
           = offence.plea_and_date || t('generic.not_available')
         %td.govuk-table__cell
