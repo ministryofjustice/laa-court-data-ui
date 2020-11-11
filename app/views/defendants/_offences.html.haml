@@ -13,8 +13,10 @@
     - @defendant.offences.each do |offence|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = offence.title
+          = offence.title || t('generic.not_available')
         %td.govuk-table__cell
-          Not yet available
+          = offence.plea_and_date || t('generic.not_available')
         %td.govuk-table__cell
-          = offence.mode_of_trial
+          = "#{offence.mode_of_trial}:"
+          %br
+          = offence.mode_of_trial_reason || t('generic.not_available')
