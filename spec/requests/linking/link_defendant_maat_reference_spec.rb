@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request: true do
+RSpec.fdescribe 'link defendant maat reference', type: :request, vcr_cud_request: true do
   let(:user) { create(:user) }
 
   let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
@@ -95,10 +95,18 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr_cud_request:
 
       let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
 
+      let(:request_body) do
+        { data:
+          { type: 'laa_references',
+            attributes:
+             { maat_reference: '2123456',
+               defendant_id: defendant_id } } }.to_json
+      end
+
       let(:link_request) do
         {
           path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
-          body: '{"data":{"type":"laa_references","attributes":{"maat_reference":"2123456","defendant_id":"69a73434-ae4b-4728-97b8-6a0c60f37930"}}}'
+          body: request_body
         }
       end
 
