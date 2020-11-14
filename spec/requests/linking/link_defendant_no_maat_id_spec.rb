@@ -70,4 +70,12 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
       end
     end
   end
+
+  context 'when not authenticated' do
+    context 'when creating a reference' do
+      before { post '/laa_references', params: params }
+
+      it_behaves_like 'unauthenticated request'
+    end
+  end
 end

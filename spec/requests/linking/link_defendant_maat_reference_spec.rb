@@ -109,13 +109,7 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
     context 'when creating a reference' do
       before { post '/laa_references', params: params }
 
-      it 'redirects to sign in page' do
-        expect(response).to redirect_to new_user_session_path
-      end
-
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/sign in before continuing/)
-      end
+      it_behaves_like 'unauthenticated request'
     end
   end
 
