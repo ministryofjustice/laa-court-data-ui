@@ -57,7 +57,7 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
 
     context 'with invalid defendant_id' do
       context 'when not a uuid', stub_link_failure_with_invalid_defendant_uuid: true do
-        let(:defendant_id) { 'no-a-uuid' }
+        let(:defendant_id) { 'not-a-uuid' }
 
         it 'flashes alert' do
           expect(flash.now[:alert]).to match(/A link to the court data source could not be created\./)
