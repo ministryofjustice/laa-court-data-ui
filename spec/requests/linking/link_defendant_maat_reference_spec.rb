@@ -2,22 +2,30 @@
 
 require 'court_data_adaptor'
 
-RSpec.fdescribe 'link defendant maat reference', type: :request, vcr_cud_request: true do
+RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: true do
   let(:user) { create(:user) }
 
-  let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
-  let(:maat_reference) { '2123456' }
-  let(:urn) { 'MVIFVOIPYU' }
+  let(:case_urn) { 'TEST12345' }
+  let(:defendant_id) { defendant_id_from_fixture }
+  let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+  let(:maat_reference) { '1234567' }
 
   let(:params) do
-    {
-      urn: urn,
+    { urn: case_urn,
       link_attempt:
-      {
-        defendant_id: defendant_id,
-        maat_reference: maat_reference
-      }
-    }
+        { defendant_id: defendant_id,
+          maat_reference: maat_reference } }
+  end
+
+  let(:adaptor_request_path) { %r{.*/laa_references} }
+
+  let(:expected_adaptor_request_payload) do
+    { data:
+      { type: 'laa_references',
+        attributes:
+          { defendant_id: defendant_id,
+            user_name: user.username,
+            maat_reference: maat_reference } } }
   end
 
   context 'when authenticated' do
@@ -26,14 +34,20 @@ RSpec.fdescribe 'link defendant maat reference', type: :request, vcr_cud_request
       post '/laa_references', params: params
     end
 
-    context 'with valid params' do
+    context 'with valid params', stub_link_success: true do
+      it 'sends a link request to the adapter' do
+        expect(a_request(:post, adaptor_request_path)
+          .with(body: expected_adaptor_request_payload.to_json))
+          .to have_been_made.once
+      end
+
       it 'returns status 302' do
         expect(response).to have_http_status :redirect
       end
 
       it 'redirects to defendant path' do
         expect(response).to redirect_to edit_defendant_path(id: defendant_id,
-                                                            urn: urn)
+                                                            urn: case_urn)
       end
 
       it 'flashes alert' do
@@ -42,30 +56,51 @@ RSpec.fdescribe 'link defendant maat reference', type: :request, vcr_cud_request
     end
 
     context 'with invalid defendant_id' do
-      let(:defendant_id) { 'invalid-defendant-id' }
+      context 'when not a uuid', stub_link_failure_with_invalid_defendant_uuid: true do
+        let(:defendant_id) { 'no-a-uuid' }
 
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/A link to the court data source could not be created\./)
-      end
+        it 'flashes alert' do
+          expect(flash.now[:alert]).to match(/A link to the court data source could not be created\./)
+        end
 
-      it 'flashes returned error' do
-        expect(flash.now[:alert]).to match(/Defendant is not a valid uuid/i)
-      end
+        it 'flashes returned error' do
+          expect(flash.now[:alert]).to match(/Defendant is not a valid uuid/i)
+        end
 
-      it 'renders laa_reference_path' do
-        expect(response).to render_template('new')
+        it 'renders laa_reference_path' do
+          expect(response).to render_template('new')
+        end
       end
     end
 
     context 'with invalid maat_reference' do
-      let(:maat_reference) { 'A2123456' }
+      context 'when MAAT API does not know maat reference',
+              stub_link_failure_with_unknown_maat_reference: true do
+        it 'flashes alert' do
+          expect(flash.now[:alert])
+            .to match(/A link to the court data source could not be created\./)
+        end
 
-      it 'displays error summary with invalid error' do
-        expect(response.body).to include('Enter a maat reference in the correct format')
+        it 'flashes returned error' do
+          expect(flash.now[:alert])
+            .to match(/MAAT reference 1234567 has no common platform data created against Maat application./i)
+        end
+
+        it 'renders laa_reference_path' do
+          expect(response).to render_template('new')
+        end
       end
 
-      it 'renders laa_referencer/new' do
-        expect(response).to render_template 'laa_references/new'
+      context 'when invalid format' do
+        let(:maat_reference) { 'A2123456' }
+
+        it 'displays error summary with invalid error' do
+          expect(response.body).to include('Enter a maat reference in the correct format')
+        end
+
+        it 'renders laa_referencer/new' do
+          expect(response).to render_template 'laa_references/new'
+        end
       end
     end
   end
@@ -84,54 +119,22 @@ RSpec.fdescribe 'link defendant maat reference', type: :request, vcr_cud_request
     end
   end
 
-  context 'with stubbed requests' do
-    before { sign_in user }
+  context 'when oauth token expired', stub_oauth_token: true, stub_link_success: true do
+    before do
+      sign_in user
 
-    context 'when MAAT reference submitted' do
-      before do
-        stub_request(:post, link_request[:path])
-        post '/laa_references', params: params
-      end
+      config = instance_double(CourtDataAdaptor::Configuration)
+      allow_any_instance_of(CourtDataAdaptor::Client).to receive(:config).and_return config
+      allow(config).to receive(:test_mode?).and_return false
+      allow_any_instance_of(OAuth2::AccessToken).to receive(:expired?).and_return true
 
-      let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
-
-      let(:request_body) do
-        { data:
-          { type: 'laa_references',
-            attributes:
-             { maat_reference: '2123456',
-               defendant_id: defendant_id } } }.to_json
-      end
-
-      let(:link_request) do
-        {
-          path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
-          body: request_body
-        }
-      end
-
-      it 'sends link request with filtered params' do
-        expect(
-          a_request(:post, link_request[:path])
-            .with(body: link_request[:body])
-        ).to have_been_made.once
-      end
+      post '/laa_references', params: params
     end
 
-    context 'when oauth token expired', :stub_oauth_token do
-      before do
-        config = instance_double(CourtDataAdaptor::Configuration)
-        allow_any_instance_of(CourtDataAdaptor::Client).to receive(:config).and_return config
-        allow(config).to receive(:test_mode?).and_return false
-        allow_any_instance_of(OAuth2::AccessToken).to receive(:expired?).and_return true
-        post '/laa_references', params: params
-      end
-
-      it 'sends token request' do
-        expect(
-          a_request(:post, %r{.*/oauth/token})
-        ).to have_been_made.twice
-      end
+    it 'sends token request' do
+      expect(
+        a_request(:post, %r{.*/oauth/token})
+      ).to have_been_made.twice
     end
   end
 end
