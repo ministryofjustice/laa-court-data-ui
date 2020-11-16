@@ -4,6 +4,7 @@
 #
 # see https://github.com/weppos/breadcrumbs_on_rails/blob/master/lib/breadcrumbs_on_rails/breadcrumbs.rb#L13-L20
 #
+# rubocop:disable Rails/ContentTag
 class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builder
   def render
     @context.content_tag(:div, class: 'govuk-breadcrumbs') do
@@ -32,3 +33,4 @@ class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builde
     @context.content_tag(:li, content, tag_options)
   end
 end
+# rubocop:enable Rails/ContentTag
