@@ -19,8 +19,6 @@ module CapybaraExtensions
 
     def has_govuk_flash?(key, options)
       case key
-      when :alert
-        has_selector?('.govuk-error-summary', **options)
       when :notice
         has_selector?('.lcdui-notice-summary', **options)
       else
