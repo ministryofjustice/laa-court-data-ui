@@ -59,7 +59,6 @@ class LaaReferencesController < ApplicationController
   end
 
   def link_laa_reference_and_redirect
-    resource_params.delete(:maat_reference) if no_maat_id?
     laa_reference = resource.new(**resource_params)
     laa_reference.save
 
@@ -76,7 +75,8 @@ class LaaReferencesController < ApplicationController
   def link_attempt_params
     return unless laa_reference_params[:link_attempt]
 
-    laa_reference_params[:link_attempt].merge(no_maat_id: no_maat_id?)
+    laa_reference_params[:link_attempt].merge(no_maat_id: no_maat_id?,
+                                              username: current_user.username)
   end
 
   def resource
@@ -84,7 +84,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def resource_params
-    @resource_params ||= link_attempt_params.select! { |k, _v| k.in? %w[maat_reference defendant_id] }
+    @resource_params ||= @link_attempt.to_link_attributes
   end
 
   def no_maat_id?

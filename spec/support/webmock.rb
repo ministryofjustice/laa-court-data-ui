@@ -79,7 +79,7 @@ RSpec.configure do |config|
 
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/defendants/#{defendant_id}}
+      %r{http.*/api/internal/v1/defendants/#{defendant_id}\?include=offences}
     ).to_return(
       status: 200,
       body: load_json_stub('unlinked_defendant.json'),
@@ -91,13 +91,37 @@ RSpec.configure do |config|
       %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events,providers}
     ).to_return(
       status: 200,
-      body: load_json_stub('hearing_by_id_body.json'),
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
+      headers: { 'Content-Type' => 'application/vnd.api+json' },
+      body: load_json_stub('hearing_by_id_body.json')
     )
   end
 
   config.before(:each, stub_link_success: true) do
     stub_request(:post, %r{/api/internal/v1/laa_references}).to_return(status: 202, body: '')
+  end
+
+  config.before(:each, stub_link_failure_with_invalid_defendant_uuid: true) do
+    stub_request(
+      :post, %r{/api/internal/v1/laa_references}
+    ).to_return(
+      status: 400,
+      headers: { 'Content-Type' => 'application/vnd.api+json' },
+      body: { defendant_id: ['is not a valid uuid'],
+              maat_reference: [
+                '1234567 has no common platform data created against Maat application.'
+              ] }.to_json
+    )
+  end
+
+  config.before(:each, stub_link_failure_with_unknown_maat_reference: true) do
+    stub_request(
+      :post, %r{/api/internal/v1/laa_references}
+    ).to_return(
+      status: 400,
+      headers: { 'Content-Type' => 'application/vnd.api+json' },
+      body: { maat_reference:
+                ['1234567 has no common platform data created against Maat application.'] }.to_json
+    )
   end
 
   config.before(:each, stub_linked: true) do

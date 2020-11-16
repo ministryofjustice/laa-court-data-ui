@@ -2,21 +2,28 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request: true do
+RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: true do
   let(:user) { create(:user) }
 
-  let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
-  let(:urn) { 'MVIFVOIPYU' }
+  let(:case_urn) { 'TEST12345' }
+  let(:defendant_id) { defendant_id_from_fixture }
+  let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:commit) { 'Create link without MAAT ID' }
+
   let(:params) do
-    {
-      commit: commit,
-      urn: urn,
-      link_attempt:
-      {
-        defendant_id: defendant_id
-      }
-    }
+    { commit: commit,
+      urn: case_urn,
+      link_attempt: { defendant_id: defendant_id } }
+  end
+
+  let(:adaptor_request_path) { %r{.*/laa_references} }
+
+  let(:expected_adaptor_request_payload) do
+    { data:
+      { type: 'laa_references',
+        attributes:
+          { defendant_id: defendant_id,
+            user_name: user.username } } }
   end
 
   context 'when authenticated' do
@@ -25,13 +32,19 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
       post '/laa_references', params: params
     end
 
-    context 'with valid params' do
+    context 'with valid params', stub_link_success: true do
+      it 'sends a link request to the adapter' do
+        expect(a_request(:post, adaptor_request_path)
+          .with(body: expected_adaptor_request_payload.to_json))
+          .to have_been_made.once
+      end
+
       it 'returns status 302' do
         expect(response).to have_http_status :redirect
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(id: defendant_id, urn: urn)
+        expect(response).to redirect_to edit_defendant_path(id: defendant_id, urn: case_urn)
       end
 
       it 'flashes alert' do
@@ -40,46 +53,29 @@ RSpec.describe 'link defendant with no maat id', type: :request, vcr_cud_request
     end
 
     context 'with invalid defendant_id' do
-      let(:defendant_id) { 'invalid-defendant-id' }
+      context 'when not a uuid', stub_link_failure_with_invalid_defendant_uuid: true do
+        let(:defendant_id) { 'not-a-uuid' }
 
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/A link to the court data source could not be created\./)
-      end
+        it 'flashes alert' do
+          expect(flash.now[:alert]).to match(/A link to the court data source could not be created\./)
+        end
 
-      it 'flashes returned error' do
-        expect(flash.now[:alert]).to match(/Defendant is not a valid uuid/i)
-      end
+        it 'flashes returned error' do
+          expect(flash.now[:alert]).to match(/Defendant is not a valid uuid/i)
+        end
 
-      it 'renders laa_reference_path' do
-        expect(response).to render_template('new')
+        it 'renders laa_reference_path' do
+          expect(response).to render_template('new')
+        end
       end
     end
   end
 
-  context 'with stubbed requests' do
-    before { sign_in user }
+  context 'when not authenticated' do
+    context 'when creating a reference' do
+      before { post '/laa_references', params: params }
 
-    context 'when no MAAT reference submitted' do
-      before do
-        stub_request(:post, link_request[:path])
-        post '/laa_references', params: params
-      end
-
-      let(:defendant_id) { '69a73434-ae4b-4728-97b8-6a0c60f37930' }
-
-      let(:link_request) do
-        {
-          path: "#{ENV['COURT_DATA_ADAPTOR_API_URL']}/laa_references",
-          body: '{"data":{"type":"laa_references","attributes":{"defendant_id":"69a73434-ae4b-4728-97b8-6a0c60f37930"}}}'
-        }
-      end
-
-      it 'sends link request with filtered params' do
-        expect(
-          a_request(:post, link_request[:path])
-            .with(body: link_request[:body])
-        ).to have_been_made.once
-      end
+      it_behaves_like 'unauthenticated request'
     end
   end
 end

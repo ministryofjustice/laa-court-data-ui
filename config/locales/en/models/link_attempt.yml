@@ -5,5 +5,9 @@ en:
       models:
         link_attempt:
           attributes:
+            defendant_id:
+              blank: Defendant is required
             maat_reference:
               invalid: Enter a maat reference in the correct format
+            username:
+              blank: Current username is required

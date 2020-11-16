@@ -3,8 +3,15 @@
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
+  config.debug_logger = File.open('log/vcr.log', 'w') if ENV['VCR_DEBUG']
   config.before_record do |i|
     i.response.body.force_encoding('UTF-8')
+  end
+
+  # adaptor seems to be returning invalid UTF-8
+  config.preserve_exact_body_bytes do |http_message|
+    http_message.body.encoding.name == 'ASCII-8BIT' ||
+      !http_message.body.valid_encoding?
   end
 
   # NOTE: CourtDataAdaptor.configuration.test_mode should be set
@@ -56,7 +63,7 @@ RSpec.configure do |config|
   config.around(:each, :vcr) do |example|
     if VCR.turned_on?
       cassette = cassette_name(example)
-      VCR.use_cassette(cassette, record: :new_episodes, preserve_exact_body_bytes: true) do
+      VCR.use_cassette(cassette, record: :new_episodes) do
         example.run
       end
     else

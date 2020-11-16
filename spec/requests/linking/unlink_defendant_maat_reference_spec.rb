@@ -152,6 +152,53 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         patch "/defendants/#{defendant_id_from_fixture}", params: params
       end
 
+      it 'sends an unlink request to the adapter' do
+        expect(a_request(:patch, adaptor_request_path)
+          .with(body: adaptor_request_payload.to_json))
+          .to have_been_made.once
+      end
+
+      it 'flashes notice' do
+        expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
+      end
+
+      it 'redirects to defendant path' do
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_id_from_fixture)
+      end
+    end
+
+    context 'with valid other_reason_text' do
+      let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
+      let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: 'a reason for unlinking' } } }
+
+      let(:adaptor_request_payload) do
+        {
+          data:
+          {
+            id: defendant_id_from_fixture,
+            type: 'defendants',
+            attributes: {
+              user_name: user.username,
+              unlink_reason_code: 7,
+              unlink_other_reason_text: 'a reason for unlinking'
+            }
+          }
+        }
+      end
+
+      before do
+        stub_request(:patch, adaptor_request_path)
+          .to_return(status: 202, body: '', headers: plain_content)
+
+        patch "/defendants/#{defendant_id_from_fixture}", params: params
+      end
+
+      it 'sends an unlink request to the adapter' do
+        expect(a_request(:patch, adaptor_request_path)
+          .with(body: adaptor_request_payload.to_json))
+          .to have_been_made.once
+      end
+
       it 'flashes notice' do
         expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
       end
