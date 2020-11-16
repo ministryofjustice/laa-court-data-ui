@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   check_authorization
 
-  # Note: errors checked bottom to top
+  # NOTE: errors checked bottom to top
   # https://apidock.com/rails/v6.0.0/ActiveSupport/Rescuable/ClassMethods/rescue_from
   rescue_from Exception, with: :unexpected_exception_handler
   rescue_from CanCan::AccessDenied, with: :access_denied
