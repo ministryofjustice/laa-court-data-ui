@@ -10,8 +10,5 @@ spec:
     - port: 80
       name: http
       targetPort: 3000
-    - port: 9394
-      name: metrics
-      targetPort: 9394
   selector:
     app: laa-court-data-ui

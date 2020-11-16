@@ -72,8 +72,8 @@ function _deploy() {
   kubectl apply -f .k8s/${environment}/secrets.yaml
 
   # apply deployment with specfied image
-  kubectl set image -f .k8s/${environment}/deployment.yaml ${repo_name}-app=${docker_image_tag} ${repo_name}-metrics=${docker_image_tag} --local --output yaml | kubectl apply -f -
-  kubectl set image -f .k8s/${environment}/deployment-worker.yaml ${repo_name}-worker=${docker_image_tag} --local --output yaml | kubectl apply -f -
+  kubectl set image -f .k8s/${environment}/deployment.yaml ${repo_name}-app=${docker_image_tag} --local --output yaml | kubectl apply -f -
+  kubectl set image -f .k8s/${environment}/deployment-worker.yaml ${repo_name}-worker=${docker_image_tag} ${repo_name}-metrics=${docker_image_tag} --local --output yaml | kubectl apply -f -
 
   # apply non-image specific config
   kubectl apply \
