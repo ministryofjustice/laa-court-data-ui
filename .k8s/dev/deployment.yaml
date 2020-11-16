@@ -128,6 +128,3 @@ spec:
               port: 9394
             initialDelaySeconds: 10
             periodSeconds: 60
-          env:
-            - name: ENV
-              value: 'dev'
