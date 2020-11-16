@@ -21,4 +21,4 @@ make open
 * [Installation and running](docs/installation.md)
 * [Development](docs/development.md)
 * [Testing](docs/testing.md)
-* [Build and deploy](docs/build_and_deploy.md)
+* [Monitoring](docs/monitoring.md)

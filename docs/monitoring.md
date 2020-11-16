@@ -1,10 +1,10 @@
-## Build and Deploy
+## Monitoring
 
 - [Prometheus](#prometheus)
 
 ### Prometheus
 
-The prometheus_exporter gem is used gather application metrics.
+The prometheus_exporter gem is used to gather application metrics.
 
 Currently the exporter runs in a separate container (laa-court-data-ui-metrics) on the default port 9394 within the same pod as the application container (laa-court-data-ui-app).
 
