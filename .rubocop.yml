@@ -114,6 +114,9 @@ RSpec/MultipleExpectations:
   Exclude:
     - spec/features/**/*
 
+RSpec/MultipleMemoizedHelpers:
+  Max: 15
+
 RSpec/NestedGroups:
   Max: 4
 
