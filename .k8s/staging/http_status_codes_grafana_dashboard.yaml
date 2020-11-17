@@ -358,9 +358,19 @@ data:
                 "selected": true,
                 "text": "laa-court-data-ui-staging",
                 "value": "laa-court-data-ui-staging"
+              },
+              {
+                "selected": false,
+                 "text": "laa-court-data-ui-uat",
+                "value": "laa-court-data-ui-uat"
+              },
+              {
+                "selected": false,
+                "text": "laa-court-data-ui-production",
+                "value": "laa-court-data-ui-production"
               }
             ],
-            "query": "laa-court-data-ui-staging",
+            "query": "laa-court-data-ui-staging,  laa-court-data-ui-uat,  laa-court-data-ui-production",
             "skipUrlSync": false,
             "type": "custom"
           },
