@@ -239,7 +239,7 @@ GEM
     pg (1.2.3)
     pg (1.2.3-x64-mingw32)
     pg (1.2.3-x86-mingw32)
-    prometheus_exporter (0.5.3)
+    prometheus_exporter (0.6.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
