@@ -20,7 +20,7 @@ RSpec.describe CourtDataAdaptor::Resource::Provider do
     it { is_expected.to respond_to :name }
     it { is_expected.to respond_to :role }
 
-    describe '#name_nad_role' do
+    describe '#name_and_role' do
       subject { instance.name_and_role }
 
       before do
