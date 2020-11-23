@@ -110,6 +110,11 @@ spec:
                 secretKeyRef:
                   name: lcdui-secrets
                   key: GOVUK_NOTIFY_API_KEY
+            - name: SLACK_ALERTS_WEBHOOK
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-secrets
+                  key: SLACK_ALERTS_WEBHOOK
         - name: laa-court-data-ui-metrics
           image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-get-paid/laa-court-data-ui:set-me
           imagePullPolicy: Always
