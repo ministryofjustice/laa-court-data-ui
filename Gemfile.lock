@@ -302,7 +302,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.2.4)
+    redis (4.2.5)
     regexp_parser (1.8.2)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -480,7 +480,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 6.0.3)
   rails-controller-testing
-  redis (~> 4.2.4)
+  redis (~> 4.2.5)
   rspec-html-matchers (~> 0.9.4)
   rspec-rails (~> 4.0)
   rspec_junit_formatter
