@@ -2,6 +2,7 @@
 
 - [Prometheus](#prometheus)
 - [Grafana](#grafana)
+- [Alerting](#alerting)
 
 ### Prometheus
 
@@ -28,4 +29,15 @@ Currently these dashboards have been applied manually; e.g. with
 ```
 # apply dashboard
 kubectl apply -n laa-court-data-ui-staging -f .k8s/staging/http_status_codes_grafana_dashboard.yaml
+```
+
+### Alerting
+
+PrometheusRules for AlertManager alert conditions are defined in prometheus-custom-rules.yaml for each namespace. These are integrated with Slack using a slack webhook contained in the lcdui-secrets#SLACK_ALERTS_WEBHOOK secret.
+
+Currently these rules have been applied manually: e.g. with
+
+```
+# apply rules
+kubectl apply -f .k8s/dev/prometheus-custom-rules.yaml -n laa-court-data-ui-dev
 ```
