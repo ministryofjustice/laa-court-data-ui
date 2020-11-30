@@ -5,7 +5,9 @@ class UsersController < ApplicationController
 
   def index; end
 
-  def show; end
+  def show
+    render '/errors/internal_error', status: 500
+  end
 
   def new; end
 
