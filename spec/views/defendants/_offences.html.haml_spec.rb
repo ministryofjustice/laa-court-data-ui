@@ -52,24 +52,33 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       end
     end
 
-    context 'when the offence has plea details' do
-      before do
-        allow(offence).to receive(:plea).and_return('NOT_GUILTY')
-        allow(offence).to receive(:plea_date).and_return('2020-04-12')
-        allow(offence).to receive(:plea_and_date).and_call_original
+    context 'when the offence has pleas' do
+      let(:plea_ostruct_collection) { plea_array.map { |el| OpenStruct.new(el) } }
+
+      let(:plea_array) do
+        [{ code: 'NOT_GUILTY',
+           pleaded_at: '2020-04-12' },
+         { code: 'GUILTY',
+           pleaded_at: '2020-05-12' },
+         { code: 'NO_PLEA',
+           pleaded_at: '2020-03-12' }]
       end
 
-      it 'displays plea and plea date' do
+      before do
+        allow(offence).to receive(:pleas).and_return(plea_ostruct_collection)
+      end
+
+      it 'displays list of pleas with plea dates' do
         render
-        expect(rendered).to have_css('.govuk-table__cell', text: 'Not guilty on 12/04/2020')
+        expect(rendered)
+          .to have_css('.govuk-table__cell',
+                       text: %r{No plea on 12/03/2020.*Not guilty on 12/04/2020.*Guilty on 12/05/2020})
       end
     end
 
-    context 'when the offence has no plea details' do
+    context 'when the offence has no pleas' do
       before do
-        allow(offence).to receive(:plea).and_return(nil)
-        allow(offence).to receive(:plea_date).and_return(nil)
-        allow(offence).to receive(:plea_and_date).and_call_original
+        allow(offence).to receive(:pleas).and_return([])
       end
 
       it 'displays Not available for plea and plea date' do
