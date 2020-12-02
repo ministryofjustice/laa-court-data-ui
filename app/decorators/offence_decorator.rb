@@ -5,7 +5,7 @@ class OffenceDecorator < BaseDecorator
     return t('generic.not_available') if pleas.blank?
     return pleas unless pleas.is_a?(Enumerable)
 
-    safe_join(plea_sentences, tag(:br))
+    safe_join(plea_sentences, tag.br)
   end
 
   private
