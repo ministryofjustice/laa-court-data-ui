@@ -53,4 +53,19 @@ Rails.application.configure do
   # when testing devise
   #
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # see https://github.com/shadabahmed/logstasher
+  config.logstasher.enabled = false
+  if config.logstasher.enabled
+    config.logstasher.log_level = Logger::DEBUG
+    config.logstasher.controller_enabled = true
+    config.logstasher.mailer_enabled = false
+    config.logstasher.record_enabled = false
+    config.logstasher.view_enabled = false
+    config.logstasher.job_enabled = true
+    config.logstasher.suppress_app_log = false
+    config.logstasher.source = 'laa-court-data-ui-test'
+    config.logstasher.backtrace = true
+    config.logstasher.logger_path = 'log/logstasher_test.log'
+  end
 end
