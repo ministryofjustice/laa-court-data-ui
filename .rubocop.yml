@@ -62,6 +62,7 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
     - config/routes.rb
+    - config/environments/*.rb
     - config/initializers/devise.rb
 
 Metrics/MethodLength:
