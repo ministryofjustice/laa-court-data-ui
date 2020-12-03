@@ -57,6 +57,19 @@ Rails.application.configure do
   # have puma server output to stdout (when started via `foreman start`)
   config.logger = Logger.new($stdout)
 
+  # see https://github.com/shadabahmed/logstasher
+  config.logstasher.enabled = true
+  config.logstasher.log_level = Logger::INFO
+  config.logstasher.controller_enabled = true
+  config.logstasher.mailer_enabled = false
+  config.logstasher.record_enabled = false
+  config.logstasher.view_enabled = false
+  config.logstasher.job_enabled = true
+  config.logstasher.suppress_app_log = false
+  config.logstasher.source = 'laa-court-data-ui-development'
+  config.logstasher.backtrace = true
+  config.logstasher.logger_path = 'log/logstasher_development.log'
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
