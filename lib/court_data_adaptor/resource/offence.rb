@@ -9,8 +9,12 @@ module CourtDataAdaptor
 
       property :title, type: :string
       property :pleas, type: :struct_collection, default: []
-      property :mode_of_trial, type: :string
-      property :mode_of_trial_reason, type: :string
+      property :mode_of_trial_reasons, type: :struct_collection, default: []
+
+      def plea_and_date
+        return if plea.nil?
+        "#{plea&.humanize} on #{plea_date&.to_date&.strftime('%d/%m/%Y')}"
+      end
     end
   end
 end
