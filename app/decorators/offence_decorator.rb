@@ -8,6 +8,13 @@ class OffenceDecorator < BaseDecorator
     safe_join(plea_sentences, tag.br)
   end
 
+  def mode_of_trial_reason_list
+    return t('generic.not_available') if mode_of_trial_reasons.blank?
+    return mode_of_trial_reason unless mode_of_trial_reasons.is_a?(Enumerable)
+
+    safe_join(mode_of_trial_reason_descriptions, tag.br)
+  end
+
   private
 
   def plea_sentences
@@ -22,5 +29,13 @@ class OffenceDecorator < BaseDecorator
     t('offence.plea.sentence',
       plea: plea.code&.humanize || t('generic.not_available'),
       pleaded_at: plea.pleaded_at&.to_date&.strftime('%d/%m/%Y') || t('generic.not_available'))
+  end
+
+  def mode_of_trial_reason_descriptions
+    mode_of_trial_reasons.map{|mode_of_trial| mode_of_trial_reason_description(mode_of_trial)}
+  end
+
+  def mode_of_trial_reason_description(mode_of_trial)
+    mode_of_trial.description&.humanize || t('generic.not_available')
   end
 end
