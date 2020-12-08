@@ -32,7 +32,7 @@ class OffenceDecorator < BaseDecorator
   end
 
   def mode_of_trial_reason_descriptions
-    mode_of_trial_reasons.map{|mode_of_trial| mode_of_trial_reason_description(mode_of_trial)}
+    mode_of_trial_reasons.map { |mode_of_trial| mode_of_trial_reason_description(mode_of_trial) }
   end
 
   def mode_of_trial_reason_description(mode_of_trial)

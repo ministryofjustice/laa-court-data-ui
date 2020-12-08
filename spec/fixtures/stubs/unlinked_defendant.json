@@ -40,8 +40,11 @@
         "order_index": 1,
         "title": "Copying false instrument with intent",
         "mode_of_trial": "Indictable only",
-        "mode_of_trial_reason": "Court directs trial by jury",
-        "mode_of_trial_reason_code": "05",
+        "mode_of_trial_reasons": [
+          {
+            "description": "Court directs trial by jury"
+          }
+        ],
         "pleas": [
           {
             "code": "NOT_GUILTY",

@@ -16,7 +16,7 @@ RSpec.describe CourtDataAdaptor::Resource::Offence do
     let(:instance) { described_class.new(defendant_id: nil) }
   end
 
-  it { is_expected.to respond_to(:title, :pleas, :mode_of_trial, :mode_of_trial_reason) }
+  it { is_expected.to respond_to(:title, :pleas, :mode_of_trial, :mode_of_trial_reasons) }
 
   describe '#pleas' do
     subject(:pleas) { instance.pleas }

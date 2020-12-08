@@ -13,8 +13,14 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       before { allow(offence).to receive(:mode_of_trial).and_return('Indictable only') }
 
       context 'with reason' do
+        let(:mot_reason_ostruct_collection) { mot_reasons_array.map { |el| OpenStruct.new(el) } }
+
+        let(:mot_reasons_array) do
+          [{ description: 'Court directs trial by jury' }]
+        end
+
         before do
-          allow(offence).to receive(:mode_of_trial_reason).and_return('Court directs trial by jury')
+          allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_ostruct_collection)
         end
 
         it 'displays mode of trial with reason' do
@@ -25,7 +31,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       end
 
       context 'without reason' do
-        before { allow(offence).to receive(:mode_of_trial_reason).and_return(nil) }
+        before { allow(offence).to receive(:mode_of_trial_reasons).and_return(nil) }
 
         it 'displays mode of trial without reason' do
           render
