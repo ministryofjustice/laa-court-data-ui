@@ -11,7 +11,7 @@ class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builde
       @context.content_tag(:ol, class: 'govuk-breadcrumbs__list') do
         @elements.collect.with_index do |element, idx|
           render_element(element, last: idx.eql?(@elements.size - 1))
-        end.join('').html_safe
+        end.join.html_safe
       end
     end
   end
