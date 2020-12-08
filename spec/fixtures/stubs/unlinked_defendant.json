@@ -42,8 +42,12 @@
         "mode_of_trial": "Indictable only",
         "mode_of_trial_reason": "Court directs trial by jury",
         "mode_of_trial_reason_code": "05",
-        "plea": "NOT_GUILTY",
-        "plea_date": "2020-04-12"
+        "pleas": [
+          {
+            "code": "NOT_GUILTY",
+            "pleaded_at": "2020-04-12"
+          }
+        ]
       }
     }
   ]

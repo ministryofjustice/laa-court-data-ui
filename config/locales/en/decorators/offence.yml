@@ -1,0 +1,5 @@
+---
+en:
+  offence:
+    plea:
+      sentence: "%{plea} on %{pleaded_at}"
