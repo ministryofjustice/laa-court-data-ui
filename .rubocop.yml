@@ -24,9 +24,6 @@ AllCops:
     - spec/rails_helper.rb
     - node_modules/**/*
 
-Capybara/FeatureMethods:
-  Enabled: false
-
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
@@ -102,6 +99,9 @@ Rails/OutputSafety:
 
 RSpec/AnyInstance:
   Enabled: false
+
+RSpec/Capybara/FeatureMethods:
+  EnabledMethods: ['feature', 'scenario']
 
 # => RSpec
 RSpec/ExampleLength:
