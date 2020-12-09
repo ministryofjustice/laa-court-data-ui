@@ -16,7 +16,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
         let(:mot_reason_ostruct_collection) { mot_reasons_array.map { |el| OpenStruct.new(el) } }
 
         let(:mot_reasons_array) do
-          [{ description: 'Court directs trial by jury' }]
+          [{ code: '4', description: 'Defendant elects trial by jury' }]
         end
 
         before do
@@ -26,7 +26,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
         it 'displays mode of trial with reason' do
           render
           expect(rendered).to have_css('.govuk-table__cell',
-                                       text: /Indictable only:\n*Court directs trial by jury/)
+                                       text: /Indictable only:\n*Defendant elects trial by jury/)
         end
       end
 

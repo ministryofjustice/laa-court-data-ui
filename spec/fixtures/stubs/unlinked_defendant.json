@@ -42,6 +42,7 @@
         "mode_of_trial": "Indictable only",
         "mode_of_trial_reasons": [
           {
+            "code": "gfc0",
             "description": "Court directs trial by jury"
           }
         ],

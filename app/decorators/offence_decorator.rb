@@ -10,7 +10,7 @@ class OffenceDecorator < BaseDecorator
 
   def mode_of_trial_reason_list
     return t('generic.not_available') if mode_of_trial_reasons.blank?
-    return mode_of_trial_reason unless mode_of_trial_reasons.is_a?(Enumerable)
+    return mode_of_trial_reasons unless mode_of_trial_reasons.is_a?(Enumerable)
 
     safe_join(mode_of_trial_reason_descriptions, tag.br)
   end
@@ -36,6 +36,6 @@ class OffenceDecorator < BaseDecorator
   end
 
   def mode_of_trial_reason_description(mode_of_trial)
-    mode_of_trial.description&.humanize || t('generic.not_available')
+    mode_of_trial.description || t('generic.not_available')
   end
 end
