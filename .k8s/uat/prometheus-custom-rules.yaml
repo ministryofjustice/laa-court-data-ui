@@ -32,7 +32,7 @@ spec:
         message: laa-court-data-ui-uat More than a hundred 404 errors in one day
         runbook_url: https://kibana.cloud-platform.service.justice.gov.uk/_plugin/kibana/app/kibana#/discover?_g=(refreshInterval:(pause:!t,value:0),time:(from:now-24h,mode:quick,to:now))&_a=(columns:!(_source),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:ec9109a0-2b35-11e9-ac82-95e56bd45b02,key:kubernetes.namespace_name,negate:!f,params:(query:laa-court-data-ui-uat,type:phrase),type:phrase,value:laa-court-data-ui-uat),query:(match:(kubernetes.namespace_name:(query:laa-court-data-ui-uat,type:phrase))))),index:ec9109a0-2b35-11e9-ac82-95e56bd45b02,interval:auto,query:(language:lucene,query:'log:%22RoutingError%22'),sort:!('@timestamp',desc))
     - alert: nginx-5xx-error
-      expr: sum(rate(nginx_ingress_controller_requests{exported_namespace="laa-court-data-ui-uat", status=~"5.."}[5m]))*270 > 0
+      expr: sum(rate(nginx_ingress_controller_requests{exported_namespace="laa-court-data-ui-uat", status=~"5.."}[5m])) * 300 > 5
       for: 1m
       labels:
         severity: laa-court-get-paid
