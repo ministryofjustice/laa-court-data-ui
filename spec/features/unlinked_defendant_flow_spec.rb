@@ -254,7 +254,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
       expect(page).to have_css('.govuk-table__header', text: 'Mode of trial')
 
       expect(page).to have_css('.govuk-table__cell', text: 'Not guilty on 12/04/2020')
-      expect(page).to have_css('.govuk-table__cell', text: /Indictable only: Court directs trial by jury/)
+      expect(page).to have_css('.govuk-table__cell', text: /Indictable only:.*Defendant elects trial by jury/)
     end
   end
 

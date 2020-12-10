@@ -113,19 +113,52 @@ RSpec.describe OffenceDecorator, type: :decorator do
   describe '#mode_of_trial_reason_list' do
     subject(:call) { decorator.mode_of_trial_reason_list }
 
-    context 'when 1 or more mode of trial reasons exist' do
-      let(:mode_of_trial_reason_array) do
-        [{ code: '4',
-           description: 'Defendant elects trial by jury' },
-         { code: '2',
-           description: 'Indictable-only offence' }]
-      end
-
+    context 'when reasons exist' do
       before do
         allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_ostruct_collection)
       end
 
-      it { is_expected.to eql('Defendant elects trial by jury<br>Indictable-only offence') }
+      context 'when exactly one reason exists' do
+        let(:mode_of_trial_reason_array) do
+          [{ code: '4',
+             description: 'Defendant elects trial by jury' }]
+        end
+
+        it { is_expected.to eql('Defendant elects trial by jury') }
+      end
+
+      context 'when more than one reason exists' do
+        let(:mode_of_trial_reason_array) do
+          [{ code: '4',
+             description: 'Defendant elects trial by jury' },
+           { code: '2',
+             description: 'Indictable-only offence' }]
+        end
+
+        it { is_expected.to eql('Defendant elects trial by jury<br>Indictable-only offence') }
+      end
+    end
+
+    context 'when mode_of_trial_reasons does not contain an expected key' do
+      before do
+        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_ostruct_collection)
+      end
+
+      context 'when it does not contain a code' do
+        let(:mode_of_trial_reason_array) do
+          [{ description: 'Defendant elects trial by jury' }]
+        end
+
+        it { is_expected.to eql('Defendant elects trial by jury') }
+      end
+
+      context 'when it does not contain a description' do
+        let(:mode_of_trial_reason_array) do
+          [{ code: '4' }]
+        end
+
+        it { is_expected.to eql('Not available') }
+      end
     end
 
     context 'when mode of trial reasons are nil' do
