@@ -4,7 +4,7 @@
   "version": "1.21.1",
   "scripts": {
     "lint-js": "standard",
-    "lint-sass": "sass-lint -v"
+    "validate:scss": "stylelint **/*.scss"
   },
   "dependencies": {
     "@rails/ujs": "^6.1.0",
@@ -12,8 +12,10 @@
     "govuk-frontend": "^3.10.2"
   },
   "devDependencies": {
-    "sass-lint": "^1.13.1",
     "standard": "^16.0.3",
+    "stylelint": "^13.8.0",
+    "stylelint-config-gds": "^0.1.0",
+    "stylelint-order": "^4.1.0",
     "webpack-dev-server": "^3.11.1"
   },
   "resolutions": {

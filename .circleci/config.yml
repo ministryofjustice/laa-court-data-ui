@@ -128,8 +128,8 @@ commands:
           name: Run JS-lint
           command: yarn run lint-js
       - run:
-          name: Run Sass-lint
-          command: yarn run lint-sass
+          name: Run Stylelint
+          command: yarn run validate:scss
 
   brakeman:
     steps:
