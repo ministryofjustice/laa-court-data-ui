@@ -36,3 +36,10 @@
       - hearing.providers.each.with_index do |event, pidx|
         %pre
           = JSON.pretty_generate(event.attributes)
+
+      %h4="Cracked ineffective details for hearing #{hidx}"
+      - if hearing.cracked_ineffective_trial.nil?
+        = 'none'
+      - else
+        %pre
+          = JSON.pretty_generate(hearing.cracked_ineffective_trial.attributes)

@@ -7,6 +7,7 @@ module CourtDataAdaptor
 
       has_many :providers
       has_many :hearing_events
+      has_one :cracked_ineffective_trial
 
       property :court_name, type: :string
       property :defendant_names, default: []
