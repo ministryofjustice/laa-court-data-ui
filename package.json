@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.21.1",
   "scripts": {
-    "lint-js": "standard",
+    "validate:js": "standard",
     "validate:scss": "stylelint **/*.scss"
   },
   "dependencies": {

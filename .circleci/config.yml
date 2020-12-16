@@ -126,7 +126,7 @@ commands:
     steps:
       - run:
           name: Run JS-lint
-          command: yarn run lint-js
+          command: yarn run validate:js
       - run:
           name: Run Stylelint
           command: yarn run validate:scss
