@@ -1,7 +1,5 @@
 ---
 en:
-  prosecution_case:
-    breadcrumb: Case %{prosecution_case_reference}
   search:
     breadcrumb: Search
     connection_error: Connection error, please try again soon!

@@ -1,0 +1,8 @@
+---
+en:
+  prosecution_case:
+    breadcrumb: Case %{prosecution_case_reference}
+    show:
+      cracked_ineffective_trial:
+        caption: Case results
+        heading: Case results

@@ -1,0 +1,16 @@
+- results.each do |prosecution_case|
+  - prosecution_case.hearings.each do |hearing|
+    - if hearing&.cracked_ineffective_trial&.type&.downcase&.eql?('cracked')
+      %table.govuk-table
+        %caption.govuk-table__caption.govuk-visually-hidden
+          = t('prosecution_case.show.cracked_ineffective_trial.caption')
+        %tbody.govuk-table__body
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: 'row' }
+              = t('prosecution_case.show.cracked_ineffective_trial.heading')
+            %td.govuk-table__cell
+              / TODO: decorator?!
+              = "#{hearing&.cracked_ineffective_trial&.type&.humanize} during"
+              = link_to hearing.hearing_type, hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference)
+              %br
+              = hearing.cracked_ineffective_trial.description

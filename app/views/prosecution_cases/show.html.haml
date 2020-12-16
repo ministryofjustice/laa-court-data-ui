@@ -1,5 +1,7 @@
 = govuk_page_title(@prosecution_case.prosecution_case_reference, t('generic.case'))
 
+= render partial: 'cracked_ineffective_trial', locals: { results: @results }
+
 %h2.govuk-heading-m
   = t('search.result.defendant.heading')
 %table.govuk-table
@@ -33,8 +35,9 @@
       %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.providers')
   %tbody.govuk-table__body
     - @results.each do |prosecution_case|
-      - prosecution_case.hearing_summaries.each do |hearing_summary|
-        - hearing_summary.hearing_days.each do |hearing_day|
+      - prosecution_case.hearing_summaries.sort_by{ |summary| summary.hearing_days }.each do |hearing_summary|
+        - hearing = prosecution_case.hearings.find { |h| h.id == hearing_summary.id}
+        - hearing_summary.hearing_days.map(&:to_date).sort.each do |hearing_day|
           %tr.govuk-table__row
             %td.govuk-table__cell
               = link_to hearing_day.to_date.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id, urn: prosecution_case.prosecution_case_reference)
@@ -42,6 +45,7 @@
               = hearing_summary.hearing_type
             %td.govuk-table__cell
               = hearing ? decorate(hearing).provider_list : t('generic.not_available')
+
 
 - if Rails.configuration.x.display_raw_responses
   = render partial: 'raw_response'
