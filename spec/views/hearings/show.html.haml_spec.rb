@@ -50,4 +50,44 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
       end
     end
   end
+
+  context 'with cracked_ineffective_trial' do
+    let(:cracked_ineffective_trial) do
+      CourtDataAdaptor::Resource::CrackedIneffectiveTrial
+        .new(id: 'a-uuid',
+             type: 'Ineffective',
+             description: 'Another case over-ran')
+    end
+
+    before do
+      allow(hearing)
+        .to receive(:cracked_ineffective_trial)
+        .and_return(cracked_ineffective_trial)
+    end
+
+    it 'displays result row "header"' do
+      render
+      expect(rendered).to have_tag('th.govuk-table__header', text: /Result/)
+    end
+
+    it 'displays cracked_ineffective_trial type and reason sentence' do
+      render
+      expect(rendered).to have_tag('td.govuk-table__cell', text: /Ineffective: Another case over-ran/)
+    end
+  end
+
+  context 'without cracked_ineffective_trial' do
+    let(:cracked_ineffective_trial) { nil }
+
+    before do
+      allow(hearing)
+        .to receive(:cracked_ineffective_trial)
+        .and_return(cracked_ineffective_trial)
+    end
+
+    it 'does not display result row "header"' do
+      render
+      expect(rendered).not_to have_tag('th.govuk-table__header', text: /Result/)
+    end
+  end
 end

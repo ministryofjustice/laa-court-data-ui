@@ -18,4 +18,5 @@ en:
         notice:
           no_hearing_details: No hearing details available
       hearing_type: Hearing type
+      result: Result
       time_listed: Time listed
