@@ -66,12 +66,4 @@
           = event.description
 
 - if Rails.configuration.x.display_raw_responses
-  %br
-  %br
-  = govuk_detail('View raw data') do
-    %h3='Hearings'
-    %pre
-      = JSON.pretty_generate(@hearing&.attributes)
-    %h3='Hearing events'
-    %pre
-      = JSON.pretty_generate(@hearing&.hearing_events&.map(&:attributes))
+  = render partial: 'raw_response', locals: { hearing: hearing }
