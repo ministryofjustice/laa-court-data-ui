@@ -19,16 +19,5 @@ RSpec.describe CourtDataAdaptor::Resource::Provider do
 
     it { is_expected.to respond_to :name }
     it { is_expected.to respond_to :role }
-
-    describe '#name_and_role' do
-      subject { instance.name_and_role }
-
-      before do
-        allow(instance).to receive(:name).and_return 'Bob Smith'
-        allow(instance).to receive(:role).and_return 'QC'
-      end
-
-      it { is_expected.to eql 'Bob Smith (QC)' }
-    end
   end
 end
