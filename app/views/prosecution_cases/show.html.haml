@@ -42,8 +42,7 @@
               = hearing_summary.hearing_type
             %td.govuk-table__cell
               - hearing = prosecution_case.hearings.find { |h| h.id == hearing_summary.id}
-              - provider_list = hearing&.provider_list
-              = provider_list.present? ? safe_join(provider_list, tag(:br)) : t('generic.not_available')
+              = decorate(hearing).provider_list
 
 - if Rails.configuration.x.display_raw_responses
   = render partial: 'raw_response'
