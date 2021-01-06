@@ -7,6 +7,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
   let(:view_object) { view_class.new }
 
   let(:plea_ostruct_collection) { plea_array.map { |el| OpenStruct.new(el) } }
+  let(:mot_reason_ostruct_collection) { mode_of_trial_reason_array.map { |el| OpenStruct.new(el) } }
 
   let(:view_class) do
     Class.new do
@@ -24,10 +25,10 @@ RSpec.describe OffenceDecorator, type: :decorator do
         .to receive_messages(title: '',
                              pleas: [],
                              mode_of_trial: '',
-                             mode_of_trial_reason: '')
+                             mode_of_trial_reasons: [])
     end
 
-    it { is_expected.to respond_to(:title, :pleas, :mode_of_trial, :mode_of_trial_reason) }
+    it { is_expected.to respond_to(:title, :pleas, :mode_of_trial, :mode_of_trial_reasons) }
   end
 
   describe '#plea_list' do
@@ -106,6 +107,83 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
       it { expect { call }.not_to raise_error }
       it { is_expected.to eql('plea is a string') }
+    end
+  end
+
+  describe '#mode_of_trial_reason_list' do
+    subject(:call) { decorator.mode_of_trial_reason_list }
+
+    context 'when reasons exist' do
+      before do
+        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_ostruct_collection)
+      end
+
+      context 'when exactly one reason exists' do
+        let(:mode_of_trial_reason_array) do
+          [{ code: '4',
+             description: 'Defendant elects trial by jury' }]
+        end
+
+        it { is_expected.to eql('Defendant elects trial by jury') }
+      end
+
+      context 'when more than one reason exists' do
+        let(:mode_of_trial_reason_array) do
+          [{ code: '4',
+             description: 'Defendant elects trial by jury' },
+           { code: '2',
+             description: 'Indictable-only offence' }]
+        end
+
+        it { is_expected.to eql('Defendant elects trial by jury<br>Indictable-only offence') }
+      end
+    end
+
+    context 'when mode_of_trial_reasons does not contain an expected key' do
+      before do
+        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_ostruct_collection)
+      end
+
+      context 'when it does not contain a code' do
+        let(:mode_of_trial_reason_array) do
+          [{ description: 'Defendant elects trial by jury' }]
+        end
+
+        it { is_expected.to eql('Defendant elects trial by jury') }
+      end
+
+      context 'when it does not contain a description' do
+        let(:mode_of_trial_reason_array) do
+          [{ code: '4' }]
+        end
+
+        it { is_expected.to eql('Not available') }
+      end
+    end
+
+    context 'when mode of trial reasons are nil' do
+      before do
+        allow(offence).to receive(:mode_of_trial_reasons).and_return(nil)
+      end
+
+      it { is_expected.to eql 'Not available' }
+    end
+
+    context 'when mode of trial reasons are empty' do
+      before do
+        allow(offence).to receive(:mode_of_trial_reasons).and_return([])
+      end
+
+      it { is_expected.to eql 'Not available' }
+    end
+
+    context 'when mode of trial reasons are not enumerable' do
+      before do
+        allow(offence).to receive(:mode_of_trial_reasons).and_return('mode of trial reason is a string')
+      end
+
+      it { expect { call }.not_to raise_error }
+      it { is_expected.to eql('mode of trial reason is a string') }
     end
   end
 end
