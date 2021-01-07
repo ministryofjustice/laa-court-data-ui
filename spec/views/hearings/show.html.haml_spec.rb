@@ -10,7 +10,7 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
     assign(:hearing, hearing)
   end
 
-  context 'when the hearing has defendant_names' do
+  context 'with defendant_names' do
     before { allow(hearing).to receive(:defendant_names).and_return(['Joe Bloggs', 'Fred Dibnah']) }
 
     it 'displays defendant names with line breaks' do

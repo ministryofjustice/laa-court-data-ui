@@ -50,4 +50,34 @@ RSpec.describe HearingDecorator, type: :decorator do
       it { is_expected.to eql 'Not available (Junior)<br>Bob Smith (not available)' }
     end
   end
+
+  describe '#defendant_name_list' do
+    subject(:call) { decorator.defendant_name_list }
+
+    before { allow(hearing).to receive_messages(defendant_names: defendant_names) }
+
+    context 'with nil defendant_names' do
+      let(:defendant_names) { nil }
+
+      it { is_expected.to eql 'Not available' }
+    end
+
+    context 'with empty defendant_names' do
+      let(:defendant_names) { [] }
+
+      it { is_expected.to eql 'Not available' }
+    end
+
+    context 'with one defendant_names element' do
+      let(:defendant_names) { ['Joe Bloggs'] }
+
+      it { is_expected.to eql 'Joe Bloggs' }
+    end
+
+    context 'with multiple defendant_names element' do
+      let(:defendant_names) { ['Joe Bloggs', 'Fred Dibnah'] }
+
+      it { is_expected.to eql 'Joe Bloggs<br>Fred Dibnah' }
+    end
+  end
 end

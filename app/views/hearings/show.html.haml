@@ -32,8 +32,7 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defendants')
       %td.govuk-table__cell
-        - defendant_names = safe_join(hearing&.defendant_names, tag(:br))
-        = defendant_names.present? ? defendant_names : t('generic.not_available')
+        = hearing.defendant_name_list
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defence')
