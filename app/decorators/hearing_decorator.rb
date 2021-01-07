@@ -2,7 +2,7 @@
 
 class HearingDecorator < BaseDecorator
   def provider_list
-    return t('generic.not_available') if providers.empty?
+    return t('generic.not_available') if providers.blank? || providers.empty?
 
     safe_join(provider_sentences, tag.br)
   end
