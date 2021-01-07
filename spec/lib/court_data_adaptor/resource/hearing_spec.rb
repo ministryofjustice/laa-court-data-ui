@@ -13,4 +13,23 @@ RSpec.describe CourtDataAdaptor::Resource::Hearing do
   include_examples 'court_data_adaptor resource callbacks' do
     let(:instance) { described_class.new }
   end
+
+  it { is_expected.to respond_to(:providers) }
+  it { is_expected.to respond_to(:defendant_names) }
+
+  describe '#defendant_names' do
+    subject { instance.defendant_names }
+
+    context 'when exists' do
+      let(:instance) { described_class.new(defendant_names: ['Joe Bloggs', 'Fred Dibnah']) }
+
+      it { is_expected.to match_array(['Joe Bloggs', 'Fred Dibnah']) }
+    end
+
+    context 'when not exists' do
+      let(:instance) { described_class.new }
+
+      it { is_expected.to be_an(Array).and be_empty }
+    end
+  end
 end

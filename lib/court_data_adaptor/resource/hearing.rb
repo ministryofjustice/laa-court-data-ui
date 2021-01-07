@@ -6,6 +6,7 @@ module CourtDataAdaptor
       acts_as_resource self
 
       has_many :providers
+      property :defendant_names, default: []
     end
   end
 end
