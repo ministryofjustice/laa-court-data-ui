@@ -20,4 +20,19 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
       end
     end
   end
+
+  context 'with prosecution_advocate_names' do
+    before do
+      allow(hearing)
+        .to receive(:prosecution_advocate_names)
+        .and_return(['Percy Prosecutor', 'Linda Lawless'])
+    end
+
+    it 'displays prosecution advocate names with line breaks' do
+      render
+      expect(rendered).to have_tag('td.govuk-table__cell', text: /Percy Prosecutor.*Linda Lawless/) do
+        with_tag(:br)
+      end
+    end
+  end
 end
