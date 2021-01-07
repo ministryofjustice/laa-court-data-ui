@@ -80,4 +80,34 @@ RSpec.describe HearingDecorator, type: :decorator do
       it { is_expected.to eql 'Joe Bloggs<br>Fred Dibnah' }
     end
   end
+
+  describe '#prosecution_advocate_name_list' do
+    subject(:call) { decorator.prosecution_advocate_name_list }
+
+    before { allow(hearing).to receive_messages(prosecution_advocate_names: prosecution_advocate_names) }
+
+    context 'with nil prosecution_advocate_names' do
+      let(:prosecution_advocate_names) { nil }
+
+      it { is_expected.to eql 'Not available' }
+    end
+
+    context 'with empty prosecution_advocate_names' do
+      let(:prosecution_advocate_names) { [] }
+
+      it { is_expected.to eql 'Not available' }
+    end
+
+    context 'with one prosecution_advocate_names element' do
+      let(:prosecution_advocate_names) { ['Percy Prosecutor'] }
+
+      it { is_expected.to eql 'Percy Prosecutor' }
+    end
+
+    context 'with multiple prosecution_advocate_names element' do
+      let(:prosecution_advocate_names) { ['Percy Prosecutor', 'Linda Lawless'] }
+
+      it { is_expected.to eql 'Percy Prosecutor<br>Linda Lawless' }
+    end
+  end
 end

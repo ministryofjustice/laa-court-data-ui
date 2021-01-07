@@ -13,6 +13,13 @@ class HearingDecorator < BaseDecorator
     safe_join(defendant_names, tag.br)
   end
 
+  def prosecution_advocate_name_list
+    return t('generic.not_available') \
+      if prosecution_advocate_names.blank? || prosecution_advocate_names.empty?
+
+    safe_join(prosecution_advocate_names, tag.br)
+  end
+
   private
 
   def decorated_providers

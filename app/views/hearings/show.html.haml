@@ -42,7 +42,7 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.prosecution')
       %td.govuk-table__cell
-        = safe_join(hearing&.prosecution_advocate_names, tag.br) || t('generic.not_available')
+        = hearing.prosecution_advocate_name_list
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.judges')
