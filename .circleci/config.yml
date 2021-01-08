@@ -29,9 +29,9 @@ references:
   _restore-assets: &restore-assets
     restore_cache:
       keys:
-        - v1-yarn-{{ checksum "yarn.lock" }}
+        - v2-yarn-{{ checksum "yarn.lock" }}
         # fallback to using the latest asset cache if no exact match is found
-        - v1-yarn-
+        - v2-yarn-
 
   _install-assets: &install-assets
     run:
