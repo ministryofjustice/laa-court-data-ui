@@ -47,7 +47,7 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.judges')
       %td.govuk-table__cell
-        = hearing&.judge_names&.join(', ') || t('generic.not_available')
+        = hearing.judge_name_list
 
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden

@@ -35,4 +35,19 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
       end
     end
   end
+
+  context 'with judge_names' do
+    before do
+      allow(hearing)
+        .to receive(:judge_names)
+        .and_return(['Mr Justice Pomfrey', 'Ms Justice Arden'])
+    end
+
+    it 'displays judge names with line breaks' do
+      render
+      expect(rendered).to have_tag('td.govuk-table__cell', text: /Mr Justice Pomfrey.*Ms Justice Arden/) do
+        with_tag(:br)
+      end
+    end
+  end
 end
