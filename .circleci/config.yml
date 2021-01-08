@@ -29,9 +29,9 @@ references:
   _restore-assets: &restore-assets
     restore_cache:
       keys:
-        - v2-yarn-{{ checksum "yarn.lock" }}
+        - v3-yarn-{{ checksum "yarn.lock" }}
         # fallback to using the latest asset cache if no exact match is found
-        - v2-yarn-
+        - v3-yarn-
 
   _install-assets: &install-assets
     run:
@@ -42,7 +42,7 @@ references:
 
   _save-assets: &save-assets
     save_cache:
-      key: v2-yarn-{{ checksum "yarn.lock" }}
+      key: v3-yarn-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
         - public/packs-test
