@@ -126,10 +126,10 @@ commands:
     steps:
       - run:
           name: Run JS-lint
-          command: yarn run validate:js
+          command: yarn run lint-js
       - run:
-          name: Run Stylelint
-          command: yarn run validate:scss
+          name: Run Sass-lint
+          command: yarn run lint-sass
 
   brakeman:
     steps:
