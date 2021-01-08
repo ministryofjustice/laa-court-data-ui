@@ -61,6 +61,8 @@ RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") \
 ####################
 COPY . .
 
+RUN node -v
+
 # precompile assets, silently (as verbose)
 # note: webpacker:compile appended to the assets:precompile task
 RUN SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here \
