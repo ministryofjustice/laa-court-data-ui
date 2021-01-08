@@ -22,3 +22,21 @@ if [[ $? -ne 0 ]]; then
 else
   printf "none found!"
 fi
+
+
+################################################################################
+# JavaScript linting using standardJS
+#
+
+printf '\nLinting JavaScript files...\n'
+
+yarn run validate:js
+
+
+################################################################################
+# SCSS linting using styleLint
+#
+
+printf '\nLinting SCSS files...\n'
+
+yarn run validate:scss

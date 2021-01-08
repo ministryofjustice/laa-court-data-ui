@@ -1,6 +1,6 @@
 # Testing
 
-For testing we use [rspec](https://relishapp.com/rspec/). Linters and static analysers are also run - [rubocop](https://github.com/rubocop-hq/rubocop), lint-sass, jlint-js [brakeman](https://brakemanscanner.org/docs/introduction/))
+For testing we use [rspec](https://relishapp.com/rspec/). Linters and static analysers are also run - [rubocop](https://github.com/rubocop-hq/rubocop), Stylelint, jlint-js [brakeman](https://brakemanscanner.org/docs/introduction/))
 
 ## Running test suite
 
