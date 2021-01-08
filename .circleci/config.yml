@@ -189,7 +189,8 @@ commands:
         type: string
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.13
       - run:
           name: deploying to << parameters.environment >>
           command: |
@@ -238,7 +239,8 @@ jobs:
     executor: cloud-platform-executor
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.13
       - *script-build-app-container
 
   deploy-dev:
