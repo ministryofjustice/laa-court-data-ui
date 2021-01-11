@@ -1,4 +1,5 @@
 = govuk_page_title(@hearing_day&.strftime('%d/%m/%Y'), t('generic.hearing'))
+- hearing = decorate(@hearing)
 
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden
@@ -8,12 +9,12 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.hearing_type')
       %td.govuk-table__cell
-        = @hearing&.hearing_type || t('generic.not_available')
+        = hearing&.hearing_type || t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.court')
       %td.govuk-table__cell
-        = @hearing&.court_name || t('generic.not_available')
+        = hearing&.court_name || t('generic.not_available')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.time_listed')
@@ -31,24 +32,22 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defendants')
       %td.govuk-table__cell
-        - defendant_names = safe_join(@hearing&.defendant_names, tag(:br))
-        = defendant_names.present? ? defendant_names : t('generic.not_available')
+        = hearing.defendant_name_list
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.defence')
       %td.govuk-table__cell
-        - provider_list = @hearing&.provider_list
-        = provider_list.present? ? safe_join(provider_list, tag(:br)) : t('generic.not_available')
+        = hearing.provider_list
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.prosecution')
       %td.govuk-table__cell
-        = @hearing&.prosecution_advocate_names&.join(', ') || t('generic.not_available')
+        = hearing.prosecution_advocate_name_list
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('hearings.show.attendees.judges')
       %td.govuk-table__cell
-        = @hearing&.judge_names&.join(', ') || t('generic.not_available')
+        = hearing.judge_name_list
 
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden
@@ -58,7 +57,7 @@
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.time')
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.event')
   %tbody.govuk-table__body
-    - @hearing&.hearing_events&.sort {|a,b| a.occurred_at <=> b.occurred_at }&.each do |event|
+    - hearing&.hearing_events&.sort {|a,b| a.occurred_at <=> b.occurred_at }&.each do |event|
       %tr.govuk-table__row
         %td.govuk-table__cell
           = event.occurred_at.to_datetime.strftime('%H:%M')
@@ -66,12 +65,4 @@
           = event.description
 
 - if Rails.configuration.x.display_raw_responses
-  %br
-  %br
-  = govuk_detail('View raw data') do
-    %h3='Hearings'
-    %pre
-      = JSON.pretty_generate(@hearing&.attributes)
-    %h3='Hearing events'
-    %pre
-      = JSON.pretty_generate(@hearing&.hearing_events&.map(&:attributes))
+  = render partial: 'raw_response', locals: { hearing: hearing }

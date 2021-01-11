@@ -3,6 +3,16 @@
 require 'court_data_adaptor'
 
 RSpec.describe CourtDataAdaptor::Resource::Hearing do
+  let(:relations) { %i[providers hearing_events] }
+
+  let(:properties) do
+    %i[defendant_names
+       hearing_type
+       court_name
+       prosecution_advocate_names
+       judge_names]
+  end
+
   it_behaves_like 'court_data_adaptor acts_as_resource object', resource: described_class do
     let(:klass) { described_class }
     let(:instance) { described_class.new }
@@ -14,21 +24,22 @@ RSpec.describe CourtDataAdaptor::Resource::Hearing do
     let(:instance) { described_class.new }
   end
 
-  describe '#provider_list' do
-    subject(:provider_list) { hearing.provider_list }
+  it { is_expected.to respond_to(*relations) }
+  it { is_expected.to respond_to(*properties) }
 
-    let(:hearing) { described_class.includes(:hearing_events, :providers).find('a-hearing-uuid').first }
+  describe '#defendant_names' do
+    subject { instance.defendant_names }
 
-    context 'with multiple providers', stub_hearing: true do
-      it { is_expected.to match_array(['Cristen Parker (Junior counsel)', 'Darrell Berge (Junior counsel)']) }
+    context 'when exists' do
+      let(:instance) { described_class.new(defendant_names: ['Joe Bloggs', 'Fred Dibnah']) }
+
+      it { is_expected.to match_array(['Joe Bloggs', 'Fred Dibnah']) }
     end
 
-    context 'with no providers', stub_hearing_no_providers: true do
-      it 'does not raise error' do
-        expect { provider_list }.not_to raise_error
-      end
+    context 'when not exists' do
+      let(:instance) { described_class.new }
 
-      it { is_expected.to be_empty }
+      it { is_expected.to be_an(Array).and be_empty }
     end
   end
 end

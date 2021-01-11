@@ -12,5 +12,5 @@ class BaseDecorator < SimpleDelegator
   alias view context
   alias h context
 
-  delegate :translate, :t, :tag, :safe_join, to: :context
+  delegate :translate, :t, :tag, :safe_join, :decorate_all, to: :context
 end
