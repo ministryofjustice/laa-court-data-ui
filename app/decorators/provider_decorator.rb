@@ -10,19 +10,14 @@ class ProviderDecorator < BaseDecorator
   private
 
   def name_and_role_blank?
-    [(respond_to?(:name) && name.blank?),
-     (respond_to?(:role) && role.blank?)].all?
+    name.blank? && role.blank?
   end
 
   def formatted_name
     name || t('generic.not_available')
-  rescue NameError
-    t('generic.not_available')
   end
 
   def formatted_role
     role || t('generic.not_available').downcase
-  rescue NameError
-    t('generic.not_available').downcase
   end
 end

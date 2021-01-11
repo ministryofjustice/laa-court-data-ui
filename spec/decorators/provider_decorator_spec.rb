@@ -48,17 +48,5 @@ RSpec.describe ProviderDecorator, type: :decorator do
 
       it { is_expected.to eql 'Not available' }
     end
-
-    context 'when name is missing' do
-      before { allow(provider).to receive_messages(role: 'QC') }
-
-      it { is_expected.to eql 'Not available (QC)' }
-    end
-
-    context 'when role is missing' do
-      before { allow(provider).to receive_messages(name: 'Bob Smith') }
-
-      it { is_expected.to eql 'Bob Smith (not available)' }
-    end
   end
 end
