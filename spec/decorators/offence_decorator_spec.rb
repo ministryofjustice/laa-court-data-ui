@@ -197,17 +197,17 @@ RSpec.describe OffenceDecorator, type: :decorator do
         context "when exactly one reason exists, with code #{code}" do
           let(:mode_of_trial_reason_array) do
             [{ code: code,
-               description: 'Defendant elects trial by jury' }]
+               description: 'description to be hidden' }]
           end
 
           it { is_expected.to eql('') }
         end
       end
 
-      context 'when more than one reason exists, one of which should be hidden' do
+      context 'when more than one reason exists, all of which should be hidden' do
         let(:mode_of_trial_reason_array) do
           [{ code: '2',
-             description: 'Defendant elects trial by jury' },
+             description: 'Indictable-only offence' },
            { code: '6',
              description: 'Low value offence triable summarily only' }]
         end
@@ -215,10 +215,10 @@ RSpec.describe OffenceDecorator, type: :decorator do
         it { is_expected.to eql('') }
       end
 
-      context 'when more than one reason exists, all of which should be hidden' do
+      context 'when more than one reason exists, one of which should be hidden' do
         let(:mode_of_trial_reason_array) do
           [{ code: '2',
-             description: 'Defendant elects trial by jury' },
+             description: 'Indictable-only offence' },
            { code: '5',
              description: 'Court directs trial by jury' }]
         end

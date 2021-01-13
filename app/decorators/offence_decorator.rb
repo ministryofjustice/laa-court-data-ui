@@ -3,9 +3,9 @@
 class OffenceDecorator < BaseDecorator
   # Allow for future mot reason mappings; e.g. to 'Elected' and 'Directed'
   MODE_OF_TRIAL_REASON_MAPPINGS = {
-    1 => '',
-    2 => '',
-    6 => ''
+    1 => nil,
+    2 => nil,
+    6 => nil
   }.freeze
 
   def plea_list
@@ -19,7 +19,7 @@ class OffenceDecorator < BaseDecorator
     return t('generic.not_available') if mode_of_trial_reasons.blank?
     return mode_of_trial_reasons unless mode_of_trial_reasons.is_a?(Enumerable)
 
-    safe_join(mode_of_trial_reason_descriptions.reject(&:empty?), tag.br)
+    safe_join(mode_of_trial_reason_descriptions.compact, tag.br)
   end
 
   private
@@ -43,10 +43,6 @@ class OffenceDecorator < BaseDecorator
   end
 
   def mode_of_trial_reason_description(reason)
-    if MODE_OF_TRIAL_REASON_MAPPINGS.key?(reason.code.to_i)
-      MODE_OF_TRIAL_REASON_MAPPINGS[reason.code.to_i]
-    else
-      reason.description || t('generic.not_available')
-    end
+    MODE_OF_TRIAL_REASON_MAPPINGS.fetch(reason.code.to_i, reason.description || t('generic.not_available'))
   end
 end
