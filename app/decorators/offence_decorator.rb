@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class OffenceDecorator < BaseDecorator
-  # Allow for future mot reason mappings; e.g. to 'Elected' and 'Directed'
+  # TODO: mot reason text mappings for 'Elected' and 'Directed'
   MODE_OF_TRIAL_REASON_MAPPINGS = {
     1 => nil,
     2 => nil,
