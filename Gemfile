@@ -30,7 +30,7 @@ gem 'sidekiq', '~> 6.1'
 gem 'webpacker', '~> 5.2'
 
 group :test do
-  gem 'axe-matchers'
+  gem 'axe-core-rspec', '~> 4.1'
   gem 'brakeman'
   gem 'capybara'
   gem 'capybara_table'

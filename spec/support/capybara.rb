@@ -7,7 +7,7 @@
 #
 require 'capybara_table/rspec'
 require_relative 'capybara_extensions'
-require 'axe/rspec'
+require 'axe-rspec'
 
 module Capybara
   module DSL
