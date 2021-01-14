@@ -25,6 +25,10 @@ class HearingDecorator < BaseDecorator
     safe_join(judge_names, tag.br)
   end
 
+  def cracked_ineffective_trial
+    @cracked_ineffective_trial ||= decorate(object&.cracked_ineffective_trial)
+  end
+
   private
 
   def decorated_providers

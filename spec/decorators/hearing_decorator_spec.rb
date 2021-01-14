@@ -140,4 +140,22 @@ RSpec.describe HearingDecorator, type: :decorator do
       it { is_expected.to eql 'Mr Justice Pomfrey<br>Ms Justice Arden' }
     end
   end
+
+  describe '#cracked_ineffective_trial' do
+    subject(:call) { decorator.cracked_ineffective_trial }
+
+    before { allow(hearing).to receive_messages(cracked_ineffective_trial: cracked_ineffective_trial) }
+
+    context 'with nil cracked_ineffective_trial' do
+      let(:cracked_ineffective_trial) { nil }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'with a cracked_ineffective_trial relation' do
+      let(:cracked_ineffective_trial) { CourtDataAdaptor::Resource::CrackedIneffectiveTrial.new }
+
+      it { is_expected.to be_instance_of(CrackedIneffectiveTrialDecorator) }
+    end
+  end
 end
