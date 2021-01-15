@@ -15,7 +15,10 @@ module ApplicationHelper
   def decorate(object, decorator_class = nil)
     decorator_class ||= "#{object.class.to_s.demodulize}Decorator".constantize
     decorator = decorator_class.new(object, self)
-    yield(decorator) if block_given?
+
+    yield(decorator) if block_given? && decorator.present?
+    return nil if decorator.blank?
+
     decorator
   end
 

@@ -92,6 +92,13 @@ RSpec.describe ApplicationHelper, type: :helper do
           .to yield_with_args(instance_of(other_class_decorator))
       }
     end
+
+    context 'when called with a nil object' do
+      subject(:decorated_object) { helper.decorate(nil) }
+
+      it { is_expected.to be_instance_of(NilClass) }
+      it { expect { |b| decorate(nil, &b) }.not_to yield_control }
+    end
   end
 
   describe '#decorate_all' do
