@@ -58,6 +58,24 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       end
     end
 
+    context 'when the offence has legislation' do
+      before { allow(offence).to receive(:legislation).and_return('Proceeds of Crime Act 2002 s.331') }
+
+      it 'displays offence legislation' do
+        render
+        expect(rendered).to have_css('.vcd-body-secondary', text: 'Proceeds of Crime Act 2002 s.331')
+      end
+    end
+
+    context 'when the offence has no legislation' do
+      before { allow(offence).to receive(:legislation).and_return(nil) }
+
+      it 'displays not available' do
+        render
+        expect(rendered).to have_css('.vcd-body-secondary', text: 'Not available')
+      end
+    end
+
     context 'when the offence has pleas' do
       let(:plea_ostruct_collection) { plea_array.map { |el| OpenStruct.new(el) } }
 
