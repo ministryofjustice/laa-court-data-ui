@@ -60,7 +60,7 @@ group :development, :test do
   gem 'dotenv-rails', require: 'dotenv/rails-now'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'meta_request', '~> 0.7.2'
+  # gem 'meta_request', '~> 0.7.2'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
