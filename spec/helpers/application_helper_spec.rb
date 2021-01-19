@@ -99,6 +99,20 @@ RSpec.describe ApplicationHelper, type: :helper do
       it { is_expected.to be_instance_of(NilClass) }
       it { expect { |b| decorate(nil, &b) }.not_to yield_control }
     end
+
+    context 'when called with a decorated object' do
+      subject(:decorated_object) { helper.decorate(already_decorated_object) }
+
+      let(:already_decorated_object) { helper.decorate(test_class.new) }
+
+      before do
+        stub_const('TestClass', test_class)
+        stub_const('TestClassDecorator', test_class_decorator)
+      end
+
+      it { is_expected.to be_instance_of(test_class_decorator) }
+      it { expect { |b| decorate(test_object, &b) }.to yield_with_args(instance_of(test_class_decorator)) }
+    end
   end
 
   describe '#decorate_all' do

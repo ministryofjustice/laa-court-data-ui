@@ -12,10 +12,9 @@ module ApplicationHelper
   end
 
   # NOTE: implicit decorators assumed to be in app/decorators
+  #
   def decorate(object, decorator_class = nil)
-    decorator_class ||= "#{object.class.to_s.demodulize}Decorator".constantize
-    decorator = decorator_class.new(object, self)
-
+    decorator = decorator_instance(object, decorator_class)
     yield(decorator) if block_given? && decorator.present?
     return nil if decorator.blank?
 
@@ -28,4 +27,13 @@ module ApplicationHelper
     end
   end
   alias decorate_each decorate_all
+
+  private
+
+  def decorator_instance(object, decorator_class = nil)
+    return object if object.is_a?(BaseDecorator)
+
+    decorator_class ||= "#{object.class.to_s.demodulize}Decorator".constantize
+    decorator_class.new(object, self)
+  end
 end
