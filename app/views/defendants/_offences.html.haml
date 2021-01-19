@@ -14,8 +14,8 @@
       %tr.govuk-table__row
         %td.govuk-table__cell
           = offence.title || t('generic.not_available')
-          %p
-          = offence.legislation || t('generic.not_available')
+          %span.vcd-body-secondary
+            = offence.legislation || t('generic.not_available')
         %td.govuk-table__cell
           = offence.plea_list
         %td.govuk-table__cell
