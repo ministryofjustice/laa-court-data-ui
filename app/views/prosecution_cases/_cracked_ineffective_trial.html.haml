@@ -1,6 +1,6 @@
 - results.each do |prosecution_case|
-  / TODO: decorate cracked_ineffective_trial objects as part of hearing?!
-  - if prosecution_case.hearings.map{ |h| decorate(h.cracked_ineffective_trial)&.cracked? }.any?
+  - prosecution_case = decorate(prosecution_case)
+  - if prosecution_case.cracked?
     %table.govuk-table
       %caption.govuk-table__caption.govuk-visually-hidden
         = t('prosecution_case.show.cracked_ineffective_trial.caption')
@@ -10,10 +10,9 @@
             = t('prosecution_case.show.cracked_ineffective_trial.heading')
           %td.govuk-table__cell
             - prosecution_case.hearings.each do |hearing|
-              - decorate(hearing.cracked_ineffective_trial) do |cracked_ineffective_trial|
-                - if cracked_ineffective_trial.cracked?
-                  / TODO: just sending objects to decorator method as params object?!
-                  - hearing_link = link_to hearing.hearing_days.first.to_date.strftime('%d/%m/%Y'), hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference)
-                  = cracked_ineffective_trial.type_sentence(hearing_link)
-                  %br
-                  = cracked_ineffective_trial.description
+              - if hearing.cracked_ineffective_trial.cracked?
+                / TODO: just sending objects to decorator method as params object?!
+                - hearing_link = link_to hearing.hearing_days.first.to_date.strftime('%d/%m/%Y'), hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference)
+                = hearing.cracked_ineffective_trial.type_sentence(hearing_link)
+                %br
+                = hearing.cracked_ineffective_trial.description
