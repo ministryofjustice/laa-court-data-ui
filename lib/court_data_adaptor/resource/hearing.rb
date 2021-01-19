@@ -11,7 +11,9 @@ module CourtDataAdaptor
 
       property :court_name, type: :string
       property :defendant_names, default: []
+      property :hearing_days, default: []
       property :hearing_type, type: :string
+      property :id, type: :string
       property :judge_names, default: []
       property :prosecution_advocate_names, default: []
     end
