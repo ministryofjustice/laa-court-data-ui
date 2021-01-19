@@ -98,12 +98,67 @@ RSpec.describe 'prosecution_cases/_cracked_ineffective_trial.html.haml', type: :
     end
   end
 
-  # TODO: since cracks can relate to a specific defendant it is possible
-  # , albeit unlikely (1% of cases have 2+ defendants??!), that there could be multiple
-  # case level cracks.
-  # In such cases the view should be adding a row to the same table, not creating
-  # a new table. Duplication could also become an issue??!
-  #
-  # context 'when there are multiple cracked ineefective trials' do
-  # end
+  context 'when there are multiple cracked ineffective trials' do
+    let(:hearings) { [hearing, hearing1, hearing2] }
+
+    let(:hearing1) do
+      CourtDataAdaptor::Resource::Hearing
+        .new(id: 'the-hearing-uuid',
+             hearing_days: ['2021-01-16T13:19:15.000Z'])
+    end
+
+    let(:hearing2) do
+      CourtDataAdaptor::Resource::Hearing
+        .new(id: 'the-hearing-uuid',
+             hearing_days: ['2021-01-17T13:19:15.000Z'])
+    end
+
+    let(:cracked_ineffective_trial) do
+      CourtDataAdaptor::Resource::CrackedIneffectiveTrial
+        .new(id: 'ineffective-uuid',
+             type: 'Ineffective',
+             code: 'M1',
+             description: 'Reason for ineffective')
+    end
+
+    let(:cracked_ineffective_trial1) do
+      CourtDataAdaptor::Resource::CrackedIneffectiveTrial
+        .new(id: 'vacated-uuid',
+             type: 'Vacated',
+             code: 'A',
+             description: 'Reason for vacated crack')
+    end
+
+    let(:cracked_ineffective_trial2) do
+      CourtDataAdaptor::Resource::CrackedIneffectiveTrial
+        .new(id: 'cracked-uuid',
+             type: 'Cracked',
+             code: 'A',
+             description: 'Reasons for cracked crack')
+    end
+
+    before do
+      allow(prosecution_case).to receive(:hearings).and_return(hearings)
+      allow(hearing1).to receive(:cracked_ineffective_trial).and_return(cracked_ineffective_trial1)
+      allow(hearing2).to receive(:cracked_ineffective_trial).and_return(cracked_ineffective_trial2)
+    end
+
+    it 'displays case result section once' do
+      render_partial
+      expect(rendered).to have_css('th.govuk-table__header', text: /Case results/).once
+    end
+
+    it 'displays all "cracks"' do
+      render_partial
+      expect(rendered).to have_tag('td.govuk-table__cell') do
+        with_text(/Vacated on/)
+        with_text(/Cracked on/)
+      end
+    end
+
+    it 'does not display "non-cracks"' do
+      render_partial
+      expect(rendered).not_to have_tag('td.govuk-table__cell', text: /Ineffective/)
+    end
+  end
 end
