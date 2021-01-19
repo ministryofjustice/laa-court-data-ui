@@ -12,11 +12,21 @@ class CrackedIneffectiveTrialDecorator < BaseDecorator
     ].any?
   end
 
-  def type_sentence(cracked_at_link)
-    t('cracked_ineffective_trial.type_sentence_html', type: type&.humanize, cracked_at_link: cracked_at_link)
+  def cracked_on_sentence(hearing, prosecution_case)
+    t('cracked_ineffective_trial.cracked_on_sentence_html',
+      type: type&.humanize,
+      cracked_at_link: cracked_at_link(hearing, prosecution_case))
   end
 
   def description_sentence
     "#{type.humanize}: #{description}"
+  end
+
+  private
+
+  def cracked_at_link(hearing, prosecution_case)
+    view.link_to(hearing.hearing_days.first.to_date.strftime('%d/%m/%Y'),
+                 view.hearing_path(id: hearing.id,
+                                   urn: prosecution_case.prosecution_case_reference))
   end
 end

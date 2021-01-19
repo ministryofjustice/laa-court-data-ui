@@ -3,7 +3,7 @@
 RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
   subject(:decorator) { described_class.new(cracked_ineffective_trial, view_object) }
 
-  include RSpecHtmlMatchers
+  include Capybara::RSpecMatchers
 
   let(:cracked_ineffective_trial) { instance_double(CourtDataAdaptor::Resource::CrackedIneffectiveTrial) }
   let(:view_object) { view_class.new }
@@ -11,6 +11,7 @@ RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
   let(:view_class) do
     Class.new do
       include ActionView::Helpers
+      include Rails.application.routes.url_helpers
     end
   end
 
@@ -69,10 +70,18 @@ RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
     end
   end
 
-  describe '#type_sentence' do
-    subject(:call) { decorator.type_sentence(link) }
+  describe '#cracked_on_sentence' do
+    subject(:call) { decorator.cracked_on_sentence(hearing, prosecution_case) }
 
-    let(:link) { '<a href="/my/path">my link</a>'.html_safe }
+    let(:prosecution_case) do
+      CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'MY-CASE-URN')
+    end
+
+    let(:hearing) do
+      instance_double(CourtDataAdaptor::Resource::Hearing,
+                      id: 'a-hearing-uuid',
+                      hearing_days: ['2021-01-19T16:19:15.000Z'])
+    end
 
     before do
       allow(cracked_ineffective_trial).to receive_messages(type: type)
@@ -82,14 +91,14 @@ RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
       let(:type) { 'CrACKed' }
 
       it { is_expected.to include('Cracked on') }
-      it { is_expected.to have_tag('a', text: 'my link') }
+      it { is_expected.to have_link('19/01/2021', href: %r{hearings/a-hearing-uuid\?urn=MY-CASE-URN}) }
     end
 
     context 'when type is vacated' do
       let(:type) { 'Vacated' }
 
       it { is_expected.to include('Vacated on') }
-      it { is_expected.to have_tag('a', text: 'my link') }
+      it { is_expected.to have_link('19/01/2021', href: %r{hearings/a-hearing-uuid\?urn=MY-CASE-URN}) }
     end
   end
 

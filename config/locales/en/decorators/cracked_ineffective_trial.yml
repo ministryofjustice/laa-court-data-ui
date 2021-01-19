@@ -1,4 +1,4 @@
 ---
 en:
   cracked_ineffective_trial:
-    type_sentence_html: "%{type} on %{cracked_at_link}"
+    cracked_on_sentence_html: "%{type} on %{cracked_at_link}"
