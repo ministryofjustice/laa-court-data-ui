@@ -63,7 +63,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
 
       it 'displays offence legislation' do
         render
-        expect(rendered).to have_css('.vcd-body-secondary', text: 'Proceeds of Crime Act 2002 s.331')
+        expect(rendered).to have_css('.app-body-secondary', text: 'Proceeds of Crime Act 2002 s.331')
       end
     end
 
@@ -72,7 +72,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
 
       it 'displays not available' do
         render
-        expect(rendered).to have_css('.vcd-body-secondary', text: 'Not available')
+        expect(rendered).to have_css('.app-body-secondary', text: 'Not available')
       end
     end
 
