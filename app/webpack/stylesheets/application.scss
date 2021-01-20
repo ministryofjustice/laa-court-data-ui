@@ -9,6 +9,7 @@
 $govuk-font-url-function: frontend-font-url;
 $govuk-image-url-function: frontend-image-url;
 @import "~govuk-frontend/govuk/all";
+@import "core/typography";
 
 @import "components/cookie_banner";
 @import "components/forms";

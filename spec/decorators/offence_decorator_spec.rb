@@ -23,12 +23,13 @@ RSpec.describe OffenceDecorator, type: :decorator do
     before do
       allow(offence)
         .to receive_messages(title: '',
+                             legislation: '',
                              pleas: [],
                              mode_of_trial: '',
                              mode_of_trial_reasons: [])
     end
 
-    it { is_expected.to respond_to(:title, :pleas, :mode_of_trial, :mode_of_trial_reasons) }
+    it { is_expected.to respond_to(:title, :legislation, :pleas, :mode_of_trial, :mode_of_trial_reasons) }
   end
 
   describe '#plea_list' do
