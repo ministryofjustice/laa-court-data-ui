@@ -1,6 +1,6 @@
 - results.each do |prosecution_case|
   - prosecution_case = decorate(prosecution_case)
-  - if prosecution_case.cracked?
+  - if prosecution_case&.cracked?
     %table.govuk-table
       %caption.govuk-table__caption.govuk-visually-hidden
         = t('prosecution_case.show.cracked_ineffective_trial.caption')
