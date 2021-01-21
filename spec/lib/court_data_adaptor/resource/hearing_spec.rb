@@ -6,11 +6,13 @@ RSpec.describe CourtDataAdaptor::Resource::Hearing do
   let(:relations) { %i[providers hearing_events] }
 
   let(:properties) do
-    %i[defendant_names
+    %i[court_name
+       defendant_names
+       hearing_days
        hearing_type
-       court_name
-       prosecution_advocate_names
-       judge_names]
+       id
+       judge_names
+       prosecution_advocate_names]
   end
 
   it_behaves_like 'court_data_adaptor acts_as_resource object', resource: described_class do

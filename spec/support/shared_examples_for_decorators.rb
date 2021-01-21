@@ -12,6 +12,7 @@ RSpec.shared_examples 'a base decorator' do
   it { expect(decorator).to delegate_method(:translate).to(:context) }
   it { expect(decorator).to delegate_method(:t).to(:context) }
   it { expect(decorator).to delegate_method(:tag).to(:context) }
+  it { expect(decorator).to delegate_method(:decorate).to(:context) }
   it { expect(decorator).to delegate_method(:decorate_all).to(:context) }
 
   describe '#translate' do
