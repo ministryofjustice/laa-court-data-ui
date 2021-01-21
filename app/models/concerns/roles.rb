@@ -41,14 +41,14 @@ module Roles
   end
 
   def validate_role_presence
-    errors[:roles].append('must have a role') if roles.blank? || roles.empty?
+    errors.add(:roles, 'must have a role') if roles.blank? || roles.empty?
   end
 
   def validate_role_inclusion
     return if roles.blank? || roles.empty?
     roles.all? do |role|
       next if self.class.valid_roles.include?(role)
-      errors[:roles].append("#{role} is not a valid role")
+      errors.add(:roles, "#{role} is not a valid role")
     end
   end
 
