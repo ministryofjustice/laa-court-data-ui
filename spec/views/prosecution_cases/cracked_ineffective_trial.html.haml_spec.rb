@@ -82,23 +82,23 @@ RSpec.describe 'prosecution_cases/_cracked_ineffective_trial.html.haml', type: :
         allow(cracked_ineffective_trial).to receive_messages(type: 'Ineffective')
       end
 
-      it 'does not display case result section' do
+      it 'does not render content' do
         render_partial
-        expect(rendered).not_to have_content('Case results')
+        expect(rendered).to be_blank
       end
     end
   end
 
-  context 'when no hearing has a cracked ineffective trial' do
+  context 'with no hearings with a cracked ineffective trial' do
     let(:cracked_ineffective_trial) { nil }
 
-    it 'does not display case result section' do
+    it 'does not render content' do
       render_partial
-      expect(rendered).not_to have_content('Case results')
+      expect(rendered).to be_blank
     end
   end
 
-  context 'when there are multiple cracked ineffective trials' do
+  context 'with multiple cracked ineffective trials' do
     let(:hearings) { [hearing, hearing1, hearing2] }
 
     let(:hearing1) do
@@ -159,6 +159,35 @@ RSpec.describe 'prosecution_cases/_cracked_ineffective_trial.html.haml', type: :
     it 'does not display "non-cracks"' do
       render_partial
       expect(rendered).not_to have_tag('td.govuk-table__cell', text: /Ineffective/)
+    end
+  end
+
+  context 'with mixture of hearings with and without cracked ineffective trials' do
+    let(:hearings) { [hearing, hearing1] }
+
+    let(:hearing1) do
+      CourtDataAdaptor::Resource::Hearing
+        .new(id: 'the-hearing-uuid',
+             hearing_days: ['2021-01-16T13:19:15.000Z'])
+    end
+
+    let(:cracked_ineffective_trial) { nil }
+
+    let(:cracked_ineffective_trial1) do
+      CourtDataAdaptor::Resource::CrackedIneffectiveTrial
+        .new(id: 'cracked-uuid',
+             type: 'Cracked',
+             code: 'A',
+             description: 'Reasons for cracked crack')
+    end
+
+    before do
+      allow(hearing1).to receive(:cracked_ineffective_trial).and_return(cracked_ineffective_trial1)
+    end
+
+    it 'renders content' do
+      render_partial
+      expect(rendered).to be_present
     end
   end
 end
