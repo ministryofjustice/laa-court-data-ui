@@ -10,7 +10,7 @@
             = t('prosecution_case.show.cracked_ineffective_trial.heading')
           %td.govuk-table__cell
             - prosecution_case.hearings.each do |hearing|
-              - if hearing.cracked_ineffective_trial.cracked?
+              - if hearing.cracked_ineffective_trial&.cracked?
                 = hearing.cracked_ineffective_trial.cracked_on_sentence(hearing, prosecution_case)
                 %br
                 = hearing.cracked_ineffective_trial.description
