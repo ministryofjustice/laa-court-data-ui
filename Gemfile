@@ -25,7 +25,7 @@ gem 'prometheus_exporter'
 gem 'puma', '~> 5.1'
 gem 'rails', '~> 6.1.0'
 gem 'redis', '~> 4.2.5'
-gem 'sentry-raven'
+gem 'sentry-ruby'
 gem 'sidekiq', '~> 6.1'
 gem 'webpacker', '~> 5.2'
 
