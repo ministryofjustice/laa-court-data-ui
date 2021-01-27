@@ -85,7 +85,7 @@ GEM
       msgpack (~> 1.0)
     bootsnap (1.5.1-java)
       msgpack (~> 1.0)
-    brakeman (4.10.1)
+    brakeman (5.0.0)
     breadcrumbs_on_rails (4.0.0)
       rails (>= 5.0)
     builder (3.2.4)
