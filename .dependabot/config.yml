@@ -10,6 +10,8 @@ update_configs:
     # pull requests
     default_reviewers:
       - "jsugarman"
+      - "kmahern"
+      - "jrmhaig"
 
   # Keep package.json (& lockfiles) up to date as soon as
   # new versions are published to the npm registry
