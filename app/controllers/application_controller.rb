@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     when JsonApiClient::Errors::NotAuthorized
       redirect_to controller: :errors, action: :unauthorized
     else
-      Raven.capture_exception(exception)
+      Sentry.capture_exception(exception)
       redirect_to controller: :errors, action: :internal_error
     end
   end
