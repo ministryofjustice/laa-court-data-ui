@@ -14,14 +14,32 @@ RSpec.describe 'error routes', type: :request do
   end
 
   describe 'GET #not_found', type: :request do
-    before { get '/not-exists' }
+    context 'with non-existent route' do
+      before { get '/not-exists' }
 
-    it 'has a status of 404' do
-      expect(response.status).to eq(404)
+      it 'has a status of 404' do
+        expect(response.status).to eq(404)
+      end
+
+      it 'renders the 404/not_found template' do
+        expect(response).to render_template('errors/not_found')
+      end
     end
 
-    it 'renders the 404/not_found template' do
-      expect(response).to render_template('errors/not_found')
+    context 'with non-existent route and format' do
+      before { get '/.well-known/security.txt' }
+
+      it 'has a status of 404' do
+        expect(response.status).to eq(404)
+      end
+
+      it 'renders plain text' do
+        expect(response.content_type).to include('text/plain')
+      end
+
+      it 'renders not found message' do
+        expect(response.body).to include('Not found')
+      end
     end
   end
 
