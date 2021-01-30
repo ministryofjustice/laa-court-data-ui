@@ -64,7 +64,8 @@
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.time')
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.event')
   %tbody.govuk-table__body
-    - hearing&.hearing_events&.sort {|a,b| a.occurred_at <=> b.occurred_at }&.each do |event|
+    - hearing_events_for_day = hearing&.hearing_events&.select { |event| event.occurred_at.to_date.eql?(@hearing_day) }
+    - hearing_events_for_day&.sort { |a,b| a.occurred_at <=> b.occurred_at }&.each do |event|
       %tr.govuk-table__row
         %td.govuk-table__cell
           = event.occurred_at.to_datetime.strftime('%H:%M')

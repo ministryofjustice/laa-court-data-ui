@@ -40,7 +40,7 @@
         - hearing_summary.hearing_days.map(&:to_date).sort.each do |hearing_day|
           %tr.govuk-table__row
             %td.govuk-table__cell
-              = link_to hearing_day.to_date.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id, urn: prosecution_case.prosecution_case_reference)
+              = link_to hearing_day.to_date.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id, urn: prosecution_case.prosecution_case_reference, hearing_day: hearing_day.to_date.strftime('%d/%m/%Y'))
             %td.govuk-table__cell
               = hearing_summary.hearing_type
             %td.govuk-table__cell
