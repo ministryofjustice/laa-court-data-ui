@@ -1,0 +1,22 @@
+%h2.govuk-heading-m
+  = t('search.result.hearing.heading')
+%table.govuk-table
+  %caption.govuk-table__caption.govuk-visually-hidden
+    = t('search.result.hearing.caption')
+  %thead.govuk-table__head
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_day')
+      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_type')
+      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.providers')
+  %tbody.govuk-table__body
+    - results.each do |prosecution_case|
+      - decorate(prosecution_case) do |pc|
+        - pc.hearings_by_datetime.each do |hearing|
+          - hearing.hearing_days.map(&:to_date).sort.each do |hearing_day|
+            %tr.govuk-table__row
+              %td.govuk-table__cell
+                = link_to hearing_day.to_date.strftime('%d/%m/%Y'), hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference, hearing_day: hearing_day.to_date.strftime('%d/%m/%Y'))
+              %td.govuk-table__cell
+                = hearing.hearing_type
+              %td.govuk-table__cell
+                = hearing ? decorate(hearing).provider_list : t('generic.not_available')
