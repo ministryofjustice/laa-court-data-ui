@@ -8,6 +8,7 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
   before do
     allow(view).to receive(:govuk_page_title).and_return 'A heading'
     assign(:hearing, hearing)
+    allow(hearing).to receive(:hearing_events).and_return([])
   end
 
   context 'with defendant_names' do
