@@ -2,11 +2,12 @@
 
 RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
   subject(:render_partial) do
-    render partial: 'hearing_events', locals: { hearing: hearing, hearing_day: hearing_day }
+    render partial: 'hearing_events', locals: { hearing: decorated_hearing, hearing_day: hearing_day }
   end
 
-  let(:hearing) { view.decorate(CourtDataAdaptor::Resource::Hearing.new) }
-  let(:hearing_day) { Date.parse('2021-01-17') }
+  let(:hearing) { CourtDataAdaptor::Resource::Hearing.new }
+  let(:decorated_hearing) { view.decorate(hearing) }
+  let(:hearing_day) { Date.parse('2021-01-17T10:30:00.000Z') }
 
   let(:hearing_event1) do
     hearing_event_class.new(description: 'day 1 start', occurred_at: '2021-01-17T10:30:00.000Z')

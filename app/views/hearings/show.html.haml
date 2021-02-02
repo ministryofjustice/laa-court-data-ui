@@ -1,32 +1,7 @@
 = govuk_page_title(@hearing_day&.strftime('%d/%m/%Y'), t('generic.hearing'))
 - hearing = decorate(@hearing)
 
-%table.govuk-table
-  %caption.govuk-table__caption.govuk-visually-hidden
-    = t('generic.hearing')
-  %tbody.govuk-table__body
-    %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'row' }
-        = t('hearings.show.hearing_type')
-      %td.govuk-table__cell
-        = hearing&.hearing_type || t('generic.not_available')
-    %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'row' }
-        = t('hearings.show.court')
-      %td.govuk-table__cell
-        = hearing&.court_name || t('generic.not_available')
-    %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'row' }
-        = t('hearings.show.time_listed')
-      %td.govuk-table__cell
-        = @hearing_day&.strftime('%H:%M') || t('generic.not_available')
-
-    - if hearing.cracked_ineffective_trial
-      %tr.govuk-table__row
-        %th.govuk-table__header{ scope: 'row' }
-          = t('hearings.show.result')
-        %td.govuk-table__cell
-          = hearing.cracked_ineffective_trial.description_sentence
+= render partial: 'listing_info', locals: { hearing: hearing, hearing_day: @hearing_day }
 
 = render partial: 'attendees', locals: { hearing: hearing }
 
