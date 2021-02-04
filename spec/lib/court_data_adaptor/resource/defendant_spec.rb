@@ -3,6 +3,21 @@
 require 'court_data_adaptor'
 
 RSpec.describe CourtDataAdaptor::Resource::Defendant do
+  let(:accessible_properties) do
+    %i[prosecution_case_reference
+       prosecution_case_reference=
+       user_name
+       user_name=
+       unlink_reason_code
+       unlink_reason_code=
+       unlink_reason_text
+       unlink_reason_text=
+       maat_reference
+       maat_reference=]
+  end
+
+  let(:readable_properties) { %i[id name date_of_birth] }
+
   it_behaves_like 'court_data_adaptor acts_as_resource object', resource: described_class do
     let(:klass) { described_class }
     let(:instance) { described_class.new }
@@ -14,8 +29,8 @@ RSpec.describe CourtDataAdaptor::Resource::Defendant do
     let(:instance) { described_class.new }
   end
 
-  it { is_expected.to respond_to(:prosecution_case_reference, :prosecution_case_reference=) }
-  it { is_expected.to respond_to(:name) }
+  specify { is_expected.to respond_to(*accessible_properties) }
+  specify { is_expected.to respond_to(*readable_properties) }
 
   describe '#linked?' do
     subject { defendant.linked? }

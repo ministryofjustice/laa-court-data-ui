@@ -4,7 +4,8 @@ require_dependency 'court_data_adaptor'
 
 class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
-                :set_hearing
+                :set_hearing,
+                :set_hearing_day
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
@@ -34,6 +35,17 @@ class HearingsController < ApplicationController
 
   def set_hearing
     @hearing = @hearing_search.call
-    @hearing_day = @hearing&.hearing_days&.first&.to_datetime
+  end
+
+  def set_hearing_day
+    @hearing_day = (hearing_datetime || earliest_hearing_datetime)
+  end
+
+  def hearing_datetime
+    @hearing_datetime ||= params[:hearing_day]&.to_datetime
+  end
+
+  def earliest_hearing_datetime
+    @hearing&.hearing_days&.map(&:to_datetime)&.sort&.first
   end
 end

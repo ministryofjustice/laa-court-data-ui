@@ -158,4 +158,35 @@ RSpec.describe HearingDecorator, type: :decorator do
       it { is_expected.to be_instance_of(CrackedIneffectiveTrialDecorator) }
     end
   end
+
+  describe '#hearing_events_for_day' do
+    subject(:call) { decorator.hearing_events_for_day(hearing_day) }
+
+    let(:hearing_day) { Date.parse('2021-01-17') }
+    let(:hearing_events) { [hearing_event3, hearing_event1, hearing_event2] }
+
+    let(:hearing_event1) do
+      hearing_event_class.new(description: 'day 1 start', occurred_at: '2021-01-17T10:30:00.000Z')
+    end
+
+    let(:hearing_event2) do
+      hearing_event_class.new(description: 'day 1 end', occurred_at: '2021-01-17T16:30:00.000Z')
+    end
+
+    let(:hearing_event3) do
+      hearing_event_class.new(description: 'day 2 start', occurred_at: '2021-01-18T10:45:00.000Z')
+    end
+
+    let(:hearing_event_class) { CourtDataAdaptor::Resource::HearingEvent }
+
+    before { allow(hearing).to receive_messages(hearing_events: hearing_events) }
+
+    it 'filters events by day' do
+      is_expected.to match_array([hearing_event1, hearing_event2])
+    end
+
+    it 'sorts events by datetime' do
+      is_expected.to eql([hearing_event1, hearing_event2])
+    end
+  end
 end

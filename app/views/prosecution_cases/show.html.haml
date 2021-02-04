@@ -2,50 +2,9 @@
 
 = render partial: 'cracked_ineffective_trial', locals: { results: @results }
 
-%h2.govuk-heading-m
-  = t('search.result.defendant.heading')
-%table.govuk-table
-  %caption.govuk-table__caption.govuk-visually-hidden
-    = t('search.result.defendant.caption')
-  %thead.govuk-table__head
-    %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.name')
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.date_of_birth')
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.maat_number')
-  %tbody.govuk-table__body
-    - @results.each do |prosecution_case|
-      - prosecution_case.defendants.each do |defendant|
-        %tr.govuk-table__row
-          %td.govuk-table__cell
-            = link_to defendant.name, defendant_link_path(defendant, @prosecution_case.prosecution_case_reference)
-          %td.govuk-table__cell
-            = l(defendant.date_of_birth&.to_date)
-          %td.govuk-table__cell
-            = defendant.maat_reference || t('search.result.defendant.unlinked')
+= render partial: 'defendants', locals: { results: @results , prosecution_case: @prosecution_case}
 
-%h2.govuk-heading-m
-  = t('search.result.hearing.heading')
-%table.govuk-table
-  %caption.govuk-table__caption.govuk-visually-hidden
-    = t('search.result.hearing.caption')
-  %thead.govuk-table__head
-    %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_day')
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_type')
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.providers')
-  %tbody.govuk-table__body
-    - @results.each do |prosecution_case|
-      - prosecution_case.hearing_summaries.sort_by{ |summary| summary.hearing_days }.each do |hearing_summary|
-        - hearing = prosecution_case.hearings.find { |h| h.id == hearing_summary.id}
-        - hearing_summary.hearing_days.map(&:to_date).sort.each do |hearing_day|
-          %tr.govuk-table__row
-            %td.govuk-table__cell
-              = link_to hearing_day.to_date.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id, urn: prosecution_case.prosecution_case_reference)
-            %td.govuk-table__cell
-              = hearing_summary.hearing_type
-            %td.govuk-table__cell
-              = hearing ? decorate(hearing).provider_list : t('generic.not_available')
-
+= render partial: 'hearing_summaries', locals: { results: @results }
 
 - if Rails.configuration.x.display_raw_responses
   = render partial: 'raw_response'
