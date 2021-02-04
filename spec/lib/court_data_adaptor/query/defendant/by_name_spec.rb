@@ -6,7 +6,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
   subject { described_class }
 
   let(:instance) { described_class.new(nil) }
-  let(:term) { 'josefa theadore FRanecki  ' }
+  let(:term) { '    josefa      theadore    FRanecki  ' }
   let(:dob) { Date.parse('15-06-1961') }
 
   def self.resource
@@ -46,7 +46,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
       expect(resource).to have_received(:includes).with(:defendants)
     end
 
-    it 'sends where query to resource' do
+    it 'sends where query to resource, squishing name whitespace' do
       expect(resultset)
         .to have_received(:where)
         .with(name: 'josefa theadore FRanecki', date_of_birth: '1961-06-15')
