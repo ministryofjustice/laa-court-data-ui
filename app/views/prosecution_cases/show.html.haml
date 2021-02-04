@@ -1,10 +1,10 @@
 = govuk_page_title(@prosecution_case.prosecution_case_reference, t('generic.case'))
 
-= render partial: 'cracked_ineffective_trial', locals: { results: @results }
+= render partial: 'cracked_ineffective_trial', locals: { prosecution_case: @prosecution_case }
 
-= render partial: 'defendants', locals: { results: @results , prosecution_case: @prosecution_case}
+= render partial: 'defendants', locals: { prosecution_case: @prosecution_case }
 
-= render partial: 'hearing_summaries', locals: { results: @results }
+= render partial: 'hearing_summaries', locals: { prosecution_case: @prosecution_case }
 
 - if Rails.configuration.x.display_raw_responses
-  = render partial: 'raw_response'
+  = render partial: 'raw_response', locals: { prosecution_case: @prosecution_case }
