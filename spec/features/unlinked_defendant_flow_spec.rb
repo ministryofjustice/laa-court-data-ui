@@ -158,7 +158,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   end
 
   def has_hearing_table_row_header_columns
-    within :table, 'Hearing' do
+    within :table, 'Hearing day' do
       rows = find_all('tbody .govuk-table__row')
       expect(rows[0].first('.govuk-table__header')).to have_text 'Hearing type'
       expect(rows[1].first('.govuk-table__header')).to have_text 'Court'

@@ -195,6 +195,6 @@ RSpec.feature 'Breadcrumb', type: :feature, stub_unlinked: true do
     expect(page).to have_govuk_breadcrumb_link('Home')
     expect(page).to have_govuk_breadcrumb_link('Search')
     expect(page).to have_govuk_breadcrumb_link("Case #{case_ref}")
-    expect(page).to have_govuk_breadcrumb("Hearing #{hearing_day}", aria_current: true)
+    expect(page).to have_govuk_breadcrumb("Hearing day #{hearing_day}", aria_current: true)
   end
 end

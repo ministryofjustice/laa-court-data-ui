@@ -1,4 +1,4 @@
-= govuk_page_title(@hearing_day&.strftime('%d/%m/%Y'), t('generic.hearing'))
+= govuk_page_title(@hearing_day&.strftime('%d/%m/%Y'), t('generic.hearing_day'))
 - hearing = decorate(@hearing)
 
 = render partial: 'listing_info', locals: { hearing: hearing, hearing_day: @hearing_day }
