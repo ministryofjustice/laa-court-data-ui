@@ -13,7 +13,7 @@ class HearingsController < ApplicationController
                  (proc { |v| v.prosecution_case_path(v.controller.prosecution_case_reference) })
 
   def show
-    add_breadcrumb "Hearing #{@hearing_day&.strftime('%d/%m/%Y')}", ''
+    add_breadcrumb "#{t('generic.hearing_day')} #{@hearing_day&.strftime('%d/%m/%Y')}", ''
 
     return if @hearing
 

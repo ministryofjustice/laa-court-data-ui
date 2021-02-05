@@ -8,7 +8,7 @@ en:
     form:
       select:
         blank_option: Please select
-    hearing: Hearing
+    hearing_day: Hearing day
     new_window: opens in a new window
     not_available: Not available
     prosecution_case: Prosecution case
