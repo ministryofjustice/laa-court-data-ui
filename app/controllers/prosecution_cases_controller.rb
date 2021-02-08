@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProsecutionCasesController < ApplicationController
-  before_action :load_and_authorize_search, :set_prosecution_case_and_results
+  before_action :load_and_authorize_search, :set_prosecution_case
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
@@ -18,8 +18,11 @@ class ProsecutionCasesController < ApplicationController
     authorize! :create, @search
   end
 
-  def set_prosecution_case_and_results
-    @results = @search.execute
-    @prosecution_case = @results.first
+  def set_prosecution_case
+    @prosecution_case = helpers.decorate(search_results.first)
+  end
+
+  def search_results
+    @search_results ||= @search.execute
   end
 end

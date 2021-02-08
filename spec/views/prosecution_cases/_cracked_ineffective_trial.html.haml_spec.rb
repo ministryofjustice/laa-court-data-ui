@@ -31,15 +31,17 @@ RSpec.shared_examples 'cracked_ineffective_trial with case level result' do |opt
 end
 
 RSpec.describe 'prosecution_cases/_cracked_ineffective_trial.html.haml', type: :view do
-  subject(:render_partial) { render partial: 'cracked_ineffective_trial', locals: { results: results } }
+  subject(:render_partial) do
+    render partial: 'cracked_ineffective_trial', locals: { prosecution_case: decorated_prosecution_case }
+  end
 
   include RSpecHtmlMatchers
 
-  let(:results) { [prosecution_case] }
+  let(:decorated_prosecution_case) { view.decorate(prosecution_case) }
   let(:prosecution_case) do
-    CourtDataAdaptor::Resource::ProsecutionCase
-      .new(prosecution_case_reference: 'THECASEURN')
+    CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'THECASEURN')
   end
+
   let(:hearings) { [hearing] }
   let(:hearing) do
     CourtDataAdaptor::Resource::Hearing

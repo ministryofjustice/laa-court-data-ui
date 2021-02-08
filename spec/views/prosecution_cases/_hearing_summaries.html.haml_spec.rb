@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
-  subject(:render_partial) { render partial: 'hearing_summaries', locals: { results: results } }
+  subject(:render_partial) do
+    render partial: 'hearing_summaries', locals: { prosecution_case: decorated_prosecution_case }
+  end
 
-  let(:results) { [prosecution_case] }
+  let(:decorated_prosecution_case) { view.decorate(prosecution_case) }
   let(:prosecution_case) do
-    CourtDataAdaptor::Resource::ProsecutionCase
-      .new(prosecution_case_reference: 'THECASEURN')
+    CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'THECASEURN')
   end
 
   let(:hearings) { [] }

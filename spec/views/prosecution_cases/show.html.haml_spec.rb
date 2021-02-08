@@ -3,19 +3,16 @@
 RSpec.describe 'prosecution_cases/show.html.haml', type: :view do
   subject(:render_view) { render }
 
-  let(:results) { [prosecution_case] }
-
+  let(:decorated_prosecution_case) { view.decorate(prosecution_case) }
   let(:prosecution_case) do
-    CourtDataAdaptor::Resource::ProsecutionCase
-      .new(prosecution_case_reference: 'THECASEURN')
+    CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'THECASEURN')
   end
 
   before do
     allow(view).to receive(:govuk_page_title).and_return 'A Gov uk page title'
     allow(prosecution_case).to receive(:hearings).and_return([])
     allow(prosecution_case).to receive(:defendants).and_return([])
-    assign(:prosecution_case, prosecution_case)
-    assign(:results, results)
+    assign(:prosecution_case, decorated_prosecution_case)
   end
 
   it { is_expected.to have_content('A Gov uk page title') }
