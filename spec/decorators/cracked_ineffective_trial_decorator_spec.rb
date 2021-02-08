@@ -77,6 +77,10 @@ RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
       CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'MY-CASE-URN')
     end
 
+    let(:expected_href) do
+      %r{hearings/a-hearing-uuid\?hearing_day=#{CGI.escape('19/01/2021')}&urn=MY-CASE-URN}
+    end
+
     let(:hearing) do
       instance_double(CourtDataAdaptor::Resource::Hearing,
                       id: 'a-hearing-uuid',
@@ -91,14 +95,15 @@ RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
       let(:type) { 'CrACKed' }
 
       it { is_expected.to include('Cracked on') }
-      it { is_expected.to have_link('19/01/2021', href: %r{hearings/a-hearing-uuid\?urn=MY-CASE-URN}) }
+
+      it { is_expected.to have_link('19/01/2021', href: expected_href, class: 'govuk-link') }
     end
 
     context 'when type is vacated' do
       let(:type) { 'Vacated' }
 
       it { is_expected.to include('Vacated on') }
-      it { is_expected.to have_link('19/01/2021', href: %r{hearings/a-hearing-uuid\?urn=MY-CASE-URN}) }
+      it { is_expected.to have_link('19/01/2021', href: expected_href, class: 'govuk-link') }
     end
   end
 
