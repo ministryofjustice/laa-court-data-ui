@@ -1,0 +1,23 @@
+.app-pagination-previous:before {
+  margin-right: 5px;
+  border-width: 3px 0 0 3px;
+}
+
+.app-pagination-next:after {
+  margin-left: 5px;
+  border-width: 0 3px 3px 0;
+}
+
+.app-pagination-previous:before,
+.app-pagination-next:after {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  border-style: solid;
+  color: #0b0c0c;
+  background: transparent;
+}

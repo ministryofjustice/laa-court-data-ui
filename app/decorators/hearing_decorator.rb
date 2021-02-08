@@ -30,7 +30,9 @@ class HearingDecorator < BaseDecorator
   end
 
   def hearing_events_for_day(hearing_day)
-    hearing_events.select { |event| event.occurred_at.to_date.eql?(hearing_day) }.sort_by(&:occurred_at)
+    hearing_events.select do |event|
+      event.occurred_at.to_date == hearing_day.to_date
+    end.sort_by(&:occurred_at)
   end
 
   private
