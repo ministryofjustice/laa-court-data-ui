@@ -7,26 +7,24 @@ RSpec.shared_examples 'cracked_ineffective_trial with case level result' do |opt
 
   it 'displays case result section' do
     render_partial
-    expect(rendered).to have_tag('th.govuk-table__header', text: /Case results/)
+    expect(rendered).to have_selector('th.govuk-table__header', text: /Case results/)
   end
 
   it 'displays the cracked_ineffective_trial type' do
     render_partial
-    expect(rendered).to have_tag('td.govuk-table__cell', text: /#{type_text} on/)
+    expect(rendered).to have_selector('td.govuk-table__cell', text: /#{type_text} on/)
   end
 
   it 'displays link to hearing' do
     render_partial
-    expect(rendered).to have_tag('a', with: { href: '/hearings/the-hearing-uuid?urn=THECASEURN' }) do
-      with_text(%r{15/01/2021})
-    end
+    expected_href = %r{hearings/the-hearing-uuid\?hearing_day=#{CGI.escape('15/01/2021')}&urn=THECASEURN}
+    expect(rendered).to have_link('15/01/2021', href: expected_href, class: 'govuk-link')
   end
 
   it 'displays reason' do
     render_partial
-    expect(rendered).to have_tag('td.govuk-table__cell') do
-      with_text(/Reason for cracked, vacated or ineffective trial/)
-    end
+    expect(rendered).to have_selector('td.govuk-table__cell',
+                                      text: /Reason for cracked, vacated or ineffective trial/)
   end
 end
 

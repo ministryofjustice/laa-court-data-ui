@@ -25,8 +25,11 @@ class CrackedIneffectiveTrialDecorator < BaseDecorator
   private
 
   def cracked_at_link(hearing, prosecution_case)
-    view.link_to(hearing.hearing_days.first.to_date.strftime('%d/%m/%Y'),
+    heard_at = hearing.hearing_days.first.to_date.strftime('%d/%m/%Y')
+    view.link_to(heard_at,
                  view.hearing_path(id: hearing.id,
-                                   urn: prosecution_case.prosecution_case_reference))
+                                   urn: prosecution_case.prosecution_case_reference,
+                                   hearing_day: heard_at),
+                 class: 'govuk-link')
   end
 end
