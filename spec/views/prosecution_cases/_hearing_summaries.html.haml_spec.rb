@@ -75,13 +75,13 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
           .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: 'Sentence')
       end
 
-      it 'renders link to hearing including urn' do
+      it 'renders link to hearing with urn' do
         expect(rendered).to have_link('17/01/2021', href: %r{hearings/.*\?.*urn=THECASEURN})
       end
 
-      it 'renders link to hearing including hearing_day' do
+      it 'renders link to hearing with page' do
         expect(rendered).to have_link('17/01/2021',
-                                      href: %r{hearings/.*\?.*hearing_day=#{CGI.escape('17/01/2021')}})
+                                      href: %r{hearings/.*\?.*page=\d})
       end
 
       it 'sorts hearings by hearing day' do
