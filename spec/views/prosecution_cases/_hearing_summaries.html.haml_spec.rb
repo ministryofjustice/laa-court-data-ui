@@ -112,5 +112,33 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
           .and have_selector('tbody.govuk-table__body tr:nth-child(4)', text: %r{20/01/2021.*Sentence}m)
       end
     end
+
+    context 'with a hearing day in the future' do
+      let(:hearings) { [hearing] }
+
+      let(:hearing) do
+        CourtDataAdaptor::Resource::Hearing
+          .new(id: 'hearing-uuid',
+               hearing_type: 'Future hearing',
+               hearing_days: hearing_days,
+               providers: providers)
+      end
+
+      let(:future_date) { Time.zone.today + 1.day }
+      let(:hearing_days) { [future_date] }
+
+      it 'renders the date of the scheduled hearing followed by the text Scheduled' do
+        expect(rendered)
+          .to have_selector('tbody.govuk-table__body tr:nth-child(1)',
+                            text: "#{future_date.strftime('%d/%m/%Y')}\n\nScheduled")
+      end
+
+      it 'does not render a link to the scheduled hearing' do
+        expect(rendered)
+          .not_to have_link(future_date.strftime('%d/%m/%Y'),
+                            href: %r{hearings/.*\?.*hearing_day=#{CGI.escape(future_date
+                              .strftime('%d/%m/%Y'))}})
+      end
+    end
   end
 end
