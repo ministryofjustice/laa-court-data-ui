@@ -1,0 +1,1407 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:40 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - '058b1053a422a0aa88df1ceb0797b126'
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"9bed29200dc97fade55d0cae8023d118"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - '058b1053a422a0aa88df1ceb0797b126'
+      X-Runtime:
+      - '2.542040'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        H4sIAMRWJWAAA9xcWW9bR5b+Kxd6ymBcjdoXv3lpIwmcjmNrejoJAqFWid0U
+        aXBxWgj83+c7tGzLlliKpSImnQcbknh5eW5VnfMtp1i/HZW4iUcPf/7taFaO
+        Hh4JH1zUPDPno2A65sKijpFJJ7n0znpj29GDo83F64qrX6+W65q3m9lycZLj
+        uq7xUtxsVrO03eCXh79du+JkVVtd1UWmtx//9dWxkEqbo7cPjlZ1Humy9dns
+        9e6tBVcuSlxs3v32SZg+uRiCD8zrFJkOqjDvPGcxOG2NdzIb9THMK3d6++Dy
+        DtbWJqx2LJuqmE4Cb9ZeMy6liy0JYVvq34ELn622lrWWcQcuOfNJKSaKdVwm
+        XTCW/TtEqQoPAuPsuWVa1sRSQCBVppKbwgeUPXf4BQN2VuNqtjg9WW/Pz/FT
+        vWGYWqspOyuYSPgPQ2VYEgHP7JS0hXNZgvz4Addv+CHSLHFxjpq16HEjqwIL
+        yWVmfNA8tVRtM7/rRkYU5VVpeHvOTFcMX8zeMs4xpcEqjF3/RleefNQD3/c5
+        7/t4u6d6+/aXB0ezRZ5vSy1X8tG5Jo3VzNZQkI8Bt67F4j9TXE5YMvbKMl3i
+        +ZFa19MwLwu9/uKYcy4EXl6uSl2dzBal/vvoocANZps5XfEy5lmczy9YPD1d
+        xTdxU8uUV7Pz2SLOpxLP42nFu+f1dLZ+l654z6v67y1e/f7yw6dHeTOJYOy0
+        /oug9XuODz9ZthMEFOd0/W42L6bLaD+/AiUirlEHMAgYktdz/EY/vv0wyHdO
+        /s9HZRHP6Ypv4/n5xfR0WU7rCtdgRe2CSbPV5oymIHjHuGGSxm2xe2gEOVus
+        t6uI8E8W2/OEN+I+T3bFzD6iD1qt6nqzW7h4lI/XiBePH73gPwj/d/WMHjzG
+        zdWSuNjO51QKX+PddbHZfdjJu7misN5fcK2qfkntfr1EYO8zK2/Xm2W5OFnj
+        s7ZUwB/+fPTo6Jeb6vGHxXUt6+64SHe5vJsejOJydRoXs/Xlmnr/CfS4b68/
+        78cLhsDWEbLvw+rSTSNkU1nJEinsbGFB5sY8T6ZV7V1qeWTGvViuMe5rxIKE
+        mJ7M43o9PZ6Wq+nJVFbb02vZ9mwVt2WXY6hVuxwTN+TYN4syy5uY5nVaLuYX
+        X5xjd4bHPTn2MuL1+fT1ts7X03ezTT6r8/mNyWaRbIFJfUuyPfracOu8eNxJ
+        NvPq+avvv3kefpA//fCnSbY7rs8/ZrJ5I2QzxbDCK0p5xjJL3HnWeFa16qJL
+        jiOT7V3ypIspJkwAJRwmaLYbhs/z7HgVS52e1jXg7/Vubi6Bzfppjax7MPkH
+        U3gwCYl/Cv/0AaDuzhxzTxp+F1fz2WJ6lc8i5cH0vG7X+exf9cZMNJ5gj/tb
+        MvHHn6QyzsknnUz8/sfvf3x2LJ4+e6xf/Wky8Y6L94+ZibZlm3R0TCiBsmJ1
+        Ap9qlTmteQXHEiKFQ8De4nSKi4vNGf3w62xzNs0WGyyBabOcCpbSanlBWPiO
+        eU54gtd1tbn4XRQU8KgAjzcn5n3x8c7SbU9i/i9en9Xp8RJPNctn0/Plrzcl
+        JZ6JMyExwbck5df/wOQrG3rw+OzF39U/fvyfb//24pvHf5qkvOM6/mMm5X31
+        ++eL7f0Vl284pqU+fXX88vl/HX30E0q82A295CIwLGmpjrl/qPhDzv+C5fcT
+        Lv3wkqaXtLnpJXPMA/7+4aUryXNfN+GWx/oOq5XoNAN6X+YdlZNHGxSWMn31
+        3dNH3ce1+x/X7X9cv/9x7+t53PK4L1aVvZvJl/XNrP46ffXi+GX3CcPeJ1R8
+        7xMq0ZnQapUMGoov6IZqyAXzURlmtfLO8ZbC1aR7H1d9U2+qiOUj5aJC9u7i
+        aXfxxAlRct6iopWTuNlVxBtX6X/vAj26MglV2li0Yc4pThq1skCrDxNjmi4l
+        CFWHhCi6IYZOiFY1qGXfULAMZHTAYvFFa+ZqLkbgv7LjYvcPUfZCFLwTYhQm
+        cGg/Vr2RoDyxMRRb0NMIumM8OGkZM4qqG6LohOhljcpWzywAmemSMNFFBzDo
+        YLMqktc8JkTdDVF2QgwSi9AAHJT0II46IXGcdKxoIV1SSWUlhoRouiGqTogV
+        RZijamEtKsdIczKfkeDC8cibA4opOyRE2w1R90I0UriG/MjNVWR0A4o04VHA
+        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
+  recorded_at: Thu, 11 Feb 2021 16:09:40 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/ffebc761-1b61-4ba5-b197-c7326d002d92?include=hearing_events,providers,cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:41 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 83b9c74edd79943fa7b903c78ce08ec6
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"bfa0959c99afc8b5741cc83a45276bf8"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 83b9c74edd79943fa7b903c78ce08ec6
+      X-Runtime:
+      - '0.699439'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        H4sIAMVWJWAAA6yY22ocRxCGX2XZq4SoQndX9Um39kUI9o0RBBKM6EO1tfF6
+        JVYrGWH07qley/FB3tlZZkAIMd1T+qZOf3V/Wta0S8vzT8tVXZ4vW+NcvNOg
+        s/yinCxkHT0Uj8ZVpUyNZnm23D3csOy+4rRdbd7dypO0221X+W7Ht91Wub7b
+        7i436UPf9ZK3+WHxYnv9cbN40Rdk+9Obl0+GLrartF78cvHm1a/fLNb0INb+
+        WRqlI2gFxl6oeK6U/PyulPpbtv6/RBcqnJP92RL2Jfz61tuzZeXGm5o2nxn3
+        /+TP9OHDw+LldX3HW3n7TZL19eL1aleueL2WJ6/Tdr3aLF7x3W25es/y5C+x
+        seLFq+uP3I3+eyfvfjG4uVuvz5Y32+tbLne71fXmMtX765J2P+zYkxT+6erj
+        2XLL69Tfvr1a3ew9+8U3fM+b3f7J5/j98xRA0qmwTQ5cQAbSOUCs1UBSKhnt
+        jAQyPAvgF2uPZ09WLFIt1mQIzXogg92Ab+Cq1eiUL1k/T4NnVkpN2avmgZOt
+        QC1FCDUzoHOukKo+Zz5uxYVaqnIMGVlSMqkC2eUKOjRPsUZdYz1upUn+chQD
+        Qq+AYjCQg07AhYpy1sSY8bgVQkPeRwuNvQGygpGwEUTiQFEKpXE8bsUoJNdc
+        hZBKBmJLkNgYKKlpdlJhqdjjVri0kiSi4o3OQj5CVDlKoGKijGI75BHeLS15
+        VSs0YxGoWgUh+wpeo/HMrFJWx63oKskV2QGilkgrCXdmk0CZ4nQt0RvnjlvJ
+        LWNKhqBUFJYUm+RfJGhaK52Vw5pHeNdjLhgkKDVFqQDDksUhJRAQtNEo45FG
+        sHjjK5MYCK0IS5Gsk8yH6IqNtfni9Qi/VN2Uc+KIYkyPtLYQDGWwRupIkiZG
+        P6ICqglFI8p3SOUIS1OQgpL0EW/pZlN03h+3EkywTlkHNos3SEcEMUuAOcu3
+        SAWk0EbUtOcqxV9BFSVfpEOELIUpxRQq+RwdqjTii5gphNCgVWlVFLKGaGsG
+        NBhtskUnN6K/UKWgvPNgg5d8CeLiXA1DsVx0DJa8GxHpVhyXqBlMxCBfhBZS
+        kdTLjYu3tWTrywi/sEMTyUGM1CTrlJbqFlOOMHhpgjmOyV3LxqVKFrxH1SuA
+        QcIiprDaRlWaHY7pmCj5mcW7Kfa+GyV3JTgEnov0b/lV1QgNSNpGpV0DDlb6
+        izQnyCTRakn8Lh6XWWAESzCc0HEAl6N0797+Y6UIrUklYTWKywgr0YhDbNKS
+        IEFyl7L4WQoUKmnjM2YsqEd0zMxOYUDxC4qqNRK/FAmZ9iqJTHmRzBFdiq3R
+        vok7S/Pcq1H6btMBjMvOkDWYw4hIRynFykhggkgRoZUK4CpS6Zy3WWpM6RE1
+        LS2ObElV5p/evYt8W7YqSUFw5ViYTRxQkreP+wnlflV5++0o0Z+XbSrvuV6u
+        NiwzYdmt7vly16e0r/v2I8qj7F1tyvqucp1pCvlxmKx8W7armz4GyeY/Pm9e
+        7Dcveg++LuVuuxXWtNuL60+Hxd/2fy0f5xlxTkHUQ4haDSBOmp9OQTSDiHoA
+        cdJwdgoiDiKaAcRJk98piDSIiAOIk8bKUxDtICINIE6aWU9BdIOIdgBx0kB8
+        CqIfRHRD5TJl2j4FMQwi+gHESaP8KYhxEDEMIE46J8ykLt/fNzxDnHQImUld
+        qAvgYcRJJ5yZ1IW6AB5GnHR8mkldqAvgAOKUs9lM6kJdAA8jTjr4zaQu1AXw
+        MOKkU+VM6kJdAAcCPeXIOpO6UBfAw4iTzsMzqQt1ATyMOOmwPZO6UBfAgVyc
+        cpKfSV2+v7J+fnaZck0wk7pgV5fDiJPuIGZSF+zqchhx0gXHTOqCXV0OI066
+        PZlJXbCry2HESVczM6kLdnU5jDjp3mcmdcGuLgOIUy6VZlIX7OoyEOgpN1Yz
+        qQt2dTmMOOk6bCZ1wa4uzxHfPv4HAAD//wMAd8CW12odAAA=
+  recorded_at: Thu, 11 Feb 2021 16:09:41 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:44 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - f039285935a5be4dd83f579e27034012
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"110b187177eedf92db7f852546aa5c47"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - f039285935a5be4dd83f579e27034012
+      X-Runtime:
+      - '2.339281'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        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
+        kTXfmfe++n39759e/RsAAP//AwB3o6B+Am4AAA==
+  recorded_at: Thu, 11 Feb 2021 16:09:44 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/c2002ca4-fa81-4639-9b7c-58940bfbe6f5?include=hearing_events,providers,cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:45 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - b527245cc692c4de065a3fd4a76c1404
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"73a3104c5321cbb2d66c181cdb9e9a63"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - b527245cc692c4de065a3fd4a76c1404
+      X-Runtime:
+      - '0.817868'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        H4sIAMlWJWAAA6xYW2tbRxD+K0JPLfWUvV/8FpKHUpKXEig0BDM7O5uoUaQg
+        yw4m+L93Vombi6OjI84BP8h7mfPtN5dvdj8tK+5xeflpuarLyyUZpQyhg4ZJ
+        gws2Qy6RwKfsVGmFQ/PLi+X+7gPL6reMu9XmzbWM4H6/W5WbPV93W7S92e2v
+        Nvi+r3rGu3K3eLrbftwsnvYJWf5l59UXQy94s19tNwtYPOPGm4qb/WK/XTzZ
+        7+WfxS8vnj359ZtNFe/kK6+WRukMWoFJL1W+VEr+fldK/SNL/5+KL1W6dP5n
+        U6FP2a+7Xl8s68PXD9gPH/kT37+/Wzzb1je8k91/ocyvFy9We3rL67WMvMDd
+        erVZPOeba3r7jmXkb7Gx4sXz7UfuRv+9kb0PBjc36/XF8sNue8100898hfV2
+        S7j/YcUBCfFPZ+8vljteY999/Xb14cD4Azd8K1QeRj779dUXx1qL2JwzUJDE
+        sTVWKGwJFAZVG1dOFB859sHa/cWDFePQhRQhGmvFCnlAHzN4l51X3hkXHofH
+        IyuhpqKtYKkZG7iWEVIuEnPFFQoYc87htBXORUWLAZqODpxjhqJNg9AIq83F
+        +NpOW0ko3yxBQeCUwRm0kLMvoAuljMGb6vG0laI4s6YmdCqSE6UAqA1BNirH
+        ZH1hHMFLq4FKbhmYcgGXDUOKqkoaBmUyZePIjDhRqOi0x56zoWOxgEIvUPQy
+        YqtqNIKXEpWnVgpYoafHi/gopgpcrfbBOaJsR3g6pSghk6BEbcAVpSAZCZ8g
+        jtcmV6LCIzwdlCOUlE1WyJGfBhIqhByNz02oyXoEu9no5GMPkOwkXuSnRB0F
+        IRvFrHeR7Qh2xaEqcs1gxN/dMw1S4gjUMCOpihK/p634TKWZYKEFHwWLlXiJ
+        RoFnY5OQUlp1p63ElnVyUUoZNgUOSwIMVQH7UKvn7NCmEbyQU2xUAx0kk110
+        ktOsCvjARaiq4rQRJ2JJlqZblAARdzv0EnVRHFWcbYmaDdXn01aIW6oOEUIw
+        EnW2CS9CB1g2BtlXa+uIyhCzlbMQglWNJQN0geQDgfaZXW7aljQip+XoUpA4
+        QbBFcpAkp3PP6di89Ub5nNsIK6YUZVBLycUs7Cbuni7CS/Y1xF57yggrrbNb
+        mwFWQayUGCFVUtBcVhS8l0I8IgN00YhJMsDWLCfyEjS5JAIumFLTmCyNwCKJ
+        aA06ibXEPV7EPUkL2S7r0Ng3yq6ctqK0j5RjA9JSD5wSGFnHANXEGL2z1nMd
+        cSKLVXsdwPssFGuJ4kLkwNuoM8VUahgRL6ZVK3VWAZmuR2SdsCsCabWSQkwo
+        RXlMTgeUldqCslpOZJpUTBIfqaCdRG6ryo7gReK0ae1TF1epL04AZSMCKRmq
+        JClM46hPW3FekiWIAe+l2ZH8ZslpqVdkROdVqcWXgWx8fX/oUG5XlXffthJ9
+        nHZI77herTbcGtN+dctX0vnh+uu6Q4tyL2tXG1rfVPHjPF3Ij01m5WvarT70
+        NkgW//F58eKweKFk9ZboZrcTrLg/FO6fNou/HX4t7+dpcc6BqIcgajUAcVL/
+        dA5EMwhRD0Cc1JydA9EOQjQDECd1fudAdIMQ7QDESW3lORD9IEQ3AHFSz3oO
+        xDAI0Q85ekpDfA7EOAgxDDl6Srd9DsQ0CDEOFZ0prfw5EPMgxDRUdKbcE2ZS
+        l+/fGx5BnHQJmUldYhfA4xAn3XBmUpfYBfA4xEnXp5nUJXYBPA5x0t1sJnWJ
+        XQAHYnHKxW8mdYldAI9DnHSrnEldYhfA4xAnXVlnUpfYBXAgFqfch2dSl9gF
+        cCAWp1y2Z1KX2AVwoC5OucnPpC7fP1k/bsamPBPMpC6hq8txiJPeIGZSl9DV
+        5TjESQ8cM6lL6OpyHOKk15OZ1CV0dRlw9JSnmZnUJXR1OQ5x0rvPTOoSuroc
+        hzjpUWkmdQldXYYgTnixmkldQleX4xAnPYfNpC6hq8tjiK/v/wMAAP//AwBS
+        TvNNgh0AAA==
+  recorded_at: Thu, 11 Feb 2021 16:09:45 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/51d383df-9bcc-4e66-ac86-008b7963d675?include=hearing_events,providers,cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:47 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 6c4971b156284a50590be37203cc3622
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"a83abfbad0e42e985bac966e1e24764a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 6c4971b156284a50590be37203cc3622
+      X-Runtime:
+      - '0.714275'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        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
+  recorded_at: Thu, 11 Feb 2021 16:09:47 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/ffebc761-1b61-4ba5-b197-c7326d002d92?include=hearing_events,providers,cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:48 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 9f3f00f6c7a790908018da87efc193da
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"bfa0959c99afc8b5741cc83a45276bf8"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 9f3f00f6c7a790908018da87efc193da
+      X-Runtime:
+      - '0.693635'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        H4sIAMxWJWAAA6yY22ocRxCGX2XZq4SoQndX9Um39kUI9o0RBBKM6EO1tfF6
+        JVYrGWH07qley/FB3tlZZkAIMd1T+qZOf3V/Wta0S8vzT8tVXZ4vW+NcvNOg
+        s/yinCxkHT0Uj8ZVpUyNZnm23D3csOy+4rRdbd7dypO0221X+W7Ht91Wub7b
+        7i436UPf9ZK3+WHxYnv9cbN40Rdk+9Obl0+GLrartF78cvHm1a/fLNb0INb+
+        WRqlI2gFxl6oeK6U/PyulPpbtv6/RBcqnJP92RL2Jfz61tuzZeXGm5o2nxn3
+        /+TP9OHDw+LldX3HW3n7TZL19eL1aleueL2WJ6/Tdr3aLF7x3W25es/y5C+x
+        seLFq+uP3I3+eyfvfjG4uVuvz5Y32+tbLne71fXmMtX765J2P+zYkxT+6erj
+        2XLL69Tfvr1a3ew9+8U3fM+b3f7J5/j98xRA0qmwTQ5cQAbSOUCs1UBSKhnt
+        jAQyPAvgF2uPZ09WLFIt1mQIzXogg92Ab+Cq1eiUL1k/T4NnVkpN2avmgZOt
+        QC1FCDUzoHOukKo+Zz5uxYVaqnIMGVlSMqkC2eUKOjRPsUZdYz1upUn+chQD
+        Qq+AYjCQg07AhYpy1sSY8bgVQkPeRwuNvQGygpGwEUTiQFEKpXE8bsUoJNdc
+        hZBKBmJLkNgYKKlpdlJhqdjjVri0kiSi4o3OQj5CVDlKoGKijGI75BHeLS15
+        VSs0YxGoWgUh+wpeo/HMrFJWx63oKskV2QGilkgrCXdmk0CZ4nQt0RvnjlvJ
+        LWNKhqBUFJYUm+RfJGhaK52Vw5pHeNdjLhgkKDVFqQDDksUhJRAQtNEo45FG
+        sHjjK5MYCK0IS5Gsk8yH6IqNtfni9Qi/VN2Uc+KIYkyPtLYQDGWwRupIkiZG
+        P6ICqglFI8p3SOUIS1OQgpL0EW/pZlN03h+3EkywTlkHNos3SEcEMUuAOcu3
+        SAWk0EbUtOcqxV9BFSVfpEOELIUpxRQq+RwdqjTii5gphNCgVWlVFLKGaGsG
+        NBhtskUnN6K/UKWgvPNgg5d8CeLiXA1DsVx0DJa8GxHpVhyXqBlMxCBfhBZS
+        kdTLjYu3tWTrywi/sEMTyUGM1CTrlJbqFlOOMHhpgjmOyV3LxqVKFrxH1SuA
+        QcIiprDaRlWaHY7pmCj5mcW7Kfa+GyV3JTgEnov0b/lV1QgNSNpGpV0DDlb6
+        izQnyCTRakn8Lh6XWWAESzCc0HEAl6N0797+Y6UIrUklYTWKywgr0YhDbNKS
+        IEFyl7L4WQoUKmnjM2YsqEd0zMxOYUDxC4qqNRK/FAmZ9iqJTHmRzBFdiq3R
+        vok7S/Pcq1H6btMBjMvOkDWYw4hIRynFykhggkgRoZUK4CpS6Zy3WWpM6RE1
+        LS2ObElV5p/evYt8W7YqSUFw5ViYTRxQkreP+wnlflV5++0o0Z+XbSrvuV6u
+        NiwzYdmt7vly16e0r/v2I8qj7F1tyvqucp1pCvlxmKx8W7armz4GyeY/Pm9e
+        7Dcveg++LuVuuxXWtNuL60+Hxd/2fy0f5xlxTkHUQ4haDSBOmp9OQTSDiHoA
+        cdJwdgoiDiKaAcRJk98piDSIiAOIk8bKUxDtICINIE6aWU9BdIOIdgBx0kB8
+        CqIfRHRD5TJl2j4FMQwi+gHESaP8KYhxEDEMIE46J8ykLt/fNzxDnHQImUld
+        qAvgYcRJJ5yZ1IW6AB5GnHR8mkldqAvgAOKUs9lM6kJdAA8jTjr4zaQu1AXw
+        MOKkU+VM6kJdAAcCPeXIOpO6UBfAw4iTzsMzqQt1ATyMOOmwPZO6UBfAgVyc
+        cpKfSV2+v7J+fnaZck0wk7pgV5fDiJPuIGZSF+zqchhx0gXHTOqCXV0OI066
+        PZlJXbCry2HESVczM6kLdnU5jDjp3mcmdcGuLgOIUy6VZlIX7OoyEOgpN1Yz
+        qQt2dTmMOOk6bCZ1wa4uzxHfPv4HAAD//wMAd8CW12odAAA=
+  recorded_at: Thu, 11 Feb 2021 16:09:48 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:51 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 3a2757b96e1c80bf85091ac49aca7207
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"110b187177eedf92db7f852546aa5c47"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 3a2757b96e1c80bf85091ac49aca7207
+      X-Runtime:
+      - '2.333444'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        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
+        kTXfmfe++n39759e/RsAAP//AwB3o6B+Am4AAA==
+  recorded_at: Thu, 11 Feb 2021 16:09:51 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/ffebc761-1b61-4ba5-b197-c7326d002d92?include=hearing_events,providers,cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:52 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 70c3bd007624c5bc2eab00713f8324bd
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"bfa0959c99afc8b5741cc83a45276bf8"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 70c3bd007624c5bc2eab00713f8324bd
+      X-Runtime:
+      - '1.042145'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        H4sIANBWJWAAA6yY22ocRxCGX2XZq4SoQndX9Um39kUI9o0RBBKM6EO1tfF6
+        JVYrGWH07qley/FB3tlZZkAIMd1T+qZOf3V/Wta0S8vzT8tVXZ4vW+NcvNOg
+        s/yinCxkHT0Uj8ZVpUyNZnm23D3csOy+4rRdbd7dypO0221X+W7Ht91Wub7b
+        7i436UPf9ZK3+WHxYnv9cbN40Rdk+9Obl0+GLrartF78cvHm1a/fLNb0INb+
+        WRqlI2gFxl6oeK6U/PyulPpbtv6/RBcqnJP92RL2Jfz61tuzZeXGm5o2nxn3
+        /+TP9OHDw+LldX3HW3n7TZL19eL1aleueL2WJ6/Tdr3aLF7x3W25es/y5C+x
+        seLFq+uP3I3+eyfvfjG4uVuvz5Y32+tbLne71fXmMtX765J2P+zYkxT+6erj
+        2XLL69Tfvr1a3ew9+8U3fM+b3f7J5/j98xRA0qmwTQ5cQAbSOUCs1UBSKhnt
+        jAQyPAvgF2uPZ09WLFIt1mQIzXogg92Ab+Cq1eiUL1k/T4NnVkpN2avmgZOt
+        QC1FCDUzoHOukKo+Zz5uxYVaqnIMGVlSMqkC2eUKOjRPsUZdYz1upUn+chQD
+        Qq+AYjCQg07AhYpy1sSY8bgVQkPeRwuNvQGygpGwEUTiQFEKpXE8bsUoJNdc
+        hZBKBmJLkNgYKKlpdlJhqdjjVri0kiSi4o3OQj5CVDlKoGKijGI75BHeLS15
+        VSs0YxGoWgUh+wpeo/HMrFJWx63oKskV2QGilkgrCXdmk0CZ4nQt0RvnjlvJ
+        LWNKhqBUFJYUm+RfJGhaK52Vw5pHeNdjLhgkKDVFqQDDksUhJRAQtNEo45FG
+        sHjjK5MYCK0IS5Gsk8yH6IqNtfni9Qi/VN2Uc+KIYkyPtLYQDGWwRupIkiZG
+        P6ICqglFI8p3SOUIS1OQgpL0EW/pZlN03h+3EkywTlkHNos3SEcEMUuAOcu3
+        SAWk0EbUtOcqxV9BFSVfpEOELIUpxRQq+RwdqjTii5gphNCgVWlVFLKGaGsG
+        NBhtskUnN6K/UKWgvPNgg5d8CeLiXA1DsVx0DJa8GxHpVhyXqBlMxCBfhBZS
+        kdTLjYu3tWTrywi/sEMTyUGM1CTrlJbqFlOOMHhpgjmOyV3LxqVKFrxH1SuA
+        QcIiprDaRlWaHY7pmCj5mcW7Kfa+GyV3JTgEnov0b/lV1QgNSNpGpV0DDlb6
+        izQnyCTRakn8Lh6XWWAESzCc0HEAl6N0797+Y6UIrUklYTWKywgr0YhDbNKS
+        IEFyl7L4WQoUKmnjM2YsqEd0zMxOYUDxC4qqNRK/FAmZ9iqJTHmRzBFdiq3R
+        vok7S/Pcq1H6btMBjMvOkDWYw4hIRynFykhggkgRoZUK4CpS6Zy3WWpM6RE1
+        LS2ObElV5p/evYt8W7YqSUFw5ViYTRxQkreP+wnlflV5++0o0Z+XbSrvuV6u
+        NiwzYdmt7vly16e0r/v2I8qj7F1tyvqucp1pCvlxmKx8W7armz4GyeY/Pm9e
+        7Dcveg++LuVuuxXWtNuL60+Hxd/2fy0f5xlxTkHUQ4haDSBOmp9OQTSDiHoA
+        cdJwdgoiDiKaAcRJk98piDSIiAOIk8bKUxDtICINIE6aWU9BdIOIdgBx0kB8
+        CqIfRHRD5TJl2j4FMQwi+gHESaP8KYhxEDEMIE46J8ykLt/fNzxDnHQImUld
+        qAvgYcRJJ5yZ1IW6AB5GnHR8mkldqAvgAOKUs9lM6kJdAA8jTjr4zaQu1AXw
+        MOKkU+VM6kJdAAcCPeXIOpO6UBfAw4iTzsMzqQt1ATyMOOmwPZO6UBfAgVyc
+        cpKfSV2+v7J+fnaZck0wk7pgV5fDiJPuIGZSF+zqchhx0gXHTOqCXV0OI066
+        PZlJXbCry2HESVczM6kLdnU5jDjp3mcmdcGuLgOIUy6VZlIX7OoyEOgpN1Yz
+        qQt2dTmMOOk6bCZ1wa4uzxHfPv4HAAD//wMAd8CW12odAAA=
+  recorded_at: Thu, 11 Feb 2021 16:09:52 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:55 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - db5bfdf72f67ec1cc994dba43eb28589
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"110b187177eedf92db7f852546aa5c47"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - db5bfdf72f67ec1cc994dba43eb28589
+      X-Runtime:
+      - '2.186179'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        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
+        kTXfmfe++n39759e/RsAAP//AwB3o6B+Am4AAA==
+  recorded_at: Thu, 11 Feb 2021 16:09:55 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/51d383df-9bcc-4e66-ac86-008b7963d675?include=hearing_events,providers,cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:56 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - f7a0bf678b5d491f2d36729461898430
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"a83abfbad0e42e985bac966e1e24764a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - f7a0bf678b5d491f2d36729461898430
+      X-Runtime:
+      - '0.705341'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        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
+  recorded_at: Thu, 11 Feb 2021 16:09:56 GMT
+- request:
+    method: get
+    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/51d383df-9bcc-4e66-ac86-008b7963d675?include=hearing_events,providers,cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Feb 2021 16:09:57 GMT
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 40cc03b6d263f875fac0c68d36883ff1
+      Vary:
+      - Accept,Accept-Encoding
+      Etag:
+      - W/"a83abfbad0e42e985bac966e1e24764a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 40cc03b6d263f875fac0c68d36883ff1
+      X-Runtime:
+      - '0.770020'
+      Content-Encoding:
+      - gzip
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+    body:
+      encoding: UTF-8
+      base64_string: |
+        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
+  recorded_at: Thu, 11 Feb 2021 16:09:57 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Laa-Transaction-Id:
+      - 98cbb905-05fa-4d91-b565-d2fbe86b2a83
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Request-Id:
+      - 98cbb905-05fa-4d91-b565-d2fbe86b2a83
+      X-Runtime:
+      - '0.007422'
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      base64_string: 'H4sIAJZXJWAAAwMAAAAAAAAAAAA=
+
+        '
+  recorded_at: Thu, 11 Feb 2021 16:13:10 GMT
+recorded_with: VCR 6.0.0
