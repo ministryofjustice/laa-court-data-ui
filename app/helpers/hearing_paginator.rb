@@ -12,10 +12,12 @@ class HearingPaginator
 
   PageItem = Struct.new(:id, :hearing_date)
 
+  # rubocop:disable Rails/HelperInstanceVariable
   def initialize(prosecution_case, options = {})
     @prosecution_case = prosecution_case
     @current_page = options.fetch(:page, nil).to_i
   end
+  # rubocop:enable Rails/HelperInstanceVariable
 
   def items
     sorted_hearing_page_items
