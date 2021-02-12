@@ -5,7 +5,6 @@ require 'court_data_adaptor'
 RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
   let(:defendant_nino_from_fixture) { 'JC123456A' }
   let(:case_reference_from_fixture) { 'TEST12345' }
-  let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
 
   let(:user) { create(:user) }
 

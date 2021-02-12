@@ -34,7 +34,6 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   end
 
   let(:user) { create(:user) }
-  let(:api_url) { ENV['COURT_DATA_ADAPTOR_API_URL'] }
   let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
   let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
   let(:json_api_content) { { 'Content-Type' => 'application/vnd.api+json' } }
