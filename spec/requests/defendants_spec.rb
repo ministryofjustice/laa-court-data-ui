@@ -17,13 +17,13 @@ RSpec.describe 'defendants', type: :request do
     before do
       sign_in user
 
-      stub_request(:get, %r{#{ENV['COURT_DATA_ADAPTOR_API_URL']}/prosecution_cases.*})
+      stub_request(:get, %r{#{api_url}/prosecution_cases.*})
         .to_return(
           body: defendant_fixture,
           headers: { 'Content-Type' => 'application/vnd.api+json' }
         )
 
-      stub_request(:get, %r{#{ENV['COURT_DATA_ADAPTOR_API_URL']}/defendants/#{defendant_id_from_fixture}})
+      stub_request(:get, %r{#{api_url}/defendants/#{defendant_id_from_fixture}})
         .to_return(
           body: defendant_by_id_fixture,
           headers: { 'Content-Type' => 'application/vnd.api+json' }
