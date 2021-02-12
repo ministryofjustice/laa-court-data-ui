@@ -50,7 +50,7 @@ class HearingPaginator
   end
 
   def next_page_link
-    link_to('Next hearing day',
+    link_to(t('hearings.show.pagination.next_page'),
             hearing_path(id: next_item.id,
                          urn: prosecution_case.prosecution_case_reference,
                          page: next_page),
@@ -58,7 +58,7 @@ class HearingPaginator
   end
 
   def previous_page_link
-    link_to('Previous hearing day',
+    link_to(t('hearings.show.pagination.previous_page'),
             hearing_path(id: previous_item.id,
                          urn: prosecution_case.prosecution_case_reference,
                          page: previous_page),
