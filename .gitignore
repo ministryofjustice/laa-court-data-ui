@@ -15,6 +15,7 @@
 
 
 /public/assets
+/public/cached_pages
 .byebug_history
 
 # Ignore global master key for decrypting credentials and more.

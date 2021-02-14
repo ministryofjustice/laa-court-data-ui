@@ -134,3 +134,37 @@ source .env
 The rails asset pipeline is disabled and all related config is commented out (it does not seem possible to remove sprockets entirely). We are using `webpacker` gem wrapper for `webpack`, and `yarn` for js dependency management.
 
 
+### Sidekiq
+
+The app uses Sidekiq for background job processing. Sidekiq uses redis to persist the serialized data for jobs. In **development**
+sidekiq is "inlined" so you can see jobs processed on SDTOUT in the rails server console and the jobs will not go to redis.
+
+### Redis cache store
+
+Redis is used by Sidekiq to persist data related to jobs, however redis is also, and separately, used as a cache store. It is used to
+cache responses from the some court data adaptor queries in order to significantly improve page render times. Look for calls to
+`Rails.cache.fetch` blocks to see where it is used.
+
+In **development** we simply use the same, default, redis instance for both peristed job data and for caching, with no-eviction of data.
+
+You can toggle caching on or off using:
+```bash
+$ rails dev:cache
+```
+
+You can monitor redis for caching and other purposes using
+```bash
+$ redis-cli monitor
+```
+Note, this will reduce cache `set` and `get` speed by ~50%
+
+You can get memory and other relevant data from redis using
+```bash
+$ redis-cli info
+```
+
+In **production**, however, it is [recommended](https://guides.rubyonrails.org/caching_with_rails.html#activesupport-cache-rediscachestore) to run a separate redis server for volatile cache data and apply a limited `maxmemory` (default is unlimited) with `maxmemory-policy` of `allkeys-lfu` to evict data when memory limits are reached base on "least frequently used".
+
+
+
+

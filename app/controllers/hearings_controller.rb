@@ -3,6 +3,8 @@
 require_dependency 'court_data_adaptor'
 
 class HearingsController < ApplicationController
+  include CourtDataAdaptorCachable
+
   before_action :load_and_authorize_search,
                 :set_hearing,
                 :set_hearing_day
@@ -60,7 +62,11 @@ class HearingsController < ApplicationController
   end
 
   def prosecution_case
-    @prosecution_case ||= helpers.decorate(@prosecution_case_search.execute.first)
+    @prosecution_case ||= helpers.decorate(cached_prosecution_case)
+  end
+
+  def cached_prosecution_case
+    cached_prosecution_case ||= cached_search_execute(@prosecution_case_search).first
   end
 
   def page

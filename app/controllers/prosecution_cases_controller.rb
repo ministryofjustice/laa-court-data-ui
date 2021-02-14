@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ProsecutionCasesController < ApplicationController
+  include CourtDataAdaptorCachable
+
   before_action :load_and_authorize_search, :set_prosecution_case
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
@@ -19,10 +21,11 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def set_prosecution_case
-    @prosecution_case = helpers.decorate(search_results.first)
+    @prosecution_case = helpers.decorate(prosecution_case_search_results.first)
   end
 
-  def search_results
-    @search_results ||= @search.execute
+  # TODO: move to mixin?!
+  def prosecution_case_search_results
+    @search_results ||= cached_search_execute(@search)
   end
 end
