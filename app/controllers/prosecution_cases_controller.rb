@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProsecutionCasesController < ApplicationController
-  before_action :load_and_authorize_search, :set_prosecution_case
+  before_action :load_and_authorize_search, :set_prosecution_case, :hearing_sorter
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
@@ -24,5 +24,13 @@ class ProsecutionCasesController < ApplicationController
 
   def search_results
     @search_results ||= @search.execute
+  end
+
+  def hearing_sorter
+    @hearing_sorter ||= helpers.sorter(@prosecution_case.hearings, sort_order: sort_order)
+  end
+
+  def sort_order
+    @sort_order ||= params[:sort_order]
   end
 end

@@ -16,6 +16,7 @@ class HearingPaginator
   def initialize(prosecution_case, options = {})
     @prosecution_case = prosecution_case
     @current_page = options.fetch(:page, nil).to_i
+    @sort_order = options.fetch(:sort_order, nil)
   end
   # rubocop:enable Rails/HelperInstanceVariable
 
@@ -53,7 +54,8 @@ class HearingPaginator
     link_to(t('hearings.show.pagination.next_page'),
             hearing_path(id: next_item.id,
                          urn: prosecution_case.prosecution_case_reference,
-                         page: next_page),
+                         page: next_page,
+                         sort_order: sort_order),
             class: 'govuk-link app-pagination-next')
   end
 
@@ -61,7 +63,8 @@ class HearingPaginator
     link_to(t('hearings.show.pagination.previous_page'),
             hearing_path(id: previous_item.id,
                          urn: prosecution_case.prosecution_case_reference,
-                         page: previous_page),
+                         page: previous_page,
+                         sort_order: sort_order),
             class: 'govuk-link app-pagination-previous')
   end
 
@@ -84,10 +87,14 @@ class HearingPaginator
   end
 
   def sorted_hearing_page_items
-    hearing_page_items.sort_by(&:hearing_date)
+    if sort_order.eql?('date_desc')
+      hearing_page_items.sort_by(&:hearing_date).reverse
+    else
+      hearing_page_items.sort_by(&:hearing_date)
+    end
   end
 
-  attr_reader :prosecution_case
+  attr_reader :prosecution_case, :sort_order
 
   def hearing_page_items
     prosecution_case.hearings.each_with_object([]) do |hearing, result|
