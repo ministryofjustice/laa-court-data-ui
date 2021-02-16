@@ -11,11 +11,15 @@
         = link_to("asc", :sort_order => "date_asc")
         = link_to("desc", :sort_order => "date_desc")
         -# = @sorter.desc_link
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_type')
+      %th.govuk-table__header{ scope: 'col' }
+        = t('search.result.hearing.hearing_type')
+        %br
+        = link_to("asc", :sort_order => "type_asc")
+        = link_to("desc", :sort_order => "type_desc")
       %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.providers')
   %tbody.govuk-table__body
-    -# - prosecution_case.hearings_with_day_by_datetime.each_with_index do |hearing, idx|
-    - @hearing_sorter.hearings_with_day_by_datetime.each_with_index do |hearing, idx|
+    -# - prosecution_case.sorted_hearings_with_day.each_with_index do |hearing, idx|
+    - @hearing_sorter.sorted_hearings_with_day.each_with_index do |hearing, idx|
       %tr.govuk-table__row
         %td.govuk-table__cell
           = link_to hearing.day.strftime('%d/%m/%Y'), hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference, page: idx, sort_order: @hearing_sorter.sort_order), class: 'govuk-link'

@@ -13,9 +13,14 @@ class HearingSorter
 
   attr_reader :sort_order, :hearings
 
-  def hearings_by_datetime
-    if sort_order.eql?('date_desc')
+  def sorted_hearings
+    case sort_order
+    when 'date_desc'
       hearings.sort_by { |h| h.hearing_days.map(&:to_datetime) }.reverse
+    when 'type_asc'
+      hearings.sort_by(&:hearing_type)
+    when 'type_desc'
+      hearings.sort_by(&:hearing_type).reverse
     else
       hearings.sort_by { |h| h.hearing_days.map(&:to_datetime) }
     end
@@ -29,9 +34,9 @@ class HearingSorter
     end
   end
 
-  def hearings_with_day_by_datetime
+  def sorted_hearings_with_day
     Enumerator.new do |enum|
-      hearings_by_datetime.each do |hearing|
+      sorted_hearings.each do |hearing|
         hearing_by_datetime(hearing).each do |day|
           hearing.day = day
           enum.yield(hearing)

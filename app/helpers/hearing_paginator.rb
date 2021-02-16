@@ -10,7 +10,7 @@ class HearingPaginator
   include ActionView::Helpers
   include Rails.application.routes.url_helpers
 
-  PageItem = Struct.new(:id, :hearing_date)
+  PageItem = Struct.new(:id, :hearing_date, :hearing_type)
 
   # rubocop:disable Rails/HelperInstanceVariable
   def initialize(prosecution_case, options = {})
@@ -87,8 +87,13 @@ class HearingPaginator
   end
 
   def sorted_hearing_page_items
-    if sort_order.eql?('date_desc')
+    case sort_order
+    when 'date_desc'
       hearing_page_items.sort_by(&:hearing_date).reverse
+    when 'type_asc'
+      hearing_page_items.sort_by(&:hearing_type)
+    when 'type_desc'
+      hearing_page_items.sort_by(&:hearing_type).reverse
     else
       hearing_page_items.sort_by(&:hearing_date)
     end
@@ -99,7 +104,7 @@ class HearingPaginator
   def hearing_page_items
     prosecution_case.hearings.each_with_object([]) do |hearing, result|
       hearing.hearing_days.map do |day|
-        result << PageItem.new(hearing.id, day.to_datetime)
+        result << PageItem.new(hearing.id, day.to_datetime, hearing.hearing_type)
       end
     end
   end
