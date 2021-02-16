@@ -16,7 +16,11 @@
         %br
         = link_to("asc", :sort_order => "type_asc")
         = link_to("desc", :sort_order => "type_desc")
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.providers')
+      %th.govuk-table__header{ scope: 'col' }
+        = t('search.result.hearing.providers')
+        %br
+        = link_to("asc", :sort_order => "provider_asc")
+        = link_to("desc", :sort_order => "provider_desc")
   %tbody.govuk-table__body
     -# - prosecution_case.sorted_hearings_with_day.each_with_index do |hearing, idx|
     - @hearing_sorter.sorted_hearings_with_day.each_with_index do |hearing, idx|

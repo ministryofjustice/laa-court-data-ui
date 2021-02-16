@@ -21,6 +21,10 @@ class HearingSorter
       hearings.sort_by(&:hearing_type)
     when 'type_desc'
       hearings.sort_by(&:hearing_type).reverse
+    when 'provider_asc'
+      hearings.sort_by(&:provider_list)
+    when 'provider_desc'
+      hearings.sort_by(&:provider_list).reverse
     else
       hearings.sort_by { |h| h.hearing_days.map(&:to_datetime) }
     end
