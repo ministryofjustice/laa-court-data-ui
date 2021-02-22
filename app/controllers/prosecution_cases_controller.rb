@@ -20,9 +20,14 @@ class ProsecutionCasesController < ApplicationController
 
   def set_prosecution_case
     @prosecution_case = helpers.decorate(search_results.first)
+    @prosecution_case.sort_order ||= sort_order
   end
 
   def search_results
     @search_results ||= @search.execute
+  end
+
+  def sort_order
+    @sort_order ||= params[:sort_order]
   end
 end

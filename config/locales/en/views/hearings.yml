@@ -19,7 +19,7 @@ en:
           no_hearing_details: No hearing details available
       hearing_type: Hearing type
       pagination:
-        next_page: Next hearing day
-        previous_page: Previous hearing day
+        next_page: Next
+        previous_page: Previous
       result: Result
       time_listed: Time listed

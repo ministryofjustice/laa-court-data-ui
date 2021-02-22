@@ -5,14 +5,26 @@
     = t('search.result.hearing.caption')
   %thead.govuk-table__head
     %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_day')
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_type')
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.providers')
+      %th.govuk-table__header{ scope: 'col' }
+        = t('search.result.hearing.hearing_day')
+        %br
+        = link_to("asc", :sort_order => "date_asc")
+        = link_to("desc", :sort_order => "date_desc")
+      %th.govuk-table__header{ scope: 'col' }
+        = t('search.result.hearing.hearing_type')
+        %br
+        = link_to("asc", :sort_order => "type_asc")
+        = link_to("desc", :sort_order => "type_desc")
+      %th.govuk-table__header{ scope: 'col' }
+        = t('search.result.hearing.providers')
+        %br
+        = link_to("asc", :sort_order => "provider_asc")
+        = link_to("desc", :sort_order => "provider_desc")
   %tbody.govuk-table__body
-    - prosecution_case.hearings_with_day_by_datetime.each_with_index do |hearing, idx|
+    - prosecution_case.sorted_hearings_with_day.each_with_index do |hearing, idx|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = link_to hearing.day.strftime('%d/%m/%Y'), hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference, page: idx), class: 'govuk-link'
+          = link_to hearing.day.strftime('%d/%m/%Y'), hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference, sort_order: @sort_order, page: idx), class: 'govuk-link'
         %td.govuk-table__cell
           = hearing.hearing_type
         %td.govuk-table__cell
