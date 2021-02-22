@@ -15,12 +15,6 @@ RSpec.describe 'hearings', type: :request do
         body: prosecution_case_fixture,
         headers: { 'Content-Type' => 'application/vnd.api+json' }
       )
-
-    stub_request(:get, %r{#{api_url}/hearings/.*})
-      .to_return(
-        body: hearing_fixture,
-        headers: { 'Content-Type' => 'application/vnd.api+json' }
-      )
   end
 
   context 'when authenticated' do
@@ -44,13 +38,8 @@ RSpec.describe 'hearings', type: :request do
 
   context 'when no hearing data available' do
     before do
-      stub_request(:get, %r{#{api_url}/hearings/.*})
-        .to_return(
-          body: '',
-          headers: { 'Content-Type' => 'application/text' }
-        )
       sign_in user
-      get "/hearings/#{hearing_id_from_fixture}?page=0&urn=#{case_reference}"
+      get "/hearings/invalid-hearing-uuid?page=0&urn=#{case_reference}"
     end
 
     it 'redirects back to prosecution case page' do

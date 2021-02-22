@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 11 Feb 2021 16:09:40 GMT
+      - Mon, 22 Feb 2021 16:51:29 GMT
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Transfer-Encoding:
@@ -43,7 +43,7 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - '058b1053a422a0aa88df1ceb0797b126'
+      - 0d45114c748215d525f41687aafbb3d3
       Vary:
       - Accept,Accept-Encoding
       Etag:
@@ -51,9 +51,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - '058b1053a422a0aa88df1ceb0797b126'
+      - 0d45114c748215d525f41687aafbb3d3
       X-Runtime:
-      - '2.542040'
+      - '1.573465'
       Content-Encoding:
       - gzip
       Strict-Transport-Security:
@@ -61,7 +61,7 @@ http_interactions:
     body:
       encoding: UTF-8
       base64_string: |
-        H4sIAMRWJWAAA9xcWW9bR5b+Kxd6ymBcjdoXv3lpIwmcjmNrejoJAqFWid0U
+        H4sIABHhM2AAA9xcWW9bR5b+Kxd6ymBcjdoXv3lpIwmcjmNrejoJAqFWid0U
         aXBxWgj83+c7tGzLlliKpSImnQcbknh5eW5VnfMtp1i/HZW4iUcPf/7taFaO
         Hh4JH1zUPDPno2A65sKijpFJJ7n0znpj29GDo83F64qrX6+W65q3m9lycZLj
         uq7xUtxsVrO03eCXh79du+JkVVtd1UWmtx//9dWxkEqbo7cPjlZ1Humy9dns
@@ -166,102 +166,7 @@ http_interactions:
         W0afz+uNp4be2n6+jwk8xqcdY6WOcTvHGJJjPMMxtt4Y522MOTbGvxpjMY1x
         gcYYNWO8lDF2xxhHYoxpMEbXj5HeY9TxGAE7RmOOkYFjlNoYMTVG74yRJGNU
         wxhiP4Z7720/35M135v3vv2y/vcvb/8PAAD//wMAzh/kbAJuAAA=
-  recorded_at: Thu, 11 Feb 2021 16:09:40 GMT
-- request:
-    method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/ffebc761-1b61-4ba5-b197-c7326d002d92?include=hearing_events,providers,cracked_ineffective_trial
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.1.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 11 Feb 2021 16:09:41 GMT
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 83b9c74edd79943fa7b903c78ce08ec6
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"bfa0959c99afc8b5741cc83a45276bf8"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 83b9c74edd79943fa7b903c78ce08ec6
-      X-Runtime:
-      - '0.699439'
-      Content-Encoding:
-      - gzip
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-    body:
-      encoding: UTF-8
-      base64_string: |
-        H4sIAMVWJWAAA6yY22ocRxCGX2XZq4SoQndX9Um39kUI9o0RBBKM6EO1tfF6
-        JVYrGWH07qley/FB3tlZZkAIMd1T+qZOf3V/Wta0S8vzT8tVXZ4vW+NcvNOg
-        s/yinCxkHT0Uj8ZVpUyNZnm23D3csOy+4rRdbd7dypO0221X+W7Ht91Wub7b
-        7i436UPf9ZK3+WHxYnv9cbN40Rdk+9Obl0+GLrartF78cvHm1a/fLNb0INb+
-        WRqlI2gFxl6oeK6U/PyulPpbtv6/RBcqnJP92RL2Jfz61tuzZeXGm5o2nxn3
-        /+TP9OHDw+LldX3HW3n7TZL19eL1aleueL2WJ6/Tdr3aLF7x3W25es/y5C+x
-        seLFq+uP3I3+eyfvfjG4uVuvz5Y32+tbLne71fXmMtX765J2P+zYkxT+6erj
-        2XLL69Tfvr1a3ew9+8U3fM+b3f7J5/j98xRA0qmwTQ5cQAbSOUCs1UBSKhnt
-        jAQyPAvgF2uPZ09WLFIt1mQIzXogg92Ab+Cq1eiUL1k/T4NnVkpN2avmgZOt
-        QC1FCDUzoHOukKo+Zz5uxYVaqnIMGVlSMqkC2eUKOjRPsUZdYz1upUn+chQD
-        Qq+AYjCQg07AhYpy1sSY8bgVQkPeRwuNvQGygpGwEUTiQFEKpXE8bsUoJNdc
-        hZBKBmJLkNgYKKlpdlJhqdjjVri0kiSi4o3OQj5CVDlKoGKijGI75BHeLS15
-        VSs0YxGoWgUh+wpeo/HMrFJWx63oKskV2QGilkgrCXdmk0CZ4nQt0RvnjlvJ
-        LWNKhqBUFJYUm+RfJGhaK52Vw5pHeNdjLhgkKDVFqQDDksUhJRAQtNEo45FG
-        sHjjK5MYCK0IS5Gsk8yH6IqNtfni9Qi/VN2Uc+KIYkyPtLYQDGWwRupIkiZG
-        P6ICqglFI8p3SOUIS1OQgpL0EW/pZlN03h+3EkywTlkHNos3SEcEMUuAOcu3
-        SAWk0EbUtOcqxV9BFSVfpEOELIUpxRQq+RwdqjTii5gphNCgVWlVFLKGaGsG
-        NBhtskUnN6K/UKWgvPNgg5d8CeLiXA1DsVx0DJa8GxHpVhyXqBlMxCBfhBZS
-        kdTLjYu3tWTrywi/sEMTyUGM1CTrlJbqFlOOMHhpgjmOyV3LxqVKFrxH1SuA
-        QcIiprDaRlWaHY7pmCj5mcW7Kfa+GyV3JTgEnov0b/lV1QgNSNpGpV0DDlb6
-        izQnyCTRakn8Lh6XWWAESzCc0HEAl6N0797+Y6UIrUklYTWKywgr0YhDbNKS
-        IEFyl7L4WQoUKmnjM2YsqEd0zMxOYUDxC4qqNRK/FAmZ9iqJTHmRzBFdiq3R
-        vok7S/Pcq1H6btMBjMvOkDWYw4hIRynFykhggkgRoZUK4CpS6Zy3WWpM6RE1
-        LS2ObElV5p/evYt8W7YqSUFw5ViYTRxQkreP+wnlflV5++0o0Z+XbSrvuV6u
-        NiwzYdmt7vly16e0r/v2I8qj7F1tyvqucp1pCvlxmKx8W7armz4GyeY/Pm9e
-        7Dcveg++LuVuuxXWtNuL60+Hxd/2fy0f5xlxTkHUQ4haDSBOmp9OQTSDiHoA
-        cdJwdgoiDiKaAcRJk98piDSIiAOIk8bKUxDtICINIE6aWU9BdIOIdgBx0kB8
-        CqIfRHRD5TJl2j4FMQwi+gHESaP8KYhxEDEMIE46J8ykLt/fNzxDnHQImUld
-        qAvgYcRJJ5yZ1IW6AB5GnHR8mkldqAvgAOKUs9lM6kJdAA8jTjr4zaQu1AXw
-        MOKkU+VM6kJdAAcCPeXIOpO6UBfAw4iTzsMzqQt1ATyMOOmwPZO6UBfAgVyc
-        cpKfSV2+v7J+fnaZck0wk7pgV5fDiJPuIGZSF+zqchhx0gXHTOqCXV0OI066
-        PZlJXbCry2HESVczM6kLdnU5jDjp3mcmdcGuLgOIUy6VZlIX7OoyEOgpN1Yz
-        qQt2dTmMOOk6bCZ1wa4uzxHfPv4HAAD//wMAd8CW12odAAA=
-  recorded_at: Thu, 11 Feb 2021 16:09:41 GMT
+  recorded_at: Mon, 22 Feb 2021 16:51:29 GMT
 - request:
     method: get
     uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial
@@ -285,7 +190,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 11 Feb 2021 16:09:44 GMT
+      - Mon, 22 Feb 2021 16:51:31 GMT
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Transfer-Encoding:
@@ -305,7 +210,7 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - f039285935a5be4dd83f579e27034012
+      - 6b7ca8adc482d975bb9258cad725f545
       Vary:
       - Accept,Accept-Encoding
       Etag:
@@ -313,9 +218,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - f039285935a5be4dd83f579e27034012
+      - 6b7ca8adc482d975bb9258cad725f545
       X-Runtime:
-      - '2.339281'
+      - '1.396409'
       Content-Encoding:
       - gzip
       Strict-Transport-Security:
@@ -323,7 +228,7 @@ http_interactions:
     body:
       encoding: UTF-8
       base64_string: |
-        H4sIAMhWJWAAA9xca29bR5L9K4Q+ZTHuQb8f/mY7GyRBsnFi78wkQSD0o9rm
+        H4sIABPhM2AAA9xca29bR5L9K4Q+ZTHuQb8f/mY7GyRBsnFi78wkQSD0o9rm
         jkQaJOWMEPi/zynajmVLbCdSE5MNYBuSeXlvdXdVnXOquu8vJy3v8sn9H385
         WbaT+ycqppCtrCLErITNtYlscxY6aKlj8NH5fnLvZHf5gnD1i816S/Vit1yv
         Tmve0hYf5d1usywXO/xy/5drV5xuqNOGVpW//vS/nzxV2lh38ureyYbOMl+2
@@ -428,296 +333,7 @@ http_interactions:
         qQg8p047p5Q6p9o5pyA5p2Y4p6w3p/I2pzg2p341p8Q0pwo0p1Azp5Yyp9wx
         pyIxp2gwR9fPkd5z1PEcATtHY86RgXOU2hwxNUfvzJEkc1TDHGI/h3sfbD/f
         kTXfmfe++n39759e/RsAAP//AwB3o6B+Am4AAA==
-  recorded_at: Thu, 11 Feb 2021 16:09:44 GMT
-- request:
-    method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/c2002ca4-fa81-4639-9b7c-58940bfbe6f5?include=hearing_events,providers,cracked_ineffective_trial
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.1.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 11 Feb 2021 16:09:45 GMT
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - b527245cc692c4de065a3fd4a76c1404
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"73a3104c5321cbb2d66c181cdb9e9a63"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - b527245cc692c4de065a3fd4a76c1404
-      X-Runtime:
-      - '0.817868'
-      Content-Encoding:
-      - gzip
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-    body:
-      encoding: UTF-8
-      base64_string: |
-        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
-        TvNNgh0AAA==
-  recorded_at: Thu, 11 Feb 2021 16:09:45 GMT
-- request:
-    method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/51d383df-9bcc-4e66-ac86-008b7963d675?include=hearing_events,providers,cracked_ineffective_trial
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.1.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 11 Feb 2021 16:09:47 GMT
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 6c4971b156284a50590be37203cc3622
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"a83abfbad0e42e985bac966e1e24764a"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 6c4971b156284a50590be37203cc3622
-      X-Runtime:
-      - '0.714275'
-      Content-Encoding:
-      - gzip
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-    body:
-      encoding: UTF-8
-      base64_string: |
-        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
-  recorded_at: Thu, 11 Feb 2021 16:09:47 GMT
-- request:
-    method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/ffebc761-1b61-4ba5-b197-c7326d002d92?include=hearing_events,providers,cracked_ineffective_trial
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.1.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 11 Feb 2021 16:09:48 GMT
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 9f3f00f6c7a790908018da87efc193da
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"bfa0959c99afc8b5741cc83a45276bf8"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 9f3f00f6c7a790908018da87efc193da
-      X-Runtime:
-      - '0.693635'
-      Content-Encoding:
-      - gzip
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-    body:
-      encoding: UTF-8
-      base64_string: |
-        H4sIAMxWJWAAA6yY22ocRxCGX2XZq4SoQndX9Um39kUI9o0RBBKM6EO1tfF6
-        JVYrGWH07qley/FB3tlZZkAIMd1T+qZOf3V/Wta0S8vzT8tVXZ4vW+NcvNOg
-        s/yinCxkHT0Uj8ZVpUyNZnm23D3csOy+4rRdbd7dypO0221X+W7Ht91Wub7b
-        7i436UPf9ZK3+WHxYnv9cbN40Rdk+9Obl0+GLrartF78cvHm1a/fLNb0INb+
-        WRqlI2gFxl6oeK6U/PyulPpbtv6/RBcqnJP92RL2Jfz61tuzZeXGm5o2nxn3
-        /+TP9OHDw+LldX3HW3n7TZL19eL1aleueL2WJ6/Tdr3aLF7x3W25es/y5C+x
-        seLFq+uP3I3+eyfvfjG4uVuvz5Y32+tbLne71fXmMtX765J2P+zYkxT+6erj
-        2XLL69Tfvr1a3ew9+8U3fM+b3f7J5/j98xRA0qmwTQ5cQAbSOUCs1UBSKhnt
-        jAQyPAvgF2uPZ09WLFIt1mQIzXogg92Ab+Cq1eiUL1k/T4NnVkpN2avmgZOt
-        QC1FCDUzoHOukKo+Zz5uxYVaqnIMGVlSMqkC2eUKOjRPsUZdYz1upUn+chQD
-        Qq+AYjCQg07AhYpy1sSY8bgVQkPeRwuNvQGygpGwEUTiQFEKpXE8bsUoJNdc
-        hZBKBmJLkNgYKKlpdlJhqdjjVri0kiSi4o3OQj5CVDlKoGKijGI75BHeLS15
-        VSs0YxGoWgUh+wpeo/HMrFJWx63oKskV2QGilkgrCXdmk0CZ4nQt0RvnjlvJ
-        LWNKhqBUFJYUm+RfJGhaK52Vw5pHeNdjLhgkKDVFqQDDksUhJRAQtNEo45FG
-        sHjjK5MYCK0IS5Gsk8yH6IqNtfni9Qi/VN2Uc+KIYkyPtLYQDGWwRupIkiZG
-        P6ICqglFI8p3SOUIS1OQgpL0EW/pZlN03h+3EkywTlkHNos3SEcEMUuAOcu3
-        SAWk0EbUtOcqxV9BFSVfpEOELIUpxRQq+RwdqjTii5gphNCgVWlVFLKGaGsG
-        NBhtskUnN6K/UKWgvPNgg5d8CeLiXA1DsVx0DJa8GxHpVhyXqBlMxCBfhBZS
-        kdTLjYu3tWTrywi/sEMTyUGM1CTrlJbqFlOOMHhpgjmOyV3LxqVKFrxH1SuA
-        QcIiprDaRlWaHY7pmCj5mcW7Kfa+GyV3JTgEnov0b/lV1QgNSNpGpV0DDlb6
-        izQnyCTRakn8Lh6XWWAESzCc0HEAl6N0797+Y6UIrUklYTWKywgr0YhDbNKS
-        IEFyl7L4WQoUKmnjM2YsqEd0zMxOYUDxC4qqNRK/FAmZ9iqJTHmRzBFdiq3R
-        vok7S/Pcq1H6btMBjMvOkDWYw4hIRynFykhggkgRoZUK4CpS6Zy3WWpM6RE1
-        LS2ObElV5p/evYt8W7YqSUFw5ViYTRxQkreP+wnlflV5++0o0Z+XbSrvuV6u
-        NiwzYdmt7vly16e0r/v2I8qj7F1tyvqucp1pCvlxmKx8W7armz4GyeY/Pm9e
-        7Dcveg++LuVuuxXWtNuL60+Hxd/2fy0f5xlxTkHUQ4haDSBOmp9OQTSDiHoA
-        cdJwdgoiDiKaAcRJk98piDSIiAOIk8bKUxDtICINIE6aWU9BdIOIdgBx0kB8
-        CqIfRHRD5TJl2j4FMQwi+gHESaP8KYhxEDEMIE46J8ykLt/fNzxDnHQImUld
-        qAvgYcRJJ5yZ1IW6AB5GnHR8mkldqAvgAOKUs9lM6kJdAA8jTjr4zaQu1AXw
-        MOKkU+VM6kJdAAcCPeXIOpO6UBfAw4iTzsMzqQt1ATyMOOmwPZO6UBfAgVyc
-        cpKfSV2+v7J+fnaZck0wk7pgV5fDiJPuIGZSF+zqchhx0gXHTOqCXV0OI066
-        PZlJXbCry2HESVczM6kLdnU5jDjp3mcmdcGuLgOIUy6VZlIX7OoyEOgpN1Yz
-        qQt2dTmMOOk6bCZ1wa4uzxHfPv4HAAD//wMAd8CW12odAAA=
-  recorded_at: Thu, 11 Feb 2021 16:09:48 GMT
+  recorded_at: Mon, 22 Feb 2021 16:51:31 GMT
 - request:
     method: get
     uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial
@@ -741,7 +357,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 11 Feb 2021 16:09:51 GMT
+      - Mon, 22 Feb 2021 16:51:36 GMT
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Transfer-Encoding:
@@ -761,7 +377,7 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 3a2757b96e1c80bf85091ac49aca7207
+      - aaaf7b189345972907223130851d4441
       Vary:
       - Accept,Accept-Encoding
       Etag:
@@ -769,9 +385,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 3a2757b96e1c80bf85091ac49aca7207
+      - aaaf7b189345972907223130851d4441
       X-Runtime:
-      - '2.333444'
+      - '1.473265'
       Content-Encoding:
       - gzip
       Strict-Transport-Security:
@@ -779,7 +395,7 @@ http_interactions:
     body:
       encoding: UTF-8
       base64_string: |
-        H4sIAM9WJWAAA9xca29bR5L9K4Q+ZTHuQb8f/mY7GyRBsnFi78wkQSD0o9rm
+        H4sIABjhM2AAA9xca29bR5L9K4Q+ZTHuQb8f/mY7GyRBsnFi78wkQSD0o9rm
         jkQaJOWMEPi/zynajmVLbCdSE5MNYBuSeXlvdXdVnXOquu8vJy3v8sn9H385
         WbaT+ycqppCtrCLErITNtYlscxY6aKlj8NH5fnLvZHf5gnD1i816S/Vit1yv
         Tmve0hYf5d1usywXO/xy/5drV5xuqNOGVpW//vS/nzxV2lh38ureyYbOMl+2
@@ -884,102 +500,7 @@ http_interactions:
         qQg8p047p5Q6p9o5pyA5p2Y4p6w3p/I2pzg2p341p8Q0pwo0p1Azp5Yyp9wx
         pyIxp2gwR9fPkd5z1PEcATtHY86RgXOU2hwxNUfvzJEkc1TDHGI/h3sfbD/f
         kTXfmfe++n39759e/RsAAP//AwB3o6B+Am4AAA==
-  recorded_at: Thu, 11 Feb 2021 16:09:51 GMT
-- request:
-    method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/ffebc761-1b61-4ba5-b197-c7326d002d92?include=hearing_events,providers,cracked_ineffective_trial
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.1.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 11 Feb 2021 16:09:52 GMT
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 70c3bd007624c5bc2eab00713f8324bd
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"bfa0959c99afc8b5741cc83a45276bf8"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 70c3bd007624c5bc2eab00713f8324bd
-      X-Runtime:
-      - '1.042145'
-      Content-Encoding:
-      - gzip
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-    body:
-      encoding: UTF-8
-      base64_string: |
-        H4sIANBWJWAAA6yY22ocRxCGX2XZq4SoQndX9Um39kUI9o0RBBKM6EO1tfF6
-        JVYrGWH07qley/FB3tlZZkAIMd1T+qZOf3V/Wta0S8vzT8tVXZ4vW+NcvNOg
-        s/yinCxkHT0Uj8ZVpUyNZnm23D3csOy+4rRdbd7dypO0221X+W7Ht91Wub7b
-        7i436UPf9ZK3+WHxYnv9cbN40Rdk+9Obl0+GLrartF78cvHm1a/fLNb0INb+
-        WRqlI2gFxl6oeK6U/PyulPpbtv6/RBcqnJP92RL2Jfz61tuzZeXGm5o2nxn3
-        /+TP9OHDw+LldX3HW3n7TZL19eL1aleueL2WJ6/Tdr3aLF7x3W25es/y5C+x
-        seLFq+uP3I3+eyfvfjG4uVuvz5Y32+tbLne71fXmMtX765J2P+zYkxT+6erj
-        2XLL69Tfvr1a3ew9+8U3fM+b3f7J5/j98xRA0qmwTQ5cQAbSOUCs1UBSKhnt
-        jAQyPAvgF2uPZ09WLFIt1mQIzXogg92Ab+Cq1eiUL1k/T4NnVkpN2avmgZOt
-        QC1FCDUzoHOukKo+Zz5uxYVaqnIMGVlSMqkC2eUKOjRPsUZdYz1upUn+chQD
-        Qq+AYjCQg07AhYpy1sSY8bgVQkPeRwuNvQGygpGwEUTiQFEKpXE8bsUoJNdc
-        hZBKBmJLkNgYKKlpdlJhqdjjVri0kiSi4o3OQj5CVDlKoGKijGI75BHeLS15
-        VSs0YxGoWgUh+wpeo/HMrFJWx63oKskV2QGilkgrCXdmk0CZ4nQt0RvnjlvJ
-        LWNKhqBUFJYUm+RfJGhaK52Vw5pHeNdjLhgkKDVFqQDDksUhJRAQtNEo45FG
-        sHjjK5MYCK0IS5Gsk8yH6IqNtfni9Qi/VN2Uc+KIYkyPtLYQDGWwRupIkiZG
-        P6ICqglFI8p3SOUIS1OQgpL0EW/pZlN03h+3EkywTlkHNos3SEcEMUuAOcu3
-        SAWk0EbUtOcqxV9BFSVfpEOELIUpxRQq+RwdqjTii5gphNCgVWlVFLKGaGsG
-        NBhtskUnN6K/UKWgvPNgg5d8CeLiXA1DsVx0DJa8GxHpVhyXqBlMxCBfhBZS
-        kdTLjYu3tWTrywi/sEMTyUGM1CTrlJbqFlOOMHhpgjmOyV3LxqVKFrxH1SuA
-        QcIiprDaRlWaHY7pmCj5mcW7Kfa+GyV3JTgEnov0b/lV1QgNSNpGpV0DDlb6
-        izQnyCTRakn8Lh6XWWAESzCc0HEAl6N0797+Y6UIrUklYTWKywgr0YhDbNKS
-        IEFyl7L4WQoUKmnjM2YsqEd0zMxOYUDxC4qqNRK/FAmZ9iqJTHmRzBFdiq3R
-        vok7S/Pcq1H6btMBjMvOkDWYw4hIRynFykhggkgRoZUK4CpS6Zy3WWpM6RE1
-        LS2ObElV5p/evYt8W7YqSUFw5ViYTRxQkreP+wnlflV5++0o0Z+XbSrvuV6u
-        NiwzYdmt7vly16e0r/v2I8qj7F1tyvqucp1pCvlxmKx8W7armz4GyeY/Pm9e
-        7Dcveg++LuVuuxXWtNuL60+Hxd/2fy0f5xlxTkHUQ4haDSBOmp9OQTSDiHoA
-        cdJwdgoiDiKaAcRJk98piDSIiAOIk8bKUxDtICINIE6aWU9BdIOIdgBx0kB8
-        CqIfRHRD5TJl2j4FMQwi+gHESaP8KYhxEDEMIE46J8ykLt/fNzxDnHQImUld
-        qAvgYcRJJ5yZ1IW6AB5GnHR8mkldqAvgAOKUs9lM6kJdAA8jTjr4zaQu1AXw
-        MOKkU+VM6kJdAAcCPeXIOpO6UBfAw4iTzsMzqQt1ATyMOOmwPZO6UBfAgVyc
-        cpKfSV2+v7J+fnaZck0wk7pgV5fDiJPuIGZSF+zqchhx0gXHTOqCXV0OI066
-        PZlJXbCry2HESVczM6kLdnU5jDjp3mcmdcGuLgOIUy6VZlIX7OoyEOgpN1Yz
-        qQt2dTmMOOk6bCZ1wa4uzxHfPv4HAAD//wMAd8CW12odAAA=
-  recorded_at: Thu, 11 Feb 2021 16:09:52 GMT
+  recorded_at: Mon, 22 Feb 2021 16:51:36 GMT
 - request:
     method: get
     uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial
@@ -1003,7 +524,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 11 Feb 2021 16:09:55 GMT
+      - Mon, 22 Feb 2021 16:51:38 GMT
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Transfer-Encoding:
@@ -1023,7 +544,7 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - db5bfdf72f67ec1cc994dba43eb28589
+      - c123590bd333105906fa25d369ee1521
       Vary:
       - Accept,Accept-Encoding
       Etag:
@@ -1031,9 +552,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - db5bfdf72f67ec1cc994dba43eb28589
+      - c123590bd333105906fa25d369ee1521
       X-Runtime:
-      - '2.186179'
+      - '1.346712'
       Content-Encoding:
       - gzip
       Strict-Transport-Security:
@@ -1041,7 +562,7 @@ http_interactions:
     body:
       encoding: UTF-8
       base64_string: |
-        H4sIANNWJWAAA9xca29bR5L9K4Q+ZTHuQb8f/mY7GyRBsnFi78wkQSD0o9rm
+        H4sIABrhM2AAA9xca29bR5L9K4Q+ZTHuQb8f/mY7GyRBsnFi78wkQSD0o9rm
         jkQaJOWMEPi/zynajmVLbCdSE5MNYBuSeXlvdXdVnXOquu8vJy3v8sn9H385
         WbaT+ycqppCtrCLErITNtYlscxY6aKlj8NH5fnLvZHf5gnD1i816S/Vit1yv
         Tmve0hYf5d1usywXO/xy/5drV5xuqNOGVpW//vS/nzxV2lh38ureyYbOMl+2
@@ -1146,262 +667,5 @@ http_interactions:
         qQg8p047p5Q6p9o5pyA5p2Y4p6w3p/I2pzg2p341p8Q0pwo0p1Azp5Yyp9wx
         pyIxp2gwR9fPkd5z1PEcATtHY86RgXOU2hwxNUfvzJEkc1TDHGI/h3sfbD/f
         kTXfmfe++n39759e/RsAAP//AwB3o6B+Am4AAA==
-  recorded_at: Thu, 11 Feb 2021 16:09:55 GMT
-- request:
-    method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/51d383df-9bcc-4e66-ac86-008b7963d675?include=hearing_events,providers,cracked_ineffective_trial
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.1.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 11 Feb 2021 16:09:56 GMT
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - f7a0bf678b5d491f2d36729461898430
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"a83abfbad0e42e985bac966e1e24764a"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - f7a0bf678b5d491f2d36729461898430
-      X-Runtime:
-      - '0.705341'
-      Content-Encoding:
-      - gzip
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-    body:
-      encoding: UTF-8
-      base64_string: |
-        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
-  recorded_at: Thu, 11 Feb 2021 16:09:56 GMT
-- request:
-    method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/hearings/51d383df-9bcc-4e66-ac86-008b7963d675?include=hearing_events,providers,cracked_ineffective_trial
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.1.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 11 Feb 2021 16:09:57 GMT
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 40cc03b6d263f875fac0c68d36883ff1
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"a83abfbad0e42e985bac966e1e24764a"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 40cc03b6d263f875fac0c68d36883ff1
-      X-Runtime:
-      - '0.770020'
-      Content-Encoding:
-      - gzip
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-    body:
-      encoding: UTF-8
-      base64_string: |
-        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
-  recorded_at: Thu, 11 Feb 2021 16:09:57 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.1.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Laa-Transaction-Id:
-      - 98cbb905-05fa-4d91-b565-d2fbe86b2a83
-      Cache-Control:
-      - no-store
-      Pragma:
-      - no-cache
-      Www-Authenticate:
-      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
-        token is invalid"
-      Content-Type:
-      - text/html
-      X-Request-Id:
-      - 98cbb905-05fa-4d91-b565-d2fbe86b2a83
-      X-Runtime:
-      - '0.007422'
-      Vary:
-      - Accept-Encoding
-      Content-Encoding:
-      - gzip
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      base64_string: 'H4sIAJZXJWAAAwMAAAAAAAAAAAA=
-
-        '
-  recorded_at: Thu, 11 Feb 2021 16:13:10 GMT
+  recorded_at: Mon, 22 Feb 2021 16:51:38 GMT
 recorded_with: VCR 6.0.0
