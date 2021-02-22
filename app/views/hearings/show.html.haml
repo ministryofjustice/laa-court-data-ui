@@ -1,13 +1,12 @@
 = govuk_page_title(@hearing_day&.strftime('%d/%m/%Y'), t('generic.hearing_day'))
-- hearing = decorate(@hearing)
 
-= render partial: 'pagination', locals: { prosecution_case: @prosecution_case, hearing: hearing, hearing_day: @hearing_day }
+= render partial: 'pagination', locals: { paginator: @paginator }
 
-= render partial: 'listing_info', locals: { hearing: hearing, hearing_day: @hearing_day }
+= render partial: 'listing_info', locals: { hearing: @hearing, hearing_day: @hearing_day }
 
-= render partial: 'attendees', locals: { hearing: hearing }
+= render partial: 'attendees', locals: { hearing: @hearing }
 
-= render partial: 'hearing_events', locals: { hearing: hearing, hearing_day: @hearing_day }
+= render partial: 'hearing_events', locals: { hearing: @hearing, hearing_day: @hearing_day }
 
 - if Rails.configuration.x.display_raw_responses
-  = render partial: 'raw_response', locals: { hearing: hearing }
+  = render partial: 'raw_response', locals: { hearing: @hearing }

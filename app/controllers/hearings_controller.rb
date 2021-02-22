@@ -48,7 +48,7 @@ class HearingsController < ApplicationController
   end
 
   def hearing
-    @hearing ||= prosecution_case.hearings.find { |hearing| hearing.id == params[:id] }
+    @hearing ||= helpers.decorate(prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
   end
 
   def hearing_day

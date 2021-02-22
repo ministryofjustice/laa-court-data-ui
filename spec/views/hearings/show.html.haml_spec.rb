@@ -15,11 +15,12 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
   # rubocop: enable RSpec/VerifiedDoubles
 
   let(:hearing) { CourtDataAdaptor::Resource::Hearing.new(hearing_events: []) }
+  let(:decorated_hearing) { view.decorate(hearing) }
   let(:paginator) { HearingPaginator.new(prosecution_case, page: '0') }
 
   before do
     allow(view).to receive(:govuk_page_title).and_return 'A Gov uk page title'
-    assign(:hearing, hearing)
+    assign(:hearing, decorated_hearing)
     assign(:paginator, paginator)
   end
 
