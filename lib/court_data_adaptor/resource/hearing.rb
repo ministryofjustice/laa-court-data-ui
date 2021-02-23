@@ -10,6 +10,7 @@ module CourtDataAdaptor
       has_one :cracked_ineffective_trial
 
       property :court_name, type: :string
+      property :day
       property :defendant_names, default: []
       property :hearing_days, default: []
       property :hearing_type, type: :string

@@ -64,6 +64,31 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
     }
   end
 
+  describe '#hearings_with_day_by_datetime' do
+    subject(:call) { decorator.hearings_with_day_by_datetime }
+
+    before { allow(prosecution_case).to receive_messages(hearings: hearings) }
+
+    let(:hearings) { [hearing1, hearing2, hearing3] }
+    let(:hearing1) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing1_days) }
+    let(:hearing2) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing2_days) }
+    let(:hearing3) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing3_days) }
+    let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
+    let(:hearing2_days) { ['2021-01-20T16:00:00.000Z'] }
+    let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
+
+    let(:expected_days) do
+      ['2021-01-18T11:00:00.000Z'.to_datetime,
+       '2021-01-19T10:45:00.000Z'.to_datetime,
+       '2021-01-20T10:45:00.000Z'.to_datetime,
+       '2021-01-20T16:00:00.000Z'.to_datetime]
+    end
+
+    it { is_expected.to be_instance_of(Enumerator) }
+    it { is_expected.to all(be_instance_of(HearingDecorator)) }
+    it { expect(call.map(&:day)).to contain_exactly(*expected_days) }
+  end
+
   describe '#cracked?' do
     subject(:call) { decorator.cracked? }
 
