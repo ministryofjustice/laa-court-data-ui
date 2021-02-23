@@ -60,7 +60,7 @@ class HearingsController < ApplicationController
   end
 
   def prosecution_case
-    @prosecution_case ||= @prosecution_case_search.execute.first
+    @prosecution_case ||= helpers.decorate(@prosecution_case_search.execute.first)
   end
 
   def page

@@ -3,14 +3,22 @@
 RSpec.describe 'hearings/show.html.haml', type: :view do
   subject(:render_view) { render }
 
-  let(:prosecution_case) { CourtDataAdaptor::Resource::ProsecutionCase.new }
-  let(:hearing) { CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-1', hearing_days: []) }
+  # rubocop: disable RSpec/VerifiedDoubles
+  # NOTE: an instance double would require more setup
+  # and we are only testing partials are rendered.
+  let(:prosecution_case) do
+    double(ProsecutionCaseDecorator,
+           hearings: [hearing],
+           prosecution_case_reference: 'ACASEURN',
+           hearings_with_day_by_datetime: [hearing])
+  end
+  # rubocop: enable RSpec/VerifiedDoubles
+
+  let(:hearing) { CourtDataAdaptor::Resource::Hearing.new(hearing_events: []) }
   let(:paginator) { HearingPaginator.new(prosecution_case, page: '0') }
 
   before do
     allow(view).to receive(:govuk_page_title).and_return 'A Gov uk page title'
-    allow(prosecution_case).to receive(:hearings).and_return([hearing])
-    allow(hearing).to receive(:hearing_events).and_return([])
     assign(:hearing, hearing)
     assign(:paginator, paginator)
   end
