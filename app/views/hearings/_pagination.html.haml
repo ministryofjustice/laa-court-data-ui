@@ -1,0 +1,7 @@
+.govuk-grid-row{ style: 'margin-bottom: 10px'}
+  - unless @paginator.first_page?
+    .govuk-grid-column-one-half
+      = @paginator.previous_page_link
+  - unless @paginator.last_page?
+    .govuk-grid-column-one-half
+      = @paginator.next_page_link
