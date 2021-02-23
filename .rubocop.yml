@@ -93,6 +93,10 @@ Performance/StringInclude:
 Rails/FilePath:
   Enabled: false
 
+Rails/HelperInstanceVariable:
+  Exclude:
+    - app/helpers/hearing_paginator.rb
+
 Rails/OutputSafety:
   Exclude:
     - lib/gds_design_system_breadcrumb_builder.rb

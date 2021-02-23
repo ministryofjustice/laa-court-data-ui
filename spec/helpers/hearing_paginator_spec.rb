@@ -30,7 +30,9 @@ RSpec.shared_context 'with multiple hearings and hearing days' do
 end
 
 RSpec.describe HearingPaginator, type: :helper do
-  subject(:instance) { described_class.new(prosecution_case) }
+  subject(:instance) { described_class.new(prosecution_case_decorator) }
+
+  let(:prosecution_case_decorator) { ProsecutionCaseDecorator.new(prosecution_case, view_object) }
 
   let(:prosecution_case) do
     instance_double(CourtDataAdaptor::Resource::ProsecutionCase,
@@ -39,6 +41,8 @@ RSpec.describe HearingPaginator, type: :helper do
   end
 
   let(:hearings) { [] }
+  let(:view_object) { view_class.new }
+  let(:view_class) { Class.new { include ApplicationHelper } }
 
   describe described_class::PageItem do
     it { is_expected.to respond_to(:id, :hearing_date) }
@@ -55,8 +59,8 @@ RSpec.describe HearingPaginator, type: :helper do
       let(:expected_result) do
         [described_class::PageItem.new('hearing-uuid-3', '2021-01-18T11:00:00.000Z'.to_datetime),
          described_class::PageItem.new('hearing-uuid-1', '2021-01-19T10:45:00.000Z'.to_datetime),
-         described_class::PageItem.new('hearing-uuid-2', '2021-01-20T10:00:00.000Z'.to_datetime),
-         described_class::PageItem.new('hearing-uuid-1', '2021-01-20T10:45:00.000Z'.to_datetime)]
+         described_class::PageItem.new('hearing-uuid-1', '2021-01-20T10:45:00.000Z'.to_datetime),
+         described_class::PageItem.new('hearing-uuid-2', '2021-01-20T10:00:00.000Z'.to_datetime)]
       end
 
       it { is_expected.to be_an(Array).and all(be_an(described_class::PageItem)) }
@@ -71,7 +75,7 @@ RSpec.describe HearingPaginator, type: :helper do
         expect(dates).to all(be_a(DateTime))
       end
 
-      it 'array of items is sorted by hearing datetime' do
+      it 'array of items is sorted by hearing and then datetime' do
         is_expected.to eql(expected_result)
       end
     end
@@ -86,7 +90,7 @@ RSpec.describe HearingPaginator, type: :helper do
       before { instance.current_page = 3 }
 
       it { is_expected.to be_instance_of(described_class::PageItem) }
-      it { is_expected.to have_attributes(id: hearing1.id) }
+      it { is_expected.to have_attributes(id: hearing2.id) }
     end
 
     context 'when current_page not set' do
@@ -246,7 +250,7 @@ RSpec.describe HearingPaginator, type: :helper do
 
     it {
       is_expected.to have_link('Previous hearing day',
-                               href: %r{/hearings/#{hearing2.id}\?page=2&urn=ACASEURN})
+                               href: %r{/hearings/#{hearing1.id}\?page=2&urn=ACASEURN})
     }
 
     it {
