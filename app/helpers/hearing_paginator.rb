@@ -17,8 +17,6 @@ class HearingPaginator
     @current_page = page.to_i
   end
 
-  attr_writer :current_page
-
   def current_page
     @current_page ||= 0
   end

@@ -48,7 +48,21 @@ RSpec.describe HearingPaginator, type: :helper do
     it { is_expected.to respond_to(:id, :hearing_date) }
   end
 
-  it { is_expected.to respond_to(:current_page, :current_page=) }
+  describe '#current_page' do
+    subject(:current_page) { instance.current_page }
+
+    context 'when current page is set' do
+      let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+
+      it { is_expected.to be 3 }
+    end
+
+    context 'when current page is not set' do
+      let(:instance) { described_class.new(prosecution_case_decorator) }
+
+      it { is_expected.to be 0 }
+    end
+  end
 
   describe '#items' do
     subject(:items) { instance.items }
@@ -87,14 +101,14 @@ RSpec.describe HearingPaginator, type: :helper do
     include_context 'with multiple hearings and hearing days'
 
     context 'when current_page set' do
-      before { instance.current_page = 3 }
+      let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
       it { is_expected.to be_instance_of(described_class::PageItem) }
       it { is_expected.to have_attributes(id: hearing2.id) }
     end
 
     context 'when current_page not set' do
-      before { instance.current_page = nil }
+      let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
       it { is_expected.to be_instance_of(described_class::PageItem) }
       it { is_expected.to have_attributes(id: hearing3.id) }
@@ -114,19 +128,19 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with single hearing and hearing day'
 
       context 'when current page is first page' do
-        before { instance.current_page = 0 }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is nil' do
-        before { instance.current_page = nil }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is not first page' do
-        before { instance.current_page = 1 }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 1) }
 
         it { is_expected.to be_falsey }
       end
@@ -136,19 +150,19 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with multiple hearings and hearing days'
 
       context 'when current page is first page' do
-        before { instance.current_page = 0 }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is nil' do
-        before { instance.current_page = nil }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is last page' do
-        before { instance.current_page = 3 }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
         it { is_expected.to be_falsey }
       end
@@ -184,13 +198,13 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with single hearing and hearing day'
 
       context 'when current page is last page' do
-        before { instance.current_page = 0 }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is nil' do
-        before { instance.current_page = nil }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
         it { is_expected.to be_truthy }
       end
@@ -200,19 +214,19 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with multiple hearings and hearing days'
 
       context 'when current page is first page' do
-        before { instance.current_page = 0 }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
         it { is_expected.to be_falsey }
       end
 
       context 'when current page is nil' do
-        before { instance.current_page = nil }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
         it { is_expected.to be_falsey }
       end
 
       context 'when current page is last page' do
-        before { instance.current_page = 3 }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
         it { is_expected.to be_truthy }
       end
@@ -223,8 +237,7 @@ RSpec.describe HearingPaginator, type: :helper do
     subject { instance.next_page_link }
 
     include_context 'with multiple hearings and hearing days'
-
-    before { instance.current_page = instance.first_page }
+    let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
     it { is_expected.to have_link('Next hearing day') }
 
@@ -242,9 +255,8 @@ RSpec.describe HearingPaginator, type: :helper do
   describe '#previous_page_link' do
     subject { instance.previous_page_link }
 
-    before { instance.current_page = instance.last_page }
-
     include_context 'with multiple hearings and hearing days'
+    let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
     it { is_expected.to have_link('Previous hearing day') }
 
