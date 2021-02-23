@@ -1,7 +1,10 @@
-.govuk-grid-row{ style: 'margin-bottom: 10px'}
-  - unless @paginator.first_page?
-    .govuk-grid-column-one-half
-      = @paginator.previous_page_link
-  - unless @paginator.last_page?
-    .govuk-grid-column-one-half
-      = @paginator.next_page_link
+%nav#pagination-label.moj-pagination
+  %p.govuk-visually-hidden{ 'aria-labelledby': 'pagination-label' }
+    Pagination navigation
+  %ul.moj-pagination__list
+    - unless @paginator.first_page?
+      %li.moj-pagination__item.moj-pagination__item--prev
+        = @paginator.previous_page_link
+    - unless @paginator.last_page?
+      %li.moj-pagination__item.moj-pagination__item--next
+        = @paginator.next_page_link

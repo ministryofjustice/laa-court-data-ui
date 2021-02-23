@@ -50,19 +50,21 @@ class HearingPaginator
   end
 
   def next_page_link
+    # TODO: add <span class="govuk-visually-hidden"> set of pages</span> within hyperlink ?!
     link_to(t('hearings.show.pagination.next_page'),
             hearing_path(id: next_item.id,
                          urn: prosecution_case.prosecution_case_reference,
                          page: next_page),
-            class: 'govuk-link app-pagination-next')
+            class: 'moj-pagination__link')
   end
 
   def previous_page_link
+    # TODO: add <span class="govuk-visually-hidden"> set of pages</span> within hyperlink ?!
     link_to(t('hearings.show.pagination.previous_page'),
             hearing_path(id: previous_item.id,
                          urn: prosecution_case.prosecution_case_reference,
                          page: previous_page),
-            class: 'govuk-link app-pagination-previous')
+            class: 'moj-pagination__link')
   end
 
   private

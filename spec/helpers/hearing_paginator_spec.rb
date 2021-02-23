@@ -231,7 +231,7 @@ RSpec.describe HearingPaginator, type: :helper do
 
     it {
       is_expected.to have_link('Next hearing day',
-                               class: 'govuk-link app-pagination-next')
+                               class: 'moj-pagination__link')
     }
   end
 
@@ -251,7 +251,7 @@ RSpec.describe HearingPaginator, type: :helper do
 
     it {
       is_expected.to have_link('Previous hearing day',
-                               class: 'govuk-link app-pagination-previous')
+                               class: 'moj-pagination__link')
     }
   end
 end
