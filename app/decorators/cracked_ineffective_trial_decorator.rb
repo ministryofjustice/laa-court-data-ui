@@ -12,10 +12,10 @@ class CrackedIneffectiveTrialDecorator < BaseDecorator
     ].any?
   end
 
-  def cracked_on_sentence(hearing, prosecution_case)
-    t('cracked_ineffective_trial.cracked_on_sentence_html',
+  def cracked_on_sentence(hearing)
+    t('cracked_ineffective_trial.cracked_on_sentence',
       type: type&.humanize,
-      cracked_at_link: cracked_at_link(hearing, prosecution_case))
+      cracked_at: cracked_at(hearing))
   end
 
   def description_sentence
@@ -24,12 +24,7 @@ class CrackedIneffectiveTrialDecorator < BaseDecorator
 
   private
 
-  def cracked_at_link(hearing, prosecution_case)
-    heard_at = hearing.hearing_days.first.to_date.strftime('%d/%m/%Y')
-    view.link_to(heard_at,
-                 view.hearing_path(id: hearing.id,
-                                   urn: prosecution_case.prosecution_case_reference,
-                                   hearing_day: heard_at),
-                 class: 'govuk-link')
+  def cracked_at(hearing)
+    hearing.hearing_days.first.to_date.strftime('%d/%m/%Y')
   end
 end

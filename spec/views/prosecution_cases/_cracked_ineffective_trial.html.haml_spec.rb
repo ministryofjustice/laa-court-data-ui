@@ -12,13 +12,7 @@ RSpec.shared_examples 'cracked_ineffective_trial with case level result' do |opt
 
   it 'displays the cracked_ineffective_trial type' do
     render_partial
-    expect(rendered).to have_selector('td.govuk-table__cell', text: /#{type_text} on/)
-  end
-
-  it 'displays link to hearing' do
-    render_partial
-    expected_href = %r{hearings/the-hearing-uuid\?hearing_day=#{CGI.escape('15/01/2021')}&urn=THECASEURN}
-    expect(rendered).to have_link('15/01/2021', href: expected_href, class: 'govuk-link')
+    expect(rendered).to have_selector('td.govuk-table__cell', text: /#{type_text}/)
   end
 
   it 'displays reason' do
@@ -65,7 +59,7 @@ RSpec.describe 'prosecution_cases/_cracked_ineffective_trial.html.haml', type: :
           allow(cracked_ineffective_trial).to receive(:type).and_return('Cracked')
         end
 
-        it_behaves_like 'cracked_ineffective_trial with case level result', type_text: 'Cracked'
+        it_behaves_like 'cracked_ineffective_trial with case level result', type_text: 'Cracked on 15/01/2021'
       end
 
       context 'with vacated type and code indicating a crack' do
@@ -73,7 +67,7 @@ RSpec.describe 'prosecution_cases/_cracked_ineffective_trial.html.haml', type: :
           allow(cracked_ineffective_trial).to receive_messages(type: 'Vacated', code: 'A')
         end
 
-        it_behaves_like 'cracked_ineffective_trial with case level result', type_text: 'Vacated'
+        it_behaves_like 'cracked_ineffective_trial with case level result', type_text: 'Vacated on 15/01/2021'
       end
     end
 

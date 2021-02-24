@@ -71,15 +71,7 @@ RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
   end
 
   describe '#cracked_on_sentence' do
-    subject(:call) { decorator.cracked_on_sentence(hearing, prosecution_case) }
-
-    let(:prosecution_case) do
-      CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'MY-CASE-URN')
-    end
-
-    let(:expected_href) do
-      %r{hearings/a-hearing-uuid\?hearing_day=#{CGI.escape('19/01/2021')}&urn=MY-CASE-URN}
-    end
+    subject(:call) { decorator.cracked_on_sentence(hearing) }
 
     let(:hearing) do
       instance_double(CourtDataAdaptor::Resource::Hearing,
@@ -94,16 +86,13 @@ RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
     context 'when type is cracked' do
       let(:type) { 'CrACKed' }
 
-      it { is_expected.to include('Cracked on') }
-
-      it { is_expected.to have_link('19/01/2021', href: expected_href, class: 'govuk-link') }
+      it { is_expected.to include('Cracked on 19/01/2021') }
     end
 
     context 'when type is vacated' do
       let(:type) { 'Vacated' }
 
-      it { is_expected.to include('Vacated on') }
-      it { is_expected.to have_link('19/01/2021', href: expected_href, class: 'govuk-link') }
+      it { is_expected.to include('Vacated on 19/01/2021') }
     end
   end
 
