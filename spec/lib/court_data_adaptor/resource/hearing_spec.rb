@@ -7,6 +7,7 @@ RSpec.describe CourtDataAdaptor::Resource::Hearing do
 
   let(:properties) do
     %i[court_name
+       day
        defendant_names
        hearing_days
        hearing_type

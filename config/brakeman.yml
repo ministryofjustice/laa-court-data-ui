@@ -1,0 +1,4 @@
+---
+:quiet: true
+:exit_on_warn: true
+:exit_on_error: false
