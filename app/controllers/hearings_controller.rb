@@ -66,7 +66,7 @@ class HearingsController < ApplicationController
   end
 
   def cached_prosecution_case
-    cached_prosecution_case ||= cached_search_execute(@prosecution_case_search).first
+    @cached_prosecution_case ||= cached_search_execute(@prosecution_case_search).first
   end
 
   def page
