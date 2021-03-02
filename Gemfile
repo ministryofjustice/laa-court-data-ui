@@ -44,7 +44,7 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.9.4'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 4.0'
-  gem 'rubocop', '~> 1.10', require: false
+  gem 'rubocop', '~> 1.11', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
