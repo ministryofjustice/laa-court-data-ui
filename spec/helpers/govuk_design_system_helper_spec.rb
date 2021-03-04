@@ -74,6 +74,17 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
         end
       end
     end
+
+    context 'with custom classes' do
+      before do
+        helper.govuk_page_title('A page title', 'A page caption', class: 'my-custom-class1 my-custom-class2')
+      end
+
+      it ':page_heading contains custom classes, prepended by govuk class' do
+        markup = helper.content_for(:page_heading)
+        expect(markup).to have_tag(:h1, with: { class: 'govuk-heading-xl my-custom-class1 my-custom-class2' })
+      end
+    end
   end
 
   describe '#govuk_detail' do
