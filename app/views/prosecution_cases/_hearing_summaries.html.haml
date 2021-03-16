@@ -8,18 +8,18 @@
       %th.govuk-table__header{ scope: 'col' }
         = t('search.result.hearing.hearing_day')
         %br
-        = link_to("asc", :sort_order => "date_asc")
-        = link_to("desc", :sort_order => "date_desc")
+        = link_to("asc", prosecution_case_path(id: prosecution_case.prosecution_case_reference, sort_order: 'date_asc'))
+        = link_to("desc", prosecution_case_path(id: prosecution_case.prosecution_case_reference, sort_order: 'date_desc'))
       %th.govuk-table__header{ scope: 'col' }
         = t('search.result.hearing.hearing_type')
         %br
-        = link_to("asc", :sort_order => "type_asc")
-        = link_to("desc", :sort_order => "type_desc")
+        = link_to("asc", prosecution_case_path(id: prosecution_case.prosecution_case_reference, sort_order: 'type_asc'))
+        = link_to("desc", prosecution_case_path(id: prosecution_case.prosecution_case_reference, sort_order: 'type_desc'))
       %th.govuk-table__header{ scope: 'col' }
         = t('search.result.hearing.providers')
         %br
-        = link_to("asc", :sort_order => "provider_asc")
-        = link_to("desc", :sort_order => "provider_desc")
+        = link_to("asc", prosecution_case_path(id: prosecution_case.prosecution_case_reference, sort_order: 'provider_asc'))
+        = link_to("desc", prosecution_case_path(id: prosecution_case.prosecution_case_reference, sort_order: 'provider_desc'))
   %tbody.govuk-table__body
     - prosecution_case.sorted_hearings_with_day.each_with_index do |hearing, idx|
       %tr.govuk-table__row

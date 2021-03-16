@@ -30,7 +30,7 @@ RSpec.shared_context 'with multiple hearings and hearing days' do
 end
 
 RSpec.describe HearingPaginator, type: :helper do
-  subject(:instance) { described_class.new(prosecution_case_decorator) }
+  subject(:instance) { described_class.new(prosecution_case_decorator, sort_order) }
 
   let(:prosecution_case_decorator) { ProsecutionCaseDecorator.new(prosecution_case, view_object) }
 
@@ -39,6 +39,8 @@ RSpec.describe HearingPaginator, type: :helper do
                     hearings: hearings,
                     prosecution_case_reference: 'ACASEURN')
   end
+
+  let(:sort_order) { 'date_asc' }
 
   let(:hearings) { [] }
   let(:view_object) { view_class.new }
@@ -52,13 +54,13 @@ RSpec.describe HearingPaginator, type: :helper do
     subject(:current_page) { instance.current_page }
 
     context 'when current page is set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+      let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: 3) }
 
       it { is_expected.to be 3 }
     end
 
     context 'when current page is not set' do
-      let(:instance) { described_class.new(prosecution_case_decorator) }
+      let(:instance) { described_class.new(prosecution_case_decorator, sort_order) }
 
       it { is_expected.to be 0 }
     end
@@ -101,14 +103,14 @@ RSpec.describe HearingPaginator, type: :helper do
     include_context 'with multiple hearings and hearing days'
 
     context 'when current_page set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+      let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: 3) }
 
       it { is_expected.to be_instance_of(described_class::PageItem) }
       it { is_expected.to have_attributes(id: hearing2.id) }
     end
 
     context 'when current_page not set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
+      let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: nil) }
 
       it { is_expected.to be_instance_of(described_class::PageItem) }
       it { is_expected.to have_attributes(id: hearing3.id) }
@@ -128,19 +130,19 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with single hearing and hearing day'
 
       context 'when current page is first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
+        let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: 0) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
+        let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: nil) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is not first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 1) }
+        let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: 1) }
 
         it { is_expected.to be_falsey }
       end
@@ -150,19 +152,19 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with multiple hearings and hearing days'
 
       context 'when current page is first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
+        let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: 0) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
+        let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: nil) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is last page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+        let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: 3) }
 
         it { is_expected.to be_falsey }
       end
@@ -226,7 +228,7 @@ RSpec.describe HearingPaginator, type: :helper do
       end
 
       context 'when current page is last page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+        let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: 3) }
 
         it { is_expected.to be_truthy }
       end
@@ -237,17 +239,17 @@ RSpec.describe HearingPaginator, type: :helper do
     subject { instance.next_page_link }
 
     include_context 'with multiple hearings and hearing days'
-    let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
+    let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: 0) }
 
-    it { is_expected.to have_link('Next hearing day') }
+    it { is_expected.to have_link('Next') }
 
     it {
-      is_expected.to have_link('Next hearing day',
-                               href: %r{/hearings/#{hearing1.id}\?page=1&urn=ACASEURN})
+      is_expected.to have_link('Next',
+                               href: %r{/hearings/#{hearing1.id}\?page=1&sort_order=date_asc&urn=ACASEURN})
     }
 
     it {
-      is_expected.to have_link('Next hearing day',
+      is_expected.to have_link('Next',
                                class: 'moj-pagination__link')
     }
   end
@@ -256,17 +258,17 @@ RSpec.describe HearingPaginator, type: :helper do
     subject { instance.previous_page_link }
 
     include_context 'with multiple hearings and hearing days'
-    let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+    let(:instance) { described_class.new(prosecution_case_decorator, sort_order, page: 3) }
 
-    it { is_expected.to have_link('Previous hearing day') }
+    it { is_expected.to have_link('Previous') }
 
     it {
-      is_expected.to have_link('Previous hearing day',
-                               href: %r{/hearings/#{hearing1.id}\?page=2&urn=ACASEURN})
+      is_expected.to have_link('Previous',
+                               href: %r{/hearings/#{hearing1.id}\?page=2&sort_order=date_asc&urn=ACASEURN})
     }
 
     it {
-      is_expected.to have_link('Previous hearing day',
+      is_expected.to have_link('Previous',
                                class: 'moj-pagination__link')
     }
   end

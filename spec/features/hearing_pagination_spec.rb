@@ -35,8 +35,8 @@ RSpec.feature 'Hearing pagination', type: :feature, vcr: true do
       before { click_link('23/10/2019') }
 
       scenario 'user can see Next page navigation only' do
-        expect(page).not_to have_link('Previous hearing day')
-        expect(page).to have_link('Next hearing day')
+        expect(page).not_to have_link('Previous')
+        expect(page).to have_link('Next')
       end
     end
 
@@ -44,8 +44,8 @@ RSpec.feature 'Hearing pagination', type: :feature, vcr: true do
       before { click_link('26/10/2019') }
 
       scenario 'user can see Next page and Previous navigation' do
-        expect(page).to have_link('Previous hearing day')
-        expect(page).to have_link('Next hearing day')
+        expect(page).to have_link('Previous')
+        expect(page).to have_link('Next')
       end
     end
 
@@ -53,8 +53,8 @@ RSpec.feature 'Hearing pagination', type: :feature, vcr: true do
       before { click_link('31/10/2019') }
 
       scenario 'user can see Previous page navigation only' do
-        expect(page).to have_link('Previous hearing day')
-        expect(page).not_to have_link('Next hearing day')
+        expect(page).to have_link('Previous')
+        expect(page).not_to have_link('Next')
       end
     end
   end
@@ -64,12 +64,12 @@ RSpec.feature 'Hearing pagination', type: :feature, vcr: true do
       before { click_link('23/10/2019') }
 
       scenario 'user can navigate to next hearing day' do
-        click_link 'Next hearing day'
+        click_link 'Next'
         expect(page)
           .to have_selector('h1', text: 'Hearing day')
           .and have_selector('h1', text: '24/10/2019')
 
-        click_link 'Next hearing day'
+        click_link 'Next'
         expect(page)
           .to have_selector('h1', text: 'Hearing day')
           .and have_selector('h1', text: '25/10/2019')
@@ -80,12 +80,12 @@ RSpec.feature 'Hearing pagination', type: :feature, vcr: true do
       before { click_link('31/10/2019') }
 
       scenario 'user can navigate to previous hearing days' do
-        click_link 'Previous hearing day'
+        click_link 'Previous'
         expect(page)
           .to have_selector('h1', text: 'Hearing day')
           .and have_selector('h1', text: '30/10/2019')
 
-        click_link 'Previous hearing day'
+        click_link 'Previous'
         expect(page)
           .to have_selector('h1', text: 'Hearing day')
           .and have_selector('h1', text: '29/10/2019')
