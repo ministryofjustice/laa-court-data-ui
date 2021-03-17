@@ -12,7 +12,7 @@ class HearingPaginator
 
   PageItem = Struct.new(:id, :hearing_date)
 
-  def initialize(prosecution_case, sort_order, page: 0)
+  def initialize(prosecution_case, sort_order: 'date_asc', page: 0)
     @prosecution_case = prosecution_case
     @current_page = page.to_i
     @sort_order = sort_order
@@ -52,7 +52,7 @@ class HearingPaginator
             hearing_path(id: next_item.id,
                          urn: @prosecution_case.prosecution_case_reference,
                          page: next_page,
-                         sort_order: sort_order),
+                         sort_order: @sort_order),
             class: 'moj-pagination__link')
   end
 
@@ -62,13 +62,11 @@ class HearingPaginator
             hearing_path(id: previous_item.id,
                          urn: @prosecution_case.prosecution_case_reference,
                          page: previous_page,
-                         sort_order: sort_order),
+                         sort_order: @sort_order),
             class: 'moj-pagination__link')
   end
 
   private
-
-  attr_reader :sort_order
 
   def next_item
     items[next_page]
@@ -87,7 +85,7 @@ class HearingPaginator
   end
 
   def sorted_hearing_items
-    @prosecution_case.sort_order ||= sort_order
+    @prosecution_case.sort_order ||= @sort_order
     @prosecution_case.sorted_hearings_with_day.map do |hearing|
       PageItem.new(hearing.id, hearing.day)
     end

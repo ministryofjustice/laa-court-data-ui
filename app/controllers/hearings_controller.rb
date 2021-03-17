@@ -56,7 +56,7 @@ class HearingsController < ApplicationController
   end
 
   def paginator
-    @paginator ||= helpers.paginator(prosecution_case, sort_order, page: page)
+    @paginator ||= helpers.paginator(prosecution_case, sort_order: sort_order, page: page)
   end
 
   def prosecution_case

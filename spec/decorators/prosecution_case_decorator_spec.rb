@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'court_data_adaptor'
+
 RSpec.describe ProsecutionCaseDecorator, type: :decorator do
   subject(:decorator) { described_class.new(prosecution_case, view_object) }
 
@@ -16,6 +18,8 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
   it_behaves_like 'a base decorator' do
     let(:object) { prosecution_case }
   end
+
+  it { is_expected.to respond_to(:sort_order) }
 
   context 'when method is missing' do
     before { allow(prosecution_case).to receive_messages(hearings: nil) }
@@ -43,51 +47,75 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
     end
   end
 
-  # describe '#sorted_hearing_items' do
-  #   subject(:call) { decorator.hearings_by_datetime }
+  describe '#sorted_hearings_with_day' do
+    subject(:call) { decorator.sorted_hearings_with_day }
 
-  #   before { allow(prosecution_case).to receive_messages(hearings: hearings) }
+    let(:decorated_hearings) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
+    let(:decorated_hearing1) { view_object.decorate(hearing1) }
+    let(:decorated_hearing2) { view_object.decorate(hearing2) }
+    let(:decorated_hearing3) { view_object.decorate(hearing3) }
+    let(:hearing1) do
+      CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing1_days, hearing_type: 'Trial')
+    end
+    let(:hearing2) do
+      CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing2_days, hearing_type: 'Mention')
+    end
+    let(:hearing3) do
+      CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing3_days, hearing_type: 'Pre-Trial Review')
+    end
+    let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
+    let(:hearing2_days) { ['2021-01-20T16:00:00.000Z'] }
+    let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
 
-  #   let(:hearings) { [hearing1, hearing2, hearing3] }
-  #   let(:hearing1) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing1_days) }
-  #   let(:hearing2) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing2_days) }
-  #   let(:hearing3) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing3_days) }
-  #   let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
-  #   let(:hearing2_days) { ['2021-01-20T16:00:00.000Z'] }
-  #   let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
+    before { allow(prosecution_case).to receive_messages(hearings: decorated_hearings) }
 
-  #   it { is_expected.to all(be_instance_of(HearingDecorator)) }
+    it { is_expected.to be_instance_of(Enumerator) }
+    it { is_expected.to all(be_instance_of(HearingDecorator)) }
 
-  #   it {
-  #     expect(call.map(&:hearing_days))
-  #       .to match([hearing3.hearing_days, hearing1.hearing_days, hearing2.hearing_days])
-  #   }
-  # end
+    context 'when sort_order is date_asc' do
+      before { allow(decorator).to receive(:sort_order).and_return('date_asc') }
 
-  # describe '#sorted_hearings_with_day' do
-  #   subject(:call) { decorator.sorted_hearings_with_day }
+      let(:expected_days) do
+        ['2021-01-18T11:00:00.000Z'.to_datetime,
+         '2021-01-19T10:45:00.000Z'.to_datetime,
+         '2021-01-20T10:45:00.000Z'.to_datetime,
+         '2021-01-20T16:00:00.000Z'.to_datetime]
+      end
 
-  #   before { allow(prosecution_case).to receive_messages(hearings: hearings) }
+      it { expect(call.map(&:day)).to eql(expected_days) }
+    end
 
-  #   let(:hearings) { [hearing1, hearing2, hearing3] }
-  #   let(:hearing1) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing1_days) }
-  #   let(:hearing2) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing2_days) }
-  #   let(:hearing3) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing3_days) }
-  #   let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
-  #   let(:hearing2_days) { ['2021-01-20T16:00:00.000Z'] }
-  #   let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
+    context 'when sort_order is type_asc' do
+      before { allow(decorator).to receive(:sort_order).and_return('type_asc') }
 
-  #   let(:expected_days) do
-  #     ['2021-01-18T11:00:00.000Z'.to_datetime,
-  #      '2021-01-19T10:45:00.000Z'.to_datetime,
-  #      '2021-01-20T10:45:00.000Z'.to_datetime,
-  #      '2021-01-20T16:00:00.000Z'.to_datetime]
-  #   end
+      let(:expected_days) do
+        ['2021-01-20T16:00:00.000Z'.to_datetime,
+         '2021-01-18T11:00:00.000Z'.to_datetime,
+         '2021-01-19T10:45:00.000Z'.to_datetime,
+         '2021-01-20T10:45:00.000Z'.to_datetime]
+      end
 
-  #   it { is_expected.to be_instance_of(Enumerator) }
-  #   it { is_expected.to all(be_instance_of(HearingDecorator)) }
-  #   it { expect(call.map(&:day)).to contain_exactly(*expected_days) }
-  # end
+      it { expect(call.map(&:day)).to eql(expected_days) }
+    end
+
+    context 'when sort_order is provider_asc' do
+      before do
+        allow(decorator).to receive(:sort_order).and_return('provider_asc')
+        allow(decorated_hearing1).to receive(:provider_list).and_return('Jammy Dodger (Junior)')
+        allow(decorated_hearing2).to receive(:provider_list).and_return('Custard Cream (QC)')
+        allow(decorated_hearing3).to receive(:provider_list).and_return('Choc Digestive (QC)<br>Hob Nob (QC)')
+      end
+
+      let(:expected_days) do
+        ['2021-01-18T11:00:00.000Z'.to_datetime,
+         '2021-01-20T16:00:00.000Z'.to_datetime,
+         '2021-01-19T10:45:00.000Z'.to_datetime,
+         '2021-01-20T10:45:00.000Z'.to_datetime]
+      end
+
+      it { expect(call.map(&:day)).to eql(expected_days) }
+    end
+  end
 
   describe '#cracked?' do
     subject(:call) { decorator.cracked? }
