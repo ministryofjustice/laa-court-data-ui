@@ -35,7 +35,6 @@ group :test do
   gem 'brakeman'
   gem 'capybara'
   gem 'capybara_table'
-  gem 'climate_control'
   gem 'codeclimate-test-reporter', require: false
   gem 'fakeredis', require: 'fakeredis/rspec'
   gem 'i18n-tasks', '~> 0.9.34'

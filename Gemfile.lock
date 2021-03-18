@@ -102,7 +102,6 @@ GEM
       terminal-table
       xpath (>= 2.1)
     childprocess (3.0.0)
-    climate_control (0.2.0)
     codeclimate-test-reporter (1.0.7)
       simplecov
     coderay (1.1.2)
@@ -485,7 +484,6 @@ DEPENDENCIES
   cancancan
   capybara
   capybara_table
-  climate_control
   codeclimate-test-reporter
   colorize
   devise (~> 4.7)
