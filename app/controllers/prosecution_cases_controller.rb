@@ -6,6 +6,8 @@ class ProsecutionCasesController < ApplicationController
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
+  helper_method :sort_column, :sort_direction
+
   def show
     add_breadcrumb prosecution_case_name(@prosecution_case.prosecution_case_reference),
                    prosecution_case_path(@prosecution_case.prosecution_case_reference)
@@ -28,6 +30,14 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def sort_order
-    @sort_order ||= params[:sort_order]
+    @sort_order ||= "#{params[:column]}_#{params[:direction]}"
+  end
+
+  def sort_column
+    params[:column].presence || 'date'
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 end
