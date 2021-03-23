@@ -7,9 +7,9 @@ references:
   _restore-bundle: &restore-bundle
     restore_cache:
       keys:
-        - v3-bundle-{{ checksum "Gemfile.lock" }}
+        - v4-bundle-{{ checksum "Gemfile.lock" }}
         # fallback to using the latest cache if no exact match is found
-        - v3-bundle-
+        - v4-bundle-
 
   _install-bundle: &install-bundle
     run:
@@ -29,9 +29,9 @@ references:
   _restore-assets: &restore-assets
     restore_cache:
       keys:
-        - v3-yarn-{{ checksum "yarn.lock" }}
+        - v4-yarn-{{ checksum "yarn.lock" }}
         # fallback to using the latest asset cache if no exact match is found
-        - v3-yarn-
+        - v4-yarn-
 
   _install-assets: &install-assets
     run:
@@ -42,7 +42,7 @@ references:
 
   _save-assets: &save-assets
     save_cache:
-      key: v3-yarn-{{ checksum "yarn.lock" }}
+      key: v4-yarn-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
         - public/packs-test
@@ -64,7 +64,7 @@ executors:
   test-executor:
     working_directory: ~/repo
     docker:
-      - image: circleci/ruby:2.7.0-node-browsers
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/laa_court_data_ui_test

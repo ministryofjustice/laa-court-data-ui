@@ -1,4 +1,4 @@
-FROM ruby:2.7.0-alpine3.11
+FROM ruby:2.7.2-alpine3.11
 MAINTAINER Ministry of Justice, LAA Get Paid <laa-get-paid@digital.justice.gov.uk>
 
 # fail early and print all commands
