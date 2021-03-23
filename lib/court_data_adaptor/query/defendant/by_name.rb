@@ -12,7 +12,7 @@ module CourtDataAdaptor
           cases = resource
                   .includes(:defendants)
                   .where(
-                    name: name,
+                    name: term,
                     date_of_birth: date_of_birth
                   )
                   .all
@@ -22,10 +22,6 @@ module CourtDataAdaptor
 
         private
 
-        def name
-          term.squish
-        end
-
         def date_of_birth
           Date.parse(dob.to_s).iso8601 if dob
         end
@@ -34,7 +30,7 @@ module CourtDataAdaptor
           cases.each_with_object([]) do |c, results|
             c.defendants.each do |d|
               d.prosecution_case_reference = c.prosecution_case_reference
-              results << d if d.name.squish.casecmp(name).zero?
+              results << d
             end
           end
         end
