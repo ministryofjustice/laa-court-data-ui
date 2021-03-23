@@ -6,11 +6,11 @@
   %thead.govuk-table__head
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'col' }
-        = hearings_sorter_link('date')
+        = hearings_sorter_link(prosecution_case.prosecution_case_reference, 'date')
       %th.govuk-table__header{ scope: 'col' }
-        = hearings_sorter_link('type')
+        = hearings_sorter_link(prosecution_case.prosecution_case_reference, 'type')
       %th.govuk-table__header{ scope: 'col' }
-        = hearings_sorter_link('provider')
+        = hearings_sorter_link(prosecution_case.prosecution_case_reference, 'provider')
   %tbody.govuk-table__body
     - prosecution_case.sorted_hearings_with_day.each_with_index do |hearing, idx|
       %tr.govuk-table__row

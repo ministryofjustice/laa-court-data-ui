@@ -44,6 +44,9 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
   let(:provider) { CourtDataAdaptor::Resource::Provider.new(name: 'Fred Dibnah', role: 'QC') }
 
   before do
+    initialize_view_helpers(view)
+    allow(view).to receive(:sort_column).and_return 'date'
+    allow(view).to receive(:sort_direction).and_return 'asc'
     allow(prosecution_case).to receive(:hearings).and_return(hearings)
     allow(decorated_prosecution_case).to receive(:sort_order).and_return 'date_asc'
     allow(hearing).to receive(:providers).and_return(providers)

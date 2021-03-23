@@ -30,7 +30,7 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def sort_order
-    @sort_order ||= "#{params[:column]}_#{params[:direction]}"
+    @sort_order ||= params[:column] && params[:direction] ? sort_column_and_direction : 'date_asc'
   end
 
   def sort_column
@@ -39,5 +39,9 @@ class ProsecutionCasesController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+
+  def sort_column_and_direction
+    "#{params[:column]}_#{params[:direction]}"
   end
 end

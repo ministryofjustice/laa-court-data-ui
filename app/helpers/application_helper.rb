@@ -28,13 +28,20 @@ module ApplicationHelper
   end
   alias decorate_each decorate_all
 
-  def hearings_sorter_link(column, title = nil)
+  def hearings_sorter_link(id, column, title = nil)
     title ||= column_title(column)
     title = column == sort_column ? ("#{title} " + column_sort_icon) : title
     direction = sort_direction == 'asc' ? 'desc' : 'asc'
-    query_params = params.permit(:id, :column, :direction).merge(column: column, direction: direction)
-    link_to(title,
-            query_params)
+    link_to(title, prosecution_case_path(id: id, column: column, direction: direction))
+  end
+
+  private
+
+  def decorator_instance(object, decorator_class = nil)
+    return object if object.is_a?(BaseDecorator)
+
+    decorator_class ||= "#{object.class.to_s.demodulize}Decorator".constantize
+    decorator_class.new(object, self)
   end
 
   def column_sort_icon
@@ -50,14 +57,5 @@ module ApplicationHelper
     else
       t('search.result.hearing.hearing_day')
     end
-  end
-
-  private
-
-  def decorator_instance(object, decorator_class = nil)
-    return object if object.is_a?(BaseDecorator)
-
-    decorator_class ||= "#{object.class.to_s.demodulize}Decorator".constantize
-    decorator_class.new(object, self)
   end
 end

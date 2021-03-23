@@ -10,6 +10,9 @@ RSpec.describe 'prosecution_cases/show.html.haml', type: :view do
 
   before do
     allow(view).to receive(:govuk_page_title).and_return 'A Gov uk page title'
+    initialize_view_helpers(view)
+    allow(view).to receive(:sort_column).and_return 'date'
+    allow(view).to receive(:sort_direction).and_return 'asc'
     allow(prosecution_case).to receive(:hearings).and_return([])
     allow(prosecution_case).to receive(:defendants).and_return([])
     assign(:prosecution_case, decorated_prosecution_case)
