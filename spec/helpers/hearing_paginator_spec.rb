@@ -40,8 +40,6 @@ RSpec.describe HearingPaginator, type: :helper do
                     prosecution_case_reference: 'ACASEURN')
   end
 
-  let(:sort_order) { 'date_asc' }
-
   let(:hearings) { [] }
   let(:view_object) { view_class.new }
   let(:view_class) { Class.new { include ApplicationHelper } }
@@ -54,13 +52,13 @@ RSpec.describe HearingPaginator, type: :helper do
     subject(:current_page) { instance.current_page }
 
     context 'when current page is set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 3) }
+      let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
       it { is_expected.to be 3 }
     end
 
     context 'when current page is not set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order) }
+      let(:instance) { described_class.new(prosecution_case_decorator) }
 
       it { is_expected.to be 0 }
     end
@@ -103,14 +101,14 @@ RSpec.describe HearingPaginator, type: :helper do
     include_context 'with multiple hearings and hearing days'
 
     context 'when current_page set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 3) }
+      let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
       it { is_expected.to be_instance_of(described_class::PageItem) }
       it { is_expected.to have_attributes(id: hearing2.id) }
     end
 
     context 'when current_page not set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: nil) }
+      let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
       it { is_expected.to be_instance_of(described_class::PageItem) }
       it { is_expected.to have_attributes(id: hearing3.id) }
@@ -130,19 +128,19 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with single hearing and hearing day'
 
       context 'when current page is first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 0) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: nil) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is not first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 1) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 1) }
 
         it { is_expected.to be_falsey }
       end
@@ -152,19 +150,19 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with multiple hearings and hearing days'
 
       context 'when current page is first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 0) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: nil) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is last page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 3) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
         it { is_expected.to be_falsey }
       end
@@ -200,13 +198,13 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with single hearing and hearing day'
 
       context 'when current page is last page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 0) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: nil) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
         it { is_expected.to be_truthy }
       end
@@ -216,19 +214,19 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with multiple hearings and hearing days'
 
       context 'when current page is first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 0) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
         it { is_expected.to be_falsey }
       end
 
       context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: nil) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
 
         it { is_expected.to be_falsey }
       end
 
       context 'when current page is last page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 3) }
+        let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
         it { is_expected.to be_truthy }
       end
@@ -239,7 +237,7 @@ RSpec.describe HearingPaginator, type: :helper do
     subject { instance.next_page_link }
 
     include_context 'with multiple hearings and hearing days'
-    let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 0) }
+    let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
     it { is_expected.to have_link('Next') }
 
@@ -258,7 +256,7 @@ RSpec.describe HearingPaginator, type: :helper do
     subject { instance.previous_page_link }
 
     include_context 'with multiple hearings and hearing days'
-    let(:instance) { described_class.new(prosecution_case_decorator, sort_order: sort_order, page: 3) }
+    let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
     it { is_expected.to have_link('Previous') }
 

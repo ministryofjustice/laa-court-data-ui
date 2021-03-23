@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe ProsecutionCaseDecorator, type: :decorator do
   subject(:decorator) { described_class.new(prosecution_case, view_object) }
 
@@ -85,6 +83,19 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       it { expect(call.map(&:day)).to eql(expected_days) }
     end
 
+    context 'when sort_order is date_desc' do
+      before { allow(decorator).to receive(:sort_order).and_return('date_desc') }
+
+      let(:expected_days) do
+        ['2021-01-20T16:00:00.000Z'.to_datetime,
+         '2021-01-20T10:45:00.000Z'.to_datetime,
+         '2021-01-19T10:45:00.000Z'.to_datetime,
+         '2021-01-18T11:00:00.000Z'.to_datetime]
+      end
+
+      it { expect(call.map(&:day)).to eql(expected_days) }
+    end
+
     context 'when sort_order is type_asc' do
       before { allow(decorator).to receive(:sort_order).and_return('type_asc') }
 
@@ -93,6 +104,19 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
          '2021-01-18T11:00:00.000Z'.to_datetime,
          '2021-01-19T10:45:00.000Z'.to_datetime,
          '2021-01-20T10:45:00.000Z'.to_datetime]
+      end
+
+      it { expect(call.map(&:day)).to eql(expected_days) }
+    end
+
+    context 'when sort_order is type_desc' do
+      before { allow(decorator).to receive(:sort_order).and_return('type_desc') }
+
+      let(:expected_days) do
+        ['2021-01-19T10:45:00.000Z'.to_datetime,
+         '2021-01-20T10:45:00.000Z'.to_datetime,
+         '2021-01-18T11:00:00.000Z'.to_datetime,
+         '2021-01-20T16:00:00.000Z'.to_datetime]
       end
 
       it { expect(call.map(&:day)).to eql(expected_days) }
@@ -111,6 +135,24 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
          '2021-01-20T16:00:00.000Z'.to_datetime,
          '2021-01-19T10:45:00.000Z'.to_datetime,
          '2021-01-20T10:45:00.000Z'.to_datetime]
+      end
+
+      it { expect(call.map(&:day)).to eql(expected_days) }
+    end
+
+    context 'when sort_order is provider_desc' do
+      before do
+        allow(decorator).to receive(:sort_order).and_return('provider_desc')
+        allow(decorated_hearing1).to receive(:provider_list).and_return('Jammy Dodger (Junior)')
+        allow(decorated_hearing2).to receive(:provider_list).and_return('Custard Cream (QC)')
+        allow(decorated_hearing3).to receive(:provider_list).and_return('Choc Digestive (QC)<br>Hob Nob (QC)')
+      end
+
+      let(:expected_days) do
+        ['2021-01-19T10:45:00.000Z'.to_datetime,
+         '2021-01-20T10:45:00.000Z'.to_datetime,
+         '2021-01-20T16:00:00.000Z'.to_datetime,
+         '2021-01-18T11:00:00.000Z'.to_datetime]
       end
 
       it { expect(call.map(&:day)).to eql(expected_days) }

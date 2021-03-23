@@ -32,7 +32,7 @@ module ApplicationHelper
     title ||= column_title(column)
     title = column == sort_column ? ("#{title} " + column_sort_icon) : title
     direction = sort_direction == 'asc' ? 'desc' : 'asc'
-    link_to(title, prosecution_case_path(id: id, column: column, direction: direction))
+    link_to(title, prosecution_case_path(id: id, column: column, direction: direction), class: 'govuk-link')
   end
 
   private

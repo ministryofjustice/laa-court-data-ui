@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe ApplicationHelper, type: :helper do
+  include ViewSpecHelper
+  include ActionView::Helpers
+
   subject { helper }
 
   it { is_expected.to respond_to :govuk_page_title }
@@ -173,6 +176,50 @@ RSpec.describe ApplicationHelper, type: :helper do
       it {
         expect { |b| decorate_all(test_objects, other_class_decorator, &b) }
           .to yield_successive_args(instance_of(other_class_decorator), instance_of(other_class_decorator))
+      }
+    end
+  end
+
+  describe '#hearings_sorter_link' do
+    subject(:hearings_sorter_link) { helper.hearings_sorter_link(id, column) }
+
+    let(:sort_column) { 'date' }
+    let(:sort_direction) { 'asc' }
+    let(:column) { 'provider' }
+    let(:id) { 'TEST12345' }
+
+    before do
+      initialize_view_helpers(helper)
+      allow(helper).to receive(:sort_column).and_return sort_column
+      allow(helper).to receive(:sort_direction).and_return sort_direction
+    end
+
+    context 'when column is provider and sort_column is date' do
+      it {
+        is_expected.to have_link('Providers attending',
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc',
+                                 class: 'govuk-link')
+      }
+    end
+
+    context 'when sort_column is provider, sort_column is provider, sort_direction is asc' do
+      let(:sort_column) { 'provider' }
+
+      it {
+        is_expected.to have_link("Providers attending \u25B2",
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc',
+                                 class: 'govuk-link')
+      }
+    end
+
+    context 'when sort_column is provider, sort_column is provider, sort_direction is desc' do
+      let(:sort_column) { 'provider' }
+      let(:sort_direction) { 'desc' }
+
+      it {
+        is_expected.to have_link("Providers attending \u25BC",
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=asc',
+                                 class: 'govuk-link')
       }
     end
   end
