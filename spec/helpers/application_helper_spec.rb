@@ -197,8 +197,8 @@ RSpec.describe ApplicationHelper, type: :helper do
     context 'when column is provider and sort_column is date' do
       it {
         is_expected.to have_link('Providers attending',
-                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc',
-                                 class: 'govuk-link')
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc#provider',
+                                 class: 'govuk-link govuk-link--no-visited-state')
       }
     end
 
@@ -207,8 +207,8 @@ RSpec.describe ApplicationHelper, type: :helper do
 
       it {
         is_expected.to have_link("Providers attending \u25B2",
-                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc',
-                                 class: 'govuk-link')
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc#provider',
+                                 class: 'govuk-link govuk-link--no-visited-state')
       }
     end
 
@@ -218,8 +218,8 @@ RSpec.describe ApplicationHelper, type: :helper do
 
       it {
         is_expected.to have_link("Providers attending \u25BC",
-                                 href: '/prosecution_cases/TEST12345?column=provider&direction=asc',
-                                 class: 'govuk-link')
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=asc#provider',
+                                 class: 'govuk-link govuk-link--no-visited-state')
       }
     end
   end
