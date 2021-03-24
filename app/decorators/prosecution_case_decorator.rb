@@ -31,7 +31,7 @@ class ProsecutionCaseDecorator < BaseDecorator
     when /^provider/
       TableSorters::HearingsProviderSorter.new(hearings, sort_order)
     else
-      TableSorters::HearingsSorter.new(hearings, sort_order)
+      TableSorters::HearingsDateSorter.new(hearings, sort_order)
     end
   end
 end
