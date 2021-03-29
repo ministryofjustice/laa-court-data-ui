@@ -87,10 +87,6 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
           expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::Defendant))
         end
 
-        it 'returns more than just exact match' do
-          expect(results.size).to be > 1
-        end
-
         it 'returns exact name match first' do
           expect(results.first).to have_attributes(name: 'Trever Glover', date_of_birth: '1990-01-01')
         end
@@ -119,10 +115,6 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
 
         it 'returns defendant resources' do
           expect(results).to all(be_instance_of(CourtDataAdaptor::Resource::Defendant))
-        end
-
-        it 'returns more than just exact match' do
-          expect(results.size).to be 1
         end
 
         it 'returns defendants with exact date_of_birth' do
