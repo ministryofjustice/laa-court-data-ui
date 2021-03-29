@@ -27,7 +27,7 @@ gem 'rails', '~> 6.1.3'
 gem 'redis', '~> 4.2.5'
 gem 'sentry-rails', '~> 4.3.3'
 gem 'sentry-sidekiq', '~> 4.3.0'
-gem 'sidekiq', '~> 6.1'
+gem 'sidekiq', '~> 6.2'
 gem 'webpacker', '~> 5.2'
 
 group :test do
