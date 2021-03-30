@@ -7,6 +7,17 @@ module TableSorters
       @sort_order = sort_order
     end
 
+    def self.for(hearings, sort_order)
+      case sort_order
+      when /^type/
+        TableSorters::HearingsTypeSorter.new(hearings, sort_order)
+      when /^provider/
+        TableSorters::HearingsProviderSorter.new(hearings, sort_order)
+      else
+        TableSorters::HearingsDateSorter.new(hearings, sort_order)
+      end
+    end
+
     def sorted_hearing(hearing)
       hearing.hearing_days.map(&:to_datetime).sort
     end

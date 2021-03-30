@@ -35,4 +35,33 @@ RSpec.describe TableSorters::HearingsSorter do
       is_expected.to eql(expected_result)
     }
   end
+
+  describe '#self.for' do
+
+    subject{ described_class.for(hearings, sort_order) }
+
+    context 'when sort_order is date_asc' do
+      let(:sort_order) { 'provider_asc' }
+
+      it {
+        is_expected.to be_instance_of(TableSorters::HearingsProviderSorter)
+      }
+    end
+
+    context 'when sort_order is type_asc' do
+      let(:sort_order) { 'type_asc' }
+  
+      it {
+        is_expected.to be_instance_of(TableSorters::HearingsTypeSorter)
+       }
+    end
+
+    context 'when sort_order is type_asc' do
+      let(:sort_order) { 'date_asc' }
+    
+      it {
+        is_expected.to be_instance_of(TableSorters::HearingsDateSorter)
+      }
+    end
+  end
 end

@@ -25,13 +25,6 @@ class ProsecutionCaseDecorator < BaseDecorator
   private
 
   def sorter
-    case sort_order
-    when /^type/
-      TableSorters::HearingsTypeSorter.new(hearings, sort_order)
-    when /^provider/
-      TableSorters::HearingsProviderSorter.new(hearings, sort_order)
-    else
-      TableSorters::HearingsDateSorter.new(hearings, sort_order)
-    end
+    TableSorters::HearingsSorter.for(hearings, sort_order)
   end
 end
