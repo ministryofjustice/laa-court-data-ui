@@ -16,11 +16,14 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
 
   let(:hearing) { CourtDataAdaptor::Resource::Hearing.new(hearing_events: []) }
   let(:decorated_hearing) { view.decorate(hearing) }
-  let(:paginator) { HearingPaginator.new(prosecution_case, sort_order: 'date_asc', page: '0') }
+  let(:paginator) do
+    HearingPaginator.new(prosecution_case, column: 'date', direction: 'asc', page: '0')
+  end
 
   before do
     allow(view).to receive(:govuk_page_title).and_return 'A Gov uk page title'
-    allow(prosecution_case).to receive(:sort_order).and_return 'date_asc'
+    allow(prosecution_case).to receive(:column).and_return 'date'
+    allow(prosecution_case).to receive(:direction).and_return 'asc'
     assign(:hearing, decorated_hearing)
     assign(:paginator, paginator)
   end

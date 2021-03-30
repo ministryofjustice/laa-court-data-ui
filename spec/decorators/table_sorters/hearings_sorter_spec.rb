@@ -3,7 +3,7 @@
 require 'court_data_adaptor'
 
 RSpec.describe TableSorters::HearingsSorter do
-  subject(:instance) { described_class.new(hearings, sort_order) }
+  subject(:instance) { described_class.new(hearings, column, direction) }
 
   let(:hearings) { [hearing1, hearing2, hearing3] }
 
@@ -26,7 +26,8 @@ RSpec.describe TableSorters::HearingsSorter do
   describe '#sorted_hearing' do
     subject(:call) { instance.sorted_hearing(hearing1) }
 
-    let(:sort_order) { 'provider_asc' }
+    let(:column) { 'provider' }
+    let(:direction) { 'asc' }
     let(:expected_result) do
       ['2021-01-19T10:45:00.000Z'.to_datetime, '2021-01-20T10:45:00.000Z'.to_datetime]
     end
@@ -37,28 +38,30 @@ RSpec.describe TableSorters::HearingsSorter do
   end
 
   describe '#self.for' do
+    subject { described_class.for(hearings, column, direction) }
 
-    subject{ described_class.for(hearings, sort_order) }
-
-    context 'when sort_order is date_asc' do
-      let(:sort_order) { 'provider_asc' }
+    context 'when column is provider and direction is asc' do
+      let(:column) { 'provider' }
+      let(:direction) { 'asc' }
 
       it {
         is_expected.to be_instance_of(TableSorters::HearingsProviderSorter)
       }
     end
 
-    context 'when sort_order is type_asc' do
-      let(:sort_order) { 'type_asc' }
-  
+    context 'when column is type and direction is asc' do
+      let(:column) { 'type' }
+      let(:direction) { 'asc' }
+
       it {
         is_expected.to be_instance_of(TableSorters::HearingsTypeSorter)
-       }
+      }
     end
 
-    context 'when sort_order is type_asc' do
-      let(:sort_order) { 'date_asc' }
-    
+    context 'when column is date and direction is asc' do
+      let(:column) { 'date' }
+      let(:direction) { 'asc' }
+
       it {
         is_expected.to be_instance_of(TableSorters::HearingsDateSorter)
       }

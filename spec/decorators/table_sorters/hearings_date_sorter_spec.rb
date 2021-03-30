@@ -3,7 +3,7 @@
 require 'court_data_adaptor'
 
 RSpec.describe TableSorters::HearingsDateSorter do
-  subject(:instance) { described_class.new(hearings, sort_order) }
+  subject(:instance) { described_class.new(hearings, column, direction) }
 
   let(:hearings) { [hearing1, hearing2, hearing3] }
 
@@ -26,8 +26,9 @@ RSpec.describe TableSorters::HearingsDateSorter do
   describe '#sorted_hearings' do
     subject(:call) { instance.sorted_hearings }
 
-    context 'when sort_order is date_asc' do
-      let(:sort_order) { 'date_asc' }
+    context 'when column is date and sort direction is asc' do
+      let(:column) { 'date' }
+      let(:direction) { 'asc' }
 
       it {
         expect(call.map(&:hearing_days))
@@ -35,8 +36,9 @@ RSpec.describe TableSorters::HearingsDateSorter do
       }
     end
 
-    context 'when sort_order is date_desc' do
-      let(:sort_order) { 'date_desc' }
+    context 'when column is date and sort direction is desc' do
+      let(:column) { 'date' }
+      let(:direction) { 'desc' }
 
       it {
         expect(call.map(&:hearing_days))
@@ -48,8 +50,9 @@ RSpec.describe TableSorters::HearingsDateSorter do
   describe '#sorted_hearing' do
     subject(:call) { instance.sorted_hearing(hearing1) }
 
-    context 'when sort_order is date_asc' do
-      let(:sort_order) { 'date_asc' }
+    context 'when column is date and sort direction is asc' do
+      let(:column) { 'date' }
+      let(:direction) { 'asc' }
       let(:expected_result) do
         ['2021-01-19T10:45:00.000Z'.to_datetime, '2021-01-20T10:45:00.000Z'.to_datetime]
       end
@@ -59,8 +62,9 @@ RSpec.describe TableSorters::HearingsDateSorter do
       }
     end
 
-    context 'when sort_order is date_desc' do
-      let(:sort_order) { 'date_desc' }
+    context 'when column is date and sort direction is desc' do
+      let(:column) { 'date' }
+      let(:direction) { 'desc' }
       let(:expected_result) do
         ['2021-01-20T10:45:00.000Z'.to_datetime, '2021-01-19T10:45:00.000Z'.to_datetime]
       end

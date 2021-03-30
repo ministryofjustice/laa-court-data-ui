@@ -3,7 +3,7 @@
 require 'court_data_adaptor'
 
 RSpec.describe TableSorters::HearingsProviderSorter do
-  subject(:instance) { described_class.new(hearings, sort_order) }
+  subject(:instance) { described_class.new(hearings, column, direction) }
 
   let(:hearings) { [hearing1, hearing2, hearing3] }
 
@@ -30,11 +30,13 @@ RSpec.describe TableSorters::HearingsProviderSorter do
   let(:hearing2_provider_list) { 'Hob Nob (QC)<br>Malted Milk (Junior)' }
   let(:hearing3_provider_list) { 'Custard Cream (Junior)' }
 
+  let(:column) { 'provider' }
+
   describe '#sorted_hearings' do
     subject(:call) { instance.sorted_hearings }
 
-    context 'when sort_order is provider_asc' do
-      let(:sort_order) { 'provider_asc' }
+    context 'when direction is asc' do
+      let(:direction) { 'asc' }
 
       it {
         expect(call.map(&:hearing_days))
@@ -42,8 +44,8 @@ RSpec.describe TableSorters::HearingsProviderSorter do
       }
     end
 
-    context 'when sort_order is date_desc' do
-      let(:sort_order) { 'provider_desc' }
+    context 'when direction is desc' do
+      let(:direction) { 'desc' }
 
       it {
         expect(call.map(&:hearing_days))

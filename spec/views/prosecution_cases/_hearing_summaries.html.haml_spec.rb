@@ -3,7 +3,8 @@
 RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
   subject(:render_partial) do
     render partial: 'hearing_summaries',
-           locals: { prosecution_case: decorated_prosecution_case, sort_order: 'date_asc' }
+           locals: { prosecution_case: decorated_prosecution_case, column: 'date',
+                     direction: 'asc' }
   end
 
   let(:decorated_prosecution_case) { view.decorate(prosecution_case) }
@@ -48,7 +49,8 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
     allow(view).to receive(:sort_column).and_return 'date'
     allow(view).to receive(:sort_direction).and_return 'asc'
     allow(prosecution_case).to receive(:hearings).and_return(hearings)
-    allow(decorated_prosecution_case).to receive(:sort_order).and_return 'date_asc'
+    allow(decorated_prosecution_case).to receive(:column).and_return 'date'
+    allow(decorated_prosecution_case).to receive(:direction).and_return 'asc'
     allow(hearing).to receive(:providers).and_return(providers)
     allow(hearing1).to receive(:providers).and_return(providers)
     allow(hearing2).to receive(:providers).and_return(providers)

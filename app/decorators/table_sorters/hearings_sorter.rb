@@ -2,19 +2,20 @@
 
 module TableSorters
   class HearingsSorter
-    def initialize(hearings, sort_order)
+    def initialize(hearings, column, direction)
       @hearings = hearings
-      @sort_order = sort_order
+      @column = column
+      @direction = direction
     end
 
-    def self.for(hearings, sort_order)
-      case sort_order
-      when /^type/
-        TableSorters::HearingsTypeSorter.new(hearings, sort_order)
-      when /^provider/
-        TableSorters::HearingsProviderSorter.new(hearings, sort_order)
+    def self.for(hearings, column, direction)
+      case column
+      when 'type'
+        TableSorters::HearingsTypeSorter.new(hearings, column, direction)
+      when 'provider'
+        TableSorters::HearingsProviderSorter.new(hearings, column, direction)
       else
-        TableSorters::HearingsDateSorter.new(hearings, sort_order)
+        TableSorters::HearingsDateSorter.new(hearings, column, direction)
       end
     end
 
@@ -25,7 +26,7 @@ module TableSorters
     private
 
     def order_by_asc_or_desc(arr)
-      return arr.reverse if @sort_order&.include? 'desc'
+      return arr.reverse if @direction == 'desc'
       arr
     end
   end

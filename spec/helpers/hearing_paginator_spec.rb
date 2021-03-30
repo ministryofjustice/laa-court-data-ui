@@ -243,7 +243,8 @@ RSpec.describe HearingPaginator, type: :helper do
 
     it {
       is_expected.to have_link('Next',
-                               href: %r{/hearings/#{hearing1.id}\?page=1&sort_order=date_asc&urn=ACASEURN})
+                               href: %r{/hearings/#{hearing1.id}\?
+                               column=date&direction=asc&page=1&urn=ACASEURN}x)
     }
 
     it {
@@ -262,7 +263,8 @@ RSpec.describe HearingPaginator, type: :helper do
 
     it {
       is_expected.to have_link('Previous',
-                               href: %r{/hearings/#{hearing1.id}\?page=2&sort_order=date_asc&urn=ACASEURN})
+                               href: %r{/hearings/#{hearing1.id}\?
+                               column=date&direction=asc&page=2&urn=ACASEURN}x)
     }
 
     it {

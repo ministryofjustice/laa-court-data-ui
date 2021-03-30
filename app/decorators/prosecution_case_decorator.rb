@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProsecutionCaseDecorator < BaseDecorator
-  attr_accessor :sort_order
+  attr_accessor :column, :direction
 
   def hearings
     @hearings ||= decorate_all(object.hearings)
@@ -25,6 +25,6 @@ class ProsecutionCaseDecorator < BaseDecorator
   private
 
   def sorter
-    TableSorters::HearingsSorter.for(hearings, sort_order)
+    TableSorters::HearingsSorter.for(hearings, column, direction)
   end
 end

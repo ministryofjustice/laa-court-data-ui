@@ -12,7 +12,7 @@ RSpec.feature 'Hearing pagination', type: :feature, vcr: true do
   end
 
   def hearing_page_url(page_param)
-    %r{hearings/.*\?page=#{page_param}&sort_order=date_asc&urn=TEST12345}
+    %r{hearings/.*\?column=date&direction=asc&page=#{page_param}&urn=TEST12345}
   end
 
   context 'when viewing case details' do

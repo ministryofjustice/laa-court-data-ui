@@ -82,7 +82,8 @@ RSpec.feature 'Breadcrumb', type: :feature, stub_unlinked: true do
         click_link(case_urn, match: :first)
         click_link('23/10/2019', match: :first)
         expect(page).to have_current_path(hearing_path(hearing_id_from_fixture,
-                                                       sort_order: 'date_asc',
+                                                       column: 'date',
+                                                       direction: 'asc',
                                                        urn: case_urn,
                                                        page: '0'))
         then_has_hearing_details_breadcrumbs(case_urn, '23/10/2019')
@@ -107,7 +108,8 @@ RSpec.feature 'Breadcrumb', type: :feature, stub_unlinked: true do
 
       click_link('23/10/2019', match: :first)
       expect(page).to have_current_path(hearing_path(hearing_id_from_fixture,
-                                                     sort_order: 'date_asc',
+                                                     column: 'date',
+                                                     direction: 'asc',
                                                      urn: case_urn,
                                                      page: '0'))
       then_has_hearing_details_breadcrumbs(case_urn, '23/10/2019')

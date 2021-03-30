@@ -190,7 +190,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     before do
       initialize_view_helpers(helper)
-      allow(helper).to receive(:sort_column).and_return sort_column
+      allow(helper).to receive(:sort_column).and_return column
       allow(helper).to receive(:sort_direction).and_return sort_direction
     end
 
@@ -202,8 +202,8 @@ RSpec.describe ApplicationHelper, type: :helper do
       }
     end
 
-    context 'when sort_column is provider, sort_column is provider, sort_direction is asc' do
-      let(:sort_column) { 'provider' }
+    context 'when column is provider, sort_column is provider, sort_direction is asc' do
+      let(:column) { 'provider' }
 
       it {
         is_expected.to have_link("Providers attending \u25B2",
@@ -212,8 +212,8 @@ RSpec.describe ApplicationHelper, type: :helper do
       }
     end
 
-    context 'when sort_column is provider, sort_column is provider, sort_direction is desc' do
-      let(:sort_column) { 'provider' }
+    context 'when column is provider, sort_column is provider, sort_direction is desc' do
+      let(:column) { 'provider' }
       let(:sort_direction) { 'desc' }
 
       it {

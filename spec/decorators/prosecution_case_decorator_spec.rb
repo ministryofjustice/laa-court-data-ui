@@ -17,7 +17,9 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
     let(:object) { prosecution_case }
   end
 
-  it { is_expected.to respond_to(:sort_order) }
+  it { is_expected.to respond_to(:column) }
+
+  it { is_expected.to respond_to(:direction) }
 
   context 'when method is missing' do
     before { allow(prosecution_case).to receive_messages(hearings: nil) }
@@ -70,8 +72,11 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
     it { is_expected.to be_instance_of(Enumerator) }
     it { is_expected.to all(be_instance_of(HearingDecorator)) }
 
-    context 'when sort_order is date_asc' do
-      before { allow(decorator).to receive(:sort_order).and_return('date_asc') }
+    context 'when sort_colum is date and direction is asc' do
+      before do
+        allow(decorator).to receive(:column).and_return('date')
+        allow(decorator).to receive(:direction).and_return('asc')
+      end
 
       let(:expected_days) do
         ['2021-01-18T11:00:00.000Z'.to_datetime,
@@ -83,8 +88,11 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       it { expect(call.map(&:day)).to eql(expected_days) }
     end
 
-    context 'when sort_order is date_desc' do
-      before { allow(decorator).to receive(:sort_order).and_return('date_desc') }
+    context 'when sort_colum is date and direction is desc' do
+      before do
+        allow(decorator).to receive(:column).and_return('date')
+        allow(decorator).to receive(:direction).and_return('desc')
+      end
 
       let(:expected_days) do
         ['2021-01-20T16:00:00.000Z'.to_datetime,
@@ -96,8 +104,11 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       it { expect(call.map(&:day)).to eql(expected_days) }
     end
 
-    context 'when sort_order is type_asc' do
-      before { allow(decorator).to receive(:sort_order).and_return('type_asc') }
+    context 'when sort_colum is type and direction is asc' do
+      before do
+        allow(decorator).to receive(:column).and_return('type')
+        allow(decorator).to receive(:direction).and_return('asc')
+      end
 
       let(:expected_days) do
         ['2021-01-20T16:00:00.000Z'.to_datetime,
@@ -109,8 +120,11 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       it { expect(call.map(&:day)).to eql(expected_days) }
     end
 
-    context 'when sort_order is type_desc' do
-      before { allow(decorator).to receive(:sort_order).and_return('type_desc') }
+    context 'when sort_colum is type and direction is desc' do
+      before do
+        allow(decorator).to receive(:column).and_return('type')
+        allow(decorator).to receive(:direction).and_return('desc')
+      end
 
       let(:expected_days) do
         ['2021-01-19T10:45:00.000Z'.to_datetime,
@@ -122,9 +136,10 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       it { expect(call.map(&:day)).to eql(expected_days) }
     end
 
-    context 'when sort_order is provider_asc' do
+    context 'when sort_colum is provider and direction is asc' do
       before do
-        allow(decorator).to receive(:sort_order).and_return('provider_asc')
+        allow(decorator).to receive(:column).and_return('provider')
+        allow(decorator).to receive(:direction).and_return('asc')
         allow(decorated_hearing1).to receive(:provider_list).and_return('Jammy Dodger (Junior)')
         allow(decorated_hearing2).to receive(:provider_list).and_return('Custard Cream (QC)')
         allow(decorated_hearing3).to receive(:provider_list).and_return('Choc Digestive (QC)<br>Hob Nob (QC)')
@@ -140,9 +155,10 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       it { expect(call.map(&:day)).to eql(expected_days) }
     end
 
-    context 'when sort_order is provider_desc' do
+    context 'when sort_colum is provider and direction is desc' do
       before do
-        allow(decorator).to receive(:sort_order).and_return('provider_desc')
+        allow(decorator).to receive(:column).and_return('provider')
+        allow(decorator).to receive(:direction).and_return('desc')
         allow(decorated_hearing1).to receive(:provider_list).and_return('Jammy Dodger (Junior)')
         allow(decorated_hearing2).to receive(:provider_list).and_return('Custard Cream (QC)')
         allow(decorated_hearing3).to receive(:provider_list).and_return('Choc Digestive (QC)<br>Hob Nob (QC)')

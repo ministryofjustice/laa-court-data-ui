@@ -22,26 +22,19 @@ class ProsecutionCasesController < ApplicationController
 
   def set_prosecution_case
     @prosecution_case = helpers.decorate(search_results.first)
-    @prosecution_case.sort_order ||= sort_order
+    @prosecution_case.column ||= sort_column
+    @prosecution_case.direction ||= sort_direction
   end
 
   def search_results
     @search_results ||= @search.execute
   end
 
-  def sort_order
-    @sort_order ||= params[:column] && params[:direction] ? sort_column_and_direction : 'date_asc'
-  end
-
   def sort_column
-    params[:column].presence || 'date'
+    @sort_column ||= params[:column].presence || 'date'
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
-  end
-
-  def sort_column_and_direction
-    "#{params[:column]}_#{params[:direction]}"
+    @sort_direction ||= %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 end
