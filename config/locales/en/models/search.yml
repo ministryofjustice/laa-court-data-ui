@@ -11,3 +11,4 @@ en:
               blank: Filter required
             term:
               blank: Search term required
+              too_short: Search term must be more than %{count} characters

@@ -155,6 +155,33 @@ RSpec.describe Search, type: :model do
         it { is_expected.to have_activerecord_error(:term, 'Search term required') }
       end
 
+      context 'with just whitespace chars' do
+        let(:term) { "\s\s\t" }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:term, 'Search term required') }
+      end
+
+      context 'with single char' do
+        let(:term) { 'a' }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:term, 'Search term must be more than 2 characters') }
+      end
+
+      context 'with single char and whitespace' do
+        let(:term) { "a\s\s\t" }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:term, 'Search term must be more than 2 characters') }
+      end
+
+      context 'with 2 chars' do
+        let(:term) { 'at' }
+
+        it { is_expected.to be_valid }
+      end
+
       context 'with blank dob' do
         let(:dob) { nil }
 

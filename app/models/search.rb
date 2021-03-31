@@ -33,7 +33,7 @@ class Search
     message: 'Filter "%{value}" is not recognized'
   }
 
-  validates :term, presence: true
+  validates :term, presence: true, visible_length: { minimum: 2 }
   validates :dob,
             presence: true,
             if: proc { |search| search.filter.eql?('defendant_name') }
