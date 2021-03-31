@@ -28,11 +28,11 @@ module ApplicationHelper
   end
   alias decorate_each decorate_all
 
-  def hearings_sorter_link(id, column, title = nil)
-    title ||= column_title(column)
-    title = column == sort_column ? ("#{title} " + column_sort_icon) : title
+  def hearings_sorter_link(prosecution_case, column, title = nil)
+    title ||= prosecution_case.column_title(column)
+    title = column == sort_column ? ("#{title} " + prosecution_case.column_sort_icon) : title
     direction = sort_direction == 'asc' ? 'desc' : 'asc'
-    link_to(title, prosecution_case_path(id: id, column: column, direction: direction, anchor: column), class: 'govuk-link govuk-link--no-visited-state', id: column, 'aria-label': "Sort #{column} #{direction}")
+    link_to(title, prosecution_case_path(id: prosecution_case.prosecution_case_reference, column: column, direction: direction, anchor: column), class: 'govuk-link govuk-link--no-visited-state', id: column, 'aria-label': "Sort #{column} #{direction}")
   end
 
   private
@@ -42,20 +42,5 @@ module ApplicationHelper
 
     decorator_class ||= "#{object.class.to_s.demodulize}Decorator".constantize
     decorator_class.new(object, self)
-  end
-
-  def column_sort_icon
-    sort_direction == 'asc' ? "\u25B2" : "\u25BC"
-  end
-
-  def column_title(column)
-    case column
-    when 'type'
-      t('search.result.hearing.hearing_type')
-    when 'provider'
-      t('search.result.hearing.providers')
-    else
-      t('search.result.hearing.hearing_day')
-    end
   end
 end

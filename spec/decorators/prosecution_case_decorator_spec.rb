@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'court_data_adaptor'
+
 RSpec.describe ProsecutionCaseDecorator, type: :decorator do
   subject(:decorator) { described_class.new(prosecution_case, view_object) }
 
@@ -227,6 +229,44 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       end
 
       it { is_expected.to be_truthy }
+    end
+  end
+
+  describe '#column_sort_icon' do
+    subject(:call) { decorator.column_sort_icon }
+
+    context 'when direction is asc' do
+      before { allow(decorator).to receive(:direction).and_return('asc') }
+
+      it { is_expected.to eql("\u25B2") }
+    end
+
+    context 'when direction is desc' do
+      before { allow(decorator).to receive(:direction).and_return('desc') }
+
+      it { is_expected.to eql("\u25BC") }
+    end
+  end
+
+  describe '#column_title' do
+    subject(:call) { decorator.column_title(column) }
+
+    context 'when column is date' do
+      let(:column) { 'date' }
+
+      it { is_expected.to eql('Date') }
+    end
+
+    context 'when column is type' do
+      let(:column) { 'type' }
+
+      it { is_expected.to eql('Hearing type') }
+    end
+
+    context 'when column is provider' do
+      let(:column) { 'provider' }
+
+      it { is_expected.to eql('Providers attending') }
     end
   end
 end

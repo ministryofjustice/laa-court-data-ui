@@ -181,44 +181,55 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   describe '#hearings_sorter_link' do
-    subject(:hearings_sorter_link) { helper.hearings_sorter_link(id, column) }
+    subject(:hearings_sorter_link) { helper.hearings_sorter_link(decorated_prosecution_case, column) }
 
-    let(:sort_column) { 'date' }
-    let(:sort_direction) { 'asc' }
-    let(:column) { 'provider' }
-    let(:id) { 'TEST12345' }
+    let(:decorated_prosecution_case) { helper.decorate(prosecution_case) }
+    let(:prosecution_case) do
+      CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'TEST12345')
+    end
 
     before do
       initialize_view_helpers(helper)
-      allow(helper).to receive(:sort_column).and_return column
+      allow(helper).to receive(:sort_column).and_return sort_column
       allow(helper).to receive(:sort_direction).and_return sort_direction
+      allow(decorated_prosecution_case).to receive(:direction).and_return direction
     end
 
-    context 'when column is provider and sort_column is date' do
-      it {
-        is_expected.to have_link('Providers attending',
-                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc#provider',
-                                 class: 'govuk-link govuk-link--no-visited-state')
-      }
-    end
-
-    context 'when column is provider, sort_column is provider, sort_direction is asc' do
+    context 'when column is provider, sort_column is date and direction is asc' do
+      let(:sort_column) { 'date' }
       let(:column) { 'provider' }
-
-      it {
-        is_expected.to have_link("Providers attending \u25B2",
-                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc#provider',
-                                 class: 'govuk-link govuk-link--no-visited-state')
-      }
-    end
-
-    context 'when column is provider, sort_column is provider, sort_direction is desc' do
-      let(:column) { 'provider' }
+      let(:direction) { 'asc' }
       let(:sort_direction) { 'desc' }
 
       it {
-        is_expected.to have_link("Providers attending \u25BC",
+        is_expected.to have_link('Providers attending',
                                  href: '/prosecution_cases/TEST12345?column=provider&direction=asc#provider',
+                                 class: 'govuk-link govuk-link--no-visited-state')
+      }
+    end
+
+    context 'when column is provider, sort_column is provider, direction is asc' do
+      let(:column) { 'provider' }
+      let(:sort_column) { 'provider' }
+      let(:direction) { 'asc' }
+      let(:sort_direction) { 'desc' }
+
+      it {
+        is_expected.to have_link("Providers attending \u25B2",
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=asc#provider',
+                                 class: 'govuk-link govuk-link--no-visited-state')
+      }
+    end
+
+    context 'when column is provider, sort_column is provider, direction is desc' do
+      let(:column) { 'provider' }
+      let(:sort_column) { 'provider' }
+      let(:direction) { 'desc' }
+      let(:sort_direction) { 'asc' }
+
+      it {
+        is_expected.to have_link("Providers attending \u25BC",
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc#provider',
                                  class: 'govuk-link govuk-link--no-visited-state')
       }
     end

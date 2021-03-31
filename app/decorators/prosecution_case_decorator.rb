@@ -22,6 +22,21 @@ class ProsecutionCaseDecorator < BaseDecorator
     hearings.map { |h| h.cracked_ineffective_trial&.cracked? }.any?
   end
 
+  def column_sort_icon
+    direction == 'asc' ? "\u25B2" : "\u25BC"
+  end
+
+  def column_title(column)
+    case column
+    when 'type'
+      t('search.result.hearing.hearing_type')
+    when 'provider'
+      t('search.result.hearing.providers')
+    else
+      t('search.result.hearing.hearing_day')
+    end
+  end
+
   private
 
   def sorter
