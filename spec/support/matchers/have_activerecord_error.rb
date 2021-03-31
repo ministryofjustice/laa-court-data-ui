@@ -13,7 +13,7 @@ RSpec::Matchers.define :have_activerecord_error do |attribute, message|
   end
 
   description do
-    'have activerecord error'
+    "have activerecord error with message \"#{message}\""
   end
 
   failure_message do |model_instance|
