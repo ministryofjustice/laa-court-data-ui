@@ -23,7 +23,7 @@ module TableSorters
       hearing.hearing_days.map(&:to_datetime).sort
     end
 
-    private
+    protected
 
     def order_by_asc_or_desc(arr)
       return arr.reverse if @direction == 'desc'
