@@ -28,12 +28,15 @@ class Search
     self.class.filters
   end
 
-  validates :filter, presence: true, inclusion: {
-    in: filters.map { |f| f.id.to_s },
-    message: 'Filter "%{value}" is not recognized'
-  }
+  validates :filter,
+            presence: true,
+            inclusion: { in: filters.map { |f| f.id.to_s },
+                         message: 'Filter "%{value}" is not recognized' }
 
-  validates :term, presence: true, visible_length: { minimum: 2 }
+  validates :term,
+            presence: true,
+            char_length: { minimum: 2 }
+
   validates :dob,
             presence: true,
             if: proc { |search| search.filter.eql?('defendant_name') }
