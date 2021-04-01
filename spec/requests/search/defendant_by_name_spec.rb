@@ -18,10 +18,10 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
         search:
         {
           filter: :defendant_name,
-          term: 'Josefa Franecki',
-          'dob(3i)': '15',
-          'dob(2i)': '06',
-          'dob(1i)': '1961'
+          term: 'trever glover',
+          'dob(3i)': '1',
+          'dob(2i)': '1',
+          'dob(1i)': '1990'
         }
       }
     end

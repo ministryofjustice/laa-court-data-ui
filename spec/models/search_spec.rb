@@ -153,6 +153,62 @@ RSpec.describe Search, type: :model do
 
         it { is_expected.to be_invalid }
         it { is_expected.to have_activerecord_error(:term, 'Search term required') }
+        it { is_expected.not_to have_activerecord_error(:term, 'Search term must be at least 2 characters') }
+      end
+
+      context 'with non-alphanumeric chars as term' do
+        let(:term) { '!' }
+
+        it { is_expected.to be_invalid }
+
+        it {
+          is_expected
+            .to have_activerecord_error(:term, 'Search term must contain only letters and numbers')
+        }
+      end
+
+      context 'with whitespace chars as term' do
+        let(:term) { "\s\s\t" }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:term, 'Search term required') }
+      end
+
+      context 'with single char as term' do
+        let(:term) { 'a' }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:term, 'Search term must be at least 2 characters') }
+      end
+
+      context 'with single char and whitespace as term' do
+        let(:term) { "a\s\s\t" }
+
+        it { is_expected.to be_invalid }
+        it { is_expected.to have_activerecord_error(:term, 'Search term must be at least 2 characters') }
+      end
+
+      context 'with 2 chars as term' do
+        let(:term) { 'at' }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'with apostrophe in term' do
+        let(:term) { "o'conner" }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'with hyphen in term' do
+        let(:term) { 'anne-marie' }
+
+        it { is_expected.to be_invalid }
+
+        it {
+          is_expected
+            .to have_activerecord_error(:term, 'Search term must contain only letters and numbers')
+        }
       end
 
       context 'with blank dob' do

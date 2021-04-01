@@ -28,7 +28,7 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
 
     choose 'A case by URN'
     click_button 'Continue'
-    fill_in 'search-term-field', with: 'non-existent-caseURN'
+    fill_in 'search-term-field', with: 'nonexistentcaseURN'
     click_button 'Search'
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
 
