@@ -35,7 +35,7 @@ class Search
 
   validates :term,
             presence: true,
-            format: { with: /\A[A-Za-z0-9\s]+\z/ },
+            format: { with: /\A[A-Za-z0-9\s\-']+\z/ },
             char_length: { minimum: 2 }
 
   validates :dob,

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Search, type: :model do
+RSpec.fdescribe Search, type: :model do
   subject { described_class.new }
 
   it {
@@ -190,6 +190,18 @@ RSpec.describe Search, type: :model do
 
       context 'with 2 chars as term' do
         let(:term) { 'at' }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'with apostrophe in term' do
+        let(:term) { "o'conner" }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'with hyphen in term' do
+        let(:term) { 'anne-marie' }
 
         it { is_expected.to be_valid }
       end
