@@ -203,7 +203,12 @@ RSpec.describe Search, type: :model do
       context 'with hyphen in term' do
         let(:term) { 'anne-marie' }
 
-        it { is_expected.to be_valid }
+        it { is_expected.to be_invalid }
+
+        it {
+          is_expected
+            .to have_activerecord_error(:term, 'Search term must contain only letters and numbers')
+        }
       end
 
       context 'with blank dob' do
