@@ -12,4 +12,4 @@ en:
             term:
               blank: Search term required
               invalid: Search term must contain only letters and numbers
-              too_short: Search term must be more than %{count} characters
+              too_short: Search term must be at least %{count} characters

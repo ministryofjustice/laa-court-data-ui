@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.fdescribe Search, type: :model do
+RSpec.describe Search, type: :model do
   subject { described_class.new }
 
   it {
@@ -153,7 +153,7 @@ RSpec.fdescribe Search, type: :model do
 
         it { is_expected.to be_invalid }
         it { is_expected.to have_activerecord_error(:term, 'Search term required') }
-        it { is_expected.not_to have_activerecord_error(:term, 'Search term must be more than 2 characters') }
+        it { is_expected.not_to have_activerecord_error(:term, 'Search term must be at least 2 characters') }
       end
 
       context 'with non-alphanumeric chars as term' do
@@ -178,14 +178,14 @@ RSpec.fdescribe Search, type: :model do
         let(:term) { 'a' }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:term, 'Search term must be more than 2 characters') }
+        it { is_expected.to have_activerecord_error(:term, 'Search term must be at least 2 characters') }
       end
 
       context 'with single char and whitespace as term' do
         let(:term) { "a\s\s\t" }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:term, 'Search term must be more than 2 characters') }
+        it { is_expected.to have_activerecord_error(:term, 'Search term must be at least 2 characters') }
       end
 
       context 'with 2 chars as term' do
