@@ -5,50 +5,36 @@ require 'court_data_adaptor'
 RSpec.describe TableSorters::HearingsDateSorter do
   subject(:instance) { described_class.new(hearings, column, direction) }
 
-  let(:hearings) { [hearing1, hearing2, hearing3] }
-
-  let(:hearing1) do
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-1', hearing_days: hearing1_days)
-  end
-
-  let(:hearing2) do
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-2', hearing_days: hearing2_days)
-  end
-
-  let(:hearing3) do
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-3', hearing_days: hearing3_days)
-  end
-
-  let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
-  let(:hearing2_days) { ['2021-01-20T10:00:00.000Z'] }
-  let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
+  include_context 'with multiple hearings to sort'
 
   describe '#sorted_hearings' do
-    subject(:call) { instance.sorted_hearings }
+    context 'when direction is asc' do
+      subject(:call) { instance.sorted_hearings }
 
-    context 'when column is date and sort direction is asc' do
       let(:column) { 'date' }
       let(:direction) { 'asc' }
 
-      it {
+      it 'sorts hearings by hearing_day asc' do
         expect(call.map(&:hearing_days))
-          .to match([hearing3.hearing_days, hearing1.hearing_days, hearing2.hearing_days])
-      }
+          .to eql([hearing3.hearing_days, hearing1.hearing_days, hearing2.hearing_days])
+      end
     end
 
-    context 'when column is date and sort direction is desc' do
+    context 'when direction is desc' do
+      subject(:call) { instance.sorted_hearings }
+
       let(:column) { 'date' }
       let(:direction) { 'desc' }
 
-      it {
+      it 'sorts hearings by hearing_day desc' do
         expect(call.map(&:hearing_days))
-          .to match([hearing2.hearing_days, hearing1.hearing_days, hearing3.hearing_days])
-      }
+          .to eql([hearing2.hearing_days, hearing1.hearing_days, hearing3.hearing_days])
+      end
     end
   end
 
-  describe '#sorted_hearing' do
-    subject(:call) { instance.sorted_hearing(hearing1) }
+  describe '#sorted_hearing_days' do
+    subject(:call) { instance.sorted_hearing_days(hearing1) }
 
     context 'when column is date and sort direction is asc' do
       let(:column) { 'date' }

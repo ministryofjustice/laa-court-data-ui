@@ -57,7 +57,7 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
       end
     end
 
-    scenario 'user can sort by type desc' do
+    scenario 'user clicks to sort by type desc' do
       click_link('Hearing type')
       within :table, 'Hearings' do
         expect(page).to have_link('Date', href: prosecution_cases_page_url('date', 'asc'),
@@ -69,14 +69,17 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
         rows = find_all('tbody/tr')
         expect(rows[0]).to have_link('23/10/2019', href: hearing_page_url(0, 'type', 'desc'),
                                                    class: 'govuk-link')
+        expect(rows[0]).to have_text('Trial (TRL)')
         expect(rows[5]).to have_link('31/10/2019', href: hearing_page_url(5, 'type', 'desc'),
                                                    class: 'govuk-link')
+        expect(rows[5]).to have_text('Pre-Trial Review (PTR)')
         expect(rows[6]).to have_link('26/10/2019', href: hearing_page_url(6, 'type', 'desc'),
                                                    class: 'govuk-link')
+        expect(rows[6]).to have_text('Mention - Defendant to Attend (MDA)')
       end
     end
 
-    scenario 'user can sort by type asc' do
+    scenario 'user clicks (twice) to sort by type asc' do
       click_link('Hearing type')
       click_link('Hearing type')
 
@@ -90,14 +93,17 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
         rows = find_all('tbody/tr')
         expect(rows[0]).to have_link('26/10/2019', href: hearing_page_url(0, 'type', 'asc'),
                                                    class: 'govuk-link')
+        expect(rows[0]).to have_text('Mention - Defendant to Attend (MDA)')
         expect(rows[5]).to have_link('31/10/2019', href: hearing_page_url(5, 'type', 'asc'),
                                                    class: 'govuk-link')
+        expect(rows[5]).to have_text('Pre-Trial Review (PTR)')
         expect(rows[6]).to have_link('23/10/2019', href: hearing_page_url(6, 'type', 'asc'),
                                                    class: 'govuk-link')
+        expect(rows[6]).to have_text('Trial (TRL)')
       end
     end
 
-    scenario 'user can sort by provider desc' do
+    scenario 'user clicks to sort by provider desc' do
       click_link('Providers attending')
       within :table, 'Hearings' do
         expect(page).to have_link('Date', href: prosecution_cases_page_url('date', 'asc'),
@@ -109,14 +115,17 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
         rows = find_all('tbody/tr')
         expect(rows[2]).to have_link('31/10/2019', href: hearing_page_url(2, 'provider', 'desc'),
                                                    class: 'govuk-link')
+        expect(rows[2]).to have_text('Samira Schoen (Junior counsel)Hector Thompson (Junior counsel)')
         expect(rows[3]).to have_link('26/10/2019', href: hearing_page_url(3, 'provider', 'desc'),
                                                    class: 'govuk-link')
+        expect(rows[3]).to have_text('Not available')
         expect(rows[6]).to have_link('23/10/2019', href: hearing_page_url(6, 'provider', 'desc'),
                                                    class: 'govuk-link')
+        expect(rows[6]).to have_text('Not available')
       end
     end
 
-    scenario 'user can sort by provider asc' do
+    scenario 'user clicks (twice) to sort by provider asc' do
       click_link('Providers attending')
       click_link('Providers attending')
       within :table, 'Hearings' do
@@ -129,10 +138,13 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
         rows = find_all('tbody/tr')
         expect(rows[0]).to have_link('23/10/2019', href: hearing_page_url(0, 'provider', 'asc'),
                                                    class: 'govuk-link')
+        expect(rows[0]).to have_text('Not available')
         expect(rows[3]).to have_link('26/10/2019', href: hearing_page_url(3, 'provider', 'asc'),
                                                    class: 'govuk-link')
+        expect(rows[3]).to have_text('Not available')
         expect(rows[8]).to have_link('31/10/2019', href: hearing_page_url(8, 'provider', 'asc'),
                                                    class: 'govuk-link')
+        expect(rows[8]).to have_text('Samira Schoen (Junior counsel)Hector Thompson (Junior counsel)')
       end
     end
   end

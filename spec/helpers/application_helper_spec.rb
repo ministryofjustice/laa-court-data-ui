@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe ApplicationHelper, type: :helper do
-  include ViewSpecHelper
-  include ActionView::Helpers
-
   subject { helper }
 
   it { is_expected.to respond_to :govuk_page_title }
@@ -189,49 +186,45 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     before do
-      initialize_view_helpers(helper)
-      allow(helper).to receive(:sort_column).and_return sort_column
-      allow(helper).to receive(:sort_direction).and_return sort_direction
-      allow(decorated_prosecution_case).to receive(:direction).and_return direction
+      allow(decorated_prosecution_case).to receive(:hearings_sort_column).and_return hearings_sort_column
+      allow(decorated_prosecution_case).to receive(:hearings_sort_direction)
+        .and_return hearings_sort_direction
     end
 
-    context 'when column is provider, sort_column is date and direction is asc' do
-      let(:sort_column) { 'date' }
+    context 'when column is provider, hearings_sort_column is date and hearings_sort_direction is asc' do
       let(:column) { 'provider' }
-      let(:direction) { 'asc' }
-      let(:sort_direction) { 'desc' }
+      let(:hearings_sort_column) { 'date' }
+      let(:hearings_sort_direction) { 'asc' }
 
-      it {
+      it 'returns the column header Providers attending' do
         is_expected.to have_link('Providers attending',
-                                 href: '/prosecution_cases/TEST12345?column=provider&direction=asc#provider',
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc#provider',
                                  class: 'govuk-link govuk-link--no-visited-state')
-      }
+      end
     end
 
-    context 'when column is provider, sort_column is provider, direction is asc' do
-      let(:column) { 'provider' }
-      let(:sort_column) { 'provider' }
-      let(:direction) { 'asc' }
-      let(:sort_direction) { 'desc' }
+    context 'when column is type, hearings_sort_column is type, hearings_sort_direction is asc' do
+      let(:column) { 'type' }
+      let(:hearings_sort_column) { 'type' }
+      let(:hearings_sort_direction) { 'asc' }
 
-      it {
-        is_expected.to have_link("Providers attending \u25B2",
-                                 href: '/prosecution_cases/TEST12345?column=provider&direction=asc#provider',
+      it 'returns the column header Hearing type, with arrow pointing up' do
+        is_expected.to have_link("Hearing type \u25B2",
+                                 href: '/prosecution_cases/TEST12345?column=type&direction=desc#type',
                                  class: 'govuk-link govuk-link--no-visited-state')
-      }
+      end
     end
 
     context 'when column is provider, sort_column is provider, direction is desc' do
-      let(:column) { 'provider' }
-      let(:sort_column) { 'provider' }
-      let(:direction) { 'desc' }
-      let(:sort_direction) { 'asc' }
+      let(:column) { 'date' }
+      let(:hearings_sort_column) { 'date' }
+      let(:hearings_sort_direction) { 'desc' }
 
-      it {
-        is_expected.to have_link("Providers attending \u25BC",
-                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc#provider',
+      it 'returns the column header Date, with arrow pointing down' do
+        is_expected.to have_link("Date \u25BC",
+                                 href: '/prosecution_cases/TEST12345?column=date&direction=asc#date',
                                  class: 'govuk-link govuk-link--no-visited-state')
-      }
+      end
     end
   end
 end

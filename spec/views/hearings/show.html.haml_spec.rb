@@ -10,7 +10,9 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
     double(ProsecutionCaseDecorator,
            hearings: [hearing],
            prosecution_case_reference: 'ACASEURN',
-           sorted_hearings_with_day: [hearing])
+           sorted_hearings_with_day: [hearing],
+           hearings_sort_column: 'date',
+           hearings_sort_direction: 'asc')
   end
   # rubocop: enable RSpec/VerifiedDoubles
 
@@ -22,8 +24,8 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
 
   before do
     allow(view).to receive(:govuk_page_title).and_return 'A Gov uk page title'
-    allow(prosecution_case).to receive(:column).and_return 'date'
-    allow(prosecution_case).to receive(:direction).and_return 'asc'
+    allow(prosecution_case).to receive(:hearings_sort_column=)
+    allow(prosecution_case).to receive(:hearings_sort_direction=)
     assign(:hearing, decorated_hearing)
     assign(:paginator, paginator)
   end

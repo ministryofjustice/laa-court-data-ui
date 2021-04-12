@@ -38,11 +38,6 @@ RSpec.shared_examples 'sort hearings' do
     let(:column) { 'date' }
     let(:direction) { 'asc' }
 
-    before do
-      allow(decorator).to receive(:hearings_sort_column).and_return(column)
-      allow(decorator).to receive(:hearings_sort_direction).and_return(direction)
-    end
-
     it {
       expect(call.map(&:id))
         .to eql(%w[hearing-uuid-3 hearing-uuid-1 hearing-uuid-1 hearing-uuid-2])
@@ -52,11 +47,6 @@ RSpec.shared_examples 'sort hearings' do
   context 'when column is date and direction is desc' do
     let(:column) { 'date' }
     let(:direction) { 'desc' }
-
-    before do
-      allow(decorator).to receive(:hearings_sort_column).and_return(column)
-      allow(decorator).to receive(:hearings_sort_direction).and_return(direction)
-    end
 
     it {
       expect(call.map(&:id))
@@ -68,11 +58,6 @@ RSpec.shared_examples 'sort hearings' do
     let(:column) { 'type' }
     let(:direction) { 'asc' }
 
-    before do
-      allow(decorator).to receive(:hearings_sort_column).and_return(column)
-      allow(decorator).to receive(:hearings_sort_direction).and_return(direction)
-    end
-
     it {
       expect(call.map(&:id))
         .to eql(%w[hearing-uuid-3 hearing-uuid-2 hearing-uuid-1 hearing-uuid-1])
@@ -82,11 +67,6 @@ RSpec.shared_examples 'sort hearings' do
   context 'when column is type and direction is desc' do
     let(:column) { 'type' }
     let(:direction) { 'desc' }
-
-    before do
-      allow(decorator).to receive(:hearings_sort_column).and_return(column)
-      allow(decorator).to receive(:hearings_sort_direction).and_return(direction)
-    end
 
     it {
       expect(call.map(&:id))
@@ -98,11 +78,6 @@ RSpec.shared_examples 'sort hearings' do
     let(:column) { 'provider' }
     let(:direction) { 'asc' }
 
-    before do
-      allow(decorator).to receive(:hearings_sort_column).and_return(column)
-      allow(decorator).to receive(:hearings_sort_direction).and_return(direction)
-    end
-
     it {
       expect(call.map(&:id))
         .to eql(%w[hearing-uuid-3 hearing-uuid-2 hearing-uuid-1 hearing-uuid-1])
@@ -112,11 +87,6 @@ RSpec.shared_examples 'sort hearings' do
   context 'when column is provider and direction is desc' do
     let(:column) { 'provider' }
     let(:direction) { 'desc' }
-
-    before do
-      allow(decorator).to receive(:hearings_sort_column).and_return(column)
-      allow(decorator).to receive(:hearings_sort_direction).and_return(direction)
-    end
 
     it {
       expect(call.map(&:id))
