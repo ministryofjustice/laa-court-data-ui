@@ -6,7 +6,7 @@ module TableSorters
       order_by_asc_or_desc(@hearings.sort_by { |h| h.hearing_days.map(&:to_datetime) })
     end
 
-    def sorted_hearing(hearing)
+    def sorted_hearing_days(hearing)
       order_by_asc_or_desc(super)
     end
   end

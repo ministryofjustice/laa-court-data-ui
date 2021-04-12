@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProsecutionCaseDecorator < BaseDecorator
-  attr_accessor :column, :direction
+  attr_writer :hearings_sort_column, :hearings_sort_direction
 
   def hearings
     @hearings ||= decorate_all(object.hearings)
@@ -10,7 +10,7 @@ class ProsecutionCaseDecorator < BaseDecorator
   def sorted_hearings_with_day
     Enumerator.new do |enum|
       sorter.sorted_hearings.each do |hearing|
-        sorter.sorted_hearing(hearing).each do |day|
+        sorter.sorted_hearing_days(hearing).each do |day|
           hearing.day = day
           enum.yield(hearing)
         end
@@ -23,23 +23,27 @@ class ProsecutionCaseDecorator < BaseDecorator
   end
 
   def column_sort_icon
-    direction == 'asc' ? "\u25B2" : "\u25BC"
+    hearings_sort_direction == 'asc' ? "\u25B2" : "\u25BC"
   end
 
   def column_title(column)
-    case column
-    when 'type'
-      t('search.result.hearing.hearing_type')
-    when 'provider'
-      t('search.result.hearing.providers')
-    else
-      t('search.result.hearing.hearing_day')
-    end
+    Hash.new(t('search.result.hearing.hearing_day')).merge(
+      type: t('search.result.hearing.hearing_type'),
+      provider: t('search.result.hearing.providers')
+    )[column.to_sym]
+  end
+
+  def hearings_sort_column
+    @hearings_sort_column ||= 'date'
+  end
+
+  def hearings_sort_direction
+    @hearings_sort_direction ||= 'asc'
   end
 
   private
 
   def sorter
-    TableSorters::HearingsSorter.for(hearings, column, direction)
+    TableSorters::HearingsSorter.for(hearings, hearings_sort_column, hearings_sort_direction)
   end
 end

@@ -9,17 +9,13 @@ module TableSorters
     end
 
     def self.for(hearings, column, direction)
-      case column
-      when 'type'
-        TableSorters::HearingsTypeSorter.new(hearings, column, direction)
-      when 'provider'
-        TableSorters::HearingsProviderSorter.new(hearings, column, direction)
-      else
-        TableSorters::HearingsDateSorter.new(hearings, column, direction)
-      end
+      Hash.new(TableSorters::HearingsDateSorter.new(hearings, column, direction)).merge(
+        type: TableSorters::HearingsTypeSorter.new(hearings, column, direction),
+        provider: TableSorters::HearingsProviderSorter.new(hearings, column, direction)
+      )[column.to_sym]
     end
 
-    def sorted_hearing(hearing)
+    def sorted_hearing_days(hearing)
       hearing.hearing_days.map(&:to_datetime).sort
     end
 

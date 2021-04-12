@@ -88,8 +88,8 @@ class HearingPaginator
   end
 
   def sorted_hearing_items
-    @prosecution_case.column ||= @column
-    @prosecution_case.direction ||= @direction
+    @prosecution_case.hearings_sort_column = @column
+    @prosecution_case.hearings_sort_direction = @direction
     @prosecution_case.sorted_hearings_with_day.map do |hearing|
       PageItem.new(hearing.id, hearing.day)
     end

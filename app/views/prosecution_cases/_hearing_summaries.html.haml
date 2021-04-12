@@ -15,7 +15,7 @@
     - prosecution_case.sorted_hearings_with_day.each_with_index do |hearing, idx|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = link_to hearing.day.strftime('%d/%m/%Y'), hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference, column: @sort_column, direction: @sort_direction, page: idx), class: 'govuk-link'
+          = link_to hearing.day.strftime('%d/%m/%Y'), hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference, column: prosecution_case.hearings_sort_column, direction: prosecution_case.hearings_sort_direction, page: idx), class: 'govuk-link'
         %td.govuk-table__cell
           = hearing.hearing_type
         %td.govuk-table__cell
