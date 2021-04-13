@@ -9,10 +9,10 @@ module TableSorters
     end
 
     def self.for(hearings, column, direction)
-      Hash.new(TableSorters::HearingsDateSorter.new(hearings, column, direction)).merge(
-        type: TableSorters::HearingsTypeSorter.new(hearings, column, direction),
-        provider: TableSorters::HearingsProviderSorter.new(hearings, column, direction)
-      )[column&.to_sym]
+      Hash.new(TableSorters::HearingsDateSorter).merge(
+        type: TableSorters::HearingsTypeSorter,
+        provider: TableSorters::HearingsProviderSorter
+      )[column&.to_sym].new(hearings, column, direction)
     end
 
     def sorted_hearing_days(hearing)
