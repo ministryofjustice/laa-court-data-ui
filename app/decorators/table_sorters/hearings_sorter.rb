@@ -12,7 +12,7 @@ module TableSorters
       Hash.new(TableSorters::HearingsDateSorter.new(hearings, column, direction)).merge(
         type: TableSorters::HearingsTypeSorter.new(hearings, column, direction),
         provider: TableSorters::HearingsProviderSorter.new(hearings, column, direction)
-      )[column.to_sym]
+      )[column&.to_sym]
     end
 
     def sorted_hearing_days(hearing)

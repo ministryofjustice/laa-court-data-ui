@@ -24,27 +24,35 @@ RSpec.describe TableSorters::HearingsSorter do
   describe '.for' do
     subject { described_class.for(hearings, column, direction) }
 
-    context 'when column is provider and direction is asc' do
-      let(:column) { 'provider' }
-      let(:direction) { 'asc' }
+    let(:hearings) { nil }
+    let(:direction) { nil }
 
-      it 'sorts hearing by hearing_days desc' do
+    context 'when column is provider' do
+      let(:column) { 'provider' }
+
+      it {
         is_expected.to be_instance_of(TableSorters::HearingsProviderSorter)
-      end
+      }
     end
 
-    context 'when column is type and direction is asc' do
+    context 'when column is type' do
       let(:column) { 'type' }
-      let(:direction) { 'asc' }
 
       it {
         is_expected.to be_instance_of(TableSorters::HearingsTypeSorter)
       }
     end
 
-    context 'when column is date and direction is asc' do
+    context 'when column is date' do
       let(:column) { 'date' }
-      let(:direction) { 'asc' }
+
+      it {
+        is_expected.to be_instance_of(TableSorters::HearingsDateSorter)
+      }
+    end
+
+    context 'when column is nil' do
+      let(:column) { nil }
 
       it {
         is_expected.to be_instance_of(TableSorters::HearingsDateSorter)
