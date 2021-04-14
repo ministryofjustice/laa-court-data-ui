@@ -43,9 +43,9 @@ RSpec.describe TableSorters::HearingsDateSorter do
         ['2021-01-19T10:45:00.000Z'.to_datetime, '2021-01-20T10:45:00.000Z'.to_datetime]
       end
 
-      it {
+      it 'sorts hearing hearing_days by date asc' do
         is_expected.to eql(expected_result)
-      }
+      end
     end
 
     context 'when column is date and sort direction is desc' do
@@ -55,9 +55,9 @@ RSpec.describe TableSorters::HearingsDateSorter do
         ['2021-01-20T10:45:00.000Z'.to_datetime, '2021-01-19T10:45:00.000Z'.to_datetime]
       end
 
-      it {
+      it 'sorts hearing hearing_days by date desc' do
         is_expected.to eql(expected_result)
-      }
+      end
     end
   end
 end
