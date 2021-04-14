@@ -108,7 +108,7 @@ RSpec.describe Search, type: :model do
         let(:filter) { nil }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:filter, 'Filter required') }
+        it { is_expected.to have_activemodel_error_message(:filter, 'Filter required') }
       end
 
       context 'with not included filter' do
@@ -118,7 +118,7 @@ RSpec.describe Search, type: :model do
 
         it {
           is_expected.to \
-            have_activerecord_error(:filter, 'Filter "invalid_filter" is not recognized')
+            have_activemodel_error_message(:filter, 'Filter "invalid_filter" is not recognized')
         }
       end
 
@@ -126,7 +126,7 @@ RSpec.describe Search, type: :model do
         let(:term) { nil }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:term, 'Search term required') }
+        it { is_expected.to have_activemodel_error_message(:term, 'Search term required') }
       end
 
       context 'with blank dob' do
@@ -145,15 +145,14 @@ RSpec.describe Search, type: :model do
         let(:filter) { nil }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:filter, 'Filter required') }
+        it { is_expected.to have_activemodel_error_message(:filter, 'Filter required') }
       end
 
       context 'with blank term' do
         let(:term) { nil }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:term, 'Search term required') }
-        it { is_expected.not_to have_activerecord_error(:term, 'Search term must be at least 2 characters') }
+        it { is_expected.to have_activemodel_error_message(:term, 'Search term required') }
       end
 
       context 'with non-alphanumeric chars as term' do
@@ -163,7 +162,7 @@ RSpec.describe Search, type: :model do
 
         it {
           is_expected
-            .to have_activerecord_error(:term, 'Search term must contain only letters and numbers')
+            .to have_activemodel_error_message(:term, 'Search term must contain only letters and numbers')
         }
       end
 
@@ -171,21 +170,29 @@ RSpec.describe Search, type: :model do
         let(:term) { "\s\s\t" }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:term, 'Search term required') }
+        it { is_expected.to have_activemodel_error_message(:term, 'Search term required') }
       end
 
       context 'with single char as term' do
         let(:term) { 'a' }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:term, 'Search term must be at least 2 characters') }
+
+        it {
+          is_expected
+            .to have_activemodel_error_message(:term, 'Search term must be at least 2 characters')
+        }
       end
 
       context 'with single char and whitespace as term' do
         let(:term) { "a\s\s\t" }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:term, 'Search term must be at least 2 characters') }
+
+        it {
+          is_expected
+            .to have_activemodel_error_message(:term, 'Search term must be at least 2 characters')
+        }
       end
 
       context 'with 2 chars as term' do
@@ -207,7 +214,7 @@ RSpec.describe Search, type: :model do
 
         it {
           is_expected
-            .to have_activerecord_error(:term, 'Search term must contain only letters and numbers')
+            .to have_activemodel_error_message(:term, 'Search term must contain only letters and numbers')
         }
       end
 
@@ -215,7 +222,7 @@ RSpec.describe Search, type: :model do
         let(:dob) { nil }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:dob, 'Defendant date of birth required') }
+        it { is_expected.to have_activemodel_error_message(:dob, 'Defendant date of birth required') }
       end
     end
 
@@ -228,14 +235,14 @@ RSpec.describe Search, type: :model do
         let(:filter) { nil }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:filter, 'Filter required') }
+        it { is_expected.to have_activemodel_error_message(:filter, 'Filter required') }
       end
 
       context 'with blank term' do
         let(:term) { nil }
 
         it { is_expected.to be_invalid }
-        it { is_expected.to have_activerecord_error(:term, 'Search term required') }
+        it { is_expected.to have_activemodel_error_message(:term, 'Search term required') }
       end
     end
   end
