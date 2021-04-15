@@ -9,10 +9,10 @@ require 'rspec/expectations'
 RSpec::Matchers.define :have_activemodel_error_type do |attribute, error_type|
   match do |model_instance|
     model_instance.valid?
-    errors_for(attribute).map(&:type).include?(error_type)
+    errors_for(model_instance, attribute).map(&:type).include?(error_type)
   end
 
-  def errors_for(attribute)
+  def errors_for(model_instance, attribute)
     model_instance.errors.select { |err| err.attribute.eql?(attribute) }
   end
 
