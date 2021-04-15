@@ -1,20 +1,16 @@
 # frozen_string_literal: true
 
 class ProsecutionCaseDecorator < BaseDecorator
-  def hearings
-    @hearings ||= decorate_all(object.hearings)
+  def hearings_summaries_by_datetime
+    object.hearing_summaries.sort_by { |h| h.hearing_days.map(&:to_datetime) }
   end
 
-  def hearings_by_datetime
-    hearings.sort_by { |h| h.hearing_days.map(&:to_datetime) }
-  end
-
-  def hearings_with_day_by_datetime
+  def hearings_summaries_with_day_by_datetime
     Enumerator.new do |enum|
-      hearings_by_datetime.each do |hearing|
-        hearing.hearing_days.map(&:to_datetime).sort.each do |day|
-          hearing.day = day
-          enum.yield(hearing)
+      hearings_summaries_by_datetime.each do |hearing_summary|
+        hearing_summary.hearing_days.map(&:to_datetime).sort.each do |day|
+          hearing_summary.day = day
+          enum.yield(hearing_summary)
         end
       end
     end

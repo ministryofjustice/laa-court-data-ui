@@ -29,14 +29,11 @@ class HearingsController < ApplicationController
   private
 
   def load_and_authorize_search
-    # TODO: this should be hitting the hearing endpoint ideally, however, since pagination
-    # currently requires having knowlegde of all hearings via the prosecution case endpoint
-    # it is pointless and time-consuming to to query both endpoints when the prosecution case
-    # endpoint contains all the info we need. If we could pass a "pagination collection" this would
-    # allow us to revert to using the hearing endpoint.
-    #
     @prosecution_case_search = Search.new(filter: 'case_reference', term: prosecution_case_reference)
     authorize! :create, @prosecution_case_search
+
+    @hearing_search = CourtDataAdaptor::Query::Hearing.new(params[:id])
+    authorize! :show, @hearing_search
   end
 
   def set_hearing
@@ -48,7 +45,7 @@ class HearingsController < ApplicationController
   end
 
   def hearing
-    @hearing ||= helpers.decorate(prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
+    @hearing ||= helpers.decorate(@hearing_search.call)
   end
 
   def hearing_day

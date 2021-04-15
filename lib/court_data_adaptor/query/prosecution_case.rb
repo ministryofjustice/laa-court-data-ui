@@ -11,11 +11,7 @@ module CourtDataAdaptor
         resource
           .includes(:defendants,
                     'defendants.offences',
-                    :hearing_summaries,
-                    :hearings,
-                    'hearings.hearing_events',
-                    'hearings.providers',
-                    'hearings.cracked_ineffective_trial')
+                    :hearing_summaries)
           .where(prosecution_case_reference: urn)
           .all
       end

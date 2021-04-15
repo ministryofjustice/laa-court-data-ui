@@ -7,13 +7,10 @@
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_day')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.hearing_type')
-      %th.govuk-table__header{ scope: 'col' }= t('search.result.hearing.providers')
   %tbody.govuk-table__body
-    - prosecution_case.hearings_with_day_by_datetime.each_with_index do |hearing, idx|
+    - prosecution_case.hearings_summaries_with_day_by_datetime.each_with_index do |hearing_summary, idx|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = link_to hearing.day.strftime('%d/%m/%Y'), hearing_path(id: hearing.id, urn: prosecution_case.prosecution_case_reference, page: idx), class: 'govuk-link'
+          = link_to hearing_summary.day.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id, urn: prosecution_case.prosecution_case_reference, page: idx), class: 'govuk-link'
         %td.govuk-table__cell
-          = hearing.hearing_type
-        %td.govuk-table__cell
-          = hearing ? hearing.provider_list : t('generic.not_available')
+          = hearing_summary.hearing_type

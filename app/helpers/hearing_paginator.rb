@@ -82,8 +82,8 @@ class HearingPaginator
   end
 
   def hearing_items_by_datetime
-    @prosecution_case.hearings_with_day_by_datetime.map do |hearing|
-      PageItem.new(hearing.id, hearing.day)
+    @prosecution_case.hearings_summaries_with_day_by_datetime.map do |hearing_summary|
+      PageItem.new(hearing_summary.id, hearing_summary.day)
     end
   end
 end
