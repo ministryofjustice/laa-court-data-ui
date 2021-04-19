@@ -33,7 +33,7 @@ class SearchesController < ApplicationController
   end
 
   def search_results
-    Rails.cache.fetch(term, expires_in: 5.minutes) do
+    Rails.cache.fetch(term, expires_in: Rails.configuration.cache_expiry) do
       @search.execute if @search.valid?
     end
   end

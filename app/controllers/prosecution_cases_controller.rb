@@ -23,7 +23,7 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def search_results
-    Rails.cache.fetch(term, expires_in: 5.minutes) do
+    Rails.cache.fetch(term, expires_in: Rails.configuration.cache_expiry) do
       @search_results ||= @search.execute
     end
   end

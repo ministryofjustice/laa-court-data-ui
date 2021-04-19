@@ -64,7 +64,7 @@ class HearingsController < ApplicationController
   end
 
   def prosecution_case_search_results
-    Rails.cache.fetch(prosecution_case_reference, expires_in: 5.minutes) do
+    Rails.cache.fetch(prosecution_case_reference, expires_in: Rails.configuration.cache_expiry) do
       @prosecution_case_search.execute
     end
   end
