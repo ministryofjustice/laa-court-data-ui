@@ -14,7 +14,7 @@ class ProsecutionCasesController < ApplicationController
   private
 
   def load_and_authorize_search
-    @search = Search.new(filter: 'case_reference', term: params[:id])
+    @search = Search.new(filter: 'case_reference', term: term)
     authorize! :create, @search
   end
 
@@ -23,6 +23,12 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def search_results
-    @search_results ||= @search.execute
+    Rails.cache.fetch(term, expires_in: 5.minutes) do
+      @search_results ||= @search.execute
+    end
+  end
+
+  def term
+    @term ||= params[:id]
   end
 end

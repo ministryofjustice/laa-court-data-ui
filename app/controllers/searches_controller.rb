@@ -17,7 +17,7 @@ class SearchesController < ApplicationController
     @search = Search.new(filter: filter, term: term, dob: dob)
     authorize! :create, @search
 
-    @results = @search.execute if @search.valid?
+    @results = search_results
     render 'new'
   end
 
@@ -30,6 +30,12 @@ class SearchesController < ApplicationController
 
   def search_params
     params.require(:search).permit(:term, :dob, :filter)
+  end
+
+  def search_results
+    Rails.cache.fetch(term, expires_in: 5.minutes) do
+      @search.execute if @search.valid?
+    end
   end
 
   def filter
