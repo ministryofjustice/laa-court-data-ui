@@ -118,6 +118,8 @@ spec:
                 secretKeyRef:
                   name: lcdui-secrets
                   key: SLACK_ALERTS_WEBHOOK
+            - name: CACHE_TIMEOUT
+              value: '10.minutes'
         - name: laa-court-data-ui-metrics
           image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-get-paid/laa-court-data-ui:set-me
           imagePullPolicy: Always

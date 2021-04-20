@@ -17,7 +17,9 @@ class SearchesController < ApplicationController
     @search = Search.new(filter: filter, term: term, dob: dob)
     authorize! :create, @search
 
-    @results = search_results
+    # Query CP, rather than using cache, when user searches???
+    Rails.cache.delete(term)
+    @results = @search.execute if @search.valid?
     render 'new'
   end
 
@@ -30,19 +32,6 @@ class SearchesController < ApplicationController
 
   def search_params
     params.require(:search).permit(:term, :dob, :filter)
-  end
-
-  def search_results
-    # Query CP, rather than using cache, when user searches???
-    Rails.cache.delete(term)
-    # only cache URN searches???
-    if filter == 'case_reference'
-      Rails.cache.fetch(term, expires_in: Rails.configuration.cache_expiry) do
-        @search.execute if @search.valid?
-      end
-    elsif @search.valid?
-      @search.execute
-    end
   end
 
   def filter

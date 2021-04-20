@@ -60,13 +60,7 @@ class HearingsController < ApplicationController
   end
 
   def prosecution_case
-    @prosecution_case ||= helpers.decorate(prosecution_case_search_results.first)
-  end
-
-  def prosecution_case_search_results
-    Rails.cache.fetch(prosecution_case_reference, expires_in: Rails.configuration.cache_expiry) do
-      @prosecution_case_search.execute
-    end
+    @prosecution_case ||= helpers.decorate(@prosecution_case_search.execute.first)
   end
 
   def page
