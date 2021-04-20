@@ -59,6 +59,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def link_laa_reference_and_redirect
+    Rails.cache.delete(prosecution_case_reference)
     laa_reference = resource.new(**resource_params)
     laa_reference.save
 

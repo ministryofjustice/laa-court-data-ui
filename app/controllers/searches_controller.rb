@@ -33,8 +33,15 @@ class SearchesController < ApplicationController
   end
 
   def search_results
-    Rails.cache.fetch(term, expires_in: Rails.configuration.cache_expiry) do
-      @search.execute if @search.valid?
+    # Query CP, rather than using cache, when user searches???
+    Rails.cache.delete(term)
+    # only cache URN searches???
+    if filter == 'case_reference'
+      Rails.cache.fetch(term, expires_in: Rails.configuration.cache_expiry) do
+        @search.execute if @search.valid?
+      end
+    elsif @search.valid?
+      @search.execute
     end
   end
 
