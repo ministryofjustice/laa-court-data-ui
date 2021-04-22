@@ -22,8 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :prosecution_cases, only: %i[show]
-  resources :defendants, only: %i[edit update]
-  resources :laa_references, only: %i[new create]
+  resources :laa_references, only: %i[new create destroy show]
   resources :hearings, only: %i[show]
 
   devise_for :users, controllers: {

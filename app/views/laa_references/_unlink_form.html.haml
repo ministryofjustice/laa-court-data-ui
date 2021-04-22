@@ -1,5 +1,4 @@
-= form_with(model: @unlink_attempt, url: defendant_path(@defendant.id), local: true, method: 'patch') do |f|
-  = f.govuk_error_summary
+= form_with(model: @unlink_attempt, url: laa_reference_path(@defendant.id), local: true, method: 'delete') do |f|
 
   = render 'defendants/defendant'
 
@@ -33,3 +32,4 @@
       %span.govuk-warning-text__assistive
         = t('generic.warning')
       = t('defendants.unlink.warning')
+
