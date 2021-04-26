@@ -78,9 +78,8 @@ class LaaReferencesController < ApplicationController
   end
 
   def unlink_and_redirect
-    defendant.update(@unlink_attempt.to_unlink_attributes)
-    # TODO: this needs to be be a call to the new DELETE endpoint
-    # something like laa_reference.destroy
+    laa_reference = resource.new(**unlink_resource_params)
+    laa_reference.save
 
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
     flash[:notice] = I18n.t('defendants.unlink.success')
