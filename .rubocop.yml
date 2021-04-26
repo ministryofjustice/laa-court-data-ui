@@ -35,6 +35,9 @@ Layout/LineLength:
   IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*', "body: '{\".*\":", "%r{http.*"]
   AllowHeredoc: true
 
+Layout/RedundantLineBreak:
+  Enabled: false
+
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
