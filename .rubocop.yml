@@ -74,6 +74,9 @@ Performance/AncestorsInclude:
 Performance/BigDecimalWithNumericArgument:
   Enabled: true
 
+Performance/MapCompact:
+  Enabled: true
+
 Performance/RedundantSortBlock:
   Enabled: true
 
@@ -81,6 +84,9 @@ Performance/RedundantStringChars:
   Enabled: true
 
 Performance/ReverseFirst:
+  Enabled: true
+
+Performance/SelectMap:
   Enabled: true
 
 Performance/SortReverse:
