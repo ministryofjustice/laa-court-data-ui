@@ -78,8 +78,10 @@ class LaaReferencesController < ApplicationController
   end
 
   def unlink_and_redirect
-    laa_reference = resource.new(**unlink_resource_params)
-    laa_reference.save
+    laa_reference = resource.new(id: defendant.id, **unlink_resource_params)
+    # TODO: This call is failing with
+    # param is missing or the value is empty: laa_reference
+    laa_reference.destroy
 
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
     flash[:notice] = I18n.t('defendants.unlink.success')
