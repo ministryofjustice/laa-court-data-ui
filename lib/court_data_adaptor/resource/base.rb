@@ -24,7 +24,8 @@ module CourtDataAdaptor
       self.client = Client.new
 
       connection_options[:status_handlers] = {
-        400 => BadRequestHandler
+        400 => BadRequestHandler,
+        422 => BadRequestHandler
       }
 
       connection do |conn|

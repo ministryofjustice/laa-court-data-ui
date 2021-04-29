@@ -64,7 +64,7 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
         end
 
         it 'flashes returned error' do
-          expect(flash.now[:alert]).to match(/Defendant is not a valid uuid/i)
+          expect(flash.now[:alert]).to match(/defendant id.*is not a valid uuid/i)
         end
 
         it 'renders laa_reference_path' do
@@ -83,7 +83,9 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
 
         it 'flashes returned error' do
           expect(flash.now[:alert])
-            .to match(/MAAT reference 1234567 has no common platform data created against Maat application./i)
+            .to match(
+              /MAAT reference.*1234567 has no common platform data created against Maat application./i
+            )
         end
 
         it 'renders laa_reference_path' do

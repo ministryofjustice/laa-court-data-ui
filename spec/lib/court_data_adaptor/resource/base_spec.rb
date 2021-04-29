@@ -76,6 +76,21 @@ RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
             raise_error CourtDataAdaptor::Errors::BadRequest, 'Bad request'
         end
       end
+
+      context 'when unprocessable entity response' do
+        before do
+          stub_request(:get, mock_resource_endpoint)
+            .to_return(
+              status: 422,
+              body: { field: %w[error1 error2] }.to_json
+            )
+        end
+
+        it 'applies custom handler' do
+          expect { described_class.all }.to \
+            raise_error CourtDataAdaptor::Errors::BadRequest, 'Bad request'
+        end
+      end
     end
   end
 end

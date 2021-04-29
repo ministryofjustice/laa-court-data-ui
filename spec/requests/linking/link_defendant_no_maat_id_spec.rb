@@ -61,7 +61,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
         end
 
         it 'flashes returned error' do
-          expect(flash.now[:alert]).to match(/Defendant is not a valid uuid/i)
+          expect(flash.now[:alert]).to match(/defendant id.*is not a valid uuid/i)
         end
 
         it 'renders laa_reference_path' do

@@ -92,7 +92,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def error_messages
-    @errors.map { |k, v| "#{k.humanize} #{v.join(', ')}" }.join("\n")
+    @errors.map { |k, v| "#{k.humanize} #{v.humanize}" }.join("\n")
   end
 
   def set_link_attempt

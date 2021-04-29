@@ -106,10 +106,11 @@ RSpec.configure do |config|
     ).to_return(
       status: 400,
       headers: { 'Content-Type' => 'application/vnd.api+json' },
-      body: { defendant_id: ['is not a valid uuid'],
-              maat_reference: [
-                '1234567 has no common platform data created against Maat application.'
-              ] }.to_json
+      body: {
+        'error' =>
+          'Contract failed with: {:defendant_id=>[\"is not a valid uuid\"]},
+          {:maat_reference=>[\"1234567 has no data created against Maat application.\"]}'
+      }.to_json
     )
   end
 
@@ -117,10 +118,11 @@ RSpec.configure do |config|
     stub_request(
       :post, %r{/api/internal/v1/laa_references}
     ).to_return(
-      status: 400,
+      status: 422,
       headers: { 'Content-Type' => 'application/vnd.api+json' },
-      body: { maat_reference:
-                ['1234567 has no common platform data created against Maat application.'] }.to_json
+      body: { 'error' =>
+                'Contract failed with: {:maat_reference=>'\
+                '[\"1234567 has no common platform data created against Maat application.\"]' }.to_json
     )
   end
 
