@@ -20,16 +20,11 @@ ruby_http_duration_seconds_sum{namespace="laa-court-data-ui-staging"}
 
 There are currently 2 separate Grafana dashboards that display metrics.
 
-One displays the status of the [Kubernetes pods](https://grafana.cloud-platform.service.justice.gov.uk/d/CEeoatTMk/laa-court-data-ui-kubernetes-pods?orgId=1&var-namespace=laa-court-data-ui-production) and is defined in .k8s/staging/kubernetes_pods_dashboard.yaml. Note the metrics displayed in this dashboard are collected by Cloud Platform independently of the Prometheus Exporter gem.
+One displays the status of the [Kubernetes pods](https://grafana.cloud-platform.service.justice.gov.uk/d/CEeoatTMk/laa-court-data-ui-kubernetes-pods?orgId=1&var-namespace=laa-court-data-ui-production) and is defined in [kubernetes_pods_dashboard.yaml](https://github.com/ministryofjustice/cloud-platform-environments/tree/main/namespaces/live-1.cloud-platform.service.justice.gov.uk/laa-court-data-ui-production/kubernetes_pods_dashboard.yaml). Note the metrics displayed in this dashboard are collected by Cloud Platform independently of the Prometheus Exporter gem.
 
-The second displays numbers of different types of [http status request codes](https://grafana.cloud-platform.service.justice.gov.uk/d/VxuKVkoMz/laa-court-data-ui-http-status-codes?var-datasource=Prometheus&var-namespace=laa-court-data-ui-production&var-status=200) and is defined in .k8s/staging/grafana_dashboard.yaml. This does display one of the metrics scraped by Prometheus Exporter.
+The second displays numbers of different types of [http status request codes](https://grafana.cloud-platform.service.justice.gov.uk/d/VxuKVkoMz/laa-court-data-ui-http-status-codes?var-datasource=Prometheus&var-namespace=laa-court-data-ui-production&var-status=200) and is defined in [http_status_codes_grafana_dashboard.yaml](https://github.com/ministryofjustice/cloud-platform-environments/tree/main/namespaces/live-1.cloud-platform.service.justice.gov.uk/laa-court-data-ui-production/http_status_codes_grafana_dashboard.yaml). This does display one of the metrics scraped by Prometheus Exporter.
 
-Currently these dashboards have been applied manually; e.g. with
-
-```
-# apply dashboard
-kubectl apply -n laa-court-data-ui-staging -f .k8s/staging/http_status_codes_grafana_dashboard.yaml
-```
+  Changes to these dashboards are applied automatically by Cloud Platform Concourse. 
 
 ### Alerting
 
