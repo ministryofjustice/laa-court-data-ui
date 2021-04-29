@@ -277,13 +277,10 @@ jobs:
           command: zip -r ${CIRCLE_PROJECT_REPONAME}.zip
       - sast-orb/policy-scan:
           appname: ${CIRCLE_PROJECT_REPONAME}
-          createprofile: false
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
-          teams: Development
+          teams: access-a-claim
           version: CircleCI - ${CIRCLE_SHA1:0:7} - $CIRCLE_BUILD_NUM
-          vid: ${VERACODE_API_ID}
-          vkey: ${VERACODE_API_KEY}
-
+          
 # ------------------
 # WORKFLOWS
 # ------------------
