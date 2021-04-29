@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   slack: circleci/slack@3.4.2
+  sast-orb: orb-01scan/sast-orb@0.0.8
 
 references:
   _restore-bundle: &restore-bundle
@@ -267,6 +268,22 @@ jobs:
       - deploy-to:
           environment: production
 
+  veracode-scan:
+    executor: sast-orb/default
+    steps:
+      - checkout
+      - run:
+          name: Package for upload to Veracode
+          command: 'zip -r ${CIRCLE_PROJECT_REPONAME}.zip'
+      - sast-orb/policy-scan:
+          appname: '${CIRCLE_PROJECT_REPONAME}'
+          createprofile: false
+          filepath: '${CIRCLE_PROJECT_REPONAME}.zip'
+          teams: Development
+          version: 'CircleCI - ${CIRCLE_SHA1:0:7} - $CIRCLE_BUILD_NUM'
+          vid: '${VERACODE_API_ID}'
+          vkey: '${VERACODE_API_KEY}'
+
 # ------------------
 # WORKFLOWS
 # ------------------
@@ -313,6 +330,12 @@ workflows:
       - deploy-production:
           requires:
             - hold-production
+      - veracode-scan:
+          context: VERACODE
+          filters:
+            branches:
+              only:
+                - main
 
   test-branch:
     jobs:
