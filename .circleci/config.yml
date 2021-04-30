@@ -327,10 +327,6 @@ workflows:
       - deploy-production:
           requires:
             - hold-production
-      - veracode-scan:
-          context: VERACODE
-          requires:
-            - build-app-container
 
   test-branch:
     jobs:
@@ -378,3 +374,7 @@ workflows:
       - deploy-uat:
           requires:
             - hold-uat
+      - veracode-scan:
+          context: VERACODE
+          requires:
+            - build-app-container
