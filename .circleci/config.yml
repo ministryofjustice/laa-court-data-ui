@@ -276,7 +276,7 @@ jobs:
           name: Package for upload to Veracode
           command: | 
             pwd
-            zip -r ${CIRCLE_PROJECT_REPONAME}.zip . -i project
+            zip -r ../${CIRCLE_PROJECT_REPONAME}.zip . -i project
       - sast-orb/policy-scan:
           appname: ${CIRCLE_PROJECT_REPONAME}
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
