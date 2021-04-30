@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://gems.veracode.com/
   specs:
     actioncable (6.1.3.1)
       actionpack (= 6.1.3.1)
@@ -430,6 +431,8 @@ GEM
       tzinfo (>= 1.0.0)
     unicode-display_width (1.7.0)
     vcr (6.0.0)
+    veracode (1.1.0)
+      rubyzip (>= 1.3)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -519,6 +522,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  rubyzip (= 2.3.0)
   sentry-rails (~> 4.3.4)
   sentry-sidekiq (~> 4.3.0)
   shoulda-matchers
@@ -528,6 +532,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
   vcr
+  veracode
   web-console (>= 3.3.0)
   webdrivers
   webmock

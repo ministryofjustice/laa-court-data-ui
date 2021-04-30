@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+source 'https://gems.veracode.com'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
@@ -74,6 +75,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  # Veracode packages
+  gem 'veracode'
+  gem 'rubyzip', '2.3.0'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
