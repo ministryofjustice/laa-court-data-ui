@@ -329,10 +329,8 @@ workflows:
             - hold-production
       - veracode-scan:
           context: VERACODE
-          filters:
-            branches:
-              only:
-                - main
+          requires:
+            - build-app-container
 
   test-branch:
     jobs:
