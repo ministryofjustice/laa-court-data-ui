@@ -375,6 +375,5 @@ workflows:
           requires:
             - hold-uat
       - veracode-scan:
-          context: VERACODE
           requires:
             - build-app-container
