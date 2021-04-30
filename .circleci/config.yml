@@ -274,7 +274,7 @@ jobs:
       - checkout
       - run:
           name: Package for upload to Veracode
-          command: zip -r ${CIRCLE_PROJECT_REPONAME}.zip project
+          command: zip -r ${CIRCLE_PROJECT_REPONAME}.zip ./project/
       - sast-orb/policy-scan:
           appname: ${CIRCLE_PROJECT_REPONAME}
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
