@@ -275,7 +275,6 @@ jobs:
       - run:
           name: Package for upload to Veracode
           command: | 
-            bundle update veracode
             mv tmp/veracode-${CIRCLE_PROJECT_REPONAME}-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
       - sast-orb/policy-scan:
           appname: ${CIRCLE_PROJECT_REPONAME}
