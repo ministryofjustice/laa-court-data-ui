@@ -274,13 +274,11 @@ jobs:
       - checkout
       - run:
           name: Package for upload to Veracode
-          command: |
-            echo ls
-            zip -r ${CIRCLE_PROJECT_REPONAME}.zip . -i project
+          command: zip -r ${CIRCLE_PROJECT_REPONAME}.zip . -i project
       - sast-orb/policy-scan:
           appname: ${CIRCLE_PROJECT_REPONAME}
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
-          teams: access-a-claim
+          teams: laa-access-a-claim
           version: CircleCI - ${CIRCLE_SHA1:0:7} - $CIRCLE_BUILD_NUM
           
 # ------------------
