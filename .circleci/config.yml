@@ -272,6 +272,7 @@ jobs:
     executor: sast-orb/default
     steps:
       - checkout
+      - build-base
       - run:
           name: Package Veracode
           command: bundle exec veracode prepare
