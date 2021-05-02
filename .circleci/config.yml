@@ -273,10 +273,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Package for upload to Veracode
-          command: | 
-            cd ../
-            zip -r ${CIRCLE_PROJECT_REPONAME}.zip . -i project
+          name: Package Veracode
+          command: bundle exec veracode prepare
+      - run:
+          name: Move Veracode Zip
+          command: |
+            cd project/tmp
+            mv veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
       - sast-orb/policy-scan:
           appname: ${CIRCLE_PROJECT_REPONAME}
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
