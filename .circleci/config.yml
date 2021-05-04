@@ -138,12 +138,6 @@ commands:
           name: Run brakeman
           command: bundle exec brakeman
 
-  veracode-prepare:
-    steps:
-      - run:
-          name: Package Veracode
-          command: RAILS_ENV=test bundle exec veracode prepare
-
   rspec:
     steps:
       - db-setup
@@ -274,17 +268,32 @@ jobs:
       - deploy-to:
           environment: production
 
-  veracode-scan:
+  veracode-prepare:
     executor: test-executor
     steps:
       - checkout
       - build-base
-      - veracode-prepare
+      - *attach-tmp-workspace
+      - run:
+          name: Package Veracode
+          command: RAILS_ENV=test bundle exec veracode prepare
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - veracode-*.zip
+
+  veracode-upload:
+    executor: sast-orb/default
+    steps:
+      - checkout
+      - *attach-tmp-workspace
       - run:
           name: Move Veracode Zip
           command: |
             pwd
             ls -la
+            ls tmp/
+            ls ~/repo/tmp
             mv ~/repo/tmp/veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
       - sast-orb/policy-scan:
           appname: ${CIRCLE_PROJECT_REPONAME}
@@ -352,6 +361,12 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
+      - veracode-prepare:
+          requires:
+            - build-test-container
+      - veracode-upload:
+          requires:
+            - veracode-prepare
 
   build-deploy-branch:
     jobs:
@@ -385,6 +400,3 @@ workflows:
       - deploy-uat:
           requires:
             - hold-uat
-      - veracode-scan:
-          requires:
-            - build-app-container
