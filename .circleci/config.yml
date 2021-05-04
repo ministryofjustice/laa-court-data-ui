@@ -139,6 +139,7 @@ commands:
           command: bundle exec brakeman
   
   veracode:
+    steps:
       - run:
           name: Package Veracode
           command: bundle exec veracode prepare
