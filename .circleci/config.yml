@@ -142,7 +142,10 @@ commands:
     steps:
       - run:
           name: Package Veracode
-          command: bundle exec veracode prepare
+          command: |
+            cd repo
+            bundle exec veracode prepare
+
 
   rspec:
     steps:
@@ -283,8 +286,7 @@ jobs:
       - run:
           name: Move Veracode Zip
           command: |
-            cd project/tmp
-            mv veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
+            mv ~/repo/tmp/veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
       - sast-orb/policy-scan:
           appname: ${CIRCLE_PROJECT_REPONAME}
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
