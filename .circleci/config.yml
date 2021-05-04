@@ -292,10 +292,9 @@ jobs:
           command: |
             pwd
             echo '-----------start move--------------'
-            echo 'ls /tmp'
-            ls -la tmp/
             echo 'ls ~/repo/tmp'
-            mv tmp/veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
+            ls ~/repo/tmp
+            mv ~/repo/tmp/veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
             echo 'ls *.zip'
             ls *.zip
             echo '-----------end env--------------'
