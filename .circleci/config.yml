@@ -291,10 +291,14 @@ jobs:
           name: Move Veracode Zip
           command: |
             pwd
-            ls -la
-            ls tmp/
-            ls ~/repo/tmp
-            mv ~/repo/tmp/veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
+            echo '-----------start move--------------'
+            echo 'ls /tmp'
+            ls -la tmp/
+            echo 'ls ~/repo/tmp'
+            mv tmp/veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
+            echo 'ls *.zip'
+            ls *.zip
+            echo '-----------end env--------------'
       - sast-orb/policy-scan:
           appname: ${CIRCLE_PROJECT_REPONAME}
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
