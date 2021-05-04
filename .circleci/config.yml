@@ -144,8 +144,7 @@ commands:
           name: Package Veracode
           command: |
             cd repo
-            bundle exec veracode prepare
-
+            RAILS_ENV=test bundle exec veracode prepare
 
   rspec:
     steps:
