@@ -137,8 +137,8 @@ commands:
       - run:
           name: Run brakeman
           command: bundle exec brakeman
-  
-  veracode:
+
+  veracode-prepare:
     steps:
       - run:
           name: Package Veracode
@@ -275,22 +275,24 @@ jobs:
           environment: production
 
   veracode-scan:
-    executor: sast-orb/default
+    executor: test-executor
     steps:
       - checkout
       - build-base
-      - veracode
+      - veracode-prepare
       - run:
           name: Move Veracode Zip
           command: |
             cd project/tmp
             mv veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
       - sast-orb/policy-scan:
+          vid: ${VERACODE_API_ID}
+          vkey: ${VERACODE_API_KEY}
           appname: ${CIRCLE_PROJECT_REPONAME}
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
           teams: laa-access-a-claim
           version: CircleCI - ${CIRCLE_SHA1:0:7} - $CIRCLE_BUILD_NUM
-          
+
 # ------------------
 # WORKFLOWS
 # ------------------
