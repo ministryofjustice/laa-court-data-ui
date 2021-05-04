@@ -286,8 +286,6 @@ jobs:
             cd project/tmp
             mv veracode-*.zip ${CIRCLE_PROJECT_REPONAME}.zip
       - sast-orb/policy-scan:
-          vid: ${VERACODE_API_ID}
-          vkey: ${VERACODE_API_KEY}
           appname: ${CIRCLE_PROJECT_REPONAME}
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
           teams: laa-access-a-claim
