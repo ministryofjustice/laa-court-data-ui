@@ -5,8 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
-gem 'veracode', :source => 'https://gems.veracode.com'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.0', require: false
 
@@ -30,6 +28,7 @@ gem 'redis', '~> 4.2.5'
 gem 'sentry-rails', '~> 4.3.4'
 gem 'sentry-sidekiq', '~> 4.3.0'
 gem 'sidekiq', '~> 6.2'
+gem 'veracode', '~> 1.1'
 gem 'webpacker', '~> 5.2'
 
 group :test do
