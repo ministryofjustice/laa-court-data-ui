@@ -276,7 +276,7 @@ jobs:
       - *attach-tmp-workspace
       - run:
           name: Package Veracode
-          command: RAILS_ENV=test bundle exec veracode prepare
+          command: RAILS_ENV=test bundle exec veracode prepare --verbose
       - persist_to_workspace:
           root: tmp
           paths:
