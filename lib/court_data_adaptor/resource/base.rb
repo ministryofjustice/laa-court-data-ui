@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 module CourtDataAdaptor
-  class BadRequestHandler
+  class ApiRequestHandler
     def self.call(env)
-      raise CourtDataAdaptor::Errors::BadRequest.new('Bad request', env.response)
+      case env.response.status
+      when 400
+        raise CourtDataAdaptor::Errors::BadRequest.new('Bad request', env.response)
+      when 422
+        raise CourtDataAdaptor::Errors::UnprocessableEntity.new('Unprocessable entity', env.response)
+      end
     end
   end
 
@@ -24,8 +29,8 @@ module CourtDataAdaptor
       self.client = Client.new
 
       connection_options[:status_handlers] = {
-        400 => BadRequestHandler,
-        422 => BadRequestHandler
+        400 => ApiRequestHandler,
+        422 => ApiRequestHandler
       }
 
       connection do |conn|

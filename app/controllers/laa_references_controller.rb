@@ -16,7 +16,7 @@ class LaaReferencesController < ApplicationController
   add_breadcrumb (proc { |v| v.controller.defendant.name }),
                  (proc { |v| v.defendant_path(v.controller.defendant.id) })
 
-  rescue_from CourtDataAdaptor::Errors::BadRequest, with: :adaptor_error_handler
+  rescue_from CourtDataAdaptor::Errors::UnprocessableEntity, with: :adaptor_error_handler
 
   def new; end
 

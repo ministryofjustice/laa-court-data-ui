@@ -104,7 +104,7 @@ RSpec.configure do |config|
     stub_request(
       :post, %r{/api/internal/v1/laa_references}
     ).to_return(
-      status: 400,
+      status: 422,
       headers: { 'Content-Type' => 'application/vnd.api+json' },
       body: {
         'error' =>
