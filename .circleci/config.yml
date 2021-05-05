@@ -299,8 +299,6 @@ jobs:
             ls *.zip
             echo '-----------end env--------------'
       - sast-orb/policy-scan:
-          vid: ${VERACODE_API_ID}
-          vkey: ${VERACODE_API_KEY}
           appname: ${CIRCLE_PROJECT_REPONAME}
           filepath: ${CIRCLE_PROJECT_REPONAME}.zip
           teams: laa-access-a-claim
