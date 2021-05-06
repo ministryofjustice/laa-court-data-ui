@@ -93,6 +93,26 @@ RSpec.describe HearingPaginator, type: :helper do
         is_expected.to eql(expected_result)
       end
     end
+
+    context 'when the hearings table sort column and direction are changed' do
+      subject(:call) { instance.items }
+
+      let(:decorated_hearings) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
+      let(:decorated_hearing1) { view_object.decorate(hearing1) }
+      let(:decorated_hearing2) { view_object.decorate(hearing2) }
+      let(:decorated_hearing3) { view_object.decorate(hearing3) }
+
+      before do
+        allow(prosecution_case).to receive_messages(hearings: decorated_hearings)
+        allow(decorated_hearing1).to receive(:provider_list).and_return(hearing1_provider_list)
+        allow(decorated_hearing2).to receive(:provider_list).and_return(hearing2_provider_list)
+        allow(decorated_hearing3).to receive(:provider_list).and_return(hearing3_provider_list)
+        allow(prosecution_case_decorator).to receive(:hearings_sort_column).and_return(column)
+        allow(prosecution_case_decorator).to receive(:hearings_sort_direction).and_return(direction)
+      end
+
+      include_examples 'sort hearings'
+    end
   end
 
   describe '#current_item' do
@@ -239,15 +259,16 @@ RSpec.describe HearingPaginator, type: :helper do
     include_context 'with multiple hearings and hearing days'
     let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
-    it { is_expected.to have_link('Next hearing day') }
+    it { is_expected.to have_link('Next') }
 
     it {
-      is_expected.to have_link('Next hearing day',
-                               href: %r{/hearings/#{hearing1.id}\?page=1&urn=ACASEURN})
+      is_expected.to have_link('Next',
+                               href: %r{/hearings/#{hearing1.id}\?
+                               column=date&direction=asc&page=1&urn=ACASEURN}x)
     }
 
     it {
-      is_expected.to have_link('Next hearing day',
+      is_expected.to have_link('Next',
                                class: 'moj-pagination__link')
     }
   end
@@ -258,15 +279,16 @@ RSpec.describe HearingPaginator, type: :helper do
     include_context 'with multiple hearings and hearing days'
     let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
 
-    it { is_expected.to have_link('Previous hearing day') }
+    it { is_expected.to have_link('Previous') }
 
     it {
-      is_expected.to have_link('Previous hearing day',
-                               href: %r{/hearings/#{hearing1.id}\?page=2&urn=ACASEURN})
+      is_expected.to have_link('Previous',
+                               href: %r{/hearings/#{hearing1.id}\?
+                               column=date&direction=asc&page=2&urn=ACASEURN}x)
     }
 
     it {
-      is_expected.to have_link('Previous hearing day',
+      is_expected.to have_link('Previous',
                                class: 'moj-pagination__link')
     }
   end

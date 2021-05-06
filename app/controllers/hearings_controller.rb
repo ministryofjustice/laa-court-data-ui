@@ -56,7 +56,8 @@ class HearingsController < ApplicationController
   end
 
   def paginator
-    @paginator ||= helpers.paginator(prosecution_case, page: page)
+    @paginator ||= helpers.paginator(prosecution_case, column: column,
+                                                       direction: direction, page: page)
   end
 
   def prosecution_case
@@ -65,5 +66,13 @@ class HearingsController < ApplicationController
 
   def page
     @page ||= params[:page]
+  end
+
+  def column
+    @column ||= params[:column]
+  end
+
+  def direction
+    @direction ||= params[:direction]
   end
 end

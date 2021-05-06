@@ -17,6 +17,11 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
     let(:object) { prosecution_case }
   end
 
+  it {
+    is_expected.to respond_to(:hearings_sort_column, :hearings_sort_column=, :hearings_sort_direction,
+                              :hearings_sort_direction=)
+  }
+
   context 'when method is missing' do
     before { allow(prosecution_case).to receive_messages(hearings: nil) }
 
@@ -43,50 +48,105 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
     end
   end
 
-  describe '#hearings_by_datetime' do
-    subject(:call) { decorator.hearings_by_datetime }
+  describe '#sorted_hearings_with_day' do
+    subject(:call) { decorator.sorted_hearings_with_day }
 
-    before { allow(prosecution_case).to receive_messages(hearings: hearings) }
+    let(:decorated_hearings) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
+    let(:decorated_hearing1) { view_object.decorate(hearing1) }
+    let(:decorated_hearing2) { view_object.decorate(hearing2) }
+    let(:decorated_hearing3) { view_object.decorate(hearing3) }
+    let(:column) { 'date' }
+    let(:direction) { 'asc' }
 
-    let(:hearings) { [hearing1, hearing2, hearing3] }
-    let(:hearing1) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing1_days) }
-    let(:hearing2) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing2_days) }
-    let(:hearing3) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing3_days) }
-    let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
-    let(:hearing2_days) { ['2021-01-20T16:00:00.000Z'] }
-    let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
-
-    it { is_expected.to all(be_instance_of(HearingDecorator)) }
-
-    it {
-      expect(call.map(&:hearing_days))
-        .to match([hearing3.hearing_days, hearing1.hearing_days, hearing2.hearing_days])
-    }
-  end
-
-  describe '#hearings_with_day_by_datetime' do
-    subject(:call) { decorator.hearings_with_day_by_datetime }
-
-    before { allow(prosecution_case).to receive_messages(hearings: hearings) }
-
-    let(:hearings) { [hearing1, hearing2, hearing3] }
-    let(:hearing1) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing1_days) }
-    let(:hearing2) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing2_days) }
-    let(:hearing3) { CourtDataAdaptor::Resource::Hearing.new(hearing_days: hearing3_days) }
-    let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
-    let(:hearing2_days) { ['2021-01-20T16:00:00.000Z'] }
-    let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
-
-    let(:expected_days) do
-      ['2021-01-18T11:00:00.000Z'.to_datetime,
-       '2021-01-19T10:45:00.000Z'.to_datetime,
-       '2021-01-20T10:45:00.000Z'.to_datetime,
-       '2021-01-20T16:00:00.000Z'.to_datetime]
+    before do
+      allow(prosecution_case).to receive_messages(hearings: decorated_hearings)
+      allow(decorated_hearing1).to receive(:provider_list).and_return(hearing1_provider_list)
+      allow(decorated_hearing2).to receive(:provider_list).and_return(hearing2_provider_list)
+      allow(decorated_hearing3).to receive(:provider_list).and_return(hearing3_provider_list)
+      allow(decorator).to receive(:hearings_sort_column).and_return(column)
+      allow(decorator).to receive(:hearings_sort_direction).and_return(direction)
     end
 
     it { is_expected.to be_instance_of(Enumerator) }
     it { is_expected.to all(be_instance_of(HearingDecorator)) }
-    it { expect(call.map(&:day)).to contain_exactly(*expected_days) }
+
+    include_examples 'sort hearings'
+
+    context 'when the hearings table sort column and direction are changed' do
+      context 'when hearings_sort_column is date and hearings_sort_direction is asc' do
+        let(:column) { 'date' }
+        let(:direction) { 'asc' }
+        let(:expected_days) do
+          ['2021-01-18T11:00:00.000Z'.to_datetime,
+           '2021-01-19T10:45:00.000Z'.to_datetime,
+           '2021-01-20T16:00:00.000Z'.to_datetime,
+           '2021-01-20T10:45:00.000Z'.to_datetime]
+        end
+
+        it 'sorts hearings by date asc' do
+          expect(call.map(&:day))
+            .to match(expected_days)
+        end
+      end
+
+      context 'when hearings_sort_column is date and hearings_sort_direction is desc' do
+        let(:column) { 'date' }
+        let(:direction) { 'desc' }
+        let(:expected_days) do
+          ['2021-01-20T10:45:00.000Z'.to_datetime,
+           '2021-01-20T16:00:00.000Z'.to_datetime,
+           '2021-01-19T10:45:00.000Z'.to_datetime,
+           '2021-01-18T11:00:00.000Z'.to_datetime]
+        end
+
+        it 'sorts hearings by date desc' do
+          expect(call.map(&:day))
+            .to match(expected_days)
+        end
+      end
+
+      context 'when hearings_sort_column is type and hearings_sort_direction is asc' do
+        let(:column) { 'type' }
+        let(:direction) { 'asc' }
+
+        it 'sorts hearings by type asc' do
+          expect(call.map(&:hearing_type))
+            .to match(['Mention', 'Pre-Trial Review', 'Trial', 'Trial'])
+        end
+      end
+
+      context 'when hearings_sort_column is type and hearings_sort_direction is desc' do
+        let(:column) { 'type' }
+        let(:direction) { 'desc' }
+
+        it 'sorts hearings by type desc' do
+          expect(call.map(&:hearing_type))
+            .to match(['Trial', 'Trial', 'Pre-Trial Review', 'Mention'])
+        end
+      end
+
+      context 'when hearings_sort_column is provider and hearings_sort_direction is asc' do
+        let(:column) { 'provider' }
+        let(:direction) { 'asc' }
+
+        it 'sorts hearings by provider asc' do
+          expect(call.map(&:provider_list))
+            .to match(['Custard Cream (Junior)', 'Hob Nob (QC)<br>Malted Milk (Junior)',
+                       'Jammy Dodger (Junior)', 'Jammy Dodger (Junior)'])
+        end
+      end
+
+      context 'when hearings_sort_column is provider and hearings_sort_direction is desc' do
+        let(:column) { 'provider' }
+        let(:direction) { 'desc' }
+
+        it 'sorts hearings by provider desc' do
+          expect(call.map(&:provider_list))
+            .to match(['Jammy Dodger (Junior)', 'Jammy Dodger (Junior)',
+                       'Hob Nob (QC)<br>Malted Milk (Junior)', 'Custard Cream (Junior)'])
+        end
+      end
+    end
   end
 
   describe '#cracked?' do
@@ -141,6 +201,84 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       end
 
       it { is_expected.to be_truthy }
+    end
+  end
+
+  describe '#column_sort_icon' do
+    subject(:call) { decorator.column_sort_icon }
+
+    context 'when direction is asc' do
+      before { allow(decorator).to receive(:hearings_sort_direction).and_return('asc') }
+
+      it { is_expected.to eql("\u25B2") }
+    end
+
+    context 'when direction is desc' do
+      before { allow(decorator).to receive(:hearings_sort_direction).and_return('desc') }
+
+      it { is_expected.to eql("\u25BC") }
+    end
+  end
+
+  describe '#column_title' do
+    subject(:call) { decorator.column_title(column) }
+
+    context 'when column is date' do
+      let(:column) { 'date' }
+
+      it { is_expected.to eql('Date') }
+    end
+
+    context 'when column is type' do
+      let(:column) { 'type' }
+
+      it { is_expected.to eql('Hearing type') }
+    end
+
+    context 'when column is provider' do
+      let(:column) { 'provider' }
+
+      it { is_expected.to eql('Providers attending') }
+    end
+  end
+
+  describe '#hearings_sort_column' do
+    subject(:call) { decorator.hearings_sort_column }
+
+    context 'when hearings_sort_column has been set' do
+      before { decorator.hearings_sort_column = 'type' }
+
+      it 'returns the hearings_sort_column provided' do
+        is_expected.to eql 'type'
+      end
+    end
+
+    context 'when no hearings_sort_column set' do
+      before { decorator.hearings_sort_column = nil }
+
+      it 'returns the default hearings_sort_column' do
+        is_expected.to eql 'date'
+      end
+    end
+  end
+
+  describe '#hearings_sort_direction' do
+    subject(:call) { decorator.hearings_sort_direction }
+
+    context 'when hearings_sort_direction has been set' do
+      before { decorator.hearings_sort_direction = 'desc' }
+
+      it 'returns the hearings_sort_direction provided' do
+        is_expected.to eql 'desc'
+      end
+    end
+
+    context 'when no hearings_sort_direction set' do
+      before { decorator.hearings_sort_column = nil }
+
+      it 'returns the default hearings_sort_column' do
+        is_expected.to eql 'asc'
+      end
     end
   end
 end

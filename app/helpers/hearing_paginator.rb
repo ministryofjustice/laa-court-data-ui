@@ -12,9 +12,11 @@ class HearingPaginator
 
   PageItem = Struct.new(:id, :hearing_date)
 
-  def initialize(prosecution_case, page: 0)
+  def initialize(prosecution_case, column: 'date', direction: 'asc', page: 0)
     @prosecution_case = prosecution_case
     @current_page = page.to_i
+    @column = column
+    @direction = direction
   end
 
   def current_page
@@ -26,7 +28,7 @@ class HearingPaginator
   end
 
   def items
-    @items ||= hearing_items_by_datetime
+    @items ||= sorted_hearing_items
   end
 
   def first_page?
@@ -50,7 +52,9 @@ class HearingPaginator
     link_to(t('hearings.show.pagination.next_page'),
             hearing_path(id: next_item.id,
                          urn: @prosecution_case.prosecution_case_reference,
-                         page: next_page),
+                         page: next_page,
+                         column: @column,
+                         direction: @direction),
             class: 'moj-pagination__link')
   end
 
@@ -59,7 +63,9 @@ class HearingPaginator
     link_to(t('hearings.show.pagination.previous_page'),
             hearing_path(id: previous_item.id,
                          urn: @prosecution_case.prosecution_case_reference,
-                         page: previous_page),
+                         page: previous_page,
+                         column: @column,
+                         direction: @direction),
             class: 'moj-pagination__link')
   end
 
@@ -81,8 +87,10 @@ class HearingPaginator
     [current_page - 1, first_page].max
   end
 
-  def hearing_items_by_datetime
-    @prosecution_case.hearings_with_day_by_datetime.map do |hearing|
+  def sorted_hearing_items
+    @prosecution_case.hearings_sort_column = @column
+    @prosecution_case.hearings_sort_direction = @direction
+    @prosecution_case.sorted_hearings_with_day.map do |hearing|
       PageItem.new(hearing.id, hearing.day)
     end
   end

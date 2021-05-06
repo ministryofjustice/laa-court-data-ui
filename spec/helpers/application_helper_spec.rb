@@ -176,4 +176,55 @@ RSpec.describe ApplicationHelper, type: :helper do
       }
     end
   end
+
+  describe '#hearings_sorter_link' do
+    subject(:hearings_sorter_link) { helper.hearings_sorter_link(decorated_prosecution_case, column) }
+
+    let(:decorated_prosecution_case) { helper.decorate(prosecution_case) }
+    let(:prosecution_case) do
+      CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'TEST12345')
+    end
+
+    before do
+      allow(decorated_prosecution_case).to receive(:hearings_sort_column).and_return hearings_sort_column
+      allow(decorated_prosecution_case).to receive(:hearings_sort_direction)
+        .and_return hearings_sort_direction
+    end
+
+    context 'when column is provider, hearings_sort_column is date and hearings_sort_direction is asc' do
+      let(:column) { 'provider' }
+      let(:hearings_sort_column) { 'date' }
+      let(:hearings_sort_direction) { 'asc' }
+
+      it 'returns the column header Providers attending' do
+        is_expected.to have_link('Providers attending',
+                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc#provider',
+                                 class: 'govuk-link govuk-link--no-visited-state')
+      end
+    end
+
+    context 'when column is type, hearings_sort_column is type, hearings_sort_direction is asc' do
+      let(:column) { 'type' }
+      let(:hearings_sort_column) { 'type' }
+      let(:hearings_sort_direction) { 'asc' }
+
+      it 'returns the column header Hearing type, with arrow pointing up' do
+        is_expected.to have_link("Hearing type \u25B2",
+                                 href: '/prosecution_cases/TEST12345?column=type&direction=desc#type',
+                                 class: 'govuk-link govuk-link--no-visited-state')
+      end
+    end
+
+    context 'when column is provider, sort_column is provider, direction is desc' do
+      let(:column) { 'date' }
+      let(:hearings_sort_column) { 'date' }
+      let(:hearings_sort_direction) { 'desc' }
+
+      it 'returns the column header Date, with arrow pointing down' do
+        is_expected.to have_link("Date \u25BC",
+                                 href: '/prosecution_cases/TEST12345?column=date&direction=asc#date',
+                                 class: 'govuk-link govuk-link--no-visited-state')
+      end
+    end
+  end
 end
