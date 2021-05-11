@@ -4,6 +4,8 @@
 
 = render partial: 'listing_info', locals: { hearing: @hearing, hearing_day: @hearing_day }
 
+= render partial: 'court_applications', locals: { hearing: @hearing }
+
 = render partial: 'attendees', locals: { hearing: @hearing }
 
 = render partial: 'hearing_events', locals: { hearing: @hearing, hearing_day: @hearing_day }
