@@ -8,6 +8,7 @@ module CourtDataAdaptor
       has_many :providers
       has_many :hearing_events
       has_one :cracked_ineffective_trial
+      has_many :court_applications
 
       property :court_name, type: :string
       property :day

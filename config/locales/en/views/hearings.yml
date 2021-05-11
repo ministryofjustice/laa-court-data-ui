@@ -10,6 +10,15 @@ en:
         judges: Judges
         prosecution: Prosecution advocates
       court: Court
+      court_applications:
+        application_synonyms: Application Synonyms
+        heading: Court Applications
+        legislation: Legislation
+        received_date: Received Date
+        respondent_synonyms: Respondent Synonyms
+        result_code: Result Code
+        result_text: Result Text
+        type: Type
       events:
         caption: Hearing events
         event: Event
