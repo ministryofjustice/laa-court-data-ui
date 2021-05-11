@@ -14,5 +14,16 @@ module CourtDataAdaptor
 
       attr_reader :response, :status, :errors
     end
+
+    class UnprocessableEntity < Error
+      def initialize(msg, response)
+        @response = response
+        @status = response.status
+        @errors = response.body
+        super(msg)
+      end
+
+      attr_reader :response, :status, :errors
+    end
   end
 end

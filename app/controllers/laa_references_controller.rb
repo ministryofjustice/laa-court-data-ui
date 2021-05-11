@@ -16,7 +16,7 @@ class LaaReferencesController < ApplicationController
   add_breadcrumb (proc { |v| v.controller.defendant.name }),
                  (proc { |v| v.defendant_path(v.controller.defendant.id) })
 
-  rescue_from CourtDataAdaptor::Errors::BadRequest, with: :adaptor_error_handler
+  rescue_from CourtDataAdaptor::Errors::UnprocessableEntity, with: :adaptor_error_handler
 
   def new; end
 
@@ -92,7 +92,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def error_messages
-    @errors.map { |k, v| "#{k.humanize} #{v.join(', ')}" }.join("\n")
+    @errors.map { |k, v| "#{k.humanize} #{v.humanize}" }.join("\n")
   end
 
   def set_link_attempt
