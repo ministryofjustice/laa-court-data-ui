@@ -12,3 +12,5 @@
           = event.occurred_at.to_datetime.strftime('%H:%M')
         %td.govuk-table__cell
           = event.description
+          %br
+          = event&.note

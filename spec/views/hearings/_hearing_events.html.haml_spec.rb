@@ -10,15 +10,18 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
   let(:hearing_day) { Date.parse('2021-01-17T10:30:00.000Z') }
 
   let(:hearing_event1) do
-    hearing_event_class.new(description: 'day 1 start', occurred_at: '2021-01-17T10:30:00.000Z')
+    hearing_event_class.new(description: 'day 1 start', note: '1 hour delay',
+                            occurred_at: '2021-01-17T10:30:00.000Z')
   end
 
   let(:hearing_event2) do
-    hearing_event_class.new(description: 'day 1 end', occurred_at: '2021-01-17T16:30:00.000Z')
+    hearing_event_class.new(description: 'day 1 end', note: 'ended late',
+                            occurred_at: '2021-01-17T16:30:00.000Z')
   end
 
   let(:hearing_event3) do
-    hearing_event_class.new(description: 'day 2 start', occurred_at: '2021-01-18T10:45:00.000Z')
+    hearing_event_class.new(description: 'day 2 start', note: '2 hour delay',
+                            occurred_at: '2021-01-18T10:45:00.000Z')
   end
 
   let(:hearing_event_class) { CourtDataAdaptor::Resource::HearingEvent }
@@ -56,6 +59,50 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
       is_expected
         .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: '10:30')
         .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: '16:30')
+    end
+
+    context 'with hearing_events notes' do
+      it 'displays the notes' do
+        is_expected
+          .to have_content('1 hour delay')
+          .and have_content('ended late')
+      end
+
+      context 'with notes containing HTML' do
+        let(:hearing_event_with_html_notes) do
+          hearing_event_class.new(description: 'day 1 start', note: '<b>1 hour delay</b>',
+                                  occurred_at: '2021-01-17T10:30:00.000Z')
+        end
+        let(:hearing_events) { [hearing_event_with_html_notes] }
+
+        it 'displays any HTML raw' do
+          is_expected.to have_content('<b>1 hour delay</b>')
+        end
+      end
+
+      context 'with notes containing unicode characters' do
+        let(:hearing_event_with_unicode_notes) do
+          hearing_event_class.new(description: 'day 1 start', note: '!\"#£%&()*,-./',
+                                  occurred_at: '2021-01-17T10:30:00.000Z')
+        end
+        let(:hearing_events) { [hearing_event_with_unicode_notes] }
+
+        it 'renders unicode characters correctly' do
+          is_expected.to have_content('!\"#£%&()*,-./')
+        end
+      end
+    end
+
+    context 'with no hearing_events notes' do
+      let(:hearing_event_with_empty_notes) do
+        hearing_event_class.new(description: '1 hour delay', note: nil,
+                                occurred_at: '2021-01-17T10:30:00.000Z')
+      end
+      let(:hearing_events) { [hearing_event_with_empty_notes] }
+
+      it 'displays only the description' do
+        is_expected.to have_content('1 hour delay')
+      end
     end
   end
 end
