@@ -1,0 +1,66 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+    timezone: Europe/London
+  open-pull-requests-limit: 10
+  reviewers:
+  - kmahern
+  - mabely
+  - malcolmvonmoj
+  ignore:
+  - dependency-name: simplecov
+    versions:
+    - "> 0.17.1, < 1"
+  - dependency-name: sentry-rails
+    versions:
+    - 4.2.1
+    - 4.3.1
+    - 4.3.2
+  - dependency-name: oauth2
+    versions:
+    - 1.4.6
+  - dependency-name: climate_control
+    versions:
+    - 1.0.0
+  - dependency-name: rspec-rails
+    versions:
+    - 4.1.0
+  - dependency-name: rubocop-performance
+    versions:
+    - 1.10.0
+  - dependency-name: webmock
+    versions:
+    - 3.11.3
+  - dependency-name: sentry-sidekiq
+    versions:
+    - 4.2.0
+  - dependency-name: rails
+    versions:
+    - 6.1.1
+    - 6.1.2
+  - dependency-name: rubocop
+    versions:
+    - 1.9.0
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+    timezone: Europe/London
+  open-pull-requests-limit: 10
+  reviewers:
+  - naseberry
+  - malcolmvonmoj
+  - kmahern
+  - mabely
+  ignore:
+  - dependency-name: webpack
+    versions:
+    - ">= 5.1.a, < 5.2"
+  - dependency-name: webpack
+    versions:
+    - ">= 5.3.a, < 5.4"
