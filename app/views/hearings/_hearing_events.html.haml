@@ -6,9 +6,10 @@
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.time')
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.event')
   %tbody.govuk-table__body
-    - hearing.hearing_events_for_day(hearing_day).each do |event|
-      %tr.govuk-table__row
-        %td.govuk-table__cell
-          = event.occurred_at.to_datetime.strftime('%H:%M')
-        %td.govuk-table__cell
-          = event.description
+    - if hearing.hearing_events.present?
+      - hearing.hearing_events_for_day(hearing_day).each do |event|
+        %tr.govuk-table__row
+          %td.govuk-table__cell
+            = event.occurred_at.to_datetime.strftime('%H:%M')
+          %td.govuk-table__cell
+            = event.description
