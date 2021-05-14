@@ -82,13 +82,13 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
 
       context 'with notes containing unicode characters' do
         let(:hearing_event_with_unicode_notes) do
-          hearing_event_class.new(description: 'day 1 start', note: '!\"#£%&()*,-./',
+          hearing_event_class.new(description: 'day 1 start', note: '!\"#£%&()*,-./Æ½ŵ€',
                                   occurred_at: '2021-01-17T10:30:00.000Z')
         end
         let(:hearing_events) { [hearing_event_with_unicode_notes] }
 
         it 'renders unicode characters correctly' do
-          is_expected.to have_content('!\"#£%&()*,-./')
+          is_expected.to have_content('!\"#£%&()*,-./Æ½ŵ€')
         end
       end
     end
