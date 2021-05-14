@@ -6,7 +6,8 @@
 
 = render partial: 'attendees', locals: { hearing: @hearing }
 
-= render partial: 'hearing_events', locals: { hearing: @hearing, hearing_day: @hearing_day }
+- if @hearing.hearing_events
+  = render partial: 'hearing_events', locals: { hearing: @hearing, hearing_day: @hearing_day }
 
 - if Rails.configuration.x.display_raw_responses
   = render partial: 'raw_response', locals: { hearing: @hearing }
