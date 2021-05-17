@@ -9,6 +9,7 @@ module CourtDataAdaptor
 
       property :description, type: :string
       property :occurred_at, type: :time
+      property :note, type: :string
     end
   end
 end

@@ -12,3 +12,6 @@
           = event.occurred_at.to_datetime.strftime('%H:%M')
         %td.govuk-table__cell
           = event.description
+          - if event&.note.present?
+            %div{ class: 'govuk-!-padding-top-1' }
+              = event&.note

@@ -19,5 +19,6 @@ RSpec.describe CourtDataAdaptor::Resource::HearingEvent do
 
     it { is_expected.to respond_to :description }
     it { is_expected.to respond_to :occurred_at }
+    it { is_expected.to respond_to :note }
   end
 end
