@@ -35,7 +35,7 @@ RSpec.describe HearingHelper, type: :helper do
     it { is_expected.to eql('2021-01-19T10:45:15.000Z'.to_datetime) }
   end
 
-  describe '#format_and_dislay_crlf' do
+  describe '#display_crlf_and_sanitize' do
     subject { helper.display_crlf_and_sanitize(event_note) }
 
     context 'with notes containing unsafe and unpermitted html' do

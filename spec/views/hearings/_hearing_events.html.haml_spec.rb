@@ -10,15 +10,18 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
   let(:hearing_day) { Date.parse('2021-01-17T10:30:00.000Z') }
 
   let(:hearing_event1) do
-    hearing_event_class.new(description: 'day 1 start', occurred_at: '2021-01-17T10:30:00.000Z')
+    hearing_event_class.new(description: 'day 1 start', note: '1 hour delay',
+                            occurred_at: '2021-01-17T10:30:00.000Z')
   end
 
   let(:hearing_event2) do
-    hearing_event_class.new(description: 'day 1 end', occurred_at: '2021-01-17T16:30:00.000Z')
+    hearing_event_class.new(description: 'day 1 end', note: 'ended late',
+                            occurred_at: '2021-01-17T16:30:00.000Z')
   end
 
   let(:hearing_event3) do
-    hearing_event_class.new(description: 'day 2 start', occurred_at: '2021-01-18T10:45:00.000Z')
+    hearing_event_class.new(description: 'day 2 start', note: '2 hour delay',
+                            occurred_at: '2021-01-18T10:45:00.000Z')
   end
 
   let(:hearing_event_class) { CourtDataAdaptor::Resource::HearingEvent }
