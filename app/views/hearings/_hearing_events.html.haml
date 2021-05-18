@@ -10,5 +10,5 @@
       %tr.govuk-table__row
         %td.govuk-table__cell
           = event.occurred_at.to_datetime.strftime('%H:%M')
-        %td.govuk-table__cell
+        %td.govuk-table__cell.hearing-events-table__cell--overflow-wrap
           = event.description

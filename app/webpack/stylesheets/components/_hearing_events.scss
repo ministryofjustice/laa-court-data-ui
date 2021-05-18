@@ -1,0 +1,7 @@
+
+td.hearing-events-table__cell--overflow-wrap {
+    overflow-wrap: anywhere;
+		overflow-y: hidden;
+    ms-word-wrap: break-word;
+    max-width: 600px; /*For IE*/
+}
