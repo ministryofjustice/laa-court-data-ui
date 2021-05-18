@@ -12,3 +12,6 @@
           = event.occurred_at.to_datetime.strftime('%H:%M')
         %td.govuk-table__cell.hearing-events-table__cell--overflow-wrap
           = event.description
+          - if event&.note.present?
+            %div{ class: 'govuk-!-padding-top-1' }
+              = display_crlf_and_sanitize(event.note)

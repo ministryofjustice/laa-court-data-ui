@@ -57,5 +57,37 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
         .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: '10:30')
         .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: '16:30')
     end
+
+    context 'with hearing_events notes' do
+      it 'displays the notes' do
+        is_expected
+          .to have_content('1 hour delay')
+          .and have_content('ended late')
+      end
+
+      context 'with notes containing unicode characters' do
+        let(:hearing_event_with_unicode_notes) do
+          hearing_event_class.new(description: 'day 1 start', note: '!\"#£%&()*,-./Æ½ŵ€',
+                                  occurred_at: '2021-01-17T10:30:00.000Z')
+        end
+        let(:hearing_events) { [hearing_event_with_unicode_notes] }
+
+        it 'renders unicode characters correctly' do
+          is_expected.to have_content('!\"#£%&()*,-./Æ½ŵ€')
+        end
+      end
+    end
+
+    context 'with no hearing_events notes' do
+      let(:hearing_event_with_empty_notes) do
+        hearing_event_class.new(description: '1 hour delay', note: nil,
+                                occurred_at: '2021-01-17T10:30:00.000Z')
+      end
+      let(:hearing_events) { [hearing_event_with_empty_notes] }
+
+      it 'displays only the description' do
+        is_expected.to have_content('1 hour delay')
+      end
+    end
   end
 end

@@ -1,7 +1,8 @@
-
-td.hearing-events-table__cell--overflow-wrap {
+td {
+  .hearing-events-table__cell--overflow-wrap {
+    max-width: 600px; /* For IE */
+    overflow-y: hidden;
     overflow-wrap: anywhere;
-		overflow-y: hidden;
-    ms-word-wrap: break-word;
-    max-width: 600px; /*For IE*/
+    -ms-word-wrap: break-word;
+  }
 }
