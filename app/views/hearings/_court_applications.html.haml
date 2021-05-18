@@ -1,2 +1,50 @@
-%h2.govuk-heading-m
-  = t('hearings.show.court_applications.heading')
+- if hearing&.court_applications.present?
+  %h2.govuk-heading-m
+    = t('hearings.show.court_applications.heading')
+
+  - decorate_each(hearing.court_applications) do |court_application|
+    %table.govuk-table
+      %caption.govuk-table__caption.govuk-visually-hidden
+        = t('hearings.show.court_applications.caption')
+      %tbody.govuk-table__body
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'row' }
+            = t('hearings.show.court_applications.received_date')
+          %td.govuk-table__cell
+            = court_application.received_date&.to_date&.strftime('%d/%m/%Y')
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'row' }
+            = t('hearings.show.court_applications.type')
+          %td.govuk-table__cell
+            = court_application&.type&.description || t('generic.not_available')
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'row' }
+            = t('hearings.show.court_applications.code')
+          %td.govuk-table__cell
+            = court_application&.type&.code || t('generic.not_available')
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'row' }
+            = t('hearings.show.court_applications.legislation')
+          %td.govuk-table__cell
+            = court_application&.type&.legislation  || t('generic.not_available')
+        - court_application.judicial_results&.each do |result|
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: 'row' }
+              = t('hearings.show.court_applications.result_codes')
+            %td.govuk-table__cell
+              = result&.cjs_code || t('generic.not_available')
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: 'row' }
+              = t('hearings.show.court_applications.result_text')
+            %td.govuk-table__cell
+              = result&.text || t('generic.not_available')
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'row' }
+            = t('hearings.show.court_applications.respondent_synonyms')
+          %td.govuk-table__cell
+            = court_application.respondent_list
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'row' }
+            = t('hearings.show.court_applications.applicant_synonym')
+          %td.govuk-table__cell
+            = court_application.applicant_synonym

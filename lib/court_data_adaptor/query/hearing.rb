@@ -9,7 +9,7 @@ module CourtDataAdaptor
         refresh_token_if_required!
 
         resource
-          .includes(:hearing_events, :providers, :cracked_ineffective_trial, :court_applications)
+          .includes(:hearing_events, :providers, :cracked_ineffective_trial)
           .find(hearing_id)
           .first
       end
