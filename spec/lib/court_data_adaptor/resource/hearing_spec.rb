@@ -3,7 +3,7 @@
 require 'court_data_adaptor'
 
 RSpec.describe CourtDataAdaptor::Resource::Hearing do
-  let(:relations) { %i[providers hearing_events court_applications] }
+  let(:relations) { %i[providers hearing_events] }
 
   let(:properties) do
     %i[court_name

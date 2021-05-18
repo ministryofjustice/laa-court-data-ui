@@ -11,12 +11,14 @@ en:
         prosecution: Prosecution advocates
       court: Court
       court_applications:
-        application_synonyms: Application Synonyms
+        applicant_synonym: Applicant Synonym
+        caption: Court applications
+        code: Code
         heading: Court Applications
         legislation: Legislation
         received_date: Received Date
         respondent_synonyms: Respondent Synonyms
-        result_code: Result Code
+        result_codes: Result Codes
         result_text: Result Text
         type: Type
       events:

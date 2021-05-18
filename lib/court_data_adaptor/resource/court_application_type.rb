@@ -11,6 +11,8 @@ module CourtDataAdaptor
       property :code, type: :string
       property :category_code, type: :string
       property :legislation, type: :string
+      property :applicant_appellant_flag, type: :boolean
+      property :id, type: :string
     end
   end
 end

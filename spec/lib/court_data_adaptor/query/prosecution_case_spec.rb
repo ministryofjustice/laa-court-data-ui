@@ -38,10 +38,10 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
 
     it 'sends inclusion request to resource' do
       expect(resource).to have_received(:includes)
-        .with(:defendants, 'defendants.offences',
-              :hearing_summaries,
-              :hearings, 'hearings.hearing_events', 'hearings.providers',
-              'hearings.cracked_ineffective_trial')
+        .with(:defendants, 'defendants.offences', :hearing_summaries, :hearings,
+              'hearings.hearing_events', 'hearings.providers', 'hearings.cracked_ineffective_trial',
+              'hearings.court_applications', 'hearings.court_applications.type',
+              'hearings.court_applications.judicial_results', 'hearings.court_applications.respondents')
     end
 
     it 'sends where query to resource' do
