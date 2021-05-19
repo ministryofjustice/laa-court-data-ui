@@ -35,4 +35,10 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
   it { is_expected.to render_template(:_listing_info) }
   it { is_expected.to render_template(:_attendees) }
   it { is_expected.to render_template(:_hearing_events) }
+
+  context 'when hearing_events is missing' do
+    let(:hearing) { CourtDataAdaptor::Resource::Hearing.new }
+
+    it { is_expected.not_to render_template(:_hearing_events) }
+  end
 end
