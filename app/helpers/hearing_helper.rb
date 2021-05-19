@@ -9,7 +9,7 @@ module HearingHelper
     hearing&.hearing_days&.map(&:to_datetime)&.sort&.first
   end
 
-  def display_crlf_and_sanitize(event_note)
+  def transform_and_sanitize(event_note)
     note_with_converted_crlf = convert_crlf_to_html(event_note)
     sanitize(note_with_converted_crlf, tags: %w[br p])
   end
