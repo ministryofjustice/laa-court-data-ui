@@ -34,4 +34,26 @@ RSpec.describe HearingHelper, type: :helper do
 
     it { is_expected.to eql('2021-01-19T10:45:15.000Z'.to_datetime) }
   end
+
+  describe '#transform_and_sanitize' do
+    subject { helper.transform_and_sanitize(event_note) }
+
+    context 'with notes containing unsafe and unpermitted html' do
+      let(:event_note) { '<b>warning</b> <script>alert(123)</script>' }
+
+      it { is_expected.to eq('warning alert(123)') }
+    end
+
+    context 'with notes containing crlf escape sequences' do
+      let(:event_note) { "early start\nlate finish\r\ncase adjourned\rresume next week" }
+
+      it { is_expected.to eq("early start\n<br>late finish\n<br>case adjourned\n<br>resume next week") }
+    end
+
+    context 'with plain text' do
+      let(:event_note) { 'hearing begins' }
+
+      it { is_expected.to eq('hearing begins') }
+    end
+  end
 end
