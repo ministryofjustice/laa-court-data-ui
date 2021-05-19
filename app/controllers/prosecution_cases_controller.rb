@@ -20,8 +20,8 @@ class ProsecutionCasesController < ApplicationController
 
   def set_prosecution_case
     @prosecution_case = helpers.decorate(search_results.first)
-    @prosecution_case.hearings_sort_column = params[:column]
-    @prosecution_case.hearings_sort_direction = params[:direction]
+    @prosecution_case&.hearings_sort_column = params[:column]
+    @prosecution_case&.hearings_sort_direction = params[:direction]
   end
 
   def search_results
