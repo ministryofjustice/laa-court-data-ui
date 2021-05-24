@@ -112,6 +112,14 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
           with_text(/Legal Aid Transfer Denied/)
         end
       end
+
+      context 'with result text containing html, unicode and crlf_escape_sequences' do
+        let(:judicial_result1) do
+          judicial_result_class.new(cjs_code: '4600', text: free_text)
+        end
+
+        include_examples 'free text fields'
+      end
     end
 
     context 'with no judicial results' do

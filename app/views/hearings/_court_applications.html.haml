@@ -37,7 +37,10 @@
             %th.govuk-table__header{ scope: 'row' }
               = t('hearings.show.court_applications.result_text')
             %td.govuk-table__cell
-              = result&.text || t('generic.not_available')
+              - if result&.text.present?
+                = transform_and_sanitize(result&.text)
+              - else
+                t('generic.not_available')
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: 'row' }
             = t('hearings.show.court_applications.respondent_synonyms')
