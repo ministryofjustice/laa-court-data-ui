@@ -33,7 +33,7 @@ RSpec.feature 'Edit user', type: :feature, js: true do
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
 
       within(row) do
-        click_link "Edit #{other_user.name}"
+        click_link 'Edit'
       end
 
       expect(page).to have_govuk_page_title(text: 'Edit user')
