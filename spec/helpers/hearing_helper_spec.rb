@@ -36,22 +36,22 @@ RSpec.describe HearingHelper, type: :helper do
   end
 
   describe '#transform_and_sanitize' do
-    subject { helper.transform_and_sanitize(event_note) }
+    subject { helper.transform_and_sanitize(text) }
 
     context 'with notes containing unsafe and unpermitted html' do
-      let(:event_note) { '<b>warning</b> <script>alert(123)</script>' }
+      let(:text) { '<b>warning</b> <script>alert(123)</script>' }
 
       it { is_expected.to eq('warning alert(123)') }
     end
 
     context 'with notes containing crlf escape sequences' do
-      let(:event_note) { "early start\nlate finish\r\ncase adjourned\rresume next week" }
+      let(:text) { "early start\nlate finish\r\ncase adjourned\rresume next week" }
 
       it { is_expected.to eq("early start\n<br>late finish\n<br>case adjourned\n<br>resume next week") }
     end
 
     context 'with plain text' do
-      let(:event_note) { 'hearing begins' }
+      let(:text) { 'hearing begins' }
 
       it { is_expected.to eq('hearing begins') }
     end

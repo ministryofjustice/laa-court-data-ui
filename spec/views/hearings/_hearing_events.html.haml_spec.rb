@@ -68,16 +68,14 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
           .and have_content('ended late')
       end
 
-      context 'with notes containing unicode characters' do
-        let(:hearing_event_with_unicode_notes) do
-          hearing_event_class.new(description: 'day 1 start', note: '!\"#£%&()*,-./Æ½ŵ€',
+      context 'with notes containing html, unicode and crlf_escape_sequences' do
+        let(:hearing_event_with_special_characters) do
+          hearing_event_class.new(description: 'day 1 start', note: free_text,
                                   occurred_at: '2021-01-17T10:30:00.000Z')
         end
-        let(:hearing_events) { [hearing_event_with_unicode_notes] }
+        let(:hearing_events) { [hearing_event_with_special_characters] }
 
-        it 'renders unicode characters correctly' do
-          is_expected.to have_content('!\"#£%&()*,-./Æ½ŵ€')
-        end
+        include_examples 'free text fields'
       end
     end
 
