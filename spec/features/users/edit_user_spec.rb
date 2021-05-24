@@ -12,7 +12,7 @@ RSpec.feature 'Edit user', type: :feature, js: true do
       visit user_path(user)
 
       expect(page).to have_govuk_page_title(text: "#{user.name}'s account")
-      expect(page).not_to have_link 'Edit'
+      expect(page).not_to have_link('Edit', href: 'edit')
     end
 
     scenario 'cannot directly access edit page' do
