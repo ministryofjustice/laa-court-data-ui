@@ -11,15 +11,15 @@ en:
         prosecution: Prosecution advocates
       court: Court
       court_applications:
-        applicant_synonym: Applicant Synonym
-        caption: Court applications
+        applicant_synonym: Applicant synonym
         code: Code
         heading: Court Applications
+        none: No court applications are associated with this case
         legislation: Legislation
-        received_date: Received Date
-        respondent_synonyms: Respondent Synonyms
-        result_codes: Result Codes
-        result_text: Result Text
+        received_date: Received date
+        respondent_synonyms: Respondent synonyms
+        result_codes: Result code
+        result_text: Result text
         type: Type
       events:
         caption: Hearing events
