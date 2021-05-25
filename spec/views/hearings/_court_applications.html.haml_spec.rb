@@ -39,7 +39,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
     it 'does not render content' do
       render_partial
-      expect(rendered).to be_blank
+      expect(rendered).to have_css('.govuk-body', text: /No court applications are associated with this case/)
     end
   end
 
@@ -51,7 +51,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
     it 'displays all "court applications"' do
       render_partial
-      expect(rendered).to have_tag('td.govuk-table__cell') do
+      expect(rendered).to have_tag('dd.govuk-summary-list__value') do
         with_text(/Application for transfer of legal aid/)
         with_text(/Application for case to be dismissed/)
       end
@@ -65,7 +65,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
       before { allow(court_application1).to receive(:respondents).and_return(respondents) }
 
       it 'displays respondent_synonyms with line breaks' do
-        is_expected.to have_tag('td.govuk-table__cell', text: /Defendant.*Suspect/) do
+        is_expected.to have_tag('dd.govuk-summary-list__value', text: /Defendant.*Suspect/) do
           with_tag(:br)
         end
       end
@@ -73,7 +73,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
     context 'with no applicant synonym' do
       it 'displays the synonym "Applicant"' do
-        is_expected.not_to have_tag('td.govuk-table__cell', text: /Applicant/)
+        is_expected.not_to have_tag('dd.govuk-summary-list__value', text: /Applicant/)
       end
     end
 
@@ -81,7 +81,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
       before { allow(court_application_type1).to receive(:applicant_appellant_flag).and_return(true) }
 
       it 'displays the synonym "Applicant"' do
-        is_expected.to have_tag('td.govuk-table__cell', text: /Applicant/)
+        is_expected.to have_tag('dd.govuk-summary-list__value', text: /Applicant/)
       end
     end
 
@@ -99,7 +99,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
       it 'displays both result codes' do
         render_partial
-        expect(rendered).to have_tag('td.govuk-table__cell') do
+        expect(rendered).to have_tag('dd.govuk-summary-list__value') do
           with_text(/4600/)
           with_text(/4601/)
         end
@@ -107,7 +107,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
       it 'displays both result texts' do
         render_partial
-        expect(rendered).to have_tag('td.govuk-table__cell') do
+        expect(rendered).to have_tag('dd.govuk-summary-list__value') do
           with_text(/Legal Aid Transfer Granted/)
           with_text(/Legal Aid Transfer Denied/)
         end
@@ -125,7 +125,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
     context 'with no judicial results' do
       it 'displays not available for result code and result text' do
         render_partial
-        expect(rendered).to have_css('td.govuk-table__cell', text: /Not available/).twice
+        expect(rendered).to have_css('dd.govuk-summary-list__value', text: /Not available/).twice
       end
     end
   end
