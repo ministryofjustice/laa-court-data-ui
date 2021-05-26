@@ -9,14 +9,14 @@
             %span.govuk-accordion__section-button
               = court_application&.type&.description || t('generic.not_available')
           %div.govuk-accordion__section-summary.govuk-body
-            = court_application.received_date&.to_date&.strftime('%d %B %Y')
+            = l(court_application.received_date&.to_date, :format => :long)
         %div.govuk-accordion__section-content.govuk-details__text
           %dl.govuk-summary-list
             %div.govuk-summary-list__row
               %dt.govuk-summary-list__key
                 = t('hearings.show.court_applications.received_date')
               %dd.govuk-summary-list__value
-                = court_application.received_date&.to_date&.strftime('%d %B %Y')
+                = l(court_application.received_date&.to_date, :format => :long)
             %div.govuk-summary-list__row
               %dt.govuk-summary-list__key
                 = t('hearings.show.court_applications.type')
