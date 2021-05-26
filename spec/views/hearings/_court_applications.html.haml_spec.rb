@@ -123,9 +123,14 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
     end
 
     context 'with no judicial results' do
-      it 'displays not available for result code and result text' do
+      it 'does not display Result text' do
         render_partial
-        expect(rendered).to have_css('dd.govuk-summary-list__value', text: /Not available/).twice
+        expect(rendered).not_to have_css('dt.govuk-summary-list__key', text: /Result code/)
+      end
+
+      it 'does not display Result code' do
+        render_partial
+        expect(rendered).not_to have_css('dt.govuk-summary-list__key', text: /Result text/)
       end
     end
   end

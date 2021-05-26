@@ -5,7 +5,6 @@ module CourtDataAdaptor
     class ProsecutionCase < Base
       has_many :defendants
       has_many :hearings
-      has_many :court_application_parties
 
       property :prosecution_case_reference
     end

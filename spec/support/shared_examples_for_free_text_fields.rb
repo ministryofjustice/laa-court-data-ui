@@ -25,7 +25,7 @@ RSpec.shared_examples 'free text fields' do
   context 'with text with unpermitted html' do
     let(:free_text) { free_text_with_unpermitted_html }
 
-    it 'does not render unpermitted htl' do
+    it 'does not render unpermitted html' do
       is_expected.to have_content('a comment and (this is another example)')
     end
   end

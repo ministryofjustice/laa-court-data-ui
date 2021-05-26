@@ -45,7 +45,7 @@
                   - if result&.text.present?
                     = transform_and_sanitize(result&.text)
                   - else
-                    t('generic.not_available')
+                    = t('generic.not_available')
             %div.govuk-summary-list__row
               %dt.govuk-summary-list__key
                 = t('hearings.show.court_applications.respondent_synonyms')
