@@ -1,7 +1,7 @@
 %h2.govuk-heading-m
   = t('hearings.show.court_applications.heading')
 - if hearing&.court_applications.present?
-  %div.govuk-accordion#accordion-with-summary-sections{:data => {:module => "govuk-accordion"}}
+  %div.govuk-accordion{:data => {:module => "govuk-accordion"}, :id => "accordion-" + @prosecution_case.prosecution_case_reference + "-" + @hearing_day&.strftime('%Y%m%d')}
     - decorate_each(hearing.court_applications) do |court_application|
       %div.govuk-accordion__section
         %div.govuk-accordion__section-header
