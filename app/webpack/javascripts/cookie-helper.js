@@ -25,8 +25,12 @@ const checkConsentedToCookieExists = () => {
   return getCookie('cookies_preferences_set') != null
 }
 
+const cookieConsent = () => {
+  return String(getCookie('cookies_preferences_set')) === 'true'
+}
+
 const removeAllPreviousUsedCookies = () => {
-  const consentCookieExist = String(getCookie('cookies_preferences_set')) === 'true'
+  const consentCookieExist = cookieConsent()
 
   const cookies = document.cookie.split(/;/)
 
@@ -92,5 +96,7 @@ export {
   setConsentedToCookie,
   fetchConsentedToCookieValue,
   checkConsentedToCookieExists,
+  cookieConsent,
+  removeOptionalCookies,
   removeAllPreviousUsedCookies
 }
