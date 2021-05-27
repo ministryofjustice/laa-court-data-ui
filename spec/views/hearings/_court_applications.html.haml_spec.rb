@@ -27,6 +27,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
   let(:court_application_type_class) { CourtDataAdaptor::Resource::CourtApplicationType }
 
   before do
+    allow(hearing).to receive(:id).and_return('123')
     allow(hearing).to receive(:court_applications).and_return(court_applications)
     allow(court_application1).to receive(:type).and_return(court_application_type1)
     allow(court_application2).to receive(:type).and_return(court_application_type2)
