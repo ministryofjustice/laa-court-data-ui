@@ -1,0 +1,59 @@
+- if params[:"analytical-cookies"] == "off"
+  .lcdui-notice-summary
+    .govuk-error-summary
+      .govuk-error-summary__title
+        Analytical cookies turned off
+- if params[:"analytical-cookies"] == "on"
+  .lcdui-notice-summary
+    .govuk-error-summary
+      .govuk-error-summary__title
+        Analytical cookies enabled
+
+= govuk_page_title(t('cookie_settings.page_title', service_name: service_name))
+
+%p.govuk-body= t('cookie_settings.section_intro.paragraph_one')
+
+%p.govuk-body= t('cookie_settings.section_intro.paragraph_two')
+
+%h2.govuk-heading-l= t('cookie_settings.section_necessary.heading')
+
+%p.govuk-body= t('cookie_settings.section_necessary.paragraph_one')
+
+%ul.govuk-list.govuk-list--bullet
+  %li= t('cookie_settings.section_necessary.list_item_one')
+  %li= t('cookie_settings.section_necessary.list_item_two')
+
+%p.govuk-body= t('cookie_settings.section_necessary.paragraph_two')
+
+%p.govuk-body
+  %a.govuk-link{ :href => "cookies" }= t('cookie_settings.section_necessary.link_to_cookie_page')
+
+.vcd-no-js-only
+  %h2.govuk-heading-l= t('cookie_settings.section_settings.heading_no_js')
+
+  %p.govuk-body= t('cookie_settings.section_settings.paragraph_one_no_js')
+
+  %p.govuk-body= t('cookie_settings.section_settings.paragraph_two_no_js')
+
+%form#cookie-form.vcd-js-only{:method => "get", :data => {:module => "cookie-settings"}}
+
+  %h2.govuk-heading-l= t('cookie_settings.section_settings.heading')
+
+  %p.govuk-body= t('cookie_settings.section_settings.paragraph_one')
+
+  %fieldset.govuk-fieldset{ :aria-describedby => "cookie-hint-1" }
+    %legend.govuk-fieldset__legend.govuk-fieldset__legend--m
+      = t('cookie_settings.form.heading')
+      %span#cookie-hint-1.govuk-hint
+        %p= t('cookie_settings.form.hint')
+      .govuk-radios
+        .govuk-radios__item
+          %input#ga_on.govuk-radios__input{ :type => "radio", :name => "analytical-cookies", :value => "on", :type => "radio" }
+          %label.govuk-label.govuk-radios__label{ :for => "ga_on" }
+            = t('cookie_settings.form.cookies_on')
+        .govuk-radios__item
+          %input#ga_off.govuk-radios__input{ :type => "radio", :name => "analytical-cookies", :value => "off", :type => "radio" }
+          %label.govuk-label.govuk-radios__label{ :for => "ga_off" }
+            = t('cookie_settings.form.cookies_off')
+  %button.govuk-button{:type => "submit", :data => {:module => "govuk-button"}}
+    = t('cookie_settings.form.save_changes')

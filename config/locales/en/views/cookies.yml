@@ -1,20 +1,83 @@
 ---
 en:
+  cookie_settings:
+    form:
+      cookies_off: 'Off'
+      cookies_on: 'On'
+      heading: Turn Google Analytics cookies on or off
+      hint: This is the same setting as set in the cookie banner
+      paragraph_one: We use Google Analytics to measure how you use View Court Data so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
+      save_changes: Save changes
+    page_title: Change your cookie settings
+    section_intro:
+      paragraph_one: Cookies are files saved on your phone, tablet or computer when you visit a website.
+      paragraph_two: We use cookies to store information about how you use View Court Data.
+    section_necessary:
+      heading: Strictly necessary cookies
+      link_to_cookie_page: Read more about cookies on View Court Data
+      list_item_one: remember that you have seen the cookie message
+      list_item_two: remember that you are logged into our service
+      paragraph_one: 'We use essential cookies to help you use the View Court Data service. These do things such as:'
+      paragraph_two: These cookies need to be on to give you the best experience using the service.
+    section_settings:
+      heading: Cookie settings
+      heading_no_js: Analytics cookies are unavailable
+      paragraph_one: We use Google Analytics to measure how you use View Court Data so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
+      paragraph_one_no_js: If you had JavaScript enabled, we could use Google Analytics to measure how you use View Court Data. These cookies can be turned on and off here.
+      paragraph_two_no_js: As you have JavaScript disabled, Google Analytics cookies cannot be used.
   cookies:
-    page_title: Cookies on %{service_name}
-    section_four:
+    page_title: Cookies on View Court Data
+    section_adjust:
+      link_text: adjust your cookie settings
+      pre_link_text: You can
+      section_heading: Change your cookie settings
+    section_analytics:
+      list_item_one: how you got to the site;
+      list_item_three: what you click on while you are visiting the site.
+      list_item_two: the pages you visit on this service and how long you were on each page, and
+      paragraph_one: We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
+      paragraph_three: 'Google Analytics sets the following cookies:'
+      paragraph_two: 'Google Analytics sets cookies that store anonymised information about:'
+      section_heading: Cookies that measure website use
+      table:
+        caption: Google Analytics cookies and their purpose
+        heading_one: Name
+        heading_three: Expires
+        heading_two: Purpose
+        row_one_a: _ga
+        row_one_b: These help us count how many people visit the service by tracking if you have visited before.
+        row_one_c: Two years
+        row_three_a: _gid
+        row_three_b: These help us count how many people visit the service by tracking if you have visited before.
+        row_three_c: 24 hours
+        row_two_a: _gat
+        row_two_b: Used to manage the rate at which page view requests are made.
+        row_two_c: One minute
+    section_functional:
+      paragraph_one: These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.
+      section_heading: Cookies that remember your settings
+      table:
+        caption: Functional  cookies and their purpose
+        heading_one: Name
+        heading_three: Expires
+        heading_two: Purpose
+        row_one_a: remember_user_token
+        row_one_b: Selected at log on, remembers you for next time.
+        row_one_c: One fortnight
+    section_necessary:
       paragraph_one: These essential cookies do things like remember your progress during your session.
       section_heading: Strictly necessary cookies
+      table:
+        caption: Scrictly necessary cookies and their purpose
+        heading_one: Name
+        heading_three: Expires
+        heading_two: Purpose
+        row_one_a: _laa_court_data_ui_session
+        row_one_b: Remembers you as you use the service.
+        row_one_c: At the end of the session
+        row_two_a: cookies_preferences_set
+        row_two_b: Used to manage the rate at which page view requests are made.
+        row_two_c: One month
     section_one:
       paragraph_one: Cookies are files saved on your phone, tablet or computer when you visit a website.
       paragraph_two: We use cookies to store information about how you use this website, such as the pages you visit.
-    section_three:
-      paragraph_one: These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.
-      section_heading: Cookies that remember your settings
-    section_two:
-      list_item_one: how you got to the site
-      list_item_three: what you click on while you're visiting the site
-      list_item_two: the pages you visit on this service
-      paragraph_one: We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
-      paragraph_two: Google Analytics sets cookies that store anonymised information about:\
-      section_heading: Cookies that measure website use

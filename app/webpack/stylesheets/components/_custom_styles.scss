@@ -1,0 +1,13 @@
+.vcd-capitalize-first-letter:first-letter {
+  text-transform: uppercase;
+}
+
+// Display for js only
+body:not(.js-enabled) .vcd-js-only {
+  display: none;
+}
+
+// Display for no-js only
+.js-enabled .vcd-no-js-only {
+  display: none;
+}
