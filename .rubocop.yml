@@ -99,6 +99,9 @@ Performance/StringInclude:
   Enabled: true
 
 # => Rails
+Rails/EnvironmentVariableAccess:
+  AllowReads: true
+
 Rails/FilePath:
   Enabled: false
 
@@ -110,13 +113,13 @@ Rails/OutputSafety:
   Exclude:
     - lib/gds_design_system_breadcrumb_builder.rb
 
+# => RSpec
 RSpec/AnyInstance:
   Enabled: false
 
 RSpec/Capybara/FeatureMethods:
   EnabledMethods: ['feature', 'scenario']
 
-# => RSpec
 RSpec/ExampleLength:
   Exclude:
     - spec/features/**/*
