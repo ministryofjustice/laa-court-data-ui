@@ -2,19 +2,73 @@
 en:
   cookies:
     page_title: Cookies on %{service_name}
-    section_four:
-      paragraph_one: These essential cookies do things like remember your progress during your session.
-      section_heading: Strictly necessary cookies
     section_one:
       paragraph_one: Cookies are files saved on your phone, tablet or computer when you visit a website.
       paragraph_two: We use cookies to store information about how you use this website, such as the pages you visit.
-    section_three:
-      paragraph_one: These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.
-      section_heading: Cookies that remember your settings
     section_two:
-      list_item_one: how you got to the site
-      list_item_three: what you click on while you're visiting the site
-      list_item_two: the pages you visit on this service
-      paragraph_one: We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
-      paragraph_two: Google Analytics sets cookies that store anonymised information about:\
       section_heading: Cookies that measure website use
+      paragraph_one: We use Google Analytics to measure how you use the website so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
+      paragraph_two: "Google Analytics sets cookies that store anonymised information about:"
+      list_item_one: how you got to the site;
+      list_item_two: the pages you visit on this service and how long you were on each page, and
+      list_item_three: what you click on while you are visiting the site.
+      paragraph_three: "Google Analytics sets the following cookies:"
+      table:
+        caption: Google Analytics cookies and their purpose
+        heading_one: Name
+        heading_two: Purpose
+        heading_three: Expires
+        row_one_a: _ga
+        row_one_b: These help us count how many people visit the service by tracking if you have visited before.
+        row_one_c: Two years
+        row_two_a: _gat
+        row_two_b: Used to manage the rate at which page view requests are made.
+        row_two_c: One minute
+        row_three_a: _gid
+        row_three_b: These help us count how many people visit the service by tracking if you have visited before.
+        row_three_c: 24 hours
+      paragraph_four: You can adjust your cookie settings here.
+    section_three:
+      section_heading: Cookies that remember your settings
+      paragraph_one: These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.
+      table:
+        caption: Functional  cookies and their purpose
+        heading_one: Name
+        heading_two: Purpose
+        heading_three: Expires
+        row_one_a: remember_user_token
+        row_one_b: Selected at log on, remembers you for next time.
+        row_one_c: One fortnight
+    section_four:
+      section_heading: Strictly necessary cookies
+      paragraph_one: These essential cookies do things like remember your progress during your session.
+      table:
+        caption: Scrictly necessary cookies and their purpose
+        heading_one: Name
+        heading_two: Purpose
+        heading_three: Expires
+        row_one_a: _laa_court_data_ui_session
+        row_one_b: Remembers you as you use the service
+        row_one_c: At the end of the session
+        row_two_a: cookies_preferences_set
+        row_two_b: Used to manage the rate at which page view requests are made.
+        row_two_c: One month
+  cookie_settings:
+    page_title: Change your cookie settings
+    section_one:
+      paragraph_one: Cookies are files saved on your phone, tablet or computer when you visit a website.
+      paragraph_two: We use cookies to store information about how you use ‘View court data’.
+    section_two:
+      heading: Cookie settings
+      paragraph_one: We use different types of cookies. You can choose which cookies you’re happy for us to use and how the data is shared.
+    section_three:
+      heading: Strictly necessary cookies
+      paragraph_one: "We use essential cookies to help you use the ‘View court data’ service. These do things such as:"
+      list_item_one: remember that you have seen the cookie message
+      list_item_two: remember that you are logged into our service
+      paragraph_two: These cookies need to be on to give you the best experience using the service.
+      link_to_cookie_page: Read more about cookies on ‘View court data’
+      subsection_one:
+        heading: Cookies used to improve ‘View court data’
+        paragraph_one: We use Google Analytics to measure how you use ‘View court data’ so we can improve it based on user needs. We do not allow Google to use or share the data about how you use this site.
+        paragraph_two: "You can turn these cookies on or off here:"

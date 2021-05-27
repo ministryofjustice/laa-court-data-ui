@@ -25,6 +25,13 @@ export default class CookieBanner {
       this.showCookieMessage()
       this.bindEvents()
     }
+
+    //If this is the cookie settings page and a parameter is set
+    if (window.location.search.substr(1) == "analytical-cookies=off") {
+      this.declineCookie();
+    } else if (window.location.search.substr(1) == "analytical-cookies=on") {
+      this.acceptCookie();
+    }
   }
 
   bindEvents () {
@@ -41,6 +48,7 @@ export default class CookieBanner {
   declineCookie () {
     this.hideCookieMessage()
     setConsentedToCookie(false)
+    removeAllPreviousUsedCookies()
   }
 
   showCookieMessage () {

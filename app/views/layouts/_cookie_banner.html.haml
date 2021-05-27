@@ -1,14 +1,18 @@
-.app-cookie-banner.app-cookie-banner--hidden{ 'aria-label': 'cookie banner', 'data-module': 'app-cookie-banner', role: 'region' }
-  .govuk-width-container
+.app-cookie-banner.app-cookie-banner--hidden.govuk-cookie-banner{'data-module': 'app-cookie-banner', "aria-label" => "Cookies on View Court Data", "data-nosnippet" => "", role: "region"}
+  .govuk-cookie-banner__message.govuk-width-container
     .govuk-grid-row
       .govuk-grid-column-two-thirds
-        .cookie-banner__message
-          %p.govuk-body
-            =t('layouts.application.cookies.cookie_banner_message_html', page_path: cookies_path)
-
-        .cookie-banner__button
-          %button.govuk-button{ 'data-accept-cookies': 'true', 'data-module': 'govuk-button' }
-            =t('layouts.application.cookies.accept_cookies')
-
-          %button.govuk-button{ 'data-reject-cookies': 'true', 'data-module': 'govuk-button'}
-            =t('layouts.application.cookies.refuse_cookies')
+        %h2.govuk-cookie-banner__heading.govuk-heading-m
+          =t('layouts.application.cookies.title')
+        .govuk-cookie-banner__content
+          %p
+            =t('layouts.application.cookies.essential_cookies')
+          %p
+            =t('layouts.application.cookies.analytics_cookies')
+    .govuk-button-group
+      %button.govuk-button{'data-accept-cookies': 'true', "data-module" => "govuk-button", name: "cookies", type: "button", value: "accept"}
+        =t('layouts.application.cookies.accept_cookies')
+      %button.govuk-button{'data-reject-cookies': 'true', "data-module" => "govuk-button", name: "cookies", type: "button", value: "reject"}
+        =t('layouts.application.cookies.refuse_cookies')
+      %a.govuk-link{href: "/cookie-settings"}
+        =t('layouts.application.cookies.view_cookies')
