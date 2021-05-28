@@ -20,5 +20,6 @@ make open
 
 * [Installation and running](docs/installation.md)
 * [Development](docs/development.md)
+* [Setting up on Windows](docs/windows.md)
 * [Testing](docs/testing.md)
 * [Monitoring](docs/monitoring.md)
