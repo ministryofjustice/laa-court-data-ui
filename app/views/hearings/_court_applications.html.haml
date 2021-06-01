@@ -49,12 +49,12 @@
             .govuk-summary-list__row
               %dt.govuk-summary-list__key
                 = t('hearings.show.court_applications.respondent_synonyms')
-              %dd.govuk-summary-list__value
+              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
                 = court_application.respondent_list
             .govuk-summary-list__row
               %dt.govuk-summary-list__key
                 = t('hearings.show.court_applications.applicant_synonym')
-              %dd.govuk-summary-list__value
+              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
                 = court_application.applicant_synonym
 - else
   %p.govuk-body
