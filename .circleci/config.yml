@@ -342,21 +342,24 @@ workflows:
       - hold-dev:
           type: approval
           requires:
-            - build-app-container
+            - branch-build-approval
       - deploy-dev:
           requires:
+            - build-app-container
             - hold-dev
       - hold-staging:
           type: approval
           requires:
-            - build-app-container
+            - branch-build-approval
       - deploy-staging:
           requires:
+            - build-app-container
             - hold-staging
       - hold-uat:
           type: approval
           requires:
-            - build-app-container
+            - branch-build-approval
       - deploy-uat:
           requires:
+            - build-app-container
             - hold-uat
