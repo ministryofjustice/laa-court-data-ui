@@ -15,33 +15,33 @@
             .govuk-summary-list__row
               %dt.govuk-summary-list__key
                 = t('hearings.show.court_applications.received_date')
-              %dd.govuk-summary-list__value
+              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
                 = l(court_application.received_date&.to_date, :format => :long)
             .govuk-summary-list__row
               %dt.govuk-summary-list__key
                 = t('hearings.show.court_applications.type')
-              %dd.govuk-summary-list__value
+              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
                 = court_application&.type&.description || t('generic.not_available')
             .govuk-summary-list__row
               %dt.govuk-summary-list__key
                 = t('hearings.show.court_applications.code')
-              %dd.govuk-summary-list__value
+              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
                 = court_application&.type&.code || t('generic.not_available')
             .govuk-summary-list__row
               %dt.govuk-summary-list__key
                 = t('hearings.show.court_applications.legislation')
-              %dd.govuk-summary-list__value
+              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
                 = court_application&.type&.legislation  || t('generic.not_available')
             - court_application.judicial_results&.each do |result|
               .govuk-summary-list__row
                 %dt.govuk-summary-list__key
                   = t('hearings.show.court_applications.result_codes')
-                %dd.govuk-summary-list__value
+                %dd.govuk-summary-list__value.vcd-capitalize-first-letter
                   = result&.cjs_code || t('generic.not_available')
               .govuk-summary-list__row
                 %dt.govuk-summary-list__key
                   = t('hearings.show.court_applications.result_text')
-                %dd.govuk-summary-list__value
+                %dd.govuk-summary-list__value.vcd-capitalize-first-letter
                   - if result&.text.present?
                     = transform_and_sanitize(result&.text)
                   - else
