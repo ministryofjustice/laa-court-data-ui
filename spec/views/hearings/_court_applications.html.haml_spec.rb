@@ -40,7 +40,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
     it 'does not render content' do
       render_partial
-      expect(rendered).to have_css('.govuk-body', text: /No court applications are associated with this case/)
+      expect(rendered).to have_css('.govuk-body', text: /No court applications are associated with/)
     end
   end
 
