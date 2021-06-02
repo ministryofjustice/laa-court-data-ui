@@ -15,7 +15,11 @@ module CourtDataAdaptor
                     :hearings,
                     'hearings.hearing_events',
                     'hearings.providers',
-                    'hearings.cracked_ineffective_trial')
+                    'hearings.cracked_ineffective_trial',
+                    'hearings.court_applications',
+                    'hearings.court_applications.type',
+                    'hearings.court_applications.judicial_results',
+                    'hearings.court_applications.respondents')
           .where(prosecution_case_reference: urn)
           .all
       end
