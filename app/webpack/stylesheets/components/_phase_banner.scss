@@ -1,0 +1,33 @@
+$laa-uat-colour: govuk-colour("orange");
+$laa-staging-colour: govuk-colour("turquoise");
+$laa-dev-colour: govuk-colour("pink");
+
+.uat {
+  .govuk-header__container {
+    border-bottom-color: $laa-uat-colour;
+  }
+
+  .govuk-tag.govuk-phase-banner__content__tag {
+    background-color: $laa-uat-colour;
+  }
+}
+
+.staging {
+  .govuk-header__container {
+    border-bottom-color: $laa-staging-colour;
+  }
+
+  .govuk-tag.govuk-phase-banner__content__tag {
+    background-color: $laa-staging-colour;
+  }
+}
+
+.dev {
+  .govuk-header__container {
+    border-bottom-color: $laa-dev-colour;
+  }
+
+  .govuk-tag.govuk-phase-banner__content__tag {
+    background-color: $laa-dev-colour;
+  }
+}

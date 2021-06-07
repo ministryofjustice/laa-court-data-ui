@@ -12,6 +12,14 @@ module Application
         Rails.root.join(*path)
       )
     end
+
+    def with_env(env)
+      @original_env = ENV['ENV']
+      ENV['ENV'] = env
+      yield
+    ensure
+      ENV['ENV'] = @original_env
+    end
   end
 end
 
