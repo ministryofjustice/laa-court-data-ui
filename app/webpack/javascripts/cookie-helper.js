@@ -80,7 +80,7 @@ function setCookie (name, value, options) {
   if (typeof options === 'undefined') {
     options = {}
   }
-  let cookieString = name + '=' + value + '; path=/'
+  let cookieString = name + '=' + value + '; path=/; Domain=' + document.domain + ';'
   if (options.days) {
     const date = new Date()
     date.setTime(date.getTime() + (options.days * 24 * 60 * 60 * 1000))
