@@ -35,4 +35,28 @@ RSpec.feature 'Gov UK Layout', type: :feature do
       end
     end
   end
+
+  context 'when environment is staging' do
+    around do |example|
+      with_env('staging') { example.run }
+    end
+
+    scenario 'GDS styled home page' do
+      within '.govuk-phase-banner' do
+        expect(page).to have_css('.govuk-phase-banner__content', text: 'staging')
+      end
+    end
+  end
+
+  context 'when environment is dev' do
+    around do |example|
+      with_env('dev') { example.run }
+    end
+
+    scenario 'GDS styled home page' do
+      within '.govuk-phase-banner' do
+        expect(page).to have_css('.govuk-phase-banner__content', text: 'dev')
+      end
+    end
+  end
 end
