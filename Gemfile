@@ -28,7 +28,7 @@ gem 'redis', '~> 4.2.5'
 gem 'sentry-rails', '~> 4.5.1'
 gem 'sentry-sidekiq', '~> 4.5.1'
 gem 'sidekiq', '~> 6.2'
-gem 'webpacker', '~> 5.3'
+gem 'webpacker', '~> 5.4'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.1'
