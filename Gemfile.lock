@@ -278,7 +278,7 @@ GEM
     rack (2.2.3)
     rack-contrib (2.1.0)
       rack (~> 2.0)
-    rack-proxy (0.6.5)
+    rack-proxy (0.7.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -453,7 +453,7 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webpacker (5.3.0)
+    webpacker (5.4.0)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -531,7 +531,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webmock
-  webpacker (~> 5.3)
+  webpacker (~> 5.4)
 
 RUBY VERSION
    ruby 2.7.2p137
