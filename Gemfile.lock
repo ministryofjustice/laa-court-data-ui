@@ -484,7 +484,7 @@ DEPENDENCIES
   cancancan
   capybara
   capybara_table
-  codeclimate-test-reporter
+  codeclimate-test-reporter (>= 1.0.7)
   colorize
   devise (~> 4.8)
   dotenv-rails
