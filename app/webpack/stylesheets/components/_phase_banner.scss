@@ -1,8 +1,9 @@
 $app-uat-colour: govuk-colour('orange');
 $app-staging-colour: govuk-colour('turquoise');
 $app-dev-colour: govuk-colour('pink');
+$app-local-colour: govuk-colour('bright-purple');
 
-.uat {
+.app-environment-uat {
   .govuk-header__container {
     border-bottom-color: $app-uat-colour;
   }
@@ -12,7 +13,7 @@ $app-dev-colour: govuk-colour('pink');
   }
 }
 
-.staging {
+.app-environment-staging {
   .govuk-header__container {
     border-bottom-color: $app-staging-colour;
   }
@@ -22,12 +23,22 @@ $app-dev-colour: govuk-colour('pink');
   }
 }
 
-.dev {
+.app-environment-dev {
   .govuk-header__container {
     border-bottom-color: $app-dev-colour;
   }
 
   .govuk-tag.govuk-phase-banner__content__tag {
     background-color: $app-dev-colour;
+  }
+}
+
+.app-environment-local {
+  .govuk-header__container {
+    border-bottom-color: $app-local-colour;
+  }
+
+  .govuk-tag.govuk-phase-banner__content__tag {
+    background-color: $app-local-colour;
   }
 }

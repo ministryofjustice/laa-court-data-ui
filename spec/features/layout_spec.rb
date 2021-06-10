@@ -59,4 +59,12 @@ RSpec.feature 'Gov UK Layout', type: :feature do
       end
     end
   end
+
+  context 'when running the application locally' do
+    scenario 'GDS styled home page' do
+      within '.govuk-phase-banner' do
+        expect(page).to have_css('.govuk-phase-banner__content', text: 'local')
+      end
+    end
+  end
 end
