@@ -48,19 +48,19 @@
 
   %p.govuk-body= t('cookie_settings.section_settings.paragraph_one')
 
-  %fieldset.govuk-fieldset{ :aria-describedby => "cookie-hint-1" }
+  %fieldset.govuk-fieldset{ 'aria-describedby': 'cookie-hint-1' }
     %legend.govuk-fieldset__legend.govuk-fieldset__legend--m
       = t('cookie_settings.form.heading')
       %span#cookie-hint-1.govuk-hint
         %p= t('cookie_settings.form.hint')
       .govuk-radios
         .govuk-radios__item
-          %input#ga_on.govuk-radios__input{ :type => "radio", :name => "analytical-cookies", :value => "on", :type => "radio" }
-          %label.govuk-label.govuk-radios__label{ :for => "ga_on" }
+          %input#ga_on.govuk-radios__input{ type: 'radio', name: 'analytical-cookies', value: 'on' }
+          %label.govuk-label.govuk-radios__label{ for: 'ga_on' }
             = t('cookie_settings.form.cookies_on')
         .govuk-radios__item
-          %input#ga_off.govuk-radios__input{ :type => "radio", :name => "analytical-cookies", :value => "off", :type => "radio" }
-          %label.govuk-label.govuk-radios__label{ :for => "ga_off" }
+          %input#ga_off.govuk-radios__input{ type: 'radio', name: 'analytical-cookies', value: 'off' }
+          %label.govuk-label.govuk-radios__label{ for: 'ga_off' }
             = t('cookie_settings.form.cookies_off')
-  %button.govuk-button{:type => "submit", :data => {:module => "govuk-button"}}
+  %button.govuk-button{type: 'submit', data: {module: 'govuk-button'}}
     = t('cookie_settings.form.save_changes')
