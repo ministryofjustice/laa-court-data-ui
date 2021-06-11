@@ -109,7 +109,4 @@
 %h2.govuk-heading-l= t('cookies.section_adjust.section_heading')
 
 %p.govuk-body
-  = t('cookies.section_adjust.pre_link_text')
-  %span
-  = link_to t('cookies.section_adjust.link_text'), cookie_settings_path, class: 'govuk-link'
-  %span>.
+  = t('cookies.section_adjust.link_text_html', href: cookie_settings_path)
