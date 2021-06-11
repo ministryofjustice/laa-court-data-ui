@@ -51,10 +51,13 @@ INLINE_SIDEKIQ=true
 
 - setup CDA database
 ```
-rails db:create db:migrate db:seed
+# setup and seed database
+rails db:setup
 ```
+or
+`rails db:create db:migrate db:seed`
 
-- generate OAuth2 `client_credentials` - for the UI (see end of section for postgres error)
+- generate OAuth2 `client_credentials` - for the UI
 ```
 rails console
 > application = Doorkeeper::Application.create(name: 'LAA Court data UI')
