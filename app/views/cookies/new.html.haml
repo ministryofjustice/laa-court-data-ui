@@ -9,7 +9,7 @@
 
 - if params[:'analytical-cookies'] == 'on'
   .govuk-notification-banner
-    .govuk-notification-banner__header
+    .govuk-notification-banner__header{ "role": "region", "aria-labelledby": "govuk-notification-banner-title", "data-module": "govuk-notification-banner" }
       %h2.govuk-notification-banner__title#govuk-notification-banner-title
         = t('cookie_settings.notification_banner.heading')
     .govuk-notification-banner__content
@@ -42,25 +42,4 @@
 
   %p.govuk-body= t('cookie_settings.section_settings.paragraph_two_no_js')
 
-%form#cookie-form.app-js-only{method: "get", data: {module: "cookie-settings"}}
-
-  %h2.govuk-heading-l= t('cookie_settings.section_settings.heading')
-
-  %p.govuk-body= t('cookie_settings.section_settings.paragraph_one')
-
-  %fieldset.govuk-fieldset{ 'aria-describedby': 'cookie-hint-1' }
-    %legend.govuk-fieldset__legend.govuk-fieldset__legend--m
-      = t('cookie_settings.form.heading')
-      %span#cookie-hint-1.govuk-hint
-        %p= t('cookie_settings.form.hint')
-      .govuk-radios
-        .govuk-radios__item
-          %input#ga_on.govuk-radios__input{ type: 'radio', name: 'analytical-cookies', value: 'on' }
-          %label.govuk-label.govuk-radios__label{ for: 'ga_on' }
-            = t('cookie_settings.form.cookies_on')
-        .govuk-radios__item
-          %input#ga_off.govuk-radios__input{ type: 'radio', name: 'analytical-cookies', value: 'off' }
-          %label.govuk-label.govuk-radios__label{ for: 'ga_off' }
-            = t('cookie_settings.form.cookies_off')
-  %button.govuk-button{type: 'submit', data: {module: 'govuk-button'}}
-    = t('cookie_settings.form.save_changes')
+= render(partial: 'form')
