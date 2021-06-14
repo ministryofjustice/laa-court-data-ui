@@ -35,6 +35,10 @@ module ApplicationHelper
     link_to(title, prosecution_case_path(id: prosecution_case.prosecution_case_reference, column: column, direction: direction, anchor: column), class: 'govuk-link govuk-link--no-visited-state', id: column, 'aria-label': "Sort #{column} #{direction}")
   end
 
+  def app_environment
+    "app-environment-#{ENV['ENV'] || 'local'}"
+  end
+
   private
 
   def decorator_instance(object, decorator_class = nil)

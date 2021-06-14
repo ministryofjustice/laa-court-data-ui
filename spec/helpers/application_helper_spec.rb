@@ -227,4 +227,20 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
+
+  describe '#app_environment' do
+    subject(:app_environment) { helper.app_environment }
+
+    context 'when application is running within the dev kubernetes namespace' do
+      around do |example|
+        with_env('dev') { example.run }
+      end
+
+      it { is_expected.to eql 'app-environment-dev' }
+    end
+
+    context 'when application is running locally' do
+      it { is_expected.to eql 'app-environment-local' }
+    end
+  end
 end
