@@ -64,13 +64,13 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     awesome_print (1.9.2)
-    axe-core-api (4.1.0)
+    axe-core-api (4.2.0)
       capybara
       dumb_delegator
       selenium-webdriver
       virtus
       watir
-    axe-core-rspec (4.1.0)
+    axe-core-rspec (4.2.0)
       axe-core-api
       dumb_delegator
       virtus
@@ -129,7 +129,6 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     dumb_delegator (1.0.0)
-    equalizer (0.0.11)
     erubi (1.10.0)
     erubis (2.7.0)
     factory_bot (6.2.0)
@@ -321,7 +320,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.3.1)
-    regexp_parser (1.8.2)
+    regexp_parser (2.1.1)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
@@ -430,16 +429,15 @@ GEM
       tzinfo (>= 1.0.0)
     unicode-display_width (1.7.0)
     vcr (6.0.0)
-    virtus (1.0.5)
+    virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
-      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.9)
       rack (>= 2.0.9)
-    watir (6.17.0)
-      regexp_parser (~> 1.2)
-      selenium-webdriver (~> 3.6)
+    watir (6.19.1)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (>= 3.142.7)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -477,7 +475,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  axe-core-rspec (~> 4.1)
+  axe-core-rspec (~> 4.2)
   bootsnap (>= 1.7.0)
   brakeman
   breadcrumbs_on_rails
