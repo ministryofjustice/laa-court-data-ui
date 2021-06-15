@@ -68,7 +68,7 @@ export default class CookieBanner {
     } else if (window.location.search.substr(1) === 'analytical-cookies=on') {
       this.acceptCookie()
     }
-
+    /*
     // If cookie set and on radio page, set radio accordingly
     if (document.querySelector('#new_cookie')) {
       document.querySelector('#cookie-analytics-0-field').setAttribute('checked', 'checked')
@@ -76,5 +76,6 @@ export default class CookieBanner {
         document.querySelector('#cookie-analytics-1-field').setAttribute('checked', 'checked')
       }
     }
+    */
   }
 }
