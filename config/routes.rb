@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   get '/cookies/settings', to: 'cookies#new'
   get '/cookies', to: 'cookies#cookie_details'
-  
+
   get '/contact_us', to: 'pages#contact_us'
 
   get 'ping', to: 'status#ping', format: :json

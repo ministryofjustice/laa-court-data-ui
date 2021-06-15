@@ -70,10 +70,10 @@ export default class CookieBanner {
     }
 
     // If cookie set and on radio page, set radio accordingly
-    if (document.querySelector('#cookie-form')) {
-      document.querySelector('#ga_off').setAttribute('checked', 'checked')
+    if (document.querySelector('#new_cookie')) {
+      document.querySelector('#cookie-analytics-0-field').setAttribute('checked', 'checked')
       if (cookieConsent()) {
-        document.querySelector('#ga_on').setAttribute('checked', 'checked')
+        document.querySelector('#cookie-analytics-1-field').setAttribute('checked', 'checked')
       }
     }
   }
