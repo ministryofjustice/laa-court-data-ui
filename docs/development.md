@@ -21,8 +21,7 @@ cd .../hmcts-common-platform-mock-api
 - create dummy data
 ```
 # create some data
-$ rails console
-Pry> FactoryBot.create(:realistic_prosecution_case, defendants: FactoryBot.create_list(:realistic_defendant, 3))
+rails mock:demodata:load
 ```
 
 - start server on port 9293
@@ -40,6 +39,22 @@ git clone git@github.com:ministryofjustice/laa-court-data-adaptor.git
 cd .../laa-court-data-adaptor
 ```
 
+- configure local adaptor to use local mock common platform API, set database URL and, optionally, inline sidekiq jobs
+```
+# in .env.development.local
+COMMON_PLATFORM_URL=http://localhost:9293
+DATABASE_URL=postgres://localhost/laa_court_data_adaptor_development
+INLINE_SIDEKIQ=true
+```
+
+- setup CDA database
+```
+# setup and seed database
+rails db:setup
+```
+or
+`rails db:create db:migrate db:seed`
+
 - generate OAuth2 `client_credentials` - for the UI
 ```
 rails console
@@ -48,13 +63,6 @@ rails console
 => [6FYXUiqrR3Yuid2ispemVNPUT7-8W0LB1sSmB6c0f3k-example, K122aTsBeRj1GuP7u-Fdi3Vm6uSKaD8K2vq0pPRocIo-example]
 
 # These should be put in the UI's `.env.development.local` - see UI setup below
-```
-
-- configure local adaptor to use local mock common platform API and, optionally, inline sidekiq jobs
-```
-# in .env.development.local
-COMMON_PLATFORM_URL=http://localhost:9293
-INLINE_SIDEKIQ=true
 ```
 
 - start server
