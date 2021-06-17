@@ -32,7 +32,9 @@ class LaaReferencesController < ApplicationController
   end
 
   def defendant
-    @defendant ||= @defendant_search.call
+    return @defendant if @defendant
+    defendant_response = DefendantFinder.call(defendant_id: defendant_uuid)
+    @defendant = Defendant.new(defendant_response)
   end
 
   def prosecution_case_reference
