@@ -22,8 +22,6 @@ cd .../hmcts-common-platform-mock-api
 ```
 # create some data
 rails mock:demodata:load
-rails console
-Pry> FactoryBot.create(:realistic_prosecution_case, defendants: FactoryBot.create_list(:realistic_defendant, 3))
 ```
 
 - start server on port 9293
