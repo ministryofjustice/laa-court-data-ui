@@ -35,10 +35,11 @@ module GovukDesignSystemHelper
   end
 
   def govuk_summary_list_entry(key, value, tag_options_key = {}, tag_options_value = {})
+    tag_class = prepend_classes('govuk-summary-list__row')
     tag_options_key = prepend_classes('govuk-summary-list__key', tag_options_key)
     tag_options_value = prepend_classes('govuk-summary-list__value', tag_options_value)
 
-    tag.div do
+    tag.div(**tag_class) do
       govuk_summary_key(key, tag_options_key).concat(
         govuk_summary_value(value, tag_options_value)
       )
@@ -56,7 +57,7 @@ module GovukDesignSystemHelper
       value
     end
   end
-  
+
   private
 
   def prepend_classes(classes_to_prepend, options = {})
