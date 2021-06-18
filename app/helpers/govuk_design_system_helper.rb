@@ -34,6 +34,29 @@ module GovukDesignSystemHelper
     end
   end
 
+  def govuk_summary_list_entry(key, value, tag_options_key = {}, tag_options_value = {})
+    tag_options_key = prepend_classes('govuk-summary-list__key', tag_options_key)
+    tag_options_value = prepend_classes('govuk-summary-list__value', tag_options_value)
+
+    tag.div do
+      govuk_summary_key(key, tag_options_key).concat(
+        govuk_summary_value(value, tag_options_value)
+      )
+    end
+  end
+
+  def govuk_summary_key(key, tag_options_key)
+    tag.dt(**tag_options_key) do
+      key
+    end
+  end
+
+  def govuk_summary_value(value, tag_options_value)
+    tag.dd(**tag_options_value) do
+      value
+    end
+  end
+  
   private
 
   def prepend_classes(classes_to_prepend, options = {})
@@ -57,28 +80,5 @@ module GovukDesignSystemHelper
     page_title_var = title || contextual_title
     caption_var = caption.strip.concat if caption.present?
     "#{caption_var} #{page_title_var} - #{service_name} - GOV.UK".strip
-  end
-
-  def govuk_summary_list_entry(key, value, tag_options_key = {}, tag_options_value = {})
-    tag_options_key = prepend_classes('govuk-summary-list__key', tag_options_key)
-    tag_options_value = prepend_classes('govuk-summary-list__value', tag_options_value)
-
-    tag.div do
-      govuk_summary_key(key, tag_options_key).concat(
-        govuk_summary_value(value, tag_options_value)
-      )
-    end
-  end
-
-  def govuk_summary_key(key, tag_options_key)
-    tag.dt(**tag_options_key) do
-      key
-    end
-  end
-
-  def govuk_summary_value(value, tag_options_value)
-    tag.dd(**tag_options_value) do
-      value
-    end
   end
 end
