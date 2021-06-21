@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+gem 'activeresource'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.0', require: false
 
@@ -28,7 +29,7 @@ gem 'redis', '~> 4.2.5'
 gem 'sentry-rails', '~> 4.5.1'
 gem 'sentry-sidekiq', '~> 4.5.1'
 gem 'sidekiq', '~> 6.2'
-gem 'webpacker', '~> 5.4'
+gem 'webpacker', '~> 5.3'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.1'
@@ -53,6 +54,7 @@ group :test do
   gem 'webdrivers'
   gem 'webmock'
 end
+
 
 group :development, :test do
   gem 'awesome_print'

@@ -32,7 +32,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def defendant
-    @defendant ||= @defendant_search.call
+    @defendant ||= Defendant.find(defendant_uuid)
   end
 
   def prosecution_case_reference
