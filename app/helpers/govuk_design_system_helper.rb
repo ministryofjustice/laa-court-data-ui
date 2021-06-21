@@ -46,6 +46,8 @@ module GovukDesignSystemHelper
     end
   end
 
+  private
+
   def govuk_summary_key(key, tag_options_key)
     tag.dt(**tag_options_key) do
       key
@@ -57,8 +59,6 @@ module GovukDesignSystemHelper
       value
     end
   end
-
-  private
 
   def prepend_classes(classes_to_prepend, options = {})
     classes = options[:class].present? ? options[:class].split : []
