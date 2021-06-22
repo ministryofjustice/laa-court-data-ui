@@ -184,4 +184,24 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       end
     end
   end
+
+  describe '#govuk_summary_list_entry' do
+    subject(:markup) do
+      helper.govuk_summary_list_entry('My summary list key', 'My summary list value') do
+        'My content'
+      end
+    end
+
+    it 'adds row with govuk class' do
+      is_expected.to have_tag(:div, with: { class: 'govuk-summary-list__row' })
+    end
+
+    it 'adds nested key in dt tag with govuk class' do
+      is_expected.to have_tag(:dt, with: { class: 'govuk-summary-list__key' })
+    end
+
+    it 'adds nested value in dd tag with govuk class' do
+      is_expected.to have_tag(:dd, with: { class: 'govuk-summary-list__value' })
+    end
+  end
 end

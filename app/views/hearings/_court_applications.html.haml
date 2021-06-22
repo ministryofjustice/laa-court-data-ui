@@ -11,51 +11,22 @@
           .govuk-accordion__section-summary.govuk-body
             = l(court_application.received_date&.to_date, :format => :long)
         .govuk-accordion__section-content.govuk-details__text
+          - key_class = {}
+          - value_class = {class: "vcd-capitalize-first-letter"}
           %dl.govuk-summary-list
-            .govuk-summary-list__row
-              %dt.govuk-summary-list__key
-                = t('hearings.show.court_applications.received_date')
-              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
-                = l(court_application.received_date&.to_date, :format => :long)
-            .govuk-summary-list__row
-              %dt.govuk-summary-list__key
-                = t('hearings.show.court_applications.type')
-              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
-                = court_application&.type&.description || t('generic.not_available')
-            .govuk-summary-list__row
-              %dt.govuk-summary-list__key
-                = t('hearings.show.court_applications.code')
-              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
-                = court_application&.type&.code || t('generic.not_available')
-            .govuk-summary-list__row
-              %dt.govuk-summary-list__key
-                = t('hearings.show.court_applications.legislation')
-              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
-                = court_application&.type&.legislation  || t('generic.not_available')
+            = govuk_summary_list_entry(t('hearings.show.court_applications.received_date'), l(court_application.received_date&.to_date, :format => :long), key_class, value_class)
+            = govuk_summary_list_entry(t('hearings.show.court_applications.type'), court_application&.type&.description || t('generic.not_available'), key_class, value_class)
+            = govuk_summary_list_entry(t('hearings.show.court_applications.code'), court_application&.type&.code || t('generic.not_available'), key_class, value_class)
+            = govuk_summary_list_entry(t('hearings.show.court_applications.legislation'), court_application&.type&.legislation  || t('generic.not_available'), key_class, value_class)
             - court_application.judicial_results&.each do |result|
-              .govuk-summary-list__row
-                %dt.govuk-summary-list__key
-                  = t('hearings.show.court_applications.result_codes')
-                %dd.govuk-summary-list__value.vcd-capitalize-first-letter
-                  = result&.cjs_code || t('generic.not_available')
-              .govuk-summary-list__row
-                %dt.govuk-summary-list__key
-                  = t('hearings.show.court_applications.result_text')
-                %dd.govuk-summary-list__value.vcd-capitalize-first-letter
-                  - if result&.text.present?
-                    = transform_and_sanitize(result&.text)
-                  - else
-                    = t('generic.not_available')
-            .govuk-summary-list__row
-              %dt.govuk-summary-list__key
-                = t('hearings.show.court_applications.respondent_synonyms')
-              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
-                = court_application.respondent_list
-            .govuk-summary-list__row
-              %dt.govuk-summary-list__key
-                = t('hearings.show.court_applications.applicant_synonym')
-              %dd.govuk-summary-list__value.vcd-capitalize-first-letter
-                = court_application.applicant_synonym
+              = govuk_summary_list_entry(t('hearings.show.court_applications.result_codes'), result&.cjs_code || t('generic.not_available'), key_class, value_class)
+              - if result&.text.present?
+                = govuk_summary_list_entry(t('hearings.show.court_applications.result_text'), transform_and_sanitize(result&.text), key_class, value_class)
+              - else
+                = govuk_summary_list_entry(t('hearings.show.court_applications.result_text'), t('generic.not_available'), key_class, value_class)
+            = govuk_summary_list_entry(t('hearings.show.court_applications.respondent_synonyms'), court_application.respondent_list, key_class, value_class)
+            = govuk_summary_list_entry(t('hearings.show.court_applications.applicant_synonym'), court_application.applicant_synonym, key_class, value_class)
+
 - else
   %p.govuk-body
     = t('hearings.show.court_applications.none')
