@@ -33,8 +33,8 @@ class LaaReferencesController < ApplicationController
 
   def defendant
     return @defendant if @defendant
-    defendant_response = DefendantFinder.call(defendant_id: defendant_uuid)
-    @defendant = Defendant.new(defendant_response)
+    @defendant_response = DefendantFinder.call(defendant_id: defendant_uuid)
+    @defendant = Defendant.new(defendant_params)
   end
 
   def prosecution_case_reference
@@ -109,5 +109,22 @@ class LaaReferencesController < ApplicationController
     @errors = exception.errors
     flash.now[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
     render 'new'
+  end
+
+  def defendant_params
+    defendant_params = ActionController::Parameters.new(@defendant_response)
+    defendant_params
+      .from_jsonapi(custom_stack_limit: 4)
+      .require(:defendant).permit(:id,
+                                  :name,
+                                  :date_of_birth,
+                                  :national_insurance_number,
+                                  :arrest_summons_number,
+                                  :maat_reference,
+                                  offences_attributes: %i[title
+                                                          legislation
+                                                          mode_of_trial
+                                                          pleas
+                                                          mode_of_trial_reasons])
   end
 end
