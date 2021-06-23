@@ -3,6 +3,8 @@
 require_dependency 'court_data_adaptor'
 
 class LaaReferencesController < ApplicationController
+  include JSONAPI::Deserialization
+
   before_action :load_and_authorize_defendant_search,
                 :set_defendant_uuid_if_required,
                 :set_defendant_if_required,
@@ -34,7 +36,9 @@ class LaaReferencesController < ApplicationController
   def defendant
     return @defendant if @defendant
     defendant_response = DefendantFinder.call(defendant_id: defendant_uuid)
-    @defendant = Defendant.new(defendant_response)
+    @defendant = Defendant.new(jsonapi_deserialize(defendant_response,
+                                                   only: %i[id name date_of_birth national_insurance_number arrest_summons_number maat_reference
+                                                            offences]))
   end
 
   def prosecution_case_reference
