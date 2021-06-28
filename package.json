@@ -21,6 +21,7 @@
   },
   "resolutions": {
     "dot-prop": "^5.2.0",
+    "glob-parent": "^5.1.2",
     "hosted-git-info": "^3.0.8",
     "http-proxy": "^1.18.1",
     "is-svg": "^4.3.1",
