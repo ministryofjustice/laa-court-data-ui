@@ -20,6 +20,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "resolutions": {
+    "css-what": "^5.0.1",
     "dot-prop": "^5.2.0",
     "glob-parent": "^5.1.2",
     "hosted-git-info": "^3.0.8",
