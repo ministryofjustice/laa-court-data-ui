@@ -17,5 +17,18 @@
           = t('layouts.application.cookies.accept_cookies')
         %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
           'href': '?usage_opt_in=false&show_confirmation=true'}
-          = t('layouts.application.cookies.refuse_cookies')
+          = t('layouts.application.cookies.reject_cookies')
         = link_to t('layouts.application.cookies.view_cookies'), cookies_settings_path, class: 'govuk-link'
+
+- if @show_confirm_banner
+  .app-cookie-banner.app-cookie-banner.govuk-cookie-banner{"aria-label": "Cookies on View Court Data", role: "region", data: { module: "app-cookie-banner", nosnippet: ""}}
+    .govuk-cookie-banner__message.govuk-width-container
+      .govuk-grid-row
+        .govuk-grid-column-two-thirds
+          .govuk-cookie-banner__content
+            %p
+              = @analytics_cookies_accepted ? t('layouts.application.cookies.confirmation_accept') : t('layouts.application.cookies.confirmation_reject') 
+              = t('layouts.application.cookies.confirmation_link_to_settings', href: cookies_settings_path).html_safe
+      .govuk-button-group
+        %a.govuk-button{'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': '?'}
+          Hide this message

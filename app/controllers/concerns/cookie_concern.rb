@@ -9,12 +9,12 @@ module CookieConcern
     return set_cookie(:usage_opt_in) if cookies[:usage_opt_in].nil?
 
     if params[:usage_opt_in].present?
-      set_cookie(:usage_opt_in, value: params[:usage_opt_in])
+      set_cookie(:usage_opt_in, value: booleanise_usage_opt_in)
       set_cookie(:cookies_preferences_set, value: true)
     end
 
-    show_hide_cookie_banners
     analytics_cookies_accepted?
+    show_hide_cookie_banners
   end
 
   def set_cookie(type, value: false)
@@ -24,6 +24,10 @@ module CookieConcern
       expires: Time.zone.now + 1.year,
       secure: !Rails.env.test?
     }
+  end
+
+  def booleanise_usage_opt_in
+    ActiveModel::Type::Boolean.new.cast(params[:usage_opt_in])
   end
 
   def cookies_preferences_set?
@@ -36,6 +40,6 @@ module CookieConcern
 
   def show_hide_cookie_banners
     @cookies_preferences_set = cookies_preferences_set?
-    # @show_confirm_banner = params[:show_confirmation].presence || false
+    @show_confirm_banner = params[:show_confirmation].presence || false
   end
 end

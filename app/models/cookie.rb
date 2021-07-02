@@ -7,5 +7,5 @@ class Cookie
 
   attribute :analytics
 
-  validates(:analytics, presence: true)
+  validates :analytics, presence: true
 end
