@@ -5,17 +5,20 @@ class CookiesController < ApplicationController
   skip_authorization_check
 
   def new
-    @cookie = Cookie.new
+    usage_cookie = cookies[:usage_opt_in]
+    @cookie = Cookie.new(analytics: usage_cookie)
   end
 
   def create
     @cookie = Cookie.new(cookie_params[:cookie])
     if @cookie.valid?
-      flash[:success] = 'XYZ'
+      set_cookie(:usage_opt_in, value: @cookie.analytics)
+      set_cookie(:cookies_preferences_set, value: true)
+      flash[:success] = "You've set your cookie preferences."
+      redirect_to cookies_settings_path
     else
-      flash[:error] = 'Else'
+      render :new
     end
-    render :new
   end
 
   def cookie_details; end
