@@ -8,9 +8,7 @@ en:
       hint: This is the same setting as set in the cookie banner
       save_changes: Save changes
     notification_banner:
-      heading: Cookie settings saved
-      turned_off: Analytical cookies turned off
-      turned_on: Analytical cookies turned on
+      preferences_set: You've set your cookie preferences. <a class="govuk-notification-banner__link" href="%{href}">Go back to the page you were looking at</a>.
     page_title: Change your cookie settings
     section_intro:
       paragraph_one: Cookies are files saved on your phone, tablet or computer when you visit a website.

@@ -18,4 +18,4 @@
         %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
           'href': '?usage_opt_in=false&show_confirmation=true'}
           = t('layouts.application.cookies.refuse_cookies')
-        = link_to t('layouts.application.cookies.view_cookies'), cookies_path, class: 'govuk-link'
+        = link_to t('layouts.application.cookies.view_cookies'), cookies_settings_path, class: 'govuk-link'

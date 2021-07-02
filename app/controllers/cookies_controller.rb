@@ -7,6 +7,7 @@ class CookiesController < ApplicationController
   def new
     usage_cookie = cookies[:usage_opt_in]
     @cookie = Cookie.new(analytics: usage_cookie)
+    store_previous_page_url
   end
 
   def create
@@ -14,7 +15,8 @@ class CookiesController < ApplicationController
     if @cookie.valid?
       set_cookie(:usage_opt_in, value: @cookie.analytics)
       set_cookie(:cookies_preferences_set, value: true)
-      flash[:success] = "You've set your cookie preferences."
+      previous_page_path = session.delete(:return_to)
+      flash[:success] = t('cookie_settings.notification_banner.preferences_set', href: previous_page_path)
       redirect_to cookies_settings_path
     else
       render :new
@@ -24,6 +26,10 @@ class CookiesController < ApplicationController
   def cookie_details; end
 
   private
+
+  def store_previous_page_url
+    session[:return_to] = request.referrer
+  end
 
   def cookie_params
     params.permit(cookie: :analytics)
