@@ -46,6 +46,21 @@ module GovukDesignSystemHelper
     end
   end
 
+  def govuk_notification_banner(text, key = 'Important', tag_options = {})
+    type_class = ''
+    type_class = 'govuk-notification-banner--success' if key == 'Success'
+    type_class = 'govuk-notification-banner--failure' if key == 'Failure'
+    tag_options = prepend_classes("govuk-notification-banner #{type_class}", tag_options)
+    tag_options[:data] = { module: 'govuk-notification-banner' }
+    banner_title = tag.h2(key, id: 'govuk-notification-banner-title',
+                               class: 'govuk-notification-banner__title')
+    banner_text = tag.p(text, class: 'govuk-body')
+    tag.div(**tag_options) do
+      concat tag.div(banner_title, class: 'govuk-notification-banner__header')
+      concat tag.div(banner_text, class: 'govuk-notification-banner__content')
+    end
+  end
+
   private
 
   def govuk_summary_key(key, tag_options_key)

@@ -1,0 +1,18 @@
+.govuk-notification-banner--failure {
+    border-color: $govuk-error-colour;
+    background-color: $govuk-error-colour;
+
+    .govuk-notification-banner__link:link,
+    .govuk-notification-banner__link:visited {
+        color: $govuk-error-colour;
+    }
+    .govuk-notification-banner__link:hover {
+        color: govuk-shade($govuk-error-colour, 20%);
+    }
+    .govuk-notification-banner__link:active {
+        color: $govuk-error-colour;
+    }
+    .govuk-notification-banner__link:focus {
+        color: $govuk-text-colour;
+    }
+}

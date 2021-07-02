@@ -204,4 +204,72 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       is_expected.to have_tag(:dd, with: { class: 'govuk-summary-list__value' })
     end
   end
+
+  describe '#govuk_notification_banner' do
+    subject(:markup) do
+      helper.govuk_notification_banner('Some text value') do
+        'My content'
+      end
+    end
+
+    it 'adds a title tag' do
+      is_expected.to have_text('Important')
+    end
+
+    it 'adds the content tag' do
+      is_expected.to have_tag(:div, with: { class: 'govuk-notification-banner__content' })
+    end
+
+    it 'adds the text' do
+      is_expected.to have_text('Some text value')
+    end
+  end
+
+  describe '#govuk_notification_success_banner' do
+    subject(:markup) do
+      helper.govuk_notification_banner('Some text value', 'Success') do
+        'My content'
+      end
+    end
+
+    it 'adds a title tag' do
+      is_expected.to have_text('Success')
+    end
+
+    it 'changes the colour to green' do
+      is_expected.to have_tag(:div, with: { class: 'govuk-notification-banner--success' })
+    end
+  end
+
+  describe '#govuk_notification_failure_banner' do
+    subject(:markup) do
+      helper.govuk_notification_banner('Some text value', 'Failure') do
+        'My content'
+      end
+    end
+
+    it 'adds a title tag' do
+      is_expected.to have_text('Failure')
+    end
+
+    it 'changes the colour to red' do
+      is_expected.to have_tag(:div, with: { class: 'govuk-notification-banner--failure' })
+    end
+  end
+
+  describe '#govuk_notification_custom_banner' do
+    subject(:markup) do
+      helper.govuk_notification_banner('Some text value', 'Something') do
+        'My content'
+      end
+    end
+
+    it 'adds a title tag' do
+      is_expected.to have_text('Something')
+    end
+
+    it "doesn't add a different class" do
+      is_expected.not_to have_tag(:div, with: { class: 'govuk-notification-banner--something' })
+    end
+  end
 end
