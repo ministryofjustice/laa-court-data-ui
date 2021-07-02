@@ -11,3 +11,7 @@ body:not(.js-enabled) .app-js-only {
 .js-enabled .app-no-js-only {
   display: none;
 }
+
+.app-no-wrap {
+  white-space: nowrap;
+}
