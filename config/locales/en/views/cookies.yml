@@ -48,13 +48,13 @@ en:
         heading_two: Purpose
         row_one_a: _ga
         row_one_b: These help us count how many people visit the service by tracking if you have visited before.
-        row_one_c: Two years
+        row_one_c: 2 years
         row_three_a: _gid
         row_three_b: These help us count how many people visit the service by tracking if you have visited before.
         row_three_c: 24 hours
         row_two_a: _gat
         row_two_b: Used to manage the rate at which page view requests are made.
-        row_two_c: One minute
+        row_two_c: 1 minute
     section_functional:
       paragraph_one: These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.
       section_heading: Cookies that remember your settings
@@ -65,7 +65,7 @@ en:
         heading_two: Purpose
         row_one_a: remember_user_token
         row_one_b: Selected at log on, remembers you for next time.
-        row_one_c: One fortnight
+        row_one_c: 1 fortnight
     section_necessary:
       paragraph_one: These essential cookies do things like remember your progress during your session.
       section_heading: Strictly necessary cookies
@@ -79,7 +79,7 @@ en:
         row_one_c: At the end of the session
         row_two_a: cookies_preferences_set
         row_two_b: Used to manage the rate at which page view requests are made.
-        row_two_c: One month
+        row_two_c: 1 year
     section_one:
       paragraph_one: Cookies are files saved on your phone, tablet or computer when you visit a website.
       paragraph_two: We use cookies to store information about how you use this website, such as the pages you visit.

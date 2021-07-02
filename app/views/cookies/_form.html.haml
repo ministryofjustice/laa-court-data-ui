@@ -5,7 +5,7 @@
   %p.govuk-body= t('cookie_settings.section_settings.paragraph_one')
 
   = f.govuk_collection_radio_buttons :analytics,
-    [['1', t('cookie_settings.form.cookies_on')], ['0', t('cookie_settings.form.cookies_off')]],
+    [['true', t('cookie_settings.form.cookies_on')], ['false', t('cookie_settings.form.cookies_off')]],
     :first,
     :last,
     legend: { text: t('cookie_settings.form.heading') },
