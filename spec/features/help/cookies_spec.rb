@@ -11,6 +11,18 @@ RSpec.feature 'Cookies', type: :feature do
     end
   end
 
+  context 'when on the cookies page' do
+    scenario 'content should be available' do
+      visit '/'
+      click_link('Cookies')
+
+      expect(page).to have_current_path cookies_settings_path, ignore_query: true
+      within '.govuk-main-wrapper' do
+        expect(page).to have_css('.govuk-heading-xl', text: 'Change your cookie settings')
+      end
+    end
+  end
+
   context 'when cookies are not set' do
     scenario 'cookie banner is visible' do
       visit cookies_path
@@ -19,9 +31,17 @@ RSpec.feature 'Cookies', type: :feature do
         expect(page).to have_text 'Cookies on View Court Data'
       end
     end
+
+    scenario 'cookies setting form defaults to off' do
+      visit cookies_settings_path
+
+      within '#new_cookie' do
+        expect(find('#cookie-analytics-false-field').checked?).to eq true
+      end
+    end
   end
 
-  context 'when cookies accepted' do
+  context 'when cookies are accepted via banner' do
     scenario 'confirmation banner is visible' do
       visit cookies_path
       click_link 'Accept analytics cookies'
@@ -51,9 +71,19 @@ RSpec.feature 'Cookies', type: :feature do
       expect(page).not_to have_css '.app-cookie-banner'
       expect(page).not_to have_text "You've accepted additional cookies"
     end
+
+    scenario 'cookies setting form shows cookies are on' do
+      visit cookies_path
+      click_link 'Accept analytics cookies'
+      click_link 'change your cookie settings'
+
+      within '#new_cookie' do
+        expect(find('#cookie-analytics-true-field').checked?).to eq true
+      end
+    end
   end
 
-  context 'when cookies rejected' do
+  context 'when cookies are rejected via banner' do
     scenario 'confirmation banner is visible' do
       visit cookies_path
       click_link 'Reject analytics cookies'
@@ -83,17 +113,47 @@ RSpec.feature 'Cookies', type: :feature do
       expect(page).not_to have_css '.app-cookie-banner'
       expect(page).not_to have_text "You've rejected additional cookies"
     end
+
+    scenario 'cookies setting form shows cookies are off' do
+      visit cookies_path
+      click_link 'Reject analytics cookies'
+      click_link 'change your cookie settings'
+
+      within '#new_cookie' do
+        expect(find('#cookie-analytics-false-field').checked?).to eq true
+      end
+    end
   end
 
-  context 'when on the cookies page' do
-    scenario 'content should be available' do
-      visit '/'
-      click_link('Cookies')
+  context 'when cookies are accepted via cookies setting page' do
+    scenario 'cookie banner is not visible' do
+      visit cookies_settings_path
+      page.choose 'On'
+      click_button 'Save changes'
 
-      expect(page).to have_current_path cookies_settings_path, ignore_query: true
-      within '.govuk-main-wrapper' do
-        expect(page).to have_css('.govuk-heading-xl', text: 'Change your cookie settings')
+      within '.govuk-notification-banner--success' do
+        expect(page).to have_text "You've set your cookie preferences. Go back to the page you were looking at."
       end
+      within '#new_cookie' do
+        expect(find('#cookie-analytics-true-field').checked?).to eq true
+      end
+      expect(page).not_to have_css '.app-cookie-banner'
+    end
+  end
+
+  context 'when cookies are rejected via cookies setting page' do
+    scenario 'cookie banner is not visible' do
+      visit cookies_settings_path
+      page.choose 'Off'
+      click_button 'Save changes'
+
+      within '.govuk-notification-banner--success' do
+        expect(page).to have_text "You've set your cookie preferences. Go back to the page you were looking at."
+      end
+      within '#new_cookie' do
+        expect(find('#cookie-analytics-false-field').checked?).to eq true
+      end
+      expect(page).not_to have_css '.app-cookie-banner'
     end
   end
 end
