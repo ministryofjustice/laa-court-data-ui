@@ -35,7 +35,10 @@ module CookieConcern
   end
 
   def analytics_cookies_accepted?
-    @analytics_cookies_accepted = cookies[:usage_opt_in]
+    @analytics_cookies_accepted = ActiveModel::Type::Boolean.new.cast(cookies[:usage_opt_in])
+    return if @analytics_cookies_accepted
+    cookies.delete :_ga
+    cookies.delete :_gid
   end
 
   def show_hide_cookie_banners
