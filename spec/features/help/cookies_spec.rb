@@ -139,6 +139,16 @@ RSpec.feature 'Cookies', type: :feature do
       end
       expect(page).not_to have_css '.app-cookie-banner'
     end
+
+    scenario 'notification banner links back to previous page' do
+      visit unauthenticated_root_path
+      click_link 'Contact'
+      click_link 'Cookies'
+      page.choose 'On'
+      click_button 'Save changes'
+      click_link 'Go back to the page you were looking at'
+      expect(page).to have_current_path contact_us_path, ignore_query: true
+    end
   end
 
   context 'when cookies are rejected via cookies setting page' do
@@ -154,6 +164,16 @@ RSpec.feature 'Cookies', type: :feature do
         expect(find('#cookie-analytics-false-field').checked?).to eq true
       end
       expect(page).not_to have_css '.app-cookie-banner'
+    end
+
+    scenario 'notification banner links back to previous page' do
+      visit unauthenticated_root_path
+      click_link 'Contact'
+      click_link 'Cookies'
+      page.choose 'Off'
+      click_button 'Save changes'
+      click_link 'Go back to the page you were looking at'
+      expect(page).to have_current_path contact_us_path, ignore_query: true
     end
   end
 end
