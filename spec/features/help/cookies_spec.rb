@@ -132,7 +132,7 @@ RSpec.feature 'Cookies', type: :feature do
       click_button 'Save changes'
 
       within '.govuk-notification-banner--success' do
-        expect(page).to have_text "You've set your cookie preferences. Go back to the page you were looking at."
+        expect(page).to have_text "You've set your cookie preferences."
       end
       within '#new_cookie' do
         expect(find('#cookie-analytics-true-field').checked?).to eq true
@@ -148,7 +148,7 @@ RSpec.feature 'Cookies', type: :feature do
       click_button 'Save changes'
 
       within '.govuk-notification-banner--success' do
-        expect(page).to have_text "You've set your cookie preferences. Go back to the page you were looking at."
+        expect(page).to have_text "You've set your cookie preferences."
       end
       within '#new_cookie' do
         expect(find('#cookie-analytics-false-field').checked?).to eq true
