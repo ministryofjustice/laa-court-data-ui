@@ -57,13 +57,19 @@ en:
       paragraph_one: These cookies do things like remember your preferences and the choices you make, to personalise your experience of using the site.
       section_heading: Cookies that remember your settings
       table:
-        caption: Functional  cookies and their purpose
+        caption: Functional cookies and their purpose
         heading_one: Name
         heading_three: Expires
         heading_two: Purpose
-        row_one_a: remember_user_token
-        row_one_b: Selected at log on, remembers you for next time.
-        row_one_c: 1 fortnight
+        row_three_a: remember_user_token
+        row_three_b: Selected at log on, remembers you for next time.
+        row_three_c: 1 fortnight
+        row_one_a: analytics_cookies_set
+        row_one_b: Remembers whether you have given permission for us to use analytics cookies.
+        row_one_c: 1 year
+        row_two_a: cookies_preferences_set
+        row_two_b: Used to remember whether the cookie banner has been displayed.
+        row_two_c: 1 year
     section_necessary:
       paragraph_one: These essential cookies do things like remember your progress during your session.
       section_heading: Strictly necessary cookies
@@ -75,9 +81,6 @@ en:
         row_one_a: _laa_court_data_ui_session
         row_one_b: Remembers you as you use the service.
         row_one_c: At the end of the session
-        row_two_a: cookies_preferences_set
-        row_two_b: Used to manage the rate at which page view requests are made.
-        row_two_c: 1 year
     section_one:
       paragraph_one: Cookies are files saved on your phone, tablet or computer when you visit a website.
       paragraph_two: We use cookies to store information about how you use this website, such as the pages you visit.

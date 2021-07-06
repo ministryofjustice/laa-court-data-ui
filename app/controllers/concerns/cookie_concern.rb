@@ -9,7 +9,7 @@ module CookieConcern
     return set_default_analytics_cookies if no_analytics_cookies?
 
     if user_set_analytics_preference?
-      set_cookie(:usage_opt_in, value: params[:usage_opt_in])
+      set_cookie(:analytics_cookies_set, value: params[:analytics_cookies_set])
       set_cookie(:cookies_preferences_set, value: true)
     end
 
@@ -26,19 +26,19 @@ module CookieConcern
   end
 
   def set_default_analytics_cookies
-    set_cookie(:usage_opt_in)
+    set_cookie(:analytics_cookies_set)
   end
 
   def no_analytics_cookies?
-    cookies[:usage_opt_in].nil?
+    cookies[:analytics_cookies_set].nil?
   end
 
   def user_set_analytics_preference?
-    params[:usage_opt_in].present?
+    params[:analytics_cookies_set].present?
   end
 
   def set_analytics_cookies
-    @analytics_cookies_accepted = ActiveModel::Type::Boolean.new.cast(cookies[:usage_opt_in])
+    @analytics_cookies_accepted = ActiveModel::Type::Boolean.new.cast(cookies[:analytics_cookies_set])
     return if @analytics_cookies_accepted
 
     remove_analytics_cookies

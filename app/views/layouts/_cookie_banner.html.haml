@@ -13,10 +13,10 @@
 
       .govuk-button-group
         %a.govuk-button{'data-accept-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'accept',
-          'href': '?usage_opt_in=true&show_confirm_banner=true'}
+          'href': '?analytics_cookies_set=true&show_confirm_banner=true'}
           = t('layouts.application.cookies.accept_cookies')
         %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
-          'href': '?usage_opt_in=false&show_confirm_banner=true'}
+          'href': '?analytics_cookies_set=false&show_confirm_banner=true'}
           = t('layouts.application.cookies.reject_cookies')
         = link_to t('layouts.application.cookies.view_cookies'), cookies_settings_path, class: 'govuk-link'
 

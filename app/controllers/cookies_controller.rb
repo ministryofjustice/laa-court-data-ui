@@ -5,7 +5,7 @@ class CookiesController < ApplicationController
   skip_authorization_check
 
   def new
-    usage_cookie = cookies[:usage_opt_in]
+    usage_cookie = cookies[:analytics_cookies_set]
     @cookie = Cookie.new(analytics: usage_cookie)
     store_previous_page_url
   end
@@ -26,7 +26,7 @@ class CookiesController < ApplicationController
   private
 
   def set_cookies
-    set_cookie(:usage_opt_in, value: @cookie.analytics)
+    set_cookie(:analytics_cookies_set, value: @cookie.analytics)
     set_cookie(:cookies_preferences_set, value: true)
   end
 

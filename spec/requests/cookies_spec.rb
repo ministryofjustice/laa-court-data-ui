@@ -22,8 +22,8 @@ RSpec.describe 'Cookies', type: :request do
       expect(session[:return_to]).to eq '/'
     end
 
-    it 'sets @cookie.analytics to usage_opt_in cookie value' do
-      expect(assigns(:cookie).analytics.to_s).to eq cookies[:usage_opt_in]
+    it 'sets @cookie.analytics to analytics_cookies_set cookie value' do
+      expect(assigns(:cookie).analytics.to_s).to eq cookies[:analytics_cookies_set]
     end
   end
 
@@ -43,8 +43,8 @@ RSpec.describe 'Cookies', type: :request do
         expect(flash[:success]).to include "You've set your cookie preferences."
       end
 
-      it 'sets the usage_opt_in cookie' do
-        expect(cookies[:usage_opt_in]).to eq 'true'
+      it 'sets the analytics_cookies_set cookie' do
+        expect(cookies[:analytics_cookies_set]).to eq 'true'
       end
 
       it 'sets cookies_preferences_set cookie to true' do
