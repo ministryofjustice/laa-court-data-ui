@@ -7,7 +7,7 @@ RSpec.describe CourtDataAdaptor::Resource::ProsecutionCase, :vcr do
   let(:properties) { %i[prosecution_case_reference] }
 
   let(:prosecution_case_endpoint) do
-    [ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil), 'prosecution_cases'].join('/')
+    ["#{ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil)}v1", 'prosecution_cases'].join('/')
   end
   let(:case_urn) { 'non-existent-urn' }
 

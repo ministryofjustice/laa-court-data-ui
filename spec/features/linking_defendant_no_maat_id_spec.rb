@@ -24,7 +24,7 @@ RSpec.describe 'Linking a defendant with no MAAT id', type: :feature, stub_unlin
   def stub_linked_defendant
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/defendants/#{defendant_id}}
+      %r{http.*/api/internal/v2/defendants/#{defendant_id}}
     ).to_return(
       status: 200,
       body: load_json_stub('unlinked_defendant.json'),

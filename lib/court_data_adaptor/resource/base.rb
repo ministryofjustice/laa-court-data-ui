@@ -23,7 +23,7 @@ module CourtDataAdaptor
       end
 
       VERSION = '0.0.1'
-      self.site = config.api_url
+      self.site = "#{config.api_url}v1"
 
       cattr_accessor :client
       self.client = Client.new
@@ -40,6 +40,10 @@ module CourtDataAdaptor
           token_type: :bearer
         )
       end
+    end
+
+    class BaseV2 < CourtDataAdaptor::Resource::Base
+      self.site = "#{config.api_url}v2"
     end
   end
 end

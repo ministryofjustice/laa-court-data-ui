@@ -6,7 +6,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByUuid do
   subject { described_class }
 
   let(:instance) { described_class.new(nil) }
-  let(:term) { 'b3221b46-b98c-47b7-a285-be681d2cac4e' }
+  let(:term) { '8b7a9989-84ba-493d-8780-a97465872c53' }
 
   def self.resource
     CourtDataAdaptor::Resource::Defendant
@@ -52,7 +52,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByUuid do
   context 'with results', :vcr do
     subject(:results) { described_class.new(term).call }
 
-    let(:term) { 'b3221b46-b98c-47b7-a285-be681d2cac4e' }
+    let(:term) { '8b7a9989-84ba-493d-8780-a97465872c53' }
 
     it 'returns defendant resources' do
       expect(results).to be_instance_of(CourtDataAdaptor::Resource::Defendant)

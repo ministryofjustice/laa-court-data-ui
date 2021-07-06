@@ -23,7 +23,7 @@ RSpec.describe CourtDataAdaptor::Resource::Defendant do
     let(:instance) { described_class.new }
   end
 
-  it_behaves_like 'court_data_adaptor resource object', test_class: described_class
+  it_behaves_like 'court_data_adaptor v2 resource object', test_class: described_class
 
   include_examples 'court_data_adaptor resource callbacks' do
     let(:instance) { described_class.new }

@@ -23,7 +23,7 @@ RSpec.describe 'defendants', type: :request do
           headers: { 'Content-Type' => 'application/vnd.api+json' }
         )
 
-      stub_request(:get, %r{#{api_url}/defendants/#{defendant_id_from_fixture}})
+      stub_request(:get, %r{#{api_url_v2}/defendants/#{defendant_id_from_fixture}})
         .to_return(
           body: defendant_by_id_fixture,
           headers: { 'Content-Type' => 'application/vnd.api+json' }

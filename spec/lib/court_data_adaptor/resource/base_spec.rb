@@ -10,7 +10,7 @@ RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
   # rubocop:enable Style/ClassAndModuleChildren, RSpec/LeakyConstantDeclaration, Lint/ConstantDefinitionInBlock
 
   let(:mock_resource_endpoint) do
-    [ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil), 'mock_resources'].join('/')
+    ["#{ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil)}v1", 'mock_resources'].join('/')
   end
 
   describe CourtDataAdaptor::Resource::MockResource do

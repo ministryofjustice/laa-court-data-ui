@@ -12,6 +12,7 @@ end
 RSpec.shared_examples 'court_data_adaptor resource callbacks' do
   before do
     stub_request(:post, %r{.*/api/internal/v1/.*})
+    stub_request(:post, %r{.*/api/internal/v2/.*})
     allow(instance).to receive(:refresh_token_if_required!)
   end
 
@@ -42,7 +43,25 @@ RSpec.shared_examples 'court_data_adaptor resource object' do |options|
     subject { options[:test_class].site }
 
     it 'returns environment specific configured court data uri' do
-      is_expected.to eql ENV['COURT_DATA_ADAPTOR_API_URL']
+      is_expected.to eql "#{ENV['COURT_DATA_ADAPTOR_API_URL']}v1"
+    end
+  end
+
+  describe '.client' do
+    subject { options[:test_class].client }
+
+    it 'returns instance of client' do
+      is_expected.to be_an_instance_of(CourtDataAdaptor::Client)
+    end
+  end
+end
+
+RSpec.shared_examples 'court_data_adaptor v2 resource object' do |options|
+  describe '.site' do
+    subject { options[:test_class].site }
+
+    it 'returns environment specific configured court data uri' do
+      is_expected.to eql "#{ENV['COURT_DATA_ADAPTOR_API_URL']}v2"
     end
   end
 
