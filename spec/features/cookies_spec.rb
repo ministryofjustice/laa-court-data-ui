@@ -42,10 +42,12 @@ RSpec.feature 'Cookies', type: :feature do
   end
 
   context 'when cookies are accepted via banner' do
-    scenario 'confirmation banner is visible' do
+    before do
       visit cookies_path
       click_link 'Accept analytics cookies'
+    end
 
+    scenario 'confirmation banner is visible' do
       within '.app-cookie-banner' do
         expect(page).to have_text "You've accepted additional cookies."
         expect(page).not_to have_text 'Cookies on View Court Data'
@@ -53,8 +55,6 @@ RSpec.feature 'Cookies', type: :feature do
     end
 
     scenario 'confirmation message can link to cookie settings' do
-      visit cookies_path
-      click_link 'Accept analytics cookies'
       click_link 'change your cookie settings'
 
       expect(page).to have_current_path cookies_settings_path, ignore_query: true
@@ -64,8 +64,6 @@ RSpec.feature 'Cookies', type: :feature do
     end
 
     scenario 'confirmation message can be hidden' do
-      visit cookies_path
-      click_link 'Accept analytics cookies'
       click_link 'Hide this message'
 
       expect(page).not_to have_css '.app-cookie-banner'
@@ -73,8 +71,6 @@ RSpec.feature 'Cookies', type: :feature do
     end
 
     scenario 'cookies setting form shows cookies are on' do
-      visit cookies_path
-      click_link 'Accept analytics cookies'
       click_link 'change your cookie settings'
 
       within '#new_cookie' do
@@ -84,10 +80,12 @@ RSpec.feature 'Cookies', type: :feature do
   end
 
   context 'when cookies are rejected via banner' do
-    scenario 'confirmation banner is visible' do
+    before do
       visit cookies_path
       click_link 'Reject analytics cookies'
+    end
 
+    scenario 'confirmation banner is visible' do
       within '.app-cookie-banner' do
         expect(page).to have_text "You've rejected additional cookies."
         expect(page).not_to have_text('Cookies on View Court Data')
@@ -95,8 +93,6 @@ RSpec.feature 'Cookies', type: :feature do
     end
 
     scenario 'confirmation message can link to cookie settings' do
-      visit cookies_path
-      click_link 'Reject analytics cookies'
       click_link 'change your cookie settings'
 
       expect(page).to have_current_path cookies_settings_path, ignore_query: true
@@ -106,8 +102,6 @@ RSpec.feature 'Cookies', type: :feature do
     end
 
     scenario 'confirmation message can be hidden' do
-      visit cookies_path
-      click_link 'Reject analytics cookies'
       click_link 'Hide this message'
 
       expect(page).not_to have_css '.app-cookie-banner'
@@ -115,8 +109,6 @@ RSpec.feature 'Cookies', type: :feature do
     end
 
     scenario 'cookies setting form shows cookies are off' do
-      visit cookies_path
-      click_link 'Reject analytics cookies'
       click_link 'change your cookie settings'
 
       within '#new_cookie' do

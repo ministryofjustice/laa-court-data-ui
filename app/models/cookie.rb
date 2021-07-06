@@ -8,4 +8,5 @@ class Cookie
   attribute :analytics
 
   validates :analytics, presence: true
+  validates :analytics, inclusion: { in: %w[true false] }
 end
