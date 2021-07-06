@@ -61,12 +61,12 @@ en:
         heading_one: Name
         heading_three: Expires
         heading_two: Purpose
-        row_three_a: remember_user_token
-        row_three_b: Selected at log on, remembers you for next time.
-        row_three_c: 1 fortnight
         row_one_a: analytics_cookies_set
         row_one_b: Remembers whether you have given permission for us to use analytics cookies.
         row_one_c: 1 year
+        row_three_a: remember_user_token
+        row_three_b: Selected at log on, remembers you for next time.
+        row_three_c: 1 fortnight
         row_two_a: cookies_preferences_set
         row_two_b: Used to remember whether the cookie banner has been displayed.
         row_two_c: 1 year

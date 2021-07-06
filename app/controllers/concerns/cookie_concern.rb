@@ -45,8 +45,8 @@ module CookieConcern
   end
 
   def remove_analytics_cookies
-    cookies.delete :_ga, domain: request.host
-    cookies.delete :_gid, domain: request.host
+    cookies.delete :_ga, domain: '.justice.gov.uk'
+    cookies.delete :_gid, domain: '.justice.gov.uk'
   end
 
   def show_hide_cookie_banners
