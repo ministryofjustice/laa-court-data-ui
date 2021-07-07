@@ -51,6 +51,6 @@ module CookieConcern
 
   def show_hide_cookie_banners
     @cookies_preferences_set = cookies[:cookies_preferences_set]
-    @show_confirm_banner = params[:show_confirm_banner].presence || false
+    @show_confirm_banner = params[:show_confirm_banner].present?
   end
 end

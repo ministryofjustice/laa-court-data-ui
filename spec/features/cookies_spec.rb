@@ -3,7 +3,7 @@
 RSpec.feature 'Cookies', type: :feature do
   scenario 'viewing cookie settings' do
     visit cookies_path
-    click_link 'View cookies'
+    click_link 'Cookie settings'
 
     expect(page).to have_current_path cookies_settings_path, ignore_query: true
     within '.govuk-main-wrapper' do
@@ -21,6 +21,19 @@ RSpec.feature 'Cookies', type: :feature do
         expect(page).to have_css('.govuk-heading-xl', text: 'Change your cookie settings')
       end
     end
+
+    scenario 'JavaScript-enabled and -disabled content should be in correct classes' do
+      visit cookies_settings_path
+
+      expect(page).to have_current_path cookies_settings_path, ignore_query: true
+      within '.govuk-main-wrapper' do
+        expect(page).to have_css('.app-no-js-only', text: 'Analytics cookies are unavailable')
+        expect(page).to have_css('.app-js-only', text: 'Turn Google Analytics cookies on or off')
+      end
+      click_link 'View cookies'
+
+      expect(page).to have_current_path cookies_path, ignore_query: true
+    end
   end
 
   context 'when cookies are not set' do
@@ -30,6 +43,26 @@ RSpec.feature 'Cookies', type: :feature do
       within '.app-cookie-banner' do
         expect(page).to have_text 'Cookies on View Court Data'
       end
+    end
+
+    scenario "cookie banner's JavaScript-enabled and -disabled content should be in correct classes" do
+      visit cookies_path
+
+      within '.app-cookie-banner .govuk-button-group.app-js-only' do
+        expect(page).to have_text 'Accept analytics cookies'
+      end
+
+      within '.app-cookie-banner p.app-js-only' do
+        expect(page).to have_text "We'd also like to use analytics cookies"
+      end
+
+      within '.app-cookie-banner .govuk-button-group.app-no-js-only' do
+        expect(page).to have_text 'Hide this message'
+      end
+
+      click_link 'View cookies'
+
+      expect(page).to have_current_path cookies_path, ignore_query: true
     end
 
     scenario 'cookies setting form defaults to off' do
