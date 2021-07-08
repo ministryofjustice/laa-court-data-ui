@@ -32,7 +32,7 @@ class CookiesController < ApplicationController
 
   def set_flash_notification
     previous_page_path = session.delete(:return_to)
-    flash[:success] = t('cookie_settings.notification_banner.preferences_set', href: previous_page_path)
+    flash[:success] = t('cookie_settings.notification_banner.preferences_set_html', href: previous_page_path)
   end
 
   def store_previous_page_url

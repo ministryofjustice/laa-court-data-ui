@@ -33,7 +33,7 @@
           .govuk-cookie-banner__content
             %p
               = @analytics_cookies_accepted ? t('layouts.application.cookies.confirmation_accept') : t('layouts.application.cookies.confirmation_reject') 
-              = t('layouts.application.cookies.confirmation_link_to_settings', href: cookies_settings_path).html_safe
+              = t('layouts.application.cookies.confirmation_link_to_settings_html', href: cookies_settings_path).html_safe
       .govuk-button-group
         %a.govuk-button{'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': '?'}
           = t('layouts.application.cookies.hide_message')
