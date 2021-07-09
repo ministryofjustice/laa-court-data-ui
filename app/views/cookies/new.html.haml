@@ -1,0 +1,27 @@
+= govuk_page_title(t('cookie_settings.page_title'))
+
+%p.govuk-body= t('cookie_settings.section_intro.paragraph_one')
+
+%p.govuk-body= t('cookie_settings.section_intro.paragraph_two')
+
+%h2.govuk-heading-l= t('cookie_settings.section_necessary.heading')
+
+%p.govuk-body= t('cookie_settings.section_necessary.paragraph_one')
+
+%ul.govuk-list.govuk-list--bullet
+  %li= t('cookie_settings.section_necessary.list_item_one')
+  %li= t('cookie_settings.section_necessary.list_item_two')
+
+%p.govuk-body= t('cookie_settings.section_necessary.paragraph_two')
+
+%p.govuk-body
+  = link_to t('cookie_settings.section_necessary.link_to_cookie_page'), cookies_path, class: 'govuk-link'
+
+.app-no-js-only
+  %h2.govuk-heading-l= t('cookie_settings.section_settings.heading_no_js')
+
+  %p.govuk-body= t('cookie_settings.section_settings.paragraph_one_no_js')
+
+  %p.govuk-body= t('cookie_settings.section_settings.paragraph_two_no_js')
+
+= render(partial: 'form')

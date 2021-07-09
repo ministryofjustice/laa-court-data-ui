@@ -113,6 +113,9 @@ Rails/OutputSafety:
   Exclude:
     - lib/gds_design_system_breadcrumb_builder.rb
 
+Rails/RequestReferer:
+  EnforcedStyle: referrer
+
 # => RSpec
 RSpec/AnyInstance:
   Enabled: false
