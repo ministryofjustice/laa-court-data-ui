@@ -47,21 +47,47 @@ module GovukDesignSystemHelper
   end
 
   def govuk_notification_banner(text, key = 'Important', tag_options = {})
-    type_class = ''
-    type_class = 'govuk-notification-banner--success' if key == 'Success'
-    type_class = 'govuk-notification-banner--failure' if key == 'Failure'
-    tag_options = prepend_classes("govuk-notification-banner #{type_class}", tag_options)
-    tag_options[:data] = { module: 'govuk-notification-banner' }
-    banner_title = tag.h2(key, id: 'govuk-notification-banner-title',
-                               class: 'govuk-notification-banner__title')
-    banner_text = tag.p(text, class: 'govuk-body')
+    type_role = govuk_notification_banner_role(key)
+    type_class = govuk_notification_banner_extra_class(key)
+    tag_options = govuk_notification_banner_tag_options(type_role, type_class, tag_options)
     tag.div(**tag_options) do
-      concat tag.div(banner_title, class: 'govuk-notification-banner__header')
-      concat tag.div(banner_text, class: 'govuk-notification-banner__content')
+      concat tag.div(govuk_notification_banner_title(key), class: 'govuk-notification-banner__header')
+      concat tag.div(govuk_notification_banner_content(text),
+                     class: 'govuk-notification-banner__content')
     end
   end
 
   private
+
+  def govuk_notification_banner_tag_options(type_role, type_class, tag_options = {})
+    tag_options = prepend_classes("govuk-notification-banner #{type_class}", tag_options)
+    tag_options[:data] = { module: 'govuk-notification-banner' }
+    tag_options[:role] = type_role
+    tag_options[:aria] = { labelledby: 'govuk-notification-banner-title' }
+    tag_options
+  end
+
+  def govuk_notification_banner_role(key)
+    if %w[Success Failure].include?(key)
+      'alert'
+    else
+      'region'
+    end
+  end
+
+  def govuk_notification_banner_extra_class(key)
+    type_class = 'govuk-notification-banner--success' if key == 'Success'
+    type_class = 'govuk-notification-banner--failure' if key == 'Failure'
+    type_class
+  end
+
+  def govuk_notification_banner_title(title)
+    tag.h2(title, id: 'govuk-notification-banner-title', class: 'govuk-notification-banner__title')
+  end
+
+  def govuk_notification_banner_content(text)
+    tag.p(text, class: 'govuk-notification-banner__heading')
+  end
 
   def govuk_summary_key(key, tag_options_key)
     tag.dt(**tag_options_key) do
