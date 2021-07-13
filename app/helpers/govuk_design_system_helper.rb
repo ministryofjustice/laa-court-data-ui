@@ -46,21 +46,21 @@ module GovukDesignSystemHelper
     end
   end
 
-  def govuk_notification_banner(text, key = 'Important', tag_options = {})
+  def govuk_notification_banner(text = nil, key = 'Important', content = nil)
     type_role = govuk_notification_banner_role(key)
     type_class = govuk_notification_banner_extra_class(key)
-    tag_options = govuk_notification_banner_tag_options(type_role, type_class, tag_options)
+    tag_options = govuk_notification_banner_tag_options(type_role, type_class)
     tag.div(**tag_options) do
       concat tag.div(govuk_notification_banner_title(key), class: 'govuk-notification-banner__header')
-      concat tag.div(govuk_notification_banner_content(text),
+      concat tag.div(govuk_notification_banner_content(text, content),
                      class: 'govuk-notification-banner__content')
     end
   end
 
   private
 
-  def govuk_notification_banner_tag_options(type_role, type_class, tag_options = {})
-    tag_options = prepend_classes("govuk-notification-banner #{type_class}", tag_options)
+  def govuk_notification_banner_tag_options(type_role, type_class)
+    tag_options = prepend_classes("govuk-notification-banner #{type_class}")
     tag_options[:data] = { module: 'govuk-notification-banner' }
     tag_options[:role] = type_role
     tag_options[:aria] = { labelledby: 'govuk-notification-banner-title' }
@@ -85,8 +85,10 @@ module GovukDesignSystemHelper
     tag.h2(title, id: 'govuk-notification-banner-title', class: 'govuk-notification-banner__title')
   end
 
-  def govuk_notification_banner_content(text)
-    tag.p(text, class: 'govuk-notification-banner__heading')
+  def govuk_notification_banner_content(text, content)
+    tag.p(text, class: 'govuk-notification-banner__heading').concat(
+      (tag.p(content, class: 'govuk-body') unless content.nil?)
+    )
   end
 
   def govuk_summary_key(key, tag_options_key)

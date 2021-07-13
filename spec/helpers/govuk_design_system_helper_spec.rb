@@ -228,6 +228,22 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       is_expected.to have_text('Some text value')
     end
 
+    it 'does not add a body class' do
+      is_expected.not_to have_tag(:p, with: { class: 'govuk-body' })
+    end
+
+    context 'when extra content is provided' do
+      subject(:markup) do
+        helper.govuk_notification_banner('Some text value', '', 'Some content') do
+          'My content'
+        end
+      end
+
+      it 'adds the extra content in a body class' do
+        is_expected.to have_tag(:p, with: { class: 'govuk-body' }, text: 'Some content')
+      end
+    end
+
     context 'when it is a success banner' do
       subject(:markup) do
         helper.govuk_notification_banner('Some text value', 'Success') do
