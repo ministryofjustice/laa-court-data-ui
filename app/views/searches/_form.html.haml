@@ -1,4 +1,4 @@
-= form_with model: @search, local: true do |f|
+= form_with model: @search do |f|
   = f.govuk_error_summary
   = f.hidden_field(:filter, value: @filter)
   = f.govuk_text_field(:term, value: @term, label: { text: @label })
