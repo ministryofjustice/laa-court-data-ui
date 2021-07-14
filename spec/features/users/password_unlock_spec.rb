@@ -5,12 +5,12 @@ RSpec.feature 'Password unlock', type: :feature, js: true do
 
   let(:resent_flash_notice) do
     'If your account exists, you will receive an email ' \
-    'with instructions for how to unlock it in a few minutes'
+      'with instructions for how to unlock it in a few minutes'
   end
 
   let(:unlocked_flash_notice) do
     'Your account has been unlocked successfully. '\
-    'Please sign in to continue'
+      'Please sign in to continue'
   end
 
   before do

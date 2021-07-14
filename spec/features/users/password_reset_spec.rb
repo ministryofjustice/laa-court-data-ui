@@ -5,13 +5,13 @@ RSpec.feature 'Password reset', type: :feature, js: true do
 
   let(:reset_flash_notice) do
     'If your email address exists in our database, ' \
-    'you will receive a password recovery link at your ' \
-    'email address in a few minutes'
+      'you will receive a password recovery link at your ' \
+      'email address in a few minutes'
   end
 
   let(:changed_flash_notice) do
     'Your password has been changed successfully. ' \
-    'You are now signed in'
+      'You are now signed in'
   end
 
   before do
