@@ -1,12 +1,13 @@
 ---
 en:
   error:
-    401_message: Unauthorized connection to source data
+    401_message: Unauthorized connection to source data.
     401_title: Unauthorized
-    404_message: If you entered a web address please check it was correct.
+    404_message: If you typed the web address, check it is correct.
+    404_message_2: If you pasted the web address, check you copied the entire address.
     404_title: Page not found
-    422_message: Maybe you tried to change something you didn't have access to.
+    422_message: Maybe you tried to change something you didn’t have access to.
     422_title: The change you wanted was rejected
-    500_message: Please try again soon or
-    500_title: We're sorry, but something went wrong
-    description_html: You can also <a href="/">browse from the homepage</a> to find the information you need.
+    500_message: Try again later.
+    500_title: Sorry, something went wrong
+    description_html: You can also <a class="govuk-link" href="/">browse from the homepage</a> to find the information you need.
