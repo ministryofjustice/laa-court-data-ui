@@ -204,4 +204,100 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       is_expected.to have_tag(:dd, with: { class: 'govuk-summary-list__value' })
     end
   end
+
+  describe '#govuk_notification_banner' do
+    subject(:markup) do
+      helper.govuk_notification_banner('Some text value') do
+        'My content'
+      end
+    end
+
+    it 'adds a title tag' do
+      is_expected.to have_text('Important')
+    end
+
+    it 'adds the role of "region"' do
+      is_expected.to have_tag(:div, role: 'region')
+    end
+
+    it 'adds the content tag' do
+      is_expected.to have_tag(:div, with: { class: 'govuk-notification-banner__content' })
+    end
+
+    it 'adds the text' do
+      is_expected.to have_text('Some text value')
+    end
+
+    it 'does not add a body class' do
+      is_expected.not_to have_tag(:p, with: { class: 'govuk-body' })
+    end
+
+    context 'when extra content is provided' do
+      subject(:markup) do
+        helper.govuk_notification_banner('Some text value', '', 'Some content') do
+          'My content'
+        end
+      end
+
+      it 'adds the extra content in a body class' do
+        is_expected.to have_tag(:p, with: { class: 'govuk-body' }, text: 'Some content')
+      end
+    end
+
+    context 'when it is a success banner' do
+      subject(:markup) do
+        helper.govuk_notification_banner('Some text value', 'Success') do
+          'My content'
+        end
+      end
+
+      it 'adds a title tag' do
+        is_expected.to have_text('Success')
+      end
+
+      it 'adds the success class' do
+        is_expected.to have_tag(:div, with: { class: 'govuk-notification-banner--success' })
+      end
+
+      it 'changes the role to "alert"' do
+        is_expected.to have_tag(:div, role: 'alert')
+      end
+    end
+
+    context 'when it is a failure banner' do
+      subject(:markup) do
+        helper.govuk_notification_banner('Some text value', 'Failure') do
+          'My content'
+        end
+      end
+
+      it 'adds a title tag' do
+        is_expected.to have_text('Failure')
+      end
+
+      it 'adds the failure class' do
+        is_expected.to have_tag(:div, with: { class: 'govuk-notification-banner--failure' })
+      end
+
+      it 'changes the role to "alert"' do
+        is_expected.to have_tag(:div, role: 'alert')
+      end
+    end
+
+    context 'when the banner has a bespoke title' do
+      subject(:markup) do
+        helper.govuk_notification_banner('Some text value', 'Something') do
+          'My content'
+        end
+      end
+
+      it 'adds a title tag' do
+        is_expected.to have_text('Something')
+      end
+
+      it "doesn't add a different class" do
+        is_expected.not_to have_tag(:div, with: { class: 'govuk-notification-banner--something' })
+      end
+    end
+  end
 end

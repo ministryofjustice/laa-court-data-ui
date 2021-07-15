@@ -1,0 +1,8 @@
+.govuk-notification-banner--failure {
+  border-color: $govuk-error-colour;
+  background-color: $govuk-error-colour;
+
+  .govuk-notification-banner__link {
+    @include govuk-link-style-error;
+  }
+}

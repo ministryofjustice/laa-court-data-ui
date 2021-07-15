@@ -16,11 +16,4 @@
           .govuk-error-message
 
     - when 'success'
-      .govuk-notification-banner.govuk-notification-banner--success{ 'role': 'alert', 'aria-labelledby': 'govuk-notification-banner-title', 'data-module': 'govuk-notification-banner' }
-        .govuk-notification-banner__header
-          %h2#govuk-notification-banner-title.govuk-notification-banner__title
-            = key.capitalize
-        .govuk-notification-banner__content
-          %p.govuk-notification-banner__heading
-            = value.html_safe
-
+      = govuk_notification_banner(value.html_safe, key.capitalize)
