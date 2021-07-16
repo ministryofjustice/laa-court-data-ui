@@ -39,7 +39,12 @@
   "standard": {
     "globals": [
       "dataLayer",
-      "googleTrackingID"
+      "googleTrackingID",
+      "Cypress",
+      "cy"
+    ],
+    "env": [
+      "mocha"
     ]
   }
 }
