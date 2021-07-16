@@ -1,13 +1,18 @@
 describe('User Login Page', () => {
     beforeEach(() => {
-      // Cypress starts out with a blank slate for each test
-      // so we must tell it to visit our website with the `cy.visit()` command.
-      // Since we want to visit the same URL at the start of all our tests,
-      // we include it in our beforeEach function so that it runs before each test
-      cy.visit(Cypress.config('baseUrl'))
+      cy.visit('/')
     })
 
     it('displays the dev banner', () => {
-        cy.get('.govuk-tag').should('have.text', "\n"+Cypress.env('environment')+"\n")
+        cy.get('.govuk-phase-banner__content').should('contain', Cypress.env('environment'))
+    })
+
+    it('displays the login page', () => {
+        cy.get('.govuk-heading-xl').should('have.text', 'Sign in')
+        cy.get('#new_user')
+          .should('contain', 'Username or email')
+          .and('contain', 'Password')
+        cy.get('input#user-login-field').should.exist
+        cy.get('input#user-password-field').should.exist
     })
 })
