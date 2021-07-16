@@ -1,4 +1,4 @@
-= form_with model: @feedback, url: feedback_index_path, local: true do |f|
+= form_with model: @feedback, url: feedback_index_path do |f|
   = f.govuk_error_summary
   = f.govuk_text_area :comment,
     label: { text: t('feedback.comment_label') },
