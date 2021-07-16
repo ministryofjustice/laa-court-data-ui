@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: true do
   let(:user) { create(:user) }
 

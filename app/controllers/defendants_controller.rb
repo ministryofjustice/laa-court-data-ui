@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_dependency 'court_data_adaptor'
-
 class DefendantsController < ApplicationController
   before_action :load_and_authorize_defendant_search
   before_action :set_unlink_reasons,

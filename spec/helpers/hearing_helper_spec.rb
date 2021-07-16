@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe HearingHelper, type: :helper do
   describe '#paginator' do
     subject(:call) { helper.paginator('prosecution_case', { page: '1' }) }

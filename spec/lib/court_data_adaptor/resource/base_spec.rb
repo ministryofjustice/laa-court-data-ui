@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
   # rubocop:disable Style/ClassAndModuleChildren, RSpec/LeakyConstantDeclaration, Lint/ConstantDefinitionInBlock
   class CourtDataAdaptor::Resource::MockResource < described_class

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe CourtDataAdaptor::Resource::Offence do
   let(:plea_ostruct_collection) { plea_array.map { |el| OpenStruct.new(el) } }
   let(:mot_reason_ostruct_collection) { mode_of_trial_array.map { |el| OpenStruct.new(el) } }

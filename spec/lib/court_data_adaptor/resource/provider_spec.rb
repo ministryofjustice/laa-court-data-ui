@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe CourtDataAdaptor::Resource::Provider do
   it_behaves_like 'court_data_adaptor acts_as_resource object', resource: described_class do
     let(:klass) { described_class }

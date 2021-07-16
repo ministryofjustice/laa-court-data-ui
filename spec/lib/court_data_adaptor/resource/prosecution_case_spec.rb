@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe CourtDataAdaptor::Resource::ProsecutionCase, :vcr do
   let(:relations) { %i[defendants hearings] }
   let(:properties) { %i[prosecution_case_reference] }

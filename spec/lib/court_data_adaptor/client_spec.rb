@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe CourtDataAdaptor::Client do
   subject(:client) { described_class.new }
 

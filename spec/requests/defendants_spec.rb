@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.shared_examples 'renders common defendant details' do
   it { expect(response).to render_template('defendants/_defendant') }
   it { expect(response.body).to include('Jammy Dodger') }

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.shared_examples 'invalid unlink_attempt request' do
   before do
     patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
