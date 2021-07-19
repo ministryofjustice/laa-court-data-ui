@@ -24,7 +24,7 @@ Bundler.require(*Rails.groups)
 module LaaCourtDataUi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 6.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -44,5 +44,6 @@ module LaaCourtDataUi
     config.active_job.queue_adapter = :sidekiq
     config.x.support_email_address = 'laa-get-paid@digital.justice.gov.uk'
     config.x.display_raw_responses = %w[enabled true].include?(ENV['DISPLAY_RAW_RESPONSES'])
+    config.action_mailer.deliver_later_queue_name = :mailers
   end
 end
