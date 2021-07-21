@@ -5,13 +5,17 @@
   "scripts": {
     "validate:js": "standard",
     "validate:scss": "stylelint **/*.scss",
-    "cypress:open": "yarn run cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "start-server": "bundle exec rails server -e test",
+    "cypress:ci": "start-server-and-test start-server http://localhost:3000 cypress:run"
   },
   "dependencies": {
     "@ministryofjustice/frontend": "^0.2.5",
     "@rails/ujs": "^6.1.4",
     "@rails/webpacker": "5.4.0",
-    "govuk-frontend": "^3.13.0"
+    "govuk-frontend": "^3.13.0",
+    "start-server-and-test": "^1.12.6"
   },
   "devDependencies": {
     "cypress": "^7.7.0",
