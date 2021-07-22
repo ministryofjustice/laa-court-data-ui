@@ -298,11 +298,11 @@ workflows:
           requires:
             - build-test-container
       - cypress/run:
+          requires:
+            - build-cypress-container
           yarn: true
           start: bin/rails server -e test
           wait-on: 'http://localhost:3000'
-          requires:
-            - build-cypress-container
       - build-app-container:
           requires:
             - linter-tests
