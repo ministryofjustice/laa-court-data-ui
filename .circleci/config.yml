@@ -311,9 +311,7 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - run-cypress-tests:
-          requires:
-            - run-cypress-tests
+      - run-cypress-tests
       # - cypress/run:
       #     post-install:
       #       - run: *restore-bundle
