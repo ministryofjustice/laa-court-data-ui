@@ -200,7 +200,7 @@ commands:
           success_message: ":tada: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> successful!"
           failure_message: ":red_circle: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> failed!"
   
-  run-local-cypress:
+  cypress-local:
     description: >
       Allows for running the cypress tests locally
     steps:
@@ -255,6 +255,12 @@ jobs:
       - build-base
       - db-setup
 
+  run-cypress-tests:
+    executor: cloud-platform-executor
+    steps:
+      - checkout
+      - cypress-local
+
   build-app-container:
     executor: cloud-platform-executor
     steps:
@@ -307,7 +313,7 @@ workflows:
             - build-test-container
       - run-cypress-tests:
           requires:
-            - run-local-cypress
+            - run-cypress-tests
       # - cypress/run:
       #     post-install:
       #       - run: *restore-bundle
