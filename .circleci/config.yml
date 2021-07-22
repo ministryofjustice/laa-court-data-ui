@@ -303,6 +303,9 @@ workflows:
           yarn: true
           start: bin/rails server -e test
           wait-on: 'http://localhost:3000'
+          parallel: true
+          parallelism: 2
+          group: 2 machines
       - build-app-container:
           requires:
             - linter-tests
