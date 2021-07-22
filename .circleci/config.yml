@@ -208,6 +208,12 @@ commands:
       - setup_remote_docker:
           version: 19.03.13
       - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
           name: Cypress Tests
           command: docker-compose up --exit-code-from cypress
 
@@ -365,12 +371,13 @@ workflows:
       - build-cypress-container:
           requires:
             - build-test-container
-      - cypress/run:
-          yarn: true
-          start: bin/rails server -e test
-          wait-on: 'http://localhost:3000'
-          requires:
-            - build-cypress-container
+      - run-cypress-tests
+      # - cypress/run:
+      #     yarn: true
+      #     start: bin/rails server -e test
+      #     wait-on: 'http://localhost:3000'
+      #     requires:
+      #       - build-cypress-container
 
   build-deploy-branch:
     jobs:
