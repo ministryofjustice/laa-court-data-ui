@@ -212,7 +212,7 @@ commands:
           command: |
             curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+            mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
           name: Cypress Tests
           command: docker-compose up --exit-code-from cypress
@@ -368,9 +368,9 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - build-cypress-container:
-          requires:
-            - build-test-container
+      # - build-cypress-container:
+      #     requires:
+      #       - build-test-container
       - run-cypress-tests
       # - cypress/run:
       #     yarn: true
