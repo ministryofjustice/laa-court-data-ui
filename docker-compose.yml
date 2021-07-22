@@ -1,0 +1,45 @@
+version: '3.9'
+services:
+    db:
+        image: postgres
+        environment:
+            POSTGRES_USER: laa_court_data_ui
+            POSTGRES_PASSWORD: "TestPassword!"
+            POSTGRES_DB: laa_court_data_ui_cypress
+        ports:
+            - "5432:5432"
+    vcd:
+        build: .
+        ports: 
+            - "3000:3000"
+        depends_on: 
+            - db
+        environment:
+            DATABASE_URL: postgres://laa_court_data_ui:TestPassword!@host.docker.internal:5432/laa_court_data_ui_cypress
+            LAA_COURT_DATA_UI_DATABASE_PASSWORD: TestPassword!
+            RAILS_ENV: development
+            RAILS_SERVE_STATIC_FILES: enabled
+            ENV: local
+            TZ: Europe/London 
+            COURT_DATA_ADAPTOR_API_URL: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1
+            COURT_DATA_ADAPTOR_API_UID: iixPLiR_iv4i8QMPOdBev3JOL4CUKi_BesXutznUa40
+            COURT_DATA_ADAPTOR_API_SECRET: 4fbnXvPMV-dHMUtUX8GATSeDBUioETr2NL2lmp-be6o
+            CASEWORKER_PASSWORD: caseworker-password
+            MANAGER_PASSWORD: manager-password
+            ADMIN_PASSWORD: admin-password
+            GA_TRACKING_ID: UA-XXXXXXXXX-XX
+            DISPLAY_RAW_RESPONSES: enabled
+            SECRET_KEY_BASE: testkey
+            REDIS_URL: host.docker.internal
+            WEB_CONCURRENCY: 0
+        command: sh -c "bundle exec rails db:create db:migrate db:seed && bundle exec puma"
+    cypress:
+        image: "cypress/included:3.4.0"
+        depends_on: 
+            - vcd
+        working_dir: /e2e
+        environment:
+            CYPRESS_baseUrl: http://host.docker.internal:3000
+            CYPRESS_environment: local
+        volumes:
+          - ./:/e2e

@@ -23,7 +23,7 @@ references:
 
   _save-bundle: &save-bundle
     save_cache:
-      key: v3-bundle-{{ checksum "Gemfile.lock" }}
+      key: v4-bundle-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/vendor/bundle
 
@@ -199,6 +199,17 @@ commands:
       - slack/status:
           success_message: ":tada: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> successful!"
           failure_message: ":red_circle: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> failed!"
+  
+  run-local-cypress:
+    description: >
+      Allows for running the cypress tests locally
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Cypress Tests
+          command: docker-compose up --exit-code-from cypress
 
 # ------------------
 # JOBS
@@ -294,18 +305,17 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - build-cypress-container:
+      - run-cypress-tests:
           requires:
-            - build-test-container
-      - cypress/run:
-          requires:
-            - build-cypress-container
-          yarn: true
-          start: bin/rails server -e test
-          wait-on: 'http://localhost:3000'
-          parallel: true
-          parallelism: 2
-          group: 2 machines
+            - run-local-cypress
+      # - cypress/run:
+      #     post-install:
+      #       - run: *restore-bundle
+      #       - run: *install-bundle
+      #       - run: *save-bundle
+      #     yarn: true
+      #     start: bin/rails server -e test
+      #     wait-on: 'http://localhost:3000'
       - build-app-container:
           requires:
             - linter-tests
