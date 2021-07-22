@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   slack: circleci/slack@3.4.2
+  cypress: cypress-io/cypress@1.28.0
 
 references:
   _restore-bundle: &restore-bundle
@@ -159,13 +160,6 @@ commands:
           path: /tmp/test-results
           destination: test-results
 
-  cypress:
-    steps:
-      - db-setup
-      - run:
-          name: Run Cypress tests
-          command: yarn run cypress:ci
-
   upload-coverage:
     steps:
       - run:
@@ -242,13 +236,13 @@ jobs:
           path: tmp/coverage
       - upload-coverage
 
-  cypress-tests:
+  build-cypress-container:
     executor: test-executor
     parallelism: 1
     steps:
       - checkout
       - build-base
-      - cypress
+      - db-setup
 
   build-app-container:
     executor: cloud-platform-executor
@@ -300,9 +294,15 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - cypress-tests:
+      - build-cypress-container:
           requires:
             - build-test-container
+      - cypress/run:
+          yarn: true
+          start: bin/rails server -e test
+          wait-on: 'http://localhost:3000'
+          requires:
+            - build-cypress-container
       - build-app-container:
           requires:
             - linter-tests
@@ -345,9 +345,15 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - cypress-tests:
+      - build-cypress-container:
           requires:
             - build-test-container
+      - cypress/run:
+          yarn: true
+          start: bin/rails server -e test
+          wait-on: 'http://localhost:3000'
+          requires:
+            - build-cypress-container
 
   build-deploy-branch:
     jobs:
