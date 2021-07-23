@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   slack: circleci/slack@3.4.2
+  cypress: cypress-io/cypress@1.28.0
 
 references:
   _restore-bundle: &restore-bundle
@@ -83,6 +84,24 @@ executors:
         environment:
           GITHUB_TEAM_NAME_SLUG: laa-get-paid
           REPO_NAME: laa-court-data-ui
+
+  cypress-dev-executor:
+    docker:
+      - image: 'cypress/base:12.19.0'
+    environment:
+      environment: dev
+
+  cypress-uat-executor:
+    docker:
+      - image: 'cypress/base:12.19.0'
+    environment:
+      environment: uat
+
+  cypress-staging-executor:
+    docker:
+      - image: 'cypress/base:12.19.0'
+    environment:
+      environment: staging
 
 # ------------------
 # COMMANDS
@@ -313,6 +332,12 @@ workflows:
       - deploy-dev:
           requires:
             - build-app-container
+      - cypress/run:
+          executor: cypress-dev-executor
+          yarn: true
+          requires:
+            - deploy-dev
+          config-file: cypress/config/develop.json
       - hold-staging:
           type: approval
           requires:
@@ -320,6 +345,12 @@ workflows:
       - deploy-staging:
           requires:
             - hold-staging
+      - cypress/run:
+          executor: cypress-staging-executor
+          yarn: true
+          requires:
+            - deploy-staging
+          config-file: cypress/config/staging.json
       - hold-uat:
           type: approval
           requires:
@@ -327,6 +358,12 @@ workflows:
       - deploy-uat:
           requires:
             - hold-uat
+      - cypress/run:
+          executor: cypress-uat-executor
+          yarn: true
+          requires:
+            - deploy-uat
+          config-file: cypress/config/uat.json
       - hold-production:
           type: approval
           requires:
@@ -370,6 +407,12 @@ workflows:
       - deploy-dev:
           requires:
             - hold-dev
+      - cypress/run:
+          executor: cypress-dev-executor
+          yarn: true
+          requires:
+            - deploy-dev
+          config-file: cypress/config/develop.json
       - hold-staging:
           type: approval
           requires:
@@ -377,6 +420,12 @@ workflows:
       - deploy-staging:
           requires:
             - hold-staging
+      - cypress/run:
+          executor: cypress-staging-executor
+          yarn: true
+          requires:
+            - deploy-staging
+          config-file: cypress/config/staging.json
       - hold-uat:
           type: approval
           requires:
@@ -384,3 +433,9 @@ workflows:
       - deploy-uat:
           requires:
             - hold-uat
+      - cypress/run:
+          executor: cypress-uat-executor
+          yarn: true
+          requires:
+            - deploy-uat
+          config-file: cypress/config/uat.json
