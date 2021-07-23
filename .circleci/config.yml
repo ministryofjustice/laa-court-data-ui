@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   slack: circleci/slack@3.4.2
-  cypress: cypress-io/cypress@1.28.0
 
 references:
   _restore-bundle: &restore-bundle
@@ -199,24 +198,6 @@ commands:
       - slack/status:
           success_message: ":tada: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> successful!"
           failure_message: ":red_circle: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> failed!"
-  
-  cypress-local:
-    description: >
-      Allows for running the cypress tests locally
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 19.03.13
-      - run:
-          name: Install Docker Compose
-          command: |
-            apt install sudo
-            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      - run:
-          name: Cypress Tests
-          command: docker-compose up --exit-code-from cypress
 
 # ------------------
 # JOBS
@@ -253,20 +234,6 @@ jobs:
       - store_artifacts:
           path: tmp/coverage
       - upload-coverage
-
-  build-cypress-container:
-    executor: test-executor
-    parallelism: 1
-    steps:
-      - checkout
-      - build-base
-      - db-setup
-
-  run-cypress-tests:
-    executor: cloud-platform-executor
-    steps:
-      - checkout
-      - cypress-local
 
   build-app-container:
     executor: cloud-platform-executor
@@ -318,15 +285,6 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - run-cypress-tests
-      # - cypress/run:
-      #     post-install:
-      #       - run: *restore-bundle
-      #       - run: *install-bundle
-      #       - run: *save-bundle
-      #     yarn: true
-      #     start: bin/rails server -e test
-      #     wait-on: 'http://localhost:3000'
       - build-app-container:
           requires:
             - linter-tests
@@ -369,16 +327,6 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      # - build-cypress-container:
-      #     requires:
-      #       - build-test-container
-      - run-cypress-tests
-      # - cypress/run:
-      #     yarn: true
-      #     start: bin/rails server -e test
-      #     wait-on: 'http://localhost:3000'
-      #     requires:
-      #       - build-cypress-container
 
   build-deploy-branch:
     jobs:
