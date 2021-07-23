@@ -167,6 +167,9 @@ commands:
           name: start server
           command: yarn run start:testserver
       - run:
+          name: install cypress
+          command: yarn install --frozen-lockfile
+      - run:
           name: Run Cypress tests
           command: yarn run cypress:run
 
