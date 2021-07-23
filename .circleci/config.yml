@@ -167,6 +167,9 @@ commands:
           name: start server
           command: yarn run start:testserver
       - run:
+          name: install Cypress
+          command: cypress install
+      - run:
           name: Run Cypress tests
           command: yarn run cypress:run
 
