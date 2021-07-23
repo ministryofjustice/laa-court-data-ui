@@ -167,9 +167,6 @@ commands:
           name: start server
           command: yarn run start:testserver
       - run:
-          name: install Cypress
-          command: cypress install
-      - run:
           name: Run Cypress tests
           command: yarn run cypress:run
 
@@ -256,6 +253,8 @@ jobs:
       - checkout
       - build-base
       - cypress
+    environment:
+      CYPRESS_baseUrl: http://localhost:9292
 
   build-app-container:
     executor: cloud-platform-executor
