@@ -25,7 +25,7 @@ references:
       key: v4-bundle-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/vendor/bundle
-        - ~/.cache
+        - ~/.cache/Cypress
 
   _restore-assets: &restore-assets
     restore_cache:
