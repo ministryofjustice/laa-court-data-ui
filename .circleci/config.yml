@@ -25,7 +25,6 @@ references:
       key: v4-bundle-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/vendor/bundle
-        - ~/.cache/Cypress
 
   _restore-assets: &restore-assets
     restore_cache:
@@ -47,6 +46,7 @@ references:
       paths:
         - node_modules
         - public/packs-test
+        - Cypress
 
   _attach-tmp-workspace: &attach-tmp-workspace
     attach_workspace:
