@@ -160,7 +160,7 @@ commands:
           path: /tmp/test-results
           destination: test-results
 
-  cypress:
+  cypress-runner:
     steps:
       - db-setup
       - run:
@@ -249,7 +249,7 @@ jobs:
     steps:
       - checkout
       - build-base
-      - cypress
+      - cypress-runner
     environment:
       CYPRESS_baseUrl: http://localhost:9292
 

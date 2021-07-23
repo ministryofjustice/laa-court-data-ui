@@ -41,3 +41,7 @@ test: #: run test suite locally
 
 open: #: open localhost:3000 in default browser
 	@open http://localhost:3000
+
+e2e: #: run cypress end to end testing
+	@yarn install --frozen-lockfile
+	@RUBYOPT=-W:no-deprecated yarn run start:server && yarn run cypress:run

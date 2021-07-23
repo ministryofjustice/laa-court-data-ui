@@ -1,6 +1,6 @@
 # Testing
 
-For testing we use [rspec](https://relishapp.com/rspec/). Linters and static analysers are also run - [rubocop](https://github.com/rubocop-hq/rubocop), Stylelint, jlint-js [brakeman](https://brakemanscanner.org/docs/introduction/))
+For testing we use [rspec](https://relishapp.com/rspec/). Linters and static analysers are also run - [rubocop](https://github.com/rubocop-hq/rubocop), Stylelint, jlint-js [brakeman](https://brakemanscanner.org/docs/introduction/)). For end to end testing we use [cypress](https://cypress.io).
 
 ## Running test suite
 
@@ -24,6 +24,9 @@ make run
 
 # run the entire test suite
 make test
+
+# run the end to end tests
+make e2e
 ```
 
 ## VCR and Webmock
