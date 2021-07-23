@@ -25,6 +25,7 @@ references:
       key: v4-bundle-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/vendor/bundle
+        - ~/.cache
 
   _restore-assets: &restore-assets
     restore_cache:
@@ -159,6 +160,13 @@ commands:
           path: /tmp/test-results
           destination: test-results
 
+  cypress:
+    steps:
+      - db-setup
+      - run:
+          name: Run Cypress tests
+          command: yarn run cypress:ci
+
   upload-coverage:
     steps:
       - run:
@@ -235,6 +243,14 @@ jobs:
           path: tmp/coverage
       - upload-coverage
 
+  cypress-tests:
+    executor: test-executor
+    parallelism: 1
+    steps:
+      - checkout
+      - build-base
+      - cypress
+
   build-app-container:
     executor: cloud-platform-executor
     steps:
@@ -285,6 +301,9 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
+      - cypress-tests:
+          requires:
+            - build-test-container
       - build-app-container:
           requires:
             - linter-tests
@@ -325,6 +344,9 @@ workflows:
           requires:
             - build-test-container
       - rspec-tests:
+          requires:
+            - build-test-container
+      - cypress-tests:
           requires:
             - build-test-container
 
