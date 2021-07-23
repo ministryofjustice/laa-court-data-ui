@@ -46,7 +46,7 @@ references:
       paths:
         - node_modules
         - public/packs-test
-        - Cypress
+        - ~/.cache
 
   _attach-tmp-workspace: &attach-tmp-workspace
     attach_workspace:
