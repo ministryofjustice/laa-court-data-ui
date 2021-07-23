@@ -165,7 +165,7 @@ commands:
       - db-setup
       - run:
           name: Run Cypress tests
-          command: yarn run cypress:ci
+          command: yarn run cypress:run
 
   upload-coverage:
     steps:
