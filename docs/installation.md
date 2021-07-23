@@ -1,6 +1,6 @@
 # Installation and running
 
-## System dependencies
+## Application dependencies for running locally
 - postgres
 - ruby 2.7+
 - rails 6+
@@ -47,6 +47,20 @@ rails db:seed
 
 
 ## Running
+### Running the application in Docker
+VCD has the ability to run through docker. To do this run the following command:
+
+```
+docker-compose up vcd --build -d
+```
+The following command will run a postgres database in docker and VCD in docker and allow the 2 to talk. It will also seed the database with test data to allow for testing and using the software. Once complete you can use the following command:
+
+```
+docker-compose down vcd
+```
+This will stop and clean up the containers you had created so that you have a fresh run each time you start up.
+
+### Running the application locally
 
 To run the app locally you can use `rails server` or
 ```

@@ -95,3 +95,27 @@ OAuth2 access token requests are configured to be be ignored by VCR to avoid pro
     ```
 
     This will disable real OAuth2 access token requests. API endpoint requests should now be stubbed and therefore tests should pass with no locally running adaptor API or connectivity to hosted services. Try running tests again with no internet or local servers running.
+
+## Cypress E2E
+We use [Cypress](https://cypress.io) as our E2E UI testing suite. The goal of this test suite is to interact with the interface as the user would to be able to capture any issues earlier in the process and provide an extra bit of security.
+
+### Running
+#### Docker
+We have cypress setup alongside our application in the docker application so that you can run the tests against the local application without having to install anything other than docker. To do so run the following command:
+
+```
+docker-compose up --exit-code-from cypress
+```
+
+Once the tests are complete you should then run:
+
+```
+docker-compose down cypress
+```
+
+#### Locally
+Once you have installed the local dependencies and have the application in a running state, to run the tests locally you can run the following command to run the tests
+
+```
+RUBYOPT=-W:no-deprecated yarn run start:server && yarn run cypress:run
+```
