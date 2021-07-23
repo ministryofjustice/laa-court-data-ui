@@ -164,11 +164,8 @@ commands:
     steps:
       - db-setup
       - run:
-          name: start server
-          command: yarn run start:testserver
-      - run:
           name: Run Cypress tests
-          command: yarn run cypress:run
+          command: yarn run start:testserver cypress:run
 
   upload-coverage:
     steps:
