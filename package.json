@@ -6,13 +6,15 @@
     "validate:js": "standard",
     "validate:scss": "stylelint **/*.scss",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "start:server": "bundle exec puma & wait-on http://localhost:3000/"
   },
   "dependencies": {
     "@ministryofjustice/frontend": "^0.2.5",
     "@rails/ujs": "^6.1.4",
     "@rails/webpacker": "5.4.0",
-    "govuk-frontend": "^3.13.0"
+    "govuk-frontend": "^3.13.0",
+    "wait-on": "^6.0.0"
   },
   "devDependencies": {
     "cypress": "^7.7.0",

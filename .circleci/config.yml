@@ -165,7 +165,7 @@ commands:
       - db-setup
       - run:
           name: start server
-          command: RUBYOPT=-W:no-deprecated bundle exec puma
+          command: yarn run start:server
       - run:
           name: Run Cypress tests
           command: yarn run cypress:run
