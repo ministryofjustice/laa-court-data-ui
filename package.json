@@ -7,6 +7,7 @@
     "validate:scss": "stylelint **/*.scss",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
+    "start:server": "bundle exec puma & wait-on http://localhost:3000/",
     "start:testserver": "bundle exec puma & wait-on http://localhost:9292/"
   },
   "dependencies": {
