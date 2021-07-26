@@ -89,19 +89,19 @@ executors:
     docker:
       - image: 'cypress/base:12.19.0'
     environment:
-      environment: dev
+      CYPRESS_environment: dev
 
   cypress-uat-executor:
     docker:
       - image: 'cypress/base:12.19.0'
     environment:
-      environment: uat
+      CYPRESS_environment: uat
 
   cypress-staging-executor:
     docker:
       - image: 'cypress/base:12.19.0'
     environment:
-      environment: staging
+      CYPRESS_environment: staging
 
 # ------------------
 # COMMANDS
