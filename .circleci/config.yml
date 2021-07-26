@@ -45,8 +45,9 @@ references:
     save_cache:
       key: v5-yarn-{{ checksum "yarn.lock" }}
       paths:
+        - node_modules
         - public/packs-test
-        - ~/.cache/yarn
+        - ~/.cache
 
   _attach-tmp-workspace: &attach-tmp-workspace
     attach_workspace:
@@ -407,7 +408,7 @@ workflows:
           requires:
             - hold-dev
       - cypress/run:
-          name: Cypress dev tests
+          name: cypress dev tests
           executor: cypress-dev-executor
           yarn: true
           requires:
@@ -421,7 +422,7 @@ workflows:
           requires:
             - hold-staging
       - cypress/run:
-          name: Cypress staging tests
+          name: cypress staging tests
           executor: cypress-staging-executor
           yarn: true
           requires:
@@ -435,7 +436,7 @@ workflows:
           requires:
             - hold-uat
       - cypress/run:
-          name: Cypress uat tests
+          name: cypress uat tests
           executor: cypress-uat-executor
           yarn: true
           requires:
