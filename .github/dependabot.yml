@@ -8,9 +8,9 @@ updates:
     timezone: Europe/London
   open-pull-requests-limit: 10
   reviewers:
-  - kmahern
   - mabely
-  - malcolmvonmoj
+  - Obsiye
+  - pking-moj
   ignore:
   - dependency-name: simplecov
     versions:
@@ -53,10 +53,10 @@ updates:
     timezone: Europe/London
   open-pull-requests-limit: 10
   reviewers:
-  - naseberry
-  - malcolmvonmoj
-  - kmahern
   - mabely
+  - naseberry
+  - Obsiye
+  - pking-moj
   ignore:
   - dependency-name: webpack
     versions:
