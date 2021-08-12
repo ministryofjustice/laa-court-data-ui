@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Cookies', type: :feature do
+RSpec.feature 'Cookies', type: :feature, js: true do
+  let(:user) { create :user }
+
   scenario 'viewing cookie settings' do
     visit cookies_path
     click_link 'Cookie settings'
@@ -74,80 +76,38 @@ RSpec.feature 'Cookies', type: :feature do
     end
   end
 
-  context 'when cookies are accepted via banner' do
+  context 'when accepting cookies on the homepage' do
     before do
-      visit cookies_path
-      click_link 'Accept analytics cookies'
+      visit '/'
     end
 
-    scenario 'confirmation banner is visible' do
-      within '.app-cookie-banner' do
-        expect(page).to have_text "You've accepted additional cookies."
-        expect(page).not_to have_text 'Cookies on View Court Data'
-      end
-    end
-
-    scenario 'confirmation message can link to cookie settings' do
-      click_link 'change your cookie settings'
-
-      expect(page).to have_current_path cookies_settings_path, ignore_query: true
-      within '.govuk-main-wrapper' do
-        expect(page).to have_css('.govuk-heading-xl', text: 'Change your cookie settings')
-      end
-    end
-
-    scenario 'confirmation message can be hidden' do
-      click_link 'Hide this message'
-
-      expect(page).not_to have_css '.app-cookie-banner'
-      expect(page).not_to have_text "You've accepted additional cookies"
-    end
-
-    scenario 'cookies setting form shows cookies are on' do
-      click_link 'change your cookie settings'
-
-      within '#new_cookie' do
-        expect(find('#cookie-analytics-true-field').checked?).to eq true
-      end
-    end
+    include_examples 'cookies accepted via banner'
   end
 
-  context 'when cookies are rejected via banner' do
+  context 'when accepting cookies on URN search page' do
     before do
-      visit cookies_path
-      click_link 'Reject analytics cookies'
+      sign_in user
+      visit '/searches/new?search[filter]=case_reference'
     end
 
-    scenario 'confirmation banner is visible' do
-      within '.app-cookie-banner' do
-        expect(page).to have_text "You've rejected additional cookies."
-        expect(page).not_to have_text('Cookies on View Court Data')
-      end
+    include_examples 'cookies accepted via banner'
+  end
+
+  context 'when rejecting cookies on the homepage' do
+    before do
+      visit '/'
     end
 
-    scenario 'confirmation message can link to cookie settings' do
-      click_link 'change your cookie settings'
+    include_examples 'cookies rejected via banner'
+  end
 
-      expect(page).to have_current_path cookies_settings_path, ignore_query: true
-      within '.govuk-main-wrapper' do
-        expect(page).to have_css('.govuk-heading-xl', text: 'Change your cookie settings')
-      end
+  context 'when rejecting cookies on URN search page' do
+    before do
+      sign_in user
+      visit 'searches/new?search[filter]=case_reference'
     end
 
-    scenario 'confirmation message can be hidden' do
-      click_link 'Hide this message'
-
-      expect(page).not_to have_css '.app-cookie-banner'
-      expect(page).not_to have_text "You've rejected additional cookies"
-    end
-
-    scenario 'cookies setting form shows cookies are off' do
-      click_link 'change your cookie settings'
-
-      within '#new_cookie' do
-        expect(find('#cookie-analytics-false-field').checked?).to eq true
-      end
-    end
+    include_examples 'cookies rejected via banner'
   end
 
   context 'when cookies are accepted via cookies setting page' do
