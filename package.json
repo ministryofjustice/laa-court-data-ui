@@ -13,11 +13,12 @@
     "govuk-frontend": "^3.13.0"
   },
   "devDependencies": {
+    "@webpack-cli/serve": "^1.5.2",
     "standard": "^16.0.3",
     "stylelint": "^13.13.1",
     "stylelint-config-gds": "^0.1.0",
     "stylelint-order": "^4.1.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^4.0.0"
   },
   "resolutions": {
     "css-what": "^5.0.1",
@@ -32,7 +33,8 @@
     "normalize-url": "^4.5.1",
     "serialize-javascript": "^3.1.0",
     "ssri": "^8.0.1",
-    "webpack": "^4.44.2"
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.8.0"
   },
   "standard": {
     "globals": [
