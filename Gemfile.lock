@@ -303,7 +303,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.1)
+    rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
@@ -383,10 +383,10 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    sentry-rails (4.6.4)
+    sentry-rails (4.6.5)
       railties (>= 5.0)
       sentry-ruby-core (~> 4.6.0)
-    sentry-ruby-core (4.6.4)
+    sentry-ruby-core (4.6.5)
       concurrent-ruby
       faraday
     sentry-sidekiq (4.6.4)
@@ -518,7 +518,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
-  sentry-rails (~> 4.6.4)
+  sentry-rails (~> 4.6.5)
   sentry-sidekiq (~> 4.6.4)
   shoulda-matchers
   sidekiq (~> 6.2)
