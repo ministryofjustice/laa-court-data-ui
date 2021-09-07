@@ -18,7 +18,7 @@
     "stylelint": "^13.13.1",
     "stylelint-config-gds": "^0.1.0",
     "stylelint-order": "^4.1.0",
-    "webpack-dev-server": "^4.0.0"
+    "webpack-dev-server": "^4.1.0"
   },
   "resolutions": {
     "css-what": "^5.0.1",
