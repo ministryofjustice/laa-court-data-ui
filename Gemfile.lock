@@ -145,10 +145,10 @@ GEM
       ruby2_keywords
     faraday_middleware (1.1.0)
       faraday (~> 1.0)
-    ffi (1.15.3)
-    ffi (1.15.3-java)
-    ffi (1.15.3-x64-mingw32)
-    ffi (1.15.3-x86-mingw32)
+    ffi (1.15.4)
+    ffi (1.15.4-java)
+    ffi (1.15.4-x64-mingw32)
+    ffi (1.15.4-x86-mingw32)
     foreman (0.87.2)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -203,7 +203,7 @@ GEM
     jwt (2.2.2)
     launchy (2.5.0)
       addressable (~> 2.7)
-    listen (3.6.0)
+    listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logstasher (2.1.5)
@@ -498,7 +498,7 @@ DEPENDENCIES
   json-schema (~> 2.8, >= 2.8.1)
   json_api_client (~> 1.19)
   launchy
-  listen (>= 3.0.5, < 3.7)
+  listen (>= 3.0.5, < 3.8)
   logstasher
   meta_request (~> 0.7.3)
   oauth2 (~> 1.4.7)
