@@ -5,11 +5,9 @@ metadata:
   namespace: laa-court-data-ui-dev
   annotations:
     nginx.ingress.kubernetes.io/server-snippet: |
-      location / {
         deny 223.178.211.9;
         deny 143.244.161.10;
         deny 206.72.194.213;
-      }
 spec:
   rules:
     - host: dev.view-court-data.service.justice.gov.uk
