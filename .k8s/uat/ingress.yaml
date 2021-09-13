@@ -8,6 +8,7 @@ metadata:
         deny 223.178.211.9;
         deny 143.244.161.10;
         deny 206.72.194.213;
+        deny 209.126.4.156;
 spec:
   rules:
     - host: uat.view-court-data.service.justice.gov.uk
