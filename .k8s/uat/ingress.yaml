@@ -4,7 +4,7 @@ metadata:
   name: laa-court-data-ui-app-ingress
   namespace: laa-court-data-ui-uat
   annotations:
-    nginx.ingress.kubernetes.io/server-snippet: |-
+    nginx.ingress.kubernetes.io/server-snippet: |
       location / {
         deny 223.178.211.9;
         deny 143.244.161.10;
