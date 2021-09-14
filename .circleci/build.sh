@@ -26,8 +26,6 @@ function _circleci_build() {
   aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
   setup-kube-auth
 
-  docker scan --severity=medium --file docker/Dockerfile
-
   docker build \
     --build-arg BUILD_DATE=$(date +%Y-%m-%dT%H:%M:%S%z) \
     --build-arg COMMIT_ID=${CIRCLE_SHA1} \
