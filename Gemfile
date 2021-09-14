@@ -26,7 +26,7 @@ gem 'puma', '~> 5.4'
 gem 'rails', '~> 6.1.4'
 gem 'redis', '~> 4.4.0'
 gem 'sentry-rails', '~> 4.7.1'
-gem 'sentry-sidekiq', '~> 4.7.1'
+gem 'sentry-sidekiq', '~> 4.7.2'
 gem 'sidekiq', '~> 6.2'
 gem 'webpacker', '~> 5.4'
 
