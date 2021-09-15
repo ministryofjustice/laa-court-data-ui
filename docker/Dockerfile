@@ -1,5 +1,7 @@
-FROM ruby:2.7.2-alpine3.11
-MAINTAINER Ministry of Justice, LAA Get Paid <laa-get-paid@digital.justice.gov.uk>
+FROM ruby:2.7.2-alpine
+LABEL Organisation="Ministry of Justice"
+LABEL Team="LAA Get Paid"
+LABEL Contact="<laa-get-paid@digital.justice.gov.uk>"
 
 # fail early and print all commands
 RUN set -ex
@@ -18,18 +20,19 @@ RUN set -ex
 # - tzdata - for railtie/tzinfo-data ??
 # - runit for process management (because we have multiple services)
 #
-RUN apk --no-cache add --virtual build-dependencies \
+RUN apk --no-cache add --upgrade --virtual build-dependencies \
                     build-base \
                     yarn \
                     git \
-&& apk --no-cache add \
+&& apk --no-cache add --upgrade \
                   nodejs \
                   linux-headers \
                   libxml2-dev \
                   libxslt-dev \
                   postgresql-dev \
                   tzdata \
-                  runit
+                  runit \
+                  apk-tools
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \
