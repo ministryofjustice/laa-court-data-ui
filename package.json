@@ -7,7 +7,7 @@
     "validate:scss": "stylelint **/*.scss"
   },
   "dependencies": {
-    "@ministryofjustice/frontend": "^0.2.5",
+    "@ministryofjustice/frontend": "^0.2.6",
     "@rails/ujs": "^6.1.4",
     "@rails/webpacker": "5.4.3",
     "govuk-frontend": "^3.13.1"
