@@ -4,11 +4,10 @@
 #
 # see https://github.com/weppos/breadcrumbs_on_rails/blob/master/lib/breadcrumbs_on_rails/breadcrumbs.rb#L13-L20
 #
-# rubocop:disable Rails/ContentTag
 class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builder
   def render
-    @context.content_tag(:div, class: 'govuk-breadcrumbs') do
-      @context.content_tag(:ol, class: 'govuk-breadcrumbs__list') do
+    @context.tag.div(class: 'govuk-breadcrumbs') do
+      @context.tag.ol(class: 'govuk-breadcrumbs__list') do
         @elements.collect.with_index do |element, idx|
           render_element(element, last: idx.eql?(@elements.size - 1))
         end.join.html_safe
@@ -30,7 +29,6 @@ class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builde
     tag_options = {}
     tag_options[:class] = 'govuk-breadcrumbs__list-item'
     tag_options['aria-current'] = 'page' if is_current
-    @context.content_tag(:li, content, tag_options)
+    @context.tag.li(content, **tag_options)
   end
 end
-# rubocop:enable Rails/ContentTag
