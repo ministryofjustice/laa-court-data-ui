@@ -37,7 +37,7 @@ RSpec.describe Roles, type: :concern do
     let(:object) { test_class.new }
 
     context 'when role not present' do
-      it 'renders object invalid ' do
+      it 'renders object invalid' do
         expect(object).to be_invalid
       end
 
@@ -52,7 +52,7 @@ RSpec.describe Roles, type: :concern do
     let(:object) { test_class.new(roles: %i[jedi sith]) }
 
     context 'when role not one of those allowed' do
-      it 'renders object invalid ' do
+      it 'renders object invalid' do
         expect(object).to be_invalid
       end
 
