@@ -39,13 +39,20 @@ class ApplicationController < ActionController::Base
     raise unless Rails.env.production?
 
     case exception
-    when ActiveRecord::RecordNotFound || ActionController::RoutingError
-      redirect_to controller: :errors, action: :not_found
+    when ActiveRecord::RecordNotFound
+      Sentry.capture_exception(exception)
+      redirect_to_not_found
+    when ActionController::RoutingError
+      redirect_to_not_found
     when JsonApiClient::Errors::NotAuthorized
       redirect_to controller: :errors, action: :unauthorized
     else
       Sentry.capture_exception(exception)
       redirect_to controller: :errors, action: :internal_error
     end
+  end
+
+  def redirect_to_not_found
+    redirect_to controller: :errors, action: :not_found
   end
 end
