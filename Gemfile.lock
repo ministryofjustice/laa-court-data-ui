@@ -157,7 +157,7 @@ GEM
     govuk_notify_rails (2.1.2)
       notifications-ruby-client (~> 5.1)
       rails (>= 4.1.0)
-    haml (5.1.2)
+    haml (5.2.2)
       temple (>= 0.8.0)
       tilt
     haml-rails (2.0.1)
@@ -197,7 +197,7 @@ GEM
       faraday (>= 0.15.2, < 1.2.0)
       faraday_middleware (>= 0.9.0, < 1.2.0)
       rack (>= 0.2)
-    jwt (2.2.2)
+    jwt (2.2.3)
     launchy (2.5.0)
       addressable (~> 2.7)
     listen (3.7.0)
@@ -211,7 +211,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    marcel (1.0.1)
+    marcel (1.0.2)
     meta_request (0.7.3)
       rack-contrib (>= 1.1, < 3)
       railties (>= 3.0.0, < 7)
@@ -235,7 +235,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.12.5-x86-mingw32)
       racc (~> 1.4)
-    notifications-ruby-client (5.1.2)
+    notifications-ruby-client (5.3.0)
       jwt (>= 1.5, < 3)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -372,14 +372,14 @@ GEM
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
-    ruby_parser (3.14.2)
-      sexp_processor (~> 4.9)
+    ruby_parser (3.17.0)
+      sexp_processor (~> 4.15, >= 4.15.1)
     rubyzip (2.3.2)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    sentry-rails (4.7.2)
+    sentry-rails (4.7.3)
       railties (>= 5.0)
       sentry-ruby-core (~> 4.7.0)
     sentry-ruby-core (4.7.3)
@@ -388,7 +388,7 @@ GEM
     sentry-sidekiq (4.7.3)
       sentry-ruby-core (~> 4.7.0)
       sidekiq (>= 3.0)
-    sexp_processor (4.14.1)
+    sexp_processor (4.15.3)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
     sidekiq (6.2.2)
@@ -414,8 +414,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.8.2)
-    terminal-table (3.0.0)
-      unicode-display_width (~> 1.1, >= 1.1.1)
+    terminal-table (3.0.2)
+      unicode-display_width (>= 1.1.1, < 3)
     thor (1.1.0)
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
@@ -424,7 +424,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2019.3)
       tzinfo (>= 1.0.0)
-    unicode-display_width (1.8.0)
+    unicode-display_width (2.1.0)
     vcr (6.0.0)
     virtus (2.0.0)
       axiom-types (~> 0.1)
@@ -472,20 +472,20 @@ DEPENDENCIES
   axe-core-rspec (~> 4.3)
   bootsnap (>= 1.7.0)
   brakeman
-  breadcrumbs_on_rails
+  breadcrumbs_on_rails (>= 4.1.0)
   cancancan
-  capybara
-  capybara_table
+  capybara (>= 3.35.3)
+  capybara_table (>= 0.2.1)
   codeclimate-test-reporter (>= 1.0.7)
   colorize
-  devise (~> 4.8)
-  dotenv-rails
-  factory_bot_rails
+  devise (~> 4.8, >= 4.8.0)
+  dotenv-rails (>= 2.7.6)
+  factory_bot_rails (>= 6.2.0)
   faker
   fakeredis
   foreman
-  govuk_design_system_formbuilder (~> 2.7)
-  govuk_notify_rails (~> 2.1.1)
+  govuk_design_system_formbuilder (~> 2.7, >= 2.7.4)
+  govuk_notify_rails (~> 2.1.2)
   haml-rails (~> 2.0.1)
   i18n-tasks (~> 0.9.34)
   json-schema (~> 2.8, >= 2.8.1)
@@ -501,11 +501,11 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma (~> 5.5)
-  rails (~> 6.1.4)
-  rails-controller-testing
+  rails (~> 6.1.4, >= 6.1.4.1)
+  rails-controller-testing (>= 1.0.5)
   redis (~> 4.4.0)
   rspec-html-matchers (~> 0.9.4)
-  rspec-rails (~> 5.0)
+  rspec-rails (~> 5.0, >= 5.0.2)
   rspec_junit_formatter
   rubocop (~> 1.21)
   rubocop-performance
@@ -520,13 +520,13 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
   vcr
-  web-console (>= 3.3.0)
-  webdrivers
+  web-console (>= 4.1.0)
+  webdrivers (>= 4.6.1)
   webmock
-  webpacker (~> 5.4)
+  webpacker (~> 5.4, >= 5.4.3)
 
 RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.15
+   2.1.4
