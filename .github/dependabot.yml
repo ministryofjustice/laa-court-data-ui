@@ -3,7 +3,7 @@ updates:
 - package-ecosystem: bundler
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
     time: "03:00"
     timezone: Europe/London
   open-pull-requests-limit: 10
@@ -48,7 +48,7 @@ updates:
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
     time: "03:00"
     timezone: Europe/London
   open-pull-requests-limit: 10
