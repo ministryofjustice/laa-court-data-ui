@@ -13,7 +13,7 @@
     "govuk-frontend": "^3.14.0"
   },
   "devDependencies": {
-    "@webpack-cli/serve": "^1.5.2",
+    "@webpack-cli/serve": "^1.6.0",
     "standard": "^16.0.4",
     "stylelint": "^13.13.1",
     "stylelint-config-gds": "^0.1.0",
