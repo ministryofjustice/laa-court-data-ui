@@ -9,7 +9,7 @@ RSpec.describe GdsDesignSystemBreadcrumbBuilder do
 
   it { is_expected.to respond_to :render, :render_element }
 
-  describe '#render', skip: 'FIX: test template not responding to :content_tag' do
+  describe '#render', skip: 'FIX: test template not responding to :tag' do
     subject(:content) { builder.render }
 
     it 'renders outer <div>' do

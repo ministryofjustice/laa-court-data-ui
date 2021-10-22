@@ -1,4 +1,4 @@
-= form_with(model: @link_attempt, url: '/laa_references', local: true) do |f|
+= form_with(model: @link_attempt, url: '/laa_references') do |f|
   = f.govuk_error_summary
 
   = render 'defendants/defendant'
@@ -17,4 +17,4 @@
 
   = govuk_detail(t('laa_reference.missing_maat_id.label')) do
     %p.govuk-details__details-text=t('laa_reference.missing_maat_id.description')
-    = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true)
+    = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'commit', value: t('laa_reference.missing_maat_id.submit'))

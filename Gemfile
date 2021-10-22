@@ -11,27 +11,27 @@ gem 'bootsnap', '>= 1.7.0', require: false
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
 gem 'devise', '~> 4.8'
-gem 'govuk_notify_rails', '~> 2.1.1'
+gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 2.5'
+gem 'govuk_design_system_formbuilder', '~> 2.7'
 gem 'haml-rails', '~> 2.0.1'
-gem 'json_api_client', '~> 1.18'
+gem 'json_api_client', '~> 1.20'
 gem 'json-schema', '~> 2.8', '>= 2.8.1'
 gem 'logstasher'
 gem 'oauth2', '~> 1.4.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'prometheus_exporter'
-gem 'puma', '~> 5.3'
-gem 'rails', '~> 6.1.3'
-gem 'redis', '~> 4.3.1'
-gem 'sentry-rails', '~> 4.6.1'
-gem 'sentry-sidekiq', '~> 4.6.1'
+gem 'puma', '~> 5.5'
+gem 'rails', '~> 6.1.4'
+gem 'redis', '~> 4.4.0'
+gem 'sentry-rails', '~> 4.7.3'
+gem 'sentry-sidekiq', '~> 4.7.3'
 gem 'sidekiq', '~> 6.2'
 gem 'webpacker', '~> 5.4'
 
 group :test do
-  gem 'axe-core-rspec', '~> 4.2'
+  gem 'axe-core-rspec', '~> 4.3'
   gem 'brakeman'
   gem 'capybara'
   gem 'capybara_table'
@@ -43,7 +43,7 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.9.4'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 5.0'
-  gem 'rubocop', '~> 1.18', require: false
+  gem 'rubocop', '~> 1.22', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -67,8 +67,8 @@ end
 
 group :development do
   gem 'foreman'
-  gem 'listen', '>= 3.0.5', '< 3.6'
-  gem 'meta_request', '~> 0.7.2'
+  gem 'listen', '>= 3.0.5', '< 3.8'
+  gem 'meta_request', '~> 0.7.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
