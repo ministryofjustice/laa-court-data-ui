@@ -288,6 +288,10 @@ jobs:
       CYPRESS_baseUrl: http://localhost:9292
       
   scan-docker-image:
+    executor: test-executor
+    parallelism: 1
+    steps:
+      - checkout
       - setup_remote_docker:
           version: 19.03.13
       - build-base
