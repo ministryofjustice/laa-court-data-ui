@@ -1,6 +1,6 @@
 {
   "caseworker":{
-    "username":"", 
-    "password":""   
+    "username": "caseworker@example.com",
+    "password": "caseworker-password"
   }
 }
