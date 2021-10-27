@@ -40,3 +40,8 @@ Brewfile.lock.json
 /coverage
 /coverage/**
 
+## Environment normalization:
+/.bundle
+/vendor/bundle
+
+*.DS_Store
