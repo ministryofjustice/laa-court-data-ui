@@ -140,8 +140,8 @@ commands:
   db-cypress-setup:
     steps:
       - run:
-        name: Seed Database
-        command: bundle exec rails db:create db:migrate db:seed
+          name: Seed Database
+          command: bundle exec rails db:create db:migrate db:seed
 
   rubocop:
     steps:
