@@ -34,7 +34,7 @@ services:
             WEB_CONCURRENCY: 0
         command: sh -c "bundle exec rails db:create db:migrate db:seed && bundle exec puma"
     cypress:
-        image: "cypress/included:3.4.0"
+        image: "cypress/included:8.7.0"
         depends_on: 
             - vcd
         working_dir: /e2e

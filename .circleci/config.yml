@@ -137,6 +137,12 @@ commands:
             RUBYOPT=-W:no-deprecated \
             bundle exec rails db:schema:load --trace
 
+  db-cypress-setup:
+    steps:
+      - run:
+        name: Seed Database
+        command: bundle exec rails db:create db:migrate db:seed
+
   rubocop:
     steps:
       - run:
@@ -196,7 +202,7 @@ commands:
 
   cypress-runner:
     steps:
-      - db-setup
+      - db-cypress-setup
       - run:
           name: Run Cypress tests
           command: yarn run start:testserver && yarn run cypress:run
