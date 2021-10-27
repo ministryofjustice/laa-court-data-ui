@@ -20,7 +20,7 @@
   "devDependencies": {
     "@webpack-cli/serve": "^1.6.0",
     "standard": "^16.0.4",
-    "cypress": "^7.7.0",
+    "cypress": "^8.7.0",
     "stylelint": "^13.13.1",
     "stylelint-config-gds": "^0.1.0",
     "stylelint-order": "^4.1.0",

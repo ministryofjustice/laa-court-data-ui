@@ -15,4 +15,28 @@ describe('User Login Page', () => {
     cy.get('input#user-login-field').should('exist')
     cy.get('input#user-password-field').should('exist')
   })
+
+  it('can log in with correct credentials', () => {
+    cy.fixture('users').then((users) => {
+      cy.get('input#user-login-field')
+        .type(users.caseworker.username)
+      cy.get('input#user-password-field')
+        .type(users.caseworker.password)
+      cy.get('#new_user > .govuk-button')
+        .click()
+      cy.get('.govuk-error-summary__title')
+        .should('contain', 'Signed in successfully.')
+    })
+  })
+
+  it('cannot log in with incorrect credentials', () => {
+    cy.get('input#user-login-field')
+      .type('someone')
+    cy.get('input#user-password-field')
+      .type('some-password')
+    cy.get('#new_user > .govuk-button')
+      .click()
+    cy.get('.govuk-error-summary__title')
+      .should('contain', 'Invalid username or password.')
+  })
 })
