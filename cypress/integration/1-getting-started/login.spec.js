@@ -25,7 +25,7 @@ describe('User Login Page', () => {
   })
 
   it('cannot log in with incorrect credentials', () => {
-    cy.login('someone','some-password')
+    cy.login('someone', 'some-password')
     cy.get('.govuk-error-summary__title')
       .should('contain', 'Invalid username or password.')
   })
