@@ -27,9 +27,15 @@
 //attempts to login to vcd with given username (string) and password (strings)
 Cypress.Commands.add('login', (username, password) => {
   cy.get('input#user-login-field')
+    .clear()
     .type(username)
   cy.get('input#user-password-field')
+    .clear()
     .type(password)
   cy.get('#new_user > .govuk-button')
     .click()
+})
+
+Cypress.Commands.add('shouldText', (cyObj,text) =>{
+  cyObj.should('have.text', `\n${text}\n`)
 })
