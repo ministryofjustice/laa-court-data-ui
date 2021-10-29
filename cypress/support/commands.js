@@ -23,7 +23,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-Cypress.Commands.add('login', (username, password) => {
+
+//attempts to login to vcd with given username (string) and password (strings)
+Cypress.Commands.add('vcd_login', (username, password) => {
   cy.get('input#user-login-field')
     .type(username)
   cy.get('input#user-password-field')

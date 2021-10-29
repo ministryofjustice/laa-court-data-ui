@@ -18,14 +18,14 @@ describe('User Login Page', () => {
 
   it('can log in with correct credentials', () => {
     cy.fixture('users').then((users) => {
-      cy.login(users.caseworker.username, users.caseworker.password)
+      cy.vcd_login(users.caseworker.username, users.caseworker.password)
       cy.get('.govuk-error-summary__title')
         .should('contain', 'Signed in successfully.')
     })
   })
 
   it('cannot log in with incorrect credentials', () => {
-    cy.login('someone', 'some-password')
+    cy.vcd_login('someone', 'some-password')
     cy.get('.govuk-error-summary__title')
       .should('contain', 'Invalid username or password.')
   })
