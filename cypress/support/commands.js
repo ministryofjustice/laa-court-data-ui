@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 //attempts to login to vcd with given username (string) and password (strings)
-Cypress.Commands.add('vcd_login', (username, password) => {
+Cypress.Commands.add('login', (username, password) => {
   cy.get('input#user-login-field')
     .type(username)
   cy.get('input#user-password-field')
