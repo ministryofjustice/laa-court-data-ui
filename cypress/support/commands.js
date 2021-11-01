@@ -32,10 +32,12 @@ Cypress.Commands.add('login', (username, password) => {
   cy.get('input#user-password-field')
     .clear()
     .type(password)
-  cy.get('#new_user > .govuk-button')
+  cy.get('*[data-cy="login-submit"]')
     .click()
 })
 
-Cypress.Commands.add('shouldText', (cyObj,text) =>{
-  cyObj.should('have.text', `\n${text}\n`)
+Cypress.Commands.add('dbSetup',()=>{
+  cy.request('post','/cypress/create_users').then((request)=>{
+    console.log(request)
+  })
 })
