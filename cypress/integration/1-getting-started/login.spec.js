@@ -1,11 +1,10 @@
 describe('User Login Page', () => {
   beforeEach(() => {
     cy.visit('/')
+    cy.checkBanner() 
   })
 
-  it('displays the dev banner', () => {
-    cy.get('.govuk-phase-banner__content').should('contain', Cypress.env('environment'))
-  })
+  
 
   it('displays the login page', () => {
     cy.get('.govuk-heading-xl').should('have.text', 'Sign in')

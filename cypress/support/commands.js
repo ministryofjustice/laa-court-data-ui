@@ -35,3 +35,9 @@ Cypress.Commands.add('login', (username, password) => {
   cy.get('*[data-cy="login-submit"]')
     .click()
 })
+
+Cypress.Commands.add('checkBanner',() =>{
+  it('displays the dev banner', () => {
+    cy.get('.govuk-phase-banner__content').should('contain', Cypress.env('environment'))
+  })
+})
