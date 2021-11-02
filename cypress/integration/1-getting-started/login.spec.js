@@ -1,10 +1,8 @@
 describe('User Login Page', () => {
   beforeEach(() => {
     cy.visit('/')
-    cy.checkBanner() 
+    cy.checkBanner()
   })
-
-  
 
   it('displays the login page', () => {
     cy.get('.govuk-heading-xl').should('have.text', 'Sign in')
@@ -24,19 +22,19 @@ describe('User Login Page', () => {
   })
 
   it('cannot log in with incorrect credentials', () => {
-    cy.login('someone','some-password')
+    cy.login('someone', 'some-password')
     cy.get('.govuk-error-summary__title')
       .should('contain', 'Invalid username or password.')
   })
 
   it('can log in with valid credentials after an invalid attempt', () => {
-    cy.login('someone','some-password')
+    cy.login('someone', 'some-password')
     cy.get('.govuk-error-summary__title')
       .should('contain', 'Invalid username or password.')
     cy.fixture('users').then((users) => {
       cy.login(users.caseworker.username, users.caseworker.password)
       cy.get('.govuk-error-summary__title')
-          .should('contain', 'Signed in successfully.')
+        .should('contain', 'Signed in successfully.')
     })
   })
 })
