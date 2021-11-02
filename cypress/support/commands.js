@@ -35,9 +35,3 @@ Cypress.Commands.add('login', (username, password) => {
   cy.get('*[data-cy="login-submit"]')
     .click()
 })
-
-Cypress.Commands.add('dbSetup',()=>{
-  cy.request('post','/cypress/create_users').then((request)=>{
-    console.log(request)
-  })
-})
