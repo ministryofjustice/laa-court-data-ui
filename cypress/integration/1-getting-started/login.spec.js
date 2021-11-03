@@ -1,7 +1,11 @@
 describe('User Login Page', () => {
-  beforeEach(() => {
+  before(() => {
     cy.visit('/')
     cy.checkBanner()
+  })
+
+  beforeEach(() => {
+    cy.visit('/')
   })
 
   it('displays the login page', () => {
