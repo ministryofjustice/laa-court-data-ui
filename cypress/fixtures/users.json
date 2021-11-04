@@ -1,6 +1,17 @@
-{
-  "caseworker":{
+[
+  {
     "username": "caseworker@example.com",
-    "password": "caseworker-password"
+    "password": "caseworker-password",
+    "roles": ["caseworker"]
+  },
+  {
+    "username": "manager@example.com",
+    "password": "manager-password",
+    "roles": ["manager"]
+  },
+  {
+    "username": "admin@example.com",
+    "password": "caseworker-password",
+    "role": ["admin"]
   }
-}
+]
