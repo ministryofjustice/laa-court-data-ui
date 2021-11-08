@@ -86,8 +86,9 @@ GEM
     builder (3.2.4)
     byebug (11.1.1)
     cancancan (3.3.0)
-    capybara (3.35.3)
+    capybara (3.36.0)
       addressable
+      matrix
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
@@ -212,6 +213,7 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    matrix (0.4.2)
     meta_request (0.7.3)
       rack-contrib (>= 1.1, < 3)
       railties (>= 3.0.0, < 7)
