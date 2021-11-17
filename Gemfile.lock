@@ -382,14 +382,14 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
-    sentry-rails (4.7.3)
+    sentry-rails (4.8.0)
       railties (>= 5.0)
-      sentry-ruby-core (~> 4.7.0)
-    sentry-ruby-core (4.7.3)
+      sentry-ruby-core (~> 4.8.0)
+    sentry-ruby-core (4.8.0)
       concurrent-ruby
       faraday
-    sentry-sidekiq (4.7.3)
-      sentry-ruby-core (~> 4.7.0)
+    sentry-sidekiq (4.8.0)
+      sentry-ruby-core (~> 4.8.0)
       sidekiq (>= 3.0)
     sexp_processor (4.14.1)
     shoulda-matchers (5.0.0)
@@ -514,8 +514,8 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
-  sentry-rails (~> 4.7.3)
-  sentry-sidekiq (~> 4.7.3)
+  sentry-rails (~> 4.8.0)
+  sentry-sidekiq (~> 4.8.0)
   shoulda-matchers
   sidekiq (~> 6.3)
   simplecov (~> 0.17.1)
