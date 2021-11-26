@@ -67,6 +67,8 @@ end
 
 group :development do
   gem 'foreman'
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 2.0'
   gem 'listen', '>= 3.0.5', '< 3.8'
   gem 'meta_request', '~> 0.7.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

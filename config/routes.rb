@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   resources :search_filters, only: %i[new create]
   resources :searches, only: %i[new create] do
     get :create, on: :collection
