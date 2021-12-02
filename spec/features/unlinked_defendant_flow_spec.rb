@@ -75,7 +75,6 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   def then_linked_defendant_page_displayed
     expect(page).to have_govuk_flash(:notice, text: 'You have successfully linked to the court data source')
     then_has_defendant_details(table_number: 0)
-    then_has_representation_order_details(table_number: 1)
     then_has_offence_details(table_number: 2)
     expect(page).to have_govuk_detail_summary('Remove link to court data')
     expect(page).to have_govuk_warning('Removing the link will stop hearing updates being received')
@@ -255,16 +254,6 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
 
       expect(page).to have_css('.govuk-table__cell', text: 'Not guilty on 12/04/2020')
       expect(page).to have_css('.govuk-table__cell', text: /Indictable only:.*Defendant elects trial by jury/)
-    end
-  end
-
-  def then_has_representation_order_details(table_number: 1)
-    representation_order_details = page.all('.govuk-table')[table_number]
-
-    within representation_order_details do
-      expect(page).to have_css('.govuk-table__header', text: 'Date granted')
-      expect(page).to have_css('.govuk-table__header', text: 'MAAT number')
-      expect(page).to have_css('.govuk-table__header', text: 'Provider')
     end
   end
 
