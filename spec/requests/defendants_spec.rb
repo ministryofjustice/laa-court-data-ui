@@ -40,7 +40,6 @@ RSpec.describe 'defendants', type: :request do
 
       include_examples 'renders common defendant details'
 
-      it { expect(response).not_to render_template('defendants/_representation_orders') }
       it { expect(response).to render_template('laa_references/_form') }
     end
 
@@ -54,7 +53,6 @@ RSpec.describe 'defendants', type: :request do
 
       include_examples 'renders common defendant details'
 
-      it { expect(response).to render_template('defendants/_representation_orders') }
       it { expect(response).to render_template('defendants/_form') }
     end
   end
