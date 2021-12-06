@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
   snyk: snyk/snyk@1.1.1
+  browser-tools: circleci/browser-tools@1.1
 
 references:
   _restore-bundle: &restore-bundle
@@ -238,6 +239,7 @@ jobs:
     executor: test-executor
     parallelism: 1
     steps:
+      - browser-tools/install-browser-tools
       - checkout
       - build-base
       - *attach-tmp-workspace
