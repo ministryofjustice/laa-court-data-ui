@@ -11,7 +11,7 @@ gem 'bootsnap', '>= 1.7.0', require: false
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
 gem 'devise', '~> 4.8'
-gem 'govuk_notify_rails', '~> 2.1.1'
+gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 2.7'
@@ -24,10 +24,10 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'prometheus_exporter'
 gem 'puma', '~> 5.5'
 gem 'rails', '~> 6.1.4'
-gem 'redis', '~> 4.4.0'
+gem 'redis', '~> 4.5.1'
 gem 'sentry-rails', '~> 4.7.3'
 gem 'sentry-sidekiq', '~> 4.7.3'
-gem 'sidekiq', '~> 6.2'
+gem 'sidekiq', '~> 6.3'
 gem 'webpacker', '~> 5.4'
 
 group :test do
@@ -37,7 +37,7 @@ group :test do
   gem 'capybara_table'
   gem 'codeclimate-test-reporter', '>= 1.0.7', require: false
   gem 'fakeredis', require: 'fakeredis/rspec'
-  gem 'i18n-tasks', '~> 0.9.34'
+  gem 'i18n-tasks', '~> 0.9.35'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.9.4'
