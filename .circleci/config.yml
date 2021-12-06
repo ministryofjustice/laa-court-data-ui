@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  slack: circleci/slack@3.4.2
+  slack: cimg/slack@3.4.2
   snyk: snyk/snyk@1.1.1
 
 references:
@@ -65,12 +65,12 @@ executors:
   test-executor:
     working_directory: ~/repo
     docker:
-      - image: circleci/ruby:2.7.2-node-browsers
+      - image: cimg/ruby:2.7.2-node-browsers
         environment:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/laa_court_data_ui_test
           TZ: Europe/London
-      - image: circleci/postgres:11.6-alpine-ram
+      - image: cimg/postgres:11.6-alpine-ram
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: "circleci"
