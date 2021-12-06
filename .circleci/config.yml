@@ -81,6 +81,8 @@ executors:
     resource_class: small
     docker:
       - image: ministryofjustice/cloud-platform-tools
+      - setup_remote_docker:
+          version: 20.10.0
         environment:
           GITHUB_TEAM_NAME_SLUG: laa-get-paid
           REPO_NAME: laa-court-data-ui
