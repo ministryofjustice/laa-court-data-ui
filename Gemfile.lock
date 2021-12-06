@@ -150,7 +150,7 @@ GEM
     foreman (0.87.2)
     globalid (0.5.2)
       activesupport (>= 5.0)
-    govuk_design_system_formbuilder (2.7.6)
+    govuk_design_system_formbuilder (2.8.0)
       actionview (>= 6.0)
       activemodel (>= 6.0)
       activesupport (>= 6.0)
@@ -487,7 +487,7 @@ DEPENDENCIES
   faker
   fakeredis
   foreman
-  govuk_design_system_formbuilder (~> 2.7)
+  govuk_design_system_formbuilder (~> 2.8)
   govuk_notify_rails (~> 2.2.0)
   haml-rails (~> 2.0.1)
   i18n-tasks (~> 0.9.35)
