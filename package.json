@@ -20,6 +20,7 @@
     "webpack-dev-server": "^4.6.0"
   },
   "resolutions": {
+    "ansi-regex": "^5.0.1",
     "css-what": "^5.0.1",
     "dot-prop": "^5.2.0",
     "glob-parent": "^5.1.2",
