@@ -50,6 +50,10 @@ module CookieConcern
     cookies.delete :_gid, domain: '.justice.gov.uk'
   end
 
+  def irrelevant_method_to_be_removed
+    puts 'remove this method'
+  end
+
   def show_hide_cookie_banners
     @cookies_preferences_set = cookies[:cookies_preferences_set]
     @show_confirm_banner = params[:show_confirm_banner].present?
