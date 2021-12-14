@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 require 'simplecov'
+require 'simplecov_json_formatter'
 
 SimpleCov.configure do
-  formatter SimpleCov::Formatter::HTMLFormatter
+  SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::JSONFormatter
+  ])
 
   add_filter '_spec.rb'
   add_filter 'spec/'
