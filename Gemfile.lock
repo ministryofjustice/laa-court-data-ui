@@ -518,7 +518,7 @@ DEPENDENCIES
   sentry-sidekiq (~> 4.8.1)
   shoulda-matchers
   sidekiq (~> 6.3)
-  simplecov (~> 0.17.1)
+  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
