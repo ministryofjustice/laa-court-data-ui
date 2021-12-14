@@ -10,6 +10,9 @@ SimpleCov.configure do
   add_filter 'config/'
   add_filter 'db/seeds'
   add_filter %r{^/factories/}
+  add_filter 'bin/'
+  add_filter 'lib/tasks'
+  add_filter 'rakefile'
 
   # exclude individual files/dirs from test coverage stats
   add_filter 'app/controllers/users/confirmations_controller'
