@@ -48,7 +48,7 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'shoulda-matchers'
-  gem 'simplecov', require: false
+  gem 'simplecov', '~> 0.17.1', require: false
   gem 'vcr'
   gem 'webdrivers'
   gem 'webmock'
