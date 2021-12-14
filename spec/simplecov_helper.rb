@@ -5,9 +5,9 @@ require 'simplecov_json_formatter'
 
 SimpleCov.configure do
   SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::JSONFormatter
-  ])
+                                                                    SimpleCov::Formatter::HTMLFormatter,
+                                                                    SimpleCov::Formatter::JSONFormatter
+                                                                  ])
 
   add_filter '_spec.rb'
   add_filter 'spec/'
