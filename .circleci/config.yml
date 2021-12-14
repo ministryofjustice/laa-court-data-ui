@@ -167,7 +167,7 @@ commands:
                   --format RspecJunitFormatter \
                   --out /tmp/test-results/rspec.xml \
                   $TESTFILES
-                tmp/cc-test-reporter format-coverage -t simplecov -o "tmp/coverage/codeclimate.$CIRCLE_NODE_INDEX.json" /home/circleci/repo/coverage/backend/.resultset.json
+                tmp/cc-test-reporter format-coverage -t simplecov -o "tmp/coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
@@ -179,7 +179,7 @@ commands:
       - run:
           name: Upload coverage results to Code Climate
           command: |
-            tmp/cc-test-reporter sum-coverage --debug --output - --parts 1 tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --input -
+            tmp/cc-test-reporter sum-coverage --output - tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --debug --input -
 
   install-codeclimate-tt:
     steps:
