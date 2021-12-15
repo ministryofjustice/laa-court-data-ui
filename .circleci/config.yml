@@ -179,7 +179,7 @@ commands:
       - run:
           name: Upload coverage results to Code Climate
           command: |
-            tmp/cc-test-reporter sum-coverage --output - --parts 1 tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --input -
+            tmp/cc-test-reporter sum-coverage --output - tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --input -
 
   install-codeclimate-tt:
     steps:
