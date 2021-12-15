@@ -24,7 +24,7 @@ RSpec.describe CourtDataAdaptor::Caster::StructCollection do
       let(:value) { array_of_hashes }
       let(:default) { [] }
 
-      it { is_expected.to all(be_an(OpenStruct)) }
+      it { is_expected.to all(be_an(Struct)) }
 
       it 'responds to key names as attributes' do
         expect(collection).to all(respond_to(:code, :description))
@@ -50,7 +50,14 @@ RSpec.describe CourtDataAdaptor::Caster::StructCollection do
       let(:default) { [{ code: 'default', description: 'default' }] }
 
       it { is_expected.to be_an Array }
-      it { is_expected.to eql [OpenStruct.new(default.first)] }
+
+      it 'contains structs' do
+        expect(collection).to all be_a Struct
+      end
+
+      it 'contains structs with expected attributes' do
+        expect(collection).to all have_attributes code: 'default', description: 'default'
+      end
     end
   end
 end

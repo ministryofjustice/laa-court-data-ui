@@ -7,7 +7,7 @@ module CourtDataAdaptor
     class StructCollection
       def self.cast(value, default = [])
         value ||= default
-        value.map { |el| OpenStruct.new(el) }
+        value.map { |el| Struct.new(*el.keys.map(&:to_sym)).new(*el.values) }
       end
     end
   end
