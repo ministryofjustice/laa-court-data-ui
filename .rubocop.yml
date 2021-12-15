@@ -180,4 +180,4 @@ Style/SlicingWithRange:
   Enabled: true
 
 Style/OpenStructUse:
-  Enabled: false
+  Enabled: true

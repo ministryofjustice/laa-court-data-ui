@@ -3,8 +3,16 @@
 require 'court_data_adaptor'
 
 RSpec.describe CourtDataAdaptor::Resource::Offence do
-  let(:plea_ostruct_collection) { plea_array.map { |el| OpenStruct.new(el) } }
-  let(:mot_reason_ostruct_collection) { mode_of_trial_array.map { |el| OpenStruct.new(el) } }
+  let(:plea_ostruct_collection) do
+    plea_array.map do |el|
+      Struct.new(*el.keys).new(*el.values)
+    end
+  end
+  let(:mot_reason_ostruct_collection) do
+    mode_of_trial_array.map do |el|
+      Struct.new(*el.keys).new(*el.values)
+    end
+  end
 
   it_behaves_like 'court_data_adaptor acts_as_resource object', resource: described_class do
     let(:klass) { described_class }
@@ -37,7 +45,7 @@ RSpec.describe CourtDataAdaptor::Resource::Offence do
       before { allow(instance).to receive(:pleas).and_return(plea_ostruct_collection) }
 
       it { is_expected.to be_present }
-      it { is_expected.to all(be_an(OpenStruct)) }
+      it { is_expected.to all(be_an(Struct)) }
       it { is_expected.to all(respond_to(:code, :pleaded_at)) }
     end
   end
@@ -60,7 +68,7 @@ RSpec.describe CourtDataAdaptor::Resource::Offence do
       before { allow(instance).to receive(:mode_of_trial_reasons).and_return(mot_reason_ostruct_collection) }
 
       it { is_expected.to be_present }
-      it { is_expected.to all(be_an(OpenStruct)) }
+      it { is_expected.to all(be_an(Struct)) }
       it { is_expected.to all(respond_to(:code, :description)) }
     end
   end

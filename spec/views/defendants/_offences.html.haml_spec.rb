@@ -13,7 +13,9 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       before { allow(offence).to receive(:mode_of_trial).and_return('Indictable only') }
 
       context 'with reason' do
-        let(:mot_reason_ostruct_collection) { mot_reasons_array.map { |el| OpenStruct.new(el) } }
+        let(:mot_reason_ostruct_collection) do
+          mot_reasons_array.map { |el| Struct.new(*el.keys).new(*el.values) }
+        end
 
         let(:mot_reasons_array) do
           [{ code: '4', description: 'Defendant elects trial by jury' }]
@@ -77,7 +79,9 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     end
 
     context 'when the offence has pleas' do
-      let(:plea_ostruct_collection) { plea_array.map { |el| OpenStruct.new(el) } }
+      let(:plea_ostruct_collection) do
+        plea_array.map { |el| Struct.new(*el.keys).new(*el.values) }
+      end
 
       let(:plea_array) do
         [{ code: 'NOT_GUILTY',
