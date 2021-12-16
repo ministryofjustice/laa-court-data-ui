@@ -6,8 +6,12 @@ RSpec.describe OffenceDecorator, type: :decorator do
   let(:offence) { instance_double(CourtDataAdaptor::Resource::Offence) }
   let(:view_object) { view_class.new }
 
-  let(:plea_ostruct_collection) { plea_array.map { |el| OpenStruct.new(el) } }
-  let(:mot_reason_ostruct_collection) { mode_of_trial_reason_array.map { |el| OpenStruct.new(el) } }
+  let(:plea_ostruct_collection) { plea_array.map { |el| Struct.new(*el.keys).new(*el.values) } }
+  let(:mot_reason_ostruct_collection) do
+    mode_of_trial_reason_array.map do |el|
+      Struct.new(*el.keys).new(*el.values)
+    end
+  end
 
   let(:view_class) do
     Class.new do
