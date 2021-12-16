@@ -408,7 +408,7 @@ workflows:
             - build-app-container
       - deploy-dev-live:
           requires:
-            - hold-dev
+            - hold-dev-live
       - hold-staging:
           type: approval
           requires:
