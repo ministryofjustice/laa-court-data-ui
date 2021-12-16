@@ -8,9 +8,9 @@ ruby '2.7.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.0', require: false
 
-gem 'breadcrumbs_on_rails'
+gem 'breadcrumbs_on_rails', '>= 4.1.0'
 gem 'cancancan'
-gem 'devise', '~> 4.8'
+gem 'devise', '~> 4.8', '>= 4.8.0'
 gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
@@ -23,12 +23,12 @@ gem 'oauth2', '~> 1.4.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'prometheus_exporter'
 gem 'puma', '~> 5.5'
-gem 'rails', '~> 6.1.4'
+gem 'rails', '~> 6.1.4', '>= 6.1.4.2'
 gem 'redis', '~> 4.5.1'
 gem 'sentry-rails', '~> 4.8.1'
 gem 'sentry-sidekiq', '~> 4.8.1'
 gem 'sidekiq', '~> 6.3'
-gem 'webpacker', '~> 5.4'
+gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.3'
@@ -39,10 +39,10 @@ group :test do
   gem 'fakeredis', require: 'fakeredis/rspec'
   gem 'i18n-tasks', '~> 0.9.35'
   gem 'launchy'
-  gem 'rails-controller-testing'
+  gem 'rails-controller-testing', '>= 1.0.5'
   gem 'rspec-html-matchers', '~> 0.9.4'
   gem 'rspec_junit_formatter'
-  gem 'rspec-rails', '~> 5.0'
+  gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
   gem 'rubocop', '~> 1.22', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
@@ -57,8 +57,8 @@ end
 group :development, :test do
   gem 'awesome_print'
   gem 'colorize', require: false
-  gem 'dotenv-rails', require: 'dotenv/rails-now'
-  gem 'factory_bot_rails'
+  gem 'dotenv-rails', '>= 2.7.6', require: 'dotenv/rails-now'
+  gem 'factory_bot_rails', '>= 6.2.0'
   gem 'faker'
   gem 'pry'
   gem 'pry-byebug'
@@ -73,7 +73,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 4.2.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
