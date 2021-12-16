@@ -49,8 +49,16 @@ function _circleci_deploy() {
   printf "\e[33mBranch: $CIRCLE_BRANCH\e[0m\n"
   printf "\e[33m--------------------------------------------------\e[0m\n"
   printf '\e[33mDocker login to registry (ECR)...\e[0m\n'
-  aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
-  setup-kube-auth
+  login="$(AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ecr get-login --no-include-email)"
+  ${login}
+
+  echo -n ${K8S_CLUSTER_CERT} | base64 -d > ./ca.crt
+  kubectl config set-cluster ${K8S_CLUSTER_NAME} --certificate-authority=./ca.crt --server=https://api.${K8S_CLUSTER_NAME}
+  kubectl config set-credentials circleci --token=${K8S_TOKEN}
+  kubectl config set-context ${K8S_CLUSTER_NAME} --cluster=${K8S_CLUSTER_NAME} --user=circleci --namespace=${K8S_NAMESPACE}
+  kubectl config use-context ${K8S_CLUSTER_NAME}
+  kubectl --namespace=${K8S_NAMESPACE} get pods
+  
   kubectl config use-context ${cp_context}
 
   docker_image_tag=${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${REPO_NAME}:app-${CIRCLE_SHA1}
@@ -61,13 +69,13 @@ function _circleci_deploy() {
   kubectl apply -f .k8s/${environment}/secrets.yaml 2> /dev/null
 
   # apply deployment with specfied image
-  kubectl set image -f .k8s/${environment}/deployment.yaml laa-court-data-ui-app=${docker_image_tag} laa-court-data-ui-metrics=${docker_image_tag} --local -o yaml | kubectl apply -f -
-  kubectl set image -f .k8s/${environment}/deployment-worker.yaml laa-court-data-ui-worker=${docker_image_tag} laa-court-data-ui-metrics=${docker_image_tag} --local --output yaml | kubectl apply -f -
+  kubectl set image -f .k8s/${cluster}/${environment}/deployment.yaml laa-court-data-ui-app=${docker_image_tag} laa-court-data-ui-metrics=${docker_image_tag} --local -o yaml | kubectl apply -f -
+  kubectl set image -f .k8s/${cluster}/${environment}/deployment-worker.yaml laa-court-data-ui-worker=${docker_image_tag} laa-court-data-ui-metrics=${docker_image_tag} --local --output yaml | kubectl apply -f -
 
   # apply non-image specific config
   kubectl apply \
-  -f .k8s/${environment}/service.yaml \
-  -f .k8s/${environment}/ingress.yaml
+  -f .k8s/${cluster}/${environment}/service.yaml \
+  -f .k8s/${cluster}/${environment}/ingress.yaml
 
   kubectl annotate deployments/${REPO_NAME} kubernetes.io/change-cause="$(date +%Y-%m-%dT%H:%M:%S%z) - deploying: $docker_image_tag via CircleCI"
   kubectl annotate deployments/${REPO_NAME}-worker kubernetes.io/change-cause="$(date +%Y-%m-%dT%H:%M:%S%z) - deploying: $docker_image_tag via CircleCI"

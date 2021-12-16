@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
   snyk: snyk/snyk@1.1.1
+  browser-tools: circleci/browser-tools@1.1
 
 references:
   _restore-bundle: &restore-bundle
@@ -23,7 +24,7 @@ references:
 
   _save-bundle: &save-bundle
     save_cache:
-      key: v3-bundle-{{ checksum "Gemfile.lock" }}
+      key: v4-bundle-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/vendor/bundle
 
@@ -65,12 +66,12 @@ executors:
   test-executor:
     working_directory: ~/repo
     docker:
-      - image: circleci/ruby:2.7.2-node-browsers
+      - image: cimg/ruby:2.7.2-browsers
         environment:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/laa_court_data_ui_test
           TZ: Europe/London
-      - image: circleci/postgres:11.6-alpine-ram
+      - image: cimg/postgres:11.13
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: "circleci"
@@ -79,7 +80,7 @@ executors:
   cloud-platform-executor:
     resource_class: small
     docker:
-      - image: ministryofjustice/cloud-platform-tools:1.23
+      - image: ministryofjustice/cloud-platform-tools
         environment:
           GITHUB_TEAM_NAME_SLUG: laa-get-paid
           REPO_NAME: laa-court-data-ui
@@ -202,14 +203,17 @@ commands:
       environment:
         description: destination environment
         type: string
+      cluster:
+        description: destination cluster
+        type: string
     steps:
       - checkout
       - setup_remote_docker:
-          version: 19.03.13
+          version: 20.10.11
       - run:
           name: deploying to << parameters.environment >>
           command: |
-            .circleci/deploy.sh << parameters.environment >>
+            .circleci/deploy.sh << parameters.environment >> << parameters.cluster >>
       - slack/status:
           success_message: ":tada: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> successful!"
           failure_message: ":red_circle: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> failed!"
@@ -241,6 +245,7 @@ jobs:
       - checkout
       - build-base
       - *attach-tmp-workspace
+      - browser-tools/install-browser-tools
       - rspec
       - persist_to_workspace:
           root: tmp
@@ -256,7 +261,8 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          version: 19.03.13
+          version: 20.10.11
+          docker_layer_caching: true
       - build-base
       - build-temp-image
       - snyk/scan:
@@ -272,7 +278,8 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          version: 19.03.13
+          version: 20.10.11
+          docker_layer_caching: true
       - *script-build-app-container
 
   deploy-dev:
@@ -280,24 +287,35 @@ jobs:
     steps:
       - deploy-to:
           environment: dev
+          cluster: live-1
+
+  deploy-dev-live:
+    executor: cloud-platform-executor
+    steps:
+      - deploy-to:
+          environment: dev
+          cluster: live
 
   deploy-staging:
     executor: cloud-platform-executor
     steps:
       - deploy-to:
           environment: staging
+          cluster: live-1
 
   deploy-uat:
     executor: cloud-platform-executor
     steps:
       - deploy-to:
           environment: uat
+          cluster: live-1
 
   deploy-production:
     executor: cloud-platform-executor
     steps:
       - deploy-to:
           environment: production
+          cluster: live-1
 
 # ------------------
 # WORKFLOWS
@@ -322,6 +340,9 @@ workflows:
             - linter-tests
             - rspec-tests
       - deploy-dev:
+          requires:
+            - build-app-container
+      - deploy-dev-live:
           requires:
             - build-app-container
       - hold-staging:
@@ -379,6 +400,13 @@ workflows:
           requires:
             - build-app-container
       - deploy-dev:
+          requires:
+            - hold-dev
+      - hold-dev-live:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-dev-live:
           requires:
             - hold-dev
       - hold-staging:
