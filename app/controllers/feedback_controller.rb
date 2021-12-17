@@ -26,7 +26,7 @@ class FeedbackController < ApplicationController
       rating: feedback_params[:rating],
       comment: feedback_params[:comment],
       environment: environment
-    ).deliver_later!
+    ).deliver_later
   end
 
   def feedback_params

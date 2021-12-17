@@ -33,17 +33,49 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.raise_delivery_errors = false
 
-  # config.action_mailer.perform_caching = false
+  # config.action_mailer.perform_caching = true
+
+  #FOR JUST NOT ERRORING OUT
+  # config.action_mailer.raise_delivery_errors = false
+
+  # config.action_mailer.perform_caching = true
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  ##testing sidekiq as the cause
+  #if Rails.env.development?
+  #   require 'sidekiq/testing'
+  #   Sidekiq::Testing.inline!
+  #end
+
+  # configuring new dir
+  LetterOpener.configure do |config|
+    # To overrider the location for message storage.
+    # Default value is `tmp/letter_opener`
+    config.location = Rails.root.join('letters')
+
+    # To render only the message body, without any metadata or extra containers or styling.
+    # Default value is `:default` that renders styled message with showing useful metadata.
+    config.message_template = :light
+  end
+
+
+  ###ADDED FOR LETTER OPENER AND DEVISE MAILERS
+  config.action_mailer.delivery_method = :letter_opener
+  config.active_job.queue_adapter = :inline
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 
   # required generation of links in emails
   # when testing devise
   #
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-  config.action_mailer.delivery_method = :letter_opener_web
-  config.action_mailer.perform_deliveries = true
+  # config.action_mailer.perform_deliveries = true
+
+  # config.action_mailer.delivery_method = :letter_opener_web
+  # config.action_mailer.perform_deliveries = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

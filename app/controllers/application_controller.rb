@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, with: :unexpected_exception_handler
   rescue_from CanCan::AccessDenied, with: :access_denied
 
+  def welcome
+    WelcomeMailer.welcome.deliver_later
+  end
+   
   def current_search_params=(params)
     session[:current_search_params] = params
   end

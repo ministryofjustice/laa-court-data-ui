@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     root to: 'search_filters#new', as: :authenticated_root
   end
 
+  get 'welcome', to: 'application#welcome'
+
   authenticated :user, ->(u) { u.admin? } do
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  # mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   resources :search_filters, only: %i[new create]
   resources :searches, only: %i[new create] do
