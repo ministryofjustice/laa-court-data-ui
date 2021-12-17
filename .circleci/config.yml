@@ -340,9 +340,11 @@ workflows:
             - linter-tests
             - rspec-tests
       - deploy-dev:
+          context: laa-court-data-ui-live1-dev
           requires:
             - build-app-container
       - deploy-dev-live:
+          context: laa-court-data-ui-live-dev
           requires:
             - build-app-container
       - hold-staging:
@@ -350,6 +352,7 @@ workflows:
           requires:
             - build-app-container
       - deploy-staging:
+          context: laa-court-data-ui-live1-staging
           requires:
             - hold-staging
       - hold-uat:
@@ -357,6 +360,7 @@ workflows:
           requires:
             - build-app-container
       - deploy-uat:
+          context: laa-court-data-ui-live1-uat
           requires:
             - hold-uat
       - hold-production:
@@ -364,6 +368,7 @@ workflows:
           requires:
             - build-app-container
       - deploy-production:
+          context: laa-court-data-ui-live1-production
           requires:
             - hold-production
 
@@ -400,6 +405,7 @@ workflows:
           requires:
             - build-app-container
       - deploy-dev:
+          context: laa-court-data-ui-live1-dev
           requires:
             - hold-dev
       - hold-dev-live:
@@ -407,6 +413,7 @@ workflows:
           requires:
             - build-app-container
       - deploy-dev-live:
+          context: laa-court-data-ui-live-dev
           requires:
             - hold-dev-live
       - hold-staging:
@@ -414,6 +421,7 @@ workflows:
           requires:
             - build-app-container
       - deploy-staging:
+          context: laa-court-data-ui-live1-staging
           requires:
             - hold-staging
       - hold-uat:
@@ -421,5 +429,6 @@ workflows:
           requires:
             - build-app-container
       - deploy-uat:
+          context: laa-court-data-ui-live1-uat
           requires:
             - hold-uat

@@ -26,13 +26,6 @@ function _circleci_build() {
   login="$(AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ecr get-login --no-include-email)"
   ${login}
 
-  echo -n ${K8S_CLUSTER_CERT} | base64 -d > ./ca.crt
-  kubectl config set-cluster ${K8S_CLUSTER_NAME} --certificate-authority=./ca.crt --server=${K8S_CLUSTER_URL}
-  kubectl config set-credentials circleci --token=$(echo -n ${K8S_TOKEN} | base64 -d)
-  kubectl config set-context ${K8S_CLUSTER_NAME} --cluster=${K8S_CLUSTER_NAME} --user=circleci --namespace=${K8S_NAMESPACE}
-  kubectl config use-context ${K8S_CLUSTER_NAME}
-  kubectl --namespace=${K8S_NAMESPACE} get pods
-
   docker build \
     --build-arg BUILD_DATE=$(date +%Y-%m-%dT%H:%M:%S%z) \
     --build-arg COMMIT_ID=${CIRCLE_SHA1} \
