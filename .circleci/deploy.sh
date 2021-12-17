@@ -55,8 +55,6 @@ function _circleci_deploy() {
   # apply
   printf "\e[33m--------------------------------------------------\e[0m\n"
   printf "\e[33mEnvironment: $environment\e[0m\n"
-  printf "\e[33mNamespace: $K8S_NAMESPACE\e[0m\n"
-  printf "\e[33mCluster: $K8S_CLUSTER_NAME\e[0m\n"
   printf "\e[33mCommit: $CIRCLE_SHA1\e[0m\n"
   printf "\e[33mBranch: $CIRCLE_BRANCH\e[0m\n"
   printf "\e[33m--------------------------------------------------\e[0m\n"
