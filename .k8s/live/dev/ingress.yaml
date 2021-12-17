@@ -10,7 +10,7 @@ metadata:
       SecRuleEngine On
       SecAction "id:900110,phase:1,nolog,pass,t:none,setvar:tx.inbound_anomaly_score_threshold=6"
     external-dns.alpha.kubernetes.io/set-identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-dev-green
-    external-dns.alpha.kubernetes.io/aws-weight: "0"
+    external-dns.alpha.kubernetes.io/aws-weight: "10"
     nginx.ingress.kubernetes.io/server-snippet: |
         deny 223.178.211.9;
         deny 143.244.161.10;
