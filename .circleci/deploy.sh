@@ -64,7 +64,7 @@ function _circleci_deploy() {
   ${login}
 
   echo -n ${K8S_CLUSTER_CERT} | base64 -d > ./ca.crt
-  kubectl config set-cluster ${K8S_CLUSTER_NAME} --certificate-authority=./ca.crt --server=${K8S_CLUSTER_NAME}
+  kubectl config set-cluster ${K8S_CLUSTER_NAME} --certificate-authority=./ca.crt --server=https://api.${K8S_CLUSTER_NAME}
   kubectl config set-credentials circleci --token=$(echo -n ${K8S_TOKEN} | base64 -d)
   kubectl config set-context ${K8S_CLUSTER_NAME} --cluster=${K8S_CLUSTER_NAME} --user=circleci --namespace=${K8S_NAMESPACE}
   kubectl config use-context ${K8S_CLUSTER_NAME}
