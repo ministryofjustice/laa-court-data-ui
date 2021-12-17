@@ -77,7 +77,7 @@ function _circleci_deploy() {
   printf '\e[33mDecrypting and Applying Secrets...\e[0m\n'
   echo "${GIT_CRYPT_KEY}" | base64 -d > git-crypt.key
   git-crypt unlock git-crypt.key
-  kubectl apply -f .k8s/${environment}/secrets.yaml 2> /dev/null
+  kubectl apply -f .k8s/${cluster}/${environment}/secrets.yaml 2> /dev/null
 
   # apply deployment with specfied image
   printf '\e[33mDeploying Image...\e[0m\n'
