@@ -27,12 +27,12 @@ spec:
           command: ['bundle', 'exec', 'sidekiq']
           readinessProbe:
             exec:
-              command: ['bundle', 'exec', 'rake', 'worker:healthcheck']
+              command: ['bundle', 'exec', 'sidekiqmon']
             initialDelaySeconds: 15
             periodSeconds: 10
           livenessProbe:
             exec:
-              command: ['bundle', 'exec', 'rake', 'worker:healthcheck']
+              command: ['bundle', 'exec', 'sidekiqmon']
             initialDelaySeconds: 30
             periodSeconds: 30
           env:
