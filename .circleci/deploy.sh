@@ -35,7 +35,6 @@ function _circleci_deploy() {
   case "$1" in
     dev | staging | uat | production)
       environment=$1
-      cp_context=$environment
       ;;
     *)
       echo "$usage"
@@ -71,8 +70,6 @@ function _circleci_deploy() {
   kubectl config set-context ${K8S_CLUSTER_NAME} --cluster=${K8S_CLUSTER_NAME} --user=circleci --namespace=${K8S_NAMESPACE}
   kubectl config use-context ${K8S_CLUSTER_NAME}
   kubectl --namespace=${K8S_NAMESPACE} get pods
-  
-  kubectl config use-context ${cp_context}
 
   docker_image_tag=${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${REPO_NAME}:app-${CIRCLE_SHA1}
 
