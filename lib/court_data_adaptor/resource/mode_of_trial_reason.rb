@@ -12,4 +12,3 @@ module CourtDataAdaptor
     end
   end
 end
-

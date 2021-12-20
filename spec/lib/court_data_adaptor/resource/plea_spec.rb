@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::Resource::Offence do
+RSpec.describe CourtDataAdaptor::Resource::Plea do
   it_behaves_like 'court_data_adaptor acts_as_resource object', resource: described_class do
     let(:klass) { described_class }
     let(:instance) { described_class.new }
@@ -11,8 +11,14 @@ RSpec.describe CourtDataAdaptor::Resource::Offence do
   it_behaves_like 'court_data_adaptor resource object', test_class: described_class
 
   include_examples 'court_data_adaptor resource callbacks' do
-    let(:instance) { described_class.new(defendant_id: nil) }
+    let(:instance) { described_class.new(offence_id: nil) }
   end
 
-  it { is_expected.to respond_to(:title, :legislation, :pleas, :mode_of_trial, :mode_of_trial_reasons) }
+  context 'with properties' do
+    subject(:instance) { described_class.new(offence_id: nil) }
+
+    it { is_expected.to respond_to :code }
+    it { is_expected.to respond_to :pleaded_at }
+    it { is_expected.to respond_to :originating_hearing_id }
+  end
 end
