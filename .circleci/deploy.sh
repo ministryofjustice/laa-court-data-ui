@@ -1,12 +1,13 @@
 #!/bin/sh
 function _circleci_deploy() {
   usage="deploy -- deploy image from current commit to an environment
-  Usage: $0 environment
+  Usage: $0 environment cluster
   Where:
     environment [dev]
+    cluster [live]
   Example:
-    # deploy image for current circleCI commit to dev
-    deploy.sh dev
+    # deploy image for current circleCI commit to dev on live cluster
+    deploy.sh dev live
     "
 
   # exit when any command fails
@@ -24,7 +25,7 @@ function _circleci_deploy() {
     return 1
   fi
 
-  if [[ $# -gt 1 ]]
+  if [[ $# -gt 2 ]]
   then
     echo "$usage"
     return 1
@@ -34,12 +35,21 @@ function _circleci_deploy() {
   case "$1" in
     dev | staging | uat | production)
       environment=$1
-      cp_context=$environment
       ;;
     *)
       echo "$usage"
       return 1
       ;;
+  esac
+
+  case "$2" in
+    live | live-1)
+    cluster=$2
+    ;;
+    *)
+    echo "$usage"
+    return 1
+    ;;
   esac
 
   # apply
@@ -49,25 +59,36 @@ function _circleci_deploy() {
   printf "\e[33mBranch: $CIRCLE_BRANCH\e[0m\n"
   printf "\e[33m--------------------------------------------------\e[0m\n"
   printf '\e[33mDocker login to registry (ECR)...\e[0m\n'
-  aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
-  setup-kube-auth
-  kubectl config use-context ${cp_context}
+  login="$(AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ecr get-login --no-include-email)"
+  ${login}
 
+  printf '\e[33mK8S Login...\e[0m\n'
+  echo -n ${K8S_CLUSTER_CERT} | base64 -d > ./ca.crt
+  kubectl config set-cluster ${K8S_CLUSTER_NAME} --certificate-authority=./ca.crt --server=${K8S_CLUSTER_URL}
+  kubectl config set-credentials circleci --token=${K8S_TOKEN}
+  kubectl config set-context ${K8S_CLUSTER_NAME} --cluster=${K8S_CLUSTER_NAME} --user=circleci --namespace=${K8S_NAMESPACE}
+  kubectl config use-context ${K8S_CLUSTER_NAME}
+  kubectl --namespace=${K8S_NAMESPACE} get pods
+
+  printf '\e[33mFormulating Image name...\e[0m\n'
   docker_image_tag=${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${REPO_NAME}:app-${CIRCLE_SHA1}
 
   # decrypt and apply secrets first so changes can be picked up by deployment
+  printf '\e[33mDecrypting and Applying Secrets...\e[0m\n'
   echo "${GIT_CRYPT_KEY}" | base64 -d > git-crypt.key
   git-crypt unlock git-crypt.key
-  kubectl apply -f .k8s/${environment}/secrets.yaml 2> /dev/null
+  kubectl apply -f .k8s/${cluster}/${environment}/secrets.yaml 2> /dev/null
 
   # apply deployment with specfied image
-  kubectl set image -f .k8s/${environment}/deployment.yaml laa-court-data-ui-app=${docker_image_tag} laa-court-data-ui-metrics=${docker_image_tag} --local -o yaml | kubectl apply -f -
-  kubectl set image -f .k8s/${environment}/deployment-worker.yaml laa-court-data-ui-worker=${docker_image_tag} laa-court-data-ui-metrics=${docker_image_tag} --local --output yaml | kubectl apply -f -
+  printf '\e[33mDeploying Image...\e[0m\n'
+  kubectl set image -f .k8s/${cluster}/${environment}/deployment.yaml laa-court-data-ui-app=${docker_image_tag} laa-court-data-ui-metrics=${docker_image_tag} --local -o yaml | kubectl apply -f -
+  kubectl set image -f .k8s/${cluster}/${environment}/deployment-worker.yaml laa-court-data-ui-worker=${docker_image_tag} laa-court-data-ui-metrics=${docker_image_tag} --local --output yaml | kubectl apply -f -
 
   # apply non-image specific config
+  printf '\e[33mApplying Config...\e[0m\n'
   kubectl apply \
-  -f .k8s/${environment}/service.yaml \
-  -f .k8s/${environment}/ingress.yaml
+  -f .k8s/${cluster}/${environment}/service.yaml \
+  -f .k8s/${cluster}/${environment}/ingress.yaml
 
   kubectl annotate deployments/${REPO_NAME} kubernetes.io/change-cause="$(date +%Y-%m-%dT%H:%M:%S%z) - deploying: $docker_image_tag via CircleCI"
   kubectl annotate deployments/${REPO_NAME}-worker kubernetes.io/change-cause="$(date +%Y-%m-%dT%H:%M:%S%z) - deploying: $docker_image_tag via CircleCI"

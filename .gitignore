@@ -40,3 +40,6 @@ Brewfile.lock.json
 /coverage
 /coverage/**
 
+.idea
+.dccache
+.DS_Store
