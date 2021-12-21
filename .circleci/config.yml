@@ -303,6 +303,13 @@ jobs:
           environment: staging
           cluster: live-1
 
+  deploy-staging-live:
+    executor: cloud-platform-executor
+    steps:
+      - deploy-to:
+          environment: staging
+          cluster: live
+
   deploy-uat:
     executor: cloud-platform-executor
     steps:
@@ -362,6 +369,14 @@ workflows:
           context: laa-court-data-ui-live1-staging
           requires:
             - hold-staging
+      - hold-staging-live:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-staging-live:
+          context: laa-court-data-ui-live-staging
+          requires:
+            - hold-staging-live
       - hold-uat:
           type: approval
           requires:
@@ -439,6 +454,14 @@ workflows:
           context: laa-court-data-ui-live1-staging
           requires:
             - hold-staging
+      - hold-staging-live:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-staging-live:
+          context: laa-court-data-ui-live-staging
+          requires:
+            - hold-staging-live
       - hold-uat:
           type: approval
           requires:
