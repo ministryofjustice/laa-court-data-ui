@@ -310,6 +310,13 @@ jobs:
           environment: uat
           cluster: live-1
 
+  deploy-uat-live:
+    executor: cloud-platform-executor
+    steps:
+      - deploy-to:
+          environment: uat
+          cluster: live
+
   deploy-production:
     executor: cloud-platform-executor
     steps:
@@ -363,6 +370,14 @@ workflows:
           context: laa-court-data-ui-live1-uat
           requires:
             - hold-uat
+      - hold-uat-live:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-uat-live:
+          context: laa-court-data-ui-live-uat
+          requires:
+            - hold-uat-live
       - hold-production:
           type: approval
           requires:
@@ -432,3 +447,11 @@ workflows:
           context: laa-court-data-ui-live1-uat
           requires:
             - hold-uat
+      - hold-uat-live:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-uat-live:
+          context: laa-court-data-ui-live-uat
+          requires:
+            - hold-uat-live
