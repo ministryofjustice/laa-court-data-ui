@@ -29,7 +29,7 @@ class OffenceDecorator < BaseDecorator
   end
 
   def sorted_pleas
-    pleas.sort_by { |plea| plea.pleaded_at || Date.new.iso8601 }
+    pleas.sort_by { |plea| plea&.pleaded_at || Date.new.iso8601 }
   end
 
   def plea_sentence(plea)

@@ -6,8 +6,12 @@ RSpec.describe OffenceDecorator, type: :decorator do
   let(:offence) { instance_double(CourtDataAdaptor::Resource::Offence) }
   let(:view_object) { view_class.new }
 
-  let(:pleas) { plea_array.map {|plea| CourtDataAdaptor::Resource::Plea.new(plea) } }
-  let(:mot_reasons) { mode_of_trial_reason_array.map {|reason| CourtDataAdaptor::Resource::ModeOfTrialReason.new(reason) } }
+  let(:pleas) { plea_array.map { |plea| CourtDataAdaptor::Resource::Plea.new(plea) } }
+  let(:mot_reasons) do
+    mode_of_trial_reason_array.map do |reason|
+      CourtDataAdaptor::Resource::ModeOfTrialReason.new(reason)
+    end
+  end
 
   let(:view_class) do
     Class.new do

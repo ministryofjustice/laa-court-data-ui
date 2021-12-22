@@ -5,8 +5,6 @@ module CourtDataAdaptor
     class Plea < Base
       acts_as_resource self
 
-      belongs_to :offence
-
       property :code, type: :string
       property :pleaded_at, type: :string
       property :originating_hearing_id, type: :string
