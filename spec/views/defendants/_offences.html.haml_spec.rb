@@ -13,8 +13,8 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       before { allow(offence).to receive(:mode_of_trial).and_return('Indictable only') }
 
       context 'with reason' do
-        let(:mot_reason_ostruct_collection) do
-          mot_reasons_array.map { |el| Struct.new(*el.keys).new(*el.values) }
+        let(:mot_reason_collection) do
+          mot_reasons_array.map { |el| CourtDataAdaptor::Resource::ModeOfTrialReason.new(el) }
         end
 
         let(:mot_reasons_array) do
@@ -22,7 +22,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
         end
 
         before do
-          allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_ostruct_collection)
+          allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
         end
 
         it 'displays mode of trial with reason' do
@@ -79,8 +79,8 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     end
 
     context 'when the offence has pleas' do
-      let(:plea_ostruct_collection) do
-        plea_array.map { |el| Struct.new(*el.keys).new(*el.values) }
+      let(:plea_collection) do
+        plea_array.map { |el| CourtDataAdaptor::Resource::Plea.new(el) }
       end
 
       let(:plea_array) do
@@ -93,7 +93,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       end
 
       before do
-        allow(offence).to receive(:pleas).and_return(plea_ostruct_collection)
+        allow(offence).to receive(:pleas).and_return(plea_collection)
       end
 
       it 'displays list of pleas with plea dates' do
