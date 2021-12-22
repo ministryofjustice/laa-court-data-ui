@@ -287,13 +287,6 @@ jobs:
     steps:
       - deploy-to:
           environment: dev
-          cluster: live-1
-
-  deploy-dev-live:
-    executor: cloud-platform-executor
-    steps:
-      - deploy-to:
-          environment: dev
           cluster: live
 
   deploy-staging:
@@ -301,23 +294,9 @@ jobs:
     steps:
       - deploy-to:
           environment: staging
-          cluster: live-1
-
-  deploy-staging-live:
-    executor: cloud-platform-executor
-    steps:
-      - deploy-to:
-          environment: staging
           cluster: live
 
   deploy-uat:
-    executor: cloud-platform-executor
-    steps:
-      - deploy-to:
-          environment: uat
-          cluster: live-1
-
-  deploy-uat-live:
     executor: cloud-platform-executor
     steps:
       - deploy-to:
@@ -354,10 +333,6 @@ workflows:
             - linter-tests
             - rspec-tests
       - deploy-dev:
-          context: laa-court-data-ui-live1-dev
-          requires:
-            - build-app-container
-      - deploy-dev-live:
           context: laa-court-data-ui-live-dev
           requires:
             - build-app-container
@@ -366,33 +341,17 @@ workflows:
           requires:
             - build-app-container
       - deploy-staging:
-          context: laa-court-data-ui-live1-staging
-          requires:
-            - hold-staging
-      - hold-staging-live:
-          type: approval
-          requires:
-            - build-app-container
-      - deploy-staging-live:
           context: laa-court-data-ui-live-staging
           requires:
-            - hold-staging-live
+            - hold-staging
       - hold-uat:
           type: approval
           requires:
             - build-app-container
       - deploy-uat:
-          context: laa-court-data-ui-live1-uat
-          requires:
-            - hold-uat
-      - hold-uat-live:
-          type: approval
-          requires:
-            - build-app-container
-      - deploy-uat-live:
           context: laa-court-data-ui-live-uat
           requires:
-            - hold-uat-live
+            - hold-uat
       - hold-production:
           type: approval
           requires:
@@ -435,46 +394,22 @@ workflows:
           requires:
             - build-app-container
       - deploy-dev:
-          context: laa-court-data-ui-live1-dev
-          requires:
-            - hold-dev
-      - hold-dev-live:
-          type: approval
-          requires:
-            - build-app-container
-      - deploy-dev-live:
           context: laa-court-data-ui-live-dev
           requires:
-            - hold-dev-live
+            - hold-dev
       - hold-staging:
           type: approval
           requires:
             - build-app-container
       - deploy-staging:
-          context: laa-court-data-ui-live1-staging
-          requires:
-            - hold-staging
-      - hold-staging-live:
-          type: approval
-          requires:
-            - build-app-container
-      - deploy-staging-live:
           context: laa-court-data-ui-live-staging
           requires:
-            - hold-staging-live
+            - hold-staging
       - hold-uat:
           type: approval
           requires:
             - build-app-container
       - deploy-uat:
-          context: laa-court-data-ui-live1-uat
-          requires:
-            - hold-uat
-      - hold-uat-live:
-          type: approval
-          requires:
-            - build-app-container
-      - deploy-uat-live:
           context: laa-court-data-ui-live-uat
           requires:
-            - hold-uat-live
+            - hold-uat
