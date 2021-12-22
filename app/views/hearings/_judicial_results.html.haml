@@ -1,0 +1,9 @@
+%h2.govuk-heading-m
+  = t('hearings.show.judicial_results.heading')
+- if hearing&.judicial_results.present?
+  .govuk-accordion{:data => {:module => "govuk-accordion"}, :id => "accordion-"}
+
+- else
+  %p.govuk-body
+    = t('hearings.show.judicial_results.none')
+

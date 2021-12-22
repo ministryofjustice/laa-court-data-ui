@@ -13,7 +13,7 @@ en:
       court_applications:
         applicant_synonym: Applicant synonym
         code: Code
-        heading: Court Applications
+        heading: Applications
         legislation: Legislation
         none: No court applications are associated with this hearing
         received_date: Received date
@@ -27,8 +27,11 @@ en:
         time: Time
       flash:
         notice:
-          no_hearing_details: No hearing details available
+          no_hearing_details: No hearing details available.
       hearing_type: Hearing type
+      judicial_results:
+        heading: Results
+        none: No results are associated with this hearing.
       pagination:
         next_page: Next
         previous_page: Previous
