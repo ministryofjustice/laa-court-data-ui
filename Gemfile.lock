@@ -176,7 +176,7 @@ GEM
       ruby_parser (~> 3.5)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.35)
+    i18n-tasks (0.9.36)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -245,7 +245,7 @@ GEM
       rack (>= 1.2, < 3)
     orm_adapter (0.5.0)
     parallel (1.21.0)
-    parser (3.0.3.0)
+    parser (3.0.3.2)
       ast (~> 2.4.1)
     pg (1.2.3)
     pg (1.2.3-x64-mingw32)
@@ -489,7 +489,7 @@ DEPENDENCIES
   govuk_design_system_formbuilder (~> 2.8)
   govuk_notify_rails (~> 2.2.0)
   haml-rails (~> 2.0.1)
-  i18n-tasks (~> 0.9.35)
+  i18n-tasks (~> 0.9.36)
   json-schema (~> 2.8, >= 2.8.1)
   json_api_client (~> 1.20)
   launchy
