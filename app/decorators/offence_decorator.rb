@@ -34,8 +34,8 @@ class OffenceDecorator < BaseDecorator
 
   def plea_sentence(plea)
     t('offence.plea.sentence',
-      plea: plea.code&.humanize || t('generic.not_available'),
-      pleaded_at: plea.pleaded_at&.to_date&.strftime('%d/%m/%Y') || t('generic.not_available'))
+      plea: plea&.code&.humanize || t('generic.not_available'),
+      pleaded_at: plea&.pleaded_at&.to_date&.strftime('%d/%m/%Y') || t('generic.not_available'))
   end
 
   def mode_of_trial_reason_descriptions
@@ -43,6 +43,7 @@ class OffenceDecorator < BaseDecorator
   end
 
   def mode_of_trial_reason_description(reason)
-    MODE_OF_TRIAL_REASON_MAPPINGS.fetch(reason.code.to_i, reason.description || t('generic.not_available'))
+    description = reason&.description || t('generic.not_available')
+    MODE_OF_TRIAL_REASON_MAPPINGS.fetch(reason&.code&.to_i, description)
   end
 end
