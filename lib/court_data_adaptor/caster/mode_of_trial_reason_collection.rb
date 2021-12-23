@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Caster
-    class ModeOfTrialReasonsCollection
+    class ModeOfTrialReasonCollection
       def self.cast(value, default = [])
         value ||= default
         value.map { |el| CourtDataAdaptor::Resource::ModeOfTrialReason.new(el) }

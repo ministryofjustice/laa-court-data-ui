@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Caster
-    class PleasCollection
+    class PleaCollection
       def self.cast(value, default = [])
         value ||= default
         value.map { |el| CourtDataAdaptor::Resource::Plea.new(el) }

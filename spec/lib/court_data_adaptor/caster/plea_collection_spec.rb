@@ -7,27 +7,29 @@
 # contained in an attribute MUST NOT contain a relationships or links
 # member, as those members are reserved by this specification for future use.
 #
-require 'court_data_adaptor/caster/mode_of_trial_reasons_collection'
+require 'court_data_adaptor/caster/plea_collection'
 
-RSpec.describe CourtDataAdaptor::Caster::ModeOfTrialReasonsCollection do
+RSpec.describe CourtDataAdaptor::Caster::PleaCollection do
   describe '.cast' do
     subject(:collection) { described_class.cast(value, default) }
 
     let(:array_of_hashes) do
       [{ code: 'code1',
-         description: 'description1' },
+         pleaded_at: 'pleaded_at1',
+         originating_hearing_id: 'id1' },
        { code: 'code2',
-         description: 'description2' }]
+         pleaded_at: 'pleaded_at2',
+         originating_hearing_id: 'id2' }]
     end
 
     context 'with an array of hashes' do
       let(:value) { array_of_hashes }
       let(:default) { [] }
 
-      it { is_expected.to all(be_an(CourtDataAdaptor::Resource::ModeOfTrialReason)) }
+      it { is_expected.to all(be_an(CourtDataAdaptor::Resource::Plea)) }
 
       it 'responds to key names as attributes' do
-        expect(collection).to all(respond_to(:code, :description))
+        expect(collection).to all(respond_to(:code, :pleaded_at, :originating_hearing_id))
       end
     end
 
@@ -47,13 +49,13 @@ RSpec.describe CourtDataAdaptor::Caster::ModeOfTrialReasonsCollection do
 
     context 'with default' do
       let(:value) { nil }
-      let(:default) { [{ code: 'default', description: 'default' }] }
+      let(:default) { [{ code: 'default', description: 'default', originating_hearing_id: 'default' }] }
 
       it { is_expected.to be_an Array }
-      it { is_expected.to all(be_an(CourtDataAdaptor::Resource::ModeOfTrialReason)) }
+      it { is_expected.to all(be_an(CourtDataAdaptor::Resource::Plea)) }
 
       it 'responds to key names as attributes' do
-        expect(collection).to all(respond_to(:code, :description))
+        expect(collection).to all(respond_to(:code, :pleaded_at, :originating_hearing_id))
       end
     end
   end

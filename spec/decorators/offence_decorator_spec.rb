@@ -6,8 +6,8 @@ RSpec.describe OffenceDecorator, type: :decorator do
   let(:offence) { instance_double(CourtDataAdaptor::Resource::Offence) }
   let(:view_object) { view_class.new }
 
-  let(:pleas) { plea_array.map { |plea| CourtDataAdaptor::Resource::Plea.new(plea) } }
-  let(:mot_reasons) do
+  let(:plea_collection) { plea_array.map { |plea| CourtDataAdaptor::Resource::Plea.new(plea) } }
+  let(:mot_reason_collection) do
     mode_of_trial_reason_array.map do |reason|
       CourtDataAdaptor::Resource::ModeOfTrialReason.new(reason)
     end
@@ -48,7 +48,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
       end
 
       before do
-        allow(offence).to receive(:pleas).and_return(pleas)
+        allow(offence).to receive(:pleas).and_return(plea_collection)
       end
 
       it { is_expected.to eql('Not guilty on 01/01/2020<br>Guilty on 20/01/2020') }
@@ -63,7 +63,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
       end
 
       before do
-        allow(offence).to receive(:pleas).and_return(pleas)
+        allow(offence).to receive(:pleas).and_return(plea_collection)
       end
 
       it { is_expected.to eql 'Not guilty on 01/01/2020<br>Guilty on 01/02/2020' }
@@ -83,7 +83,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
       end
 
       before do
-        allow(offence).to receive(:pleas).and_return(pleas)
+        allow(offence).to receive(:pleas).and_return(plea_collection)
       end
 
       it { is_expected.to eql html_content }
@@ -120,7 +120,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when reasons exist' do
       before do
-        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reasons)
+        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
       end
 
       context 'when exactly one reason exists' do
@@ -148,7 +148,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when mode_of_trial_reasons does not contain an expected key' do
       before do
-        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reasons)
+        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
       end
 
       context 'when it does not contain a code' do
@@ -195,7 +195,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when the mode of trial reason code means the description should be hidden' do
       before do
-        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reasons)
+        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
       end
 
       [1, 2, 6].each do |code|
