@@ -27,14 +27,14 @@ spec:
           command: ['bundle', 'exec', 'sidekiq']
           readinessProbe:
             exec:
-              command: ['bundle', 'exec', 'sidekiqmon']
+              command: ['sh', '-c', 'bundle exec sidekiqmon']
             initialDelaySeconds: 20
             periodSeconds: 30
           livenessProbe:
             exec:
-              command: ['bundle', 'exec', 'sidekiqmon']
+              command: ['sh', '-c', 'bundle exec sidekiqmon']
             initialDelaySeconds: 30
-            periodSeconds: 300
+            periodSeconds: 60
           env:
             - name: ENV
               value: 'dev'
