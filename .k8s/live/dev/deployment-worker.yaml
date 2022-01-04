@@ -33,7 +33,7 @@ spec:
           livenessProbe:
             exec:
               command: ['bundle', 'exec', 'sidekiqmon']
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 30
           env:
             - name: ENV
@@ -96,5 +96,5 @@ spec:
             httpGet:
               path: /metrics
               port: 9394
-            initialDelaySeconds: 10
+            initialDelaySeconds: 60
             periodSeconds: 60
