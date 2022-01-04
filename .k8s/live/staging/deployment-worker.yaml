@@ -28,13 +28,13 @@ spec:
           readinessProbe:
             exec:
               command: ['bundle', 'exec', 'sidekiqmon']
-            initialDelaySeconds: 15
-            periodSeconds: 10
+            initialDelaySeconds: 60
+            periodSeconds: 60
           livenessProbe:
             exec:
               command: ['bundle', 'exec', 'sidekiqmon']
-            initialDelaySeconds: 30
-            periodSeconds: 30
+            initialDelaySeconds: 60
+            periodSeconds: 60
           env:
             - name: ENV
               value: 'staging'
@@ -95,12 +95,12 @@ spec:
             httpGet:
               path: /metrics
               port: 9394
-            initialDelaySeconds: 10
+            initialDelaySeconds: 60
             periodSeconds: 60
           readinessProbe:
             httpGet:
               path: /metrics
               port: 9394
-            initialDelaySeconds: 10
+            initialDelaySeconds: 60
             periodSeconds: 60
 
