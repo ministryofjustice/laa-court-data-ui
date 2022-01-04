@@ -396,6 +396,9 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
+    sidekiq_alive (2.1.4)
+      sidekiq
+      webrick
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -517,6 +520,7 @@ DEPENDENCIES
   sentry-sidekiq (~> 4.8.1)
   shoulda-matchers
   sidekiq (~> 6.3)
+  sidekiq_alive
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
