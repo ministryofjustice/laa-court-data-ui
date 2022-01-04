@@ -28,8 +28,8 @@ spec:
           readinessProbe:
             exec:
               command: ['bundle', 'exec', 'sidekiqmon']
-            initialDelaySeconds: 15
-            periodSeconds: 10
+            initialDelaySeconds: 30
+            periodSeconds: 30
           livenessProbe:
             exec:
               command: ['bundle', 'exec', 'sidekiqmon']
