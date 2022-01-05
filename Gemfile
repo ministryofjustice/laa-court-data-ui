@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '3.0.3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.0', require: false
@@ -28,6 +28,7 @@ gem 'redis', '~> 4.5.1'
 gem 'sentry-rails', '~> 4.8.1'
 gem 'sentry-sidekiq', '~> 4.8.1'
 gem 'sidekiq', '~> 6.3'
+gem 'sidekiq_alive'
 gem 'webpacker', '~> 5.4'
 
 group :test do
