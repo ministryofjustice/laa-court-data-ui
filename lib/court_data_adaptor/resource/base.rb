@@ -8,6 +8,8 @@ module CourtDataAdaptor
         raise CourtDataAdaptor::Errors::BadRequest.new('Bad request', env.response)
       when 422
         raise CourtDataAdaptor::Errors::UnprocessableEntity.new('Unprocessable entity', env.response)
+      when 500
+        raise CourtDataAdaptor::Errors::InternalServerError.new('Internal server error', env.response)
       end
     end
   end
@@ -30,7 +32,8 @@ module CourtDataAdaptor
 
       connection_options[:status_handlers] = {
         400 => ApiRequestHandler,
-        422 => ApiRequestHandler
+        422 => ApiRequestHandler,
+        500 => ApiRequestHandler
       }
 
       connection do |conn|
