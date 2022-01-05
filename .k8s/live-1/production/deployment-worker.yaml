@@ -26,15 +26,13 @@ spec:
           image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-get-paid/laa-court-data-ui:set-me
           command: ['bundle', 'exec', 'sidekiq']
           readinessProbe:
-            exec:
-              command: ['bundle', 'exec', 'rake', 'worker:healthcheck']
-            initialDelaySeconds: 15
-            periodSeconds: 10
+            httpGet:
+              path: /
+              port: 7433
           livenessProbe:
-            exec:
-              command: ['bundle', 'exec', 'rake', 'worker:healthcheck']
-            initialDelaySeconds: 30
-            periodSeconds: 30
+            httpGet:
+              path: /
+              port: 7433
           env:
             - name: ENV
               value: 'production'
