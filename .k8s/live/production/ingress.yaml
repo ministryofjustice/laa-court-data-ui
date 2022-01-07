@@ -2,15 +2,15 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: laa-court-data-ui-app-ingress
-  namespace: laa-court-data-ui-dev
+  namespace: laa-court-data-ui-production
   annotations:
     kubernetes.io/ingress.class: modsec01
     nginx.ingress.kubernetes.io/enable-modsecurity: "true"
     nginx.ingress.kubernetes.io/modsecurity-snippet: |
       SecRuleEngine On
       SecAction "id:900110,phase:1,nolog,pass,t:none,setvar:tx.inbound_anomaly_score_threshold=6"
-    external-dns.alpha.kubernetes.io/set-identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-dev-blue
-    external-dns.alpha.kubernetes.io/aws-weight: "0"
+    external-dns.alpha.kubernetes.io/set-identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-production-blue
+    external-dns.alpha.kubernetes.io/aws-weight: "100"
     nginx.ingress.kubernetes.io/server-snippet: |
         deny 223.178.211.9;
         deny 143.244.161.10;
@@ -23,7 +23,7 @@ metadata:
         deny 195.248.243.174;
 spec:
   rules:
-    - host: dev.view-court-data.service.justice.gov.uk
+    - host: view-court-data.service.justice.gov.uk
       http:
         paths:
           - path: /
@@ -32,5 +32,5 @@ spec:
               servicePort: 80
   tls:
     - hosts:
-      - dev.view-court-data.service.justice.gov.uk
-      secretName: laa-court-data-ui-dev-cert
+      - view-court-data.service.justice.gov.uk
+      secretName: laa-court-data-ui-production-cert
