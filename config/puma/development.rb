@@ -40,14 +40,12 @@
 # plugin :tmp_restart
 
 # basic config recommended for use on heroku
-#
-workers_count = Integer(ENV.fetch('WEB_CONCURRENCY', 1))
+# WEB_CONCURRENCY defaults to 0 to use Puma single mode instead of cluster mode.
+workers_count = Integer(ENV.fetch('WEB_CONCURRENCY', 0))
 threads_count = Integer(ENV.fetch('RAILS_MAX_THREADS', 5))
 
 workers workers_count
 threads threads_count, threads_count
-
-preload_app!
 
 rackup DefaultRackup
 port ENV.fetch('PORT', 3000)
@@ -56,13 +54,3 @@ pidfile ENV.fetch('PIDFILE', 'tmp/pids/server.pid')
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
-
-on_worker_boot do
-  # Worker specific setup for Rails 4.1+
-  # See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot
-  ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
-end
-
-on_restart do
-  ActiveRecord::Base.connection.disconnect! if defined?(ActiveRecord::Base)
-end
