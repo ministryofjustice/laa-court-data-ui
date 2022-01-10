@@ -111,7 +111,7 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    deep_merge (1.2.1)
+    deep_merge (1.2.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.8.1)
@@ -150,10 +150,10 @@ GEM
     foreman (0.87.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    govuk_design_system_formbuilder (2.8.0)
-      actionview (>= 6.0)
-      activemodel (>= 6.0)
-      activesupport (>= 6.0)
+    govuk_design_system_formbuilder (3.0.0)
+      actionview (>= 6.1)
+      activemodel (>= 6.1)
+      activesupport (>= 6.1)
       deep_merge (~> 1.2.1)
     govuk_notify_rails (2.2.0)
       notifications-ruby-client (~> 5.1)
@@ -489,7 +489,7 @@ DEPENDENCIES
   faker
   fakeredis
   foreman
-  govuk_design_system_formbuilder (~> 2.8)
+  govuk_design_system_formbuilder (~> 3.0)
   govuk_notify_rails (~> 2.2.0)
   haml-rails (~> 2.0.1)
   i18n-tasks (~> 0.9.37)
