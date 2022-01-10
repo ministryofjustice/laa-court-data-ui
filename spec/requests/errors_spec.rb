@@ -66,4 +66,16 @@ RSpec.describe 'error routes', type: :request do
       expect(response).to render_template('errors/internal_error')
     end
   end
+
+  describe 'GET #connection_error', type: :request do
+    before { get '/504' }
+
+    it 'has a status of 504' do
+      expect(response.status).to eq(504)
+    end
+
+    it 'renders the 504/connection_error template' do
+      expect(response).to render_template('errors/connection_error')
+    end
+  end
 end

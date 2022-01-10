@@ -24,4 +24,8 @@ class ErrorsController < ApplicationController
   def internal_error
     render status: :internal_server_error
   end
+
+  def connection_error
+    render status: :gateway_timeout
+  end
 end

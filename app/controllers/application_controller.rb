@@ -43,6 +43,9 @@ class ApplicationController < ActionController::Base
       redirect_to controller: :errors, action: :not_found
     when JsonApiClient::Errors::NotAuthorized
       redirect_to controller: :errors, action: :unauthorized
+    when JsonApiClient::Errors::ConnectionError || Net::ReadTimeout
+      Sentry.capture_exception(exception)
+      redirect_to controller: :errors, action: :connection_error
     else
       Sentry.capture_exception(exception)
       redirect_to controller: :errors, action: :internal_error
