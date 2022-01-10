@@ -111,7 +111,7 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    deep_merge (1.2.1)
+    deep_merge (1.2.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.8.1)
@@ -150,10 +150,10 @@ GEM
     foreman (0.87.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    govuk_design_system_formbuilder (2.8.0)
-      actionview (>= 6.0)
-      activemodel (>= 6.0)
-      activesupport (>= 6.0)
+    govuk_design_system_formbuilder (3.0.0)
+      actionview (>= 6.1)
+      activemodel (>= 6.1)
+      activesupport (>= 6.1)
       deep_merge (~> 1.2.1)
     govuk_notify_rails (2.2.0)
       notifications-ruby-client (~> 5.1)
@@ -348,7 +348,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
-    rspec_junit_formatter (0.4.1)
+    rspec_junit_formatter (0.5.1)
       rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (1.24.1)
       parallel (~> 1.10)
@@ -364,7 +364,7 @@ GEM
     rubocop-performance (1.13.1)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
-    rubocop-rails (2.13.0)
+    rubocop-rails (2.13.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -386,11 +386,11 @@ GEM
     sentry-ruby-core (4.8.3)
       concurrent-ruby
       faraday
-    sentry-sidekiq (4.8.1)
-      sentry-ruby-core (~> 4.8.1)
+    sentry-sidekiq (4.8.3)
+      sentry-ruby-core (~> 4.8.3)
       sidekiq (>= 3.0)
     sexp_processor (4.16.0)
-    shoulda-matchers (5.0.0)
+    shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
     sidekiq (6.3.1)
       connection_pool (>= 2.2.2)
@@ -489,7 +489,7 @@ DEPENDENCIES
   faker
   fakeredis
   foreman
-  govuk_design_system_formbuilder (~> 2.8)
+  govuk_design_system_formbuilder (~> 3.0)
   govuk_notify_rails (~> 2.2.0)
   haml-rails (~> 2.0.1)
   i18n-tasks (~> 0.9.37)
@@ -517,7 +517,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   sentry-rails (~> 4.8.3)
-  sentry-sidekiq (~> 4.8.1)
+  sentry-sidekiq (~> 4.8.3)
   shoulda-matchers
   sidekiq (~> 6.3)
   sidekiq_alive
