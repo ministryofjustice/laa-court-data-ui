@@ -309,6 +309,13 @@ jobs:
           environment: production
           cluster: live-1
 
+  deploy-production-live:
+    executor: cloud-platform-executor
+    steps:
+      - deploy-to:
+          environment: production
+          cluster: live
+
 # ------------------
 # WORKFLOWS
 # ------------------
@@ -359,6 +366,14 @@ workflows:
           context: laa-court-data-ui-live1-production
           requires:
             - hold-production
+      - hold-production-live:
+          type: approval
+          requires:
+            - build-app-container
+      - deploy-production-live:
+          context: laa-court-data-ui-live-production
+          requires:
+            - hold-production-live
 
   test-branch:
     jobs:
