@@ -91,21 +91,6 @@ RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
             raise_error CourtDataAdaptor::Errors::UnprocessableEntity, 'Unprocessable entity'
         end
       end
-
-      context 'when internal server error response' do
-        before do
-          stub_request(:get, mock_resource_endpoint)
-            .to_return(
-              status: 500,
-              body: { field: %w[error1 error2] }.to_json
-            )
-        end
-
-        it 'applies custom handler' do
-          expect { described_class.all }.to \
-            raise_error CourtDataAdaptor::Errors::InternalServerError, 'Internal server error'
-        end
-      end
     end
   end
 end
