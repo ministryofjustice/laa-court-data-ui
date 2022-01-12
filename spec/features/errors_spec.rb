@@ -46,6 +46,23 @@ RSpec.feature 'Error page', type: :feature do
     expect(page).to have_current_path('/')
   end
 
+  scenario 'returns 504' do
+    visit '/504'
+
+    within '.govuk-main-wrapper' do
+      expect(page).to have_css('.govuk-heading-xl', text: 'Sorry, there is a problem with the service')
+      expect(page).to have_css('.govuk-body',
+                               text: 'There was an error retrieving information from the server.')
+      expect(page).to have_css('.govuk-body',
+                               text: 'If this problem persists, please raise an issue.')
+      expect(page).to have_css('.govuk-body',
+                               text: 'You can also browse from the homepage to find the information you need')
+      expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
+    end
+    click_link 'browse from the homepage'
+    expect(page).to have_current_path('/')
+  end
+
   context 'when unexpected error raised' do
     let(:user) { create(:user) }
 

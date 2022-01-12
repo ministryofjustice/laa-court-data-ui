@@ -105,20 +105,6 @@ RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
           expect { described_class.all }.to \
             raise_error CourtDataAdaptor::Errors::InternalServerError, 'Internal server error'
         end
-
-        context 'with no body in response' do
-          let(:request) do
-            stub_request(:get, mock_resource_endpoint)
-              .to_return(
-                status: 500
-              )
-          end
-
-          it 'applies custom handler' do
-            expect { described_class.all }.to \
-              raise_error CourtDataAdaptor::Errors::InternalServerError, 'Internal server error'
-          end
-        end
       end
     end
   end

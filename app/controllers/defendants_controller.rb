@@ -17,7 +17,6 @@ class DefendantsController < ApplicationController
                  (proc { |v| v.defendant_path(v.controller.defendant.id) })
 
   rescue_from CourtDataAdaptor::Errors::BadRequest, with: :adaptor_error_handler
-  rescue_from JsonApiClient::Errors::InternalServerError, with: :adaptor_error_handler
 
   def edit; end
 
