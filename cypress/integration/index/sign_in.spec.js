@@ -36,7 +36,7 @@ describe("User Login Page", () => {
   });
 
   it("can log in with valid credentials after an invalid attempt", () => {
-    cy.login("someone", "some-password");
+    cy.login("invalid-username", "invalid-password");
     cy.get(".govuk-error-summary__title").should(
       "contain",
       "Invalid username or password."
@@ -47,6 +47,31 @@ describe("User Login Page", () => {
         "contain",
         "Signed in successfully."
       );
+    });
+  });
+
+  context('logged in', () => {
+    beforeEach(() => {
+      cy.visit("/");
+      cy.fixture("users").then((users) => {
+        cy.login(users[0].username, users[0].password);
+      });
+    });
+
+    it('displays search filters page', () => {
+      cy.get(".govuk-fieldset__legend").should(
+        "contain",
+        "Search for"
+      );
+    });
+
+    it('can log out', () => {
+      cy.get("[data-method='delete']")
+      .should("have.text", "Sign out")
+      .should('have.attr', 'href').and('include', "/users/sign_out");
+  
+      cy.get("[data-method='delete']").click();
+      cy.get('.govuk-error-summary__title').should('contain', 'Signed out successfully.');
     });
   });
 });
