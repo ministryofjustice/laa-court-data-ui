@@ -307,7 +307,7 @@ jobs:
     steps:
       - deploy-to:
           environment: production
-          cluster: live-1
+          cluster: live
 
 # ------------------
 # WORKFLOWS
@@ -356,7 +356,7 @@ workflows:
           requires:
             - build-app-container
       - deploy-production:
-          context: laa-court-data-ui-live1-production
+          context: laa-court-data-ui-live-production
           requires:
             - hold-production
 
