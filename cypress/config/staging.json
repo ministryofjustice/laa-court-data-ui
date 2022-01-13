@@ -1,4 +1,5 @@
 {
+  "blockHosts": ["*.google-analytics.com"],
   "baseUrl": "https://staging.view-court-data.service.justice.gov.uk/",
   "video": false
 }

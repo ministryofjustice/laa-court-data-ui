@@ -1,4 +1,5 @@
 {
+  "blockHosts": ["*.google-analytics.com"],
   "baseUrl": "https://uat.view-court-data.service.justice.gov.uk",
   "video": false
 }
