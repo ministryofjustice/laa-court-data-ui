@@ -20,11 +20,11 @@ describe('Cookie banner', () => {
     })
 
     it('can accept cookie preferences', () => {
-      cy.get('[data-accept-cookies="true"]')
+      cy.get("[data-cy='accept_cookies']")
         .should('contain', 'Accept analytics cookies')
         .should('have.attr', 'href').and('include', 'analytics_cookies_set=true&show_confirm_banner=true')
 
-      cy.get('[data-accept-cookies="true"]').click()
+      cy.get("[data-cy='accept_cookies']").click()
       cy.get('.govuk-cookie-banner__content > p').should(
         'contain',
         "You've accepted additional cookies."
@@ -32,11 +32,11 @@ describe('Cookie banner', () => {
     })
 
     it('can reject cookie preferences', () => {
-      cy.get('[data-reject-cookies="true"]')
+      cy.get("[data-cy='reject_cookies']")
         .should('contain', 'Reject analytics cookies')
         .should('have.attr', 'href').and('include', 'analytics_cookies_set=false&show_confirm_banner=true')
 
-      cy.get('.app-js-only > [data-reject-cookies="true"]').click()
+      cy.get(".app-js-only > [data-cy='reject_cookies']").click()
       cy.get('.govuk-cookie-banner__content > p').should(
         'contain',
         "You've rejected additional cookies."
@@ -44,11 +44,11 @@ describe('Cookie banner', () => {
     })
 
     it('can go to cookie settings', () => {
-      cy.get('.govuk-link')
+      cy.get("[data-cy='cookie_settings']")
         .should('contain', 'Cookie settings')
         .should('have.attr', 'href').and('include', '/cookies/settings')
 
-      cy.get('.app-js-only > .govuk-link').click()
+      cy.get(".app-js-only > [data-cy='cookie_settings']").click()
       cy.get('.govuk-heading-xl').should(
         'contain',
         'Change your cookie settings'
@@ -60,23 +60,17 @@ describe('Cookie banner', () => {
 describe('Cookie settings', () => {
   before(() => {
     cy.visit('/')
-    cy.get('.govuk-link')
+    cy.get("[data-cy='cookie_settings']")
       .should('contain', 'Cookie settings')
       .should('have.attr', 'href').and('include', '/cookies/settings')
 
-    cy.get('.app-js-only > .govuk-link').click()
+    cy.get(".app-js-only > [data-cy='cookie_settings']").click()
   })
 
-  it('can update cookie settings', () => {
+  it('can submit updated cookie settings', () => {
     cy.get('input#cookie-analytics-true-field').should('have.value', 'true')
     cy.get('input#cookie-analytics-true-field').check()
 
-    Cypress.on('uncaught:exception', (_err, runnable) => {
-      // returning false here prevents Cypress from
-      // failing the test due to TypeError: Illegal Invocation in Rails ujs nodemodule
-      return false
-    })
-    cy.get('input#cookie-analytics-true-field').check()
-    cy.get('form.app-js-only#new_cookie').submit()
+    cy.get("[data-cy='cookies-submit']").click()
   })
 })
