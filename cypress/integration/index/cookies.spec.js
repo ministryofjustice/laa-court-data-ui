@@ -31,6 +31,37 @@ describe('Cookie banner', () => {
       )
     })
 
+    context('cookies accepted', () => {
+      beforeEach(() => {
+        cy.get("[data-cy='accept_cookies']")
+          .should('contain', 'Accept analytics cookies')
+          .should('have.attr', 'href').and('include', 'analytics_cookies_set=true&show_confirm_banner=true')
+
+        cy.get("[data-cy='accept_cookies']").click()
+      })
+      const bannerMessageElement = '.govuk-cookie-banner__content > p'
+      const hideMessageElement = "[data-cy='hide_message']"
+
+      it('can hide confirmation message', () => {
+        cy.get(`${bannerMessageElement}`)
+          .should('contain', "You've accepted additional cookies")
+        cy.get(`${hideMessageElement}`)
+          .should('contain', 'Hide this message')
+          .should('have.attr', 'href').and('include', '?')
+
+        cy.get(`${hideMessageElement}`).click()
+        cy.get(`${hideMessageElement}`).should('not.exist')
+      })
+
+      it('can go to cookie settings from cookie banner', () => {
+        cy.get(`${bannerMessageElement} > a`)
+          .should('contain', 'change your cookie settings')
+          .should('have.attr', 'href').and('include', '/cookies/settings')
+        cy.get(`${bannerMessageElement} > a`).click()
+        cy.get('.govuk-heading-xl').should('contain', 'Change your cookie settings')
+      })
+    })
+
     it('can reject cookie preferences', () => {
       cy.get("[data-cy='reject_cookies']")
         .should('contain', 'Reject analytics cookies')
@@ -72,5 +103,6 @@ describe('Cookie settings', () => {
     cy.get('input#cookie-analytics-true-field').check()
 
     cy.get("[data-cy='submit-cookies']").click()
+    cy.get('.govuk-notification-banner__heading').should('contain', "You've set your cookie preferences.")
   })
 })
