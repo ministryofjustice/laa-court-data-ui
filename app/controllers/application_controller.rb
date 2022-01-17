@@ -39,13 +39,14 @@ class ApplicationController < ActionController::Base
     raise unless Rails.env.production?
 
     case exception
-    when ActiveRecord::RecordNotFound || ActionController::RoutingError
+    when ActiveRecord::RecordNotFound, ActionController::RoutingError
       redirect_to controller: :errors, action: :not_found
     when JsonApiClient::Errors::NotAuthorized
       redirect_to controller: :errors, action: :unauthorized
-    when JsonApiClient::Errors::ConnectionError || Net::ReadTimeout
+    when JsonApiClient::Errors::ConnectionError, Net::ReadTimeout
       Sentry.capture_exception(exception)
-      redirect_to controller: :errors, action: :connection_error
+      flash[:alert] = I18n.t('error.connection_error_message')
+      redirect_to authenticated_root_path
     else
       Sentry.capture_exception(exception)
       redirect_to controller: :errors, action: :internal_error

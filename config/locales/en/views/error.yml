@@ -10,7 +10,6 @@ en:
     422_title: The change you wanted was rejected
     500_message: Try again later.
     500_title: Sorry, something went wrong
-    connection_error_message_1: There was an error retrieving information from the server.
-    connection_error_message_2: If this problem persists, please raise an issue.
+    connection_error_message: There was an error retrieving information from the server. If this problem persists, please raise an issue.
     connection_error_title: Sorry, there is a problem with the service
     description_html: You can also <a class="govuk-link" href="/">browse from the homepage</a> to find the information you need.
