@@ -74,4 +74,13 @@ describe('User Login Page', () => {
       cy.get('.govuk-error-summary__title').should('contain', 'Signed out successfully.')
     })
   })
+
+  context('logged out', () => {
+    it('can not see search filters', () => {
+      cy.get('#main-content').not(
+        'contain',
+        'Search for'
+      )
+    })
+  })
 })
