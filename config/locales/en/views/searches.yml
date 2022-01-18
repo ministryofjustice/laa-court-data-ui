@@ -2,7 +2,6 @@
 en:
   search:
     breadcrumb: Search
-    connection_error: Connection error, please try again soon!
     dob:
       legend_text: Defendant date of birth
     no_result:

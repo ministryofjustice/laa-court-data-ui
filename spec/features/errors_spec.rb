@@ -46,6 +46,62 @@ RSpec.feature 'Error page', type: :feature do
     expect(page).to have_current_path('/')
   end
 
+  context 'when connection error raised' do
+    let(:user) { create(:user) }
+
+    before do
+      sign_in user
+      allow(Rails.env).to receive(:production?).and_return true
+      allow_any_instance_of(Search)
+        .to receive(:execute)
+        .and_raise(JsonApiClient::Errors::ConnectionError, 'dummy connection error')
+    end
+
+    scenario 'redirects to search page and displays error message' do
+      visit '/'
+
+      choose 'A case by URN'
+      click_button 'Continue'
+      fill_in 'search-term-field', with: 'TEST12345'
+      click_button 'Search'
+
+      expect(page).to have_css('.govuk-error-summary')
+      within '.govuk-error-summary' do
+        message = 'There was an error retrieving information from the server. '\
+                  'If this problem persists, please raise an issue.'
+        expect(page).to have_content(message)
+      end
+    end
+  end
+
+  context 'when net read timeout error raised' do
+    let(:user) { create(:user) }
+
+    before do
+      sign_in user
+      allow(Rails.env).to receive(:production?).and_return true
+      allow_any_instance_of(Search)
+        .to receive(:execute)
+        .and_raise(Net::ReadTimeout, 'dummy net read timeout error')
+    end
+
+    scenario 'redirects to search page and displays error message' do
+      visit '/'
+
+      choose 'A case by URN'
+      click_button 'Continue'
+      fill_in 'search-term-field', with: 'TEST12345'
+      click_button 'Search'
+
+      expect(page).to have_css('.govuk-error-summary')
+      within '.govuk-error-summary' do
+        message = 'There was an error retrieving information from the server. '\
+                  'If this problem persists, please raise an issue.'
+        expect(page).to have_content(message)
+      end
+    end
+  end
+
   context 'when unexpected error raised' do
     let(:user) { create(:user) }
 
