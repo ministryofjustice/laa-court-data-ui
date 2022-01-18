@@ -20,6 +20,7 @@ describe('Cookie banner', () => {
     })
 
     it('can reject cookie preferences', () => {
+      cy.getCookie('cookies_preferences_set').should('not.exist')
       cy.checkCookieValue('analytics_cookies_set', 'false')
       cy.get("[data-cy='reject_cookies']")
         .should('contain', 'Reject analytics cookies')
@@ -30,12 +31,12 @@ describe('Cookie banner', () => {
         'contain',
         "You've rejected additional cookies."
       )
-      cy.getCookie('cookes_prefernces_set').should('not.exist')
+      cy.checkCookieValue('cookies_preferences_set', 'true')
       cy.checkCookieValue('analytics_cookies_set', 'false')
     })
 
     it('can accept cookie preferences', () => {
-      cy.getCookie('cookes_prefernces_set').should('not.exist')
+      cy.getCookie('cookies_preferences_set').should('not.exist')
       cy.checkCookieValue('analytics_cookies_set', 'false')
       cy.get("[data-cy='accept_cookies']")
         .should('contain', 'Accept analytics cookies')
@@ -136,11 +137,11 @@ describe('Cookie settings', () => {
   })
 
   context('Cookies storing is set as false', () => {
-
     beforeEach(() => {
+      cy.getCookie('cookies_preferences_set').should('not.exist')
+      cy.checkCookieValue('analytics_cookies_set', 'false')
+
       cy.get(".app-js-only > [data-cy='cookie_settings']").click()
-      cy.setCookie('cookies_preferences_set', 'false')
-      cy.setCookie('analytics_cookies_set', 'false')
     })
 
     it('can change cookie settings', () => {
