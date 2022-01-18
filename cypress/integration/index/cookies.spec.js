@@ -12,6 +12,8 @@ describe('Cookie banner', () => {
       })
     })
 
+    const changeCookingSettings = 'Change your cookie settings'
+
     it('displays search filters page', () => {
       cy.get('.govuk-fieldset__legend').should(
         'contain',
@@ -74,10 +76,10 @@ describe('Cookie banner', () => {
 
       it('can go to cookie settings from cookie banner', () => {
         cy.get(`${bannerMessageElement} > a`)
-          .should('contain', 'change your cookie settings')
+          .contains(changeCookingSettings, { matchCase: false })
           .should('have.attr', 'href').and('include', '/cookies/settings')
         cy.get(`${bannerMessageElement} > a`).click()
-        cy.get('.govuk-heading-xl').should('contain', 'Change your cookie settings')
+        cy.get('.govuk-heading-xl').should('contain', changeCookingSettings)
       })
     })
 
@@ -105,10 +107,10 @@ describe('Cookie banner', () => {
 
       it('can go to cookie settings from cookie banner', () => {
         cy.get(`${bannerMessageElement} > a`)
-          .should('contain', 'change your cookie settings')
+          .contains(changeCookingSettings, { matchCase: false })
           .should('have.attr', 'href').and('include', '/cookies/settings')
         cy.get(`${bannerMessageElement} > a`).click()
-        cy.get('.govuk-heading-xl').should('contain', 'Change your cookie settings')
+        cy.get('.govuk-heading-xl').should('contain', changeCookingSettings)
       })
     })
 
@@ -120,7 +122,7 @@ describe('Cookie banner', () => {
       cy.get(".app-js-only > [data-cy='cookie_settings']").click()
       cy.get('.govuk-heading-xl').should(
         'contain',
-        'Change your cookie settings'
+        changeCookingSettings
       )
     })
   })
@@ -136,6 +138,8 @@ describe('Cookie settings', () => {
     cy.get(".app-js-only > [data-cy='cookie_settings']").click()
   })
 
+  const successfullySetCookies = "You've set your cookie preferences."
+
   context('Cookies storing is set as false', () => {
     beforeEach(() => {
       cy.getCookie('cookies_preferences_set').should('not.exist')
@@ -148,7 +152,7 @@ describe('Cookie settings', () => {
       cy.get('input#cookie-analytics-true-field').should('have.value', 'true')
       cy.get('input#cookie-analytics-true-field').check()
       cy.get("[data-cy='submit-cookies']").click()
-      cy.get('.govuk-notification-banner__heading').should('contain', "You've set your cookie preferences.")
+      cy.get('.govuk-notification-banner__heading').should('contain', successfullySetCookies)
       cy.checkCookieValue('cookies_preferences_set', 'true')
       cy.checkCookieValue('analytics_cookies_set', 'true')
     })
@@ -166,7 +170,7 @@ describe('Cookie settings', () => {
       cy.get('input#cookie-analytics-false-field').should('have.value', 'false')
       cy.get('input#cookie-analytics-false-field').check()
       cy.get("[data-cy='submit-cookies']").click()
-      cy.get('.govuk-notification-banner__heading').should('contain', "You've set your cookie preferences.")
+      cy.get('.govuk-notification-banner__heading').should('contain', successfullySetCookies)
       cy.checkCookieValue('cookies_preferences_set', 'true')
       cy.checkCookieValue('analytics_cookies_set', 'false')
     })
