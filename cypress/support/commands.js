@@ -16,3 +16,7 @@ Cypress.Commands.add('checkBanner', () => {
     cy.get('.govuk-phase-banner__content').should('contain', Cypress.env('environment'))
   })
 })
+
+Cypress.Commands.add('checkCookieValue', (name, value) => {
+  cy.getCookie(name).should('have.property', 'value', value)
+})
