@@ -6,7 +6,7 @@ describe('Cookie settings page', () => {
         .should('contain', 'Cookie settings')
         .should('have.attr', 'href').and('include', '/cookies/settings')
 
-      cy.get(".app-js-only > [data-cy='cookie_settings']").click()
+      cy.get("[data-cy='cookie_settings']").click()
     })
 
     const successfullySetCookies = "You've set your cookie preferences."
@@ -16,7 +16,7 @@ describe('Cookie settings page', () => {
         cy.getCookie('cookies_preferences_set').should('not.exist')
         cy.checkCookieValue('analytics_cookies_set', 'false')
 
-        cy.get(".app-js-only > [data-cy='cookie_settings']").click()
+        cy.get("[data-cy='cookie_settings']").click()
       })
 
       it('can change cookie settings', () => {
@@ -32,7 +32,7 @@ describe('Cookie settings page', () => {
     context('Cookies storing is set as true', () => {
       beforeEach(() => {
         cy.visit('/')
-        cy.get(".app-js-only > [data-cy='cookie_settings']").click()
+        cy.get("[data-cy='cookie_settings']").click()
         cy.setCookie('cookies_preferences_set', 'true')
         cy.setCookie('analytics_cookies_set', 'true')
       })

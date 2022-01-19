@@ -20,7 +20,7 @@ describe('Cookie banner', () => {
         .should('contain', 'Reject analytics cookies')
         .and('have.attr', 'href').and('include', 'analytics_cookies_set=false&show_confirm_banner=true')
 
-      cy.get(".app-js-only > [data-cy='reject_cookies']").click()
+      cy.get("[data-cy='reject_cookies']").click()
       cy.get('.govuk-cookie-banner__content > p').should(
         'contain',
         rejectedAdditionalCookies
@@ -56,14 +56,14 @@ describe('Cookie banner', () => {
       const hideMessageElement = "[data-cy='hide_message']"
 
       it('can hide confirmation message', () => {
-        cy.get(`${bannerMessageElement}`)
+        cy.get(bannerMessageElement)
           .should('contain', "You've accepted additional cookies")
-        cy.get(`${hideMessageElement}`)
+        cy.get(hideMessageElement)
           .should('contain', hideMessageText)
           .and('have.attr', 'href').and('include', '?')
 
-        cy.get(`${hideMessageElement}`).click()
-        cy.get(`${hideMessageElement}`).should('not.exist')
+        cy.get(hideMessageElement).click()
+        cy.get(hideMessageElement).should('not.exist')
       })
 
       it('can go to cookie settings from cookie banner', () => {
@@ -87,14 +87,14 @@ describe('Cookie banner', () => {
       const hideMessageElement = "[data-cy='hide_message']"
 
       it('can hide confirmation message', () => {
-        cy.get(`${bannerMessageElement}`)
+        cy.get(bannerMessageElement)
           .should('contain', rejectedAdditionalCookies)
-        cy.get(`${hideMessageElement}`)
+        cy.get(hideMessageElement)
           .should('contain', hideMessageText)
           .and('have.attr', 'href').and('include', '?')
 
-        cy.get(`${hideMessageElement}`).click()
-        cy.get(`${hideMessageElement}`).should('not.exist')
+        cy.get(hideMessageElement).click()
+        cy.get(hideMessageElement).should('not.exist')
       })
 
       it('can go to cookie settings from cookie banner', () => {
@@ -111,7 +111,7 @@ describe('Cookie banner', () => {
         .should('contain', 'Cookie settings')
         .and('have.attr', 'href').and('include', '/cookies/settings')
 
-      cy.get(".app-js-only > [data-cy='cookie_settings']").click()
+      cy.get("[data-cy='cookie_settings']").click()
       cy.get('.govuk-heading-xl').should(
         'contain',
         changeCookingSettings
