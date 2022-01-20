@@ -1,7 +1,7 @@
 describe('User Login Page', () => {
   before(() => {
     cy.visit('/')
-    cy.checkBanner()
+    cy.checkEnvBanner()
   })
 
   beforeEach(() => {

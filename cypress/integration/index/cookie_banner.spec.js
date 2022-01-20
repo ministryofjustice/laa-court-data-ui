@@ -1,7 +1,7 @@
 describe('Cookie banner', () => {
   before(() => {
     cy.visit('/')
-    cy.checkBanner()
+    cy.checkEnvBanner()
   })
 
   context('not logged in and javascript enabled', () => {
