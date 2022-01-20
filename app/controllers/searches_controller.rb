@@ -3,8 +3,6 @@
 class SearchesController < ApplicationController
   before_action :set_search_options
 
-  rescue_from JsonApiClient::Errors::ConnectionError, with: :connection_error
-
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
@@ -18,11 +16,6 @@ class SearchesController < ApplicationController
     authorize! :create, @search
 
     @results = @search.execute if @search.valid?
-    render 'new'
-  end
-
-  def connection_error
-    @error = I18n.t('search.connection_error')
     render 'new'
   end
 
