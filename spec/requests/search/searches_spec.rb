@@ -154,7 +154,7 @@ RSpec.describe 'Searches', type: :request do
 
     let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
 
-    it { expect(flash[:alert]).to match(/error/) }
+    it { expect(flash[:alert]).to match(/There was a problem/) }
     it { expect(response).to redirect_to(authenticated_root_path) }
   end
 
@@ -169,7 +169,7 @@ RSpec.describe 'Searches', type: :request do
 
     let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
 
-    it { expect(flash[:alert]).to match(/error/) }
+    it { expect(flash[:alert]).to match(/There was a problem/) }
     it { expect(response).to redirect_to(authenticated_root_path) }
   end
 end
