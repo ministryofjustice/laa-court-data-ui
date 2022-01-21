@@ -1,4 +1,7 @@
+
 describe('Cookie settings page', () => {
+  const successfullySetCookies = "You've set your cookie preferences."
+
   context('not logged in and javascript enabled', () => {
     beforeEach(() => {
       cy.visit('/')
@@ -8,8 +11,6 @@ describe('Cookie settings page', () => {
 
       cy.get("[data-cy='cookie_settings']").click()
     })
-
-    const successfullySetCookies = "You've set your cookie preferences."
 
     context('Cookies storing is set as false', () => {
       beforeEach(() => {
