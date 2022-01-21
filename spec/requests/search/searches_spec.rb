@@ -145,15 +145,31 @@ RSpec.describe 'Searches', type: :request do
 
   context 'when there is a connection error' do
     before do
+      allow(Rails.env).to receive(:production?).and_return true
       allow_any_instance_of(Search)
         .to receive(:execute)
-        .and_raise JsonApiClient::Errors::ConnectionError.new('test', 'just testing')
+        .and_raise JsonApiClient::Errors::ConnectionError.new('connection error test')
       get '/searches', params: params
     end
 
     let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
 
-    it { expect(response).to render_template('searches/new') }
-    it { expect(response).to render_template('searches/_error') }
+    it { expect(flash[:alert]).to match(/There was a problem/) }
+    it { expect(response).to redirect_to(authenticated_root_path) }
+  end
+
+  context 'when there is a net read timeout error' do
+    before do
+      allow(Rails.env).to receive(:production?).and_return true
+      allow_any_instance_of(Search)
+        .to receive(:execute)
+        .and_raise Net::ReadTimeout.new('read timeout error test')
+      get '/searches', params: params
+    end
+
+    let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
+
+    it { expect(flash[:alert]).to match(/There was a problem/) }
+    it { expect(response).to redirect_to(authenticated_root_path) }
   end
 end

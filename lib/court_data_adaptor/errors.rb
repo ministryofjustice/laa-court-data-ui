@@ -2,28 +2,18 @@
 
 module CourtDataAdaptor
   module Errors
-    class Error < StandardError; end
-
-    class BadRequest < Error
+    class Error < StandardError
       def initialize(msg, response)
         @response = response
         @status = response.status
         @errors = response.body
         super(msg)
       end
-
       attr_reader :response, :status, :errors
     end
 
-    class UnprocessableEntity < Error
-      def initialize(msg, response)
-        @response = response
-        @status = response.status
-        @errors = response.body
-        super(msg)
-      end
+    class BadRequest < Error; end
 
-      attr_reader :response, :status, :errors
-    end
+    class UnprocessableEntity < Error; end
   end
 end
