@@ -12,13 +12,13 @@
               = t('layouts.application.cookies.analytics_cookies')
 
       .govuk-button-group.app-js-only
-        %a.govuk-button{'data-accept-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'accept',
+        %a.govuk-button{'data-accept-cookies': 'true', 'data-cy': 'accept_cookies', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'accept',
           'href': '?analytics_cookies_set=true&show_confirm_banner=true'}
           = t('layouts.application.cookies.accept_cookies')
-        %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
+        %a.govuk-button{'data-reject-cookies': 'true', 'data-cy': 'reject_cookies', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
           'href': '?analytics_cookies_set=false&show_confirm_banner=true'}
           = t('layouts.application.cookies.reject_cookies')
-        = link_to t('layouts.application.cookies.cookie_settings'), cookies_settings_path, class: 'govuk-link'
+        = link_to t('layouts.application.cookies.cookie_settings'), cookies_settings_path, class: 'govuk-link', 'data-cy': 'cookie_settings'
       .govuk-button-group.app-no-js-only
         %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
           'href': '?analytics_cookies_set=false'}
@@ -35,5 +35,5 @@
               = @analytics_cookies_accepted ? t('layouts.application.cookies.confirmation_accept') : t('layouts.application.cookies.confirmation_reject') 
               = t('layouts.application.cookies.confirmation_link_to_settings_html', href: cookies_settings_path).html_safe
       .govuk-button-group
-        %a.govuk-button{'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': '?'}
+        %a.govuk-button{'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': '?', 'data-cy': 'hide_message'}
           = t('layouts.application.cookies.hide_message')

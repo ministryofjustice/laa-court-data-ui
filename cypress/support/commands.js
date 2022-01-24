@@ -11,8 +11,12 @@ Cypress.Commands.add('login', (username, password) => {
 })
 
 // checks whether appropriate banner is at the top of the site
-Cypress.Commands.add('checkBanner', () => {
+Cypress.Commands.add('checkEnvBanner', () => {
   it('displays the dev banner', () => {
     cy.get('.govuk-phase-banner__content').should('contain', Cypress.env('environment'))
   })
+})
+
+Cypress.Commands.add('checkCookieValue', (name, value) => {
+  cy.getCookie(name).should('have.property', 'value', value)
 })
