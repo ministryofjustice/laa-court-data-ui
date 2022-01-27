@@ -16,7 +16,7 @@ gem 'govuk_notify_rails', '~> 2.2.0'
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 3.0'
 gem 'haml-rails', '~> 2.0.1'
-gem 'json_api_client', '~> 1.20'
+gem 'json_api_client', '~> 1.21'
 gem 'json-schema', '~> 2.8', '>= 2.8.1'
 gem 'logstasher'
 gem 'oauth2', '~> 1.4.7'
