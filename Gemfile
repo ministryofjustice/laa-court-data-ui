@@ -16,7 +16,7 @@ gem 'govuk_notify_rails', '~> 2.2.0'
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 3.0'
 gem 'haml-rails', '~> 2.0.1'
-gem 'json_api_client', '~> 1.20'
+gem 'json_api_client', '~> 1.21'
 gem 'json-schema', '~> 2.8', '>= 2.8.1'
 gem 'logstasher'
 gem 'oauth2', '~> 1.4.7'
@@ -25,8 +25,8 @@ gem 'prometheus_exporter'
 gem 'puma', '~> 5.5'
 gem 'rails', '~> 6.1.4'
 gem 'redis', '~> 4.5.1'
-gem 'sentry-rails', '~> 4.9.2'
-gem 'sentry-sidekiq', '~> 4.9.2'
+gem 'sentry-rails', '~> 5.0.1'
+gem 'sentry-sidekiq', '~> 5.0.1'
 gem 'sidekiq', '~> 6.4'
 gem 'sidekiq_alive'
 gem 'webpacker', '~> 5.4'
@@ -44,7 +44,7 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.9.4'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 5.0'
-  gem 'rubocop', '~> 1.24', require: false
+  gem 'rubocop', '~> 1.25', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
