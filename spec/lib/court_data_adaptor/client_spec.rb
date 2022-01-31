@@ -22,13 +22,15 @@ RSpec.describe CourtDataAdaptor::Client do
     it { expect(access_token.token).to eql 'test-bearer-token' }
 
     context 'when token nil? or expired?' do
+      let(:test_client) { client }
+
       before do
-        allow(client).to receive(:new_access_token)
+        allow(test_client).to receive(:new_access_token)
       end
 
       it 'retrieves new access_token' do
         access_token
-        expect(client).to have_received(:new_access_token)
+        expect(test_client).to have_received(:new_access_token)
       end
     end
   end

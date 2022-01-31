@@ -192,9 +192,10 @@ RSpec.describe User, type: :model do
 
     let(:devise_mailer) { instance_double('devise_mailer') }
     let(:mailer) { instance_double('mailer') }
+    let(:test_user) { user }
 
     before do
-      allow(user).to receive(:devise_mailer).and_return(devise_mailer)
+      allow(test_user).to receive(:devise_mailer).and_return(devise_mailer)
       allow(devise_mailer).to receive(:send).and_return(mailer)
       allow(mailer).to receive(:deliver_later)
       send_notification

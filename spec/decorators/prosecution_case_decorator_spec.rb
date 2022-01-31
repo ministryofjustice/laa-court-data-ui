@@ -57,14 +57,15 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
     let(:decorated_hearing3) { view_object.decorate(hearing3) }
     let(:column) { 'date' }
     let(:direction) { 'asc' }
+    let(:test_decorator) { decorator }
 
     before do
       allow(prosecution_case).to receive_messages(hearings: decorated_hearings)
       allow(decorated_hearing1).to receive(:provider_list).and_return(hearing1_provider_list)
       allow(decorated_hearing2).to receive(:provider_list).and_return(hearing2_provider_list)
       allow(decorated_hearing3).to receive(:provider_list).and_return(hearing3_provider_list)
-      allow(decorator).to receive(:hearings_sort_column).and_return(column)
-      allow(decorator).to receive(:hearings_sort_direction).and_return(direction)
+      allow(test_decorator).to receive(:hearings_sort_column).and_return(column)
+      allow(test_decorator).to receive(:hearings_sort_direction).and_return(direction)
     end
 
     it { is_expected.to be_instance_of(Enumerator) }
@@ -207,14 +208,16 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
   describe '#column_sort_icon' do
     subject(:call) { decorator.column_sort_icon }
 
+    let(:test_decorator) { decorator }
+
     context 'when direction is asc' do
-      before { allow(decorator).to receive(:hearings_sort_direction).and_return('asc') }
+      before { allow(test_decorator).to receive(:hearings_sort_direction).and_return('asc') }
 
       it { is_expected.to eql("\u25B2") }
     end
 
     context 'when direction is desc' do
-      before { allow(decorator).to receive(:hearings_sort_direction).and_return('desc') }
+      before { allow(test_decorator).to receive(:hearings_sort_direction).and_return('desc') }
 
       it { is_expected.to eql("\u25BC") }
     end
