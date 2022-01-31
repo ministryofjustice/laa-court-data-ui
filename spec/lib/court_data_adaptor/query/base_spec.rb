@@ -19,16 +19,17 @@ RSpec.describe CourtDataAdaptor::Query::Base do
   describe '.call' do
     subject(:call) { test_class.call('whatever') }
 
+    let(:klass) { test_class }
     let(:instance) { instance_double(test_class) }
 
     before do
-      allow(test_class).to receive(:new).and_return instance
+      allow(klass).to receive(:new).and_return instance
       allow(instance).to receive(:call)
       call
     end
 
     it 'initializes new instance with args' do
-      expect(test_class).to have_received(:new).with('whatever', {})
+      expect(klass).to have_received(:new).with('whatever', {})
     end
 
     it 'sends #call to instance' do
