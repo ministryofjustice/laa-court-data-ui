@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   slack: circleci/slack@3.4.2
-  snyk: snyk/snyk@1.844.0
+  snyk: snyk/snyk@1.1.2
   browser-tools: circleci/browser-tools@1.1
 
 references:
