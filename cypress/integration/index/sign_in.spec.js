@@ -1,24 +1,3 @@
-// Define at the top of the spec file or just import it
-function terminalLog (violations) {
-  cy.task(
-    'log',
-    `${violations.length} accessibility violation${
-      violations.length === 1 ? '' : 's'
-    } ${violations.length === 1 ? 'was' : 'were'} detected`
-  )
-  // pluck specific keys to keep the table readable
-  const violationData = violations.map(
-    ({ id, impact, description, nodes }) => ({
-      id,
-      impact,
-      description,
-      nodes: nodes.length
-    })
-  )
-
-  cy.task('table', violationData)
-}
-
 describe('User Login Page', () => {
   before(() => {
     cy.visit('/')
@@ -30,9 +9,18 @@ describe('User Login Page', () => {
     cy.injectAxe()
   })
 
-  it('Has no detectable a11y violations on load', () => {
-    // Test the page at initial load
-    cy.checkA11y(null, null, terminalLog)
+  it('has no detectable a11y violations on load', () => {
+    const rules = [
+      {
+        'id': 'region',
+        'reviewOnFail': true
+      }
+    ]
+
+    cy.configureAxe({
+      rules: rules
+    })
+    cy.checkA11y(null, null, cy.terminalLog)
   })
 
   it('displays the login page', () => {
