@@ -20,9 +20,10 @@ describe('Cookie banner', () => {
       cy.checkCookieValue('analytics_cookies_set', 'false')
       cy.get("[data-cy='reject_cookies']")
         .should('contain', 'Reject analytics cookies')
-        .and('have.attr', 'href').and('include', 'analytics_cookies_set=false&show_confirm_banner=true')
-
+        .and('have.attr', 'href')
+        .and('include', 'analytics_cookies_set=false&show_confirm_banner=true')
       cy.get("[data-cy='reject_cookies']").click()
+      cy.runtimeA11yCheck(null, null, cy.a11yLog)
       cy.get('.govuk-cookie-banner__content > p').should(
         'contain',
         rejectedAdditionalCookies
@@ -36,9 +37,10 @@ describe('Cookie banner', () => {
       cy.checkCookieValue('analytics_cookies_set', 'false')
       cy.get("[data-cy='accept_cookies']")
         .should('contain', 'Accept analytics cookies')
-        .and('have.attr', 'href').and('include', 'analytics_cookies_set=true&show_confirm_banner=true')
-
+        .and('have.attr', 'href')
+        .and('include', 'analytics_cookies_set=true&show_confirm_banner=true')
       cy.get("[data-cy='accept_cookies']").click()
+      cy.runtimeA11yCheck(null, null, cy.a11yLog)
       cy.get('.govuk-cookie-banner__content > p').should(
         'contain',
         "You've accepted additional cookies."
@@ -51,25 +53,34 @@ describe('Cookie banner', () => {
       beforeEach(() => {
         cy.get("[data-cy='accept_cookies']")
           .should('contain', 'Accept analytics cookies')
-          .and('have.attr', 'href').and('include', 'analytics_cookies_set=true&show_confirm_banner=true')
+          .and('have.attr', 'href')
+          .and(
+            'include',
+            'analytics_cookies_set=true&show_confirm_banner=true'
+          )
         cy.get("[data-cy='accept_cookies']").click()
       })
 
       it('can hide confirmation message', () => {
-        cy.get(bannerMessageElement)
-          .should('contain', "You've accepted additional cookies")
+        cy.get(bannerMessageElement).should(
+          'contain',
+          "You've accepted additional cookies"
+        )
         cy.get("[data-cy='hide_message']")
           .should('contain', hideMessageText)
-          .and('have.attr', 'href').and('include', '?')
+          .and('have.attr', 'href')
+          .and('include', '?')
 
         cy.get("[data-cy='hide_message']").click()
+        cy.runtimeA11yCheck(null, null, cy.a11yLog)
         cy.get("[data-cy='hide_message']").should('not.exist')
       })
 
       it('can go to cookie settings from cookie banner', () => {
         cy.get(`${bannerMessageElement} > a`)
           .contains(changeCookingSettings, { matchCase: false })
-          .and('have.attr', 'href').and('include', '/cookies/settings')
+          .and('have.attr', 'href')
+          .and('include', '/cookies/settings')
         cy.get(`${bannerMessageElement} > a`).click()
         cy.get('.govuk-heading-xl').should('contain', changeCookingSettings)
       })
@@ -79,26 +90,35 @@ describe('Cookie banner', () => {
       beforeEach(() => {
         cy.get("[data-cy='reject_cookies']")
           .should('contain', 'Reject analytics cookies')
-          .and('have.attr', 'href').and('include', 'analytics_cookies_set=false&show_confirm_banner=true')
+          .and('have.attr', 'href')
+          .and(
+            'include',
+            'analytics_cookies_set=false&show_confirm_banner=true'
+          )
 
         cy.get("[data-cy='reject_cookies']").click()
       })
 
       it('can hide confirmation message', () => {
-        cy.get(bannerMessageElement)
-          .should('contain', rejectedAdditionalCookies)
+        cy.get(bannerMessageElement).should(
+          'contain',
+          rejectedAdditionalCookies
+        )
         cy.get("[data-cy='hide_message']")
           .should('contain', hideMessageText)
-          .and('have.attr', 'href').and('include', '?')
+          .and('have.attr', 'href')
+          .and('include', '?')
 
         cy.get("[data-cy='hide_message']").click()
+        cy.runtimeA11yCheck(null, null, cy.a11yLog)
         cy.get("[data-cy='hide_message']").should('not.exist')
       })
 
       it('can go to cookie settings from cookie banner', () => {
         cy.get(`${bannerMessageElement} > a`)
           .contains(changeCookingSettings, { matchCase: false })
-          .and('have.attr', 'href').and('include', '/cookies/settings')
+          .and('have.attr', 'href')
+          .and('include', '/cookies/settings')
         cy.get(`${bannerMessageElement} > a`).click()
         cy.get('.govuk-heading-xl').should('contain', changeCookingSettings)
       })
@@ -107,13 +127,11 @@ describe('Cookie banner', () => {
     it('can go to cookie settings', () => {
       cy.get("[data-cy='cookie_settings']")
         .should('contain', 'Cookie settings')
-        .and('have.attr', 'href').and('include', '/cookies/settings')
+        .and('have.attr', 'href')
+        .and('include', '/cookies/settings')
 
       cy.get("[data-cy='cookie_settings']").click()
-      cy.get('.govuk-heading-xl').should(
-        'contain',
-        changeCookingSettings
-      )
+      cy.get('.govuk-heading-xl').should('contain', changeCookingSettings)
     })
   })
 })

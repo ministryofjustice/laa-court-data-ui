@@ -29,7 +29,7 @@ describe('User Login Page', () => {
         'contain',
         'Signed in successfully.'
       )
-      cy.checkA11y(null, null, cy.a11yLog)
+      cy.runtimeA11yCheck(null, null, cy.a11yLog)
     })
   })
 
@@ -39,7 +39,7 @@ describe('User Login Page', () => {
       'contain',
       'Invalid username or password.'
     )
-    cy.checkA11y(null, null, cy.a11yLog)
+    cy.runtimeA11yCheck(null, null, cy.a11yLog)
   })
 
   it('can log in with valid credentials after an invalid attempt', () => {
@@ -54,13 +54,14 @@ describe('User Login Page', () => {
         'contain',
         'Signed in successfully.'
       )
-      cy.checkA11y(null, null, cy.a11yLog)
+      cy.runtimeA11yCheck(null, null, cy.a11yLog)
     })
   })
 
   context('logged in', () => {
     beforeEach(() => {
       cy.visit('/')
+      cy.injectAxe()
       cy.fixture('users').then((users) => {
         cy.login(users[0].username, users[0].password)
       })
@@ -85,7 +86,7 @@ describe('User Login Page', () => {
         'contain',
         'Signed out successfully.'
       )
-      cy.checkA11y(null, null, cy.a11yLog)
+      cy.runtimeA11yCheck(null, null, cy.a11yLog)
     })
   })
 
