@@ -21,7 +21,7 @@ Cypress.Commands.add('checkCookieValue', (name, value) => {
   cy.getCookie(name).should('have.property', 'value', value)
 })
 
-Cypress.Commands.add('terminalLog', (violations) => {
+Cypress.Commands.add('a11yLog', (violations) => {
   cy.task(
     'log',
       `${violations.length} accessibility violation${

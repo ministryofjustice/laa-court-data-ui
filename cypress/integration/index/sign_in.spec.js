@@ -10,17 +10,7 @@ describe('User Login Page', () => {
   })
 
   it('has no detectable a11y violations on load', () => {
-    const rules = [
-      {
-        'id': 'region',
-        'reviewOnFail': true
-      }
-    ]
-
-    cy.configureAxe({
-      rules: rules
-    })
-    cy.checkA11y(null, null, cy.terminalLog)
+    cy.checkA11y(null, null, cy.a11yLog)
   })
 
   it('displays the login page', () => {
@@ -39,6 +29,7 @@ describe('User Login Page', () => {
         'contain',
         'Signed in successfully.'
       )
+      cy.checkA11y(null, null, cy.a11yLog)
     })
   })
 
@@ -48,6 +39,7 @@ describe('User Login Page', () => {
       'contain',
       'Invalid username or password.'
     )
+    cy.checkA11y(null, null, cy.a11yLog)
   })
 
   it('can log in with valid credentials after an invalid attempt', () => {
@@ -62,6 +54,7 @@ describe('User Login Page', () => {
         'contain',
         'Signed in successfully.'
       )
+      cy.checkA11y(null, null, cy.a11yLog)
     })
   })
 
@@ -71,6 +64,10 @@ describe('User Login Page', () => {
       cy.fixture('users').then((users) => {
         cy.login(users[0].username, users[0].password)
       })
+    })
+
+    it('has no detectable a11y violations on load', () => {
+      cy.checkA11y(null, null, cy.a11yLog)
     })
 
     it('displays search filters page', () => {
@@ -88,6 +85,7 @@ describe('User Login Page', () => {
         'contain',
         'Signed out successfully.'
       )
+      cy.checkA11y(null, null, cy.a11yLog)
     })
   })
 
