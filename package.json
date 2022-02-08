@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.21.1",
   "scripts": {
-    "validate:js": "standard",
+    "validate:js": "eslint app cypress",
     "validate:scss": "stylelint **/*.scss",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
