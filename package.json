@@ -23,6 +23,7 @@
     "ansi-regex": "^5.0.1",
     "css-what": "^5.0.1",
     "dot-prop": "^5.2.0",
+    "follow-redirects": "^1.14.7",
     "glob-parent": "^5.1.2",
     "hosted-git-info": "^3.0.8",
     "http-proxy": "^1.18.1",
