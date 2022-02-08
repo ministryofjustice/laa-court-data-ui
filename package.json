@@ -19,14 +19,16 @@
   },
   "devDependencies": {
     "@webpack-cli/serve": "^1.6.0",
+    "axe-core": "^4.4.0",
     "cypress": "^9.4.1",
     "cypress-axe": "^0.14.0",
+    "eslint": "^8.8.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "standard": "^16.0.4",
     "stylelint": "^13.13.1",
     "stylelint-config-gds": "^0.1.0",
     "stylelint-order": "^4.1.0",
-    "webpack-dev-server": "^4.3.1",
-    "axe-core": "^4.4.0"
+    "webpack-dev-server": "^4.3.1"
   },
   "resolutions": {
     "css-what": "^5.0.1",
