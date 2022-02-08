@@ -1,4 +1,4 @@
-FROM ruby:2.7.5-alpine3.15
+FROM ruby:2.7.5-alpine3.13
 LABEL Ministry of Justice, LAA Get Paid <laa-get-paid@digital.justice.gov.uk>
 
 # fail early and print all commands
