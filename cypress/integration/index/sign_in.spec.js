@@ -6,11 +6,10 @@ describe("User Login Page", () => {
 
 	beforeEach(() => {
 		cy.visit("/");
-		cy.injectAxe();
 	});
 
 	it("has no detectable a11y violations on load", () => {
-		cy.checkA11y(null, null, cy.a11yLog);
+		cy.customA11yCheck(null, cy.a11yLog);
 	});
 
 	it("displays the login page", () => {
@@ -29,7 +28,7 @@ describe("User Login Page", () => {
 				"contain",
 				"Signed in successfully."
 			);
-			cy.runtimeA11yCheck(null, null, cy.a11yLog);
+			cy.customA11yCheck(null, cy.a11yLog);
 		});
 	});
 
@@ -39,7 +38,7 @@ describe("User Login Page", () => {
 			"contain",
 			"Invalid username or password."
 		);
-		cy.runtimeA11yCheck(null, null, cy.a11yLog);
+		cy.customA11yCheck(null, cy.a11yLog);
 	});
 
 	it("can log in with valid credentials after an invalid attempt", () => {
@@ -54,21 +53,20 @@ describe("User Login Page", () => {
 				"contain",
 				"Signed in successfully."
 			);
-			cy.runtimeA11yCheck(null, null, cy.a11yLog);
+			cy.customA11yCheck(null, cy.a11yLog);
 		});
 	});
 
 	context("logged in", () => {
 		beforeEach(() => {
 			cy.visit("/");
-			cy.injectAxe();
 			cy.fixture("users").then((users) => {
 				cy.login(users[0].username, users[0].password);
 			});
 		});
 
 		it("has no detectable a11y violations on load", () => {
-			cy.checkA11y(null, null, cy.a11yLog);
+			cy.customA11yCheck(null, cy.a11yLog);
 		});
 
 		it("displays search filters page", () => {
@@ -86,7 +84,7 @@ describe("User Login Page", () => {
 				"contain",
 				"Signed out successfully."
 			);
-			cy.runtimeA11yCheck(null, null, cy.a11yLog);
+			cy.customA11yCheck(null, cy.a11yLog);
 		});
 	});
 

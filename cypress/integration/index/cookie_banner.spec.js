@@ -23,7 +23,7 @@ describe("Cookie banner", () => {
 				.and("have.attr", "href")
 				.and("include", "analytics_cookies_set=false&show_confirm_banner=true");
 			cy.get("[data-cy='reject_cookies']").click();
-			cy.runtimeA11yCheck(null, null, cy.a11yLog);
+			cy.customA11yCheck(null, cy.a11yLog);
 			cy.get(".govuk-cookie-banner__content > p").should(
 				"contain",
 				rejectedAdditionalCookies
@@ -40,7 +40,7 @@ describe("Cookie banner", () => {
 				.and("have.attr", "href")
 				.and("include", "analytics_cookies_set=true&show_confirm_banner=true");
 			cy.get("[data-cy='accept_cookies']").click();
-			cy.runtimeA11yCheck(null, null, cy.a11yLog);
+			cy.customA11yCheck(null, cy.a11yLog);
 			cy.get(".govuk-cookie-banner__content > p").should(
 				"contain",
 				"You've accepted additional cookies."
@@ -72,7 +72,7 @@ describe("Cookie banner", () => {
 					.and("include", "?");
 
 				cy.get("[data-cy='hide_message']").click();
-				cy.runtimeA11yCheck(null, null, cy.a11yLog);
+				cy.customA11yCheck(null, cy.a11yLog);
 				cy.get("[data-cy='hide_message']").should("not.exist");
 			});
 
@@ -110,7 +110,7 @@ describe("Cookie banner", () => {
 					.and("include", "?");
 
 				cy.get("[data-cy='hide_message']").click();
-				cy.runtimeA11yCheck(null, null, cy.a11yLog);
+				cy.customA11yCheck(null, cy.a11yLog);
 				cy.get("[data-cy='hide_message']").should("not.exist");
 			});
 

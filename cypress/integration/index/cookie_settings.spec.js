@@ -9,11 +9,10 @@ describe("Cookie settings page", () => {
 				.should("have.attr", "href")
 				.and("include", "/cookies/settings");
 			cy.get("[data-cy='cookie_settings']").click();
-			cy.injectAxe();
 		});
 
 		it("has no detectable a11y violations on load", () => {
-			cy.checkA11y(null, null, cy.a11yLog);
+			cy.customA11yCheck(null, cy.a11yLog);
 		});
 
 		context("Cookies storing is set as false", () => {
@@ -30,7 +29,7 @@ describe("Cookie settings page", () => {
 				);
 				cy.get("input#cookie-analytics-true-field").check();
 				cy.get("[data-cy='submit-cookies']").click();
-				cy.runtimeA11yCheck(null, null, cy.a11yLog);
+				cy.customA11yCheck(null, cy.a11yLog);
 				cy.get(".govuk-notification-banner__heading").should(
 					"contain",
 					successfullySetCookies
@@ -55,7 +54,7 @@ describe("Cookie settings page", () => {
 				);
 				cy.get("input#cookie-analytics-false-field").check();
 				cy.get("[data-cy='submit-cookies']").click();
-				cy.runtimeA11yCheck(null, null, cy.a11yLog);
+				cy.customA11yCheck(null, cy.a11yLog);
 				cy.get(".govuk-notification-banner__heading").should(
 					"contain",
 					successfullySetCookies

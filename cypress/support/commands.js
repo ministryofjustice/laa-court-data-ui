@@ -19,9 +19,12 @@ Cypress.Commands.add("checkCookieValue", (name, value) => {
 	cy.getCookie(name).should("have.property", "value", value);
 });
 
-Cypress.Commands.add("runtimeA11yCheck", (selector, rules, logCallback) => {
+Cypress.Commands.add("customA11yCheck", (selector, logCallback) => {
+	const options = {
+		includedImpacts: ["critical","serious"]
+	};
 	cy.injectAxe();
-	cy.checkA11y(selector, rules, logCallback);
+	cy.checkA11y(selector, options, logCallback);
 });
 
 Cypress.Commands.add("a11yLog", (violations) => {
@@ -42,4 +45,8 @@ Cypress.Commands.add("a11yLog", (violations) => {
 	);
 
 	cy.task("table", violationData);
+});
+
+Cypress.Commands.add("axeConfig",() => {
+	
 });
