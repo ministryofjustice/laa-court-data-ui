@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
   def export
     response.headers['Content-Type'] = 'text/csv'
-    response.headers['Content-Disposition'] = "attachment;filename=users.csv"
+    response.headers['Content-Disposition'] = 'attachment;filename=users.csv'
     render template: 'users/export.csv.erb'
   end
 
