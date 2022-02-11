@@ -221,4 +221,15 @@ RSpec.describe 'managers', type: :request do
       expect(flash.now[:notice]).to match(/success/)
     end
   end
+
+  describe 'Export users', type: :request do
+
+    before do
+      get '/users/export/all'
+    end
+
+    it 'retrieves the csv' do
+      expect(response).to render_template('export.csv.erb')
+    end
+  end
 end
