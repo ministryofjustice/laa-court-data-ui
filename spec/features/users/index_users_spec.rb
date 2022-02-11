@@ -36,6 +36,7 @@ RSpec.feature 'Index users', type: :feature, js: true do
         expect(page).to have_selector('.govuk-table__header', text: 'Name')
         expect(page).to have_selector('.govuk-table__header', text: 'Username')
         expect(page).to have_selector('.govuk-table__header', text: 'Email')
+        expect(page).to have_selector('.govuk-table__header', text: 'Last Sign In')
         expect(page).to have_selector('.govuk-table__header', text: 'Action')
       end
 
