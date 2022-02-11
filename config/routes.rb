@@ -48,6 +48,8 @@ Rails.application.routes.draw do
 
   get 'ping', to: 'status#ping', format: :json
 
+  get 'users/export/all', to: 'users#export'
+
   get '/401', to: 'errors#unauthorized'
   get '/404', to: 'errors#not_found'
   get '/422', to: 'errors#unacceptable'

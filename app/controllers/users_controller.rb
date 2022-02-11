@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  require 'csv'
   load_and_authorize_resource except: :create
 
   def index; end
@@ -40,6 +41,12 @@ class UsersController < ApplicationController
     else
       render :change_password
     end
+  end
+
+  def export
+    response.headers['Content-Type'] = 'text/csv'
+    response.headers['Content-Disposition'] = 'attachment;filename=users.csv'
+    render template: 'users/export.csv.erb'
   end
 
   def destroy

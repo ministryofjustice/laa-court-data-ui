@@ -20,6 +20,8 @@
       %th.govuk-table__header{ scope: 'col' }
         = t('users.generic.email')
       %th.govuk-table__header{ scope: 'col' }
+        = t('users.generic.last_sign_in')
+      %th.govuk-table__header{ scope: 'col' }
         = t('users.generic.action')
 
   %tbody.govuk-table__body
@@ -34,6 +36,8 @@
             = user.email
             %span.govuk-visually-hidden= t('generic.new_window')
         %td.govuk-table__cell
+          = user.last_sign_in_at.try(:to_formatted_s, :short)
+        %td.govuk-table__cell
           = link_to edit_user_path(user), class: 'govuk-link' do
             = t('users.index.edit')
             %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
@@ -41,3 +45,5 @@
           = link_to user_path(user), method: :delete, data: { confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
             = t('users.index.delete')
             %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
+
+= link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary'

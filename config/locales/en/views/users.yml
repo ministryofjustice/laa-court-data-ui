@@ -29,6 +29,7 @@ en:
     generic:
       action: Action
       email: Email
+      last_sign_in: Last Sign In
       name: Name
       username: Username
     index:
