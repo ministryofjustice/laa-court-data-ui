@@ -29,9 +29,9 @@ en:
     generic:
       action: Action
       email: Email
+      last_sign_in: Last Sign In
       name: Name
       username: Username
-      last_sign_in: Last Sign In
     index:
       action_aria: "%{name}'s account"
       delete: Delete
