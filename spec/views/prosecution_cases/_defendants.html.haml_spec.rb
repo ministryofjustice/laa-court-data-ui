@@ -30,7 +30,7 @@ RSpec.describe 'prosecution_cases/_defendants.html.haml', type: :view do
     assign(:results, results)
   end
 
-  it { is_expected.to have_selector('.govuk-heading-m', text: 'Defendants') }
+  it { is_expected.to have_selector('.govuk-heading-l', text: 'Defendants') }
 
   it do
     is_expected
