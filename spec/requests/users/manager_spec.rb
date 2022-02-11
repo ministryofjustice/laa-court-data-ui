@@ -223,7 +223,6 @@ RSpec.describe 'managers', type: :request do
   end
 
   describe 'Export users', type: :request do
-
     before do
       get '/users/export/all'
     end
