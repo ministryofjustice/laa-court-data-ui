@@ -522,7 +522,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-rails
-  puma (~> 5.6)
+  puma (~> 5.6, >= 5.6.2)
   rails (~> 6.1.4)
   rails-controller-testing
   redis (~> 4.6.0)
