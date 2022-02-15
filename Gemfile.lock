@@ -170,7 +170,7 @@ GEM
     foreman (0.87.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    govuk_design_system_formbuilder (3.0.1)
+    govuk_design_system_formbuilder (3.0.2)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -409,7 +409,7 @@ GEM
     sexp_processor (4.16.0)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
-    sidekiq (6.4.0)
+    sidekiq (6.4.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -522,7 +522,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-rails
-  puma (~> 5.6)
+  puma (~> 5.6, >= 5.6.2)
   rails (~> 6.1.4)
   rails-controller-testing
   redis (~> 4.6.0)
