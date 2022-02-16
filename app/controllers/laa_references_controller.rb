@@ -101,7 +101,7 @@ class LaaReferencesController < ApplicationController
 
   def adaptor_error_handler(exception)
     @errors = exception.errors
-    flash.now[:alert] = {title:I18n.t('laa_reference.link.failure'), message:I18n.t('error.it_helpdesk')}
+    flash.now[:alert] = { title: I18n.t('laa_reference.link.failure'), message: I18n.t('error.it_helpdesk') }
     render 'new'
   end
 end
