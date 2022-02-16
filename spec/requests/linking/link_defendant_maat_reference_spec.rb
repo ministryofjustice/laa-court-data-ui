@@ -60,11 +60,21 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
         let(:defendant_id) { 'not-a-uuid' }
 
         it 'flashes alert' do
-          expect(flash.now[:alert]).to match(/A link to the court data source could not be created\./)
+          expect(flash.now[:alert]).to match(
+            {
+              :message=>"If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
+              :title=>"A Court Data Source link could not be established, due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
+            }
+          )
         end
 
         it 'flashes returned error' do
-          expect(flash.now[:alert]).to match(/defendant id.*is not a valid uuid/i)
+          expect(flash.now[:alert]).to match(
+            {
+              :message=>"If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
+              :title=>"A Court Data Source link could not be established, due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
+            }
+          )
         end
 
         it 'renders laa_reference_path' do
@@ -77,15 +87,21 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
       context 'when MAAT API does not know maat reference',
               stub_link_failure_with_unknown_maat_reference: true do
         it 'flashes alert' do
-          expect(flash.now[:alert])
-            .to match(/A link to the court data source could not be created\./)
+          expect(flash.now[:alert]).to match(
+            {
+              :message=>"If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
+              :title=>"A Court Data Source link could not be established, due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
+            }
+          )
         end
 
         it 'flashes returned error' do
-          expect(flash.now[:alert])
-            .to match(
-              /MAAT reference.*1234567 has no common platform data created against Maat application./i
-            )
+          expect(flash.now[:alert]).to match(
+            {
+              :message=>"If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
+              :title=>"A Court Data Source link could not be established, due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
+            }
+          )
         end
 
         it 'renders laa_reference_path' do
