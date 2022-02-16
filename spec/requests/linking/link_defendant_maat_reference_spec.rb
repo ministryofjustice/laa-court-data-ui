@@ -62,8 +62,9 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
         it 'flashes alert' do
           expect(flash.now[:alert]).to match(
             {
-              :message=>"If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
-              :title=>"A Court Data Source link could not be established, due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
+              :message => "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
+              :title => "A Court Data Source link could not be established, " \
+                        "due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
             }
           )
         end
@@ -71,8 +72,9 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
         it 'flashes returned error' do
           expect(flash.now[:alert]).to match(
             {
-              :message=>"If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
-              :title=>"A Court Data Source link could not be established, due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
+              :message => "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
+              :title => "A Court Data Source link could not be established, "\
+                        "due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
             }
           )
         end
@@ -89,8 +91,9 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
         it 'flashes alert' do
           expect(flash.now[:alert]).to match(
             {
-              :message=>"If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
-              :title=>"A Court Data Source link could not be established, due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
+              :message => "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
+              :title => "A Court Data Source link could not be established, " \
+                        "due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
             }
           )
         end
@@ -98,8 +101,9 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
         it 'flashes returned error' do
           expect(flash.now[:alert]).to match(
             {
-              :message=>"If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
-              :title=>"A Court Data Source link could not be established, due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
+              :message => "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
+              :title => "A Court Data Source link could not be established, " \
+                        "due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
             }
           )
         end
