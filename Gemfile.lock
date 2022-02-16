@@ -64,10 +64,10 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     awesome_print (1.9.2)
-    axe-core-api (4.3.2)
+    axe-core-api (4.4.0)
       dumb_delegator
       virtus
-    axe-core-rspec (4.3.2)
+    axe-core-rspec (4.4.0)
       axe-core-api
       dumb_delegator
       virtus
@@ -491,7 +491,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  axe-core-rspec (~> 4.3)
+  axe-core-rspec (~> 4.4)
   bootsnap (>= 1.7.0)
   brakeman
   breadcrumbs_on_rails
