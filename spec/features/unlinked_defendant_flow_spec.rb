@@ -112,7 +112,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   end
 
   def has_hearing_summary_table
-    expect(page).to have_css('.govuk-heading-m', text: 'Hearings')
+    expect(page).to have_css('.govuk-heading-l', text: 'Hearings')
     expect(page).to have_table('Hearings')
   end
 
@@ -166,7 +166,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   end
 
   def has_attendee_table
-    expect(page).to have_css('.govuk-heading-m', text: 'Attendees')
+    expect(page).to have_css('.govuk-heading-l', text: 'Attendees')
     expect(page).to have_table('Attendees')
   end
 
@@ -205,7 +205,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
   end
 
   def has_defendant_table
-    expect(page).to have_css('.govuk-heading-m', text: 'Defendant')
+    expect(page).to have_css('.govuk-heading-l', text: 'Defendant')
     expect(page).to have_table('Defendants')
   end
 
