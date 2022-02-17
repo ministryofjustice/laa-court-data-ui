@@ -12,7 +12,7 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
   let(:maat_error_message) do
     {
       message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.',
-      title: 'A Court Data Source link could not be established, ' \
+      title: 'A Court Data Source link could not be established ' \
              'due to an invalid MAAT Reference Number. Please check the MAAT Reference Number.'
     }
   end
