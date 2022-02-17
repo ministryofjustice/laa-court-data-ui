@@ -54,7 +54,7 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
     render_partial
   end
 
-  it { expect(rendered).to have_selector('.govuk-heading-m', text: 'Hearings') }
+  it { expect(rendered).to have_selector('.govuk-heading-l', text: 'Hearings') }
 
   context 'with no hearings' do
     let(:hearings) { [] }

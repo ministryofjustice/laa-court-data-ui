@@ -1,4 +1,4 @@
-%table.govuk-table
+%table.govuk-table{:class => "govuk-!-margin-bottom-4"}
   %caption.govuk-table__caption.govuk-visually-hidden
     = t('search.result.defendant.caption')
   %tbody.govuk-table__body
@@ -23,4 +23,4 @@
       %td.govuk-table__cell
         = @defendant.arrest_summons_number
 
-= link_to 'View case', prosecution_case_path(@prosecution_case_reference), class: 'govuk-button govuk-button--secondary'
+= link_to 'View case', prosecution_case_path(@prosecution_case_reference), class: 'govuk-button govuk-button--secondary govuk-!-margin-bottom-9'
