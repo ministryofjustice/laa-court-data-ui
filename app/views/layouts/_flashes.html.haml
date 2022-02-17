@@ -1,5 +1,5 @@
 - flash.each do |key, value|
-  -if value.is_a?(String)
+  - if value.is_a?(String)
     - case key
       - when 'alert'
         .govuk-error-summary
@@ -17,7 +17,7 @@
       - when 'success'
         = govuk_notification_banner(sanitize(value), key.capitalize)
   
-  -if value.is_a?(Hash)  
+  - if value.is_a?(Hash)  
     - case key
       - when 'alert'
         .govuk-error-summary

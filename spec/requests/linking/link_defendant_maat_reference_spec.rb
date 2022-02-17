@@ -9,13 +9,6 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
   let(:defendant_id) { defendant_id_from_fixture }
   let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:maat_reference) { '1234567' }
-  let(:maat_error_message) do
-    {
-      message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.',
-      title: 'A Court Data Source link could not be established ' \
-             'due to an invalid MAAT Reference Number. Please check the MAAT Reference Number.'
-    }
-  end
 
   let(:params) do
     { urn: case_urn,
@@ -36,6 +29,14 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
   end
 
   context 'when authenticated' do
+    let(:maat_error_message) do
+      {
+        message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.',
+        title: 'A Court Data Source link could not be established ' \
+               'due to an invalid MAAT Reference Number. Please check the MAAT Reference Number.'
+      }
+    end
+
     before do
       sign_in user
       post '/laa_references', params: params
