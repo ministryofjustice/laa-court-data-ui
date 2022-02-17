@@ -9,6 +9,13 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
   let(:defendant_id) { defendant_id_from_fixture }
   let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:maat_reference) { '1234567' }
+  let(:maat_error_message) do
+    {
+      message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.',
+      title: 'A Court Data Source link could not be established, ' \
+             'due to an invalid MAAT Reference Number. Please check the MAAT Reference Number.'
+    }
+  end
 
   let(:params) do
     { urn: case_urn,
@@ -60,23 +67,7 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
         let(:defendant_id) { 'not-a-uuid' }
 
         it 'flashes alert' do
-          expect(flash.now[:alert]).to match(
-            {
-              :message => "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
-              :title => "A Court Data Source link could not be established, " \
-                        "due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
-            }
-          )
-        end
-
-        it 'flashes returned error' do
-          expect(flash.now[:alert]).to match(
-            {
-              :message => "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
-              :title => "A Court Data Source link could not be established, "\
-                        "due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
-            }
-          )
+          expect(flash.now[:alert]).to match(maat_error_message)
         end
 
         it 'renders laa_reference_path' do
@@ -89,23 +80,7 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
       context 'when MAAT API does not know maat reference',
               stub_link_failure_with_unknown_maat_reference: true do
         it 'flashes alert' do
-          expect(flash.now[:alert]).to match(
-            {
-              :message => "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
-              :title => "A Court Data Source link could not be established, " \
-                        "due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
-            }
-          )
-        end
-
-        it 'flashes returned error' do
-          expect(flash.now[:alert]).to match(
-            {
-              :message => "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
-              :title => "A Court Data Source link could not be established, " \
-                        "due to an invalid MAAT Reference Number. Please check the MAAT Reference Number."
-            }
-          )
+          expect(flash.now[:alert]).to match(maat_error_message)
         end
 
         it 'renders laa_reference_path' do
