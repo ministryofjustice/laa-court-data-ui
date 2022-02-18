@@ -91,10 +91,6 @@ class LaaReferencesController < ApplicationController
     params[:commit] == 'Create link without MAAT ID'
   end
 
-  def error_messages
-    @errors.map { |k, v| "#{k.humanize} #{v.humanize}" }.join("\n")
-  end
-
   def set_link_attempt
     @link_attempt = if link_attempt_params
                       LinkAttempt.new(link_attempt_params)
@@ -104,8 +100,9 @@ class LaaReferencesController < ApplicationController
   end
 
   def adaptor_error_handler(exception)
-    @errors = exception.errors
-    flash.now[:alert] = I18n.t('laa_reference.link.failure', error_messages: error_messages)
+    errors = exception.errors
+    Sentry.capture_exception(errors)
+    flash.now[:alert] = { title: I18n.t('laa_reference.link.failure'), message: I18n.t('error.it_helpdesk') }
     render 'new'
   end
 end
