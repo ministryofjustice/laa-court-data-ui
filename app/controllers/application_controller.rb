@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
       redirect_to controller: :errors, action: :unauthorized
     when JsonApiClient::Errors::ConnectionError, Net::ReadTimeout
       Sentry.capture_exception(exception)
-      flash[:alert] = I18n.t('error.connection_error_message')
+      flash[:alert] = I18n.t('error.connection_error_message', it_helpdesk: I18n.t('error.it_helpdesk'))
       redirect_to authenticated_root_path
     else
       Sentry.capture_exception(exception)
