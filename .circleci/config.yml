@@ -82,7 +82,7 @@ executors:
     docker:
       - image: ministryofjustice/cloud-platform-tools
         environment:
-          GITHUB_TEAM_NAME_SLUG: laa-assess-a-claim
+          GITHUB_TEAM_NAME_SLUG: laa-get-paid
           REPO_NAME: laa-court-data-ui
 
 # ------------------
