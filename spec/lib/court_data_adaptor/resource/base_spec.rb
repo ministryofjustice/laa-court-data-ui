@@ -49,7 +49,7 @@ RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
       it 'adds Faraday version User-Agent' do
         expect(
           a_request(:get, mock_resource_endpoint)
-        .with(headers: { 'User-Agent' => /Faraday v1.\d.\d/ })
+        .with(headers: { 'User-Agent' => /Faraday v1.\d{1,2}.\d{1,2}/ })
         ).to have_been_made.once
       end
 

@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v1.1.0
+      - Faraday v1.10.0
       Content-Type:
       - application/vnd.api+json
       Accept:
@@ -176,7 +176,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v1.1.0
+      - Faraday v1.10.0
       Content-Type:
       - application/vnd.api+json
       Accept:
