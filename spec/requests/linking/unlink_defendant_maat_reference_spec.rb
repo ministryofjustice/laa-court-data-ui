@@ -5,7 +5,7 @@ require 'court_data_adaptor'
 RSpec.shared_examples 'invalid unlink_attempt request' do
   before do
     patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
-          params: params
+          params:
   end
 
   it 'does NOT send an unlink request to the adapter' do
@@ -74,7 +74,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       sign_in user
 
       stub_request(:get, "#{api_url}/prosecution_cases")
-        .with(query: query)
+        .with(query:)
         .to_return(body: defendant_fixture, headers: json_api_content)
 
       stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}?include=offences")
@@ -89,7 +89,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
           .to_return(status: 202, body: '', headers: plain_content)
 
         patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
-              params: params
+              params:
       end
 
       it 'sends an unlink request to the adapter' do
@@ -124,7 +124,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
           )
 
         patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
-              params: params
+              params:
       end
 
       it 'flashes alert' do
@@ -148,7 +148,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        patch "/defendants/#{defendant_id_from_fixture}", params: params
+        patch "/defendants/#{defendant_id_from_fixture}", params:
       end
 
       it 'sends an unlink request to the adapter' do
@@ -189,7 +189,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        patch "/defendants/#{defendant_id_from_fixture}", params: params
+        patch "/defendants/#{defendant_id_from_fixture}", params:
       end
 
       it 'sends an unlink request to the adapter' do
@@ -254,7 +254,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        patch "/defendants/#{defendant_id_from_fixture}", params: params
+        patch "/defendants/#{defendant_id_from_fixture}", params:
       end
 
       it 'sends token request' do
@@ -266,7 +266,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   end
 
   context 'when not authenticated' do
-    before { patch "/defendants/#{defendant_id_from_fixture}", params: params }
+    before { patch "/defendants/#{defendant_id_from_fixture}", params: }
 
     it 'redirects to sign in page' do
       expect(response).to redirect_to new_user_session_path

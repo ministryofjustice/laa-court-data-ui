@@ -36,7 +36,7 @@ RSpec.describe HearingPaginator, type: :helper do
 
   let(:prosecution_case) do
     instance_double(CourtDataAdaptor::Resource::ProsecutionCase,
-                    hearings: hearings,
+                    hearings:,
                     prosecution_case_reference: 'ACASEURN')
   end
 

@@ -19,7 +19,7 @@ module CookieConcern
 
   def set_cookie(type, value: false)
     cookies[type] = {
-      value: value,
+      value:,
       domain: request.host,
       expires: 1.year.from_now,
       secure: !Rails.env.test?

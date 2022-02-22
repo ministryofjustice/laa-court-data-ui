@@ -25,7 +25,7 @@ class FeedbackController < ApplicationController
       email: feedback_params[:email],
       rating: feedback_params[:rating],
       comment: feedback_params[:comment],
-      environment: environment
+      environment:
     ).deliver_later!
   end
 
