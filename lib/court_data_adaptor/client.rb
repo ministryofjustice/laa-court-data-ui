@@ -13,7 +13,7 @@ module CourtDataAdaptor
       @oauth_client ||= OAuth2::Client.new(
         config.api_uid,
         config.api_secret,
-        site: "#{uri.scheme}://#{uri.host}"
+        site: "#{uri.scheme}://#{uri.host}:#{uri.port}"
       )
     end
 
