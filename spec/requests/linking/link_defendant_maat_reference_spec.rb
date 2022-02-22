@@ -13,8 +13,8 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
   let(:params) do
     { urn: case_urn,
       link_attempt:
-        { defendant_id: defendant_id,
-          maat_reference: maat_reference } }
+        { defendant_id:,
+          maat_reference: } }
   end
 
   let(:adaptor_request_path) { %r{.*/laa_references} }
@@ -23,9 +23,9 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
     { data:
       { type: 'laa_references',
         attributes:
-          { defendant_id: defendant_id,
+          { defendant_id:,
             user_name: user.username,
-            maat_reference: maat_reference } } }
+            maat_reference: } } }
   end
 
   context 'when authenticated' do
@@ -39,7 +39,7 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
 
     before do
       sign_in user
-      post '/laa_references', params: params
+      post '/laa_references', params:
     end
 
     context 'with valid params', stub_link_success: true do
@@ -105,7 +105,7 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
 
   context 'when not authenticated' do
     context 'when creating a reference' do
-      before { post '/laa_references', params: params }
+      before { post '/laa_references', params: }
 
       it_behaves_like 'unauthenticated request'
     end
@@ -120,7 +120,7 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
       allow(config).to receive(:test_mode?).and_return false
       allow_any_instance_of(OAuth2::AccessToken).to receive(:expired?).and_return true
 
-      post '/laa_references', params: params
+      post '/laa_references', params:
     end
 
     it 'sends token request' do

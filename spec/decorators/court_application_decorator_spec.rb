@@ -26,7 +26,7 @@ RSpec.describe CourtApplicationDecorator, type: :decorator do
   describe '#respondent_list' do
     subject(:call) { decorator.respondent_list }
 
-    before { allow(court_application).to receive_messages(respondents: respondents) }
+    before { allow(court_application).to receive_messages(respondents:) }
 
     context 'with multiple respondents' do
       let(:respondents) { [respondent1, respondent2] }

@@ -40,7 +40,7 @@ RSpec.describe Search, type: :model do
     end
 
     context 'when searching by case reference', stub_no_results: true do
-      subject(:search_instance) { described_class.new(filter: filter, term: term) }
+      subject(:search_instance) { described_class.new(filter:, term:) }
 
       let(:filter) { 'case_reference' }
       let(:term) { 'case-urn' }
@@ -59,7 +59,7 @@ RSpec.describe Search, type: :model do
     end
 
     context 'when searching by defendant name', stub_no_results: true do
-      subject(:search_instance) { described_class.new(filter: filter, term: term, dob: dob) }
+      subject(:search_instance) { described_class.new(filter:, term:, dob:) }
 
       let(:filter) { 'defendant_name' }
       let(:term) { 'defendant-name' }
@@ -69,7 +69,7 @@ RSpec.describe Search, type: :model do
       let(:query_instance) { instance_double(query_class) }
 
       it 'sends term and dob to defandant query object' do
-        expect(query_class).to have_received(:new).with(term, dob: dob)
+        expect(query_class).to have_received(:new).with(term, dob:)
       end
 
       it 'calls defendant query object' do
@@ -78,7 +78,7 @@ RSpec.describe Search, type: :model do
     end
 
     context 'when searching by defendant reference', stub_no_results: true do
-      subject(:search_instance) { described_class.new(filter: filter, term: term) }
+      subject(:search_instance) { described_class.new(filter:, term:) }
 
       let(:filter) { 'defendant_reference' }
       let(:term) { 'defendant-ni-number' }
@@ -97,7 +97,7 @@ RSpec.describe Search, type: :model do
   end
 
   context 'when validating' do
-    subject(:search) { described_class.new(filter: filter, term: term, dob: dob) }
+    subject(:search) { described_class.new(filter:, term:, dob:) }
 
     context 'with case reference search' do
       let(:filter) { 'case_reference' }

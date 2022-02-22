@@ -22,7 +22,7 @@ RSpec.describe 'Searches', type: :request do
   end
 
   describe '#new' do
-    before { get '/searches/new', params: params }
+    before { get '/searches/new', params: }
 
     context 'without a query' do
       let(:params) { { search: { filter: 'case_reference' } } }
@@ -35,7 +35,7 @@ RSpec.describe 'Searches', type: :request do
   end
 
   describe 'POST #create' do
-    before { post '/searches', params: params }
+    before { post '/searches', params: }
 
     context 'when POSTing a valid case search', stub_case_search: true do
       let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
@@ -128,7 +128,7 @@ RSpec.describe 'Searches', type: :request do
   end
 
   describe 'GET #create', stub_case_search: true do
-    before { get '/searches', params: params }
+    before { get '/searches', params: }
 
     context 'when GETing a valid search' do
       let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
@@ -149,7 +149,7 @@ RSpec.describe 'Searches', type: :request do
       allow_any_instance_of(Search)
         .to receive(:execute)
         .and_raise JsonApiClient::Errors::ConnectionError.new('connection error test')
-      get '/searches', params: params
+      get '/searches', params:
     end
 
     let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
@@ -164,7 +164,7 @@ RSpec.describe 'Searches', type: :request do
       allow_any_instance_of(Search)
         .to receive(:execute)
         .and_raise Net::ReadTimeout.new('read timeout error test')
-      get '/searches', params: params
+      get '/searches', params:
     end
 
     let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }

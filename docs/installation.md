@@ -2,7 +2,7 @@
 
 ## System dependencies
 - postgres
-- ruby 2.7+
+- ruby 3.1
 - rails 6+
 - nvm
 - node 12.4.1+

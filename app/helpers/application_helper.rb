@@ -21,9 +21,9 @@ module ApplicationHelper
     decorator
   end
 
-  def decorate_all(objects, decorator_class = nil, &block)
+  def decorate_all(objects, decorator_class = nil, &)
     objects.map do |object|
-      decorate(object, decorator_class, &block)
+      decorate(object, decorator_class, &)
     end
   end
   alias decorate_each decorate_all
@@ -32,7 +32,7 @@ module ApplicationHelper
     title ||= prosecution_case.column_title(column)
     title = "#{title} " + prosecution_case.column_sort_icon if column == prosecution_case.hearings_sort_column
     direction = prosecution_case.hearings_sort_direction == 'asc' ? 'desc' : 'asc'
-    link_to(title, prosecution_case_path(id: prosecution_case.prosecution_case_reference, column: column, direction: direction, anchor: column), class: 'govuk-link govuk-link--no-visited-state', id: column, 'aria-label': "Sort #{column} #{direction}")
+    link_to(title, prosecution_case_path(id: prosecution_case.prosecution_case_reference, column:, direction:, anchor: column), class: 'govuk-link govuk-link--no-visited-state', id: column, 'aria-label': "Sort #{column} #{direction}")
   end
 
   def app_environment

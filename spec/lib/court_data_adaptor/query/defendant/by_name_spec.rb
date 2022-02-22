@@ -25,7 +25,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
   describe '#call' do
     subject(:call) { instance.call }
 
-    let(:instance) { described_class.new(term, dob: dob) }
+    let(:instance) { described_class.new(term, dob:) }
 
     context 'with mocking' do
       let(:resource) { self.class.resource }

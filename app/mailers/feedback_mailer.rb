@@ -4,10 +4,10 @@ class FeedbackMailer < GovukNotifyRails::Mailer
   def notify(email:, rating:, environment:, comment: nil)
     set_template('5fcd84b1-8d05-4b6c-86a8-9fc391efa754')
     set_personalisation(
-      email: email,
-      rating: rating,
-      comment: comment,
-      environment: environment
+      email:,
+      rating:,
+      comment:,
+      environment:
     )
     mail(to: support_email_address)
   end

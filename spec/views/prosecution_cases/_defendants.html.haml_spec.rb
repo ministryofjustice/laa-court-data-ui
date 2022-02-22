@@ -2,7 +2,7 @@
 
 RSpec.describe 'prosecution_cases/_defendants.html.haml', type: :view do
   subject(:render_partial) do
-    render partial: 'defendants', locals: { results: results, prosecution_case: prosecution_case }
+    render partial: 'defendants', locals: { results:, prosecution_case: }
   end
 
   let(:results) { [prosecution_case] }

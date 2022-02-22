@@ -201,7 +201,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
       [1, 2, 6].each do |code|
         context "when exactly one reason exists, with code #{code}" do
           let(:mode_of_trial_reason_array) do
-            [{ code: code,
+            [{ code:,
                description: 'description to be hidden' }]
           end
 

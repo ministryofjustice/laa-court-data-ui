@@ -2,7 +2,7 @@
 
 RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
   subject(:render_partial) do
-    render partial: 'hearing_events', locals: { hearing: decorated_hearing, hearing_day: hearing_day }
+    render partial: 'hearing_events', locals: { hearing: decorated_hearing, hearing_day: }
   end
 
   let(:hearing) { CourtDataAdaptor::Resource::Hearing.new }

@@ -17,8 +17,8 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
     CourtDataAdaptor::Resource::Hearing
       .new(id: 'hearing-uuid',
            hearing_type: 'First hearing',
-           hearing_days: hearing_days,
-           providers: providers)
+           hearing_days:,
+           providers:)
   end
 
   let(:hearing1) do
@@ -26,7 +26,7 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
       .new(id: 'hearing1-uuid',
            hearing_type: 'Trial',
            hearing_days: hearing1_days,
-           providers: providers)
+           providers:)
   end
 
   let(:hearing2) do
@@ -34,7 +34,7 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
       .new(id: 'hearing2-uuid',
            hearing_type: 'Sentence',
            hearing_days: hearing2_days,
-           providers: providers)
+           providers:)
   end
 
   let(:hearing_days) { ['2021-01-17T10:30:00.000Z'] }

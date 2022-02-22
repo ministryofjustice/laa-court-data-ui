@@ -61,6 +61,6 @@ class Search
   end
 
   def defendant_name_query
-    CourtDataAdaptor::Query::Defendant::ByName.new(term, dob: dob)
+    CourtDataAdaptor::Query::Defendant::ByName.new(term, dob:)
   end
 end

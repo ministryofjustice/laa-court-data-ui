@@ -12,8 +12,8 @@ class LinkAttempt
             format: { with: /\A[0-9]{7}\z/, unless: :no_maat_id? }
 
   def to_link_attributes
-    { defendant_id: defendant_id, user_name: username }.tap do |attrs|
-      attrs.merge!(maat_reference: maat_reference) unless no_maat_id?
+    { defendant_id:, user_name: username }.tap do |attrs|
+      attrs.merge!(maat_reference:) unless no_maat_id?
     end
   end
 end

@@ -26,7 +26,7 @@ RSpec.describe HearingDecorator, type: :decorator do
   describe '#provider_list' do
     subject(:call) { decorator.provider_list }
 
-    before { allow(hearing).to receive_messages(providers: providers) }
+    before { allow(hearing).to receive_messages(providers:) }
 
     context 'with multiple providers' do
       let(:providers) { [provider1, provider2] }
@@ -54,7 +54,7 @@ RSpec.describe HearingDecorator, type: :decorator do
   describe '#defendant_name_list' do
     subject(:call) { decorator.defendant_name_list }
 
-    before { allow(hearing).to receive_messages(defendant_names: defendant_names) }
+    before { allow(hearing).to receive_messages(defendant_names:) }
 
     context 'with nil defendant_names' do
       let(:defendant_names) { nil }
@@ -84,7 +84,7 @@ RSpec.describe HearingDecorator, type: :decorator do
   describe '#prosecution_advocate_name_list' do
     subject(:call) { decorator.prosecution_advocate_name_list }
 
-    before { allow(hearing).to receive_messages(prosecution_advocate_names: prosecution_advocate_names) }
+    before { allow(hearing).to receive_messages(prosecution_advocate_names:) }
 
     context 'with nil prosecution_advocate_names' do
       let(:prosecution_advocate_names) { nil }
@@ -114,7 +114,7 @@ RSpec.describe HearingDecorator, type: :decorator do
   describe '#judge_name_list' do
     subject(:call) { decorator.judge_name_list }
 
-    before { allow(hearing).to receive_messages(judge_names: judge_names) }
+    before { allow(hearing).to receive_messages(judge_names:) }
 
     context 'with nil prosecution_advocate_names' do
       let(:judge_names) { nil }
@@ -144,7 +144,7 @@ RSpec.describe HearingDecorator, type: :decorator do
   describe '#cracked_ineffective_trial' do
     subject(:call) { decorator.cracked_ineffective_trial }
 
-    before { allow(hearing).to receive_messages(cracked_ineffective_trial: cracked_ineffective_trial) }
+    before { allow(hearing).to receive_messages(cracked_ineffective_trial:) }
 
     context 'with nil cracked_ineffective_trial' do
       let(:cracked_ineffective_trial) { nil }
@@ -179,7 +179,7 @@ RSpec.describe HearingDecorator, type: :decorator do
 
     let(:hearing_event_class) { CourtDataAdaptor::Resource::HearingEvent }
 
-    before { allow(hearing).to receive_messages(hearing_events: hearing_events) }
+    before { allow(hearing).to receive_messages(hearing_events:) }
 
     it 'filters events by day' do
       is_expected.to match_array([hearing_event1, hearing_event2])
