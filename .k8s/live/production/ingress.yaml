@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: laa-court-data-ui-app-ingress
@@ -27,9 +27,12 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: laa-court-data-ui-app-service
-              servicePort: 80
+              service:
+                name: laa-court-data-ui-app-service
+                port: 
+                  number: 80
   tls:
     - hosts:
       - view-court-data.service.justice.gov.uk
