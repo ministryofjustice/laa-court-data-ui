@@ -245,8 +245,10 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
 
       before do
         config = instance_double(CourtDataAdaptor::Configuration)
+        api_url = CourtDataAdaptor.configuration.api_url
         allow_any_instance_of(CourtDataAdaptor::Client).to receive(:config).and_return config
         allow(config).to receive(:test_mode?).and_return false
+        allow(config).to receive(:api_url).and_return api_url
         allow_any_instance_of(OAuth2::AccessToken).to receive(:expired?).and_return true
 
         stub_request(:patch, adaptor_request_path)

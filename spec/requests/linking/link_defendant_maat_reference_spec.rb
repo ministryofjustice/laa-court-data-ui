@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'court_data_adaptor'
-
+ 
 RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: true do
   let(:user) { create(:user) }
 
@@ -116,8 +116,10 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
       sign_in user
 
       config = instance_double(CourtDataAdaptor::Configuration)
+      api_url = CourtDataAdaptor.configuration.api_url
       allow_any_instance_of(CourtDataAdaptor::Client).to receive(:config).and_return config
       allow(config).to receive(:test_mode?).and_return false
+      allow(config).to receive(:api_url).and_return api_url
       allow_any_instance_of(OAuth2::AccessToken).to receive(:expired?).and_return true
 
       post '/laa_references', params: params
