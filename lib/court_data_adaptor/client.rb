@@ -9,10 +9,11 @@ module CourtDataAdaptor
     end
 
     def oauth_client
+      uri = URI(config.api_url)
       @oauth_client ||= OAuth2::Client.new(
         config.api_uid,
         config.api_secret,
-        site: config.api_url
+        site: "#{uri.scheme}://#{uri.host}"
       )
     end
 
