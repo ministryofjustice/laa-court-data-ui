@@ -93,7 +93,7 @@ class DefendantsController < ApplicationController
 
   def adaptor_error_handler(exception)
     @errors = exception.errors
-    flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages: error_messages)
+    flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages:)
     render 'edit'
   end
 end

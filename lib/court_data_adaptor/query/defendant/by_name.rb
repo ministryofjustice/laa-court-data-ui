@@ -13,7 +13,7 @@ module CourtDataAdaptor
                   .includes(:defendants)
                   .where(
                     name: term,
-                    date_of_birth: date_of_birth
+                    date_of_birth:
                   )
                   .all
 

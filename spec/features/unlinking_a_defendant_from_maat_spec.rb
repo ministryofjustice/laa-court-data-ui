@@ -23,8 +23,8 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
     json_api_header = { 'Content-Type' => 'application/vnd.api+json' }
 
     stub_request(:get, "#{api_url}/prosecution_cases")
-      .with(query: query)
-      .to_return(body: body, headers: json_api_header)
+      .with(query:)
+      .to_return(body:, headers: json_api_header)
 
     stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}?include=offences")
       .to_return(body: defendant_body, headers: json_api_header)

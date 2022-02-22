@@ -11,9 +11,9 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
   let(:commit) { 'Create link without MAAT ID' }
 
   let(:params) do
-    { commit: commit,
+    { commit:,
       urn: case_urn,
-      link_attempt: { defendant_id: defendant_id } }
+      link_attempt: { defendant_id: } }
   end
 
   let(:adaptor_request_path) { %r{.*/laa_references} }
@@ -22,7 +22,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
     { data:
       { type: 'laa_references',
         attributes:
-          { defendant_id: defendant_id,
+          { defendant_id:,
             user_name: user.username } } }
   end
 
@@ -37,7 +37,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
 
     before do
       sign_in user
-      post '/laa_references', params: params
+      post '/laa_references', params:
     end
 
     context 'with valid params', stub_link_success: true do
@@ -77,7 +77,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
 
   context 'when not authenticated' do
     context 'when creating a reference' do
-      before { post '/laa_references', params: params }
+      before { post '/laa_references', params: }
 
       it_behaves_like 'unauthenticated request'
     end

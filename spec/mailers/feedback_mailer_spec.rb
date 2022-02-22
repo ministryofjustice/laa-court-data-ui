@@ -12,7 +12,7 @@ RSpec.describe FeedbackMailer, type: :mailer do
   describe '#notify' do
     subject(:mail) { described_class.notify(**args) }
 
-    let(:args) { { email: email, rating: rating, comment: comment, environment: environment } }
+    let(:args) { { email:, rating:, comment:, environment: } }
 
     it 'is a govuk_notify delivery' do
       expect(mail.delivery_method).to be_a(GovukNotifyRails::Delivery)
@@ -32,16 +32,16 @@ RSpec.describe FeedbackMailer, type: :mailer do
       it 'sets personalisation from args' do
         expect(
           mail.govuk_notify_personalisation
-        ).to include(comment: comment, email: email, rating: rating, environment: environment)
+        ).to include(comment:, email:, rating:, environment:)
       end
 
       context 'when no comment' do
-        let(:args) { { email: email, rating: rating, environment: environment } }
+        let(:args) { { email:, rating:, environment: } }
 
         it 'sets comment to nil' do
           expect(
             mail.govuk_notify_personalisation
-          ).to include(comment: nil, email: email, rating: rating, environment: environment)
+          ).to include(comment: nil, email:, rating:, environment:)
         end
       end
     end

@@ -31,7 +31,7 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
   describe '#hearings' do
     subject(:call) { decorator.hearings }
 
-    before { allow(prosecution_case).to receive_messages(hearings: hearings) }
+    before { allow(prosecution_case).to receive_messages(hearings:) }
 
     context 'with multiple hearings' do
       let(:hearings) { [hearing1, hearing2] }
@@ -153,7 +153,7 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
   describe '#cracked?' do
     subject(:call) { decorator.cracked? }
 
-    before { allow(prosecution_case).to receive_messages(hearings: hearings) }
+    before { allow(prosecution_case).to receive_messages(hearings:) }
 
     context 'with no hearings' do
       let(:hearings) { [] }

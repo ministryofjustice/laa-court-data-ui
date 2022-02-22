@@ -16,7 +16,7 @@ RSpec.describe 'Search filters', type: :request do
   end
 
   describe '#create' do
-    before { post '/search_filters', params: params }
+    before { post '/search_filters', params: }
 
     context 'when posting a valid search filter' do
       let(:params) { { search_filter: { id: 'whatever' } } }

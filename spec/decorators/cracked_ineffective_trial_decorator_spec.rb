@@ -29,7 +29,7 @@ RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
     subject(:call) { decorator.cracked? }
 
     before do
-      allow(cracked_ineffective_trial).to receive_messages(type: type, code: code)
+      allow(cracked_ineffective_trial).to receive_messages(type:, code:)
     end
 
     context 'when type is cracked' do
@@ -80,7 +80,7 @@ RSpec.describe CrackedIneffectiveTrialDecorator, type: :decorator do
     end
 
     before do
-      allow(cracked_ineffective_trial).to receive_messages(type: type)
+      allow(cracked_ineffective_trial).to receive_messages(type:)
     end
 
     context 'when type is cracked' do
