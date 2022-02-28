@@ -23,6 +23,7 @@ en:
         type: Type
       events:
         caption: Hearing events
+        title: Events
         event: Event
         time: Time
       flash:
