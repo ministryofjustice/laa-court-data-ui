@@ -7,6 +7,8 @@
     = render partial: 'details', locals: { hearing: @hearing, hearing_day: @hearing_day }
 
     = render partial: 'attendees', locals: { hearing: @hearing }
+
+    = render partial: 'hearing_result', locals: { hearing: @hearing }
   .govuk-grid-column-two-thirds
     - if @hearing.hearing_events
       = render partial: 'hearing_events', locals: { hearing: @hearing, hearing_day: @hearing_day }
