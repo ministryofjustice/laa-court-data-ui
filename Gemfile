@@ -10,11 +10,11 @@ gem 'bootsnap', '>= 1.7.0', require: false
 
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
-gem 'devise', '~> 4.8'
+gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 3.0'
+gem 'govuk_design_system_formbuilder', '~> 3.0', '>= 3.0.2'
 gem 'haml-rails', '~> 2.0.1'
 gem 'json_api_client', '~> 1.21'
 gem 'json-schema', '~> 2.8', '>= 2.8.1'
@@ -23,13 +23,13 @@ gem 'oauth2', '~> 1.4.9'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'prometheus_exporter', '2.0.0'
 gem 'puma', '~> 5.6', '>= 5.6.2'
-gem 'rails', '~> 6.1.4'
+gem 'rails', '~> 6.1.4', '>= 6.1.4.6'
 gem 'redis', '~> 4.6.0'
 gem 'sentry-rails', '~> 5.1.0'
 gem 'sentry-sidekiq', '~> 5.1.0'
 gem 'sidekiq', '~> 6.4'
 gem 'sidekiq_alive'
-gem 'webpacker', '~> 5.4'
+gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.4'
@@ -43,7 +43,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.9.4'
   gem 'rspec_junit_formatter'
-  gem 'rspec-rails', '~> 5.1'
+  gem 'rspec-rails', '~> 5.1', '>= 5.1.0'
   gem 'rubocop', '~> 1.25', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
@@ -74,7 +74,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 4.2.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
