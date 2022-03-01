@@ -3,7 +3,6 @@ en:
   hearings:
     show:
       attendees:
-        caption: Attendees
         defence: Defence advocates
         defendants: Defendants
         heading: Attendees
