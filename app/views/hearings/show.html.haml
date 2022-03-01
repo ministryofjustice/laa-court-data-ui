@@ -8,10 +8,14 @@
 
     = render partial: 'attendees', locals: { hearing: @hearing }
 
-    = render partial: 'hearing_result', locals: { hearing: @hearing }
   .govuk-grid-column-two-thirds
     - if @hearing.hearing_events
       = render partial: 'hearing_events', locals: { hearing: @hearing, hearing_day: @hearing_day }
+    
+    - if @hearing.cracked_ineffective_trial
+      = render partial: 'hearing_result', locals: { hearing: @hearing }
+    
+    = render partial: 'court_applications', locals: { hearing: @hearing }
 
 - if Rails.configuration.x.display_raw_responses
   = render partial: 'raw_response', locals: { hearing: @hearing }
