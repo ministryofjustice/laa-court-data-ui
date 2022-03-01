@@ -1,6 +1,8 @@
 = govuk_page_title(@hearing_day&.strftime('%d/%m/%Y'), t('generic.hearing_day'), class: 'govuk-!-margin-bottom-2')
 
-= render partial: 'pagination', locals: { paginator: @paginator }
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
+    = render partial: 'pagination', locals: { paginator: @paginator }
 
 .govuk-grid-row
   .govuk-grid-column-one-third
