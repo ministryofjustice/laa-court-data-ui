@@ -12,7 +12,7 @@ RSpec.describe 'hearings/_attendees.html.haml', type: :view do
     before { allow(hearing).to receive(:defendant_names).and_return(['Joe Bloggs', 'Fred Dibnah']) }
 
     it 'displays defendant names with line breaks' do
-      is_expected.to have_tag('td.govuk-table__cell', text: /Joe Bloggs.*Fred Dibnah/) do
+      is_expected.to have_tag('p.govuk-body', text: /Joe Bloggs.*Fred Dibnah/) do
         with_tag(:br)
       end
     end
@@ -26,7 +26,7 @@ RSpec.describe 'hearings/_attendees.html.haml', type: :view do
     end
 
     it 'displays prosecution advocate names with line breaks' do
-      is_expected.to have_tag('td.govuk-table__cell', text: /Percy Prosecutor.*Linda Lawless/) do
+      is_expected.to have_tag('p.govuk-body', text: /Percy Prosecutor.*Linda Lawless/) do
         with_tag(:br)
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe 'hearings/_attendees.html.haml', type: :view do
     end
 
     it 'displays judge names with line breaks' do
-      is_expected.to have_tag('td.govuk-table__cell', text: /Mr Justice Pomfrey.*Ms Justice Arden/) do
+      is_expected.to have_tag('p.govuk-body', text: /Mr Justice Pomfrey.*Ms Justice Arden/) do
         with_tag(:br)
       end
     end
