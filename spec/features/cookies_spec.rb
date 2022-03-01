@@ -69,7 +69,7 @@ RSpec.feature 'Cookies', type: :feature do
       visit cookies_settings_path
 
       within '#new_cookie' do
-        expect(find('#cookie-analytics-false-field').checked?).to eq true
+        expect(find('#cookie-analytics-false-field').checked?).to be true
       end
     end
   end
@@ -107,7 +107,7 @@ RSpec.feature 'Cookies', type: :feature do
       click_link 'change your cookie settings'
 
       within '#new_cookie' do
-        expect(find('#cookie-analytics-true-field').checked?).to eq true
+        expect(find('#cookie-analytics-true-field').checked?).to be true
       end
     end
   end
@@ -145,7 +145,7 @@ RSpec.feature 'Cookies', type: :feature do
       click_link 'change your cookie settings'
 
       within '#new_cookie' do
-        expect(find('#cookie-analytics-false-field').checked?).to eq true
+        expect(find('#cookie-analytics-false-field').checked?).to be true
       end
     end
   end
@@ -160,7 +160,7 @@ RSpec.feature 'Cookies', type: :feature do
         expect(page).to have_text "You've set your cookie preferences."
       end
       within '#new_cookie' do
-        expect(find('#cookie-analytics-true-field').checked?).to eq true
+        expect(find('#cookie-analytics-true-field').checked?).to be true
       end
       expect(page).not_to have_css '.app-cookie-banner'
     end
@@ -186,7 +186,7 @@ RSpec.feature 'Cookies', type: :feature do
         expect(page).to have_text "You've set your cookie preferences."
       end
       within '#new_cookie' do
-        expect(find('#cookie-analytics-false-field').checked?).to eq true
+        expect(find('#cookie-analytics-false-field').checked?).to be true
       end
       expect(page).not_to have_css '.app-cookie-banner'
     end
