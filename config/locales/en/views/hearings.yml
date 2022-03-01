@@ -23,9 +23,9 @@ en:
         type: Type
       events:
         caption: Hearing events
-        title: Events
         event: Event
         time: Time
+        title: Events
       flash:
         notice:
           no_hearing_details: No hearing details available
