@@ -1,49 +1,51 @@
 = govuk_page_title(t('users.index.page_title'))
 
-= link_to t('users.index.new_link'),
-  new_user_path,
-  class: 'govuk-button',
-  'data-module': 'govuk-button',
-  draggable: 'false',
-  role: 'button'
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
+    = link_to t('users.index.new_link'),
+      new_user_path,
+      class: 'govuk-button',
+      'data-module': 'govuk-button',
+      draggable: 'false',
+      role: 'button'
 
-%table.govuk-table
-  %caption.govuk-table__caption.govuk-visually-hidden
-    = t('users.show.caption')
+    %table.govuk-table
+      %caption.govuk-table__caption.govuk-visually-hidden
+        = t('users.show.caption')
 
-  %thead.govuk-table__head
-    %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'col' }
-        = t('users.generic.name')
-      %th.govuk-table__header{ scope: 'col' }
-        = t('users.generic.username')
-      %th.govuk-table__header{ scope: 'col' }
-        = t('users.generic.email')
-      %th.govuk-table__header{ scope: 'col' }
-        = t('users.generic.last_sign_in')
-      %th.govuk-table__header{ scope: 'col' }
-        = t('users.generic.action')
+      %thead.govuk-table__head
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'col' }
+            = t('users.generic.name')
+          %th.govuk-table__header{ scope: 'col' }
+            = t('users.generic.username')
+          %th.govuk-table__header{ scope: 'col' }
+            = t('users.generic.email')
+          %th.govuk-table__header{ scope: 'col' }
+            = t('users.generic.last_sign_in')
+          %th.govuk-table__header{ scope: 'col' }
+            = t('users.generic.action')
 
-  %tbody.govuk-table__body
-    - @users.each do |user|
-      %tr.govuk-table__row{"data-user-id": "#{user.id}"}
-        %td.govuk-table__cell
-          = link_to user.name, user_path(user), class: 'govuk-link'
-        %td.govuk-table__cell
-          = link_to user.username.to_s, user_path(user), class: 'govuk-link'
-        %td.govuk-table__cell
-          = mail_to user.email, class: 'govuk-link', target: '_blank' do
-            = user.email
-            %span.govuk-visually-hidden= t('generic.new_window')
-        %td.govuk-table__cell
-          = user.last_sign_in_at.try(:to_formatted_s, :short)
-        %td.govuk-table__cell
-          = link_to edit_user_path(user), class: 'govuk-link' do
-            = t('users.index.edit')
-            %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
-          |
-          = link_to user_path(user), method: :delete, data: { confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
-            = t('users.index.delete')
-            %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
+      %tbody.govuk-table__body
+        - @users.each do |user|
+          %tr.govuk-table__row{"data-user-id": "#{user.id}"}
+            %td.govuk-table__cell
+              = link_to user.name, user_path(user), class: 'govuk-link'
+            %td.govuk-table__cell
+              = link_to user.username.to_s, user_path(user), class: 'govuk-link'
+            %td.govuk-table__cell
+              = mail_to user.email, class: 'govuk-link', target: '_blank' do
+                = user.email
+                %span.govuk-visually-hidden= t('generic.new_window')
+            %td.govuk-table__cell
+              = user.last_sign_in_at.try(:to_formatted_s, :short)
+            %td.govuk-table__cell
+              = link_to edit_user_path(user), class: 'govuk-link' do
+                = t('users.index.edit')
+                %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
+              |
+              = link_to user_path(user), method: :delete, data: { confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
+                = t('users.index.delete')
+                %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
 
-= link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary'
+    = link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary'
