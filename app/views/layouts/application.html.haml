@@ -40,9 +40,10 @@
           = render 'layouts/navigation' if user_signed_in?
 
     .govuk-width-container
-      = render 'layouts/phase_banner'
-
-      = render_breadcrumbs(builder: govuk_breadcrumb_builder)
+      %div{role:"complementary"}
+        = render 'layouts/phase_banner'
+      %div{role:"navigation"}
+        = render_breadcrumbs(builder: govuk_breadcrumb_builder)
 
       %main#main-content.govuk-main-wrapper{role: "main"}
         = render partial: 'layouts/flashes' unless flash.empty?
