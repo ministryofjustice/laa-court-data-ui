@@ -138,11 +138,8 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
 
   def then_hearing_view_displayed_for(hearing_day)
     has_hearing_heading(hearing_day)
-    has_hearing_table
-    has_hearing_table_row_header_columns
-    has_attendee_table
-    has_attendee_table_row_header_columns
-    has_attendance_table_entry(row: 1, text: /\(.*counsel.*\)/)
+    has_hearing_details
+    has_attendee_details
     has_hearing_event_table
     has_hearing_event_table_headers
   end
@@ -152,39 +149,19 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     expect(page).to have_css('h1.govuk-heading-xl', text: hearing_day)
   end
 
-  def has_hearing_table
-    expect(page).to have_table('Hearing')
+  def has_hearing_details
+    expect(page).to have_css('.govuk-heading-l', text: 'Details')
+    expect(page).to have_css('.govuk-heading-s', text: 'Hearing type')
+    expect(page).to have_css('.govuk-heading-s', text: 'Court')
+    expect(page).to have_css('.govuk-heading-s', text: 'Time listed')
   end
 
-  def has_hearing_table_row_header_columns
-    within :table, 'Hearing day' do
-      rows = find_all('tbody .govuk-table__row')
-      expect(rows[0].first('.govuk-table__header')).to have_text 'Hearing type'
-      expect(rows[1].first('.govuk-table__header')).to have_text 'Court'
-      expect(rows[2].first('.govuk-table__header')).to have_text 'Time listed'
-    end
-  end
-
-  def has_attendee_table
+  def has_attendee_details
     expect(page).to have_css('.govuk-heading-l', text: 'Attendees')
-    expect(page).to have_table('Attendees')
-  end
-
-  def has_attendee_table_row_header_columns
-    within :table, 'Attendees' do
-      rows = find_all('tbody .govuk-table__row')
-      expect(rows[0].first('.govuk-table__header')).to have_text 'Defendants'
-      expect(rows[1].first('.govuk-table__header')).to have_text 'Defence advocates'
-      expect(rows[2].first('.govuk-table__header')).to have_text 'Prosecution advocates'
-      expect(rows[3].first('.govuk-table__header')).to have_text 'Judges'
-    end
-  end
-
-  def has_attendance_table_entry(row:, text:)
-    within :table, 'Attendees' do
-      rows = find_all('tbody .govuk-table__row')
-      expect(rows[row]).to have_text text
-    end
+    expect(page).to have_css('.govuk-heading-s', text: 'Defendants')
+    expect(page).to have_css('.govuk-heading-s', text: 'Defence advocate')
+    expect(page).to have_css('.govuk-heading-s', text: 'Prosecution advocate')
+    expect(page).to have_css('.govuk-heading-s', text: 'Judge')
   end
 
   def has_hearing_event_table

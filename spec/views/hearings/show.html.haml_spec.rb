@@ -18,6 +18,7 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
 
   let(:hearing) { CourtDataAdaptor::Resource::Hearing.new(hearing_events: []) }
   let(:decorated_hearing) { view.decorate(hearing) }
+  let(:hearing_day) { Date.parse('2021-01-17T10:30:00.000Z') }
   let(:paginator) do
     HearingPaginator.new(prosecution_case, column: 'date', direction: 'asc', page: '0')
   end
@@ -32,13 +33,44 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
 
   it { is_expected.to have_content('A Gov uk page title') }
   it { is_expected.to render_template(:_pagination) }
-  it { is_expected.to render_template(:_listing_info) }
+  it { is_expected.to render_template(:_details) }
   it { is_expected.to render_template(:_attendees) }
   it { is_expected.to render_template(:_hearing_events) }
+  it { is_expected.to render_template(:_court_applications) }
 
   context 'when hearing_events is missing' do
     let(:hearing) { CourtDataAdaptor::Resource::Hearing.new }
 
     it { is_expected.not_to render_template(:_hearing_events) }
+  end
+
+  context 'with cracked_ineffective_trial' do
+    let(:cracked_ineffective_trial) do
+      CourtDataAdaptor::Resource::CrackedIneffectiveTrial
+        .new(id: 'a-uuid',
+             type: 'Ineffective',
+             description: 'Another case over-ran')
+    end
+
+    before do
+      allow(hearing)
+        .to receive(:cracked_ineffective_trial)
+        .and_return(cracked_ineffective_trial)
+    end
+
+    it { is_expected.to have_selector('div.govuk-heading-s', text: /Result/) }
+    it { is_expected.to have_selector('p.govuk-body', text: /Ineffective: Another case over-ran/) }
+  end
+
+  context 'without cracked_ineffective_trial' do
+    let(:cracked_ineffective_trial) { nil }
+
+    before do
+      allow(hearing)
+        .to receive(:cracked_ineffective_trial)
+        .and_return(cracked_ineffective_trial)
+    end
+
+    it { is_expected.not_to have_selector('h2.govuk-heading-l', text: /Result/) }
   end
 end
