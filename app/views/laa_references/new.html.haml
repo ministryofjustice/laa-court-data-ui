@@ -1,3 +1,5 @@
 = govuk_page_title(@defendant.name, t('generic.defendant'))
 
-= render('laa_references/form')
+.govuk-grid-row
+	.govuk-grid-column-two-thirds
+		= render 'form'

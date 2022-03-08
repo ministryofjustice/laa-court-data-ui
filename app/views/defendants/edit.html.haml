@@ -1,6 +1,8 @@
 = govuk_page_title(@defendant.name, t('generic.defendant'))
 
-- content_for :custom_packs do
-  = javascript_pack_tag 'unlink', defer: true
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
+    - content_for :custom_packs do
+      = javascript_pack_tag 'unlink', defer: true
 
-= render('defendants/form', locals: @defendant)
+    = render('defendants/form', locals: @defendant)

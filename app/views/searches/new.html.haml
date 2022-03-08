@@ -1,5 +1,7 @@
 = govuk_page_title(t('search.page_title'))
 
-= render 'form'
-= render 'error' if @error
-= render 'results' if @results
+.govuk-grid-row
+	.govuk-grid-column-two-thirds
+		= render 'form'
+		= render 'error' if @error
+		= render 'results' if @results
