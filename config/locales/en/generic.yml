@@ -5,6 +5,7 @@ en:
     case: Case
     continue: Continue
     defendant: Defendant
+    detail: Details
     form:
       select:
         blank_option: Please select

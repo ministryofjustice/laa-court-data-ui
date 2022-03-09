@@ -45,11 +45,8 @@
 
       %main#main-content.govuk-main-wrapper{role: "main"}
         = render partial: 'layouts/flashes' unless flash.empty?
-
-        .govuk-grid-row
-          .govuk-grid-column-two-thirds
-            = content_for :page_heading
-            = yield
+        = content_for :page_heading
+        = yield
 
     = render 'layouts/footer'
 
