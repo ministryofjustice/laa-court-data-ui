@@ -1,4 +1,4 @@
-.govuk-phase-banner{ class: ENV['ENV'] }
+.govuk-phase-banner{ class: ENV['ENV'], role: "complementary" }
   %p.govuk-phase-banner__content
     %strong.govuk-tag.govuk-phase-banner__content__tag
       - if ENV['ENV'] == 'production'
