@@ -33,7 +33,7 @@ RUN apk --no-cache add --upgrade --virtual build-dependencies \
                   tzdata \
                   runit \
                   apk-tools \
-                  gmp
+                  gmp=6.2.1-r1
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \
