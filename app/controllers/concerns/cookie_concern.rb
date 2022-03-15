@@ -15,6 +15,13 @@ module CookieConcern
 
     set_analytics_cookies
     show_hide_cookie_banners
+    # respond_to do |format|
+    #   format.turbo_stream do
+    #     render turbo_stream: turbo_stream.remove(partial: "something")
+    #   end
+
+    #   format.html { redirect_to cookies_url }
+    # end
   end
 
   def set_cookie(type, value: false)

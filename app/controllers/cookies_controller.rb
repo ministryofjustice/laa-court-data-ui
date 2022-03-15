@@ -10,6 +10,10 @@ class CookiesController < ApplicationController
     store_previous_page_url
   end
 
+  def test
+    render partial: 'layouts/something'
+  end
+
   def create
     @cookie = Cookie.new(cookie_params[:cookie])
     if @cookie.valid?

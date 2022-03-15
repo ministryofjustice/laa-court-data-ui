@@ -8,6 +8,7 @@ import { initAll } from 'govuk-frontend'
 require('@rails/ujs').start()
 initAll()
 require.context('govuk-frontend/govuk/assets')
+import "@hotwired/turbo-rails"
 // require("@rails/activestorage").start();
 // require("channels");
 
