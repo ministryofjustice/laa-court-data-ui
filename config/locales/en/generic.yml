@@ -6,6 +6,7 @@ en:
     continue: Continue
     defendant: Defendant
     detail: Details
+    filter_not_recognized: Filter "%{value}" is not recognized
     form:
       select:
         blank_option: Please select
