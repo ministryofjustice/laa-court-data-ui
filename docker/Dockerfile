@@ -1,4 +1,4 @@
-FROM ruby:3.1.0-alpine3.14
+FROM ruby:3.1.0-alpine3.15
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Get Paid"
 LABEL Contact="<laa-get-paid@digital.justice.gov.uk>"
@@ -20,7 +20,8 @@ RUN set -ex
 # - tzdata - for railtie/tzinfo-data ??
 # - runit for process management (because we have multiple services)
 #
-RUN apk --no-cache add --upgrade --virtual build-dependencies \
+RUN apk --update-cache upgrade \
+&& apk --no-cache add --upgrade --virtual build-dependencies \
                     build-base \
                     yarn \
                     git \
@@ -31,9 +32,7 @@ RUN apk --no-cache add --upgrade --virtual build-dependencies \
                   libxslt-dev \
                   postgresql-dev \
                   tzdata \
-                  runit \
-                  apk-tools \
-                  gmp=6.2.1-r1
+                  runit
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \

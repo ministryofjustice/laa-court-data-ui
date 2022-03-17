@@ -31,7 +31,7 @@ class Search
   validates :filter,
             presence: true,
             inclusion: { in: filters.map { |f| f.id.to_s },
-                         message: 'Filter "%{value}" is not recognized' }
+                         message: I18n.t('generic.filter_not_recognized') }
 
   validates :term,
             presence: true,

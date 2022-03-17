@@ -181,3 +181,7 @@ Style/SlicingWithRange:
 
 Style/OpenStructUse:
   Enabled: true
+
+Rails/I18nLocaleTexts:
+  Exclude:
+    - spec/**/*.rb
