@@ -33,7 +33,7 @@ class DefendantsController < ApplicationController
   end
 
   def defendant
-    @defendant ||= @defendant_search.call
+    @defendant ||= Defendant.find(:all, params: { urn: defendant_params[:urn], uuid: defendant_params[:id]})[0]
   end
 
   def prosecution_case_reference
