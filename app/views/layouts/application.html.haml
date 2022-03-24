@@ -26,8 +26,11 @@
     %a.govuk-skip-link{href: "#main-content","data-module":"govuk-skip-link"}
       = t('layouts.application.skip_content')
 
-    = render partial: 'layouts/cookie_banner'
+    %turbo-frame
+      = render partial: 'layouts/cookie_banner'
 
+    %section
+      %h2 this is the outside section and should stay
     %header.govuk-header{"data-module" => "govuk-header", role: "banner" }
       .govuk-header__container.govuk-width-container
         .govuk-header__logo

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     root to: 'search_filters#new', as: :authenticated_root
   end
 
-  get 'something', to:'cookies#test'
+  get '/something', to:'cookies#test'
 
   authenticated :user, ->(u) { u.admin? } do
     require 'sidekiq/web'
