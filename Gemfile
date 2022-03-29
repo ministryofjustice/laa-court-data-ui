@@ -38,7 +38,7 @@ group :test do
   gem 'capybara_table'
   gem 'codeclimate-test-reporter', '>= 1.0.7', require: false
   gem 'fakeredis', require: 'fakeredis/rspec'
-  gem 'i18n-tasks', '~> 0.9.37'
+  gem 'i18n-tasks', '~> 1.0.5'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.9.4'
