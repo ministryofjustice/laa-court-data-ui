@@ -48,6 +48,6 @@ module LaaCourtDataUi
 
     config.x.court_data_api_config.uri = ENV['COURT_DATA_API_URL']
     config.x.court_data_api_config.user = ENV['COURT_DATA_API_USERNAME']
-    config.x.court_data_api_config.secret  = ENV['COURT_DATA_API_SECRET']
+    config.x.court_data_api_config.secret = ENV['COURT_DATA_API_SECRET']
   end
 end
