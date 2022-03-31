@@ -45,5 +45,9 @@ module LaaCourtDataUi
     config.x.support_email_address = 'laa-get-paid@digital.justice.gov.uk'
     config.x.display_raw_responses = %w[enabled true].include?(ENV['DISPLAY_RAW_RESPONSES'])
     config.action_mailer.deliver_later_queue_name = :mailers
+
+    config.x.court_data_api_config.uri = ENV['COURT_DATA_API_URL']
+    config.x.court_data_api_config.user = ENV['COURT_DATA_API_USERNAME']
+    config.x.court_data_api_config.secret = ENV['COURT_DATA_API_SECRET']
   end
 end
