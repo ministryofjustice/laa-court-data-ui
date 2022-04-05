@@ -1,42 +1,46 @@
-%turbo-frame
-  %h2#removable I should be gone
-  = link_to 'Click me to remove above', something_path
-  - unless @cookies_preferences_set
-    .app-cookie-banner.app-cookie-banner.govuk-cookie-banner{'aria-label': 'Cookies on View Court Data', id: "removablex", role: 'region', data: { module: 'app-cookie-banner', nosnippet: ''}}
-      .govuk-cookie-banner__message.govuk-width-container
-        .govuk-grid-row
-          .govuk-grid-column-two-thirds
-            %h2.govuk-cookie-banner__heading.govuk-heading-m
-              = t('layouts.application.cookies.title')
-            .govuk-cookie-banner__content
-              %p.govuk-body
-                = t('layouts.application.cookies.essential_cookies')
-              %p.govuk-body.app-js-only
-                = t('layouts.application.cookies.analytics_cookies')
+%turbo-frame#removable
+  %h2 I should be gone
+  = link_to 'Click me to remove above', test_path
+%h1 I should be here
+- unless @cookies_preferences_set
+  .app-cookie-banner.app-cookie-banner.govuk-cookie-banner{'aria-label': 'Cookies on View Court Data', id: "removablex", role: 'region', data: { module: 'app-cookie-banner', nosnippet: ''}}
+    .govuk-cookie-banner__message.govuk-width-container
+      .govuk-grid-row
+        .govuk-grid-column-two-thirds
+          %h2.govuk-cookie-banner__heading.govuk-heading-m
+            = t('layouts.application.cookies.title')
+          .govuk-cookie-banner__content
+            %p.govuk-body
+              = t('layouts.application.cookies.essential_cookies')
+            %p.govuk-body.app-js-only
+              = t('layouts.application.cookies.analytics_cookies')
 
-        .govuk-button-group.app-js-only
-          %a.govuk-button{'data-accept-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'accept',
-            'href': '?analytics_cookies_set=true&show_confirm_banner=true'}
-            = t('layouts.application.cookies.accept_cookies')
-          %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
-            'href': '?analytics_cookies_set=false&show_confirm_banner=true'}
-            = t('layouts.application.cookies.reject_cookies')
-          = link_to t('layouts.application.cookies.cookie_settings'), cookies_settings_path, class: 'govuk-link'
-        .govuk-button-group.app-no-js-only
-          %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
-            'href': '?analytics_cookies_set=false'}
-            = t('layouts.application.cookies.hide_message')
-          = link_to t('layouts.application.cookies.view_cookies'), cookies_path, class: 'govuk-link'
+        -# submit by button helper which creates form
+        = button_to 'accept', test_path, method: :get, params: { class: 'govuk-button', name: 'cookies', value: 'accept', 'data-accept-cookies': 'true', 'data-module': 'govuk-button' }
+        = button_to 'reject', test_path, method: :get, params: { class: 'govuk-button', name: 'cookies', value: 'reject', 'data-reject-cookies': 'true', 'data-module': 'govuk-button' }
 
-  - if @show_confirm_banner
-    .app-cookie-banner.app-cookie-banner.govuk-cookie-banner{'aria-label': 'Cookies on View Court Data', role: 'region', data: { module: 'app-cookie-banner', nosnippet: ''}}
-      .govuk-cookie-banner__message.govuk-width-container
-        .govuk-grid-row
-          .govuk-grid-column-two-thirds
-            .govuk-cookie-banner__content
-              %p.govuk-body
-                = @analytics_cookies_accepted ? t('layouts.application.cookies.confirmation_accept') : t('layouts.application.cookies.confirmation_reject') 
-                = t('layouts.application.cookies.confirmation_link_to_settings_html', href: cookies_settings_path).html_safe
-        .govuk-button-group
-          %a.govuk-button{'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': '?'}
-            = t('layouts.application.cookies.hide_message')
+        %a.govuk-button{'data-accept-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'accept',
+          'href': test_path, method: :post}
+          = t('layouts.application.cookies.accept_cookies')
+        %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
+          'href': '?analytics_cookies_set=false&show_confirm_banner=true'}
+          = t('layouts.application.cookies.reject_cookies')
+        = link_to t('layouts.application.cookies.cookie_settings'), cookies_settings_path, class: 'govuk-link'
+      .govuk-button-group.app-no-js-only
+        %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
+          'href': '?analytics_cookies_set=false'}
+          = t('layouts.application.cookies.hide_message')
+        = link_to t('layouts.application.cookies.view_cookies'), cookies_path, class: 'govuk-link'
+
+  -# - if @show_confirm_banner
+  -#   .app-cookie-banner.app-cookie-banner.govuk-cookie-banner{'aria-label': 'Cookies on View Court Data', role: 'region', data: { module: 'app-cookie-banner', nosnippet: ''}}
+  -#     .govuk-cookie-banner__message.govuk-width-container
+  -#       .govuk-grid-row
+  -#         .govuk-grid-column-two-thirds
+  -#           .govuk-cookie-banner__content
+  -#             %p.govuk-body
+  -#               = @analytics_cookies_accepted ? t('layouts.application.cookies.confirmation_accept') : t('layouts.application.cookies.confirmation_reject') 
+  -#               = t('layouts.application.cookies.confirmation_link_to_settings_html', href: cookies_settings_path).html_safe
+  -#       .govuk-button-group
+  -#         %a.govuk-button{'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': '?'}
+  -#           = t('layouts.application.cookies.hide_message')

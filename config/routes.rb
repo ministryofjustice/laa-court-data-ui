@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/test', to:'application#test'
+
   authenticated :user do
     root to: 'search_filters#new', as: :authenticated_root
   end
-
-  get '/something', to:'cookies#test'
 
   authenticated :user, ->(u) { u.admin? } do
     require 'sidekiq/web'

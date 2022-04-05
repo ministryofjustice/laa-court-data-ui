@@ -7,11 +7,6 @@ class CookiesController < ApplicationController
   def new
     usage_cookie = cookies[:analytics_cookies_set]
     @cookie = Cookie.new(analytics: usage_cookie)
-    store_previous_page_url
-  end
-
-  def test
-    render partial: 'layouts/something'
   end
 
   def create
@@ -37,10 +32,6 @@ class CookiesController < ApplicationController
   def set_flash_notification
     previous_page_path = session.delete(:return_to)
     flash[:success] = t('cookie_settings.notification_banner.preferences_set_html', href: previous_page_path)
-  end
-
-  def store_previous_page_url
-    session[:return_to] = request.referrer
   end
 
   def cookie_params
