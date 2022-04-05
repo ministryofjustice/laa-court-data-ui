@@ -7,6 +7,7 @@ class CookiesController < ApplicationController
   def new
     usage_cookie = cookies[:analytics_cookies_set]
     @cookie = Cookie.new(analytics: usage_cookie)
+    store_previous_page_url
   end
 
   def create

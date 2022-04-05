@@ -12,3 +12,4 @@
       .govuk-button-group
         %a.govuk-button{'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': '?'}
           = t('layouts.application.cookies.hide_message')
+  %turbo-stream{:action => "replace", :target => "removable"}
