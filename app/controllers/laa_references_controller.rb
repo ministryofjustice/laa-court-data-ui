@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
+# rubocop:disable Metrics
 
 require_dependency 'court_data_adaptor'
 require_dependency 'feature_flag'
@@ -144,4 +144,4 @@ class LaaReferencesController < ApplicationController
   end
 end
 
-# rubocop:enable Metrics/ClassLength
+# rubocop:enable Metrics
