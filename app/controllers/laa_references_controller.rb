@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
+
 require_dependency 'court_data_adaptor'
+require_dependency 'feature_flag'
 
 class LaaReferencesController < ApplicationController
   before_action :load_and_authorize_defendant_search,
@@ -59,11 +62,8 @@ class LaaReferencesController < ApplicationController
   end
 
   def link_laa_reference_and_redirect
-    laa_reference = resource.new(**resource_params)
-    laa_reference.save
-
-    redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
-    flash[:notice] = I18n.t('laa_reference.link.success')
+    @laa_reference = resource.new(**resource_params)
+    resource_save
   end
 
   def laa_reference_params
@@ -80,11 +80,33 @@ class LaaReferencesController < ApplicationController
   end
 
   def resource
-    CourtDataAdaptor::Resource::LaaReference
+    if Feature.enabled?(:laa_references)
+      LaaReferences
+    else
+      CourtDataAdaptor::Resource::LaaReference
+    end
   end
 
   def resource_params
     @resource_params ||= @link_attempt.to_link_attributes
+  end
+
+  def resource_save
+    if Feature.enabled?(:laa_references)
+      begin
+        @laa_reference.save!
+      rescue ActiveResource::ClientError
+        render_new(I18n.t('laa_reference.link.unprocessable'), @laa_reference.errors.full_messages.join(', '))
+      rescue ActiveResource::ServerError
+        Sentry.capture_exception(@laa_reference.errors)
+        render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
+      else
+        redirect_to_edit_defendants
+      end
+    else
+      @laa_reference.save
+      redirect_to_edit_defendants
+    end
   end
 
   def no_maat_id?
@@ -102,7 +124,18 @@ class LaaReferencesController < ApplicationController
   def adaptor_error_handler(exception)
     errors = exception.errors
     Sentry.capture_exception(errors)
-    flash.now[:alert] = { title: I18n.t('laa_reference.link.failure'), message: I18n.t('error.it_helpdesk') }
+    render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
+  end
+
+  def render_new(title, message)
+    flash.now[:alert] = { title:, message: }
     render 'new'
   end
+
+  def redirect_to_edit_defendants
+    redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
+    flash[:notice] = I18n.t('laa_reference.link.success')
+  end
 end
+
+# rubocop:enable Metrics/ClassLength
