@@ -81,8 +81,10 @@ class LaaReferencesController < ApplicationController
 
   def resource
     if Feature.enabled?(:laa_references)
+      logger.info 'USING_V2_ENDPOINT'
       LaaReferences
     else
+      logger.info 'USING_V1_ENDPOINT'
       CourtDataAdaptor::Resource::LaaReference
     end
   end
@@ -94,16 +96,20 @@ class LaaReferencesController < ApplicationController
   def resource_save
     if Feature.enabled?(:laa_references)
       begin
+        logger.info 'CALLING_V2_MAAT_LINK'
         @laa_reference.save!
       rescue ActiveResource::ClientError
+        logger.info 'CLIENT_ERROR_OCCURRED'
         render_new(I18n.t('laa_reference.link.unprocessable'), @laa_reference.errors.full_messages.join(', '))
       rescue ActiveResource::ServerError
+        logger.error 'SERVER_ERROR_OCCURRED'
         Sentry.capture_exception(@laa_reference.errors)
         render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
       else
         redirect_to_edit_defendants
       end
     else
+      logger.info 'CALLING_V1_MAAT_LINK'
       @laa_reference.save
       redirect_to_edit_defendants
     end
