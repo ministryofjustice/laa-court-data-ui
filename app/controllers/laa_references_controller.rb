@@ -98,10 +98,10 @@ class LaaReferencesController < ApplicationController
       begin
         logger.info 'CALLING_V2_MAAT_LINK'
         @laa_reference.save!
-      rescue ActiveResource::ClientError
+      rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
         logger.info 'CLIENT_ERROR_OCCURRED'
         render_new(I18n.t('laa_reference.link.unprocessable'), @laa_reference.errors.full_messages.join(', '))
-      rescue ActiveResource::ServerError
+      rescue ActiveResource::ServerError, ActiveResource::ClientError
         logger.error 'SERVER_ERROR_OCCURRED'
         Sentry.capture_exception(@laa_reference.errors)
         render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))

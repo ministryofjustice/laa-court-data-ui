@@ -42,6 +42,13 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
         message: 'MAAT reference 1234567 has no common platform data created against Maat application.'
       }
     end
+    let(:maat_error_message) do
+      {
+        title: 'A Court Data Source link could not be established ' \
+               'due to an invalid MAAT Reference Number. Please check the MAAT Reference Number.',
+        message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
+      }
+    end
 
     before do
       sign_in user
@@ -105,6 +112,26 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
         it 'renders laa_referencer/new' do
           expect(response).to render_template 'laa_references/new'
         end
+      end
+    end
+
+    context 'when server returns error', stub_v2_link_server_failure: true do
+      it 'flashes alert' do
+        expect(flash.now[:alert]).to match(maat_error_message)
+      end
+
+      it 'renders laa_referencer/new' do
+        expect(response).to render_template 'laa_references/new'
+      end
+    end
+
+    context 'when cda returns error', stub_v2_link_cda_failure: true do
+      it 'flashes alert' do
+        expect(flash.now[:alert]).to match(maat_error_message)
+      end
+
+      it 'renders laa_referencer/new' do
+        expect(response).to render_template 'laa_references/new'
       end
     end
   end

@@ -155,6 +155,24 @@ RSpec.configure do |config|
     )
   end
 
+  config.before(:each, stub_v2_link_server_failure: true) do
+    stub_request(
+      :post, %r{/v2/laa_references}
+    ).to_return(
+      status: 500,
+      body: ''
+    )
+  end
+
+  config.before(:each, stub_v2_link_cda_failure: true) do
+    stub_request(
+      :post, %r{/v2/laa_references}
+    ).to_return(
+      status: 424,
+      body: ''
+    )
+  end
+
   config.before(:each, stub_linked: true) do
     stub_request(
       :get,
