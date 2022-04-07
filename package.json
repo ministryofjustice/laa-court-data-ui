@@ -11,13 +11,14 @@
     "@rails/ujs": "^7.0.2",
     "@rails/webpacker": "5.4.3",
     "govuk-frontend": "^4.0.1",
-    "jquery": "3.6.0"
+    "jquery": "3.6.0",
+    "postcss": "^8.4.12"
   },
   "devDependencies": {
     "standard": "^16.0.4",
-    "stylelint": "^13.13.1",
-    "stylelint-config-gds": "^0.1.0",
-    "stylelint-order": "^4.1.0",
+    "stylelint": "^14.6.1",
+    "stylelint-config-gds": "^0.2.0",
+    "stylelint-order": "^5.0.0",
     "webpack-dev-server": "^4.7.4"
   },
   "resolutions": {

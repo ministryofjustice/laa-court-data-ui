@@ -1,7 +1,7 @@
-$app-uat-colour: govuk-colour('orange');
-$app-staging-colour: govuk-colour('turquoise');
-$app-dev-colour: govuk-colour('pink');
-$app-local-colour: govuk-colour('bright-purple');
+$app-uat-colour: govuk-colour("orange");
+$app-staging-colour: govuk-colour("turquoise");
+$app-dev-colour: govuk-colour("pink");
+$app-local-colour: govuk-colour("bright-purple");
 
 .app-environment-uat {
   .govuk-header__container {
