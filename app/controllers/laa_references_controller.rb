@@ -103,10 +103,7 @@ class LaaReferencesController < ApplicationController
         render_new(I18n.t('laa_reference.link.unprocessable'), @laa_reference.errors.full_messages.join(', '))
       rescue ActiveResource::ServerError, ActiveResource::ClientError => e
         logger.error 'SERVER_ERROR_OCCURRED'
-        Sentry.with_scope do |scope|
-          scope.set_extra('error_message', @laa_reference.errors)
-          Sentry.capture_exception(e)
-        end
+        log_sentry_error(e, @laa_reference.errors)
         render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
       else
         redirect_to_edit_defendants
@@ -131,10 +128,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def adaptor_error_handler(exception)
-    Sentry.with_scope do |scope|
-      scope.set_extra('error_message', exception.errors)
-      Sentry.capture_exception(exception)
-    end
+    log_sentry_error(exception, exception.errors)
     render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
   end
 
@@ -146,6 +140,13 @@ class LaaReferencesController < ApplicationController
   def redirect_to_edit_defendants
     redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
     flash[:notice] = I18n.t('laa_reference.link.success')
+  end
+
+  def log_sentry_error(exception, errors)
+    Sentry.with_scope do |scope|
+      scope.set_extra('error_message', errors)
+      Sentry.capture_exception(exception)
+    end
   end
 end
 
