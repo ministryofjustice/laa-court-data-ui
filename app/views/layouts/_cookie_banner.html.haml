@@ -13,8 +13,8 @@
                 = t('layouts.application.cookies.analytics_cookies')
 
           -# submit by button helper which creates form
-          -# = button_to 'accept', test_path, method: :get, params: { class: 'govuk-button', name: 'cookies', value: 'accept', 'data-accept-cookies': 'true', 'data-module': 'govuk-button' }
-          -# = button_to 'reject', test_path, method: :get, params: { class: 'govuk-button', name: 'cookies', value: 'reject', 'data-reject-cookies': 'true', 'data-module': 'govuk-button' }
+          = button_to 'accept', test_path, method: :get, params: { class: 'govuk-button', name: 'cookies', value: 'accept', 'data-accept-cookies': 'true', 'data-module': 'govuk-button' }
+          = button_to 'reject', test_path, method: :get, params: { class: 'govuk-button', name: 'cookies', value: 'reject', 'data-reject-cookies': 'true', 'data-module': 'govuk-button' }
 
           -# %a.govuk-button{'data-accept-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'accept',
           -#   'href': test_path}
