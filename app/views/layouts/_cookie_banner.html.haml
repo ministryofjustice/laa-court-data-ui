@@ -12,19 +12,15 @@
               %p.govuk-body.app-js-only
                 = t('layouts.application.cookies.analytics_cookies')
 
-          -# submit by button helper which creates form
-          = button_to 'accept', test_path, method: :get, params: { class: 'govuk-button', name: 'cookies', value: 'accept', 'data-accept-cookies': 'true', 'data-module': 'govuk-button' }
-          = button_to 'reject', test_path, method: :get, params: { class: 'govuk-button', name: 'cookies', value: 'reject', 'data-reject-cookies': 'true', 'data-module': 'govuk-button' }
-
-          -# %a.govuk-button{'data-accept-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'accept',
-          -#   'href': test_path}
-          -#   = t('layouts.application.cookies.accept_cookies')
-          -# %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
-          -#   'href': test_path}
-          -#   = t('layouts.application.cookies.reject_cookies')
+        .govuk-button-group.app-js-only
+          = button_to t('layouts.application.cookies.accept_cookies'), test_path, method: :get, class: 'govuk-button', name: 'cookies',
+            value: 'accept', 'data-accept-cookies': 'true', 'data-module': 'govuk-button'
+          = button_to t('layouts.application.cookies.reject_cookies'), test_path, method: :get, class: 'govuk-button', name: 'cookies', 
+            value: 'reject', 'data-reject-cookies': 'true', 'data-module': 'govuk-button'
           = link_to t('layouts.application.cookies.cookie_settings'), cookies_settings_path, class: 'govuk-link'
+
         .govuk-button-group.app-no-js-only
           %a.govuk-button{'data-reject-cookies': 'true', 'data-module': 'govuk-button', name: 'cookies', type: 'button', value: 'reject',
-            'href': '?'}
+            'href': '?analytics_cookies_set=false'}
             = t('layouts.application.cookies.hide_message')
           = link_to t('layouts.application.cookies.view_cookies'), cookies_path, class: 'govuk-link'
