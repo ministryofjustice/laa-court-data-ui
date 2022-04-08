@@ -101,11 +101,11 @@ class LaaReferencesController < ApplicationController
       rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
         logger.info 'CLIENT_ERROR_OCCURRED'
         render_new(I18n.t('laa_reference.link.unprocessable'), @laa_reference.errors.full_messages.join(', '))
-      rescue ActiveResource::ServerError, ActiveResource::ClientError => exception
+      rescue ActiveResource::ServerError, ActiveResource::ClientError => e
         logger.error 'SERVER_ERROR_OCCURRED'
         Sentry.with_scope do |scope|
           scope.set_extra('error_message', @laa_reference.errors)
-          Sentry.capture_exception(exception)
+          Sentry.capture_exception(e)
         end
         render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
       else
