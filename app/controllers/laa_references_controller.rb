@@ -128,7 +128,10 @@ class LaaReferencesController < ApplicationController
   end
 
   def adaptor_error_handler(exception)
-    Sentry.capture_exception(exception, message: exception.errors)
+    Sentry.with_scope do |scope|
+      scope.set_extra('error_message', exception.errors)
+      Sentry.capture_exception(exception)
+    end
     render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
   end
 
