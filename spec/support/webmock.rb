@@ -100,6 +100,10 @@ RSpec.configure do |config|
     stub_request(:post, %r{/api/internal/v1/laa_references}).to_return(status: 202, body: '')
   end
 
+  config.before(:each, stub_v2_link_success: true) do
+    stub_request(:post, %r{/v2/laa_references}).to_return(status: 202, body: '')
+  end
+
   config.before(:each, stub_link_failure_with_invalid_defendant_uuid: true) do
     stub_request(
       :post, %r{/api/internal/v1/laa_references}
@@ -114,6 +118,19 @@ RSpec.configure do |config|
     )
   end
 
+  config.before(:each, stub_v2_link_failure_with_invalid_defendant_uuid: true) do
+    stub_request(
+      :post, %r{/v2/laa_references}
+    ).to_return(
+      status: 422,
+      headers: { 'Content-Type' => 'application/json' },
+      body: {
+        'errors' => { 'defendant_id' => ['is not a valid uuid'],
+                      'maat_reference' => ['1234567 has no data created against Maat application.'] }
+      }.to_json
+    )
+  end
+
   config.before(:each, stub_link_failure_with_unknown_maat_reference: true) do
     stub_request(
       :post, %r{/api/internal/v1/laa_references}
@@ -123,6 +140,36 @@ RSpec.configure do |config|
       body: { 'error' =>
                 'Contract failed with: {:maat_reference=>'\
                 '[\"1234567 has no common platform data created against Maat application.\"]' }.to_json
+    )
+  end
+
+  config.before(:each, stub_v2_link_failure_with_unknown_maat_reference: true) do
+    stub_request(
+      :post, %r{/v2/laa_references}
+    ).to_return(
+      status: 422,
+      headers: { 'Content-Type' => 'application/json' },
+      body: { 'errors' => { 'maat_reference' =>
+                             ['1234567 has no common platform data created against Maat application.'] } }
+              .to_json
+    )
+  end
+
+  config.before(:each, stub_v2_link_server_failure: true) do
+    stub_request(
+      :post, %r{/v2/laa_references}
+    ).to_return(
+      status: 500,
+      body: ''
+    )
+  end
+
+  config.before(:each, stub_v2_link_cda_failure: true) do
+    stub_request(
+      :post, %r{/v2/laa_references}
+    ).to_return(
+      status: 424,
+      body: ''
     )
   end
 
