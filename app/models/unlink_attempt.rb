@@ -23,7 +23,7 @@ class UnlinkAttempt
 
   def to_unlink_attributes
     other_reason = { unlink_other_reason_text: other_reason_text }
-    attrs = { defendant_id: defendant_id, user_name: username, unlink_reason_code: reason_code }
+    attrs = { defendant_id:, user_name: username, unlink_reason_code: reason_code }
     attrs.merge!(other_reason) if text_required?
     attrs
   end

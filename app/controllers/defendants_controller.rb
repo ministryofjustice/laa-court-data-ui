@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics
+
 require_dependency 'court_data_adaptor'
 require_dependency 'feature_flag'
 
@@ -97,7 +99,7 @@ class DefendantsController < ApplicationController
         logger.info 'CALLING_V2_MAAT_UNLINK'
         @laa_reference.save!
       rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
-        logger.info 'CLIENT_ERROR_OCCURRED' 
+        logger.info 'CLIENT_ERROR_OCCURRED'
         render_new(I18n.t('defendant.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
       rescue ActiveResource::ServerError, ActiveResource::ClientError => e
         logger.error 'SERVER_ERROR_OCCURRED'
@@ -140,3 +142,5 @@ class DefendantsController < ApplicationController
     render 'edit'
   end
 end
+
+# rubocop:enable Metrics
