@@ -101,6 +101,7 @@ class DefendantsController < ApplicationController
         render_new(I18n.t('defendant.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
       rescue ActiveResource::ServerError, ActiveResource::ClientError => e
         logger.error 'SERVER_ERROR_OCCURRED'
+        log_sentry_error(e, @laa_reference.errors)
         render_new(I18n.t('defendant.unlink.failure'), I18n.t('error.it_helpdesk'))
       else
         redirect_to_edit_defendants
