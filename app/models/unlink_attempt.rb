@@ -3,9 +3,10 @@
 class UnlinkAttempt
   include ActiveModel::Model
 
-  attr_accessor :id, :username, :reason_code, :other_reason_text
+  attr_accessor :id, :username, :defendant_id, :reason_code, :other_reason_text
 
   validates :username, presence: true
+  validates :defendant_id, presence: true
   validates :reason_code, presence: true, inclusion: { in: :valid_reason_codes }
   validates :other_reason_text, presence: { if: :text_required? }
   validates :other_reason_text, length: { maximum: 500 }
@@ -22,7 +23,7 @@ class UnlinkAttempt
 
   def to_unlink_attributes
     other_reason = { unlink_other_reason_text: other_reason_text }
-    attrs = { user_name: username, unlink_reason_code: reason_code }
+    attrs = { defendant_id: defendant_id, user_name: username, unlink_reason_code: reason_code }
     attrs.merge!(other_reason) if text_required?
     attrs
   end

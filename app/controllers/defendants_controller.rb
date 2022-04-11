@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_dependency 'court_data_adaptor'
+require_dependency 'feature_flag'
 
 class DefendantsController < ApplicationController
   before_action :load_and_authorize_defendant_search
@@ -21,13 +22,13 @@ class DefendantsController < ApplicationController
   def edit; end
 
   def update
-    unlink_and_redirect && return if @unlink_attempt.valid?
+    unlink_laa_reference_and_redirect && return if @unlink_attempt.valid?
     render 'edit'
   end
 
-  def unlink_and_redirect
+  def redirect_to_edit_defendants
     defendant.update(@unlink_attempt.to_unlink_attributes)
-
+    
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
     flash[:notice] = I18n.t('defendants.unlink.success')
   end
@@ -70,6 +71,7 @@ class DefendantsController < ApplicationController
 
     # reason code must be an integer from 1..7
     unlink_attempt_params.merge(username: current_user.username).tap do |attrs|
+      attrs[:defendant_id] = defendant.id
       attrs[:reason_code] = attrs[:reason_code].to_i
       attrs[:reason_code] = nil if attrs[:reason_code].zero?
     end
@@ -77,6 +79,42 @@ class DefendantsController < ApplicationController
 
   def error_messages
     @errors.map { |k, v| "#{k.to_s.humanize} #{v.join(', ')}" }.join("\n")
+  end
+
+  def resource
+    if Feature.enabled?(:laa_references)
+      logger.info 'USING_V2_ENDPOINT'
+      LaaReferences
+    else
+      logger.info 'USING_V1_ENDPOINT'
+      CourtDataAdaptor::Resource::LaaReference
+    end
+  end
+
+  def resource_save
+    if Feature.enabled?(:laa_references)
+      begin
+        logger.info 'CALLING_V2_MAAT_UNLINK'
+        @laa_reference.save!
+      rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
+        logger.info 'CLIENT_ERROR_OCCURRED' 
+        render_new(I18n.t('laa_reference.link.unprocessable'), @laa_reference.errors.full_messages.join(', '))
+      rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+        logger.error 'SERVER_ERROR_OCCURRED'
+        render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
+      else
+        redirect_to_edit_defendants
+      end
+    else
+      logger.info 'CALLING_V1_MAAT_UNLINK'
+      set_unlink_attempt
+      redirect_to_edit_defendants
+    end
+  end
+
+  def unlink_laa_reference_and_redirect
+    @laa_reference = resource.new(**resource_params)
+    resource_save
   end
 
   def set_unlink_reasons
@@ -89,6 +127,10 @@ class DefendantsController < ApplicationController
                       else
                         UnlinkAttempt.new
                       end
+  end
+
+  def resource_params
+    @resource_params ||= @unlink_attempt.to_unlink_attributes
   end
 
   def adaptor_error_handler(exception)
