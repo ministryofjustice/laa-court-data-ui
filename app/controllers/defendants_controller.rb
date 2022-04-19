@@ -97,7 +97,7 @@ class DefendantsController < ApplicationController
     if Feature.enabled?(:laa_references)
       begin
         logger.info 'CALLING_V2_MAAT_UNLINK'
-        @laa_reference.patch(nil, nil, resource_params.to_json)
+        unlink
       rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
         logger.info 'CLIENT_ERROR_OCCURRED'
         render_edit(I18n.t('defendant.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
@@ -120,6 +120,10 @@ class DefendantsController < ApplicationController
     resource_save
   end
 
+  def unlink
+    @laa_reference.patch(nil, nil, resource_params.to_json)
+  end
+
   def set_unlink_reasons
     @unlink_reasons = UnlinkReason.all
   end
@@ -136,7 +140,6 @@ class DefendantsController < ApplicationController
     @resource_params ||= @unlink_attempt.to_unlink_attributes
   end
 
-  #add render method that abstracts construction of flash and render 
   def adaptor_error_handler(exception)
     @errors = exception.errors
     flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages:)
@@ -146,7 +149,7 @@ class DefendantsController < ApplicationController
   def render_edit(title, message)
     flash.now[:alert] = { title:, message: }
     render 'edit'
-  end 
+  end
 
   def log_sentry_error(exception, errors)
     Sentry.with_scope do |scope|

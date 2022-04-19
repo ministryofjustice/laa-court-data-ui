@@ -4,7 +4,7 @@ require 'court_data_adaptor'
 
 RSpec.shared_examples 'invalid unlink_attempt request' do
   before do
-    #change to v2 request url, set adaptor request payload in it_behaves_like blocks instead of params
+    # change to v2 request url, set adaptor request payload in it_behaves_like blocks instead of params
     patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
           params:
   end
@@ -54,9 +54,9 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       }
     }
   end
-  #change to v2 url
+  # change to v2 url
   let(:adaptor_request_path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
-  #change to v2 body
+  # change to v2 body
   let(:adaptor_request_payload) do
     {
       data:
@@ -70,7 +70,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       }
     }
   end
-  
+
   context 'when authenticated' do
     before do
       sign_in user
@@ -87,7 +87,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
-        #change to v2 request
+        # change to v2 request
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
@@ -96,7 +96,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'sends an unlink request to the adapter' do
-        #change to v2 request and payload
+        # change to v2 request and payload
         expect(a_request(:patch, adaptor_request_path)
           .with(body: adaptor_request_payload.to_json))
           .to have_been_made.once
@@ -120,7 +120,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
-        #change to v2 request
+        # change to v2 request
         stub_request(:patch, adaptor_request_path)
           .to_return(
             status: 400,
@@ -150,7 +150,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       let(:params) { { unlink_attempt: { reason_code: '1', other_reason_text: '' } } }
 
       before do
-        #change to v2 request
+        # change to v2 request
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
@@ -158,7 +158,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'sends an unlink request to the adapter' do
-      #change to v2 request and payload
+        # change to v2 request and payload
         expect(a_request(:patch, adaptor_request_path)
           .with(body: adaptor_request_payload.to_json))
           .to have_been_made.once
@@ -176,7 +176,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
     context 'with valid other_reason_text' do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
       let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: 'a reason for unlinking' } } }
-      #change to v2 payload
+      # change to v2 payload
       let(:adaptor_request_payload) do
         {
           data:
@@ -193,7 +193,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       before do
-        #change to v2 request path
+        # change to v2 request path
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
@@ -201,7 +201,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'sends an unlink request to the adapter' do
-        #change to v2 request path and body
+        # change to v2 request path and body
         expect(a_request(:patch, adaptor_request_path)
           .with(body: adaptor_request_payload.to_json))
           .to have_been_made.once
