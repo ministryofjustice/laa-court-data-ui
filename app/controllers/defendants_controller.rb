@@ -97,7 +97,7 @@ class DefendantsController < ApplicationController
     if Feature.enabled?(:laa_references)
       begin
         logger.info 'CALLING_V2_MAAT_UNLINK'
-        @laa_reference.patch(nil,nil,resource_params.to_json)
+        @laa_reference.patch(nil, nil, resource_params.to_json)
       rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
         logger.info 'CLIENT_ERROR_OCCURRED'
         render_new(I18n.t('defendant.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
@@ -116,7 +116,7 @@ class DefendantsController < ApplicationController
   end
 
   def unlink_laa_reference_and_redirect
-    @laa_reference = resource.new(id:resource_params[:defendant_id])
+    @laa_reference = resource.new(id: resource_params[:defendant_id])
     resource_save
   end
 
