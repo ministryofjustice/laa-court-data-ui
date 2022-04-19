@@ -100,11 +100,11 @@ class DefendantsController < ApplicationController
         @laa_reference.patch(nil, nil, resource_params.to_json)
       rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
         logger.info 'CLIENT_ERROR_OCCURRED'
-        render_new(I18n.t('defendant.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
+        render_edit(I18n.t('defendant.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
       rescue ActiveResource::ServerError, ActiveResource::ClientError => e
         logger.error 'SERVER_ERROR_OCCURRED'
         log_sentry_error(e, @laa_reference.errors)
-        render_new(I18n.t('defendant.unlink.failure'), I18n.t('error.it_helpdesk'))
+        render_edit(I18n.t('defendant.unlink.failure'), I18n.t('error.it_helpdesk'))
       else
         redirect_to_edit_defendants
       end
@@ -136,10 +136,23 @@ class DefendantsController < ApplicationController
     @resource_params ||= @unlink_attempt.to_unlink_attributes
   end
 
+  #add render method that abstracts construction of flash and render 
   def adaptor_error_handler(exception)
     @errors = exception.errors
     flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages:)
     render 'edit'
+  end
+
+  def render_edit(title, message)
+    flash.now[:alert] = { title:, message: }
+    render 'edit'
+  end 
+
+  def log_sentry_error(exception, errors)
+    Sentry.with_scope do |scope|
+      scope.set_extra('error_message', errors)
+      Sentry.capture_exception(exception)
+    end
   end
 end
 
