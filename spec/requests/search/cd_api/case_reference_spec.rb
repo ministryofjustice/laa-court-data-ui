@@ -40,8 +40,8 @@ RSpec.describe 'case reference search', type: :request, stub_defendants_case_sea
         expect(response).to render_template('searches/_results')
       end
 
-      it 'renders results/_prosecution_case' do
-        expect(response).to render_template('results/cd_api/_defendants')
+      it 'renders results/_defendant' do
+        expect(response).to render_template('results/_defendant')
       end
     end
 

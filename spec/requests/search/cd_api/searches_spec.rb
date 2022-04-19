@@ -28,7 +28,7 @@ RSpec.describe 'Searches', type: :request do
       let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
 
       include_examples 'renders results'
-      it { expect(response).to render_template('results/cd_api/_defendants') }
+      it { expect(response).to render_template('results/_defendant') }
     end
 
     context 'when POSTing an invalid case search', stub_defendants_case_search: true do
@@ -41,7 +41,7 @@ RSpec.describe 'Searches', type: :request do
       let(:params) { { search: { filter: 'defendant_reference', term: 'JC123456A' } } }
 
       include_examples 'renders results'
-      it { expect(response).to render_template('results/cd_api/_defendants') }
+      it { expect(response).to render_template('results/_defendant') }
     end
 
     context 'when POSTing a invalid defendant ASN or NINO search', stub_defendants_ref_search: true do
@@ -65,7 +65,7 @@ RSpec.describe 'Searches', type: :request do
       end
 
       include_examples 'renders results'
-      it { expect(response).to render_template('results/cd_api/_defendants') }
+      it { expect(response).to render_template('results/_defendant') }
     end
 
     context 'when POSTing an invalid defendant name search', stub_defendant_name_search: true do

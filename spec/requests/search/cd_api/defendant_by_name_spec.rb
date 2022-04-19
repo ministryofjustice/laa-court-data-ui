@@ -54,7 +54,7 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
       end
 
       it 'renders results/_defendant' do
-        expect(response).to render_template('results/cd_api/_defendants')
+        expect(response).to render_template('results/_defendant')
       end
     end
 
