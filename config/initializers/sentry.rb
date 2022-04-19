@@ -7,5 +7,6 @@ if Rails.env.eql?('production') && ENV['SENTRY_DSN'].present?
 
     # Sample rate is set to 5%
     config.traces_sample_rate = 0.05
+    config.release = ENV['BUILD_TAG']
   end
 end
