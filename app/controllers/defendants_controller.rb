@@ -73,7 +73,9 @@ class DefendantsController < ApplicationController
 
     # reason code must be an integer from 1..7
     unlink_attempt_params.merge(username: current_user.username).tap do |attrs|
-      attrs[:defendant_id] = defendant.id
+      if Feature.enabled?(:laa_references)
+        attrs[:defendant_id] = defendant.id
+      end
       attrs[:reason_code] = attrs[:reason_code].to_i
       attrs[:reason_code] = nil if attrs[:reason_code].zero?
     end
@@ -100,11 +102,11 @@ class DefendantsController < ApplicationController
         unlink
       rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
         logger.info 'CLIENT_ERROR_OCCURRED'
-        render_edit(I18n.t('defendant.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
+        render_edit(I18n.t('defendants.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
       rescue ActiveResource::ServerError, ActiveResource::ClientError => e
         logger.error 'SERVER_ERROR_OCCURRED'
         log_sentry_error(e, @laa_reference.errors)
-        render_edit(I18n.t('defendant.unlink.failure'), I18n.t('error.it_helpdesk'))
+        render_edit(I18n.t('defendants.unlink.failure'), I18n.t('error.it_helpdesk'))
       else
         redirect_to_edit_defendants
       end
