@@ -66,7 +66,7 @@ spec:
             - name: DISPLAY_RAW_RESPONSES
               value: enabled
             - name: LAA_REFERENCES
-              value: true
+              value: 'true'
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
