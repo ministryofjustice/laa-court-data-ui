@@ -73,9 +73,7 @@ class DefendantsController < ApplicationController
 
     # reason code must be an integer from 1..7
     unlink_attempt_params.merge(username: current_user.username).tap do |attrs|
-      if Feature.enabled?(:laa_references)
-        attrs[:defendant_id] = defendant.id
-      end
+      attrs[:defendant_id] = defendant.id if Feature.enabled?(:laa_references)
       attrs[:reason_code] = attrs[:reason_code].to_i
       attrs[:reason_code] = nil if attrs[:reason_code].zero?
     end

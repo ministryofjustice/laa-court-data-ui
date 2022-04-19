@@ -1,9 +1,9 @@
 # frozen_string_literal: true
+
 require_dependency 'feature_flag'
 
 class UnlinkAttempt
   include ActiveModel::Model
-  
 
   attr_accessor :id, :username, :defendant_id, :reason_code, :other_reason_text
 
@@ -24,11 +24,11 @@ class UnlinkAttempt
 
   def to_unlink_attributes
     other_reason = { unlink_other_reason_text: other_reason_text }
-    if Feature.enabled?(:laa_references)
-      attrs = { defendant_id:, user_name: username, unlink_reason_code: reason_code }
-    else
-      attrs = {user_name: username, unlink_reason_code: reason_code}
-    end
+    attrs = if Feature.enabled?(:laa_references)
+              { defendant_id:, user_name: username, unlink_reason_code: reason_code }
+            else
+              { user_name: username, unlink_reason_code: reason_code }
+            end
     attrs.merge!(other_reason) if text_required?
     attrs
   end

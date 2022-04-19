@@ -280,8 +280,8 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
     before do
       allow(Rails.configuration.x.court_data_api_config).to receive(:method_missing).with(:uri).and_return('http://localhost:8000/v2')
       allow(ENV).to receive(:fetch).with('LAA_REFERENCES', false).and_return('true')
-       patch "/defendants/#{defendant_id_from_fixture}", params:
-    end 
+      patch "/defendants/#{defendant_id_from_fixture}", params:
+    end
 
     it 'redirects to sign in page' do
       expect(response).to redirect_to new_user_session_path
