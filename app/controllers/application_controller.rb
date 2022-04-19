@@ -13,9 +13,6 @@ class ApplicationController < ActionController::Base
   # https://apidock.com/rails/v6.0.0/ActiveSupport/Rescuable/ClassMethods/rescue_from
   rescue_from Exception, with: :unexpected_exception_handler
   rescue_from CanCan::AccessDenied, with: :access_denied
-  rescue_from ActiveResource::ForbiddenAccess, with: :active_resource_error
-  rescue_from ActiveResource::TimeoutError, with: :active_resource_error
-  rescue_from ActiveResource::ServerError, with: :active_resource_error
 
   def current_search_params=(params)
     session[:current_search_params] = params
@@ -46,7 +43,8 @@ class ApplicationController < ActionController::Base
       redirect_to controller: :errors, action: :not_found
     when JsonApiClient::Errors::NotAuthorized
       redirect_to controller: :errors, action: :unauthorized
-    when JsonApiClient::Errors::ConnectionError, Net::ReadTimeout
+    when JsonApiClient::Errors::ConnectionError, Net::ReadTimeout, ActiveResource::ForbiddenAccess,
+      ActiveResource::ServerError, ActiveResource::TimeoutError
       Sentry.capture_exception(exception)
       flash[:alert] = I18n.t('error.connection_error_message', it_helpdesk: I18n.t('error.it_helpdesk'))
       redirect_to authenticated_root_path
@@ -54,11 +52,5 @@ class ApplicationController < ActionController::Base
       Sentry.capture_exception(exception)
       redirect_to controller: :errors, action: :internal_error
     end
-  end
-
-  def active_resource_error(exception)
-    Sentry.capture_exception(exception)
-    flash[:alert] = I18n.t('error.connection_error_message', it_helpdesk: I18n.t('error.it_helpdesk'))
-    redirect_to authenticated_root_path
   end
 end
