@@ -90,6 +90,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ReferenceParser do
     end
   end
 
+  # TODO: Test the ASN format to reduce invalid requests if there's a typo
   # Arrest summons number (ASN) format?? Criminal prosecution reference (CPR)
   # https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/360582/cjs-data-standards-catalogue-5.0.pdf
   # YYFFFUUSSN(11)A
