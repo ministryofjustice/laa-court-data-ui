@@ -45,7 +45,7 @@ RSpec.describe 'case reference search', type: :request, stub_defendants_case_sea
       end
     end
 
-    context 'when no results', stub_no_results: true do
+    context 'when no results', stub_no_v2_results: true do
       before do
         allow_any_instance_of(Search).to receive(:execute).and_return([])
         post '/searches', params: { search: { term: 'T20200001', filter: :case_reference } }

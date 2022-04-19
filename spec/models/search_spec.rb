@@ -180,8 +180,6 @@ RSpec.describe Search, type: :model do
         let(:cdapi_search_service) { CdApi::SearchService }
 
         before do
-          stub_request(:get, %r{/v2/defendants}).to_return(status: 200, body: '',
-                                                           headers: { 'Content-Type' => 'application/json' })
           allow(cdapi_search_service).to receive(:call).with(any_args).and_raise(
             ActiveResource::BadRequest, ''
           )

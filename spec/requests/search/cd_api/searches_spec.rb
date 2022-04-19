@@ -104,7 +104,7 @@ RSpec.describe 'Searches', type: :request do
       end
     end
 
-    context 'when there are no results', stub_no_results: true do
+    context 'when there are no results', stub_no_v2_results: true do
       let(:params) { { search: { filter: 'case_reference', term: 'whatever' } } }
 
       it { expect(response).to render_template('searches/new') }

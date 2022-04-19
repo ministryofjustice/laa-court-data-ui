@@ -82,7 +82,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_no_results: true) do
+  config.before(:each, stub_no_v2_results: true) do
     stub_request(:get, %r{http.*/v2/defendants})
       .to_return(
         status: 200,
