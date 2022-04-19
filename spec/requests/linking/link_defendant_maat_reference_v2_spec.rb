@@ -24,7 +24,6 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
   end
 
   before do
-    allow(Rails.configuration.x.court_data_api_config).to receive(:method_missing).with(:uri).and_return('http://localhost:8000/v2')
     allow(ENV).to receive(:fetch).with('LAA_REFERENCES', false).and_return('true')
   end
 
