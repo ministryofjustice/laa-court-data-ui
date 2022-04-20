@@ -11,7 +11,6 @@ class UnlinkAttempt
   validates :reason_code, presence: true, inclusion: { in: :valid_reason_codes }
   validates :other_reason_text, presence: { if: :text_required? }
   validates :other_reason_text, length: { maximum: 500 }
-  validates :maat_reference, numericality: { only_integer: true }
 
   delegate :text_required?, to: :reason, allow_nil: true
 

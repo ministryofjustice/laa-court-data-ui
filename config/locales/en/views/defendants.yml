@@ -11,6 +11,6 @@ en:
     unlink:
       detail: Remove link to court data
       failure: The link to the court data source could not be removed. %{error_messages}
-      unprocessable: Unable to unlink this defendant
       success: You have successfully unlinked from the court data source
+      unprocessable: Unable to unlink this defendant
       warning: Removing the link will stop hearing updates being received
