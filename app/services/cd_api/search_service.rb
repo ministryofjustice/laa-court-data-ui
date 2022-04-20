@@ -9,13 +9,13 @@ module CdApi
     def initialize(filter, term, dob)
       @filter = filter
       @term = term
-      @dob = dob.to_s if dob # TODO: request the api to use date object instead of string or be consistent with v1
+      @dob = dob
     end
 
     def call
       params = send("#{@filter}_params")
 
-      CdApi::Defendant.find(:all, params: params)
+      CdApi::Defendant.find(:all, params:)
     end
 
     private
