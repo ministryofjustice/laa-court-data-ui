@@ -5,7 +5,7 @@ require 'court_data_adaptor'
 
 RSpec.shared_examples 'invalid unlink_attempt request' do
   before do
-    patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
+    patch "/defendants/#{defendant_id}?urn=#{prosecution_case_reference_from_fixture}",
           params:
   end
 
@@ -32,7 +32,7 @@ RSpec.shared_examples 'invalid unlink_attempt request' do
   end
 end
 
-RSpec.describe 'unlink defendant maat reference', type: :request do
+RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlinked: true do
   include RSpecHtmlMatchers
 
   before do
@@ -41,6 +41,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   end
 
   let(:user) { create(:user) }
+  let(:case_urn) { 'TEST12345' }
   let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
   let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
   let(:json_api_content) { { 'Content-Type' => 'application/vnd.api+json' } }
@@ -48,7 +49,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   let(:json_content) { { 'Content-Type' => 'application/json' } }
   let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
   let(:defendant_nino_from_fixture) { 'JC123456A' }
-  let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+  let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:prosecution_case_reference_from_fixture) { 'TEST12345' }
   let(:api_url_v2) { BaseModel.site }
   let(:maat_reference) { 2_123_456 }
@@ -62,25 +63,25 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       }
     }
   end
-  let(:adaptor_request_path) { "#{api_url}/defendants/#{defendant_id_from_fixture}" }
+  let(:adaptor_request_path) { "#{api_url}/defendants/#{defendant_id}" }
   let(:adaptor_request_payload) do
     {
       data:
       {
-        id: defendant_id_from_fixture,
+        id: defendant_id,
         type: 'defendants',
         attributes: {
-          defendant_id: defendant_id_from_fixture,
+          defendant_id: defendant_id,
           user_name: user.username,
           unlink_reason_code: 1
         }
       }
     }
   end
-  let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id_from_fixture}/" }
+  let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}/" }
   let(:api_request_payload) do
     {
-      defendant_id: defendant_id_from_fixture,
+      defendant_id: defendant_id,
       user_name: user.username,
       unlink_reason_code: 1,
       maat_reference:
@@ -97,7 +98,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         .with(query:)
         .to_return(body: defendant_fixture, headers: json_api_content)
 
-      stub_request(:get, "#{api_url}/defendants/#{defendant_id_from_fixture}?include=offences")
+      stub_request(:get, "#{api_url}/defendants/#{defendant_id}?include=offences")
         .to_return(body: defendant_by_id_fixture, headers: json_api_content)
     end
 
@@ -108,7 +109,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
+        patch "/defendants/#{defendant_id}?urn=#{prosecution_case_reference_from_fixture}",
               params:
       end
 
@@ -129,7 +130,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to new_laa_reference path' do
-        expect(response).to redirect_to new_laa_reference_path(id: defendant_id_from_fixture,
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_id,
                                                                urn: prosecution_case_reference_from_fixture)
       end
 
@@ -149,7 +150,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
             headers: json_api_content
           )
 
-        patch "/defendants/#{defendant_id_from_fixture}?urn=#{prosecution_case_reference_from_fixture}",
+        patch "/defendants/#{defendant_id}?urn=#{prosecution_case_reference_from_fixture}",
               params:
       end
 
@@ -174,7 +175,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        patch "/defendants/#{defendant_id_from_fixture}", params:
+        patch "/defendants/#{defendant_id}", params:
       end
 
       it 'sends an unlink request to JSON API Client' do
@@ -194,7 +195,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path(id: defendant_id_from_fixture)
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_id)
       end
     end
 
@@ -205,10 +206,10 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         {
           data:
           {
-            id: defendant_id_from_fixture,
+            id: defendant_id,
             type: 'defendants',
             attributes: {
-              defendant_id: defendant_id_from_fixture,
+              defendant_id: defendant_id,
               user_name: user.username,
               unlink_reason_code: 7,
               unlink_other_reason_text: 'a reason for unlinking'
@@ -219,7 +220,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
 
       let(:api_request_payload) do
         {
-          defendant_id: defendant_id_from_fixture,
+          defendant_id: defendant_id,
           user_name: user.username,
           unlink_reason_code: 7,
           maat_reference:,
@@ -231,7 +232,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        patch "/defendants/#{defendant_id_from_fixture}", params:
+        patch "/defendants/#{defendant_id}", params:
       end
 
       it 'sends an unlink request to JSON API Client' do
@@ -251,7 +252,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to new_laa_reference_path(id: defendant_id_from_fixture)
+        expect(response).to redirect_to new_laa_reference_path(id: defendant_id)
       end
     end
 
@@ -302,7 +303,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
         stub_request(:patch, adaptor_request_path)
           .to_return(status: 202, body: '', headers: plain_content)
 
-        patch "/defendants/#{defendant_id_from_fixture}", params:
+        patch "/defendants/#{defendant_id}", params:
       end
 
       it 'sends token request' do
@@ -317,7 +318,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
     before do
       allow(Rails.configuration.x.court_data_api_config).to receive(:method_missing).with(:uri).and_return('http://localhost:8000/v2')
       allow(ENV).to receive(:fetch).with('LAA_REFERENCES', false).and_return('true')
-      patch "/defendants/#{defendant_id_from_fixture}", params:
+      patch "/defendants/#{defendant_id}", params:
     end
 
     it 'redirects to sign in page' do
