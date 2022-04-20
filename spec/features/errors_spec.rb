@@ -125,4 +125,76 @@ RSpec.feature 'Error page', type: :feature do
       expect(page).to have_current_path('/')
     end
   end
+
+  context 'when active resource forbidden error raised' do
+    let(:user) { create(:user) }
+
+    before do
+      sign_in user
+      allow(Rails.env).to receive(:production?).and_return true
+      allow(User).to receive(:find).and_raise(ActiveResource::ForbiddenAccess)
+    end
+
+    scenario 'returns 403' do
+      visit user_path(user.id)
+
+      within '.govuk-main-wrapper' do
+        expect(page).to have_css('.govuk-heading-xl', text: 'Sorry, something went wrong')
+        expect(page).to have_css('.govuk-body', text: 'Try again later.')
+        expect(page).to have_css('.govuk-body',
+                                 text: 'You can also browse from the homepage to find the information ')
+        expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
+      end
+      click_link 'browse from the homepage'
+      expect(page).to have_current_path('/')
+    end
+  end
+
+  context 'when active resource timeout error raised' do
+    let(:user) { create(:user) }
+
+    before do
+      sign_in user
+      allow(Rails.env).to receive(:production?).and_return true
+      allow(User).to receive(:find).and_raise(ActiveResource::TimeoutError)
+    end
+
+    scenario 'returns 408' do
+      visit user_path(user.id)
+
+      within '.govuk-main-wrapper' do
+        expect(page).to have_css('.govuk-heading-xl', text: 'Sorry, something went wrong')
+        expect(page).to have_css('.govuk-body', text: 'Try again later.')
+        expect(page).to have_css('.govuk-body',
+                                 text: 'You can also browse from the homepage to find the information ')
+        expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
+      end
+      click_link 'browse from the homepage'
+      expect(page).to have_current_path('/')
+    end
+  end
+
+  context 'when active resource server error raised' do
+    let(:user) { create(:user) }
+
+    before do
+      sign_in user
+      allow(Rails.env).to receive(:production?).and_return true
+      allow(User).to receive(:find).and_raise(ActiveResource::ServerError)
+    end
+
+    scenario 'returns 500' do
+      visit user_path(user.id)
+
+      within '.govuk-main-wrapper' do
+        expect(page).to have_css('.govuk-heading-xl', text: 'Sorry, something went wrong')
+        expect(page).to have_css('.govuk-body', text: 'Try again later.')
+        expect(page).to have_css('.govuk-body',
+                                 text: 'You can also browse from the homepage to find the information ')
+        expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
+      end
+      click_link 'browse from the homepage'
+      expect(page).to have_current_path('/')
+    end
+  end
 end
