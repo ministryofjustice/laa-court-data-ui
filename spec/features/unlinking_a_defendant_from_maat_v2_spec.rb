@@ -5,6 +5,8 @@ require 'court_data_adaptor'
 RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlinked: true do
   let(:defendant_nino_from_fixture) { 'JC123456A' }
   let(:case_urn) { 'TEST12345' }
+  let(:api_url_v2) { BaseModel.site }
+  let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}/" }
 
   let(:user) { create(:user) }
 
@@ -23,6 +25,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlinked: 
     body = load_json_stub(defendant_fixture)
     defendant_body = load_json_stub(defendant_by_id_fixture)
     json_api_header = { 'Content-Type' => 'application/vnd.api+json' }
+    json_header = { 'Content-Type' => 'application/json' }
 
     stub_request(:get, "#{api_url}/prosecution_cases")
       .with(query:)
@@ -30,6 +33,9 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlinked: 
 
     stub_request(:get, "#{api_url}/defendants/#{defendant_id}?include=offences")
       .to_return(body: defendant_body, headers: json_api_header)
+
+    stub_request(:patch, api_request_path)
+      .to_return(body: '', headers: json_header)
 
     visit(url)
   end
@@ -64,8 +70,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlinked: 
     let(:url) { "defendants/#{defendant_id}/edit?urn=#{case_urn}" }
     let(:adaptor_request_path) { "#{api_url}/defendants/#{defendant_id}" }
     let(:maat_reference) { 2_123_456 }
-    let(:api_url_v2) { BaseModel.site }
-    let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}/" }
+    
 
     it 'does not display the MAAT ID field' do
       expect(page).not_to have_field('MAAT ID')
