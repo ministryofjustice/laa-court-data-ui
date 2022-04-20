@@ -112,7 +112,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
           defendant_id:,
           user_name: user.username,
           unlink_reason_code: 1,
-          maat_reference: maat_reference,
+          maat_reference:
         }
       end
 
@@ -163,8 +163,8 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
             defendant_id:,
             user_name: user.username,
             unlink_reason_code: 7,
-            maat_reference: maat_reference,
-            unlink_other_reason_text: 'Case already concluded',
+            maat_reference:,
+            unlink_other_reason_text: 'Case already concluded'
           }
         end
 
