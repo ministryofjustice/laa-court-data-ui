@@ -71,7 +71,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlinked:
         id: defendant_id,
         type: 'defendants',
         attributes: {
-          defendant_id: defendant_id,
+          defendant_id:,
           user_name: user.username,
           unlink_reason_code: 1
         }
@@ -81,7 +81,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlinked:
   let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}/" }
   let(:api_request_payload) do
     {
-      defendant_id: defendant_id,
+      defendant_id:,
       user_name: user.username,
       unlink_reason_code: 1,
       maat_reference:
@@ -209,7 +209,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlinked:
             id: defendant_id,
             type: 'defendants',
             attributes: {
-              defendant_id: defendant_id,
+              defendant_id:,
               user_name: user.username,
               unlink_reason_code: 7,
               unlink_other_reason_text: 'a reason for unlinking'
@@ -220,7 +220,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlinked:
 
       let(:api_request_payload) do
         {
-          defendant_id: defendant_id,
+          defendant_id:,
           user_name: user.username,
           unlink_reason_code: 7,
           maat_reference:,

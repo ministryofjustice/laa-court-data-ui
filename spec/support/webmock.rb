@@ -90,7 +90,7 @@ RSpec.configure do |config|
       :patch,
       %r{http.*/v2/laa_references/#{defendant_id}}
     ).to_return(
-      status: 200, 
+      status: 200,
       body: '',
       headers: { 'Content-Type' => 'application/json' }
     )
