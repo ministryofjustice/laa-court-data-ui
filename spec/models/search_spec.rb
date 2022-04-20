@@ -35,7 +35,7 @@ RSpec.describe Search, type: :model do
   describe '#execute' do
     context 'when v2 search flag is false' do
       before do
-        allow(Feature).to receive(:enabled?).with('DEFENDANTS_SEARCH').and_return(false)
+        allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
         allow(query_class).to receive(:new).and_return(query_instance)
         allow(query_instance).to receive(:call)
         search_instance.execute
@@ -102,7 +102,7 @@ RSpec.describe Search, type: :model do
       let(:cdapi_search_service) { CdApi::SearchService }
 
       before do
-        allow(Feature).to receive(:enabled?).with('DEFENDANTS_SEARCH').and_return(true)
+        allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true)
         allow(cdapi_search_service).to receive(:call).with(any_args).and_return([])
       end
 

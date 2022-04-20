@@ -4,7 +4,7 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, vcr: true, js:
   let(:user) { create(:user) }
 
   before do
-    allow(Feature).to receive(:enabled?).with('DEFENDANTS_SEARCH').and_return(true)
+    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true)
     sign_in user
   end
 

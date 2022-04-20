@@ -44,7 +44,7 @@ class Search
             if: proc { |search| search.filter.eql?('defendant_name') }
 
   def execute
-    return query_cd_api if Feature.enabled?('DEFENDANTS_SEARCH')
+    return query_cd_api if Feature.enabled?(:defendants_search)
 
     query_cda.call
   end
