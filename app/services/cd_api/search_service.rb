@@ -13,17 +13,24 @@ module CdApi
     end
 
     def call
-      case @filter
-      when 'case_reference'
-        CdApi::Defendant.find(:all, params: { urn: urn(@term) })
-      when 'defendant_reference'
-        CdApi::Defendant.find(:all, params: { reference.kind => reference.value })
-      when 'defendant_name'
-        CdApi::Defendant.find(:all, params: { name: @term, dob: @dob })
-      end
+      params = send("#{@filter}_params")
+
+      CdApi::Defendant.find(:all, params: params)
     end
 
     private
+
+    def case_reference_params
+      { urn: urn(@term) }
+    end
+
+    def defendant_reference_params
+      { reference.kind => reference.value }
+    end
+
+    def defendant_name_params
+      { name: @term, dob: @dob }
+    end
 
     def urn(term)
       term.delete("\s\t\r\n\/\-").upcase
