@@ -88,7 +88,7 @@ RSpec.configure do |config|
 
     stub_request(
       :patch,
-      %r{http.*/v2/laa_references/#{defendant_id}}
+      %r{http.*/v2/laa_references/#{defendant_id}/}
     ).to_return(
       status: 200,
       body: '',
