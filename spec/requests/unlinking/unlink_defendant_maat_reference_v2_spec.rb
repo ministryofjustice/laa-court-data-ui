@@ -3,7 +3,7 @@
 # rubocop:disable RSpec/MultipleMemoizedHelpers
 require 'court_data_adaptor'
 
-RSpec.shared_examples 'invalid unlink_attempt request' do
+RSpec.shared_examples 'invalid unlink_attempt request for CD API' do
   before do
     patch "/defendants/#{defendant_id}?urn=#{prosecution_case_reference_from_fixture}",
           params:
