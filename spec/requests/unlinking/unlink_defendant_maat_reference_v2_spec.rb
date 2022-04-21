@@ -32,7 +32,7 @@ RSpec.shared_examples 'invalid unlink_attempt request' do
   end
 end
 
-RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlinked: true do
+RSpec.describe 'unlink defendant maat reference', type: :request do
   include RSpecHtmlMatchers
 
   before do

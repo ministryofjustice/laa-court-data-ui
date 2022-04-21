@@ -87,15 +87,6 @@ RSpec.configure do |config|
     )
 
     stub_request(
-      :patch,
-      %r{http.*/v2/laa_references/#{defendant_id}/}
-    ).to_return(
-      status: 200,
-      body: '',
-      headers: { 'Content-Type' => 'application/json' }
-    )
-
-    stub_request(
       :get,
       %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events,providers}
     ).to_return(
