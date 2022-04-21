@@ -257,7 +257,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
     end
 
     context 'with invalid reason_code' do
-      it_behaves_like 'invalid unlink_attempt request' do
+      it_behaves_like 'invalid unlink_attempt request for CD API' do
         let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
         let(:params) { { unlink_attempt: { reason_code: '101', other_reason_text: '' } } }
         let(:error_message) { 'Choose a reason for unlinking from list' }
@@ -265,7 +265,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
     end
 
     context 'with blank reason_code' do
-      it_behaves_like 'invalid unlink_attempt request' do
+      it_behaves_like 'invalid unlink_attempt request for CD API' do
         let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
         let(:params) { { unlink_attempt: { reason_code: '', other_reason_text: '' } } }
         let(:error_message) { 'Choose a reason for unlinking' }
@@ -273,7 +273,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
     end
 
     context 'with blank other_reason_text for reason that requires it' do
-      it_behaves_like 'invalid unlink_attempt request' do
+      it_behaves_like 'invalid unlink_attempt request for CD API' do
         let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
         let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: '' } } }
         let(:error_message) { 'Enter the reason for unlinking' }
@@ -281,7 +281,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
     end
 
     context 'with over the maximum other_reason_text for reason that requires it' do
-      it_behaves_like 'invalid unlink_attempt request' do
+      it_behaves_like 'invalid unlink_attempt request for CD API' do
         max_character = Faker::Lorem.characters(number: 501)
         let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
         let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: max_character } } }
