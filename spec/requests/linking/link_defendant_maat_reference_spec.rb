@@ -38,7 +38,6 @@ RSpec.describe 'link defendant maat reference', type: :request, stub_unlinked: t
     end
 
     before do
-      allow(ENV).to receive(:fetch).with('LAA_REFERENCES', false).and_return('false')
       sign_in user
       post '/laa_references', params:
     end

@@ -11,7 +11,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature do
   let(:user) { create(:user) }
 
   before do
-    ENV['LAA_REFERENCES'] = 'true'
+    allow(Feature).to receive(:enabled?).with(:laa_references).and_return(true)
     allow(Rails.configuration.x.court_data_api_config).to receive(:method_missing).with(:uri).and_return('http://localhost:8000/v2')
     sign_in user
 

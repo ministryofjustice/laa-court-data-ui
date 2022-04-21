@@ -91,7 +91,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   context 'when authenticated' do
     before do
       allow(Rails.configuration.x.court_data_api_config).to receive(:method_missing).with(:uri).and_return('http://localhost:8000/v2')
-      allow(ENV).to receive(:fetch).with('LAA_REFERENCES', false).and_return('true')
+      allow(Feature).to receive(:enabled?).with(:laa_references).and_return(true)
       sign_in user
 
       stub_request(:get, "#{api_url}/prosecution_cases")

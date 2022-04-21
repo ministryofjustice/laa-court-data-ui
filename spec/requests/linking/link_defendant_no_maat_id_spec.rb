@@ -36,7 +36,6 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
     end
 
     before do
-      allow(ENV).to receive(:fetch).with('LAA_REFERENCES', false).and_return('false')
       sign_in user
       post '/laa_references', params:
     end
