@@ -32,7 +32,7 @@ RSpec.shared_examples 'invalid unlink_attempt request for CD API' do
   end
 end
 
-RSpec.describe 'unlink defendant maat reference', type: :request do
+RSpec.describe 'unlink defendant maat reference', type: :request, stub_linked_v2: true do
   include RSpecHtmlMatchers
 
   before do
@@ -48,7 +48,6 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   let(:plain_content) { { 'Content-Type' => 'text/plain; charset=utf-8' } }
   let(:json_content) { { 'Content-Type' => 'application/json' } }
   let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
-  let(:defendant_nino_from_fixture) { 'JC123456A' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:prosecution_case_reference_from_fixture) { 'TEST12345' }
   let(:api_url_v2) { BaseModel.site }
