@@ -87,7 +87,7 @@ class DefendantsController < ApplicationController
   def resource
     if Feature.enabled?(:laa_references)
       logger.info 'USING_V2_ENDPOINT'
-      LaaReferences
+      CdApi::LaaReferences
     else
       logger.info 'USING_V1_ENDPOINT'
       CourtDataAdaptor::Resource::LaaReference

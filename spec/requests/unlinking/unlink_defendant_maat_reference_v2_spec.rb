@@ -50,7 +50,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_linked_v2
   let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:prosecution_case_reference_from_fixture) { 'TEST12345' }
-  let(:api_url_v2) { BaseModel.site }
+  let(:api_url_v2) { CdApi::BaseModel.site }
   let(:maat_reference) { 2_123_456 }
 
   let(:params) do
@@ -77,7 +77,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_linked_v2
       }
     }
   end
-  let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}/" }
+  let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}/" }
   let(:api_request_payload) do
     {
       defendant_id:,
