@@ -4,7 +4,6 @@ RSpec.describe 'Searches', type: :request do
   let(:user) { create(:user) }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
     sign_in user
   end
 

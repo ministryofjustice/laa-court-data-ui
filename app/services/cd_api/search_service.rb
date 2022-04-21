@@ -14,7 +14,7 @@ module CdApi
 
     def call
       params = send("#{@filter}_params")
-
+      Rails.logger.info 'V2_SEARCH_DEFENDANTS'
       CdApi::Defendant.find(:all, params:)
     end
 

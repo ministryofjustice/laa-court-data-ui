@@ -45,7 +45,7 @@ class Search
 
   def execute
     return query_cd_api if Feature.enabled?(:defendants_search)
-
+    Rails.logger.info 'V1_SEARCH_DEFENDANTS'
     query_cda.call
   end
 
