@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_dependency 'court_data_adaptor'
+require_dependency 'feature_flag'
 
 class Search
   include ActiveModel::Model
@@ -43,12 +44,29 @@ class Search
             if: proc { |search| search.filter.eql?('defendant_name') }
 
   def execute
-    query.call
+    return query_cd_api if Feature.enabled?(:defendants_search)
+    Rails.logger.info 'V1_SEARCH_DEFENDANTS'
+    query_cda.call
   end
 
   private
 
-  def query
+  def query_cd_api
+    CdApi::SearchService.call(filter:, term:, dob:)
+  rescue ActiveResource::BadRequest
+    Rails.logger.info 'CLIENT_ERROR_OCCURRED'
+    empty_collection
+  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+    Rails.logger.error 'SERVER_ERROR_OCCURRED'
+    Sentry.capture_exception(e)
+    empty_collection
+  end
+
+  def empty_collection
+    []
+  end
+
+  def query_cda
     send("#{filter}_query")
   end
 
