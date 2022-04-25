@@ -29,8 +29,6 @@ class DefendantsController < ApplicationController
   end
 
   def redirect_to_edit_defendants
-    defendant.update(@unlink_attempt.to_unlink_attributes)
-
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
     flash[:notice] = I18n.t('defendants.unlink.success')
   end
@@ -99,8 +97,9 @@ class DefendantsController < ApplicationController
       begin
         logger.info 'CALLING_V2_MAAT_UNLINK'
         unlink
-      rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
+      rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest => e
         logger.info 'CLIENT_ERROR_OCCURRED'
+        @laa_reference.errors.from_json(e.response.body)
         render_edit(I18n.t('defendants.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
       rescue ActiveResource::ServerError, ActiveResource::ClientError => e
         logger.error 'SERVER_ERROR_OCCURRED'
@@ -112,6 +111,7 @@ class DefendantsController < ApplicationController
     else
       logger.info 'CALLING_V1_MAAT_UNLINK'
       set_unlink_attempt
+      defendant.update(@unlink_attempt.to_unlink_attributes)
       redirect_to_edit_defendants
     end
   end
