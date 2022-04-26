@@ -25,7 +25,7 @@ RSpec.shared_examples 'invalid unlink_attempt request for CD API' do
   end
 end
 
-RSpec.describe 'unlink defendant maat reference', type: :request, vcr: true, stub_unlink_v2: true do
+RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2: true do
   include RSpecHtmlMatchers
 
   before do
@@ -38,7 +38,6 @@ RSpec.describe 'unlink defendant maat reference', type: :request, vcr: true, stu
   let(:case_urn) { 'TEST12345' }
   let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
   let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
-  let(:json_api_content) { { 'Content-Type' => 'application/vnd.api+json' } }
   let(:plain_content) { { 'Content-Type' => 'text/plain; charset=utf-8' } }
   let(:json_content) { { 'Content-Type' => 'application/json' } }
   let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
@@ -83,13 +82,6 @@ RSpec.describe 'unlink defendant maat reference', type: :request, vcr: true, stu
   context 'when authenticated' do
     before do
       sign_in user
-
-      stub_request(:get, "#{api_url}/prosecution_cases")
-        .with(query:)
-        .to_return(body: defendant_fixture, headers: json_api_content)
-
-      stub_request(:get, "#{api_url}/defendants/#{defendant_id}?include=offences")
-        .to_return(body: defendant_by_id_fixture, headers: json_api_content)
     end
 
     context 'with valid id' do
