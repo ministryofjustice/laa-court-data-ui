@@ -99,4 +99,62 @@ RSpec.configure do |config|
         headers: { 'Content-Type' => 'application/json' }
       )
   end
+
+  config.before(:each, stub_unlink_v2: true) do
+    stub_request(
+      :get,
+      %r{http.*/api/internal/v1/defendants/#{defendant_id}\?include=offences}
+    ).to_return(
+      status: 200,
+      body: load_json_stub('linked_defendant.json'),
+      headers: { 'Content-Type' => 'application/vnd.api+json' }
+    )
+
+    stub_request(
+      :patch,
+      %r{http.*/v2/laa_references/#{defendant_id}/}
+    ).to_return(
+      status: 202,
+      body: '',
+      headers: { 'Content-Type' => 'application/json' }
+    )
+  end
+
+  config.before(:each, stub_v2_unlink_bad_request: true) do
+    stub_request(
+      :patch, %r{/v2/laa_references/#{defendant_id}/}
+    ).to_return(
+      status: 400,
+      headers: { 'Content-Type' => 'application/json' },
+      body: { 'errors' => { 'user_name' => ['must not exceed 10 characters'] } }.to_json
+    )
+  end
+
+  config.before(:each, stub_v2_unlink_bad_response: true) do
+    stub_request(
+      :patch, %r{/v2/laa_references/#{defendant_id}/}
+    ).to_return(
+      status: 422,
+      headers: { 'Content-Type' => 'application/json' },
+      body: { 'errors' => { 'user_name' => ['must not exceed 10 characters'] } }.to_json
+    )
+  end
+
+  config.before(:each, stub_v2_unlink_server_failure: true) do
+    stub_request(
+      :patch, %r{/v2/laa_references/#{defendant_id}/}
+    ).to_return(
+      status: 500,
+      body: ''
+    )
+  end
+
+  config.before(:each, stub_v2_unlink_cda_failure: true) do
+    stub_request(
+      :patch, %r{/v2/laa_references/#{defendant_id}/}
+    ).to_return(
+      status: 424,
+      body: ''
+    )
+  end
 end
