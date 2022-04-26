@@ -3,11 +3,9 @@
 require 'court_data_adaptor'
 
 RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlink_v2: true do
-  let(:defendant_nino_from_fixture) { 'JC123456A' }
   let(:case_urn) { 'TEST12345' }
   let(:api_url_v2) { CdApi::BaseModel.site }
   let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}/" }
-  let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
 
   let(:user) { create(:user) }
 
@@ -25,8 +23,6 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlink_v2:
   end
 
   context 'when user views unlinked defendant' do
-    let(:defendant_fixture) { 'unlinked/defendant_by_reference_body.json' }
-    let(:defendant_by_id_fixture) { 'unlinked_defendant.json' }
     let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
     let(:url) { "laa_references/new?id=#{defendant_id}&urn=#{case_urn}" }
 
@@ -48,8 +44,6 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlink_v2:
   end
 
   context 'when user views linked defendant' do
-    let(:defendant_fixture) { 'linked/defendant_by_reference_body.json' }
-    let(:defendant_by_id_fixture) { 'linked_defendant.json' }
     let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
     let(:url) { "defendants/#{defendant_id}/edit?urn=#{case_urn}" }
     let(:maat_reference) { 2_123_456 }
