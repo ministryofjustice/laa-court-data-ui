@@ -98,13 +98,9 @@ class DefendantsController < ApplicationController
         logger.info 'CALLING_V2_MAAT_UNLINK'
         unlink
       rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest => e
-        logger.info 'CLIENT_ERROR_OCCURRED'
-        @laa_reference.errors.from_json(e.response.body)
-        render_edit(I18n.t('defendants.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
+        handle_client_error(e)
       rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-        logger.error 'SERVER_ERROR_OCCURRED'
-        log_sentry_error(e, @laa_reference.errors)
-        render_edit(I18n.t('defendants.unlink.failure'), I18n.t('error.it_helpdesk'))
+        handle_server_error(e)
       else
         redirect_to_edit_defendants
       end
@@ -114,6 +110,18 @@ class DefendantsController < ApplicationController
       defendant.update(@unlink_attempt.to_unlink_attributes)
       redirect_to_edit_defendants
     end
+  end
+
+  def handle_client_error(exception)
+    logger.info 'CLIENT_ERROR_OCCURRED'
+    @laa_reference.errors.from_json(exception.response.body)
+    render_edit(I18n.t('defendants.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
+  end
+
+  def handle_server_error(exception)
+    logger.error 'SERVER_ERROR_OCCURRED'
+    log_sentry_error(exception, @laa_reference.errors)
+    render_edit(I18n.t('defendants.unlink.failure'), I18n.t('error.it_helpdesk'))
   end
 
   def unlink_laa_reference_and_redirect
