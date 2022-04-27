@@ -33,7 +33,7 @@ RSpec.describe CourtDataAdaptor::ActsAsResource, :concern do
   describe '.refresh_token_if_required!' do
     subject(:refresh) { test_class.refresh_token_if_required! }
 
-    let(:resource) { class_double('MyResource') }
+    let(:resource) { class_double(MyResource) }
     let(:client) { instance_double(CourtDataAdaptor::Client) }
 
     before do

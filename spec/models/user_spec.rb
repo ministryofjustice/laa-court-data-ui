@@ -190,8 +190,8 @@ RSpec.describe User, type: :model do
   describe '#send_devise_notification' do
     subject(:send_notification) { user.send_devise_notification(:my_test_email, :an_arg) }
 
-    let(:devise_mailer) { instance_double('devise_mailer') }
-    let(:mailer) { instance_double('mailer') }
+    let(:devise_mailer) { instance_double(devise_mailer) }
+    let(:mailer) { instance_double(mailer) }
     let(:test_user) { user }
 
     before do
