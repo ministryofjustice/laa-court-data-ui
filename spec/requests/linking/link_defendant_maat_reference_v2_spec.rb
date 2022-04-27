@@ -24,7 +24,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
   end
 
   before do
-    ENV['LAA_REFERENCES'] = 'true';
+    ENV['LAA_REFERENCES'] = 'true'
   end
 
   context 'when authenticated' do
