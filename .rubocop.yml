@@ -32,7 +32,7 @@ Layout/EmptyLinesAroundAttributeAccessor:
 
 Layout/LineLength:
   Max: 110
-  IgnoredPatterns: ['(\A|\s)#','.*\s+ # .*', "body: '{\".*\":", "%r{http.*"]
+  AllowedPatterns: ['(\A|\s)#','.*\s+ # .*', "body: '{\".*\":", "%r{http.*"]
   AllowHeredoc: true
 
 Layout/RedundantLineBreak:
