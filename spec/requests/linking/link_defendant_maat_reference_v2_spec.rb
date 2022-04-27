@@ -24,7 +24,8 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
   end
 
   before do
-    ENV['LAA_REFERENCES'] = 'true'
+    allow(ENV).to receive(:fetch).with('LAA_REFERENCES', false).and_return('true')
+    allow(ENV).to receive(:fetch).with('ENV', 'local').and_return('local')
   end
 
   context 'when authenticated' do
