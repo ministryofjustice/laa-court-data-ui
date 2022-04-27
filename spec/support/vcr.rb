@@ -3,7 +3,7 @@
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
-  config.debug_logger = File.open('log/vcr.log', 'w') if ENV['VCR_DEBUG']
+  config.debug_logger = File.open('log/vcr.log', 'w') if ENV.fetch('VCR_DEBUG', false)
   config.before_record do |i|
     i.response.body.force_encoding('UTF-8')
   end
@@ -27,12 +27,14 @@ VCR.configure do |config|
 
   config.ignore_request do |request|
     uri = URI(request.uri)
+    cda = '/api/'
+    cdapi = '/v2/'
     [
       uri.path == '/oauth/token',
       uri.path == '/session',
       uri.path == '/__identify__',
       [
-        !uri.path.start_with?('/api/')
+        !uri.path.start_with?(cda, cdapi)
       ].all?,
       [
         uri.host.eql?('127.0.0.1'),
@@ -46,11 +48,17 @@ VCR.configure do |config|
     a_match = authorization_header.match(/^Bearer\s+([^,\s]+)/)
     a_match&.captures&.first
   end
+
+  config.filter_sensitive_data('<Basic>') do |interaction|
+    authorization_header = interaction.request.headers['Authorization'].first
+    a_match = authorization_header.match(/^Basic\s+([^,\s]+)/)
+    a_match&.captures&.first
+  end
 end
 
 # Turn off vcr from the command line, for example:
 # `VCR_OFF=true rspec`
-VCR.turn_off!(ignore_cassettes: true) if ENV['VCR_OFF']
+VCR.turn_off!(ignore_cassettes: true) if ENV.fetch('VCR_OFF', false)
 
 RSpec.configure do |config|
   # see alternative stub_oauth_token in webmock.rb
@@ -64,17 +72,6 @@ RSpec.configure do |config|
     if VCR.turned_on?
       cassette = cassette_name(example)
       VCR.use_cassette(cassette, record: :new_episodes, match_requests_on: %i[method path query]) do
-        example.run
-      end
-    else
-      example.run
-    end
-  end
-
-  config.around(:each, :vcr_cud_request) do |example|
-    if VCR.turned_on?
-      cassette = cassette_name(example)
-      VCR.use_cassette(cassette, record: :new_episodes, match_requests_on: [:body_as_json]) do
         example.run
       end
     else

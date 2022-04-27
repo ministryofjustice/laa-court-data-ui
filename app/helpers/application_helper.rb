@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def app_environment
-    "app-environment-#{ENV['ENV'] || 'local'}"
+    "app-environment-#{ENV.fetch('ENV', 'local')}"
   end
 
   private
