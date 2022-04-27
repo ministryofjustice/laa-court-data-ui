@@ -7,6 +7,6 @@ if Rails.env.eql?('production') && ENV.fetch('SENTRY_DSN', nil).present?
 
     # Sample rate is set to 5%
     config.traces_sample_rate = 0.05
-    config.release = ENV['BUILD_TAG']
+    config.release = ENV.fetch('BUILD_TAG', 'unknown')
   end
 end
