@@ -42,7 +42,7 @@ RSpec.shared_examples 'court_data_adaptor resource object' do |options|
     subject { options[:test_class].site }
 
     it 'returns environment specific configured court data uri' do
-      is_expected.to eql ENV['COURT_DATA_ADAPTOR_API_URL']
+      is_expected.to eql ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil)
     end
   end
 

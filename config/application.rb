@@ -43,11 +43,11 @@ module LaaCourtDataUi
     config.exceptions_app = routes
     config.active_job.queue_adapter = :sidekiq
     config.x.support_email_address = 'laa-get-paid@digital.justice.gov.uk'
-    config.x.display_raw_responses = %w[enabled true].include?(ENV['DISPLAY_RAW_RESPONSES'])
+    config.x.display_raw_responses = %w[enabled true].include?(ENV.fetch('DISPLAY_RAW_RESPONSES', nil))
     config.action_mailer.deliver_later_queue_name = :mailers
 
-    config.x.court_data_api_config.uri = ENV['COURT_DATA_API_URL']
-    config.x.court_data_api_config.user = ENV['COURT_DATA_API_USERNAME']
-    config.x.court_data_api_config.secret = ENV['COURT_DATA_API_SECRET']
+    config.x.court_data_api_config.uri = ENV.fetch('COURT_DATA_API_URL', nil)
+    config.x.court_data_api_config.user = ENV.fetch('COURT_DATA_API_USERNAME', nil)
+    config.x.court_data_api_config.secret = ENV.fetch('COURT_DATA_API_SECRET', nil)
   end
 end

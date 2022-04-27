@@ -3,7 +3,7 @@
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
-  config.debug_logger = File.open('log/vcr.log', 'w') if ENV['VCR_DEBUG']
+  config.debug_logger = File.open('log/vcr.log', 'w') if ENV.fetch('VCR_DEBUG', false)
   config.before_record do |i|
     i.response.body.force_encoding('UTF-8')
   end
@@ -58,7 +58,7 @@ end
 
 # Turn off vcr from the command line, for example:
 # `VCR_OFF=true rspec`
-VCR.turn_off!(ignore_cassettes: true) if ENV['VCR_OFF']
+VCR.turn_off!(ignore_cassettes: true) if ENV.fetch('VCR_OFF', false)
 
 RSpec.configure do |config|
   # see alternative stub_oauth_token in webmock.rb

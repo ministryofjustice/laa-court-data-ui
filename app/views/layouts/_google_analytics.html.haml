@@ -1,6 +1,6 @@
 - if @analytics_cookies_accepted
   :javascript
-    let googleTrackingID = "#{ENV['GA_TRACKING_ID']}"
+    let googleTrackingID = "#{ENV.fetch('GA_TRACKING_ID', nil)}"
 
     const analyticsScriptTag = document.createElement('script')
     analyticsScriptTag.async = ''

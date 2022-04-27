@@ -1,10 +1,10 @@
-.govuk-phase-banner{ class: ENV['ENV'], role: "complementary" }
+.govuk-phase-banner{ class: ENV.fetch('ENV', 'local'), role: "complementary" }
   %p.govuk-phase-banner__content
     %strong.govuk-tag.govuk-phase-banner__content__tag
-      - if ENV['ENV'] == 'production'
+      - if ENV.fetch('ENV', 'local') == 'production'
         = t('generic.alpha')
       - else
-        = ENV['ENV'] || 'local'
+        = ENV.fetch('ENV', 'local')
     %span.govuk-phase-banner__text
       = t('layouts.application.header.phase_banner_html', feedback: new_feedback_path)
 

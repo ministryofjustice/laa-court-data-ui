@@ -14,7 +14,7 @@ module Application
     end
 
     def with_env(env)
-      @original_env = ENV['ENV']
+      @original_env = ENV.fetch('ENV', nil)
       ENV['ENV'] = env
       yield
     ensure
