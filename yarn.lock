@@ -1190,10 +1190,10 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.3.tgz#0300943770e04231041a51bd39f0439b5c7ab4f0"
   integrity sha512-nkalE/f1RvRGChwBnEIoBfSEYOXnCRdleKuv6+lePbMDrMZXeDQnqak5XDOeBgrPPyPfAdcCu/B5z+v3VhplGg==
 
-"@ministryofjustice/frontend@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@ministryofjustice/frontend/-/frontend-1.3.1.tgz#a5f423fb9924a43b3ca49272651d8784896b175f"
-  integrity sha512-zuWxCkfIwFRIM6Q8hQ7WqiX1M8X2l9ezl+jbZE7YPKqvewlq9hrmgfoxZjw1s2KRplgP7okmqT4WNo2HxR22wQ==
+"@ministryofjustice/frontend@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@ministryofjustice/frontend/-/frontend-1.4.0.tgz#6d162ed5021599916b76b52e8a153487a93097e2"
+  integrity sha512-5zBlnUXsghzk2xkVANKxZmgH0cW7fFe0V6lJ1yNkF+hZXnI0KCSz1tfM+aa6OFa9u5eFa1uszeoDCyRvdVkL+A==
   dependencies:
     govuk-frontend "^3.0.0 || ^4.0.0"
     moment "^2.27.0"
