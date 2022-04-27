@@ -58,7 +58,7 @@ end
 
 # Turn off vcr from the command line, for example:
 # `VCR_OFF=true rspec`
-VCR.turn_off!(ignore_cassettes: true) if ENV.fetch('VCR_OFF')
+VCR.turn_off!(ignore_cassettes: true) if ENV.fetch('VCR_OFF', false)
 
 RSpec.configure do |config|
   # see alternative stub_oauth_token in webmock.rb

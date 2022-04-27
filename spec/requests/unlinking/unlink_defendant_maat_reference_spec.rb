@@ -31,6 +31,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request do
   before do
     create(:unlink_reason, code: 1, description: 'Reason not requiring text', text_required: false)
     create(:unlink_reason, code: 7, description: 'Reason requiring text', text_required: true)
+    ENV['LAA_REFERENCES'] = 'false'
   end
 
   let(:user) { create(:user) }
