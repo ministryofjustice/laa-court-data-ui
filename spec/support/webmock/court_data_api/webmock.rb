@@ -157,4 +157,28 @@ RSpec.configure do |config|
       body: ''
     )
   end
+
+  config.before(:each, stub_v2_hearing_events: true) do
+    stub_request(
+      :get, %r{/v2/hearing_events/*}
+    ).with(
+      query: { date: '2019-10-23' }
+    ).to_return(
+      status: 200,
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cd_api/hearing_events_response.json')
+    )
+  end
+
+  config.before(:each, stub_v2_hearing_events_empty: true) do
+    stub_request(
+      :get, %r{/v2/hearing_events/*}
+    ).with(
+      query: { date: '2019-10-23' }
+    ).to_return(
+      status: 200,
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cd_api/hearing_events_empty_response.json')
+    )
+  end
 end
