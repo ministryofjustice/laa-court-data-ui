@@ -162,7 +162,7 @@ RSpec.configure do |config|
     stub_request(
       :get, %r{/v2/hearing_events/844a6542-ffcb-4cd0-94ce-fda3ffc3081b}
     ).with(
-      query: { :date => '2021-01-17' }
+      query: { date: '2021-01-17' }
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -174,7 +174,7 @@ RSpec.configure do |config|
     stub_request(
       :get, %r{/v2/hearing_events/844a6542-ffcb-4cd0-94ce-fda3ffc3081b}
     ).with(
-      query: { :date => '2021-01-17' }
+      query: { date: '2021-01-17' }
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
