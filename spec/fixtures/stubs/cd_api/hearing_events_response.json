@@ -1,0 +1,56 @@
+{
+  "hearing_id": "844a6542-ffcb-4cd0-94ce-fda3ffc3081b",
+  "has_active_hearing": true,
+  "events": [
+    {
+      "id": "ce632946-994f-4201-8a35-6438770fb9b9",
+      "definition_id": "cbe94a12-0c0c-4b04-8585-789dbd23a913",
+      "defence_counsel_id": null,
+      "recorded_label": "Hearing event 0",
+      "event_time": "2019-10-23T08:30:00+00:00",
+      "last_modified_time": "2021-02-09T10:24:41.848000+00:00",
+      "alterable": false,
+      "note": "Hearing note 0"
+    },
+    {
+      "id": "5e26ad45-7730-4a9e-9a81-83d5f4dd913e",
+      "definition_id": "f1ffcd77-648d-46d6-bdf6-edc2f8f31543",
+      "defence_counsel_id": null,
+      "recorded_label": "Hearing event 1",
+      "event_time": "2019-10-23T09:30:00+00:00",
+      "last_modified_time": "2021-02-09T10:24:41.870000+00:00",
+      "alterable": false,
+      "note": null
+    },
+    {
+      "id": "63f7cb8f-a95d-49cc-8d44-7ecd51ecdd08",
+      "definition_id": "7d10db9a-2e60-4879-8c93-964372bd14f6",
+      "defence_counsel_id": null,
+      "recorded_label": "Hearing event 2",
+      "event_time": "2019-10-23T10:30:00+00:00",
+      "last_modified_time": "2021-02-09T10:24:41.895000+00:00",
+      "alterable": false,
+      "note": "!\\\"#£%&()*,-./Æ½ŵ€"
+    },
+    {
+      "id": "a159016f-e852-4caf-b4a6-fa4d458702de",
+      "definition_id": "75447148-bae9-4381-870b-3a4d84068015",
+      "defence_counsel_id": null,
+      "recorded_label": "Hearing event 3",
+      "event_time": "2019-10-23T11:30:00+00:00",
+      "last_modified_time": "2021-02-09T10:24:41.919000+00:00",
+      "alterable": false,
+      "note": "<b>a comment</b> <script>and (this is another example)</script>"
+    },
+    {
+      "id": "82ea36e8-6b91-4dbe-9d49-ff96c3d20ece",
+      "definition_id": "63231346-56de-497c-bb38-06b953f02bad",
+      "defence_counsel_id": null,
+      "recorded_label": "Hearing event 4",
+      "event_time": "2019-10-23T12:30:00+00:00",
+      "last_modified_time": "2021-02-09T10:24:41.939000+00:00",
+      "alterable": false,
+      "note": "\ntext\r\nmore details\rother information"
+    }
+  ]
+}

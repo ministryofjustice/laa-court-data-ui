@@ -5,7 +5,8 @@ require_dependency 'court_data_adaptor'
 class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
                 :set_hearing,
-                :set_hearing_day
+                :set_hearing_day,
+                :set_hearing_events
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
@@ -47,6 +48,10 @@ class HearingsController < ApplicationController
     hearing_day
   end
 
+  def set_hearing_events
+    hearing_events if Feature.enabled?(:hearing_events)
+  end
+
   def hearing
     @hearing ||= helpers.decorate(prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
   end
@@ -62,6 +67,13 @@ class HearingsController < ApplicationController
 
   def prosecution_case
     @prosecution_case ||= helpers.decorate(@prosecution_case_search.execute.first)
+  end
+
+  def hearing_events
+    @hearing_events ||= CdApi::HearingEvents.find(params[:id],
+                                                  params: {
+                                                    date: paginator.current_item.hearing_date.strftime('%F')
+                                                  })
   end
 
   def page
