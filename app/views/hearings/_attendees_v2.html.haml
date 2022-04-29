@@ -1,0 +1,28 @@
+%div{:class => "govuk-!-margin-bottom-9"}
+  %h2.govuk-heading-l
+    = t('hearings.show.attendees.heading')
+  .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
+    = t('hearings.show.attendees.defendants')
+  %p.govuk-body{:class => "govuk-!-margin-bottom-2"}
+    = safe_join(hearing.hearing.prosecution_cases.map { |cs| cs.defendants.map {|df| "#{df.defendant_details.person_details.first_name} #{df.defendant_details.person_details.last_name}"}}, tag.br) || "Not available"
+  .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
+    = t('hearings.show.attendees.defence')
+  %p.govuk-body{:class => "govuk-!-margin-bottom-2"}
+    - unless hearing.hearing.defence_counsels.any?
+      = t('generic.not_available')
+    - else
+      = safe_join(hearing.hearing.defence_counsels.map { |dc| "#{dc.first_name} #{dc.last_name}"}, tag.br)
+  .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
+    = t('hearings.show.attendees.prosecution')
+  %p.govuk-body{:class => "govuk-!-margin-bottom-2"}
+    - unless hearing.hearing.prosecution_counsels.any?
+      = t('generic.not_available')
+    - else
+      = safe_join(hearing.hearing.prosecution_counsels.map { |pc| "#{pc.first_name} #{pc.last_name}"}, tag.br)
+  .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
+    = t('hearings.show.attendees.judges')
+  %p.govuk-body{:class => "govuk-!-margin-bottom-2"}
+    - unless hearing.hearing.judiciary.any?
+      = t('generic.not_available')
+    - else
+      = safe_join(hearing.hearing.judiciary.map { |jd| "#{jd.title} #{jd.first_name} #{jd.last_name}"}, tag.br)

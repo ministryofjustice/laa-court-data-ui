@@ -35,7 +35,7 @@ class HearingsController < ApplicationController
     # it is pointless and time-consuming to to query both endpoints when the prosecution case
     # endpoint contains all the info we need. If we could pass a "pagination collection" this would
     # allow us to revert to using the hearing endpoint.
-    #
+
     @prosecution_case_search = Search.new(filter: 'case_reference', term: prosecution_case_reference)
     authorize! :create, @prosecution_case_search
   end
@@ -53,7 +53,13 @@ class HearingsController < ApplicationController
   end
 
   def hearing
-    @hearing ||= helpers.decorate(prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
+    @hearing ||= if Feature.enabled?(:hearing_data)
+                   CdApi::Hearing.find(params[:id], params: {
+                                         date: paginator.current_item.hearing_date.strftime('%F')
+                                       })
+                 else
+                   helpers.decorate(prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
+                 end
   end
 
   def hearing_day
