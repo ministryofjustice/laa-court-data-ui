@@ -160,9 +160,9 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_hearing_events: true) do
     stub_request(
-      :get, %r{/v2/hearing_events/844a6542-ffcb-4cd0-94ce-fda3ffc3081b}
+      :get, %r{/v2/hearing_events/*}
     ).with(
-      query: { date: '2021-01-17' }
+      query: { date: '2019-10-23' }
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -172,9 +172,9 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_hearing_events_empty: true) do
     stub_request(
-      :get, %r{/v2/hearing_events/844a6542-ffcb-4cd0-94ce-fda3ffc3081b}
+      :get, %r{/v2/hearing_events/*}
     ).with(
-      query: { date: '2021-01-17' }
+      query: { date: '2019-10-23' }
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
