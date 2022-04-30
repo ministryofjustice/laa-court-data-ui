@@ -11,7 +11,7 @@
     - unless hearing.hearing.defence_counsels.any?
       = t('generic.not_available')
     - else
-      = safe_join(hearing.hearing.defence_counsels.map { |dc| "#{dc.first_name} #{dc.last_name}"}, tag.br)
+      = safe_join(hearing.hearing.defence_counsels.map { |dc| "#{dc.first_name} #{dc.last_name} (#{dc.status})"}, tag.br)
   .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
     = t('hearings.show.attendees.prosecution')
   %p.govuk-body{:class => "govuk-!-margin-bottom-2"}
