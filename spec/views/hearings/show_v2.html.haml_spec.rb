@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
 RSpec.describe 'hearings/show.html.haml', type: :view, stub_v2_hearing_data: true do
   subject(:render_view) { render }
 
+  # rubocop: disable RSpec/VerifiedDoubles
+  # NOTE: an instance double would require more setup
+  # and we are only testing partials are rendered.
+  # Hope to remove with future V2 improvements
   let(:prosecution_case) do
     double(ProsecutionCaseDecorator,
            hearings: [hearing_v1],
@@ -9,6 +15,7 @@ RSpec.describe 'hearings/show.html.haml', type: :view, stub_v2_hearing_data: tru
            hearings_sort_column: 'date',
            hearings_sort_direction: 'asc')
   end
+  # rubocop: enable RSpec/VerifiedDoubles
 
   let(:hearing_v1) { CourtDataAdaptor::Resource::Hearing.new(hearing_events: []) }
   let(:decorated_hearing) { view.decorate(hearing_v1) }
