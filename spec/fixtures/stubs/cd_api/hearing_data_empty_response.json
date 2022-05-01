@@ -1,0 +1,124 @@
+{
+  "hearing": {
+    "id": "b3b49aa6-452c-4f20-8929-9c8aa1a632b7",
+    "jurisdiction_type": "MAGISTRATES",
+    "court_centre": {
+      "id": "b6a48a7e-8eb8-435d-8f93-1ef86a6daee2",
+      "name": "Ealing Magistrates' Court",
+      "welsh_name": null,
+      "room_id": "893976de-7fc2-3d10-a1eb-265ac87be8f6",
+      "room_name": "Courtroom 01",
+      "welsh_room_name": null,
+      "welsh_court_centre": null,
+      "short_oucode": "B01FA",
+      "oucode_l2_code": "1",
+      "code": "B01FA00",
+      "address": {
+        "address_1": "The Court House",
+        "address_2": "Green Man Lane",
+        "address_3": "Ealing",
+        "address_4": "London",
+        "address_5": "",
+        "postcode": "W13 0SD"
+      }
+    },
+    "hearing_language": "ENGLISH",
+    "has_shared_results": true,
+    "court_applications": [
+      {
+        "id": "baad8367-ab48-44fd-bd66-67482dc362b4",
+        "received_date": "2021-03-29",
+        "application_reference": "90GDAPPS502",
+        "respondents": [
+          {
+            "id": "9cec1ff1-93a7-4964-9a5e-38e38b6e361e",
+            "synonym": null,
+            "summons_required": null,
+            "notification_required": null
+          }
+        ],
+        "judicial_results": [
+          {
+            "id": "9ed4cd0c-203c-4c5c-b3ac-38168530b92e",
+            "label": "Legal Aid Transfer Refused",
+            "is_adjournment_result": false,
+            "is_financial_result": false,
+            "is_convicted_result": false,
+            "is_available_for_court_extract": true,
+            "qualifier": null,
+            "text": "Legal Aid Transfer Refused\nReasons testing reason for LATR",
+            "cjs_code": "4601",
+            "ordered_date": "2021-03-29",
+            "prompts": [
+              {
+                "type_id": "29970ab4-99a6-48dd-bc7a-bfa68edef13e",
+                "label": "Reasons",
+                "welsh_label": null,
+                "is_available_for_court_extract": true,
+                "value": "testing reason for LATR",
+                "welsh_value": null,
+                "qualifier": null,
+                "duration_sequence": null,
+                "prompt_sequence": 100,
+                "prompt_reference": "reasons",
+                "total_penalty_points": null,
+                "is_financial_imposition": true,
+                "usergroups": null
+              }
+            ],
+            "post_hearing_custody_status": null,
+            "wording": null
+          }
+        ],
+        "plea": null,
+        "verdict": null,
+        "type": {
+          "id": "74b72f6f-414a-3464-a4a2-d91397b4c439",
+          "code": "LA12505",
+          "description": "Application for transfer of legal aid",
+          "legislation": "Pursuant to Regulation 14 of the Criminal Legal Aid (Determinations by a Court and Choice of Representative) Regulations 2013.",
+          "category_code": "CO",
+          "link_type": "LINKED",
+          "jurisdiction": "EITHER",
+          "appeal_flag": false,
+          "summons_template_type": "NOT_APPLICABLE",
+          "valid_from": null,
+          "valid_to": null,
+          "applicant_appellant_flag": false,
+          "plea_applicable_flag": false,
+          "offence_active_order": "NOT_APPLICABLE",
+          "commr_of_oath_flag": false,
+          "breach_type": "NOT_APPLICABLE",
+          "court_of_appeal_flag": false,
+          "court_extract_avl_flag": true,
+          "listing_notif_template": null,
+          "boxwork_notif_template": null,
+          "type_welsh": null,
+          "legislation_welsh": null,
+          "prosecutor_third_party_flag": false,
+          "spi_out_applicable_flag": true,
+          "hearing_code": null
+        }
+      }
+    ],
+    "hearing_type": {
+      "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776",
+      "description": "First hearing",
+      "welsh_description": null
+    },
+    "hearing_days": [
+      {
+        "sitting_day": "2021-03-29T09:01:00.000Z",
+        "has_shared_results": null
+      }
+    ],
+    "judiciary": [],
+    "prosecution_counsels": [],
+    "defence_counsels": [],
+    "cracked_ineffective_trial": {},
+    "prosecution_cases": [],
+    "defendant_judicial_results": [],
+    "defendant_attendance": []
+  },
+  "shared_time": "2021-03-29T10:29:48.253Z[UTC]"
+}
