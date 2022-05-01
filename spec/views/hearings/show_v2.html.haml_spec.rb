@@ -20,12 +20,14 @@ RSpec.describe 'hearings/show.html.haml', type: :view, stub_v2_hearing_data: tru
   let(:hearing_v1) { CourtDataAdaptor::Resource::Hearing.new(hearing_events: []) }
   let(:decorated_hearing) { view.decorate(hearing_v1) }
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
+  let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
   let(:hearing_events) do
     CdApi::HearingEvents.find(hearing_id,
                               params: { date: hearing_day.strftime('%F') })
   end
   let(:hearing) do
-    CdApi::Hearing.find(hearing_id)
+    CdApi::Hearing.find(hearing_id,
+                        params: { date: hearing_day.strftime('%F') })
   end
   let(:paginator) do
     HearingPaginator.new(prosecution_case, column: 'date', direction: 'asc', page: '0')
