@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: true, stub_v2_hearing_events: true do
+RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: true,
+                                           stub_v2_hearing_events: true do
   let(:user) { create(:user) }
   let(:api_url_v2) { CdApi::BaseModel.site }
   let(:api_events_path) { "#{api_url_v2}hearing_events/#{hearing_id}?date=2019-10-23" }
