@@ -181,4 +181,23 @@ RSpec.configure do |config|
       body: load_json_stub('cd_api/hearing_events_empty_response.json')
     )
   end
+
+  config.before(:each, stub_v2_hearing_data: true) do
+    stub_request(
+      :get, %r{/v2/hearing/*}
+    ).to_return(
+      status: 200,
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cd_api/hearing_data_response.json')
+    )
+  end
+
+  config.before(:each, stub_v2_no_hearing_data: true) do
+    stub_request(
+      :get, %r{/v2/hearing/*}
+    ).to_return(
+      status: 400,
+      body: ''
+    )
+  end
 end
