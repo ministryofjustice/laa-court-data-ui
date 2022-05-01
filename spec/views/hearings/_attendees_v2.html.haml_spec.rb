@@ -30,7 +30,8 @@ RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
       end
 
       it 'displays list of defence council' do
-        is_expected.to have_tag('p.govuk-body#defence', text: /mark jones \(junior\).*david  williams \(junior\)/)
+        is_expected.to have_tag('p.govuk-body#defence',
+                                text: /mark jones \(junior\).*david williams \(junior\)/)
       end
     end
 
@@ -50,7 +51,8 @@ RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
       end
 
       it 'displays list of judges' do
-        is_expected.to have_tag('p.govuk-body#judges', text: /Miss Antigoni Efstathiou.*Mrs Janette Felicity Ackerley/)
+        is_expected.to have_tag('p.govuk-body#judges',
+                                text: /Miss Antigoni Efstathiou.*Mrs Janette Felicity Ackerley/)
       end
     end
   end
