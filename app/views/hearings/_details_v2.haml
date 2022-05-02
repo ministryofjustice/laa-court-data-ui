@@ -12,4 +12,4 @@
   .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
     = t('hearings.show.time_listed')
   %p.govuk-body{:class => "govuk-!-margin-bottom-2"}
-    = hearing.hearing.hearing_days[0].sitting_day.to_datetime.strftime('%H:%M') || t('generic.not_available')
+    = hearing.shared_time.to_datetime.strftime('%H:%M') || t('generic.not_available')
