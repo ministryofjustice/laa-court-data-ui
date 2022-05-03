@@ -216,4 +216,15 @@ RSpec.configure do |config|
       body: ''
     )
   end
+
+  config.before(:each, stub_v2_hearing_data_error: true) do
+    stub_request(
+      :get, %r{/v2/hearing/#{hearing_id}}
+    ).with(
+      query: { date: '2019-10-23' }
+    ).to_return(
+      status: 500,
+      body: ''
+    )
+  end
 end
