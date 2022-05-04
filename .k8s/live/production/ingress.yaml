@@ -21,6 +21,9 @@ metadata:
         deny 223.178.212.103;
         deny 223.178.213.18;
         deny 195.248.243.174;
+        if ($http_spider_name ~* "crawlergo") {
+          return 403;
+        }
 spec:
   rules:
     - host: view-court-data.service.justice.gov.uk
