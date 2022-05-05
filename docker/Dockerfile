@@ -1,4 +1,4 @@
-FROM ruby:3.1.0-alpine3.15
+FROM ruby:3.1.1-alpine3.15
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Get Paid"
 LABEL Contact="<laa-get-paid@digital.justice.gov.uk>"
