@@ -50,17 +50,4 @@ RSpec.describe 'hearings', type: :request do
       expect(flash.now[:notice]).to match(/No hearing details available/)
     end
   end
-
-  context 'when v2 is enabled', stub_v2_hearing_events: true, stub_case_search: true do
-    before do
-      allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
-      allow(Feature).to receive(:enabled?).with(:hearing_events).and_return(true)
-      sign_in user
-      get "/hearings/#{hearing_id_from_fixture}?page=0&urn=#{case_reference}"
-    end
-
-    it 'shows v2 hearing table' do
-      expect(response).to render_template(:_hearing_events_v2)
-    end
-  end
 end

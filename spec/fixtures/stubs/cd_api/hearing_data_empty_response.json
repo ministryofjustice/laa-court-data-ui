@@ -1,0 +1,48 @@
+{
+  "hearing": {
+    "id": "b3b49aa6-452c-4f20-8929-9c8aa1a632b7",
+    "jurisdiction_type": "MAGISTRATES",
+    "court_centre": {
+      "id": "b6a48a7e-8eb8-435d-8f93-1ef86a6daee2",
+      "name": "Ealing Magistrates' Court",
+      "welsh_name": null,
+      "room_id": "893976de-7fc2-3d10-a1eb-265ac87be8f6",
+      "room_name": "Courtroom 01",
+      "welsh_room_name": null,
+      "welsh_court_centre": null,
+      "short_oucode": "B01FA",
+      "oucode_l2_code": "1",
+      "code": "B01FA00",
+      "address": {
+        "address_1": "The Court House",
+        "address_2": "Green Man Lane",
+        "address_3": "Ealing",
+        "address_4": "London",
+        "address_5": "",
+        "postcode": "W13 0SD"
+      }
+    },
+    "hearing_language": "ENGLISH",
+    "has_shared_results": true,
+    "court_applications": [],
+    "hearing_type": {
+      "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776",
+      "description": "First hearing",
+      "welsh_description": null
+    },
+    "hearing_days": [
+      {
+        "sitting_day": "2021-03-29T09:01:00.000Z",
+        "has_shared_results": null
+      }
+    ],
+    "judiciary": [],
+    "prosecution_counsels": [],
+    "defence_counsels": [],
+    "cracked_ineffective_trial": {},
+    "prosecution_cases": [],
+    "defendant_judicial_results": [],
+    "defendant_attendance": []
+  },
+  "shared_time": "2021-03-29T10:29:48.253Z[UTC]"
+}

@@ -6,8 +6,9 @@ RSpec.describe 'hearings/_hearing_events_v2.html.haml', type: :view do
   end
 
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
+  let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_events) do
-    CdApi::HearingEvents.find('844a6542-ffcb-4cd0-94ce-fda3ffc3081b',
+    CdApi::HearingEvents.find(hearing_id,
                               params: { date: hearing_day.strftime('%F') })
   end
 

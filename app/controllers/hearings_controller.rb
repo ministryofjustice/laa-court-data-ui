@@ -17,10 +17,13 @@ class HearingsController < ApplicationController
     add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.strftime('%d/%m/%Y')}", ''
 
     return if hearing
+    redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.no_hearing_details')
+  end
 
+  def redirect_to_prosecution_case(message)
     redirect_back(fallback_location: prosecution_case_path(prosecution_case_reference),
                   allow_other_host: false,
-                  notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
+                  notice: message)
   end
 
   def prosecution_case_reference
@@ -35,13 +38,17 @@ class HearingsController < ApplicationController
     # it is pointless and time-consuming to to query both endpoints when the prosecution case
     # endpoint contains all the info we need. If we could pass a "pagination collection" this would
     # allow us to revert to using the hearing endpoint.
-    #
+
     @prosecution_case_search = Search.new(filter: 'case_reference', term: prosecution_case_reference)
     authorize! :create, @prosecution_case_search
   end
 
   def set_hearing
-    hearing
+    if Feature.enabled?(:hearing_data)
+      hearing_v2
+    else
+      hearing
+    end
   end
 
   def set_hearing_day
@@ -53,7 +60,23 @@ class HearingsController < ApplicationController
   end
 
   def hearing
+    logger.info 'USING_V1_ENDPOINT'
     @hearing ||= helpers.decorate(prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
+  end
+
+  def hearing_v2
+    logger.info 'USING_V2_ENDPOINT_HEARING_DATA'
+    begin
+      @hearing ||= CdApi::Hearing.find(params[:id], params: {
+                                         date: paginator.current_item.hearing_date.strftime('%F')
+                                       })
+    rescue ActiveResource::ResourceNotFound
+      redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.no_hearing_details')
+    rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+      logger.error 'SERVER_ERROR_OCCURRED'
+      Sentry.capture_exception(e)
+      redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.server_error')
+    end
   end
 
   def hearing_day
@@ -70,6 +93,7 @@ class HearingsController < ApplicationController
   end
 
   def hearing_events
+    logger.info 'USING_V2_ENDPOINT_HEARING_EVENTS'
     @hearing_events ||= CdApi::HearingEvents.find(params[:id],
                                                   params: {
                                                     date: paginator.current_item.hearing_date.strftime('%F')
