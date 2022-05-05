@@ -43,3 +43,4 @@ Brewfile.lock.json
 .idea
 .dccache
 .DS_Store
+.vscode
