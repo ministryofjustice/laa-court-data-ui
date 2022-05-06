@@ -3,7 +3,10 @@
 
   = render 'defendants/defendant'
 
-  = render 'defendants/offences'
+  - if Feature.enabled?(:defendants_search)
+    = render 'defendants/offences_v2'
+  - else
+    = render 'defendants/offences'
 
   = hidden_field_tag(:urn, params[:urn])
 
