@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def app_environment
-    "app-environment-#{ENV.fetch('ENV', 'local')}"
+    "app-environment-#{ENV['ENV'] || 'local'}"
   end
 
   def v2_hearing_summaries?
@@ -50,7 +50,11 @@ module ApplicationHelper
   def decorator_instance(object, decorator_class = nil)
     return object if object.is_a?(BaseDecorator)
 
-    decorator_class ||= "#{object.class.to_s.demodulize}Decorator".constantize
+    decorator_class ||= if Feature.enabled?(:hearing_summaries) or Feature.enabled?(:hearing)
+                          "CdApi::#{object.class.to_s.demodulize}Decorator".constantize
+                        else
+                          "#{object.class.to_s.demodulize}Decorator".constantize
+                        end
     decorator_class.new(object, self)
   end
 end
