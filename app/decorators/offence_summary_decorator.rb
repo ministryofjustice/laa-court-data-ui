@@ -9,7 +9,7 @@ class OffenceSummaryDecorator < BaseDecorator
   }.freeze
 
   def plea_list
-    return t('generic.not_available') if plea.blank? or plea.value.blank?
+    return t('generic.not_available') if plea.blank? || plea.value.blank?
     return plea unless plea.is_a?(Enumerable)
 
     safe_join(plea_sentences, tag.br)

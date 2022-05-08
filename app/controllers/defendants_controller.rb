@@ -53,7 +53,8 @@ class DefendantsController < ApplicationController
 
   def load_and_authorize_defendant_search
     if Feature.enabled?(:defendants_search)
-      @defendant_search = CdApi::SearchService.new(:uuid_reference, { uuid: defendant_params[:id], urn: defendant_params[:urn] }, nil)
+      @defendant_search = CdApi::SearchService.new(:uuid_reference, { uuid: defendant_params[:id],
+                                                                      urn: defendant_params[:urn] }, nil)
     else
       @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_params[:id])
     end

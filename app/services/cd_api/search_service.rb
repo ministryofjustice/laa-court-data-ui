@@ -17,14 +17,10 @@ module CdApi
       Rails.logger.info 'V2_SEARCH_DEFENDANTS'
       result = CdApi::Defendant.find(:all, params:)
       case @filter
-      when :case_reference
-      when :defendant_reference
-      when :defendant_name
-        then
+      when :case_reference, :defendant_name, :defendant_reference
         result
       when :uuid_reference
-      then
-        return result.first()
+        result.first
       end
     end
 
