@@ -10,7 +10,7 @@
       %th.govuk-table__header{ scope: 'col' }= t('search.result.offence.plea')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.offence.mode_of_trial')
   %tbody.govuk-table__body
-    - decorate_each(@defendant.offence_summaries) do |offence|
+    - decorate_each(@defendant.offences) do |offence|
       %tr.govuk-table__row
         %td.govuk-table__cell
           = offence.title || t('generic.not_available')
