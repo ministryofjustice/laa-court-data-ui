@@ -35,8 +35,7 @@ RSpec.describe 'hearings/show.html.haml', type: :view, stub_v2_hearing_data: tru
 
   before do
     allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
-    allow(Feature).to receive(:enabled?).with(:hearing_data).and_return(true)
-    allow(Feature).to receive(:enabled?).with(:hearing_events).and_return(true)
+    allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
 
     allow(view).to receive(:govuk_page_title).and_return 'Hearings Page'
     allow(prosecution_case).to receive(:hearings_sort_column=)

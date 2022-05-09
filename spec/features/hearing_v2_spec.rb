@@ -6,13 +6,13 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
   let(:api_url_v2) { CdApi::BaseModel.site }
   let(:api_events_path) { "#{api_url_v2}hearing_events/#{hearing_id}?date=2019-10-23" }
   let(:api_data_path) { "#{api_url_v2}hearing/#{hearing_id}" }
+  # let(:api_summary_path) { "#{api_url_v2}hearingsummaries/#{urn}" }
   let(:hearing_id) { '345be88a-31cf-4a30-9de3-da98e973367e' }
 
   before do
     allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
-    allow(Feature).to receive(:enabled?).with(:hearing_data).and_return(true)
-    allow(Feature).to receive(:enabled?).with(:hearing_events).and_return(true)
+    allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
 
     sign_in user
     visit(url)
