@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
-class HearingDecorator < BaseDecorator
+class HearingSummaryDecorator < BaseDecorator
+  attr_accessor :day
+
   def provider_list
-    return t('generic.not_available') if providers.blank?
+    return t('generic.not_available') if defence_counsels.blank?
 
     safe_join(provider_sentences, tag.br)
+  end
+
+  def hearing_days
+    @hearing_days ||= decorate_all(object.hearing_days)
   end
 
   def defendant_name_list
@@ -35,15 +41,13 @@ class HearingDecorator < BaseDecorator
     end.sort_by(&:occurred_at)
   end
 
-  delegate :hearing_type, to: :object if Feature.enabled?(:hearing)
-
   private
 
-  def decorated_providers
-    decorate_all(providers)
+  def decorated_defence_counsels
+    decorate_all(defence_counsel)
   end
 
   def provider_sentences
-    decorated_providers&.map(&:name_and_role) || []
+    decorated_defence_counsels&.map(&:name_and_role) || []
   end
 end

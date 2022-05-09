@@ -16,7 +16,7 @@ class HearingsController < ApplicationController
   def show
     add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.strftime('%d/%m/%Y')}", ''
 
-    return if hearing
+    return if @hearing
     redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.no_hearing_details')
   end
 
@@ -33,9 +33,12 @@ class HearingsController < ApplicationController
   private
 
   def load_and_authorize_search
-      # remember to fix this logic after sorting out the hearing_summary decorator
-      # @search = Search.new(filter: 'case_reference', term: prosecution_case_reference)
-      # authorize! :create, @prosecution_case_search
+    @prosecution_case_search = if Feature.enabled?(:hearing)
+                                 CdApi::CaseSummaryService.new(urn: prosecution_case_reference)
+                               else
+                                 Search.new(filter: 'case_reference', term: prosecution_case_reference)
+                               end
+    authorize! :create, @prosecution_case_search
   end
 
   def set_hearing
@@ -60,7 +63,7 @@ class HearingsController < ApplicationController
   end
 
   def hearing_v2
-    logger.info 'USING_V2_ENDPOINT_HEARING_DATA'
+    logger.info 'USING_V2_ENDPOINT_HEARING'
     begin
       @hearing ||= CdApi::Hearing.find(params[:id], params: {
                                          date: paginator.current_item.hearing_date.strftime('%F')
@@ -75,7 +78,7 @@ class HearingsController < ApplicationController
   end
 
   def hearing_day
-    @hearing_day ||= paginator.current_item.hearing_date || helpers.earliest_day_for(hearing)
+    @hearing_day ||= paginator.current_item.hearing_date || helpers.earliest_day_for(@hearing)
   end
 
   def paginator
@@ -86,7 +89,7 @@ class HearingsController < ApplicationController
   def prosecution_case
     @prosecution_case ||= if Feature.enabled?(:hearing)
                             logger.info 'USING_V2_ENDPOINT_HEARING_SUMMARIES'
-                            helpers.decorate(query_cd_api)
+                            helpers.decorate(@prosecution_case_search.call)
                           else
                             logger.info 'USING_V1_ENDPOINT_PROSECUTION_CASE'
                             helpers.decorate(@prosecution_case_search.execute.first)
@@ -99,17 +102,6 @@ class HearingsController < ApplicationController
                                                   params: {
                                                     date: paginator.current_item.hearing_date.strftime('%F')
                                                   })
-  end
-
-  def query_cd_api
-    CdApi::ProsecutionCase.find(prosecution_case_reference)
-  rescue ActiveResource::BadRequest
-    Rails.logger.info 'CLIENT_ERROR_OCCURRED'
-    {}
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-    Rails.logger.error 'SERVER_ERROR_OCCURRED'
-    Sentry.capture_exception(e)
-    {}
   end
 
   def page
