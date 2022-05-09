@@ -235,7 +235,7 @@ RSpec.configure do |config|
       query: { urn: 'TEST12345', uuid: '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
     ).to_return(
       status: 200,
-      headers: { 'Content-Type' => 'application/json'},
+      headers: { 'Content-Type' => 'application/json' },
       body: load_json_stub('cd_api/defendants_body.json')
     )
   end

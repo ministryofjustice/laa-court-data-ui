@@ -26,7 +26,8 @@ RSpec.describe 'defendants/_offences_v2.html.haml', type: :view do
 
       context 'when the offence has a value' do
         it 'displays the offense title' do
-          is_expected.to have_tag('td.govuk-table__cell', text: /Abuse of trust: sexual activity with a child/) do
+          is_expected.to have_tag('td.govuk-table__cell',
+                                  text: /Abuse of trust: sexual activity with a child/) do
             with_tag('span.app-body-secondary', text: /Customs and Excise Management Act 1979 s.50/)
           end
         end
@@ -46,7 +47,7 @@ RSpec.describe 'defendants/_offences_v2.html.haml', type: :view do
 
       context 'when the plea has a value' do
         it 'displays the value' do
-          is_expected.to have_tag('td.govuk-table__cell', text: /Not guilty on 17\/10\/2019/)
+          is_expected.to have_tag('td.govuk-table__cell', text: %r{Not guilty on 17/10/2019})
         end
       end
     end
@@ -70,4 +71,3 @@ RSpec.describe 'defendants/_offences_v2.html.haml', type: :view do
     end
   end
 end
-
