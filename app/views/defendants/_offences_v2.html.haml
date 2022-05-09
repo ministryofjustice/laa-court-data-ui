@@ -17,8 +17,6 @@
           %span.app-body-secondary
             = offence.legislation || t('generic.not_available')
         %td.govuk-table__cell
-          = offence.plea_list
+          = offence.plea_sentence
         %td.govuk-table__cell
-          = "#{offence.mode_of_trial}:"
-          -#%br
-          -#= offence.mode_of_trial_reason_list
+          = "#{offence.mode_of_trial}"

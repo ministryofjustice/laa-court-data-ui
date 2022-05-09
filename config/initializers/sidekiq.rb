@@ -11,7 +11,7 @@
 #
 # https://github.com/mperham/sidekiq/wiki/Using-Redis
 
-Sidekiq.default_worker_options = { retry: 5 }
+Sidekiq.default_job_options = { retry: 5 }
 
 # Perform Sidekiq jobs immediately in development,
 # so you don't have to run a separate process.
