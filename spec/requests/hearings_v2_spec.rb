@@ -10,8 +10,8 @@ RSpec.describe 'hearings_v2', type: :request do
     allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
   end
 
-  context 'when authenticated', stub_v2_hearing_data: true, stub_v2_hearing_events: true,
-                                stub_case_search: true do
+  context 'when authenticated', stub_v2_hearing_summary: true, stub_v2_hearing_data: true,
+                                stub_v2_hearing_events: true, stub_case_search: true do
     before do
       sign_in user
       get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
@@ -38,7 +38,8 @@ RSpec.describe 'hearings_v2', type: :request do
     end
   end
 
-  context 'when no hearing data available', stub_v2_no_hearing_data: true, stub_case_search: true do
+  context 'when no hearing data available', stub_v2_hearing_summary: true, stub_v2_no_hearing_data: true,
+                                            stub_case_search: true do
     before do
       sign_in user
       get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
@@ -53,7 +54,8 @@ RSpec.describe 'hearings_v2', type: :request do
     end
   end
 
-  context 'when server error occurs', stub_v2_hearing_data_error: true, stub_case_search: true do
+  context 'when server error occurs', stub_v2_hearing_summary: true, stub_v2_hearing_data_error: true,
+                                      stub_case_search: true do
     before do
       sign_in user
       get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
