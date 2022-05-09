@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def app_environment
-    "app-environment-#{ENV.fetch('ENV', nil) || 'local'}"
+    "app-environment-#{ENV.fetch('ENV', 'local')}"
   end
 
   def v2_hearing_summaries?
