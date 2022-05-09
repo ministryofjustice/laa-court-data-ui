@@ -13,21 +13,59 @@ RSpec.describe 'defendants/_offences_v2.html.haml', type: :view do
       assign(:defendant, defendant)
     end
 
-    context 'when the Offence is empty' do
+    context 'when the Offence is present' do
       it 'displays the header' do
-        is_expected.to have_tag('th.govuk-table__header', text: 'Offence and legislation')
+        is_expected.to have_tag('th.govuk-table__header', text: /Offence and legislation/)
+      end
+
+      context 'when the offence is null' do
+        it 'displays the offense title' do
+          is_expected.to have_tag('td.govuk-table__cell', text: /Not available/)
+        end
+      end
+
+      context 'when the offence has a value' do
+        it 'displays the offense title' do
+          is_expected.to have_tag('td.govuk-table__cell', text: /Abuse of trust: sexual activity with a child/) do
+            with_tag('span.app-body-secondary', text: /Customs and Excise Management Act 1979 s.50/)
+          end
+        end
       end
     end
 
-    context 'when the plea is empty' do
+    context 'when the plea is present' do
       it 'displays the header' do
-        is_expected.to have_tag('th.govuk-table__header', text: 'Plea')
+        is_expected.to have_tag('th.govuk-table__header', text: /Plea/)
+      end
+
+      context 'when the plea is empty' do
+        it 'displays not available' do
+          is_expected.to have_tag('td.govuk-table__cell', text: /Not available/)
+        end
+      end
+
+      context 'when the plea has a value' do
+        it 'displays the value' do
+          is_expected.to have_tag('td.govuk-table__cell', text: /Not guilty on 17\/10\/2019/)
+        end
       end
     end
 
     context 'when the Mode of Trial is empty' do
       it 'displays the header' do
-        is_expected.to have_tag('th.govuk-table__header', text: 'Mode of trial')
+        is_expected.to have_tag('th.govuk-table__header', text: /Mode of trial/)
+      end
+
+      context 'when the mode of trial is empty' do
+        it 'displays not available' do
+          is_expected.to have_tag('td.govuk-table__cell', text: /Not available/)
+        end
+      end
+
+      context 'when the mode of trial has a value' do
+        it 'displays the value' do
+          is_expected.to have_tag('td.govuk-table__cell', text: /Either way/)
+        end
       end
     end
   end
