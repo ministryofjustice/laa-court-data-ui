@@ -11,7 +11,7 @@ class CaseSummaryDecorator < BaseDecorator
     @defendants ||= decorate_all(object.overall_defendants)
   end
 
-  def sorted_hearings_with_day
+  def sorted_hearings_v2_with_day
     Enumerator.new do |enum|
       sorter.sorted_hearings.each do |hearing|
         sorter.sorted_hearing_days(hearing).each do |day|

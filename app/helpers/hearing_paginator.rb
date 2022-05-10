@@ -11,7 +11,7 @@ class HearingPaginator
   include Rails.application.routes.url_helpers
 
   PageItem = Struct.new(:id, :hearing_date)
-
+  
   def initialize(prosecution_case, column: 'date', direction: 'asc', page: 0)
     @prosecution_case = prosecution_case
     @current_page = page.to_i
@@ -90,8 +90,14 @@ class HearingPaginator
   def sorted_hearing_items
     @prosecution_case.hearings_sort_column = @column
     @prosecution_case.hearings_sort_direction = @direction
-    @prosecution_case.sorted_hearings_with_day.map do |hearing|
-      PageItem.new(hearing.id, hearing.day)
+    if Feature.enabled?(:hearing)
+      @prosecution_case.sorted_hearings_v2_with_day.map do |hearing|
+        PageItem.new(hearing.id, hearing.day)
+      end
+    else
+      @prosecution_case.sorted_hearings_with_day.map do |hearing|
+        PageItem.new(hearing.id, hearing.day)
+      end
     end
   end
 end
