@@ -57,7 +57,12 @@ class LaaReferencesController < ApplicationController
   end
 
   def load_and_authorize_defendant_search
-    @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_uuid)
+    if Feature.enabled?(:defendants_search)
+      @defendant_search = CdApi::SearchService.new('uuid_reference', { uuid: defendant_uuid,
+                                                                       urn: laa_reference_params[:urn] }, nil)
+    else
+      @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_uuid)
+    end
     authorize! :show, @defendant_search
   end
 

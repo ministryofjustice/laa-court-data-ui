@@ -21,12 +21,12 @@
                     "id": "f1f2db72-7bbb-4350-be1a-de00d47539e2",
                     "code": "PT00011",
                     "order_index": 1,
-                    "title": "Abuse of trust: sexual activity with a child",
-                    "legislation": "Customs and Excise Management Act 1979 s.50",
+                    "title": null,
+                    "legislation": null,
                     "wording": "Random string",
                     "arrest_date": "2019-10-17",
                     "charge_date": "2019-10-17",
-                    "mode_of_trial": "Either way",
+                    "mode_of_trial": null,
                     "start_date": "2019-10-17",
                     "proceedings_concluded": false,
                     "plea": {
@@ -53,7 +53,44 @@
                         "effective_end_date": null,
                         "contract_number": null
                     }
+                },
+              {
+                "id": "f1f2db72-7bbb-4350-be1a-de00d47539e3",
+                "code": "PT00012",
+                "order_index": 2,
+                "title": "Abuse of trust: sexual activity with a child",
+                "legislation": "Customs and Excise Management Act 1979 s.50",
+                "wording": "Random string",
+                "arrest_date": "2019-10-17",
+                "charge_date": "2019-10-17",
+                "mode_of_trial": "Either way",
+                "start_date": "2019-10-17",
+                "proceedings_concluded": false,
+                "plea": {
+                  "date": "2019-10-17",
+                  "value": "Not guilty",
+                  "originating_hearing_id": null,
+                  "offence_id": null,
+                  "application_id": null,
+                  "delegated_powers": null
+                },
+                "verdict": {
+                  "date": null,
+                  "type": null,
+                  "originating_hearing_id": null,
+                  "offence_id": null
+                },
+                "laa_application": {
+                  "reference": null,
+                  "id": null,
+                  "status_code": null,
+                  "description": null,
+                  "status_date": null,
+                  "effective_start_date": null,
+                  "effective_end_date": null,
+                  "contract_number": null
                 }
+              }
             ],
             "prosecution_case_reference": "TEST12345"
         },

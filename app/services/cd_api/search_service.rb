@@ -15,7 +15,13 @@ module CdApi
     def call
       params = send("#{@filter}_params")
       Rails.logger.info 'V2_SEARCH_DEFENDANTS'
-      CdApi::Defendant.find(:all, params:)
+      result = CdApi::Defendant.find(:all, params:)
+      case @filter
+      when 'case_reference', 'defendant_name', 'defendant_reference'
+        result
+      when 'uuid_reference'
+        result.first
+      end
     end
 
     private
@@ -30,6 +36,10 @@ module CdApi
 
     def defendant_name_params
       { name: @term, dob: @dob }
+    end
+
+    def uuid_reference_params
+      @term
     end
 
     def urn(term)
