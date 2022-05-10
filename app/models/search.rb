@@ -23,7 +23,7 @@ class Search
     SearchFilter.new(**args)
   end
 
-  attr_accessor :filter, :term, :dob
+  attr_accessor :filter, :term, :dob, :version2
 
   def filters
     self.class.filters
@@ -44,12 +44,16 @@ class Search
             if: proc { |search| search.filter.eql?('defendant_name') }
 
   def execute
-    return query_cd_api if Feature.enabled?(:defendants_search)
+    return query_cd_api if version2?
     Rails.logger.info 'V1_SEARCH_DEFENDANTS'
     query_cda.call
   end
 
   private
+
+  def version2?
+    Feature.enabled?(:defendants_search) && version2
+  end
 
   def query_cd_api
     CdApi::SearchService.call(filter:, term:, dob:)
