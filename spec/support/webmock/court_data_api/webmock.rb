@@ -226,6 +226,14 @@ RSpec.configure do |config|
       status: 500,
       body: ''
     )
+
+  config.before(:each, stub_hearing_summaries_v2: true) do
+    stub_request(:get, %r{http.*/v2/hearingsummaries/})
+      .to_return(
+        status: 200,
+        body: load_json_stub('cd_api/hearingsummaries_body.json'),
+        headers: { 'Content-Type' => 'application/json' }
+      )
   end
 
   config.before(:each, stub_defendants_uuid_urn_search: true) do
