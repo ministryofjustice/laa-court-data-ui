@@ -6,16 +6,16 @@
   %thead.govuk-table__head
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'col' }
-        = hearings_sorter_link(prosecution_case, 'date')
+        = hearings_sorter_link(case_summary, 'date')
       %th.govuk-table__header{ scope: 'col' }
-        = hearings_sorter_link(prosecution_case, 'type')
+        = hearings_sorter_link(case_summary, 'type')
       %th.govuk-table__header{ scope: 'col' }
-        = hearings_sorter_link(prosecution_case, 'provider')
+        = hearings_sorter_link(case_summary, 'provider')
   %tbody.govuk-table__body
-    - prosecution_case.sorted_hearing_summaries_with_day.each_with_index do |hearing_summary, idx|
+    - case_summary.sorted_hearing_summaries_with_day.each_with_index do |hearing_summary, idx|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = link_to hearing_summary.day.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id, urn: prosecution_case.prosecution_case_reference, column: prosecution_case.hearings_sort_column, direction: prosecution_case.hearings_sort_direction, page: idx), class: 'govuk-link'
+          = link_to hearing_summary.day.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id, urn: case_summary.prosecution_case_reference, column: case_summary.hearings_sort_column, direction: case_summary.hearings_sort_direction, page: idx), class: 'govuk-link'
         %td.govuk-table__cell
           = hearing_summary.hearing_type
         %td.govuk-table__cell

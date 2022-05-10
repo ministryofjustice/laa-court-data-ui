@@ -2,22 +2,22 @@
 = govuk_detail(t('generic.view_raw_data')) do
   %h3=t('generic.prosecution_case')
   %pre
-    = JSON.pretty_generate(prosecution_case.as_json)
+    = JSON.pretty_generate(case_summary.as_json)
 
   %h3='Overall defendants'
   %pre
-    - prosecution_case.overall_defendants.each.with_index do |defendant, idx|
+    - case_summary.overall_defendants.each.with_index do |defendant, idx|
       %h4="defendant #{idx}"
       = JSON.pretty_generate(defendant.attributes)
 
   %h3='Hearing summaries'
-  - prosecution_case.hearing_summaries.each do |hearing_summary|
+  - case_summary.hearing_summaries.each do |hearing_summary|
     %pre
       = JSON.pretty_generate(JSON.parse(hearing_summary.attributes.to_json))
       = ","
 
   %h3='Hearing summaries'
-  - prosecution_case.hearing_summaries.each.with_index do |hearing_summary, hidx|
+  - case_summary.hearing_summaries.each.with_index do |hearing_summary, hidx|
     %h4="hearing summary #{hidx}"
     %pre
       = JSON.pretty_generate(JSON.parse(hearing_summary.attributes.to_json))

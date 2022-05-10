@@ -226,6 +226,7 @@ RSpec.configure do |config|
       status: 500,
       body: ''
     )
+  end
 
   config.before(:each, stub_hearing_summaries_v2: true) do
     stub_request(:get, %r{http.*/v2/hearingsummaries/})

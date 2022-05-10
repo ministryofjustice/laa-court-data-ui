@@ -12,9 +12,8 @@ RSpec.shared_examples 'perform search' do
 end
 
 RSpec.shared_examples 'query v2 CDAPI' do
-  it { is_expected.to be_able_to(%i[read], CdApi::ProsecutionCase) }
+  it { is_expected.to be_able_to(%i[read], CdApi::CaseSummary) }
 end
-
 
 RSpec.shared_examples 'perform hearing search' do
   it { is_expected.to be_able_to(%i[show], CourtDataAdaptor::Query::Hearing) }
@@ -52,7 +51,7 @@ RSpec.describe Ability, type: :model do
     it { is_expected.not_to be_able_to(%i[new create], SearchFilter) }
     it { is_expected.not_to be_able_to(%i[new create], Search) }
     it { is_expected.not_to be_able_to(%i[show], CourtDataAdaptor::Query::Hearing) }
-    it { is_expected.not_to be_able_to(%i[read], CdApi::ProsecutionCase) }
+    it { is_expected.not_to be_able_to(%i[read], CdApi::CaseSummary) }
     it { is_expected.not_to be_able_to(:create, :link_maat_reference) }
   end
 

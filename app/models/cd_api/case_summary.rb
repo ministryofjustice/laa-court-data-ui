@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module CdApi
-  class ProsecutionCase < BaseModel
+  class CaseSummary < BaseModel
     self.element_name = 'hearingsummaries'
 
     has_many :hearing_summaries, class_name: 'cd_api/hearing_summary'

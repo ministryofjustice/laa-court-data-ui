@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe CdApi::ProsecutionCaseDecorator, type: :decorator do
-  subject(:decorator) { described_class.new(prosecution_case, view_object) }
+RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
+  subject(:decorator) { described_class.new(case_summary, view_object) }
 
   before do
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
   end
 
-  let(:prosecution_case) { build :prosecution_case }
+  let(:case_summary) { build :case_summary }
   let(:view_object) { view_class.new }
 
   let(:view_class) do
@@ -18,7 +18,7 @@ RSpec.describe CdApi::ProsecutionCaseDecorator, type: :decorator do
   end
 
   it_behaves_like 'a base decorator' do
-    let(:object) { prosecution_case }
+    let(:object) { case_summary }
   end
 
   it {
@@ -27,7 +27,7 @@ RSpec.describe CdApi::ProsecutionCaseDecorator, type: :decorator do
   }
 
   context 'when method is missing' do
-    before { allow(prosecution_case).to receive_messages(hearing_summaries: nil) }
+    before { allow(case_summary).to receive_messages(hearing_summaries: nil) }
 
     it { is_expected.to respond_to(:hearing_summaries) }
   end
@@ -35,7 +35,7 @@ RSpec.describe CdApi::ProsecutionCaseDecorator, type: :decorator do
   describe '#hearings' do
     subject(:call) { decorator.hearings }
 
-    before { allow(prosecution_case).to receive(:hearings).and_return(hearing_summaries) }
+    before { allow(case_summary).to receive(:hearings).and_return(hearing_summaries) }
 
     context 'with multiple v2 hearing_summaries' do
       let(:hearing_summaries) { [hearing_summary1, hearing_summary2] }
@@ -56,7 +56,7 @@ RSpec.describe CdApi::ProsecutionCaseDecorator, type: :decorator do
     subject(:call) { decorator.defendants }
 
     context 'with multiple overall defendants' do
-      let(:prosecution_case) { build :prosecution_case, :with_overall_defendants }
+      let(:case_summary) { build :case_summary, :with_overall_defendants }
 
       it { is_expected.to all(be_instance_of(CdApi::OverallDefendantDecorator)) }
     end
@@ -81,7 +81,7 @@ RSpec.describe CdApi::ProsecutionCaseDecorator, type: :decorator do
     let(:test_decorator) { decorator }
 
     before do
-      allow(prosecution_case).to receive(:hearing_summaries).and_return(decorated_hearing_summaries)
+      allow(case_summary).to receive(:hearing_summaries).and_return(decorated_hearing_summaries)
       allow(decorated_hearing1).to receive(:defence_counsel_list).and_return(hearing1_defence_counsel_list)
       allow(decorated_hearing2).to receive(:defence_counsel_list).and_return(hearing2_defence_counsel_list)
       allow(decorated_hearing3).to receive(:defence_counsel_list).and_return(hearing3_defence_counsel_list)

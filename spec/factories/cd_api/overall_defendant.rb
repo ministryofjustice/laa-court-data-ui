@@ -3,6 +3,8 @@
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
   factory :overall_defendant, class: 'CdApi::OverallDefendant' do
+    case_summary
+
     id { '29d1db1c-1467-4304-aa5b-904044a1afe3' }
     first_name { 'John' }
     middle_name { 'Apple' }

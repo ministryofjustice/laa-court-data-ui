@@ -15,7 +15,7 @@ class ProsecutionCasesController < ApplicationController
 
   def load_and_authorize_search
     if version_2?
-      authorize! :read, CdApi::ProsecutionCase
+      authorize! :read, CdApi::CaseSummary
     else
       @search = Search.new(filter: 'case_reference', term: params[:id], version2: version_2?)
       authorize! :create, @search
@@ -35,7 +35,7 @@ class ProsecutionCasesController < ApplicationController
 
   def build_prosecution_case
     @prosecution_case ||= if version_2?
-                            helpers.decorate(search_results, CdApi::ProsecutionCaseDecorator)
+                            helpers.decorate(search_results, CdApi::CaseSummaryDecorator)
                           else
                             helpers.decorate(search_results.first)
                           end
@@ -49,7 +49,7 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def search_results
-    @search_results ||= version_2? ? query_cd_api : @search.execute
+    @search_results ||= version_2? ? query_v2_hearing_summaries : @search.execute
   end
 
   def version_2?
@@ -60,9 +60,9 @@ class ProsecutionCasesController < ApplicationController
     params[:id]
   end
 
-  def query_cd_api
+  def query_v2_hearing_summaries
     logger.info 'V2_PROSECUTION_CASE'
-    CdApi::ProsecutionCase.find(urn)
+    CdApi::CaseSummary.find(urn)
   end
 
   def redirect_to_search_path

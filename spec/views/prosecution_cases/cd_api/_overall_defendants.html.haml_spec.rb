@@ -2,13 +2,13 @@
 
 RSpec.describe 'prosecution_cases/cd_api/_overall_defendants.html.haml', type: :view do
   subject(:render_partial) do
-    render partial: 'prosecution_cases/cd_api/overall_defendants', locals: { results:, prosecution_case: }
+    render partial: 'prosecution_cases/cd_api/overall_defendants', locals: { results:, case_summary: }
   end
 
-  let(:results) { [prosecution_case] }
+  let(:results) { [case_summary] }
 
-  let(:prosecution_case) do
-    build :prosecution_case, prosecution_case_reference: 'THECASEURN', overall_defendants:
+  let(:case_summary) do
+    build :case_summary, prosecution_case_reference: 'THECASEURN', overall_defendants:
   end
 
   let(:hearings) { [] }
@@ -21,7 +21,7 @@ RSpec.describe 'prosecution_cases/cd_api/_overall_defendants.html.haml', type: :
 
   before do
     allow(overall_defendant).to receive(:name).and_return(defendant_name)
-    assign(:prosecution_case, prosecution_case)
+    assign(:case_summary, case_summary)
     assign(:results, results)
   end
 

@@ -3,12 +3,12 @@
 RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :view do
   subject(:render_partial) do
     render partial: 'prosecution_cases/cd_api/hearing_summaries',
-           locals: { prosecution_case: decorated_prosecution_case, column: 'date',
+           locals: { case_summary: decorated_case_summary, column: 'date',
                      direction: 'asc' }
   end
 
-  let(:decorated_prosecution_case) { view.decorate(prosecution_case, CdApi::ProsecutionCaseDecorator) }
-  let(:prosecution_case) { build :prosecution_case, hearing_summaries: }
+  let(:decorated_case_summary) { view.decorate(case_summary, CdApi::CaseSummaryDecorator) }
+  let(:case_summary) { build :case_summary, hearing_summaries: }
 
   let(:hearing_summaries) { [] }
 
@@ -36,9 +36,9 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
   before do
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
-    allow(decorated_prosecution_case).to receive(:hearings_sort_column).and_return 'date'
-    allow(decorated_prosecution_case).to receive(:hearings_sort_direction).and_return 'asc'
-    allow(decorated_prosecution_case).to receive(:prosecution_case_reference).and_return 'THECASEURN'
+    allow(decorated_case_summary).to receive(:hearings_sort_column).and_return 'date'
+    allow(decorated_case_summary).to receive(:hearings_sort_direction).and_return 'asc'
+    allow(decorated_case_summary).to receive(:prosecution_case_reference).and_return 'THECASEURN'
     render_partial
   end
 

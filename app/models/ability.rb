@@ -75,7 +75,7 @@ class Ability
   end
 
   def can_query_cdapi
-    can %i[read], CdApi::ProsecutionCase
+    can %i[read], CdApi::CaseSummary
   end
 
   def can_manage_self

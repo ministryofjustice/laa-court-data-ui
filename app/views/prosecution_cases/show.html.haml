@@ -1,7 +1,7 @@
 = govuk_page_title(@prosecution_case.prosecution_case_reference, t('generic.case'))
 
 - if v2_hearing_summaries?
-  = render partial: 'prosecution_cases/cd_api/show_v2', locals: { prosecution_case: @prosecution_case }
+  = render partial: 'prosecution_cases/cd_api/show_v2', locals: { case_summary: @prosecution_case }
 - else
   .govuk-grid-row
     .govuk-grid-column-two-thirds
