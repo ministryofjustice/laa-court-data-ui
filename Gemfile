@@ -39,13 +39,13 @@ group :test do
   gem 'capybara_table'
   gem 'codeclimate-test-reporter', '>= 1.0.7', require: false
   gem 'fakeredis', require: 'fakeredis/rspec'
-  gem 'i18n-tasks', '~> 1.0.9'
+  gem 'i18n-tasks', '~> 1.0.10'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.9.4'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
-  gem 'rubocop', '~> 1.28', require: false
+  gem 'rubocop', '~> 1.29', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
