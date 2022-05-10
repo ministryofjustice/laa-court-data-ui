@@ -3,7 +3,12 @@
 require 'court_data_adaptor'
 
 RSpec.describe TableSorters::HearingsProviderSorter do
+  # TODO: update hearings to use a decorated hearings
   subject(:instance) { described_class.new(hearings, column, direction) }
+
+  before do
+    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
+  end
 
   include_context 'with multiple hearings to sort'
 
