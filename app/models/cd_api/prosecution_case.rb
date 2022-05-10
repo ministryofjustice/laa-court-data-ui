@@ -4,8 +4,6 @@ module CdApi
   class ProsecutionCase < BaseModel
     self.element_name = 'hearingsummaries'
 
-    attr_accessor :day
-
     has_many :hearing_summaries, class_name: 'cd_api/hearing_summary'
     has_many :overall_defendants, class_name: 'cd_api/overall_defendant'
 
