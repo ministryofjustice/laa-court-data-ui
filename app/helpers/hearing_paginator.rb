@@ -11,7 +11,7 @@ class HearingPaginator
   include Rails.application.routes.url_helpers
 
   PageItem = Struct.new(:id, :hearing_date)
-  
+
   def initialize(prosecution_case, column: 'date', direction: 'asc', page: 0)
     @prosecution_case = prosecution_case
     @current_page = page.to_i
