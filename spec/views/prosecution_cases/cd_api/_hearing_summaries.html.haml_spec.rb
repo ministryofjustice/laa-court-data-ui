@@ -8,7 +8,7 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
   end
 
   let(:decorated_case_summary) { view.decorate(case_summary, CdApi::CaseSummaryDecorator) }
-  let(:case_summary) { build :case_summary, hearing_summaries: }
+  let(:case_summary) { build :case_summary, prosecution_case_reference: 'THECASEURN', hearing_summaries: }
 
   let(:hearing_summaries) { [] }
 
@@ -38,7 +38,6 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
     allow(decorated_case_summary).to receive(:hearings_sort_column).and_return 'date'
     allow(decorated_case_summary).to receive(:hearings_sort_direction).and_return 'asc'
-    allow(decorated_case_summary).to receive(:prosecution_case_reference).and_return 'THECASEURN'
     render_partial
   end
 

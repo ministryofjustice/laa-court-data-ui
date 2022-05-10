@@ -11,6 +11,10 @@ http_interactions:
       - Basic <Basic>
       Accept:
       - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - ac60e10b-1a7a-4d2f-b9ce-18adb8641193
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -21,22 +25,22 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 10 May 2022 08:19:19 GMT
+      - Tue, 10 May 2022 20:48:33 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '3938'
+      - '3979'
       Connection:
       - keep-alive
       Laa-Transaction-Id:
-      - 1eda9ee7aaf949ab8272c77ba74ab706
+      - ac60e10b-1a7a-4d2f-b9ce-18adb8641193
       Access-Control-Expose-Headers:
       - Laa-Transaction-Id
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
     body:
       encoding: UTF-8
-      string: '{"hearing_summaries":[{"id":"ffebc761-1b61-4ba5-b197-c7326d002d92","hearing_type":"Trial
+      string: '{"prosecution_case_reference":"TEST12345","hearing_summaries":[{"id":"ffebc761-1b61-4ba5-b197-c7326d002d92","hearing_type":"Trial
         (TRL)","estimated_duration":null,"defendants":[],"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
@@ -48,8 +52,8 @@ http_interactions:
         Review (PTR)","estimated_duration":null,"defendants":[],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
-        2XE"}},"hearing_days":[{"sitting_day":"2019-10-29T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-30T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-31T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]}],"overall_defendants":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","arrest_summons_number":"FPV3XYUJNPIB","date_of_birth":"2000-12-27","national_insurance_number":"HX685369B","maat_reference":"Z10000233"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","arrest_summons_number":"OYOYFT1DFB4S","date_of_birth":"1958-05-08","national_insurance_number":"YZ235772C","maat_reference":"Z10000204"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","arrest_summons_number":"5SLSOIL9Q2ZQ","date_of_birth":"1967-09-24","national_insurance_number":"AH506781B","maat_reference":"Z10000178"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"1PBAP0Q18V3F","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","maat_reference":"Z10000222"}]}'
-  recorded_at: Tue, 10 May 2022 08:19:19 GMT
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-29T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-30T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-31T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]}],"overall_defendants":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","arrest_summons_number":"FPV3XYUJNPIB","date_of_birth":"2000-12-27","national_insurance_number":"HX685369B","maat_reference":"Z10000237"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","arrest_summons_number":"OYOYFT1DFB4S","date_of_birth":"1958-05-08","national_insurance_number":"YZ235772C","maat_reference":"Z10000204"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","arrest_summons_number":"5SLSOIL9Q2ZQ","date_of_birth":"1967-09-24","national_insurance_number":"AH506781B","maat_reference":"Z10000178"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"1PBAP0Q18V3F","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","maat_reference":"Z10000222"}]}'
+  recorded_at: Tue, 10 May 2022 20:48:32 GMT
 - request:
     method: get
     uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/hearingsummaries/TEST12345
@@ -61,6 +65,10 @@ http_interactions:
       - Basic <Basic>
       Accept:
       - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 743fbb96-6e03-4a81-a81d-28552789d120
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -71,22 +79,22 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 10 May 2022 08:19:23 GMT
+      - Tue, 10 May 2022 20:48:34 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '3938'
+      - '3979'
       Connection:
       - keep-alive
       Laa-Transaction-Id:
-      - 7d5406b532564b56b2b40f65947789ff
+      - 743fbb96-6e03-4a81-a81d-28552789d120
       Access-Control-Expose-Headers:
       - Laa-Transaction-Id
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
     body:
       encoding: UTF-8
-      string: '{"hearing_summaries":[{"id":"ffebc761-1b61-4ba5-b197-c7326d002d92","hearing_type":"Trial
+      string: '{"prosecution_case_reference":"TEST12345","hearing_summaries":[{"id":"ffebc761-1b61-4ba5-b197-c7326d002d92","hearing_type":"Trial
         (TRL)","estimated_duration":null,"defendants":[],"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
@@ -98,8 +106,8 @@ http_interactions:
         Review (PTR)","estimated_duration":null,"defendants":[],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
-        2XE"}},"hearing_days":[{"sitting_day":"2019-10-29T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-30T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-31T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]}],"overall_defendants":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","arrest_summons_number":"FPV3XYUJNPIB","date_of_birth":"2000-12-27","national_insurance_number":"HX685369B","maat_reference":"Z10000233"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","arrest_summons_number":"OYOYFT1DFB4S","date_of_birth":"1958-05-08","national_insurance_number":"YZ235772C","maat_reference":"Z10000204"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","arrest_summons_number":"5SLSOIL9Q2ZQ","date_of_birth":"1967-09-24","national_insurance_number":"AH506781B","maat_reference":"Z10000178"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"1PBAP0Q18V3F","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","maat_reference":"Z10000222"}]}'
-  recorded_at: Tue, 10 May 2022 08:19:23 GMT
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-29T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-30T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-31T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]}],"overall_defendants":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","arrest_summons_number":"FPV3XYUJNPIB","date_of_birth":"2000-12-27","national_insurance_number":"HX685369B","maat_reference":"Z10000237"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","arrest_summons_number":"OYOYFT1DFB4S","date_of_birth":"1958-05-08","national_insurance_number":"YZ235772C","maat_reference":"Z10000204"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","arrest_summons_number":"5SLSOIL9Q2ZQ","date_of_birth":"1967-09-24","national_insurance_number":"AH506781B","maat_reference":"Z10000178"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"1PBAP0Q18V3F","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","maat_reference":"Z10000222"}]}'
+  recorded_at: Tue, 10 May 2022 20:48:33 GMT
 - request:
     method: get
     uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/hearingsummaries/TEST12345
@@ -111,6 +119,10 @@ http_interactions:
       - Basic <Basic>
       Accept:
       - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - '09299490-41f3-4765-b49e-56262ac31405'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -121,22 +133,22 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 10 May 2022 08:19:47 GMT
+      - Tue, 10 May 2022 20:48:36 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '3938'
+      - '3979'
       Connection:
       - keep-alive
       Laa-Transaction-Id:
-      - 0435aaf148524b83b2fb982ca6108acb
+      - '09299490-41f3-4765-b49e-56262ac31405'
       Access-Control-Expose-Headers:
       - Laa-Transaction-Id
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
     body:
       encoding: UTF-8
-      string: '{"hearing_summaries":[{"id":"ffebc761-1b61-4ba5-b197-c7326d002d92","hearing_type":"Trial
+      string: '{"prosecution_case_reference":"TEST12345","hearing_summaries":[{"id":"ffebc761-1b61-4ba5-b197-c7326d002d92","hearing_type":"Trial
         (TRL)","estimated_duration":null,"defendants":[],"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
@@ -148,6 +160,6 @@ http_interactions:
         Review (PTR)","estimated_duration":null,"defendants":[],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
-        2XE"}},"hearing_days":[{"sitting_day":"2019-10-29T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-30T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-31T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]}],"overall_defendants":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","arrest_summons_number":"FPV3XYUJNPIB","date_of_birth":"2000-12-27","national_insurance_number":"HX685369B","maat_reference":"Z10000233"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","arrest_summons_number":"OYOYFT1DFB4S","date_of_birth":"1958-05-08","national_insurance_number":"YZ235772C","maat_reference":"Z10000204"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","arrest_summons_number":"5SLSOIL9Q2ZQ","date_of_birth":"1967-09-24","national_insurance_number":"AH506781B","maat_reference":"Z10000178"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"1PBAP0Q18V3F","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","maat_reference":"Z10000222"}]}'
-  recorded_at: Tue, 10 May 2022 08:19:47 GMT
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-29T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-30T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-31T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]}],"overall_defendants":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","arrest_summons_number":"FPV3XYUJNPIB","date_of_birth":"2000-12-27","national_insurance_number":"HX685369B","maat_reference":"Z10000237"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","arrest_summons_number":"OYOYFT1DFB4S","date_of_birth":"1958-05-08","national_insurance_number":"YZ235772C","maat_reference":"Z10000204"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","arrest_summons_number":"5SLSOIL9Q2ZQ","date_of_birth":"1967-09-24","national_insurance_number":"AH506781B","maat_reference":"Z10000178"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"1PBAP0Q18V3F","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","maat_reference":"Z10000222"}]}'
+  recorded_at: Tue, 10 May 2022 20:48:34 GMT
 recorded_with: VCR 6.1.0

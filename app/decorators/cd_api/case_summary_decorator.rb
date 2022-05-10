@@ -2,7 +2,6 @@
 
 module CdApi
   class CaseSummaryDecorator < BaseDecorator
-    attr_accessor :prosecution_case_reference
     attr_writer :hearings_sort_column, :hearings_sort_direction
 
     def hearings

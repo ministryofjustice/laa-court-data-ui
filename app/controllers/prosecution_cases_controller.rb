@@ -43,7 +43,6 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def update_prosecution_case
-    @prosecution_case.prosecution_case_reference = urn if version_2?
     @prosecution_case.hearings_sort_column = params[:column]
     @prosecution_case.hearings_sort_direction = params[:direction]
   end

@@ -3,6 +3,7 @@
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
   factory :case_summary, class: 'CdApi::CaseSummary' do
+    prosecution_case_reference { 'THECASEURN' }
     hearing_summaries { [] }
     overall_defendants { [] }
 

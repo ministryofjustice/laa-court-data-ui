@@ -52,7 +52,7 @@ class Search
   private
 
   def version2?
-    Feature.enabled?(:defendants_search) && version2
+    version2
   end
 
   def query_cd_api
