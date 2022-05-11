@@ -3,6 +3,11 @@
 RSpec.describe Search, type: :model do
   subject { described_class.new }
 
+  before do
+    allow_any_instance_of(described_class).to receive(:version2).and_return(false)
+    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
+  end
+
   it {
     is_expected.to \
       respond_to(:filters, :filter,

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'feature_flag'
+
 module ApplicationHelper
   include GovukDesignSystemHelper
 
@@ -37,6 +39,10 @@ module ApplicationHelper
 
   def app_environment
     "app-environment-#{ENV.fetch('ENV', 'local')}"
+  end
+
+  def v2_hearing_summaries?
+    Feature.enabled?(:hearing_summaries)
   end
 
   private

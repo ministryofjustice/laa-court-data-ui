@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe ProsecutionCaseDecorator, type: :decorator do
-  subject(:decorator) { described_class.new(prosecution_case, view_object) }
+RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
+  subject(:decorator) { described_class.new(case_summary, view_object) }
 
-  let(:prosecution_case) { instance_double(CourtDataAdaptor::Resource::ProsecutionCase) }
+  before do
+    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
+  end
+
+  let(:case_summary) { build :case_summary }
   let(:view_object) { view_class.new }
 
   let(:view_class) do
@@ -14,7 +18,7 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
   end
 
   it_behaves_like 'a base decorator' do
-    let(:object) { prosecution_case }
+    let(:object) { case_summary }
   end
 
   it {
@@ -22,58 +26,73 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
                               :hearings_sort_direction=)
   }
 
-  context 'when :hearings method is missing from the decorator' do
-    before { allow(prosecution_case).to receive_messages(hearings: nil) }
+  context 'when method is missing' do
+    before { allow(case_summary).to receive_messages(hearing_summaries: nil) }
 
-    it 'gets response from :hearings on the object' do
-      expect(prosecution_case).to respond_to(:hearings)
-    end
+    it { is_expected.to respond_to(:hearing_summaries) }
   end
 
   describe '#hearings' do
     subject(:call) { decorator.hearings }
 
-    before { allow(prosecution_case).to receive_messages(hearings:) }
+    before { allow(case_summary).to receive(:hearings).and_return(hearing_summaries) }
 
-    context 'with multiple hearings' do
-      let(:hearings) { [hearing1, hearing2] }
-      let(:hearing1) { CourtDataAdaptor::Resource::Hearing.new }
-      let(:hearing2) { CourtDataAdaptor::Resource::Hearing.new }
+    context 'with multiple v2 hearing_summaries' do
+      let(:hearing_summaries) { [hearing_summary1, hearing_summary2] }
+      let(:hearing_summary1) { build :hearing_summary }
+      let(:hearing_summary2) { build :hearing_summary }
 
-      it { is_expected.to all(be_instance_of(HearingDecorator)) }
+      it { is_expected.to all(be_instance_of(CdApi::HearingSummaryDecorator)) }
     end
 
-    context 'with no hearings' do
-      let(:hearings) { [] }
+    context 'with no hearing_summaries' do
+      let(:hearing_summaries) { [] }
 
       it { is_expected.to be_empty }
     end
   end
 
-  describe '#sorted_hearings_with_day' do
-    subject(:call) { decorator.sorted_hearings_with_day }
+  describe '#defendants' do
+    subject(:call) { decorator.defendants }
 
-    let(:decorated_hearings) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
-    let(:decorated_hearing1) { view_object.decorate(hearing1) }
-    let(:decorated_hearing2) { view_object.decorate(hearing2) }
-    let(:decorated_hearing3) { view_object.decorate(hearing3) }
+    context 'with multiple overall defendants' do
+      let(:case_summary) { build :case_summary, :with_overall_defendants }
+
+      it { is_expected.to all(be_instance_of(CdApi::OverallDefendantDecorator)) }
+    end
+
+    context 'with no overall defendants' do
+      let(:overall_defendants) { [] }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe '#sorted_hearing_summaries_with_day' do
+    subject(:call) { decorator.sorted_hearing_summaries_with_day }
+
+    let(:decorator_class) { CdApi::HearingSummaryDecorator }
+    let(:decorated_hearing_summaries) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
+    let(:decorated_hearing1) { view_object.decorate(hearing1, decorator_class) }
+    let(:decorated_hearing2) { view_object.decorate(hearing2, decorator_class) }
+    let(:decorated_hearing3) { view_object.decorate(hearing3, decorator_class) }
     let(:column) { 'date' }
     let(:direction) { 'asc' }
     let(:test_decorator) { decorator }
 
     before do
-      allow(prosecution_case).to receive_messages(hearings: decorated_hearings)
-      allow(decorated_hearing1).to receive(:provider_list).and_return(hearing1_provider_list)
-      allow(decorated_hearing2).to receive(:provider_list).and_return(hearing2_provider_list)
-      allow(decorated_hearing3).to receive(:provider_list).and_return(hearing3_provider_list)
+      allow(case_summary).to receive(:hearing_summaries).and_return(decorated_hearing_summaries)
+      allow(decorated_hearing1).to receive(:defence_counsel_list).and_return(hearing1_defence_counsel_list)
+      allow(decorated_hearing2).to receive(:defence_counsel_list).and_return(hearing2_defence_counsel_list)
+      allow(decorated_hearing3).to receive(:defence_counsel_list).and_return(hearing3_defence_counsel_list)
       allow(test_decorator).to receive(:hearings_sort_column).and_return(column)
       allow(test_decorator).to receive(:hearings_sort_direction).and_return(direction)
     end
 
     it { is_expected.to be_instance_of(Enumerator) }
-    it { is_expected.to all(be_instance_of(HearingDecorator)) }
+    it { is_expected.to all(be_instance_of(CdApi::HearingSummaryDecorator)) }
 
-    include_examples 'sort hearings'
+    include_examples 'sort v2 hearings'
 
     context 'when the hearings table sort column and direction are changed' do
       context 'when hearings_sort_column is date and hearings_sort_direction is asc' do
@@ -133,7 +152,7 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
         let(:direction) { 'asc' }
 
         it 'sorts hearings by provider asc' do
-          expect(call.map(&:provider_list))
+          expect(call.map(&:defence_counsel_list))
             .to match(['Custard Cream (Junior)', 'Hob Nob (QC)<br>Malted Milk (Junior)',
                        'Jammy Dodger (Junior)', 'Jammy Dodger (Junior)'])
         end
@@ -144,66 +163,11 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
         let(:direction) { 'desc' }
 
         it 'sorts hearings by provider desc' do
-          expect(call.map(&:provider_list))
+          expect(call.map(&:defence_counsel_list))
             .to match(['Jammy Dodger (Junior)', 'Jammy Dodger (Junior)',
                        'Hob Nob (QC)<br>Malted Milk (Junior)', 'Custard Cream (Junior)'])
         end
       end
-    end
-  end
-
-  describe '#cracked?' do
-    subject(:call) { decorator.cracked? }
-
-    before { allow(prosecution_case).to receive_messages(hearings:) }
-
-    context 'with no hearings' do
-      let(:hearings) { [] }
-
-      it { is_expected.to be_falsey }
-    end
-
-    context 'with a hearing without a "cracked" cracked_ineffective_trial object' do
-      let(:hearings) { [hearing] }
-      let(:hearing) { CourtDataAdaptor::Resource::Hearing.new }
-      let(:cracked_ineffective_trial) do
-        CourtDataAdaptor::Resource::CrackedIneffectiveTrial.new(type: 'Ineffective')
-      end
-
-      it { is_expected.to be_falsey }
-    end
-
-    context 'with a hearing with a "cracked" cracked_ineffective_trial object' do
-      let(:hearings) { [hearing] }
-      let(:hearing) { CourtDataAdaptor::Resource::Hearing.new }
-      let(:cracked_ineffective_trial) do
-        CourtDataAdaptor::Resource::CrackedIneffectiveTrial.new(type: 'Cracked')
-      end
-
-      before do
-        allow(hearing).to receive(:cracked_ineffective_trial).and_return(cracked_ineffective_trial)
-      end
-
-      it { is_expected.to be_truthy }
-    end
-
-    context 'with multiple hearings with one "cracked" cracked_ineffective_trial object' do
-      let(:hearings) { [hearing1, hearing2] }
-      let(:hearing1) { CourtDataAdaptor::Resource::Hearing.new }
-      let(:hearing2) { CourtDataAdaptor::Resource::Hearing.new }
-      let(:cracked_ineffective_trial1) do
-        CourtDataAdaptor::Resource::CrackedIneffectiveTrial.new(type: 'Vacated', code: 'A')
-      end
-      let(:cracked_ineffective_trial2) do
-        CourtDataAdaptor::Resource::CrackedIneffectiveTrial.new(type: 'Ineffective', code: 'M1')
-      end
-
-      before do
-        allow(hearing1).to receive(:cracked_ineffective_trial).and_return(cracked_ineffective_trial1)
-        allow(hearing2).to receive(:cracked_ineffective_trial).and_return(cracked_ineffective_trial2)
-      end
-
-      it { is_expected.to be_truthy }
     end
   end
 

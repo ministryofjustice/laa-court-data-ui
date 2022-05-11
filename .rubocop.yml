@@ -105,6 +105,10 @@ Rails/EnvironmentVariableAccess:
 Rails/FilePath:
   Enabled: false
 
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+   - app/models/cd_api/*
+
 Rails/HelperInstanceVariable:
   Exclude:
     - app/helpers/hearing_paginator.rb

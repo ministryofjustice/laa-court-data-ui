@@ -46,12 +46,14 @@ class Ability
 
   def caseworker_abilities
     can_search
+    can_query_cdapi
     can_manage_links
     can_manage_self
   end
 
   def manager_abilities
     can_search
+    can_query_cdapi
     can_manage_links
     can :manage, User
   end
@@ -70,6 +72,10 @@ class Ability
 
   def can_manage_links
     can :create, :link_maat_reference
+  end
+
+  def can_query_cdapi
+    can %i[read], CdApi::CaseSummary
   end
 
   def can_manage_self
