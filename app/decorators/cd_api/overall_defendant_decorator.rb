@@ -3,7 +3,8 @@
 module CdApi
   class OverallDefendantDecorator < BaseDecorator
     def name
-      [first_name, middle_name, last_name].compact.join(' ')
+      # TODO: Create a name service to build the name for reusability
+      [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
     end
 
     def linked?
