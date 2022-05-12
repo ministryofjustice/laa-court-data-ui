@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe 'feedback', type: :request do
+  let(:user) { create(:user) }
   let(:message_delivery) { instance_double(FeedbackMailer::MessageDelivery) }
+
+  before do
+    sign_in user
+  end
 
   context 'when clicking the feedback link', type: :request do
     before { get '/feedback/new' }
