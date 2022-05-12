@@ -26,7 +26,7 @@ RSpec.describe 'hearings/show.html.haml', type: :view, stub_v2_hearing_data: tru
     allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
 
     allow(view).to receive(:govuk_page_title).and_return 'Hearings Page'
-    
+
     assign(:hearing, hearing)
     assign(:paginator, paginator)
   end

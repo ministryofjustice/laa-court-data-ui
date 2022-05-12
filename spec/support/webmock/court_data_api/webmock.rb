@@ -257,7 +257,7 @@ RSpec.configure do |config|
       headers: { 'Content-Type' => 'application/json' },
       body: load_json_stub('cd_api/hearing_summary_response.json')
     )
-  end 
+  end
 
   config.before(:each, stub_hearing_summaries_v2: true) do
     stub_request(:get, %r{http.*/v2/hearingsummaries/})

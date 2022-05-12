@@ -15,7 +15,7 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
     allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
-    
+
     sign_in user
     visit(url)
   end
