@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module CdApi
   class HearingSummaryDecorator < BaseDecorator
     attr_accessor :day

@@ -58,7 +58,7 @@ class HearingsController < ApplicationController
   end
 
   def hearing
-    logger.info 'USING_V1_ENDPOINT_HEARING'
+    logger.info 'USING_V1_ENDPOINT'
     @hearing ||= helpers.decorate(prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
   end
 
@@ -89,7 +89,7 @@ class HearingsController < ApplicationController
   def prosecution_case
     @prosecution_case ||= if Feature.enabled?(:hearing)
                             logger.info 'USING_V2_ENDPOINT_HEARING_SUMMARIES'
-                            helpers.decorate(@prosecution_case_search.call)
+                            helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
                           else
                             logger.info 'USING_V1_ENDPOINT_PROSECUTION_CASE'
                             helpers.decorate(@prosecution_case_search.execute.first)

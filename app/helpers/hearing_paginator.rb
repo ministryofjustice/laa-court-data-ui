@@ -91,7 +91,7 @@ class HearingPaginator
     @prosecution_case.hearings_sort_column = @column
     @prosecution_case.hearings_sort_direction = @direction
     if Feature.enabled?(:hearing)
-      @prosecution_case.sorted_hearings_v2_with_day.map do |hearing|
+      @prosecution_case.sorted_hearing_summaries_with_day.map do |hearing|
         PageItem.new(hearing.id, hearing.day)
       end
     else

@@ -35,8 +35,6 @@ class HearingDecorator < BaseDecorator
     end.sort_by(&:occurred_at)
   end
 
-  delegate :hearing_type, to: :object if Feature.enabled?(:hearing)
-
   private
 
   def decorated_providers

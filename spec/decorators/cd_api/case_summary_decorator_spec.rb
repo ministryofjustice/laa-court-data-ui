@@ -70,7 +70,6 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
 
   describe '#sorted_hearing_summaries_with_day' do
     subject(:call) { decorator.sorted_hearing_summaries_with_day }
-
     let(:decorator_class) { CdApi::HearingSummaryDecorator }
     let(:decorated_hearing_summaries) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
     let(:decorated_hearing1) { view_object.decorate(hearing1, decorator_class) }
