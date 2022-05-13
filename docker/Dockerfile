@@ -1,7 +1,7 @@
 FROM ruby:3.1.2-alpine3.15
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Get Paid"
-LABEL Contact="<laa-get-paid@digital.justice.gov.uk>"
+LABEL Contact="<assessaclaim@digital.justice.gov.uk>"
 
 # fail early and print all commands
 RUN set -ex
