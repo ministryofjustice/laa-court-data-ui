@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class FeedbackController < ApplicationController
-  skip_before_action :authenticate_user!
-  skip_authorization_check
+  load_and_authorize_resource
 
   def new
     @feedback = Feedback.new
