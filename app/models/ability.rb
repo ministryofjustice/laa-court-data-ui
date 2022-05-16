@@ -49,6 +49,7 @@ class Ability
     can_query_cdapi
     can_manage_links
     can_manage_self
+    can_feedback
   end
 
   def manager_abilities
@@ -56,6 +57,7 @@ class Ability
     can_query_cdapi
     can_manage_links
     can :manage, User
+    can_feedback
   end
 
   def admin_abilities
@@ -80,5 +82,9 @@ class Ability
 
   def can_manage_self
     can %i[show manage_password], User, id: user.id
+  end
+
+  def can_feedback
+    can %i[new create], Feedback
   end
 end

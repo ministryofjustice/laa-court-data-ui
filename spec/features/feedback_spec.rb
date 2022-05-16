@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.feature 'Feedback', type: :feature do
-  scenario 'user clicks feedback link' do
+  let(:user) { create(:user) }
+
+  scenario 'user clicks feedback link signed in' do
+    sign_in user
     visit new_feedback_path
 
     expect(page).to have_govuk_page_title(text: 'Help us improve this service')
@@ -24,5 +27,12 @@ RSpec.feature 'Feedback', type: :feature do
 
     expect(page).to have_govuk_flash(:notice, text: 'Your feedback has been submitted')
     expect(page).to have_current_path(authenticated_root_path)
+  end
+
+  scenario 'user clicks feedback link unauthenticated' do
+    visit new_feedback_path
+
+    expect(page).to have_current_path('/users/sign_in')
+    expect(page).to have_govuk_flash(:alert, text: 'You need to sign in before continuing.')
   end
 end
