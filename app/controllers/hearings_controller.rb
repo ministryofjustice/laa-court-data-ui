@@ -4,6 +4,7 @@ require_dependency 'court_data_adaptor'
 
 class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
+                :set_prosecution_case,
                 :set_hearing,
                 :set_hearing_day,
                 :set_hearing_events
@@ -15,15 +16,14 @@ class HearingsController < ApplicationController
 
   def show
     add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.strftime('%d/%m/%Y')}", ''
-
     return if @hearing
-    redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.no_hearing_details')
+    redirect_to_prosecution_case(notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
   end
 
-  def redirect_to_prosecution_case(message)
+  def redirect_to_prosecution_case(**flash)
     redirect_back(fallback_location: prosecution_case_path(prosecution_case_reference),
                   allow_other_host: false,
-                  notice: message)
+                  **flash)
   end
 
   def prosecution_case_reference
@@ -59,7 +59,7 @@ class HearingsController < ApplicationController
 
   def hearing
     logger.info 'USING_V1_ENDPOINT'
-    @hearing ||= helpers.decorate(prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
+    @hearing ||= helpers.decorate(@prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
   end
 
   def hearing_v2
@@ -69,11 +69,11 @@ class HearingsController < ApplicationController
                                          date: paginator.current_item.hearing_date.strftime('%F')
                                        })
     rescue ActiveResource::ResourceNotFound
-      redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.no_hearing_details')
+      redirect_to_prosecution_case(notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
     rescue ActiveResource::ServerError, ActiveResource::ClientError => e
       logger.error 'SERVER_ERROR_OCCURRED'
       Sentry.capture_exception(e)
-      redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.server_error')
+      redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
     end
   end
 
@@ -82,24 +82,25 @@ class HearingsController < ApplicationController
   end
 
   def paginator
-    @paginator ||= helpers.paginator(prosecution_case, column:,
-                                                       direction:, page:)
+    @paginator ||= helpers.paginator(@prosecution_case, column:, direction:, page:)
   end
 
-  def prosecution_case
-    @prosecution_case ||= if Feature.enabled?(:hearing)
-                            begin
-                              logger.info 'USING_V2_ENDPOINT_HEARING_SUMMARIES'
-                              helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
-                            rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-                              Rails.logger.error 'SERVER_ERROR_OCCURRED'
-                              Sentry.capture_exception(e)
-                              redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.server_error')
-                            end
-                          else
-                            logger.info 'USING_V1_ENDPOINT_PROSECUTION_CASE'
-                            helpers.decorate(@prosecution_case_search.execute.first)
-                          end
+  def set_prosecution_case
+    Feature.enabled?(:hearing) ? prosecution_case_call_v2 : prosecution_case_call
+  end
+
+  def prosecution_case_call
+    logger.info 'USING_V1_ENDPOINT_PROSECUTION_CASE'
+    @prosecution_case = helpers.decorate(@prosecution_case_search.execute.first)
+  end
+
+  def prosecution_case_call_v2
+    logger.info 'USING_V2_ENDPOINT_HEARING_SUMMARIES'
+    @prosecution_case = helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
+  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+    Rails.logger.error 'SERVER_ERROR_OCCURRED'
+    Sentry.capture_exception(e)
+    redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
   end
 
   def hearing_events
