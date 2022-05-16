@@ -88,8 +88,14 @@ class HearingsController < ApplicationController
 
   def prosecution_case
     @prosecution_case ||= if Feature.enabled?(:hearing)
-                            logger.info 'USING_V2_ENDPOINT_HEARING_SUMMARIES'
-                            helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
+                            begin
+                              logger.info 'USING_V2_ENDPOINT_HEARING_SUMMARIES'
+                              helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
+                            rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+                              Rails.logger.error 'SERVER_ERROR_OCCURRED'
+                              Sentry.capture_exception(e)
+                              redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.server_error')
+                            end
                           else
                             logger.info 'USING_V1_ENDPOINT_PROSECUTION_CASE'
                             helpers.decorate(@prosecution_case_search.execute.first)

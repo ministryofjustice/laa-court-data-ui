@@ -13,11 +13,6 @@ module CdApi
     def call
       Rails.logger.info 'V2_SEARCH_HEARING_SUMMARIES'
       CdApi::CaseSummary.find(@urn)
-    rescue ActiveResource::BadRequest
-      Rails.logger.info 'CLIENT_ERROR_OCCURRED'
-    rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-      Rails.logger.error 'SERVER_ERROR_OCCURRED'
-      Sentry.capture_exception(e)
     end
   end
 end
