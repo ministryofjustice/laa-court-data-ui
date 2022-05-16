@@ -1,5 +1,8 @@
 %div{ class: 'govuk-!-padding-bottom-4' }
 = govuk_detail(t('generic.view_raw_data')) do
+  %h3='Hearing Summarie'
+  %pre
+    = JSON.pretty_generate(hearing_summary.as_json)
   %h3='Hearing'
   %pre
     = JSON.pretty_generate(hearing.as_json)

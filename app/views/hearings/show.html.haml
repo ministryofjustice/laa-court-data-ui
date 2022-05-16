@@ -39,4 +39,4 @@
   - unless Feature.enabled?(:hearing)
     = render partial: 'raw_response', locals: { hearing: @hearing }
   - else
-    = render partial: 'raw_response_v2', locals: { hearing: @hearing, hearing_events: @hearing_events}
+    = render partial: 'raw_response_v2', locals: { hearing_summary: @prosecution_case.hearing_summaries, hearing: @hearing, hearing_events: @hearing_events}
