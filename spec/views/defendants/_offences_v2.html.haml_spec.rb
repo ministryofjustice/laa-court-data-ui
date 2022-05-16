@@ -13,6 +13,16 @@ RSpec.describe 'defendants/_offences_v2.html.haml', type: :view do
       assign(:defendant, defendant)
     end
 
+    context 'when the date is present' do
+      it 'displays the header' do
+        is_expected.to have_tag('th.govuk-table__header', text: /Date/)
+      end
+
+      it 'displays the value' do
+        is_expected.to have_tag('td.govuk-table__cell', text: %r{17/10/2019})
+      end
+    end
+
     context 'when the Offence is present' do
       it 'displays the header' do
         is_expected.to have_tag('th.govuk-table__header', text: /Offence and legislation/)
