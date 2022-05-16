@@ -36,6 +36,7 @@ RSpec.feature 'defendants view', type: :feature, stub_defendants_uuid_urn_search
       expect(page).to have_css('th.govuk-table__header', text: 'ASN')
       expect(page).to have_link('View case')
       expect(page).to have_css('div.govuk-heading-l', text: 'Offences')
+      expect(page).to have_css('th.govuk-table__header', text: 'Date')
       expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
