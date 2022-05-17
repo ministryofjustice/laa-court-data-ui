@@ -4,15 +4,11 @@ require 'simplecov'
 require 'simplecov_json_formatter'
 
 SimpleCov.configure do
-  SimpleCov.command_name = "Job #{ENV.fetch('CIRCLE_NODE_INDEX', nil)}" if ENV['CIRCLE_NODE_INDEX']
-  if ENV['CI']
-    SimpleCov.formatters = SimpleCov::Formatter::SimpleFormatter
-  else
-    SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
-                                                                      SimpleCov::Formatter::HTMLFormatter,
-                                                                      SimpleCov::Formatter::JSONFormatter
-                                                                    ])
-  end
+  SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
+                                                                    SimpleCov::Formatter::HTMLFormatter,
+                                                                    SimpleCov::Formatter::JSONFormatter
+                                                                  ])
+    
   add_filter '_spec.rb'
   add_filter 'spec/'
   add_filter 'config/'

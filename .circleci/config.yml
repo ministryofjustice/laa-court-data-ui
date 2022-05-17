@@ -154,7 +154,6 @@ commands:
               --file docker/Dockerfile .
 
   rspec:
-    parallelism: 5
     steps:
       - db-setup
       - run:
@@ -162,7 +161,7 @@ commands:
           command: |
             mkdir /tmp/test-results
             tmp/cc-test-reporter before-build
-            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec \
               --format progress \
@@ -172,19 +171,6 @@ commands:
             tmp/cc-test-reporter format-coverage -t simplecov -o "tmp/coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
       - store_test_results:
           path: /tmp/test-results
-      - run:
-          name: Stash Coverage Results
-          command: |
-            mkdir coverage_results
-            cp -R coverage/.resultset.json coverage_results/.resultset-${CIRCLE_NODE_INDEX}.json
-      - persist_to_workspace:
-          root: .
-          paths:
-            - coverage_results
-      - run:
-        name: Merge and check coverage
-        command: |
-          bundle exec rake coverage:report
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
@@ -254,7 +240,7 @@ jobs:
 
   rspec-tests:
     executor: test-executor
-    parallelism: 1
+    parallelism: 5
     steps:
       - checkout
       - build-base
