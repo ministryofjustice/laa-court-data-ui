@@ -8,7 +8,7 @@ SimpleCov.configure do
                                                                     SimpleCov::Formatter::HTMLFormatter,
                                                                     SimpleCov::Formatter::JSONFormatter
                                                                   ])
-    
+
   add_filter '_spec.rb'
   add_filter 'spec/'
   add_filter 'config/'
