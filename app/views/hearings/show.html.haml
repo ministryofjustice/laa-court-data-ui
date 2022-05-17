@@ -6,37 +6,37 @@
 
 .govuk-grid-row
   .govuk-grid-column-one-third
-    - unless Feature.enabled?(:hearing_data)
+    - unless Feature.enabled?(:hearing)
       = render partial: 'details', locals: { hearing: @hearing, hearing_day: @hearing_day }
     - else
       = render partial: 'details_v2', locals: { hearing: @hearing, hearing_day: @hearing_day }
 
-    - unless Feature.enabled?(:hearing_data)
+    - unless Feature.enabled?(:hearing)
       = render partial: 'attendees', locals: { hearing: @hearing }
     - else
       = render partial: 'attendees_v2', locals: { hearing: @hearing }
 
   .govuk-grid-column-two-thirds
-    - unless Feature.enabled?(:hearing_events)
+    - unless Feature.enabled?(:hearing)
       - if @hearing.hearing_events
         = render partial: 'hearing_events', locals: { hearing: @hearing, hearing_day: @hearing_day }
     - else
       - if @hearing_events
         = render partial: 'hearing_events_v2', locals: { hearing_events: @hearing_events, hearing_day: @hearing_day }
 
-    - unless Feature.enabled?(:hearing_data)
+    - unless Feature.enabled?(:hearing)
       - if @hearing.cracked_ineffective_trial
         = render partial: 'hearing_result', locals: { hearing: @hearing }
     - else
       - if @hearing.hearing.cracked_ineffective_trial.description
         = render partial: 'hearing_result_v2', locals: { hearing: @hearing }
-    - unless Feature.enabled?(:hearing_data)
+    - unless Feature.enabled?(:hearing)
       = render partial: 'court_applications', locals: { hearing: @hearing }
     - else
       = render partial: 'court_applications_v2', locals: { hearing: @hearing }
 
 - if Rails.configuration.x.display_raw_responses
-  - unless Feature.enabled?(:hearing_data)
+  - unless Feature.enabled?(:hearing)
     = render partial: 'raw_response', locals: { hearing: @hearing }
   - else
-    = render partial: 'raw_response_v2', locals: { hearing: @hearing, hearing_events: @hearing_events}
+    = render partial: 'raw_response_v2', locals: { hearing_summary: @prosecution_case.hearing_summaries, hearing: @hearing, hearing_events: @hearing_events}

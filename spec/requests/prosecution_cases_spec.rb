@@ -2,12 +2,12 @@
 
 RSpec.describe 'prosecution cases', type: :request, stub_case_search: true do
   let(:user) { create(:user) }
-  let(:case_urn) { 'THISISSTUBBED' }
+  let(:case_reference) { 'TEST12345' }
 
   context 'when authenticated' do
     before do
       sign_in user
-      get "/prosecution_cases/#{case_urn}"
+      get "/prosecution_cases/#{case_reference}"
     end
 
     it 'renders prosecution_cases/show' do
@@ -17,7 +17,7 @@ RSpec.describe 'prosecution cases', type: :request, stub_case_search: true do
 
   context 'when not authenticated' do
     before do
-      get "/prosecution_cases/#{case_urn}"
+      get "/prosecution_cases/#{case_reference}"
     end
 
     it 'redirects to sign in page' do

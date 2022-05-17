@@ -4,6 +4,7 @@ require_dependency 'court_data_adaptor'
 
 class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
+                :set_prosecution_case,
                 :set_hearing,
                 :set_hearing_day,
                 :set_hearing_events
@@ -15,15 +16,14 @@ class HearingsController < ApplicationController
 
   def show
     add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.strftime('%d/%m/%Y')}", ''
-
-    return if hearing
-    redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.no_hearing_details')
+    return if @hearing
+    redirect_to_prosecution_case(notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
   end
 
-  def redirect_to_prosecution_case(message)
+  def redirect_to_prosecution_case(**flash)
     redirect_back(fallback_location: prosecution_case_path(prosecution_case_reference),
                   allow_other_host: false,
-                  notice: message)
+                  **flash)
   end
 
   def prosecution_case_reference
@@ -33,18 +33,16 @@ class HearingsController < ApplicationController
   private
 
   def load_and_authorize_search
-    # TODO: this should be hitting the hearing endpoint ideally, however, since pagination
-    # currently requires having knowlegde of all hearings via the prosecution case endpoint
-    # it is pointless and time-consuming to to query both endpoints when the prosecution case
-    # endpoint contains all the info we need. If we could pass a "pagination collection" this would
-    # allow us to revert to using the hearing endpoint.
-
-    @prosecution_case_search = Search.new(filter: 'case_reference', term: prosecution_case_reference)
+    @prosecution_case_search = if Feature.enabled?(:hearing)
+                                 CdApi::CaseSummaryService.new(urn: prosecution_case_reference)
+                               else
+                                 Search.new(filter: 'case_reference', term: prosecution_case_reference)
+                               end
     authorize! :create, @prosecution_case_search
   end
 
   def set_hearing
-    if Feature.enabled?(:hearing_data)
+    if Feature.enabled?(:hearing)
       hearing_v2
     else
       hearing
@@ -56,40 +54,53 @@ class HearingsController < ApplicationController
   end
 
   def set_hearing_events
-    hearing_events if Feature.enabled?(:hearing_events)
+    hearing_events if Feature.enabled?(:hearing)
   end
 
   def hearing
     logger.info 'USING_V1_ENDPOINT'
-    @hearing ||= helpers.decorate(prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
+    @hearing ||= helpers.decorate(@prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
   end
 
   def hearing_v2
-    logger.info 'USING_V2_ENDPOINT_HEARING_DATA'
+    logger.info 'USING_V2_ENDPOINT_HEARING'
     begin
       @hearing ||= CdApi::Hearing.find(params[:id], params: {
                                          date: paginator.current_item.hearing_date.strftime('%F')
                                        })
     rescue ActiveResource::ResourceNotFound
-      redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.no_hearing_details')
+      redirect_to_prosecution_case(notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
     rescue ActiveResource::ServerError, ActiveResource::ClientError => e
       logger.error 'SERVER_ERROR_OCCURRED'
       Sentry.capture_exception(e)
-      redirect_to_prosecution_case I18n.t('hearings.show.flash.notice.server_error')
+      redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
     end
   end
 
   def hearing_day
-    @hearing_day ||= paginator.current_item.hearing_date || helpers.earliest_day_for(hearing)
+    @hearing_day ||= paginator.current_item.hearing_date || helpers.earliest_day_for(@hearing)
   end
 
   def paginator
-    @paginator ||= helpers.paginator(prosecution_case, column:,
-                                                       direction:, page:)
+    @paginator ||= helpers.paginator(@prosecution_case, column:, direction:, page:)
   end
 
-  def prosecution_case
-    @prosecution_case ||= helpers.decorate(@prosecution_case_search.execute.first)
+  def set_prosecution_case
+    Feature.enabled?(:hearing) ? prosecution_case_call_v2 : prosecution_case_call
+  end
+
+  def prosecution_case_call
+    logger.info 'USING_V1_ENDPOINT_PROSECUTION_CASE'
+    @prosecution_case = helpers.decorate(@prosecution_case_search.execute.first)
+  end
+
+  def prosecution_case_call_v2
+    logger.info 'USING_V2_ENDPOINT_HEARING_SUMMARIES'
+    @prosecution_case = helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
+  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+    Rails.logger.error 'SERVER_ERROR_OCCURRED'
+    Sentry.capture_exception(e)
+    redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
   end
 
   def hearing_events
