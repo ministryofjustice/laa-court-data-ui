@@ -228,13 +228,35 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_hearing_summaries_v2: true) do
-    stub_request(:get, %r{http.*/v2/hearingsummaries/})
-      .to_return(
-        status: 200,
-        body: load_json_stub('cd_api/hearingsummaries_body.json'),
-        headers: { 'Content-Type' => 'application/json' }
-      )
+  config.before(:each, stub_defendants_uuid_urn_search: true) do
+    stub_request(
+      :get, %r{/v2/defendants}
+    ).with(
+      query: { urn: 'TEST12345', uuid: '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
+    ).to_return(
+      status: 200,
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cd_api/defendants_body.json')
+    )
+  end
+
+  config.before(:each, stub_v2_hearing_summary: true) do
+    stub_request(
+      :get, %r{/v2/hearingsummaries/#{case_reference}}
+    ).to_return(
+      status: 200,
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cd_api/hearing_summary_response.json')
+    )
+  end
+
+  config.before(:each, stub_v2_hearing_summary_error: true) do
+    stub_request(
+      :get, %r{/v2/hearingsummaries/#{case_reference}}
+    ).to_return(
+      status: 500,
+      body: ''
+    )
   end
 
   config.before(:each, stub_defendants_uuid_urn_search: true) do

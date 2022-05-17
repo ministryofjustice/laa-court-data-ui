@@ -49,7 +49,6 @@ module ApplicationHelper
 
   def decorator_instance(object, decorator_class = nil)
     return object if object.is_a?(BaseDecorator)
-
     decorator_class ||= "#{object.class.to_s.demodulize}Decorator".constantize
     decorator_class.new(object, self)
   end
