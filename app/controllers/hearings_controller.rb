@@ -2,6 +2,7 @@
 
 require_dependency 'court_data_adaptor'
 
+# rubocop:disable Metrics/ClassLength
 class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
                 :set_prosecution_case,
@@ -105,10 +106,27 @@ class HearingsController < ApplicationController
 
   def hearing_events
     logger.info 'USING_V2_ENDPOINT_HEARING_EVENTS'
-    @hearing_events ||= CdApi::HearingEvents.find(params[:id],
-                                                  params: {
-                                                    date: paginator.current_item.hearing_date.strftime('%F')
-                                                  })
+    @hearing_events ||= call_hearing_events
+  end
+
+  def call_hearing_events
+    CdApi::HearingEvents.find(params[:id],
+                              params: {
+                                date: paginator.current_item.hearing_date.strftime('%F')
+                              })
+  rescue ActiveResource::ResourceNotFound
+    logger.info 'EVENTS_NOT_AVAILABLE'
+    nil
+  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+    logger.error 'ERROR_CALLING_EVENTS'
+    Sentry.capture_exception(e)
+    show_alert(I18n.t('hearings.show.flash.notice.events_error'),
+               "#{I18n.t('error.refresh')} #{I18n.t('error.it_helpdesk')}")
+    nil
+  end
+
+  def show_alert(title, message)
+    flash.now[:alert] = { title:, message: }
   end
 
   def page
@@ -123,3 +141,4 @@ class HearingsController < ApplicationController
     @direction ||= params[:direction]
   end
 end
+# rubocop:enable Metrics/ClassLength
