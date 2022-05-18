@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: true,
-                                           stub_v2_hearing_events: true, stub_v2_hearing_summary: true do
+RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: true, stub_v2_hearing_summary: true do
   let(:user) { create(:user) }
   let(:api_url_v2) { CdApi::BaseModel.site }
   let(:api_events_path) { "#{api_url_v2}hearing_events/#{hearing_id}?date=2019-10-23" }
@@ -20,40 +19,117 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
     visit(url)
   end
 
-  context 'when user views hearing page', stub_v2_hearing_data: true do
+  context 'when user views hearing page', stub_v2_hearing_data: true, stub_v2_hearing_events: true do
     let(:url) { "hearings/#{hearing_id}?column=date&direction=asc&page=0&urn=#{case_reference}" }
 
-    it 'requests data for hearing summary' do
-      expect(a_request(:get, api_summary_path))
-        .to have_been_made.once
+    context 'with hearing events', stub_v2_hearing_events: true do
+      it 'requests data for hearing summary' do
+        expect(a_request(:get, api_summary_path))
+          .to have_been_made.once
+      end
+
+      it 'requests data for hearing events' do
+        expect(a_request(:get, api_events_path)
+                 .with(query: { date: '2019-10-23' }))
+          .to have_been_made.once
+      end
+
+      it 'requests data for hearing data' do
+        expect(a_request(:get, api_data_path)
+                 .with(query: { date: '2019-10-23' }))
+          .to have_been_made.once
+      end
+
+      it 'displays details section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Details')
+      end
+
+      it 'displays attendees section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Attendees')
+      end
+
+      it 'displays events section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Events')
+      end
+
+      it 'displays court applications section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Court Applications')
+      end
     end
 
-    it 'requests data for hearing events' do
-      expect(a_request(:get, api_events_path)
-        .with(query: { date: '2019-10-23' }))
-        .to have_been_made.once
+    context 'with no hearing events', stub_v2_hearing_events_not_found: true do
+      it 'requests data for hearing summary' do
+        expect(a_request(:get, api_summary_path))
+          .to have_been_made.once
+      end
+
+      it 'requests data for hearing events' do
+        expect(a_request(:get, api_events_path)
+                 .with(query: { date: '2019-10-23' }))
+          .to have_been_made.once
+      end
+
+      it 'requests data for hearing data' do
+        expect(a_request(:get, api_data_path)
+                 .with(query: { date: '2019-10-23' }))
+          .to have_been_made.once
+      end
+
+      it 'displays details section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Details')
+      end
+
+      it 'displays attendees section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Attendees')
+      end
+
+      it 'displays events section' do
+        expect(page).not_to have_css('.govuk-heading-l', text: 'Events')
+      end
+
+      it 'displays court applications section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Court Applications')
+      end
     end
 
-    it 'requests data for hearing data' do
-      expect(a_request(:get, api_data_path)
-        .with(query: { date: '2019-10-23' }))
-        .to have_been_made.once
-    end
+    context 'with error fetching hearing events', stub_v2_hearing_events_error: true do
+      it 'requests data for hearing summary' do
+        expect(a_request(:get, api_summary_path))
+          .to have_been_made.once
+      end
 
-    it 'displays details section' do
-      expect(page).to have_css('.govuk-heading-l', text: 'Details')
-    end
+      it 'requests data for hearing events' do
+        expect(a_request(:get, api_events_path)
+                 .with(query: { date: '2019-10-23' }))
+          .to have_been_made.once
+      end
 
-    it 'displays attendees section' do
-      expect(page).to have_css('.govuk-heading-l', text: 'Attendees')
-    end
+      it 'requests data for hearing data' do
+        expect(a_request(:get, api_data_path)
+                 .with(query: { date: '2019-10-23' }))
+          .to have_been_made.once
+      end
 
-    it 'displays events section' do
-      expect(page).to have_css('.govuk-heading-l', text: 'Events')
-    end
+      it 'displays details section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Details')
+      end
 
-    it 'displays court applications section' do
-      expect(page).to have_css('.govuk-heading-l', text: 'Court Applications')
+      it 'displays attendees section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Attendees')
+      end
+
+      it 'displays events section' do
+        expect(page).not_to have_css('.govuk-heading-l', text: 'Events')
+      end
+
+      it 'displays court applications section' do
+        expect(page).to have_css('.govuk-heading-l', text: 'Court Applications')
+      end
+
+      it 'displays flash at top of page' do
+        expect(page).to have_govuk_flash(:alert,
+                                         text: 'There was an error retrieving the hearing events from the server')
+      end
     end
   end
 end

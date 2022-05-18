@@ -182,6 +182,26 @@ RSpec.configure do |config|
     )
   end
 
+  config.before(:each, stub_v2_hearing_events_not_found: true) do
+    stub_request(
+      :get, %r{/v2/hearing_events/#{hearing_id}}
+    ).with(
+      query: { date: '2019-10-23' }
+    ).to_return(
+      status: 404
+    )
+  end
+
+  config.before(:each, stub_v2_hearing_events_error: true) do
+    stub_request(
+      :get, %r{/v2/hearing_events/#{hearing_id}}
+    ).with(
+      query: { date: '2019-10-23' }
+    ).to_return(
+      status: 500
+    )
+  end
+
   config.before(:each, stub_v2_hearing_data: true) do
     stub_request(
       :get, %r{/v2/hearing/#{hearing_id}}
