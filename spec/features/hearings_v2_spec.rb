@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: true, stub_v2_hearing_summary: true do
+RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: true,
+                                           stub_v2_hearing_summary: true do
   let(:user) { create(:user) }
   let(:api_url_v2) { CdApi::BaseModel.site }
   let(:api_events_path) { "#{api_url_v2}hearing_events/#{hearing_id}?date=2019-10-23" }
@@ -128,7 +129,8 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
 
       it 'displays flash at top of page' do
         expect(page).to have_govuk_flash(:alert,
-                                         text: 'There was an error retrieving the hearing events from the server')
+                                         text: 'There was an error retrieving the hearing '\
+                                               'events from the server')
       end
     end
   end
