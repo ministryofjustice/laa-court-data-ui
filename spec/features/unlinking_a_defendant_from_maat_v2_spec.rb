@@ -10,7 +10,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlink_v2:
   let(:user) { create(:user) }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:defendants_page).and_return(false)
+    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
     allow(Feature).to receive(:enabled?).with(:laa_references).and_return(true)
     sign_in user
 

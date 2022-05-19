@@ -6,7 +6,7 @@ RSpec.feature 'defendants view', type: :feature, stub_defendants_uuid_urn_search
   let(:defendant_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:defendants_page).and_return(true)
+    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true)
     sign_in user
   end
 

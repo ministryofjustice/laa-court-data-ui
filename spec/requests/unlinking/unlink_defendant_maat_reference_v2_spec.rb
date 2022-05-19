@@ -31,7 +31,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
   before do
     create(:unlink_reason, code: 1, description: 'Reason not requiring text', text_required: false)
     create(:unlink_reason, code: 7, description: 'Reason requiring text', text_required: true)
-    allow(Feature).to receive(:enabled?).with(:defendants_page).and_return(false)
+    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
     allow(Feature).to receive(:enabled?).with(:laa_references).and_return(true)
   end
 

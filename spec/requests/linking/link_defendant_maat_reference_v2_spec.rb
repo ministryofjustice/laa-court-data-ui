@@ -25,7 +25,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
 
   before do
     allow(Feature).to receive(:enabled?).with(:laa_references).and_return(true)
-    allow(Feature).to receive(:enabled?).with(:defendants_page).and_return(false)
+    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
   end
 
