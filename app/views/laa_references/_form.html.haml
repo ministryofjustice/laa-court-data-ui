@@ -3,7 +3,7 @@
 
   = render 'defendants/defendant'
 
-  - if Feature.enabled?(:defendants_search)
+  - if Feature.enabled?(:defendants_page)
     = render 'defendants/offences_v2'
   - else
     = render 'defendants/offences'
