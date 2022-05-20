@@ -227,6 +227,12 @@ jobs:
     steps:
       - checkout
       - build-base
+      - persist_to_workspace:
+          root: tmp
+          paths: 
+            - node_modules
+            - public/packs-test
+            - ~/vendor/bundle
 
   linter-tests:
     executor: test-executor
