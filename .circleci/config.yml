@@ -227,7 +227,6 @@ jobs:
     steps:
       - checkout
       - build-base
-      - *attach-tmp-workspace
       - persist_to_workspace:
           root: tmp
           paths: 
