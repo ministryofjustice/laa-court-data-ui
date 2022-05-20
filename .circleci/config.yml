@@ -230,7 +230,6 @@ jobs:
       - persist_to_workspace:
           root: tmp
           paths: 
-            - node_modules
             - public/packs-test
 
   linter-tests:
