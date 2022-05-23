@@ -4,8 +4,9 @@
 // that code so it'll be compiled.
 
 import '../stylesheets/application.scss'
+import { initAll } from 'govuk-frontend'
 require('@rails/ujs').start()
-require('govuk-frontend').initAll()
+initAll()
 require.context('govuk-frontend/govuk/assets')
 // require("@rails/activestorage").start();
 // require("channels");
