@@ -27,7 +27,7 @@ const config = {
     ]
   },
   resolve: {
-    extensions: ['.mjs'],
+    extensions: ['.mjs']
   },
   entry: './assets/main.js',
   module: {
