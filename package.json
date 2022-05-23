@@ -12,7 +12,7 @@
     "@rails/webpacker": "5.4.3",
     "govuk-frontend": "^4.1.0",
     "jquery": "3.6.0",
-    "postcss": "^8.4.13"
+    "postcss": "^8.4.14"
   },
   "devDependencies": {
     "standard": "^17.0.0",
