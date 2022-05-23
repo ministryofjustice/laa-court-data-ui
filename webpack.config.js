@@ -26,6 +26,9 @@ const config = {
       })
     ]
   },
+  resolve: {
+    extensions: ['.mjs'],
+  },
   entry: './assets/main.js',
   module: {
     rules: [
@@ -37,6 +40,13 @@ const config = {
           options: {
             presets: ['env', 'es3']
           }
+        }
+      },
+      {
+        test: /\.mjs$/,
+        type: 'javascript/auto',
+        resolve: {
+          fullySpecified: false
         }
       }
     ]
