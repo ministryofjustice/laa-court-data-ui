@@ -15,7 +15,7 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 3.0', '>= 3.0.2'
+gem 'govuk_design_system_formbuilder', '~> 3.0'
 gem 'haml-rails', '~> 2.0.1'
 gem 'json_api_client', '~> 1.21'
 gem 'json-schema', '~> 3.0'
