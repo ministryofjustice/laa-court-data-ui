@@ -10,13 +10,13 @@
     "@ministryofjustice/frontend": "^1.4.2",
     "@rails/ujs": "^7.0.3",
     "@rails/webpacker": "5.4.3",
-    "govuk-frontend": "^4.0.1",
+    "govuk-frontend": "^4.1.0",
     "jquery": "3.6.0",
-    "postcss": "^8.4.13"
+    "postcss": "^8.4.14"
   },
   "devDependencies": {
     "standard": "^17.0.0",
-    "stylelint": "^14.8.2",
+    "stylelint": "^14.8.5",
     "stylelint-config-gds": "^0.2.0",
     "stylelint-order": "^5.0.0",
     "webpack-dev-server": "^4.9.0"
