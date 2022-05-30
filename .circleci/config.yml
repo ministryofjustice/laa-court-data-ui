@@ -21,12 +21,14 @@ references:
         gem install bundler -v $bundler_version
         bundle config set path '~/vendor/bundle'
         bundle check || bundle install --jobs=4 --retry=3
+        bundle clean --force
 
   _save-bundle: &save-bundle
     save_cache:
       key: v4-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/.bundle
+        - ~/vendor/bundle
 
   _restore-assets: &restore-assets
     restore_cache:
