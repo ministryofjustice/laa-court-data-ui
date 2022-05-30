@@ -9,9 +9,9 @@ references:
   _restore-bundle: &restore-bundle
     restore_cache:
       keys:
-        - v4-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+        - v1-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
         # fallback to using the latest cache if no exact match is found
-        - v4-bundle-
+        - v1-bundle-
 
   _install-bundle: &install-bundle
     run:
@@ -25,7 +25,7 @@ references:
 
   _save-bundle: &save-bundle
     save_cache:
-      key: v4-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+      key: v1-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/.bundle
         - ~/vendor/bundle
@@ -33,9 +33,9 @@ references:
   _restore-assets: &restore-assets
     restore_cache:
       keys:
-        - v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
         # fallback to using the latest asset cache if no exact match is found
-        - v4-yarn-
+        - v1-yarn-
 
   _install-assets: &install-assets
     run:
@@ -46,7 +46,7 @@ references:
 
   _save-assets: &save-assets
     save_cache:
-      key: v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      key: v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
         - public/packs-test
