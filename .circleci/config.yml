@@ -247,7 +247,7 @@ jobs:
 
   rspec-tests:
     executor: test-executor
-    parallelism: 1
+    parallelism: 4
     steps:
       - checkout
       - restore-dependencies
@@ -260,6 +260,11 @@ jobs:
             - coverage/codeclimate.*.json
       - store_artifacts:
           path: tmp/coverage
+  
+  upload-test-coverage:
+    executor: test-executor
+    steps:
+      - *attach-tmp-workspace
       - upload-coverage
 
   scan-docker-image:
@@ -333,6 +338,9 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
+      - upload-coverage:
+          requires:
+            - rspec-tests
       - build-app-container:
           requires:
             - linter-tests
@@ -379,6 +387,9 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
+      - upload-coverage:
+          requires:
+            - rspec-tests
       - scan-docker-image:
           requires:
             - build-test-container
