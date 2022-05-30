@@ -9,7 +9,7 @@ references:
   _restore-bundle: &restore-bundle
     restore_cache:
       keys:
-        - v4-bundle-{{ checksum "Gemfile.lock" }}
+        - v4-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
         # fallback to using the latest cache if no exact match is found
         - v4-bundle-
 
@@ -24,14 +24,14 @@ references:
 
   _save-bundle: &save-bundle
     save_cache:
-      key: v4-bundle-{{ checksum "Gemfile.lock" }}
+      key: v4-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/.bundle
 
   _restore-assets: &restore-assets
     restore_cache:
       keys:
-        - v4-yarn-{{ checksum "yarn.lock" }}
+        - v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
         # fallback to using the latest asset cache if no exact match is found
         - v4-yarn-
 
@@ -44,7 +44,7 @@ references:
 
   _save-assets: &save-assets
     save_cache:
-      key: v4-yarn-{{ checksum "yarn.lock" }}
+      key: v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
         - public/packs-test
@@ -268,7 +268,6 @@ jobs:
       - setup_remote_docker:
           version: 20.10.11
           docker_layer_caching: true
-      - restore-dependencies
       - build-temp-image
       - snyk/scan:
           token-variable: SNYK_TOKEN
