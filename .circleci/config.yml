@@ -100,6 +100,11 @@ commands:
       - *restore-assets
       - *install-assets
       - *save-assets
+    
+  restore-dependencies:
+    steps:
+      - *restore-bundle
+      - *restore-assets
 
   build-base:
     steps:
@@ -233,7 +238,7 @@ jobs:
     parallelism: 1
     steps:
       - checkout
-      - build-base
+      - restore-dependencies
       - linter
       - rubocop
       - brakeman
@@ -243,7 +248,7 @@ jobs:
     parallelism: 1
     steps:
       - checkout
-      - build-base
+      - restore-dependencies
       - *attach-tmp-workspace
       - browser-tools/install-browser-tools
       - rspec
@@ -263,7 +268,7 @@ jobs:
       - setup_remote_docker:
           version: 20.10.11
           docker_layer_caching: true
-      - build-base
+      - restore-dependencies
       - build-temp-image
       - snyk/scan:
           token-variable: SNYK_TOKEN
