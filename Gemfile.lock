@@ -519,7 +519,7 @@ DEPENDENCIES
   haml-rails (~> 2.0.1)
   i18n-tasks (~> 1.0.10)
   json-schema (~> 3.0)
-  json_api_client (~> 1.21)
+  json_api_client (~> 1.21, >= 1.21.0)
   launchy
   listen (>= 3.0.5, < 3.8)
   logstasher
@@ -547,7 +547,7 @@ DEPENDENCIES
   sentry-rails (~> 5.3.1)
   sentry-sidekiq (~> 5.3.1)
   shoulda-matchers
-  sidekiq (~> 6.4)
+  sidekiq (~> 6.4, >= 6.4.2)
   sidekiq_alive
   simplecov
   spring
