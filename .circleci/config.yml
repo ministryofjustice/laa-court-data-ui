@@ -338,7 +338,7 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - upload-coverage:
+      - upload-test-coverage:
           requires:
             - rspec-tests
       - build-app-container:
@@ -387,7 +387,7 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - upload-coverage:
+      - upload-test-coverage:
           requires:
             - rspec-tests
       - scan-docker-image:
