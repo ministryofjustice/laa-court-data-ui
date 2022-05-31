@@ -3,7 +3,8 @@
 module CdApi
   class Defendant < BaseModel
     def linked?
-      offence_summaries[0]&.laa_application&.reference&.present?
+      maat_references = offence_summaries.map { |offence| offence&.laa_application&.reference }
+      maat_references.compact.first.present?
     end
   end
 end
