@@ -2,6 +2,9 @@
 
 module CdApi
   class HearingDecorator < BaseDecorator
-    @cracked_ineffective_trial ||= decorate(object&.cracked_ineffective_trial)
+    def cracked_ineffective_trial
+      @cracked_ineffective_trial ||= decorate(object.hearing.cracked_ineffective_trial,
+                                              CdApi::CrackedIneffectiveTrialDecorator)
+    end
   end
 end

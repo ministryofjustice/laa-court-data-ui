@@ -14,8 +14,8 @@ RSpec.describe 'hearings/show.html.haml', type: :view, stub_v2_hearing_data: tru
                               params: { date: hearing_day.strftime('%F') })
   end
   let(:hearing) do
-    CdApi::Hearing.find(hearing_id,
-                        params: { date: hearing_day.strftime('%F') })
+    view.decorate(CdApi::Hearing.find(hearing_id,
+                                      params: { date: hearing_day.strftime('%F') }), CdApi::HearingDecorator)
   end
   let(:paginator) do
     HearingPaginator.new(decorated_prosecution_case, column: 'date', direction: 'asc', page: '0')
