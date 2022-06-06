@@ -60,22 +60,28 @@ class HearingsController < ApplicationController
 
   def hearing
     logger.info 'USING_V1_ENDPOINT'
-    @hearing ||= helpers.decorate(@prosecution_case.hearings.find { |hearing| hearing.id == params[:id] })
+    @hearing ||= helpers.decorate(@prosecution_case.hearings.find do |hearing|
+                                    hearing.id == params[:id]
+                                  end, HearingDecorator)
+  end
+
+  def hearing_v2_call
+    @hearing ||= helpers.decorate(
+      CdApi::Hearing.find(params[:id], params: {
+                            date: paginator.current_item.hearing_date.strftime('%F')
+                          }), CdApi::HearingDecorator
+    )
+  rescue ActiveResource::ResourceNotFound
+    redirect_to_prosecution_case(notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
+  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+    logger.error 'SERVER_ERROR_OCCURRED'
+    Sentry.capture_exception(e)
+    redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
   end
 
   def hearing_v2
     logger.info 'USING_V2_ENDPOINT_HEARING'
-    begin
-      @hearing ||= CdApi::Hearing.find(params[:id], params: {
-                                         date: paginator.current_item.hearing_date.strftime('%F')
-                                       })
-    rescue ActiveResource::ResourceNotFound
-      redirect_to_prosecution_case(notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
-    rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-      logger.error 'SERVER_ERROR_OCCURRED'
-      Sentry.capture_exception(e)
-      redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
-    end
+    hearing_v2_call
   end
 
   def hearing_day
@@ -92,7 +98,7 @@ class HearingsController < ApplicationController
 
   def prosecution_case_call
     logger.info 'USING_V1_ENDPOINT_PROSECUTION_CASE'
-    @prosecution_case = helpers.decorate(@prosecution_case_search.execute.first)
+    @prosecution_case = helpers.decorate(@prosecution_case_search.execute.first, ProsecutionCaseDecorator)
   end
 
   def prosecution_case_call_v2

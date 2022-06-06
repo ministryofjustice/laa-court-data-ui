@@ -37,7 +37,7 @@ class ProsecutionCasesController < ApplicationController
     @prosecution_case ||= if version_2?
                             helpers.decorate(search_results, CdApi::CaseSummaryDecorator)
                           else
-                            helpers.decorate(search_results.first)
+                            helpers.decorate(search_results.first, ProsecutionCaseDecorator)
                           end
     update_prosecution_case
   end
