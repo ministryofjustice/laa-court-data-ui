@@ -9,9 +9,9 @@ references:
   _restore-bundle: &restore-bundle
     restore_cache:
       keys:
-        - v4-bundle-{{ checksum "Gemfile.lock" }}
+        - v1-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
         # fallback to using the latest cache if no exact match is found
-        - v4-bundle-
+        - v1-bundle-
 
   _install-bundle: &install-bundle
     run:
@@ -21,19 +21,21 @@ references:
         gem install bundler -v $bundler_version
         bundle config set path '~/vendor/bundle'
         bundle check || bundle install --jobs=4 --retry=3
+        bundle clean --force
 
   _save-bundle: &save-bundle
     save_cache:
-      key: v4-bundle-{{ checksum "Gemfile.lock" }}
+      key: v1-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
       paths:
+        - ~/.bundle
         - ~/vendor/bundle
 
   _restore-assets: &restore-assets
     restore_cache:
       keys:
-        - v4-yarn-{{ checksum "yarn.lock" }}
+        - v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
         # fallback to using the latest asset cache if no exact match is found
-        - v4-yarn-
+        - v1-yarn-
 
   _install-assets: &install-assets
     run:
@@ -44,7 +46,7 @@ references:
 
   _save-assets: &save-assets
     save_cache:
-      key: v4-yarn-{{ checksum "yarn.lock" }}
+      key: v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
         - public/packs-test
@@ -100,6 +102,11 @@ commands:
       - *restore-assets
       - *install-assets
       - *save-assets
+    
+  restore-dependencies:
+    steps:
+      - *restore-bundle
+      - *restore-assets
 
   build-base:
     steps:
@@ -233,17 +240,17 @@ jobs:
     parallelism: 1
     steps:
       - checkout
-      - build-base
+      - restore-dependencies
       - linter
       - rubocop
       - brakeman
 
   rspec-tests:
     executor: test-executor
-    parallelism: 1
+    parallelism: 4
     steps:
       - checkout
-      - build-base
+      - restore-dependencies
       - *attach-tmp-workspace
       - browser-tools/install-browser-tools
       - rspec
@@ -253,6 +260,11 @@ jobs:
             - coverage/codeclimate.*.json
       - store_artifacts:
           path: tmp/coverage
+  
+  upload-test-coverage:
+    executor: test-executor
+    steps:
+      - *attach-tmp-workspace
       - upload-coverage
 
   scan-docker-image:
@@ -263,7 +275,6 @@ jobs:
       - setup_remote_docker:
           version: 20.10.11
           docker_layer_caching: true
-      - build-base
       - build-temp-image
       - snyk/scan:
           token-variable: SNYK_TOKEN
@@ -327,6 +338,9 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
+      - upload-test-coverage:
+          requires:
+            - rspec-tests
       - build-app-container:
           requires:
             - linter-tests
@@ -373,6 +387,9 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
+      - upload-test-coverage:
+          requires:
+            - rspec-tests
       - scan-docker-image:
           requires:
             - build-test-container
