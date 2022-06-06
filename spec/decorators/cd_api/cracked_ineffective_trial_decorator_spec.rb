@@ -59,6 +59,6 @@ RSpec.describe CdApi::CrackedIneffectiveTrialDecorator, type: :decorator do
                              description: 'Another case over-ran')
     end
 
-    it { is_expected.to eql('Ineffective: Another case over-ran') }
+    it { is_expected.to eql('<strong>Ineffective</strong>: Another case over-ran') }
   end
 end

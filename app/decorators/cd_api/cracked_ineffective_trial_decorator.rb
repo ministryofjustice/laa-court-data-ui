@@ -9,7 +9,7 @@ module CdApi
     end
 
     def description_sentence
-      "#{type&.humanize}: #{description}"
+      "<strong>#{type&.humanize}</strong>: #{description}"
     end
 
     private
