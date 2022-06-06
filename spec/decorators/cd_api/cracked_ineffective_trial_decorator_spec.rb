@@ -14,6 +14,7 @@ RSpec.describe CdApi::CrackedIneffectiveTrialDecorator, type: :decorator do
   end
 
   before do
+    allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
   end
 
@@ -28,10 +29,9 @@ RSpec.describe CdApi::CrackedIneffectiveTrialDecorator, type: :decorator do
   end
 
   describe '#cracked_on_sentence' do
-    binding.pry
     subject(:call) { decorator.cracked_on_sentence(hearing) }
 
-    let(:hearing) { build :hearing }
+    let(:hearing) { build :hearing, :with_hearing_days }
 
     before do
       allow(cracked_ineffective_trial).to receive_messages(type:)

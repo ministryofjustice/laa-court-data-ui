@@ -12,6 +12,13 @@ FactoryBot.define do
     date { '2022-05-17T00:00:00.000Z' }
     court_centre { nil }
     defence_counsels { [] }
-    hearing_days { [ { sitting_day: '2022-05-17T00:00:00.000Z' } ] }
-  end 
+    hearing_days { [] }
+
+    trait :with_hearing_days do
+      after(:build) do |hearing|
+        hearing_day1 = FactoryBot.build :hearing_day, hearing: hearing
+        hearing.hearing_days = [hearing_day1]
+      end
+    end
+  end
 end
