@@ -3,6 +3,7 @@
 if LogStasher.enabled?
   LogStasher.add_custom_fields_to_request_context do |fields|
     fields[:headers] = log_headers request.headers.env
+    fields['laa-transaction-id'] = request.request_id
   end
 end
 

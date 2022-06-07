@@ -12,7 +12,7 @@ module CdApi
     def self.headers
       {
         'Content-Type' => 'application/json',
-        'Laa-Transaction-Id' => SecureRandom.uuid
+        'Laa-Transaction-Id' => Current.request_id
       }
     end
   end

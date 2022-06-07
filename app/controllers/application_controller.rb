@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
   protect_from_forgery prepend: true, with: :exception
-  before_action :authenticate_user!, :set_default_cookies
+  before_action :authenticate_user!, :set_default_cookies, :set_transaction_id
   check_authorization
 
   # NOTE: errors checked bottom to top
@@ -52,5 +52,10 @@ class ApplicationController < ActionController::Base
       Sentry.capture_exception(exception)
       redirect_to controller: :errors, action: :internal_error
     end
+  end
+
+  def set_transaction_id
+    Current.request_id = request.headers['laa-transaction-id'] || request.request_id
+    response.set_header('laa-transaction-id', Current.request_id)
   end
 end
