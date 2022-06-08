@@ -15,7 +15,6 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
     allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
-
     sign_in user
     visit(url)
   end
@@ -78,6 +77,16 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
 
       it 'displays details section' do
         expect(page).to have_css('.govuk-heading-l', text: 'Details')
+      end
+
+      context 'when raw response not displayed' do
+        before do
+          allow(Rails.configuration.x).to receive(:display_raw_responses).and_return(false)
+        end
+
+        it 'displays time listed' do
+          expect(page).to have_text '08:30'
+        end
       end
 
       it 'displays attendees section' do
