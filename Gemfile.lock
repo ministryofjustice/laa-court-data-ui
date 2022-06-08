@@ -424,7 +424,7 @@ GEM
     sexp_processor (4.16.1)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
-    sidekiq (6.4.2)
+    sidekiq (6.5.0)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -547,7 +547,7 @@ DEPENDENCIES
   sentry-rails (~> 5.3.1)
   sentry-sidekiq (~> 5.3.1)
   shoulda-matchers
-  sidekiq (~> 6.4, >= 6.4.2)
+  sidekiq (~> 6.5)
   sidekiq_alive
   simplecov
   spring
