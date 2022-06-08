@@ -28,6 +28,7 @@ RSpec.describe 'hearings/show.html.haml', type: :view do
     allow(prosecution_case).to receive(:hearings_sort_column=)
     allow(prosecution_case).to receive(:hearings_sort_direction=)
     assign(:hearing, decorated_hearing)
+    assign(:hearing_day, hearing_day)
     assign(:paginator, paginator)
   end
 
