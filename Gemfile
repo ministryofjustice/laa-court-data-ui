@@ -28,7 +28,7 @@ gem 'rails', '~> 6.1.6'
 gem 'redis', '~> 4.6.0'
 gem 'sentry-rails', '~> 5.3.1'
 gem 'sentry-sidekiq', '~> 5.3.1'
-gem 'sidekiq', '~> 6.4', '>= 6.4.2'
+gem 'sidekiq', '~> 6.5'
 gem 'sidekiq_alive'
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
