@@ -40,18 +40,19 @@ RSpec.describe 'hearings_v2', type: :request do
 
   context 'when no hearing data available', stub_v2_hearing_summary: true,
                                             stub_v2_no_hearing_data: true,
+                                            stub_v2_hearing_events: true,
                                             stub_case_search: true do
     before do
       sign_in user
       get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
     end
 
-    it 'redirects back to prosecution case page' do
-      expect(response).to redirect_to prosecution_case_path(case_reference)
+    it 'shows renders the hearing page' do
+      expect(response).to render_template('hearings/show')
     end
 
-    it 'flashes notice' do
-      expect(flash.now[:notice]).to match(/No hearing details available/)
+    it 'shows v2 hearing table' do
+      expect(response).to render_template(:_hearing_events_v2)
     end
   end
 

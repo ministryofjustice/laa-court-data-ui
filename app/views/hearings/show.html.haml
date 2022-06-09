@@ -7,7 +7,7 @@
 .govuk-grid-row
   .govuk-grid-column-one-third
     - unless Feature.enabled?(:hearing)
-      = render partial: 'details', locals: { hearing: @hearing.hearing, hearing_day: @hearing_day }
+      = render partial: 'details', locals: { hearing: @hearing, hearing_day: @hearing_day }
     - else
       = render partial: 'details_v2', locals: { hearing_summary: @prosecution_case.hearing_summaries[@page.to_i],
                                                         hearing_day: @hearing_day }
@@ -30,7 +30,7 @@
         = render partial: 'hearing_result', locals: { hearing: @hearing }
     - else
       - if @hearing.try(:hearing).try(:cracked_ineffective_trial).try(:description)
-        = render partial: 'hearing_result_v2', locals: { hearing: @hearing.hearing }
+        = render partial: 'hearing_result_v2', locals: { hearing: @hearing }
     - unless Feature.enabled?(:hearing)
       = render partial: 'court_applications', locals: { hearing: @hearing }
     - else
