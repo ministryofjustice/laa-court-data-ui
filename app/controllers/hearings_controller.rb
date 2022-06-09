@@ -61,13 +61,13 @@ class HearingsController < ApplicationController
   def hearing
     logger.info 'USING_V1_ENDPOINT'
     @hearing ||= helpers.decorate(@prosecution_case.hearings.find do |hearing|
-                                    hearing.id == params[:id]
+                                    hearing.id == hearing_id
                                   end, HearingDecorator)
   end
 
   def hearing_v2_call
     @hearing ||= helpers.decorate(
-      CdApi::Hearing.find(params[:id], params: {
+      CdApi::Hearing.find(hearing_id, params: {
                             date: paginator.current_item.hearing_date.strftime('%F')
                           }), CdApi::HearingDecorator
     )
@@ -117,7 +117,7 @@ class HearingsController < ApplicationController
   end
 
   def call_hearing_events
-    CdApi::HearingEvents.find(params[:id],
+    CdApi::HearingEvents.find(hearing_id,
                               params: {
                                 date: paginator.current_item.hearing_date.strftime('%F')
                               })
@@ -134,6 +134,10 @@ class HearingsController < ApplicationController
 
   def show_alert(title, message)
     flash.now[:alert] = { title:, message: }
+  end
+
+  def hearing_id
+    @hearing_id ||= params[:id]
   end
 
   def page

@@ -9,7 +9,7 @@
     - unless Feature.enabled?(:hearing)
       = render partial: 'details', locals: { hearing: @hearing, hearing_day: @hearing_day }
     - else
-      = render partial: 'details_v2', locals: { hearing_summary: @prosecution_case.hearing_summaries[@page.to_i],
+      = render partial: 'details_v2', locals: { hearing_summary: @prosecution_case.hearing_summaries.find { |each| each.id == @hearing_id },
                                                         hearing_day: @hearing_day }
 
     - unless Feature.enabled?(:hearing)
