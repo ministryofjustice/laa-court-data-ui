@@ -14,5 +14,11 @@ FactoryBot.define do
         case_summary.overall_defendants = [defendant1, defendant2]
       end
     end
+
+    trait :with_hearing_summaries do
+      after(:build) do |case_summary|
+        case_summary.hearing_summaries = [FactoryBot.build(:hearing_summary, :with_hearing_days)]
+      end
+    end
   end
 end
