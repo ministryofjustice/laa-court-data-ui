@@ -2,7 +2,11 @@
 
 RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
   include RSpecHtmlMatchers
-  subject(:render_partial) { render partial: 'attendees_v2', locals: { hearing: hearing.hearing} }
+  not_available_text = /Not available/
+  not_available_test = 'displays not available'
+  small_gov_heading = 'div.govuk-heading-s'
+
+  subject(:render_partial) { render partial: 'attendees_v2', locals: { hearing: hearing.hearing } }
 
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
@@ -15,7 +19,7 @@ RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
 
     context 'with defendant_names' do
       it 'displays the defendants section' do
-        is_expected.to have_tag('div.govuk-heading-s', text: /Defendants/)
+        is_expected.to have_tag(small_gov_heading, text: /Defendants/)
       end
 
       it 'displays defendant names with line breaks' do
@@ -27,7 +31,7 @@ RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
 
     context 'with defence_counsel' do
       it 'displays the defence section' do
-        is_expected.to have_tag('div.govuk-heading-s', text: /Defence advocates/)
+        is_expected.to have_tag(small_gov_heading, text: /Defence advocates/)
       end
 
       it 'displays list of defence council' do
@@ -38,7 +42,7 @@ RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
 
     context 'with prosecution_counsel' do
       it 'displays the prosecution section' do
-        is_expected.to have_tag('div.govuk-heading-s', text: /Prosecution advocates/)
+        is_expected.to have_tag(small_gov_heading, text: /Prosecution advocates/)
       end
 
       it 'displays list of prosecution counsel' do
@@ -48,7 +52,7 @@ RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
 
     context 'with judiciaries' do
       it 'displays the judges section' do
-        is_expected.to have_tag('div.govuk-heading-s', text: /Judges/)
+        is_expected.to have_tag(small_gov_heading, text: /Judges/)
       end
 
       it 'displays list of judges' do
@@ -65,41 +69,41 @@ RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
 
     context 'with no defendant_names' do
       it 'displays the defendants section' do
-        is_expected.to have_tag('div.govuk-heading-s', text: /Defendants/)
+        is_expected.to have_tag(small_gov_heading, text: /Defendants/)
       end
 
-      it 'displays not available' do
-        is_expected.to have_tag('p.govuk-body#defendants', text: /Not available/)
+      it not_available_test do
+        is_expected.to have_tag('p.govuk-body#defendants', text: not_available_text)
       end
     end
 
     context 'with no defence_counsel' do
       it 'displays the defence section' do
-        is_expected.to have_tag('div.govuk-heading-s', text: /Defence advocates/)
+        is_expected.to have_tag(small_gov_heading, text: /Defence advocates/)
       end
 
-      it 'displays not available' do
-        is_expected.to have_tag('p.govuk-body#defence', text: /Not available/)
+      it not_available_test do
+        is_expected.to have_tag('p.govuk-body#defence', text: not_available_text)
       end
     end
 
     context 'with no prosecution_counsel' do
       it 'displays the prosecution section' do
-        is_expected.to have_tag('div.govuk-heading-s', text: /Prosecution advocates/)
+        is_expected.to have_tag(small_gov_heading, text: /Prosecution advocates/)
       end
 
-      it 'displays not available' do
-        is_expected.to have_tag('p.govuk-body#prosecution', text: /Not available/)
+      it not_available_test do
+        is_expected.to have_tag('p.govuk-body#prosecution', text: not_available_text)
       end
     end
 
     context 'with no judiciaries' do
       it 'displays the judges section' do
-        is_expected.to have_tag('div.govuk-heading-s', text: /Judges/)
+        is_expected.to have_tag(small_gov_heading, text: /Judges/)
       end
 
-      it 'displays not available' do
-        is_expected.to have_tag('p.govuk-body#judges', text: /Not available/)
+      it not_available_test do
+        is_expected.to have_tag('p.govuk-body#judges', text: not_available_text)
       end
     end
   end

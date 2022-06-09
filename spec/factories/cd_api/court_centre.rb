@@ -6,4 +6,3 @@ FactoryBot.define do
     name { 'Nottingham' }
   end
 end
-
