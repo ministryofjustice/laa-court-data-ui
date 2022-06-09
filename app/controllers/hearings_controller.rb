@@ -72,7 +72,8 @@ class HearingsController < ApplicationController
                           }), CdApi::HearingDecorator
     )
   rescue ActiveResource::ResourceNotFound
-    redirect_to_prosecution_case(notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
+    # Return empty hearing so we can still display the page
+    @hearing ||= CdApi::Hearing.new
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     logger.error 'SERVER_ERROR_OCCURRED'
     Sentry.capture_exception(e)

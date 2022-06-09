@@ -4,11 +4,11 @@
   .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
     = t('hearings.show.hearing_type')
   %p.govuk-body{:class => "govuk-!-margin-bottom-2"}
-    = hearing.hearing.hearing_type.description || t('generic.not_available')
+    = hearing_summary.hearing_type || t('generic.not_available')
   .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
     = t('hearings.show.court')
   %p.govuk-body{:class => "govuk-!-margin-bottom-2"}
-    = hearing.hearing.court_centre.name || t('generic.not_available')
+    = hearing_summary.court_centre.name || t('generic.not_available')
   .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
     = t('hearings.show.time_listed')
   %p.govuk-body{:class => "govuk-!-margin-bottom-2"}
