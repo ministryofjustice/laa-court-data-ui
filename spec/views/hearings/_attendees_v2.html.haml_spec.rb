@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
   include RSpecHtmlMatchers
   subject(:render_partial) { render partial: 'attendees_v2', locals: { hearing: hearing.hearing } }
