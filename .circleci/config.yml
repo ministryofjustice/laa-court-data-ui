@@ -327,7 +327,11 @@ workflows:
   version: 2
   build-deploy-master:
     jobs:
-      - build-app-container
+      - build-app-container:
+        filters:
+          branches: 
+            only: 
+              - master
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
