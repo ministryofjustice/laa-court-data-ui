@@ -36,7 +36,11 @@ class CookiesController < ApplicationController
   end
 
   def store_previous_page_url
-    session[:return_to] = request.referrer
+    session[:return_to] = if /searches/.match?(request.referrer)
+                            searches_path(params: { search: current_search_params })
+                          else
+                            request.referrer
+                          end
   end
 
   def cookie_params

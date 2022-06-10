@@ -22,6 +22,14 @@ RSpec.describe 'Cookies', type: :request do
       expect(session[:return_to]).to eq '/'
     end
 
+    context 'when requests referrer is /searches endpoint' do
+      before { get '/cookies/settings', params: {}, headers: { HTTP_REFERER: '/searches' } }
+
+      it 'stores the request referrer' do
+        expect(session[:return_to]).to eq '/searches'
+      end
+    end
+
     it 'sets @cookie.analytics to analytics_cookies_set cookie value' do
       expect(assigns(:cookie).analytics.to_s).to eq cookies[:analytics_cookies_set]
     end
