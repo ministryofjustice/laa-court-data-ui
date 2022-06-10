@@ -325,26 +325,9 @@ jobs:
 # ------------------
 workflows:
   version: 2
-  test-build-deploy-master:
+  build-deploy-master:
     jobs:
-      - build-test-container:
-          filters:
-            branches:
-              only:
-                - master
-      - linter-tests:
-          requires:
-            - build-test-container
-      - rspec-tests:
-          requires:
-            - build-test-container
-      - upload-test-coverage:
-          requires:
-            - rspec-tests
       - build-app-container:
-          requires:
-            - linter-tests
-            - rspec-tests
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
