@@ -61,6 +61,10 @@ references:
       command: |
         .circleci/build.sh
 
+  _master-only: &master-only
+    filters:
+      branches:
+        only: master
 # ------------------
 # EXECUTORS
 # ------------------
@@ -328,35 +332,39 @@ workflows:
   build-deploy-master:
     jobs:
       - build-app-container:
-        filters:
-          branches: 
-            only: 
-              - master
+          <<: *master-only
       - deploy-dev:
+          <<: *master-only
           context: laa-court-data-ui-live-dev
           requires:
             - build-app-container
       - hold-staging:
+          <<: *master-only
           type: approval
           requires:
             - build-app-container
       - deploy-staging:
+          <<: *master-only
           context: laa-court-data-ui-live-staging
           requires:
             - hold-staging
       - hold-uat:
+          <<: *master-only
           type: approval
           requires:
             - build-app-container
       - deploy-uat:
+          <<: *master-only
           context: laa-court-data-ui-live-uat
           requires:
             - hold-uat
       - hold-production:
+          <<: *master-only
           type: approval
           requires:
             - build-app-container
       - deploy-production:
+          <<: *master-only
           context: laa-court-data-ui-live-production
           requires:
             - hold-production
