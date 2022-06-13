@@ -32,6 +32,8 @@ plugins:
     enabled: true
   bundler-audit:
     enabled: true
+  haml-lint:
+    enabled: true
 exclude_patterns: # customize
 - bin/rails
 - bin/rake
