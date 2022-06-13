@@ -14,7 +14,7 @@ linters:
 
   # Offense count: 189
   SpaceInsideHashAttributes:
-    enabled: false
+    enabled: true
 
   # Offense count: 1
   ViewLength:
