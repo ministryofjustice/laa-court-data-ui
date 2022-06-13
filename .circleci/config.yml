@@ -143,6 +143,9 @@ commands:
       - run:
           name: Run Stylelint
           command: yarn run validate:scss
+      - run: 
+          name: Run Haml-Lint
+          command: bundle exec haml-lint
 
   brakeman:
     steps:
