@@ -39,6 +39,7 @@ group :test do
   gem 'capybara_table'
   gem 'codeclimate-test-reporter', '>= 1.0.7', require: false
   gem 'fakeredis', require: 'fakeredis/rspec'
+  gem 'haml_lint', require: false
   gem 'i18n-tasks', '~> 1.0.10'
   gem 'launchy'
   gem 'rails-controller-testing'
@@ -54,7 +55,6 @@ group :test do
   gem 'vcr'
   gem 'webdrivers'
   gem 'webmock'
-  gem 'haml_lint', require: false
 end
 
 group :development, :test do
