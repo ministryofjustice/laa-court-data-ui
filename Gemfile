@@ -54,6 +54,7 @@ group :test do
   gem 'vcr'
   gem 'webdrivers'
   gem 'webmock'
+  gem 'haml_lint', require: false
 end
 
 group :development, :test do
