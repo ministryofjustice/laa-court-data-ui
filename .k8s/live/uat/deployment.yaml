@@ -68,7 +68,7 @@ spec:
             - name: DEFENDANTS_SEARCH
               value: 'true'
             - name: HEARING
-              value: 'true'
+              value: 'false'
             - name: DISPLAY_RAW_RESPONSES
               value: enabled
             - name: COURT_DATA_ADAPTOR_API_UID
