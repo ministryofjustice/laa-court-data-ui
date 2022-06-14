@@ -61,10 +61,10 @@ references:
       command: |
         .circleci/build.sh
 
-  _master-only: &master-only
+  _main-only: &main-only
     filters:
       branches:
-        only: master
+        only: main
 # ------------------
 # EXECUTORS
 # ------------------
@@ -106,7 +106,7 @@ commands:
       - *restore-assets
       - *install-assets
       - *save-assets
-    
+
   restore-dependencies:
     steps:
       - *restore-bundle
@@ -143,7 +143,7 @@ commands:
       - run:
           name: Run Stylelint
           command: yarn run validate:scss
-      - run: 
+      - run:
           name: Run Haml-Lint
           command: bundle exec haml-lint
 
@@ -267,7 +267,7 @@ jobs:
             - coverage/codeclimate.*.json
       - store_artifacts:
           path: tmp/coverage
-  
+
   upload-test-coverage:
     executor: test-executor
     steps:
@@ -332,10 +332,10 @@ jobs:
 # ------------------
 workflows:
   version: 2
-  build-deploy-master:
+  build-deploy-main:
     jobs:
       - build-app-container:
-          <<: *master-only
+          <<: *main-only
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
@@ -371,7 +371,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - master
+                - main
       - linter-tests:
           requires:
             - build-test-container
@@ -392,7 +392,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - master
+                - main
       - build-app-container:
           requires:
             - branch-build-approval

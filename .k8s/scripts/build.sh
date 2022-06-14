@@ -43,7 +43,7 @@ function _build() {
 
   # tag as latest for branch too
   case $current_branch in
-    master)
+    main)
       latest_tag=${docker_registry}:${component}-latest
       ;;
     *)
