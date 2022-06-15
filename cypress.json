@@ -1,5 +1,0 @@
-{
-    "blockHosts": ["*.google-analytics.com"],
-    "baseUrl": "http://localhost:3000",
-    "video": false
-  }

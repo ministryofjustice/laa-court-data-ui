@@ -5,7 +5,7 @@ module.exports = defineConfig({
     Hblockosts: [
       "*.google-analytics.com"
     ],
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://staging.view-court-data.service.justice.gov.uk/",
     video: false
   }
 })
