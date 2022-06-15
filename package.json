@@ -4,7 +4,11 @@
   "version": "1.21.1",
   "scripts": {
     "validate:js": "standard",
-    "validate:scss": "stylelint **/*.scss"
+    "validate:scss": "stylelint **/*.scss",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "start:server": "bundle exec puma & wait-on http://localhost:3000/",
+    "start:testserver": "bundle exec puma & wait-on http://localhost:9292/"
   },
   "dependencies": {
     "@ministryofjustice/frontend": "^1.4.2",
@@ -15,10 +19,12 @@
     "postcss": "^8.4.14"
   },
   "devDependencies": {
+    "cypress": "^10.1.0",
     "standard": "^17.0.0",
     "stylelint": "^14.9.1",
     "stylelint-config-gds": "^0.2.0",
     "stylelint-order": "^5.0.0",
+    "wait-on": "^6.0.1",
     "webpack-dev-server": "^4.9.2"
   },
   "resolutions": {
@@ -45,7 +51,9 @@
   "standard": {
     "globals": [
       "dataLayer",
-      "googleTrackingID"
+      "googleTrackingID",
+      "Cypress",
+      "cy"
     ]
   }
 }
