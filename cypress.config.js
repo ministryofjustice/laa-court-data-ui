@@ -2,7 +2,7 @@ const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   e2e: {
-    Hblockosts: [
+    blockHosts: [
       '*.google-analytics.com'
     ],
     baseUrl: 'http://localhost:3000',
