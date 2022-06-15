@@ -7,5 +7,11 @@ module.exports = defineConfig({
     ],
     baseUrl: "http://localhost:3000",
     video: false
+  },
+  env: {
+    environment: "local",
+    caseworker_password: "",
+    manager_password: "",
+    admin_password: ""
   }
 })

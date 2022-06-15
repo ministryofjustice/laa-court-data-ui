@@ -44,3 +44,4 @@ Brewfile.lock.json
 .dccache
 .DS_Store
 .vscode
+cypress.env.json

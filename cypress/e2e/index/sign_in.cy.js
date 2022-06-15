@@ -47,21 +47,18 @@ describe("User Login Page", () => {
 			"contain",
 			"Invalid username or password."
 		);
-		cy.fixture("users").then((users) => {
-			cy.login(users[0].username, Cypress.env(users[0].password_env));
-			cy.get(".govuk-error-summary__title").should(
-				"contain",
-				"Signed in successfully."
-			);
-		});
+
+		cy.login(users[0].username, Cypress.env(users[0].password_env));
+		cy.get(".govuk-error-summary__title").should(
+			"contain",
+			"Signed in successfully."
+		);
 	});
 
 	context("logged in", () => {
 		beforeEach(() => {
 			cy.visit("/");
-			cy.fixture("users").then((users) => {
-				cy.login(users[0].username, Cypress.env(users[0].password_env));
-			});
+			cy.login(users[0].username, Cypress.env(users[0].password_env));
 		});
 
 		it("displays search filters page", () => {

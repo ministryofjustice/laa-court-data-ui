@@ -7,5 +7,11 @@ module.exports = defineConfig({
     ],
     baseUrl: "https://uat.view-court-data.service.justice.gov.uk/",
     video: false
+  },
+  env: {
+    environment: "uat",
+    caseworker_password: "",
+    manager_password: "",
+    admin_password: ""
   }
 })
