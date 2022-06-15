@@ -103,6 +103,11 @@ describe('Cookie Information Page', () => {
                 cy.get('[data-cy="cookie-settings-hyperlink"]')
                     .should('have.attr', 'href')
                     .and('include', '/cookies/settings')
+            })            
+            
+            it('navigates to the correct page', () => {
+                cy.get('[data-cy="cookie-settings-hyperlink"]').click()
+                cy.location('pathname').should('eq', '/cookies/settings')
             })
         })
     })
