@@ -54,6 +54,9 @@
       "googleTrackingID",
       "Cypress",
       "cy"
+    ],
+    "env": [
+      "mocha"
     ]
   }
 }
