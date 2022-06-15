@@ -102,8 +102,12 @@ OAuth2 access token requests are configured to be be ignored by VCR to avoid pro
 We use [Cypress](https://cypress.io) as our E2E UI testing suite. The goal of this test suite is to interact with the interface as the user would to be able to capture any issues earlier in the process and provide an extra bit of security.
 
 #### Locally
-Once you have installed the local dependencies and have the application in a running state, to run the tests locally you can run the following command to run the tests. The Environment variables will need updating for user passwords as not to keep secrets in the repo. These will be the same as what you have set for these users in your local setup. 
+Once you have installed the local dependencies and have the application in a running state, to run the tests locally you can run the following command to run the tests. 
 
 ```
-RUBYOPT=-W:no-deprecated yarn run start:server && yarn run cypress:run
+yarn run start:server && yarn run cypress:run
 ```
+
+> **Note**
+>
+> The Environment variables will need updating for user passwords as not to keep secrets in the repo. These will be the same as what you have set for these users in your local setup.
