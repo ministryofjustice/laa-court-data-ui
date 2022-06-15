@@ -5,11 +5,11 @@ module.exports = defineConfig({
     blockHosts: [
       '*.google-analytics.com'
     ],
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'https://view-court-data.service.justice.gov.uk/',
     video: false
   },
   env: {
-    environment: 'local',
+    environment: 'alpha',
     caseworker_password: '',
     manager_password: '',
     admin_password: ''
