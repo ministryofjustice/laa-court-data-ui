@@ -38,7 +38,7 @@ describe('Cookie settings page', () => {
           cy.clearCookie('analytics_cookies_set')
         })
 
-        it('has off selected', () => {
+        it('has off selected as default', () => {
           cy.get('#cookie-analytics-false-field')
             .should('have.value', 'false')
             .and('be.checked')
