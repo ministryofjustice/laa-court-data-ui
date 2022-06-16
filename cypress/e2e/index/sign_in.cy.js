@@ -18,8 +18,8 @@ describe('User Login Page', () => {
     cy.get('#new_user')
       .should('contain', 'Username or email')
       .and('contain', 'Password')
-    cy.get('input#user-login-field').should('exist')
-    cy.get('input#user-password-field').should('exist')
+    cy.get('[data-cy="login-username"]').should('exist')
+    cy.get('[data-cy="login-password"]').should('exist')
   })
 
   users.forEach(user => {

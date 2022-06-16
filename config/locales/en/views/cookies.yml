@@ -29,7 +29,7 @@ en:
   cookies:
     page_title: Cookies on View Court Data
     section_adjust:
-      link_text_html: You can <a class="govuk-link" href="%{href}">adjust your cookie settings</a>.
+      link_text_html: You can <a class="govuk-link" href="%{href}" data-cy="cookie-settings-hyperlink">adjust your cookie settings</a>.
       section_heading: Change your cookie settings
     section_analytics:
       list_item_one: how you got to the site
