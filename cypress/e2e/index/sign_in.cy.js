@@ -9,6 +9,10 @@ describe('User Login Page', () => {
     cy.visit('/')
   })
 
+  it('has no detectable a11y violations on load', () => {
+    cy.customA11yCheck(null, cy.a11yLog)
+  })
+
   it(`displays the ${Cypress.env('environment')} banner`, () => {
     cy.get('.govuk-phase-banner__content').should('contain', Cypress.env('environment'))
   })
@@ -29,6 +33,7 @@ describe('User Login Page', () => {
         'contain',
         'Signed in successfully.'
       )
+      cy.customA11yCheck(null, cy.a11yLog)
     })
   })
 
@@ -38,6 +43,7 @@ describe('User Login Page', () => {
       'contain',
       'Invalid username or password.'
     )
+    cy.customA11yCheck(null, cy.a11yLog)
   })
 
   it('can log in with valid credentials after an invalid attempt', () => {
@@ -52,12 +58,17 @@ describe('User Login Page', () => {
       'contain',
       'Signed in successfully.'
     )
+    cy.customA11yCheck(null, cy.a11yLog)
   })
 
   context('logged in', () => {
     beforeEach(() => {
       cy.visit('/')
       cy.login(users[0].username, Cypress.env(users[0].password_env))
+    })
+
+    it('has no detectable a11y violations on load', () => {
+      cy.customA11yCheck(null, cy.a11yLog)
     })
 
     it('displays search filters page', () => {
@@ -75,6 +86,7 @@ describe('User Login Page', () => {
         'contain',
         'Signed out successfully.'
       )
+      cy.customA11yCheck(null, cy.a11yLog)
     })
   })
 

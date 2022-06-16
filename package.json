@@ -19,7 +19,9 @@
     "postcss": "^8.4.14"
   },
   "devDependencies": {
+    "axe-core": "^4.4.2",
     "cypress": "^10.1.0",
+    "cypress-axe": "^1.0.0",
     "standard": "^17.0.0",
     "stylelint": "^14.9.1",
     "stylelint-config-gds": "^0.2.0",

@@ -4,6 +4,10 @@ describe('Cookie settings page', () => {
   })
 
   context('main page', () => {
+    it('has no detectable a11y violations on load', () => {
+      cy.customA11yCheck(null, cy.a11yLog)
+    })
+
     it('displays the title', () => {
       cy.get('.govuk-heading-xl')
         .should('contain', 'Change your cookie settings')
@@ -61,6 +65,7 @@ describe('Cookie settings page', () => {
           cy.get('[data-cy="submit-cookies"]').click()
           cy.get('.govuk-notification-banner__heading').should('contain', 'You\'ve set your cookie preferences.')
           cy.getCookie('analytics_cookies_set', 'true')
+          cy.customA11yCheck(null, cy.a11yLog)
         })
       })
 
@@ -80,6 +85,7 @@ describe('Cookie settings page', () => {
           cy.get('[data-cy="submit-cookies"]').click()
           cy.get('.govuk-notification-banner__heading').should('contain', 'You\'ve set your cookie preferences.')
           cy.getCookie('analytics_cookies_set', 'false')
+          cy.customA11yCheck(null, cy.a11yLog)
         })
       })
     })

@@ -13,5 +13,17 @@ module.exports = defineConfig({
     caseworker_password: '',
     manager_password: '',
     admin_password: ''
+  },
+  setupNodeEvents (on, _config) {
+    on('task', {
+      log (message) {
+        console.log(message)
+        return null
+      },
+      table (message) {
+        console.table(message)
+        return null
+      }
+    })
   }
 })
