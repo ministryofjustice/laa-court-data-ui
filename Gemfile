@@ -40,7 +40,7 @@ group :test do
   gem 'codeclimate-test-reporter', '>= 1.0.7', require: false
   gem 'fakeredis', require: 'fakeredis/rspec'
   gem 'haml_lint', require: false
-  gem 'i18n-tasks', '~> 1.0.10'
+  gem 'i18n-tasks', '~> 1.0.11'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.9.4'
