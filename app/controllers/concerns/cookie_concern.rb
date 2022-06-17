@@ -5,7 +5,7 @@ module CookieConcern
 
   def test
     cookie_params = params.permit(:cookies)
-binding.pry
+
     case cookie_params[:cookies]
     when 'Accept analytics cookies'
       set_cookie(:analytics_cookies_set, value: true)
@@ -13,6 +13,8 @@ binding.pry
       set_cookie(:analytics_cookies_set, value: false)
       remove_analytics_cookies
     end
+
+    @analytics_cookies_accepted = cookies[:analytics_cookies_set]
 
     set_cookie(:cookies_preferences_set, value: true)
     render partial: 'layouts/something'
