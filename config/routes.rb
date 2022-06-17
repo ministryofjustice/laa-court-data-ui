@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get '/test', to:'application#test'
-
   authenticated :user do
     root to: 'search_filters#new', as: :authenticated_root
   end
@@ -13,9 +11,10 @@ Rails.application.routes.draw do
   end
 
   devise_scope :user do
+    get '/test', to: 'users/sessions#test'
+
     unauthenticated :user do
       root to: 'users/sessions#new', as: :unauthenticated_root
-      get '/test', to: 'users/sessions#test'
     end
   end
 
