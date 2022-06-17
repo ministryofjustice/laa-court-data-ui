@@ -4,6 +4,8 @@ class Users::SessionsController < Devise::SessionsController
   skip_authorization_check only: %i[new create destroy test]
   include CookieConcern
 
+  before_action :set_default_cookies
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
