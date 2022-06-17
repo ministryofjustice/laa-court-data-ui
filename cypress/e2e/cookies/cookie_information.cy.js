@@ -4,6 +4,10 @@ describe('Cookie Information Page', () => {
   })
 
   context('main page', () => {
+    it('has no detectable a11y violations on load', () => {
+      cy.customA11yCheck(null, cy.a11yLog)
+    })
+
     it('displays the title', () => {
       cy.get('.govuk-heading-xl')
         .should('contain', 'Cookies on View Court Data')

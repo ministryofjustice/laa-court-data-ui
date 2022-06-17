@@ -8,6 +8,11 @@ describe('Cookie banner', () => {
       beforeEach(() => {
         cy.visit('/')
       })
+
+      it('has no detectable a11y violations on load', () => {
+        cy.customA11yCheck(null, cy.a11yLog)
+      })
+
       it('can reject the cookie preferences', () => {
         cy.getCookie('cookies_preferences_set').should('not.exist')
         cy.get('[data-cy="reject_cookies"]')
@@ -15,6 +20,7 @@ describe('Cookie banner', () => {
           .and('have.attr', 'href')
           .and('include', 'analytics_cookies_set=false&show_confirm_banner=true')
         cy.get('[data-cy="reject_cookies"]').click()
+        cy.customA11yCheck(null, cy.a11yLog)
         cy.get('.govuk-cookie-banner__content > p').should('contain', rejectedAdditionalCookies)
         cy.getCookie('cookies_preferences_set').should('have.property', 'value', 'true')
         cy.getCookie('analytics_cookies_set').should('have.property', 'value', 'false')
@@ -31,6 +37,7 @@ describe('Cookie banner', () => {
         cy.get("[data-cy='hide_message']").click()
         cy.get('.app-cookie-banner').should('not.exist')
         cy.get("[data-cy='hide_message']").should('not.exist')
+        cy.customA11yCheck(null, cy.a11yLog)
       })
     })
 
@@ -45,6 +52,7 @@ describe('Cookie banner', () => {
           .and('have.attr', 'href')
           .and('include', 'analytics_cookies_set=true&show_confirm_banner=true')
         cy.get('[data-cy="accept_cookies"]').click()
+        cy.customA11yCheck(null, cy.a11yLog)
         cy.get('.govuk-cookie-banner__content > p').should('contain', acceptedAdditionalCookies)
         cy.getCookie('cookies_preferences_set').should('have.property', 'value', 'true')
         cy.getCookie('analytics_cookies_set').should('have.property', 'value', 'true')
@@ -61,6 +69,7 @@ describe('Cookie banner', () => {
         cy.get("[data-cy='hide_message']").click()
         cy.get('.app-cookie-banner').should('not.exist')
         cy.get("[data-cy='hide_message']").should('not.exist')
+        cy.customA11yCheck(null, cy.a11yLog)
       })
     })
   })
@@ -74,6 +83,7 @@ describe('Cookie banner', () => {
 
     it('does not display the banner', () => {
       cy.get('.app-cookie-banner').should('not.exist')
+      cy.customA11yCheck(null, cy.a11yLog)
     })
   })
 })
