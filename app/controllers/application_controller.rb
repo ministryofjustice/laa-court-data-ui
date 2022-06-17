@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true, with: :exception
   before_action :authenticate_user!, :set_default_cookies, :set_transaction_id
   check_authorization
-  skip_authorization_check :only =>[:test]
 
   # NOTE: errors checked bottom to top
   # https://apidock.com/rails/v6.0.0/ActiveSupport/Rescuable/ClassMethods/rescue_from

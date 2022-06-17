@@ -4,10 +4,10 @@ module CookieConcern
   extend ActiveSupport::Concern
 
   def test
-    cookie_params = params.permit(:value)
-
-    case cookie_params[:value]
-    when 'accept'
+    cookie_params = params.permit(:cookies)
+binding.pry
+    case cookie_params[:cookies]
+    when 'Accept analytics cookies'
       set_cookie(:analytics_cookies_set, value: true)
     else
       set_cookie(:analytics_cookies_set, value: false)
