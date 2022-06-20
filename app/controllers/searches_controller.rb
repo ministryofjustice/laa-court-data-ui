@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
-  before_action :set_search_options
+  before_action :set_search_options, :handle_empty_search_params
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
@@ -26,7 +26,11 @@ class SearchesController < ApplicationController
   end
 
   def search_params
-    params.require(:search).permit(:term, :dob, :filter)
+    params.fetch(:search, most_recent_search_params).permit(:term, :dob, :filter)
+  end
+
+  def most_recent_search_params
+    current_search_params || {} # Default to empty search params
   end
 
   def filter
@@ -54,6 +58,10 @@ class SearchesController < ApplicationController
     dob
     set_view_options
     self.current_search_params = search_params
+  end
+
+  def handle_empty_search_params
+    redirect_to new_search_filter_path if search_params.empty?
   end
 
   def set_view_options
