@@ -201,4 +201,26 @@ RSpec.feature 'Cookies', type: :feature do
       expect(page).to have_current_path contact_us_path, ignore_query: true
     end
   end
+
+  context 'when redirected to cookies page from search page', stub_case_search: true do
+    let(:user) { create(:user) }
+
+    before do
+      sign_in user
+    end
+
+    scenario 'notification banner links back to previous page' do
+      visit '/'
+
+      choose 'A case by URN'
+      click_button 'Continue'
+      fill_in 'search-term-field', with: 'TEST12345'
+      click_button 'Search'
+      click_link 'Cookies'
+      page.choose 'Off'
+      click_button 'Save changes'
+      click_link 'Go back to the page you were looking at'
+      expect(page).to have_current_path(searches_path)
+    end
+  end
 end

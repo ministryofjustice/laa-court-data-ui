@@ -19,6 +19,14 @@ RSpec.describe 'Searches', type: :request do
       it { expect(response).not_to render_template('searches/_results') }
       it { expect(response.body).not_to include('There is a problem') }
     end
+
+    context 'when there are no search params' do
+      let(:params) { nil }
+
+      it 'redirects to the new_searches_filter_path' do
+        expect(response).to redirect_to(new_search_filter_path)
+      end
+    end
   end
 
   describe 'POST #create' do
@@ -35,6 +43,14 @@ RSpec.describe 'Searches', type: :request do
       let(:params) { { search: { filter: 'case_reference', term: nil } } }
 
       include_examples 'renders search validation errors'
+    end
+
+    context 'when there are no search params' do
+      let(:params) { nil }
+
+      it 'redirects to the new_searches_filter_path' do
+        expect(response).to redirect_to(new_search_filter_path)
+      end
     end
 
     context 'when POSTing a valid defendant ASN or NINO search', stub_defendants_ref_search: true do
@@ -127,6 +143,14 @@ RSpec.describe 'Searches', type: :request do
       let(:params) { { search: { filter: 'case_reference', term: nil } } }
 
       include_examples 'renders search validation errors'
+    end
+
+    context 'when there are no search params' do
+      let(:params) { nil }
+
+      it 'redirects to the new_searches_filter_path' do
+        expect(response).to redirect_to(new_search_filter_path)
+      end
     end
   end
 
