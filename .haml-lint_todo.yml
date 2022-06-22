@@ -93,7 +93,7 @@ linters:
 
   # Offense count: 29
   SpaceBeforeScript:
-    exclude:
+    include:
       - "app/views/hearings/_raw_response.html.haml"
       - "app/views/hearings/_raw_response_v2.html.haml"
       - "app/views/laa_references/_form.html.haml"

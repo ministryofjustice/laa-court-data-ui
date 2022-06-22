@@ -19,5 +19,5 @@
   = f.govuk_submit(t('laa_reference.link.form.submit'))
 
   = govuk_detail(t('laa_reference.missing_maat_id.label')) do
-    %p.govuk-details__details-text=t('laa_reference.missing_maat_id.description')
+    %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
     = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'commit', value: t('laa_reference.missing_maat_id.submit'))
