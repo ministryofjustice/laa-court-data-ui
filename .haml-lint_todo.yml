@@ -7,7 +7,6 @@
 # versions of Haml-Lint, may require this file to be generated again.
 
 linters:
-
   # Offense count: 395
   RuboCop:
     enabled: false
@@ -90,14 +89,3 @@ linters:
       - "app/views/hearings/_pagination.html.haml"
       - "app/views/layouts/_navigation.html.haml"
       - "app/views/layouts/application.html.haml"
-
-  # Offense count: 29
-  SpaceBeforeScript:
-    include:
-      - "app/views/hearings/_raw_response.html.haml"
-      - "app/views/hearings/_raw_response_v2.html.haml"
-      - "app/views/laa_references/_form.html.haml"
-      - "app/views/layouts/_navigation.html.haml"
-      - "app/views/pages/contact_us.html.haml"
-      - "app/views/prosecution_cases/_raw_response.html.haml"
-      - "app/views/prosecution_cases/cd_api/_raw_response.html.haml"
