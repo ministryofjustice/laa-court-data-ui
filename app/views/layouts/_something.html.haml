@@ -10,6 +10,7 @@
                 = t('layouts.application.cookies.confirmation_link_to_settings_html', href: cookies_settings_path).html_safe
 
             .govuk-button-group
-              = link_to t('layouts.application.cookies.hide_message'), request.referrer , class: 'govuk-button', 'data-module': 'govuk-button', draggable: 'false'
+              %a.govuk-button{'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': test_path(hide_banner: true)}
+                = t('layouts.application.cookies.hide_message')
 
     %turbo-stream{:action => "replace", :target => "removable"}

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
   protect_from_forgery prepend: true, with: :exception
-  before_action :authenticate_user!, :set_transaction_id
+  before_action :authenticate_user!, :set_transaction_id, :set_default_cookies
   check_authorization
 
   # NOTE: errors checked bottom to top
