@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 
 import '../stylesheets/application.scss'
+import { initAll } from 'govuk-frontend'
 import "@hotwired/turbo-rails"
 require('@rails/ujs').start()
 initAll()
