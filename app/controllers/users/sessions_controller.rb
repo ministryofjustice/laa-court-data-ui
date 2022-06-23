@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  skip_authorization_check only: %i[new create destroy test]
-  include CookieConcern
-
-  before_action :set_default_cookies
+  skip_authorization_check only: %i[new create destroy update_cookies]
 
   # before_action :configure_sign_in_params, only: [:create]
 

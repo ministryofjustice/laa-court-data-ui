@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   devise_scope :user do
-    get '/test', to: 'users/sessions#test'
+    get '/update_cookies', to: 'users/sessions#update_cookies'
 
     unauthenticated :user do
       root to: 'users/sessions#new', as: :unauthenticated_root
