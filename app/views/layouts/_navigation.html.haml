@@ -1,7 +1,7 @@
 %nav.govuk-header__navigation{"aria-label": t('layouts.application.header.navigation.top_navigation'), role: "navigation"}
   %button.govuk-header__menu-button.govuk-js-header-toggle{"aria-controls": "navigation", "aria-label": t('layouts.application.header.navigation.show_hide'), type: "button"}
     = t('layouts.application.header.navigation.menu')
-  %ul#navigation.govuk-header__navigation-list
+  %ul.govuk-header__navigation-list#navigation
     %li.govuk-header__navigation-item.govuk-header__navigation-item--active
       = link_to current_user.name,
           user_path(current_user),
