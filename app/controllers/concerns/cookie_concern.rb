@@ -3,7 +3,7 @@
 module CookieConcern
   extend ActiveSupport::Concern
 
-  def update_cookies # Rename this and the related _something file
+  def update_cookies
     cookie_params = params.permit(:cookies_preference, :hide_banner)
 
     render(partial: 'layouts/cookie_banner/hide') && return if params['hide_banner'] == 'true'
@@ -25,7 +25,7 @@ module CookieConcern
   end
 
   def set_default_cookies
-    return set_default_analytics_cookies if !cookies[:cookies_preferences_set] # no pref set
+    return set_default_analytics_cookies unless cookies[:cookies_preferences_set] # no pref set
 
     @analytics_cookies_accepted = ActiveModel::Type::Boolean.new.cast(cookies[:analytics_cookies_set])
     show_hide_cookie_banners # to set whether banner partial should show up
