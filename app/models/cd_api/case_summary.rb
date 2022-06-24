@@ -2,8 +2,6 @@
 
 module CdApi
   class CaseSummary < BaseModel
-    self.element_name = 'hearingsummaries'
-
     has_many :hearing_summaries, class_name: 'cd_api/hearing_summary'
     has_many :overall_defendants, class_name: 'cd_api/overall_defendant'
 
