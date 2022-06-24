@@ -11,7 +11,7 @@ module CdApi
     end
 
     def call
-      Rails.logger.info 'V2_SEARCH_HEARING_SUMMARIES'
+      Rails.logger.info 'V2_SEARCH_CASE_SUMMARIES'
       CdApi::CaseSummary.find(@urn)
     end
   end

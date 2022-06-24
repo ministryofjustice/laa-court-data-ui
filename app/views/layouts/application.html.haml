@@ -43,7 +43,7 @@
       = render 'layouts/phase_banner'
       = render_breadcrumbs(builder: govuk_breadcrumb_builder)
 
-      %main#main-content.govuk-main-wrapper{role: "main"}
+      %main.govuk-main-wrapper#main-content{role: "main"}
         = render partial: 'layouts/flashes' unless flash.empty?
         = content_for :page_heading
         = yield

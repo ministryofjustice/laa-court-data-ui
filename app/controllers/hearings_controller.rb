@@ -102,7 +102,7 @@ class HearingsController < ApplicationController
   end
 
   def prosecution_case_call_v2
-    logger.info 'USING_V2_ENDPOINT_HEARING_SUMMARIES'
+    logger.info 'USING_V2_ENDPOINT_CASE_SUMMARIES'
     @prosecution_case = helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     Rails.logger.error 'SERVER_ERROR_OCCURRED'
