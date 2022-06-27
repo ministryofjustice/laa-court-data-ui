@@ -17,11 +17,10 @@ module CookieConcern
       remove_analytics_cookies
     end
 
-    @analytics_cookies_accepted = cookies[:analytics_cookies_set]
-
     set_cookie(:cookies_preferences_set, value: true)
 
-    render(partial: 'layouts/cookie_banner/success')
+    render(partial: 'layouts/cookie_banner/success',
+           locals: { analytics_cookies_accepted: cookies[:analytics_cookies_set] })
   end
 
   def set_default_cookies
