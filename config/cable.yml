@@ -1,8 +1,0 @@
-development:
-  adapter: redis
-  url: redis://localhost:6379/1
-
-production:
-  url: redis://redis.example.com:6379
-  adapter: redis
-  channel_prefix: custom_

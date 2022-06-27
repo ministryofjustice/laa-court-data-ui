@@ -8,7 +8,23 @@ module CookieConcern
 
     render(partial: 'layouts/cookie_banner/hide') && return if params['hide_banner'] == 'true'
 
-    case cookie_params[:cookies_preference]
+    update_analytics_cookies(cookie_params[:cookies_preference])
+
+    render(partial: 'layouts/cookie_banner/success',
+           locals: { analytics_cookies_accepted: cookies[:analytics_cookies_set] })
+  end
+
+  def set_default_cookies
+    return set_default_analytics_cookies unless cookies[:cookies_preferences_set]
+
+    @analytics_cookies_accepted = ActiveModel::Type::Boolean.new.cast(cookies[:analytics_cookies_set])
+    show_hide_cookie_banners
+  end
+
+  private
+
+  def update_analytics_cookies(preference)
+    case preference
     when 'true'
       set_cookie(:analytics_cookies_set, value: true)
       @analytics_cookies_accepted = true
@@ -18,19 +34,7 @@ module CookieConcern
     end
 
     set_cookie(:cookies_preferences_set, value: true)
-
-    render(partial: 'layouts/cookie_banner/success',
-           locals: { analytics_cookies_accepted: cookies[:analytics_cookies_set] })
   end
-
-  def set_default_cookies
-    return set_default_analytics_cookies unless cookies[:cookies_preferences_set] # no pref set
-
-    @analytics_cookies_accepted = ActiveModel::Type::Boolean.new.cast(cookies[:analytics_cookies_set])
-    show_hide_cookie_banners # to set whether banner partial should show up
-  end
-
-  private
 
   def set_cookie(type, value: false)
     cookies[type] = {
