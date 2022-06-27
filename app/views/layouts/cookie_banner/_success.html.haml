@@ -12,5 +12,7 @@
             .govuk-button-group
               %a.govuk-button{'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': update_cookies_path(hide_banner: true)}
                 = t('layouts.application.cookies.hide_message')
+    -# Script to add google analytics cookies
+    = render partial: 'layouts/google_analytics', analytics_cookies_accepted: true
 
     %turbo-stream{:action => "replace", :target => "removable"}
