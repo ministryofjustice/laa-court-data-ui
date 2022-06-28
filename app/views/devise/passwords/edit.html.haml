@@ -15,6 +15,6 @@
     label: { text: 'Confirm new password' },
     autocomplete: 'new-password')
 
-  = f.govuk_submit(t('devise.passwords.user.form.change.submit'))
+  = f.govuk_submit(t('devise.passwords.user.form.change.submit'), 'data-turbo': 'false')
 
 = render "devise/shared/links"
