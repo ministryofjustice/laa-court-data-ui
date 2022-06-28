@@ -34,7 +34,7 @@
           = render 'layouts/govuk_logo'
 
         .govuk-header__content
-          %a.govuk-header__link.govuk-header__link--service-name{href: authenticated_root_path}
+          %a.govuk-header__link.govuk-header__service-name{href: authenticated_root_path}
             = service_name
 
           = render 'layouts/navigation' if user_signed_in?
