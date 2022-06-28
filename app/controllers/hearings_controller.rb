@@ -116,10 +116,7 @@ class HearingsController < ApplicationController
   end
 
   def call_hearing_events
-    CdApi::HearingEvents.find(params[:id],
-                              params: {
-                                date: paginator.current_item.hearing_date.strftime('%F')
-                              })
+    CdApi::HearingEvents.find(params[:id], { date: paginator.current_item.hearing_date.strftime('%F') })
   rescue ActiveResource::ResourceNotFound
     logger.info 'EVENTS_NOT_AVAILABLE'
     nil

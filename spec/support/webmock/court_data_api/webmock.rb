@@ -160,7 +160,7 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_hearing_events: true) do
     stub_request(
-      :get, %r{/v2/hearing_events/#{hearing_id}}
+      :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
     ).with(
       query: { date: '2019-10-23' }
     ).to_return(
@@ -172,7 +172,7 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_hearing_events_empty: true) do
     stub_request(
-      :get, %r{/v2/hearing_events/#{hearing_id}}
+      :get,  %r{/v2/hearings/#{hearing_id}/hearing_events}
     ).with(
       query: { date: '2019-10-23' }
     ).to_return(
@@ -184,7 +184,7 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_hearing_events_not_found: true) do
     stub_request(
-      :get, %r{/v2/hearing_events/#{hearing_id}}
+      :get,  %r{/v2/hearings/#{hearing_id}/hearing_events}
     ).with(
       query: { date: '2019-10-23' }
     ).to_return(
@@ -194,7 +194,7 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_hearing_events_error: true) do
     stub_request(
-      :get, %r{/v2/hearing_events/#{hearing_id}}
+      :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
     ).with(
       query: { date: '2019-10-23' }
     ).to_return(
@@ -204,7 +204,7 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_hearing_data: true) do
     stub_request(
-      :get, %r{/v2/hearing/#{hearing_id}}
+      :get, %r{/v2/hearings/#{hearing_id}\?}
     ).with(
       query: { date: '2019-10-23' }
     ).to_return(
@@ -216,7 +216,7 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_empty_hearing_data: true) do
     stub_request(
-      :get, %r{/v2/hearing/#{hearing_id}}
+      :get, %r{/v2/hearings/#{hearing_id}\?}
     ).with(
       query: { date: '2019-10-23' }
     ).to_return(
@@ -228,7 +228,7 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_no_hearing_data: true) do
     stub_request(
-      :get, %r{/v2/hearing/#{hearing_id}}
+      :get, %r{/v2/hearings/#{hearing_id}\?}
     ).with(
       query: { date: '2019-10-23' }
     ).to_return(
@@ -239,7 +239,7 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_hearing_data_error: true) do
     stub_request(
-      :get, %r{/v2/hearing/#{hearing_id}}
+      :get, %r{/v2/hearings/#{hearing_id}\?}
     ).with(
       query: { date: '2019-10-23' }
     ).to_return(
