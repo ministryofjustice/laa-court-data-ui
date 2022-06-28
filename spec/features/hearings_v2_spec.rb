@@ -4,8 +4,8 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
                                            stub_v2_hearing_summary: true do
   let(:user) { create(:user) }
   let(:api_url_v2) { CdApi::BaseModel.site }
-  let(:api_events_path) { "#{api_url_v2}hearing_events/#{hearing_id}?date=2019-10-23" }
-  let(:api_data_path) { "#{api_url_v2}hearing/#{hearing_id}" }
+  let(:api_events_path) { "#{api_url_v2}hearings/#{hearing_id}/hearing_events?date=2019-10-23" }
+  let(:api_data_path) { "#{api_url_v2}hearings/#{hearing_id}" }
   let(:case_reference) { 'TEST12345' }
   let(:api_summary_path) { "#{api_url_v2}case_summaries/#{case_reference}" }
   let(:hearing_id) { '345be88a-31cf-4a30-9de3-da98e973367e' }
@@ -19,7 +19,7 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
     visit(url)
   end
 
-  context 'when user views hearing page', stub_v2_hearing_data: true, stub_v2_hearing_events: true do
+  context 'when user views hearing page', stub_v2_hearing_data: true do
     let(:url) { "hearings/#{hearing_id}?column=date&direction=asc&page=0&urn=#{case_reference}" }
 
     context 'with hearing events', stub_v2_hearing_events: true do
