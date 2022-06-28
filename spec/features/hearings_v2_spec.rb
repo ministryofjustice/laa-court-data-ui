@@ -19,7 +19,7 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
     visit(url)
   end
 
-  context 'when user views hearing page', stub_v2_hearing_data: true, stub_v2_hearing_events: true do
+  context 'when user views hearing page', stub_v2_hearing_data: true do
     let(:url) { "hearings/#{hearing_id}?column=date&direction=asc&page=0&urn=#{case_reference}" }
 
     context 'with hearing events', stub_v2_hearing_events: true do

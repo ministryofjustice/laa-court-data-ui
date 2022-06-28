@@ -194,7 +194,7 @@ RSpec.configure do |config|
 
   config.before(:each, stub_v2_hearing_events_error: true) do
     stub_request(
-      :get, %r{/v2/hearing/#{hearing_id}/hearing_events}
+      :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
     ).with(
       query: { date: '2019-10-23' }
     ).to_return(
