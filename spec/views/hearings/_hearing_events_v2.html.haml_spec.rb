@@ -9,7 +9,7 @@ RSpec.describe 'hearings/_hearing_events_v2.html.haml', type: :view do
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_events) do
     CdApi::HearingEvents.find(hearing_id,
-                              params: { date: hearing_day.strftime('%F') })
+                              { date: hearing_day.strftime('%F') })
   end
 
   context 'without hearing_events', stub_v2_hearing_events_empty: true do
