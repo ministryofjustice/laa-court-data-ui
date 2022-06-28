@@ -467,6 +467,9 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.10)
     timeout (0.2.0)
+    turbo-rails (1.0.1)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
@@ -564,6 +567,7 @@ DEPENDENCIES
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
+  turbo-rails (~> 1.0.1)
   tzinfo-data
   vcr
   web-console (>= 4.2.0)
