@@ -67,7 +67,7 @@ RSpec.feature 'Error page', type: :feature do
 
       expect(page).to have_css('.govuk-error-summary')
       within '.govuk-error-summary' do
-        message = 'There was a problem getting the information you requested. '\
+        message = 'There was a problem getting the information you requested. ' \
                   'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
         expect(page).to have_content(message)
       end
@@ -95,7 +95,7 @@ RSpec.feature 'Error page', type: :feature do
 
       expect(page).to have_css('.govuk-error-summary')
       within '.govuk-error-summary' do
-        message = 'There was a problem getting the information you requested. '\
+        message = 'There was a problem getting the information you requested. ' \
                   'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
         expect(page).to have_content(message)
       end
