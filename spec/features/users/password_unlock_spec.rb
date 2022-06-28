@@ -9,7 +9,7 @@ RSpec.feature 'Password unlock', type: :feature, js: true do
   end
 
   let(:unlocked_flash_notice) do
-    'Your account has been unlocked successfully. '\
+    'Your account has been unlocked successfully. ' \
       'Please sign in to continue'
   end
 

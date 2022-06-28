@@ -121,7 +121,7 @@ RSpec.configure do |config|
       status: 422,
       headers: { 'Content-Type' => 'application/vnd.api+json' },
       body: { 'error' =>
-                'Contract failed with: {:maat_reference=>'\
+                'Contract failed with: {:maat_reference=>' \
                 '[\"1234567 has no common platform data created against Maat application.\"]' }.to_json
     )
   end
