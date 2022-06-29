@@ -20,7 +20,7 @@ gem 'haml-rails', '~> 2.0.1'
 gem 'json_api_client', '~> 1.21', '>= 1.21.0'
 gem 'json-schema', '~> 3.0'
 gem 'logstasher'
-gem 'oauth2', '~> 2.0.0'
+gem 'oauth2', '~> 2.0.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'prometheus_exporter', '2.0.3'
 gem 'puma', '>= 5.6.4'
@@ -47,7 +47,7 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.9.4'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
-  gem 'rubocop', '~> 1.30', require: false
+  gem 'rubocop', '~> 1.31', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
