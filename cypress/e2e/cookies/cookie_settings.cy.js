@@ -1,5 +1,6 @@
 describe('Cookie settings page', () => {
-  beforeEach(() => {
+  before(() => {
+    cy.clearCookies()
     cy.visit('/cookies/settings')
   })
 
@@ -38,10 +39,6 @@ describe('Cookie settings page', () => {
       })
 
       context('cookie value not set', () => {
-        before(() => {
-          cy.clearCookie('analytics_cookies_set')
-        })
-
         it('has off selected as default', () => {
           cy.get('#cookie-analytics-false-field')
             .should('have.value', 'false')
@@ -49,29 +46,13 @@ describe('Cookie settings page', () => {
         })
       })
 
-      context('cookie value set to off', () => {
-        before(() => {
-          cy.setCookie('analytics_cookies_set', 'false')
-        })
-
-        it('has off selected', () => {
-          cy.get('#cookie-analytics-false-field')
-            .should('have.value', 'false')
-            .and('be.checked')
-        })
-
-        it('can update the value to on', () => {
-          cy.get('#cookie-analytics-true-field').check()
-          cy.get('[data-cy="submit-cookies"]').click()
-          cy.get('.govuk-notification-banner__heading').should('contain', 'You\'ve set your cookie preferences.')
-          cy.getCookie('analytics_cookies_set', 'true')
-          cy.customA11yCheck(null, cy.a11yLog)
-        })
-      })
-
       context('cookie value set to on', () => {
-        before(() => {
-          cy.setCookie('analytics_cookies_set', 'true')
+        beforeEach(() => {
+          cy.clearCookies()
+          cy.visit('/cookies/settings')
+          cy.get('[data-cy="accept_cookies"]').click()
+          cy.get("[data-cy='hide_message']").click()
+          cy.reload()
         })
 
         it('has on selected', () => {
@@ -85,6 +66,30 @@ describe('Cookie settings page', () => {
           cy.get('[data-cy="submit-cookies"]').click()
           cy.get('.govuk-notification-banner__heading').should('contain', 'You\'ve set your cookie preferences.')
           cy.getCookie('analytics_cookies_set', 'false')
+          cy.customA11yCheck(null, cy.a11yLog)
+        })
+      })
+
+      context('cookie value set to off', () => {
+        beforeEach(() => {
+          cy.clearCookies()
+          cy.visit('/cookies/settings')
+          cy.get('[data-cy="reject_cookies"]').click()
+          cy.get("[data-cy='hide_message']").click()
+          cy.reload()
+        })
+
+        it('has off selected', () => {
+          cy.get('#cookie-analytics-false-field')
+            .should('have.value', 'false')
+            .and('be.checked')
+        })
+
+        it('can update the value to on', () => {
+          cy.get('#cookie-analytics-true-field').check()
+          cy.get('[data-cy="submit-cookies"]').click()
+          cy.get('.govuk-notification-banner__heading').should('contain', 'You\'ve set your cookie preferences.')
+          cy.getCookie('analytics_cookies_set', 'true')
           cy.customA11yCheck(null, cy.a11yLog)
         })
       })
