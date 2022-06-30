@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'defendants/_offences.html.haml', type: :view do
-  subject(:render_partial) { render partial: 'defendants/offences', locals: { defendant: defendant } }
+  subject(:render_partial) { render partial: 'defendants/offences', locals: { defendant: } }
 
   let(:defendant) { object_double(CourtDataAdaptor::Resource::Defendant.new, offences: [offence]) }
   let(:offence) { CourtDataAdaptor::Resource::Offence.new }
@@ -10,6 +10,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     before do
       assign(:defendant, defendant)
     end
+
     context 'when the offence has a mode of trial' do
       before { allow(offence).to receive(:mode_of_trial).and_return('Indictable only') }
 
@@ -28,7 +29,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
 
         it 'displays mode of trial with reason' do
           is_expected.to have_css('.govuk-table__cell',
-                                       text: /Indictable only:\n*Defendant elects trial by jury/)
+                                  text: /Indictable only:\n*Defendant elects trial by jury/)
         end
       end
 
