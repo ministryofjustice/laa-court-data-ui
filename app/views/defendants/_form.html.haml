@@ -1,7 +1,7 @@
 = form_with(model: unlink_attempt, url: defendant_path(defendant.id), method: 'patch') do |f|
   = f.govuk_error_summary
 
-  = render partial: 'defendants/defendant', 
+  = render partial: 'defendants/defendant',
                     locals: { defendant: defendant,
                     prosecution_case_reference: prosecution_case_reference }
 

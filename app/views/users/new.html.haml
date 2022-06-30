@@ -1,3 +1,2 @@
 = govuk_page_title(t('users.new.page_title'))
-
-= render 'form'
+= render partial: 'form', locals: { user: @user }
