@@ -1,6 +1,6 @@
 = render 'results_header'
 
-- if @results.empty?
+- if results.empty?
   = render 'results/none'
 - elsif @results.first.is_a? CourtDataAdaptor::Resource::ProsecutionCase
   = render 'results/prosecution_case'

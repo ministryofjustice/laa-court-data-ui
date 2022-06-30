@@ -2,6 +2,6 @@
 
 .govuk-grid-row
 	.govuk-grid-column-two-thirds
-		= render 'form'
-		= render 'error' if @error
-		= render 'results' if @results
+		= render partial: 'form', locals: { search: @search, filter: @filter, term: @term, label: @label }
+		= render partial: 'error', locals: { error: @error } if @error
+		= render partial: 'results', locals: { results: @results } if @results
