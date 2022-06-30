@@ -29,18 +29,6 @@ linters:
       - "app/views/prosecution_cases/cd_api/_show_v2.html.haml"
       - "app/views/prosecution_cases/show.html.haml"
 
-  # Offense count: 14
-  InstanceVariables:
-    exclude:
-      - "app/views/defendants/_defendant.html.haml"
-      - "app/views/defendants/_form.html.haml"
-      - "app/views/laa_references/_form.html.haml"
-      - "app/views/layouts/_cookie_banner.html.haml"
-      - "app/views/searches/_error.html.haml"
-      - "app/views/searches/_form.html.haml"
-      - "app/views/searches/_results_header.html.haml"
-      - "app/views/users/_form.html.haml"
-
   # Offense count: 43
   LineLength:
     enabled: false
