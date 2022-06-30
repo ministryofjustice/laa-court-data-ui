@@ -5,4 +5,4 @@
     - content_for :custom_packs do
       = javascript_pack_tag 'unlink', defer: true
 
-    = render partial: 'defendants/form', locals: { defendant: @defendant, unlink_attempt: @unlink_attempt, prosecution_case_reference: @prosecution_case_reference }
+    = render partial: 'form', locals: { defendant: @defendant, unlink_attempt: @unlink_attempt, prosecution_case_reference: @prosecution_case_reference }
