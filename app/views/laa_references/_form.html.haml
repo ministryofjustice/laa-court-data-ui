@@ -1,16 +1,17 @@
 = form_with(model: link_attempt, url: '/laa_references') do |f|
   = f.govuk_error_summary
 
-  = render partial: 'defendants/defendant', locals: { defendant: @defendant, prosecution_case_reference: @prosecution_case_reference }
+  = render partial: 'defendants/defendant', locals: { defendant: defendant,
+                                                      prosecution_case_reference: prosecution_case_reference }
 
   - if Feature.enabled?(:defendants_page)
-    = render partial: 'defendants/offences_v2', locals: { defendant: @defendant }
+    = render partial: 'defendants/offences_v2', locals: { defendant: defendant }
   - else
-    = render partial: 'defendants/offences', locals: { defendant: @defendant }
+    = render partial: 'defendants/offences', locals: { defendant: defendant }
 
   = hidden_field_tag(:urn, params[:urn])
 
-  = f.hidden_field(:defendant_id, value: (params[:id] || @defendant_uuid))
+  = f.hidden_field(:defendant_id, value: (params[:id] || defendant_uuid))
 
   = f.govuk_text_field :maat_reference,
     label: { text: t('laa_reference.link.form.maat_reference.label') },
