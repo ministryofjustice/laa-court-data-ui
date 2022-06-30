@@ -53,16 +53,6 @@ linters:
     exclude:
       - "app/views/devise/shared/_error_messages.html.haml"
 
-  # Offense count: 19
-  Indentation:
-    exclude:
-      - "app/views/feedback/new.html.haml"
-      - "app/views/hearings/_hearing_result.html.haml"
-      - "app/views/hearings/_hearing_result_v2.html.haml"
-      - "app/views/laa_references/new.html.haml"
-      - "app/views/search_filters/new.html.haml"
-      - "app/views/searches/new.html.haml"
-
   # Offense count: 5
   TrailingWhitespace:
     exclude:

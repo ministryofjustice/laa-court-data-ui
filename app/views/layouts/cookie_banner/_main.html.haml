@@ -13,8 +13,8 @@
                 = t('layouts.application.cookies.analytics_cookies')
 
         .govuk-button-group.app-js-only
-          = link_to t('layouts.application.cookies.accept_cookies'), update_cookies_path(cookies_preference: true), class: 'govuk-button', 'data-accept-cookies': 'true', 'data-module': 'govuk-button'
-          = link_to t('layouts.application.cookies.reject_cookies'), update_cookies_path(cookies_preference: false), class: 'govuk-button', 'data-reject-cookies': 'true', 'data-module': 'govuk-button'
+          = link_to t('layouts.application.cookies.accept_cookies'), update_cookies_path(cookies_preference: true), class: 'govuk-button', 'data-accept-cookies': 'true', 'data-module': 'govuk-button', 'data-cy': 'accept_cookies'
+          = link_to t('layouts.application.cookies.reject_cookies'), update_cookies_path(cookies_preference: false), class: 'govuk-button', 'data-reject-cookies': 'true', 'data-module': 'govuk-button', 'data-cy': 'reject_cookies'
           = link_to t('layouts.application.cookies.cookie_settings'), cookies_settings_path, class: 'govuk-link', data: { turbo: false }
 
         .govuk-button-group.app-no-js-only
