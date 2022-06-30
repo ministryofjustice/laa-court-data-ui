@@ -1,16 +1,16 @@
-= form_with(model: @unlink_attempt, url: defendant_path(@defendant.id), method: 'patch') do |f|
+= form_with(model: unlink_attempt, url: defendant_path(defendant.id), method: 'patch') do |f|
   = f.govuk_error_summary
 
-  = render 'defendants/defendant'
+  = render 'defendants/defendant', locals: { defendant: defendant, prosecution_case_reference: prosecution_case_reference }
 
   - if Feature.enabled?(:defendants_page)
-    = render 'defendants/offences_v2'
+    = render 'defendants/offences_v2', locals: { defendant: defendant }
   - else
-    = render 'defendants/offences'
+    = render 'defendants/offences', locals: { defendant: defendant }
 
   = hidden_field_tag(:urn, params[:urn])
 
-  = govuk_detail(t('defendants.unlink.detail'), open: @unlink_attempt.errors.present?) do
+  = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do
     = f.govuk_collection_select :reason_code,
       @unlink_reasons,
       :code,
