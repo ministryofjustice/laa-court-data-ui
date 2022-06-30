@@ -1,4 +1,4 @@
-= render 'results_header'
+= render partial: 'results_header', locals: { term: term, dob: dob }
 
 - if results.empty?
   = render 'results/none'
