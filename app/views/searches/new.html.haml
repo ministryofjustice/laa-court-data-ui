@@ -1,10 +1,10 @@
 = govuk_page_title(t('search.page_title'))
 
 .govuk-grid-row
-	.govuk-grid-column-two-thirds
-		= render partial: 'form', locals: { search: @search,
+  .govuk-grid-column-two-thirds
+    = render partial: 'form', locals: { search: @search,
                                         filter: @filter,
                                         term: @term,
                                         label: @label }
-		= render partial: 'error', locals: { error: @error } if @error
-		= render partial: 'results', locals: { results: @results, term: @term, dob: @dob } if @results
+    = render partial: 'error', locals: { error: @error } if @error
+    = render partial: 'results', locals: { results: @results, term: @term, dob: @dob } if @results
