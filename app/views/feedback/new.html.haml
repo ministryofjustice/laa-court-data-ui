@@ -2,5 +2,5 @@
 
 .govuk-grid-row
 	.govuk-grid-column-two-thirds
-		= render 'form'
+		= render partial: 'form', locals: { feedback: @feedback }
 	
