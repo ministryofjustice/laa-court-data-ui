@@ -45,7 +45,7 @@ linters:
 
   # Offense count: 1
   IdNames:
-    exclude:
+    include:
       - "app/views/devise/shared/_error_messages.html.haml"
 
   # Offense count: 1
