@@ -5,7 +5,7 @@ RSpec.describe 'error routes', type: :request do
     before { get '/401' }
 
     it 'has a status of 401' do
-      expect(response.status).to eq(401)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it 'renders the template' do
@@ -18,7 +18,7 @@ RSpec.describe 'error routes', type: :request do
       before { get '/not-exists' }
 
       it 'has a status of 404' do
-        expect(response.status).to eq(404)
+        expect(response).to have_http_status(:not_found)
       end
 
       it 'renders the 404/not_found template' do
@@ -30,7 +30,7 @@ RSpec.describe 'error routes', type: :request do
       before { get '/.well-known/security.txt' }
 
       it 'has a status of 404' do
-        expect(response.status).to eq(404)
+        expect(response).to have_http_status(:not_found)
       end
 
       it 'renders plain text' do
@@ -47,7 +47,7 @@ RSpec.describe 'error routes', type: :request do
     before { get '/422' }
 
     it 'has a status of 422' do
-      expect(response.status).to eq(422)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it 'renders the 422/unacceptable template' do
@@ -59,7 +59,7 @@ RSpec.describe 'error routes', type: :request do
     before { get '/500' }
 
     it 'has a status of 500' do
-      expect(response.status).to eq(500)
+      expect(response).to have_http_status(:internal_server_error)
     end
 
     it 'renders the 500/internal_error template' do

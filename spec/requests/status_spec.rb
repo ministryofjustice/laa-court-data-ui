@@ -13,7 +13,7 @@ RSpec.describe 'status', type: :request do
       end
 
       it 'returns a status of 200' do
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'returns "Not Available"' do
@@ -41,7 +41,7 @@ RSpec.describe 'status', type: :request do
       end
 
       it 'returns a status of 200' do
-        expect(response.status).to eq(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'returns JSON' do
