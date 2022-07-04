@@ -52,11 +52,3 @@ linters:
   MultilinePipe:
     exclude:
       - "app/views/devise/shared/_error_messages.html.haml"
-
-  # Offense count: 5
-  TrailingWhitespace:
-    include:
-      - "app/views/feedback/new.html.haml"
-      - "app/views/layouts/_cookie_banner.html.haml"
-      - "app/views/layouts/_flashes.html.haml"
-      - "app/views/pages/contact_us.html.haml"
