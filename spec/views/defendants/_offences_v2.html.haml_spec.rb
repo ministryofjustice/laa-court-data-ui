@@ -2,7 +2,7 @@
 
 RSpec.describe 'defendants/_offences_v2.html.haml', type: :view do
   include RSpecHtmlMatchers
-  subject(:render_partial) { render partial: 'offences_v2' }
+  subject(:render_partial) { render partial: 'defendants/offences_v2', locals: { defendant: } }
 
   let(:defendant_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:case_urn) { 'TEST12345' }
