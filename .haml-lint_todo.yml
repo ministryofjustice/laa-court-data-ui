@@ -55,7 +55,7 @@ linters:
 
   # Offense count: 5
   TrailingWhitespace:
-    exclude:
+    include:
       - "app/views/feedback/new.html.haml"
       - "app/views/layouts/_cookie_banner.html.haml"
       - "app/views/layouts/_flashes.html.haml"
