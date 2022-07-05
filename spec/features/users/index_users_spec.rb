@@ -40,15 +40,13 @@ RSpec.feature 'Index users', type: :feature, js: true do
         expect(page).to have_selector('.govuk-table__header', text: 'Action')
       end
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
-      within(row) do
-        expect(page).to have_link(other_user.name, href: user_path(other_user))
-        expect(page).to have_link(other_user.username, href: user_path(other_user))
-        expect(page).to have_link(other_user.email, href: "mailto:#{other_user.email}")
-        expect(page).to have_link('Edit', href: edit_user_path(other_user))
-        expect(page).to have_link('Delete', href: user_path(other_user), count: 1)
-        delete_btn = page.find('a.govuk-link[data-method="delete"]')
-        expect(delete_btn).to have_text('Delete')
-      end
+      expect(row).to have_link(other_user.name, href: user_path(other_user))
+      expect(row).to have_link(other_user.username, href: user_path(other_user))
+      expect(row).to have_link(other_user.email, href: "mailto:#{other_user.email}")
+      expect(row).to have_link('Edit', href: edit_user_path(other_user))
+      expect(row).to have_link('Delete', href: user_path(other_user)) { |link|
+                       link['data-method'] == 'delete'
+                     }
 
       expect(page).to be_accessible.within '#main-content'
     end
