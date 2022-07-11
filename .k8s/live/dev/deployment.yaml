@@ -65,8 +65,6 @@ spec:
               value: enabled
             - name: DISPLAY_RAW_RESPONSES
               value: enabled
-            - name: LAA_REFERENCES
-              value: 'true'
             - name: DEFENDANTS_SEARCH
               value: 'true'
             - name: HEARING
