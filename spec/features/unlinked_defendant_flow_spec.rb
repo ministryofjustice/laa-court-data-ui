@@ -41,7 +41,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     then_unlinked_defendant_page_displayed
   end
 
-  scenario 'user links defendant', :stub_link_success do
+  scenario 'user links defendant', :stub_v2_link_success do
     when_viewing_defendant(defendant_id)
     then_defendant_view_displayed_for(defendant_name)
     then_unlinked_defendant_page_displayed

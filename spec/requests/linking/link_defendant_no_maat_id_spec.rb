@@ -16,22 +16,24 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
       link_attempt: { defendant_id: } }
   end
 
-  let(:adaptor_request_path) { %r{.*/laa_references} }
+  let(:cd_api_request_path) { %r{.*/laa_references} }
 
-  let(:expected_adaptor_request_payload) do
-    { data:
-      { type: 'laa_references',
-        attributes:
-          { defendant_id:,
-            user_name: user.username } } }
+  let(:expected_request_payload) do
+    {
+      defendant_id:,
+      user_name: user.username
+    }
   end
 
   context 'when authenticated' do
+    let(:error_detail) do
+      'Defendant is not a valid uuid, MAAT reference 1234567 has no data created against Maat application.'
+    end
+
     let(:maat_error_message) do
       {
-        message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.',
-        title: 'A Court Data Source link could not be established ' \
-               'due to an invalid MAAT Reference Number. Please check the MAAT Reference Number.'
+        message: error_detail,
+        title: 'Unable to link the defendant using the MAAT ID.'
       }
     end
 
@@ -40,10 +42,10 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
       post '/laa_references', params:
     end
 
-    context 'with valid params', stub_link_success: true do
+    context 'with valid params', stub_v2_link_success: true do
       it 'sends a link request to the adapter' do
-        expect(a_request(:post, adaptor_request_path)
-          .with(body: expected_adaptor_request_payload.to_json))
+        expect(a_request(:post, cd_api_request_path)
+          .with(body: expected_request_payload.to_json))
           .to have_been_made.once
       end
 
@@ -61,7 +63,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
     end
 
     context 'with invalid defendant_id' do
-      context 'when not a uuid', stub_link_failure_with_invalid_defendant_uuid: true do
+      context 'when not a uuid', stub_v2_link_failure_with_invalid_defendant_uuid: true do
         let(:defendant_id) { 'not-a-uuid' }
 
         it 'flashes alert' do

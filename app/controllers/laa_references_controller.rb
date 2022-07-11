@@ -85,13 +85,8 @@ class LaaReferencesController < ApplicationController
   end
 
   def resource
-    if Feature.enabled?(:laa_references)
-      logger.info 'USING_V2_ENDPOINT'
-      CdApi::LaaReferences
-    else
-      logger.info 'USING_V1_ENDPOINT'
-      CourtDataAdaptor::Resource::LaaReference
-    end
+    logger.info 'USING_V2_ENDPOINT'
+    CdApi::LaaReferences
   end
 
   def resource_params
@@ -99,25 +94,17 @@ class LaaReferencesController < ApplicationController
   end
 
   def resource_save
-    if Feature.enabled?(:laa_references)
-      begin
-        logger.info 'CALLING_V2_MAAT_LINK'
-        @laa_reference.save!
-      rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
-        logger.info 'CLIENT_ERROR_OCCURRED'
-        render_new(I18n.t('laa_reference.link.unprocessable'), @laa_reference.errors.full_messages.join(', '))
-      rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-        logger.error 'SERVER_ERROR_OCCURRED'
-        log_sentry_error(e, @laa_reference.errors)
-        render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
-      else
-        redirect_to_edit_defendants
-      end
-    else
-      logger.info 'CALLING_V1_MAAT_LINK'
-      @laa_reference.save
-      redirect_to_edit_defendants
-    end
+    logger.info 'CALLING_V2_MAAT_LINK'
+    @laa_reference.save!
+  rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
+    logger.info 'CLIENT_ERROR_OCCURRED'
+    render_new(I18n.t('laa_reference.link.unprocessable'), @laa_reference.errors.full_messages.join(', '))
+  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+    logger.error 'SERVER_ERROR_OCCURRED'
+    log_sentry_error(e, @laa_reference.errors)
+    render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
+  else
+    redirect_to_edit_defendants
   end
 
   def no_maat_id?
