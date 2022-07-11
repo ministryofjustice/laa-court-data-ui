@@ -24,12 +24,7 @@ class UnlinkAttempt
 
   def to_unlink_attributes
     other_reason = { unlink_other_reason_text: other_reason_text }
-    attrs = if Feature.enabled?(:laa_references)
-              { defendant_id:, user_name: username, unlink_reason_code: reason_code,
-                maat_reference: }
-            else
-              { user_name: username, unlink_reason_code: reason_code }
-            end
+    attrs = { defendant_id:, user_name: username, unlink_reason_code: reason_code, maat_reference: }
     attrs.merge!(other_reason) if text_required?
     attrs
   end
