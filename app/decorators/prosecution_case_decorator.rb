@@ -9,7 +9,7 @@ class ProsecutionCaseDecorator < BaseDecorator
 
   def sorted_hearings_with_day
     Enumerator.new do |enum|
-      sorter.sorted_hearings.each do |hearing|
+      sorter.sorted_hearings.uniq(&:id).each do |hearing|
         sorter.sorted_hearing_days(hearing).each do |day|
           hearing.day = day
           enum.yield(hearing)
