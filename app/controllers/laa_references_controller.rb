@@ -126,7 +126,7 @@ class LaaReferencesController < ApplicationController
 
   def render_new(title, message)
     flash.now[:alert] = { title:, message: }
-    render 'new'
+    render 'new', status: :unprocessable_entity
   end
 
   def redirect_to_edit_defendants

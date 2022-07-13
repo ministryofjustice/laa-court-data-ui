@@ -1,4 +1,4 @@
-= form_with(model: link_attempt, url: '/laa_references', 'data-turbo' => 'false') do |f|
+= form_with(model: link_attempt, url: '/laa_references', data: { turbo: false }) do |f|
   = f.govuk_error_summary
 
   = render partial: 'defendants/defendant', locals: { defendant: defendant,
