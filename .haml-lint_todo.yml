@@ -11,9 +11,6 @@ linters:
   RuboCop:
     enabled: false
 
-  # Offense count: 189
-  SpaceInsideHashAttributes:
-    enabled: true
 
   # Offense count: 1
   ViewLength:
