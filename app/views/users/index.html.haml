@@ -28,7 +28,7 @@
 
       %tbody.govuk-table__body
         - @users.each do |user|
-          %tr.govuk-table__row{"data-user-id": "#{user.id}"}
+          %tr.govuk-table__row{ "data-user-id": "#{user.id}" }
             %td.govuk-table__cell
               = link_to user.name, user_path(user), class: 'govuk-link'
             %td.govuk-table__cell
