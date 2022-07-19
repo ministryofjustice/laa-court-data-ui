@@ -63,8 +63,6 @@ spec:
               value: 'UA-131160087-16'
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
-            - name: LAA_REFERENCES
-              value: 'true'
             - name: DEFENDANTS_SEARCH
               value: 'true'
             - name: HEARING

@@ -1,7 +1,7 @@
-%h2.govuk-heading-l{:class => "govuk-!-margin-bottom-4"}
+%h2.govuk-heading-l{ :class => "govuk-!-margin-bottom-4" }
   = t('hearings.show.court_applications.heading')
 - if hearing&.court_applications.present?
-  .govuk-accordion{:data => {:module => "govuk-accordion"}, :id => "accordion-" + hearing.id}
+  .govuk-accordion{ :data => { :module => "govuk-accordion" }, :id => "accordion-" + hearing.id }
     - decorate_each(hearing.court_applications) do |court_application|
       .govuk-accordion__section
         .govuk-accordion__section-header

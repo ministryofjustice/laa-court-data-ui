@@ -11,9 +11,6 @@ linters:
   RuboCop:
     enabled: false
 
-  # Offense count: 189
-  SpaceInsideHashAttributes:
-    enabled: false
 
   # Offense count: 1
   ViewLength:
@@ -47,4 +44,3 @@ linters:
   IdNames:
     exclude:
       - "app/views/devise/shared/_error_messages.html.haml"
-
