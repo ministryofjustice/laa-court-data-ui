@@ -61,8 +61,6 @@ spec:
               value: enabled
             - name: GA_TRACKING_ID
               value: 'UA-131160087-15'
-            - name: LAA_REFERENCES
-              value: 'true'
             - name: DEFENDANTS_SEARCH
               value: 'true'
             - name: HEARING
