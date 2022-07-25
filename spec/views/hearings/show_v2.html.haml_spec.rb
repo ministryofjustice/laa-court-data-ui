@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'hearings/show.html.haml', type: :view, stub_v2_hearing_data: true,
+RSpec.describe 'hearings/show', type: :view, stub_v2_hearing_data: true,
                                           stub_v2_hearing_summary: true do
   subject(:render_view) { render }
 

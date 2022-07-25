@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'prosecution_cases/show.html.haml', type: :view do
+RSpec.describe 'prosecution_cases/show', type: :view do
   subject(:render_view) { render }
 
   let(:decorated_prosecution_case) { view.decorate(prosecution_case) }

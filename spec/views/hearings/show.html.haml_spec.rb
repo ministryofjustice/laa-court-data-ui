@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'hearings/show.html.haml', type: :view do
+RSpec.describe 'hearings/show', type: :view do
   subject(:render_view) { render }
 
   # rubocop: disable RSpec/VerifiedDoubles
