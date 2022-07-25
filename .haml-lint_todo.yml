@@ -7,14 +7,10 @@
 # versions of Haml-Lint, may require this file to be generated again.
 
 linters:
-
   # Offense count: 395
   RuboCop:
     enabled: false
 
-  # Offense count: 189
-  SpaceInsideHashAttributes:
-    enabled: false
 
   # Offense count: 1
   ViewLength:
@@ -29,18 +25,6 @@ linters:
       - "app/views/hearings/_hearing_result.html.haml"
       - "app/views/prosecution_cases/cd_api/_show_v2.html.haml"
       - "app/views/prosecution_cases/show.html.haml"
-
-  # Offense count: 14
-  InstanceVariables:
-    exclude:
-      - "app/views/defendants/_defendant.html.haml"
-      - "app/views/defendants/_form.html.haml"
-      - "app/views/laa_references/_form.html.haml"
-      - "app/views/layouts/_cookie_banner.html.haml"
-      - "app/views/searches/_error.html.haml"
-      - "app/views/searches/_form.html.haml"
-      - "app/views/searches/_results_header.html.haml"
-      - "app/views/users/_form.html.haml"
 
   # Offense count: 43
   LineLength:
@@ -60,44 +44,3 @@ linters:
   IdNames:
     exclude:
       - "app/views/devise/shared/_error_messages.html.haml"
-
-  # Offense count: 1
-  MultilinePipe:
-    exclude:
-      - "app/views/devise/shared/_error_messages.html.haml"
-
-  # Offense count: 19
-  Indentation:
-    exclude:
-      - "app/views/feedback/new.html.haml"
-      - "app/views/hearings/_hearing_result.html.haml"
-      - "app/views/hearings/_hearing_result_v2.html.haml"
-      - "app/views/laa_references/new.html.haml"
-      - "app/views/search_filters/new.html.haml"
-      - "app/views/searches/new.html.haml"
-
-  # Offense count: 5
-  TrailingWhitespace:
-    exclude:
-      - "app/views/feedback/new.html.haml"
-      - "app/views/layouts/_cookie_banner.html.haml"
-      - "app/views/layouts/_flashes.html.haml"
-      - "app/views/pages/contact_us.html.haml"
-
-  # Offense count: 3
-  ClassesBeforeIds:
-    exclude:
-      - "app/views/hearings/_pagination.html.haml"
-      - "app/views/layouts/_navigation.html.haml"
-      - "app/views/layouts/application.html.haml"
-
-  # Offense count: 29
-  SpaceBeforeScript:
-    exclude:
-      - "app/views/hearings/_raw_response.html.haml"
-      - "app/views/hearings/_raw_response_v2.html.haml"
-      - "app/views/laa_references/_form.html.haml"
-      - "app/views/layouts/_navigation.html.haml"
-      - "app/views/pages/contact_us.html.haml"
-      - "app/views/prosecution_cases/_raw_response.html.haml"
-      - "app/views/prosecution_cases/cd_api/_raw_response.html.haml"

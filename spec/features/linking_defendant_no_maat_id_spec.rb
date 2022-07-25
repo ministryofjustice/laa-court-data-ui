@@ -10,7 +10,7 @@ RSpec.describe 'Linking a defendant with no MAAT id', type: :feature, stub_unlin
     sign_in user
   end
 
-  scenario 'user links defendant details with no maat id', :stub_link_success do
+  scenario 'user links defendant details with no maat id', :stub_v2_link_success do
     visit "prosecution_cases/#{case_urn}"
     click_link('Jammy Dodger')
     expect(page).to have_text('The MAAT id is missing')

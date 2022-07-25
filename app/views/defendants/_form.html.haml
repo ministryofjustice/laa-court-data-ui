@@ -1,18 +1,20 @@
-= form_with(model: @unlink_attempt, url: defendant_path(@defendant.id), method: 'patch') do |f|
+= form_with(model: unlink_attempt, url: defendant_path(defendant.id), method: 'patch', data: { turbo: false }) do |f|
   = f.govuk_error_summary
 
-  = render 'defendants/defendant'
+  = render partial: 'defendants/defendant',
+                    locals: { defendant: defendant,
+                    prosecution_case_reference: prosecution_case_reference }
 
   - if Feature.enabled?(:defendants_page)
-    = render 'defendants/offences_v2'
+    = render partial: 'defendants/offences_v2', locals: { defendant: defendant }
   - else
-    = render 'defendants/offences'
+    = render partial: 'defendants/offences', locals: { defendant: defendant }
 
   = hidden_field_tag(:urn, params[:urn])
 
-  = govuk_detail(t('defendants.unlink.detail'), open: @unlink_attempt.errors.present?) do
+  = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do
     = f.govuk_collection_select :reason_code,
-      @unlink_reasons,
+      unlink_reasons,
       :code,
       :description,
       options: { include_blank: t('generic.form.select.blank_option') },
@@ -27,7 +29,7 @@
     = f.govuk_submit(t('defendants.form.submit'))
 
   .govuk-warning-text
-    %span.govuk-warning-text__icon{"aria-hidden" => "true"} !
+    %span.govuk-warning-text__icon{ "aria-hidden" => "true" } !
     %strong.govuk-warning-text__text
       %span.govuk-warning-text__assistive
         = t('generic.warning')

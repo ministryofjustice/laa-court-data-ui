@@ -1,7 +1,7 @@
-%div{:class => "govuk-!-margin-bottom-9"}
+%div{ :class => "govuk-!-margin-bottom-9" }
   %h2.govuk-heading-l
     = t('hearings.show.attendees.heading')
-  .govuk-heading-s{:class => "govuk-!-margin-bottom-1"}
+  .govuk-heading-s{ :class => "govuk-!-margin-bottom-1" }
     = t('hearings.show.attendees.defendants')
   %p.govuk-body{:class => "govuk-!-margin-bottom-2", :id => "defendants"}
     - unless hearing && hearing.prosecution_cases&.any?

@@ -1,28 +1,28 @@
 %div{ class: 'govuk-!-padding-bottom-4' }
 = govuk_detail(t('generic.view_raw_data')) do
-  %h3=t('generic.prosecution_case')
+  %h3= t('generic.prosecution_case')
   %pre
     = JSON.pretty_generate(case_summary.as_json)
 
-  %h3='Overall defendants'
+  %h3= 'Overall defendants'
   %pre
     - case_summary.overall_defendants.each.with_index do |defendant, idx|
-      %h4="defendant #{idx}"
+      %h4= "defendant #{idx}"
       = JSON.pretty_generate(defendant.attributes)
 
-  %h3='Hearing summaries'
+  %h3= 'Hearing summaries'
   - case_summary.hearing_summaries.each do |hearing_summary|
     %pre
       = JSON.pretty_generate(JSON.parse(hearing_summary.attributes.to_json))
       = ","
 
-  %h3='Hearing summaries'
+  %h3= 'Hearing summaries'
   - case_summary.hearing_summaries.each.with_index do |hearing_summary, hidx|
-    %h4="hearing summary #{hidx}"
+    %h4= "hearing summary #{hidx}"
     %pre
       = JSON.pretty_generate(JSON.parse(hearing_summary.attributes.to_json))
 
-    %h4="Defence counsels for hearing summary #{hidx}"
+    %h4= "Defence counsels for hearing summary #{hidx}"
     = 'none' if hearing_summary.defence_counsels.blank?
     - Array(hearing_summary.defence_counsels).each.with_index do |event, pidx|
       %pre

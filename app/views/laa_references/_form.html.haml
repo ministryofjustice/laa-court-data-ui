@@ -1,16 +1,17 @@
-= form_with(model: @link_attempt, url: '/laa_references') do |f|
+= form_with(model: link_attempt, url: '/laa_references', data: { turbo: false }) do |f|
   = f.govuk_error_summary
 
-  = render 'defendants/defendant'
+  = render partial: 'defendants/defendant', locals: { defendant: defendant,
+                                                      prosecution_case_reference: prosecution_case_reference }
 
   - if Feature.enabled?(:defendants_page)
-    = render 'defendants/offences_v2'
+    = render partial: 'defendants/offences_v2', locals: { defendant: defendant }
   - else
-    = render 'defendants/offences'
+    = render partial: 'defendants/offences', locals: { defendant: defendant }
 
   = hidden_field_tag(:urn, params[:urn])
 
-  = f.hidden_field(:defendant_id, value: (params[:id] || @defendant_uuid))
+  = f.hidden_field(:defendant_id, value: (params[:id] || defendant_uuid))
 
   = f.govuk_text_field :maat_reference,
     label: { text: t('laa_reference.link.form.maat_reference.label') },
@@ -19,5 +20,5 @@
   = f.govuk_submit(t('laa_reference.link.form.submit'))
 
   = govuk_detail(t('laa_reference.missing_maat_id.label')) do
-    %p.govuk-details__details-text=t('laa_reference.missing_maat_id.description')
+    %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
     = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'commit', value: t('laa_reference.missing_maat_id.submit'))

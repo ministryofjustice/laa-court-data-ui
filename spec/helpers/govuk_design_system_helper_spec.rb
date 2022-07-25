@@ -49,8 +49,8 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
 
       it ':page_heading contains GDS styled heading caption' do
         markup = helper.content_for(:page_heading)
-        expected_markup = '<h1 class="govuk-heading-xl">'\
-                          '<span class="govuk-caption-xl">My page caption</span>'\
+        expected_markup = '<h1 class="govuk-heading-xl">' \
+                          '<span class="govuk-caption-xl">My page caption</span>' \
                           'My page title</h1>'
         expect(markup).to eql expected_markup
       end

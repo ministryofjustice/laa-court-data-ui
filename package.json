@@ -4,22 +4,31 @@
   "version": "1.21.1",
   "scripts": {
     "validate:js": "standard",
-    "validate:scss": "stylelint **/*.scss"
+    "validate:scss": "stylelint **/*.scss",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "start:server": "bundle exec puma & wait-on http://localhost:3000/",
+    "start:testserver": "bundle exec puma & wait-on http://localhost:9292/"
   },
   "dependencies": {
     "@ministryofjustice/frontend": "^1.4.2",
     "@rails/ujs": "^7.0.3",
+    "@hotwired/turbo-rails": "^7.1.1",
     "@rails/webpacker": "5.4.3",
-    "govuk-frontend": "^4.1.0",
+    "govuk-frontend": "^4.2.0",
     "jquery": "3.6.0",
     "postcss": "^8.4.14"
   },
   "devDependencies": {
+    "axe-core": "^4.4.3",
+    "cypress": "^10.3.1",
+    "cypress-axe": "^1.0.0",
     "standard": "^17.0.0",
     "stylelint": "^14.9.1",
     "stylelint-config-gds": "^0.2.0",
     "stylelint-order": "^5.0.0",
-    "webpack-dev-server": "^4.9.2"
+    "wait-on": "^6.0.1",
+    "webpack-dev-server": "^4.9.3"
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
@@ -45,7 +54,12 @@
   "standard": {
     "globals": [
       "dataLayer",
-      "googleTrackingID"
+      "googleTrackingID",
+      "Cypress",
+      "cy"
+    ],
+    "env": [
+      "mocha"
     ]
   }
 }

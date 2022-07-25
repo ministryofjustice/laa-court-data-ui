@@ -76,8 +76,8 @@ class DefendantsController < ApplicationController
 
     # reason code must be an integer from 1..7
     unlink_attempt_params.merge(username: current_user.username).tap do |attrs|
-      attrs[:defendant_id] = defendant.id if Feature.enabled?(:laa_references)
-      attrs[:maat_reference] = defendant.maat_reference.to_i if Feature.enabled?(:laa_references)
+      attrs[:defendant_id] = defendant.id
+      attrs[:maat_reference] = defendant.maat_reference.to_i
       attrs[:reason_code] = attrs[:reason_code].to_i
       attrs[:reason_code] = nil if attrs[:reason_code].zero?
     end
@@ -88,33 +88,19 @@ class DefendantsController < ApplicationController
   end
 
   def resource
-    if Feature.enabled?(:laa_references)
-      logger.info 'USING_V2_ENDPOINT'
-      CdApi::LaaReferences
-    else
-      logger.info 'USING_V1_ENDPOINT'
-      CourtDataAdaptor::Resource::LaaReference
-    end
+    logger.info 'USING_V2_ENDPOINT'
+    CdApi::LaaReferences
   end
 
   def resource_save
-    if Feature.enabled?(:laa_references)
-      begin
-        logger.info 'CALLING_V2_MAAT_UNLINK'
-        unlink
-      rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest => e
-        handle_client_error(e)
-      rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-        handle_server_error(e)
-      else
-        redirect_to_edit_defendants
-      end
-    else
-      logger.info 'CALLING_V1_MAAT_UNLINK'
-      set_unlink_attempt
-      defendant.update(@unlink_attempt.to_unlink_attributes)
-      redirect_to_edit_defendants
-    end
+    logger.info 'CALLING_V2_MAAT_UNLINK'
+    unlink
+  rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest => e
+    handle_client_error(e)
+  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+    handle_server_error(e)
+  else
+    redirect_to_edit_defendants
   end
 
   def handle_client_error(exception)

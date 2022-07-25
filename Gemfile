@@ -15,21 +15,22 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 3.0'
+gem 'govuk_design_system_formbuilder', '~> 3.1'
 gem 'haml-rails', '~> 2.0.1'
 gem 'json_api_client', '~> 1.21', '>= 1.21.0'
 gem 'json-schema', '~> 3.0'
 gem 'logstasher'
-gem 'oauth2', '~> 1.4.9'
+gem 'oauth2', '~> 2.0.6'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'prometheus_exporter', '2.0.3'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 6.1.6'
-gem 'redis', '~> 4.6.0'
+gem 'redis', '~> 4.7.1'
 gem 'sentry-rails', '~> 5.3.1'
 gem 'sentry-sidekiq', '~> 5.3.1'
 gem 'sidekiq', '~> 6.5'
 gem 'sidekiq_alive'
+gem 'turbo-rails', '~> 1.1.1'
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
 group :test do
@@ -40,13 +41,13 @@ group :test do
   gem 'codeclimate-test-reporter', '>= 1.0.7', require: false
   gem 'fakeredis', require: 'fakeredis/rspec'
   gem 'haml_lint', require: false
-  gem 'i18n-tasks', '~> 1.0.10'
+  gem 'i18n-tasks', '~> 1.0.11'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.9.4'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
-  gem 'rubocop', '~> 1.30', require: false
+  gem 'rubocop', '~> 1.31', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false

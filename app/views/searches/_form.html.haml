@@ -1,9 +1,9 @@
-= form_with model: @search do |f|
+= form_with model: search, html: {:"data-turbo" => false} do |f|
   = f.govuk_error_summary
-  = f.hidden_field(:filter, value: @filter)
-  = f.govuk_text_field(:term, value: @term, label: { text: @label })
+  = f.hidden_field(:filter, value: filter)
+  = f.govuk_text_field(:term, value: term, label: { text: label })
 
-  - if @filter.eql?('defendant_name')
+  - if filter.eql?('defendant_name')
     .govuk-date-fieldset-m
       = f.govuk_date_field :dob,
         legend: { text: t('search.dob.legend_text') }

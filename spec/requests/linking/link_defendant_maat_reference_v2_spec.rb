@@ -24,7 +24,6 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
   end
 
   before do
-    allow(Feature).to receive(:enabled?).with(:laa_references).and_return(true)
     allow(Feature).to receive(:enabled?).with(:defendants_page).and_return(false)
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
   end
@@ -33,7 +32,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
     let(:maat_invalid_uuid) do
       {
         title: 'Unable to link the defendant using the MAAT ID.',
-        message: 'Defendant is not a valid uuid, MAAT reference 1234567 '\
+        message: 'Defendant is not a valid uuid, MAAT reference 1234567 ' \
                  'has no data created against Maat application.'
       }
     end

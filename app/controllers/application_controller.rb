@@ -2,11 +2,11 @@
 
 class ApplicationController < ActionController::Base
   include Breadcrumbs
-  include CookieConcern
+  include CookieConcern # Needs to be here for cookie_settings page
 
   default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
   protect_from_forgery prepend: true, with: :exception
-  before_action :authenticate_user!, :set_default_cookies, :set_transaction_id
+  before_action :authenticate_user!, :set_transaction_id, :set_default_cookies
   check_authorization
 
   # NOTE: errors checked bottom to top
