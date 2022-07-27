@@ -44,7 +44,7 @@ group :test do
   gem 'i18n-tasks', '~> 1.0.11'
   gem 'launchy'
   gem 'rails-controller-testing'
-  gem 'rspec-html-matchers', '~> 0.9.4'
+  gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
   gem 'rubocop', '~> 1.32', require: false
