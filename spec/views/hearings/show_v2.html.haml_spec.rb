@@ -5,7 +5,10 @@ RSpec.describe 'hearings/show.html.haml', type: :view, stub_v2_hearing_data: tru
   subject(:render_view) { render }
 
   let(:case_reference) { 'TEST12345' }
-  let(:prosecution_case) { build :case_summary, prosecution_case_reference: case_reference }
+  let(:prosecution_case) do
+    build :case_summary, :with_hearing_summaries,
+          prosecution_case_reference: case_reference
+  end
   let(:decorated_prosecution_case) { view.decorate(prosecution_case, CdApi::CaseSummaryDecorator) }
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
@@ -30,6 +33,7 @@ RSpec.describe 'hearings/show.html.haml', type: :view, stub_v2_hearing_data: tru
     assign(:hearing, hearing)
     assign(:hearing_day, hearing_day)
     assign(:paginator, paginator)
+    assign(:prosecution_case, decorated_prosecution_case)
   end
 
   context 'when viewing hearing details' do
