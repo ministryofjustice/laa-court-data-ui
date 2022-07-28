@@ -61,18 +61,19 @@ class HearingsController < ApplicationController
   def hearing
     logger.info 'USING_V1_ENDPOINT'
     @hearing ||= helpers.decorate(@prosecution_case.hearings.find do |hearing|
-                                    hearing.id == params[:id]
+                                    hearing.id == hearing_id
                                   end, HearingDecorator)
   end
 
   def hearing_v2_call
     @hearing ||= helpers.decorate(
-      CdApi::Hearing.find(params[:id], params: {
+      CdApi::Hearing.find(hearing_id, params: {
                             date: paginator.current_item.hearing_date.strftime('%F')
                           }), CdApi::HearingDecorator
     )
   rescue ActiveResource::ResourceNotFound
-    redirect_to_prosecution_case(notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
+    # Return empty hearing so we can still display the page
+    @hearing ||= CdApi::Hearing.new
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     logger.error 'SERVER_ERROR_OCCURRED'
     Sentry.capture_exception(e)
@@ -116,7 +117,7 @@ class HearingsController < ApplicationController
   end
 
   def call_hearing_events
-    CdApi::HearingEvents.find(params[:id], { date: paginator.current_item.hearing_date.strftime('%F') })
+    CdApi::HearingEvents.find(hearing_id, { date: paginator.current_item.hearing_date.strftime('%F') })
   rescue ActiveResource::ResourceNotFound
     logger.info 'EVENTS_NOT_AVAILABLE'
     nil
@@ -130,6 +131,10 @@ class HearingsController < ApplicationController
 
   def show_alert(title, message)
     flash.now[:alert] = { title:, message: }
+  end
+
+  def hearing_id
+    @hearing_id ||= params[:id]
   end
 
   def page
