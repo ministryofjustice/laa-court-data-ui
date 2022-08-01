@@ -24,7 +24,7 @@ gem 'oauth2', '~> 2.0.6'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'prometheus_exporter', '2.0.3'
 gem 'puma', '>= 5.6.4'
-gem 'rails', '~> 6.1.6'
+gem 'rails', '~> 7.0.3.1'
 gem 'redis', '~> 4.7.1'
 gem 'sentry-rails', '~> 5.4.1'
 gem 'sentry-sidekiq', '~> 5.4.1'
@@ -72,7 +72,6 @@ end
 group :development do
   gem 'foreman'
   gem 'listen', '>= 3.0.5', '< 3.8'
-  gem 'meta_request', '~> 0.7.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

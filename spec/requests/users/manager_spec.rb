@@ -228,7 +228,7 @@ RSpec.describe 'managers', type: :request do
     end
 
     it 'retrieves the csv' do
-      expect(response).to render_template('export.csv.erb')
+      expect(response).to render_template('users/export')
     end
   end
 end

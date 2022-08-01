@@ -50,7 +50,7 @@ Rails.application.routes.draw do
 
   get 'ping', to: 'status#ping', format: :json
 
-  get 'users/export/all', to: 'users#export'
+  get 'users/export/all', to: 'users#export', defaults: { format: :csv }
 
   get '/401', to: 'errors#unauthorized'
   get '/404', to: 'errors#not_found'
