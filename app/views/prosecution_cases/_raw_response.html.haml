@@ -7,7 +7,7 @@
   %h3= 'Defendants'
   %pre
     - prosecution_case.defendants.each.with_index do |defendant, idx|
-      %h4 defendant #{idx} 
+      %h4 defendant #{idx}
       = JSON.pretty_generate(defendant.attributes)
       %h4 Offences for defendant #{idx}
       - defendant.offences.each do |offence|
