@@ -11,7 +11,6 @@ linters:
   RuboCop:
     enabled: false
 
-
   # Offense count: 1
   ViewLength:
     exclude:
@@ -29,16 +28,6 @@ linters:
   # Offense count: 43
   LineLength:
     enabled: false
-
-  # Offense count: 18
-  UnnecessaryStringOutput:
-    exclude:
-      - "app/views/defendants/_offences.html.haml"
-      - "app/views/defendants/_offences_v2.html.haml"
-      - "app/views/defendants/_representation_orders.html.haml"
-      - "app/views/hearings/_raw_response.html.haml"
-      - "app/views/prosecution_cases/_raw_response.html.haml"
-      - "app/views/prosecution_cases/cd_api/_raw_response.html.haml"
 
   # Offense count: 1
   IdNames:
