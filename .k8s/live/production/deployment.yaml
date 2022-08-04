@@ -64,7 +64,7 @@ spec:
             - name: DEFENDANTS_SEARCH
               value: 'true'
             - name: HEARING
-              value: 'true'
+              value: 'false'
             - name: HEARING_SUMMARIES
               value: 'false'
             - name: RAILS_LOG_TO_STDOUT
