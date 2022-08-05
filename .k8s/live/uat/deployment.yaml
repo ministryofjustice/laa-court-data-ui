@@ -48,27 +48,27 @@ spec:
             periodSeconds: 10
           env:
             - name: ENV
-              value: "uat"
+              value: 'uat'
             - name: RACK_ENV
-              value: "production"
+              value: 'production'
             - name: RAILS_ENV
-              value: "production"
+              value: 'production'
             - name: DOMAIN_URL
-              value: "https://uat.view-court-data.service.justice.gov.uk"
+              value: 'https://uat.view-court-data.service.justice.gov.uk'
             - name: COURT_DATA_ADAPTOR_API_URL
               value: https://uat.court-data-adaptor.service.justice.gov.uk/api/internal/v1
             - name: RAILS_SERVE_STATIC_FILES
               value: enabled
             - name: GA_TRACKING_ID
-              value: "UA-131160087-17"
+              value: 'UA-131160087-17'
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
             - name: DEFENDANTS_SEARCH
-              value: "true"
+              value: 'true'
             - name: HEARING
-              value: "true"
+              value: 'true'
             - name: HEARING_SUMMARIES
-              value: "true"
+              value: 'true'
             - name: DISPLAY_RAW_RESPONSES
               value: enabled
             - name: COURT_DATA_ADAPTOR_API_UID
@@ -144,10 +144,9 @@ spec:
         - name: laa-court-data-ui-metrics
           image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-get-paid/laa-court-data-ui:set-me
           imagePullPolicy: Always
-          command:
-            ["sh", "-c", "bundle exec prometheus_exporter --bind 0.0.0.0"]
+          command: ['sh', '-c', "bundle exec prometheus_exporter --bind 0.0.0.0"]
           ports:
-            - containerPort: 9394
+          - containerPort: 9394
           livenessProbe:
             httpGet:
               path: /metrics
