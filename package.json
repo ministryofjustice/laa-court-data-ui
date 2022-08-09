@@ -17,7 +17,7 @@
     "@rails/webpacker": "5.4.3",
     "govuk-frontend": "^4.2.0",
     "jquery": "3.6.0",
-    "postcss": "^8.4.14"
+    "postcss": "^8.4.16"
   },
   "devDependencies": {
     "axe-core": "^4.4.3",
