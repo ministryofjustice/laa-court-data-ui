@@ -2,12 +2,13 @@
 
 module CdApi
   class DefenceCounselDecorator < BaseDecorator
+
     def name_status_and_defendants
       return t('generic.not_available') if name_and_status_blank?
 
       return "#{formatted_name} (#{formatted_status})" if defendants.empty?
 
-      defence_counsel_list = formatted_defendant_names.map do |defendant_name|
+      defence_counsel_list = formatted_multiples_defendant_names.map do |defendant_name|
         "#{formatted_name} (#{formatted_status}) for #{defendant_name}"
       end
       safe_join(defence_counsel_list, tag.br)
