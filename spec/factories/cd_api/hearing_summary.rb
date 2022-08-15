@@ -6,6 +6,7 @@ FactoryBot.define do
     hearing_type { 'Trial' }
     court_centre { FactoryBot.build :court_centre }
     hearing_days { [] }
+    defendants { [] }
     defence_counsels { [] }
 
     trait :with_hearing_days do

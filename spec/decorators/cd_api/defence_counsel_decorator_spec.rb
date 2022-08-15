@@ -21,43 +21,75 @@ RSpec.describe CdApi::DefenceCounselDecorator, type: :decorator do
     let(:object) { defence_counsel }
   end
 
-  describe '#name_and_status' do
-    subject(:call) { decorator.name_and_status }
+  describe '#name_status_and_defendants' do
+    subject(:call) { decorator.name_status_and_defendants }
 
-    let(:defence_counsel) { build :defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC' }
+    let(:defence_counsel) { build :defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC', defendants: mapped_defendants  }
 
-    it { is_expected.to eql('Bob Smith (QC)') }
+    # The mapping of the defendants occurs in the HearingSummaryDecorator
+    let(:mapped_defendants) do
+      [build(:defendant, first_name: 'John', middle_name: nil, last_name: 'Doe')]
+    end
 
-    context 'when name and status is missing' do
+    it { is_expected.to eql('Bob Smith (QC) for John Doe') }
+
+    context 'when multiple defendants' do
+      let(:mapped_defendants) do
+        [build(:defendant, first_name: 'John', middle_name: nil, last_name: 'Doe'),
+          build(:defendant, first_name: 'Jane', middle_name: nil, last_name: 'Doe')]
+      end
+
+      it 'displays the provider defendant relationship' do
+        is_expected.to eql('Bob Smith (QC) for John Doe<br>Bob Smith (QC) for Jane Doe')
+      end
+    end
+
+    context 'when defence counsel name and status is missing' do
       let(:defence_counsel) do
-        build :defence_counsel, first_name: '', middle_name: '', last_name: '', status: ''
+        build :defence_counsel, first_name: '', middle_name: '', last_name: '', status: '', defendants: mapped_defendants
       end
 
       it { is_expected.to eql('Not available') }
     end
 
-    context 'when name is only partially given' do
+    context 'when defence counsel name is only partially given' do
       let(:defence_counsel) do
-        build :defence_counsel, first_name: 'Bob', middle_name: 'Owl', last_name: '', status: 'QC'
+        build :defence_counsel, first_name: 'Bob', middle_name: 'Owl', last_name: '', status: 'QC', defendants: mapped_defendants
       end
 
-      it { is_expected.to eql('Bob Owl (QC)') }
+      it { is_expected.to eql('Bob Owl (QC) for John Doe') }
     end
 
-    context 'when name is missing' do
+    context 'when defence counsel name is missing' do
       let(:defence_counsel) do
-        build :defence_counsel, first_name: nil, middle_name: nil, last_name: nil, status: 'QC'
+        build :defence_counsel, first_name: nil, middle_name: nil, last_name: nil, status: 'QC', defendants: mapped_defendants
       end
 
-      it { is_expected.to eql('Not available (QC)') }
+      it { is_expected.to eql('Not available (QC) for John Doe') }
     end
 
-    context 'when status is missing' do
+    context 'when defence counsel status is missing' do
       let(:defence_counsel) do
-        build :defence_counsel, first_name: 'Bob', middle_name: 'Owl', last_name: 'Smith', status: nil
+        build :defence_counsel, first_name: 'Bob', middle_name: 'Owl', last_name: 'Smith', status: nil, defendants: mapped_defendants
       end
 
-      it { is_expected.to eql('Bob Owl Smith (not available)') }
+      it { is_expected.to eql('Bob Owl Smith (not available) for John Doe') }
+    end
+
+    context 'when defendants name is missing' do
+      let(:defence_counsel) do
+        build :defence_counsel, first_name: 'Bob', middle_name: 'Owl', last_name: 'Smith', status: 'QC', defendants: []
+      end
+
+      it { is_expected.to eql('Bob Owl Smith (QC)') }
+    end
+
+    context 'when defendants name is partially missing' do
+      let(:mapped_defendants) do
+        [build(:defendant, first_name: 'John', middle_name: 'Jim', last_name: nil)]
+      end
+
+      it { is_expected.to eql('Bob Smith (QC) for John Jim') }
     end
   end
 end
