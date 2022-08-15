@@ -2,7 +2,6 @@
 
 module CdApi
   class DefenceCounselDecorator < BaseDecorator
-
     def name_status_and_defendants
       return t('generic.not_available') if name_and_status_blank?
 

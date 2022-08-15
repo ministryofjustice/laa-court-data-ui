@@ -76,7 +76,8 @@ RSpec.describe CdApi::DefenceCounselDecorator, type: :decorator do
 
     context 'when defence counsel status is missing' do
       let(:defence_counsel) do
-        build :defence_counsel, first_name: 'Bob', middle_name: 'Owl', last_name: 'Smith', status: nil, defendants: mapped_defendants
+        build :defence_counsel, first_name: 'Bob', middle_name: 'Owl', last_name: 'Smith', status: nil,
+                                defendants: mapped_defendants
       end
 
       it { is_expected.to eql('Bob Owl Smith (not available) for John Doe') }
@@ -84,7 +85,8 @@ RSpec.describe CdApi::DefenceCounselDecorator, type: :decorator do
 
     context 'when defendants name is missing' do
       let(:defence_counsel) do
-        build :defence_counsel, first_name: 'Bob', middle_name: 'Owl', last_name: 'Smith', status: 'QC', defendants: []
+        build :defence_counsel, first_name: 'Bob', middle_name: 'Owl', last_name: 'Smith', status: 'QC',
+                                defendants: []
       end
 
       it { is_expected.to eql('Bob Owl Smith (QC)') }
