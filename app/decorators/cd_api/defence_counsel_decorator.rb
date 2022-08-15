@@ -7,7 +7,7 @@ module CdApi
 
       return "#{formatted_name} (#{formatted_status})" if defendants.empty?
 
-      defence_counsel_list = formatted_multiples_defendant_names.map do |defendant_name|
+      defence_counsel_list = formatted_defendant_names.map do |defendant_name|
         "#{formatted_name} (#{formatted_status}) for #{defendant_name}"
       end
       safe_join(defence_counsel_list, tag.br)
@@ -35,13 +35,11 @@ module CdApi
       status || t('generic.not_available').downcase
     end
 
-    def formatted_multiples_defendant_names
+    def formatted_defendant_names
       names = []
       defendants.map do |defendant|
         names << format_defendant_name(defendant&.first_name, defendant&.middle_name, defendant&.last_name)
       end
-
-      return [] if names.empty?
 
       names.compact
     end
