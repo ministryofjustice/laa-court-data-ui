@@ -46,7 +46,8 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       let(:hearing_summary) { build :hearing_summary, defence_counsels:, defendants: }
       let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
       let(:defence_counsel1) do
-        build :defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior', defendants: defendant_ids
+        build :defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
+                                defendants: defendant_ids
       end
       let(:defence_counsel2) { build :defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC' }
 
@@ -54,13 +55,15 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
         [defendant1, defendant2].map(&:id)
       end
 
-      let(:defendants) { [defendant1, defendant2]}
+      let(:defendants) { [defendant1, defendant2] }
 
       let(:defendant1) { build(:defendant, first_name: 'John', middle_name: '', last_name: 'Doe') }
       let(:defendant2) { build(:defendant, first_name: 'Jane', middle_name: '', last_name: 'Doe') }
 
       it 'returns defence counsel list' do
-        expect(subject).to eql('Jammy Dodger (Junior) for John Doe<br>Jammy Dodger (Junior) for Jane Doe<br>Bob Smith (QC)')
+        expect(decorator.defence_counsel_list).to eql('Jammy Dodger (Junior) for John Doe<br>' \
+                                                      'Jammy Dodger (Junior) for Jane Doe<br>' \
+                                                      'Bob Smith (QC)')
       end
     end
 

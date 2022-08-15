@@ -28,7 +28,7 @@ module CdApi
     def mapped_defence_counsels
       defence_counsels.each do |defence_counsel|
         defence_counsel.defendants.map! do |defendant_id|
-          defendants.select {|defendant| (defendant.id == defendant_id)}.first
+          defendants.find { |defendant| (defendant.id == defendant_id) }
         end
       end
     end
