@@ -11,7 +11,7 @@ module CdApi
     private
 
     def maat_references
-      offence_summaries.map { |offence| offence&.laa_application&.reference }.compact
+      offence_summaries.filter_map { |offence| offence&.laa_application&.reference }
     end
   end
 end
