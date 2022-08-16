@@ -4,7 +4,7 @@ module CdApi
   class Defendant < BaseModel
     def linked?
       maat_references = offence_summaries.map { |offence| offence&.laa_application&.reference }
-      maat_references.compact.first.present?
+      (maat_references.compact.first.present? && maat_references.compact.first.first != "Z") ? maat_references.compact.first.present? : false
     end
   end
 end
