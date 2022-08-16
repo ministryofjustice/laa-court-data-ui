@@ -8,7 +8,7 @@ module CdApi
     end
 
     def linked?
-      (maat_reference&.present? && maat_reference.first != "Z") ? maat_reference&.present? : false
+      maat_reference&.present? && maat_reference.first != "Z"
     end
   end
 end
