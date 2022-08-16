@@ -74,6 +74,5 @@ RSpec.describe CdApi::OverallDefendantDecorator, type: :decorator do
         expect(call).to be_falsey
       end
     end
-
   end
 end
