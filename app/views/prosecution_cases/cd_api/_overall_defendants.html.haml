@@ -16,4 +16,4 @@
         %td.govuk-table__cell
           = l(overall_defendant.date_of_birth&.to_date)
         %td.govuk-table__cell
-          = overall_defendant.maat_reference || t('search.result.defendant.unlinked')
+          = overall_defendant.maat_reference.first != "Z" ?  overall_defendant.maat_reference : t('search.result.defendant.unlinked')
