@@ -20,8 +20,6 @@ module CdApi
     end
 
     def name
-      # TODO: Create a name service to build the name for reusability
-      # and confirm the must have portions of a name or validations needed
       return nil unless first_name || middle_name || last_name
 
       [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
@@ -45,8 +43,6 @@ module CdApi
     end
 
     def format_defendant_name(first_name, middle_name, last_name)
-      # TODO: Create a name service to build the name for reusability
-      # and confirm the must have portions of a name or validations needed
       return nil unless first_name || middle_name || last_name
 
       [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
