@@ -51,11 +51,19 @@ RSpec.describe CdApi::OverallDefendantDecorator, type: :decorator do
   describe '#linked?' do
     subject(:call) { decorator.linked? }
 
-    context 'when maat_reference exists' do
+    context 'when maat_reference exists and does not begin with "Z"' do
       let(:overall_defendant) { build :overall_defendant, maat_reference: '1234567' }
 
       it 'returns true' do
         expect(call).to be_truthy
+      end
+    end
+
+    context 'when maat_reference exists and begins with "Z"' do
+      let(:overall_defendant) { build :overall_defendant, maat_reference: 'Z1234567' }
+
+      it 'returns false' do
+        expect(call).to be_falsey
       end
     end
 
