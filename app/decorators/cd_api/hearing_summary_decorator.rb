@@ -17,12 +17,20 @@ module CdApi
 
     private
 
-    def decorated_defence_counsels
-      decorate_all(defence_counsels, CdApi::DefenceCounselDecorator)
+    def defence_counsel_sentences
+      decorated_defence_counsels&.map(&:name_status_and_defendants) || []
     end
 
-    def defence_counsel_sentences
-      decorated_defence_counsels&.map(&:name_and_status) || []
+    def decorated_defence_counsels
+      decorate_all(mapped_defence_counsels, CdApi::DefenceCounselDecorator)
+    end
+
+    def mapped_defence_counsels
+      defence_counsels.each do |defence_counsel|
+        defence_counsel.defendants.map! do |defendant_id|
+          defendants.find { |defendant| (defendant.id == defendant_id) }
+        end
+      end
     end
   end
 end
