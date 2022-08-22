@@ -39,8 +39,6 @@ module LaaCourtDataUi
     # config.autoload_paths << Rails.root.join('lib')
     # config.eager_load_paths << Rails.root.join('lib')
 
-    
-    
     config.action_dispatch.signed_cookie_digest = 'SHA256'
     config.exceptions_app = routes
     config.active_job.queue_adapter = :sidekiq
@@ -51,6 +49,5 @@ module LaaCourtDataUi
     config.x.court_data_api_config.uri = ENV.fetch('COURT_DATA_API_URL', nil)
     config.x.court_data_api_config.user = ENV.fetch('COURT_DATA_API_USERNAME', nil)
     config.x.court_data_api_config.secret = ENV.fetch('COURT_DATA_API_SECRET', nil)
-    
   end
 end
