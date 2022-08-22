@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "axe-core": "^4.4.3",
-    "cypress": "^10.4.0",
+    "cypress": "^10.6.0",
     "cypress-axe": "^1.0.0",
     "standard": "^17.0.0",
     "stylelint": "^14.10.0",
