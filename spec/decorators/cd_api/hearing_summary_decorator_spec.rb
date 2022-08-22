@@ -42,6 +42,31 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       it { is_expected.to eql('Jammy Dodger (Junior)<br>Bob Smith (QC)') }
     end
 
+    context 'when there are multiple defendents in defence_counsels' do
+      let(:hearing_summary) { build :hearing_summary, defence_counsels:, defendants: }
+      let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
+      let(:defence_counsel1) do
+        build :defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
+                                defendants: defendant_ids
+      end
+      let(:defence_counsel2) { build :defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC' }
+
+      let(:defendant_ids) do
+        [defendant1, defendant2].map(&:id)
+      end
+
+      let(:defendants) { [defendant1, defendant2] }
+
+      let(:defendant1) { build(:defendant, first_name: 'John', middle_name: '', last_name: 'Doe') }
+      let(:defendant2) { build(:defendant, first_name: 'Jane', middle_name: '', last_name: 'Doe') }
+
+      it 'returns defence counsel list' do
+        expect(decorator.defence_counsel_list).to eql('Jammy Dodger (Junior) for John Doe<br>' \
+                                                      'Jammy Dodger (Junior) for Jane Doe<br>' \
+                                                      'Bob Smith (QC)')
+      end
+    end
+
     context 'with no defence_counsels' do
       let(:defence_counsels) { [] }
 
