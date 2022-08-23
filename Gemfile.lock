@@ -431,8 +431,8 @@ GEM
       sentry-ruby (~> 5.4.2)
     sentry-ruby (5.4.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sentry-sidekiq (5.4.1)
-      sentry-ruby (~> 5.4.1)
+    sentry-sidekiq (5.4.2)
+      sentry-ruby (~> 5.4.2)
       sidekiq (>= 3.0)
     sexp_processor (4.16.1)
     shoulda-matchers (5.1.0)
@@ -558,7 +558,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   sentry-rails (~> 5.4.2)
-  sentry-sidekiq (~> 5.4.1)
+  sentry-sidekiq (~> 5.4.2)
   shoulda-matchers
   sidekiq (~> 6.5)
   sidekiq_alive
