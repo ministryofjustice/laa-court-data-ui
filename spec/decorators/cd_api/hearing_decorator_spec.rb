@@ -89,9 +89,9 @@ RSpec.describe CdApi::HearingDecorator, type: :decorator do
       let(:defence_counsels) { [defence_counsel1] }
       let(:prosecution_case) { build :hearing_prosecution_case, defendants: [] }
 
-      it 'returns array with nil values' do
+      it 'returns array with defendant ids' do
         defendants = decorator.hearing.defence_counsels.map(&:defendants)
-        expect(defendants).to eq [[nil, nil]]
+        expect(defendants).to eq [hearing_defendants_ids]
       end
     end
 
@@ -109,6 +109,28 @@ RSpec.describe CdApi::HearingDecorator, type: :decorator do
     end
 
     context 'when there are two prosecution cases' do
+      let(:hearing_details) do
+        build :hearing_details, defence_counsels:, prosecution_cases: [prosecution_case1, prosecution_case2]
+      end
+      let(:prosecution_case1) do
+        build :hearing_prosecution_case, defendants: [hearing_defendant1]
+      end
+      let(:prosecution_case2) do
+        build :hearing_prosecution_case, defendants: [hearing_defendant2]
+      end
+
+      let(:defence_counsel1) do
+        build :defence_counsel, defendants: [hearing_defendant1.id], first_name: 'Jane', last_name: 'Doe'
+      end
+      let(:defence_counsel2) do
+        build :defence_counsel, defendants: [hearing_defendant2.id], first_name: 'John', last_name: 'ABCDE'
+      end
+
+      it 'maps defendants in defence counsels' do
+        decorator.hearing.defence_counsels.each do |defence_counsel|
+          expect(defence_counsel.defendants).to all(be_a(CdApi::Defendant))
+        end
+      end
     end
   end
 end
