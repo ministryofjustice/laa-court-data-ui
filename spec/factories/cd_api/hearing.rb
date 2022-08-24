@@ -3,7 +3,7 @@
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
   factory :hearing, class: 'CdApi::Hearing' do
-    hearing {}
+    hearing { {} }
     shared_time { '2022-07-22T15:31:42.832Z[UTC]' }
 
     trait :with_hearing_details do

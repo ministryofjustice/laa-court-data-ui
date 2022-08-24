@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CdApi::Hearing::DefenceCounselsListService do
+RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
   describe '#call' do
     subject(:case_service_call) { described_class.call(defence_counsels) }
 
@@ -50,7 +50,8 @@ RSpec.describe CdApi::Hearing::DefenceCounselsListService do
     context 'when defendant is an id' do
       let(:defence_counsels) { [defence_counsel1] }
       let(:defence_counsel1) do
-        build :defence_counsel, defendants: [hearing_defendant1.id, hearing_defendant2.id], first_name: 'Jane', last_name: 'Doe', status: 'QC'
+        build :defence_counsel, defendants: [hearing_defendant1.id, hearing_defendant2.id],
+                                first_name: 'Jane', last_name: 'Doe', status: 'QC'
       end
 
       it 'returns defence counsel list with unavailable defendant details' do

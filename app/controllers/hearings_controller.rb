@@ -66,11 +66,9 @@ class HearingsController < ApplicationController
   end
 
   def hearing_v2_call
-    @hearing ||= helpers.decorate(
-      CdApi::Hearing.find(hearing_id, params: {
-                            date: paginator.current_item.hearing_date.strftime('%F')
-                          }), CdApi::HearingDecorator
-    )
+    hearing_params = { date: paginator.current_item.hearing_date.strftime('%F') }
+    @hearing ||= decorate_hearing(CdApi::Hearing.find(hearing_id,
+                                                      params: hearing_params))
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page
     @hearing ||= helpers.decorate(CdApi::Hearing.new, CdApi::HearingDecorator)
@@ -78,6 +76,10 @@ class HearingsController < ApplicationController
     logger.error 'SERVER_ERROR_OCCURRED'
     Sentry.capture_exception(e)
     redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
+  end
+
+  def decorate_hearing(undecorated_hearing)
+    helpers.decorate(undecorated_hearing, CdApi::HearingDecorator)
   end
 
   def hearing_v2

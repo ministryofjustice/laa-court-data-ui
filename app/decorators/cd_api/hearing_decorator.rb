@@ -21,7 +21,7 @@ module CdApi
     end
 
     def decorated_defence_counsels
-      CdApi::Hearing::DefenceCounselsListService.call(mapped_defence_counsels)
+      CdApi::HearingDetails::DefenceCounselsListService.call(mapped_defence_counsels)
     end
 
     def mapped_defence_counsels
@@ -36,7 +36,7 @@ module CdApi
             next dc_defendant_id unless dc_defendant_id.is_a?(String)
 
             defendant_details = pc.defendants.find { |defendant| (dc_defendant_id == defendant.id) }
-            defendant_details ? defendant_details : dc_defendant_id
+            defendant_details || dc_defendant_id
           end
         end
       end

@@ -22,21 +22,17 @@ RSpec.describe CdApi::HearingDecorator, type: :decorator do
   end
 
   describe '#cracked_ineffective_trial' do
-    let(:hearing_details) { build :hearing_details }
+    let(:hearing_details) { build :hearing_details, cracked_ineffective_trial: }
     let(:hearing) { build :hearing, hearing: hearing_details }
+    let(:cracked_ineffective_trial) { instance_double(CdApi::CrackedIneffectiveTrial) }
 
     before do
-      cracked_ineffective_trial = double(CdApi::CrackedIneffectiveTrial)
       allow(hearing).to receive(:hearing).and_return(hearing_details)
-      allow(hearing_details).to receive(:cracked_ineffective_trial).and_return(cracked_ineffective_trial)
-      allow(decorator).to receive(:decorate).with(hearing_details.cracked_ineffective_trial,
-                                                  CdApi::CrackedIneffectiveTrialDecorator)
     end
 
     it 'decorates the hearings cracked_ineffective_trial' do
-      decorator.cracked_ineffective_trial
-      expect(decorator).to have_received(:decorate).with(hearing_details.cracked_ineffective_trial,
-                                                         CdApi::CrackedIneffectiveTrialDecorator)
+      decorator_class = CdApi::CrackedIneffectiveTrialDecorator
+      expect(decorator.cracked_ineffective_trial).to be_an_instance_of(decorator_class)
     end
   end
 
@@ -61,7 +57,8 @@ RSpec.describe CdApi::HearingDecorator, type: :decorator do
 
     before do
       allow(hearing).to receive(:hearing).and_return(hearing_details)
-      allow(CdApi::Hearing::DefenceCounselsListService).to receive(:call).with(hearing_details.defence_counsels).and_return([])
+      allow(CdApi::HearingDetails::DefenceCounselsListService).to receive(:call)
+        .with(hearing_details.defence_counsels).and_return([])
       decorator.defence_counsels_list
     end
 
@@ -72,7 +69,8 @@ RSpec.describe CdApi::HearingDecorator, type: :decorator do
     end
 
     it 'calls CdApi::Hearing::DefenceCounselsListService' do
-      expect(CdApi::Hearing::DefenceCounselsListService).to have_received(:call).with(hearing_details.defence_counsels)
+      service = CdApi::HearingDetails::DefenceCounselsListService
+      expect(service).to have_received(:call).with(hearing_details.defence_counsels)
     end
 
     context 'when defence counsels are empty' do
