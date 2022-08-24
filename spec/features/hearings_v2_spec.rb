@@ -11,10 +11,9 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
   let(:hearing_id) { '345be88a-31cf-4a30-9de3-da98e973367e' }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
-    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
+    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true)
+    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
     allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
-    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
     sign_in user
     visit(url)
   end
