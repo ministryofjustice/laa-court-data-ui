@@ -33,9 +33,10 @@ module CdApi
         # TODO: Confirm that defendant details is the same across cases and searching cases for a defence_counsel.defendant.id is accurate
         hearing.defence_counsels.each do |defence_counsel|
           defence_counsel.defendants.map! do |dc_defendant_id|
-            next dc_defendant_id unless dc_defendant_id.is_a? String
+            next dc_defendant_id unless dc_defendant_id.is_a?(String)
 
-            pc.defendants.find { |defendant| (dc_defendant_id == defendant.id) }
+            defendant_details = pc.defendants.find { |defendant| (dc_defendant_id == defendant.id) }
+            defendant_details ? defendant_details : dc_defendant_id
           end
         end
       end
