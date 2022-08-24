@@ -15,7 +15,7 @@
     - unless Feature.enabled?(:hearing)
       = render partial: 'attendees', locals: { hearing: @hearing }
     - else
-      = render partial: 'attendees_v2', locals: { hearing: @hearing.try(:hearing) }
+      = render partial: 'attendees_v2', locals: { hearing: @hearing, hearing_details: @hearing.try(:hearing) }
 
   .govuk-grid-column-two-thirds
     - unless Feature.enabled?(:hearing)
