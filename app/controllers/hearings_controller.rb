@@ -73,7 +73,7 @@ class HearingsController < ApplicationController
     )
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page
-    @hearing ||= CdApi::Hearing.new
+    @hearing ||= helpers.decorate(CdApi::Hearing.new, CdApi::HearingDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     logger.error 'SERVER_ERROR_OCCURRED'
     Sentry.capture_exception(e)
