@@ -57,7 +57,7 @@ module CdApi
       end
 
       def formatted_status(status)
-        status || t('generic.not_available').downcase
+        status || I18n.t('generic.not_available').downcase
       end
 
       def format_defendant_name(first_name:, middle_name:, last_name:, **_opts)
