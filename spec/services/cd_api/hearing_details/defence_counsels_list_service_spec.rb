@@ -30,7 +30,7 @@ RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
       end
     end
 
-    context 'when defendant name is lower case' do
+    context 'when names are lower case' do
       let(:hearing_defendant1) { build :hearing_defendant, defendant_details: }
       let(:defendant_details) { build :hearing_defendant_details, person_details: }
       let(:person_details) do
@@ -39,12 +39,12 @@ RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
 
       let(:defence_counsel1) do
         build :defence_counsel, defendants: [hearing_defendant1, hearing_defendant2], first_name: 'jane',
-                                last_name: 'doe'
+                                last_name: 'doe', status: 'junior'
       end
 
       it 'capitalizes the names' do
-        expect(case_service_call).to eq(['Jane Doe (Junior) for John Doe Smith',
-                                         'Jane Doe (Junior) for Vince James', 'John Smith (Junior)'])
+        expect(case_service_call).to eq(['Jane Doe (junior) for John Doe Smith',
+                                         'Jane Doe (junior) for Vince James', 'John Smith (Junior)'])
       end
     end
 

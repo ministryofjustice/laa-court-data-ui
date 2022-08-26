@@ -22,7 +22,7 @@ module CdApi
     def name
       return nil unless first_name || middle_name || last_name
 
-      [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
+      [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
     end
 
     def formatted_name
@@ -47,7 +47,7 @@ module CdApi
     def format_defendant_name(first_name, middle_name, last_name)
       return nil unless first_name || middle_name || last_name
 
-      [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
+      [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
     end
   end
 end
