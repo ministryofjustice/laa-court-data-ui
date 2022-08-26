@@ -30,7 +30,6 @@ module CdApi
           next (@result << sentence) if defence_counsel.defendants.empty?
           build_defence_counsel_sentences_with_defendants(defence_counsel, sentence)
         end
-        @result
       end
 
       def build_defence_counsel_sentences_with_defendants(defence_counsel, sentence)
@@ -53,7 +52,7 @@ module CdApi
       def name(first_name:, middle_name:, last_name:, **_opts)
         return nil unless first_name || middle_name || last_name
 
-        [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
+        [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
       end
 
       def formatted_status(status)
@@ -63,7 +62,7 @@ module CdApi
       def format_defendant_name(first_name:, middle_name:, last_name:, **_opts)
         return nil unless first_name || middle_name || last_name
 
-        [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
+        [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
       end
     end
   end

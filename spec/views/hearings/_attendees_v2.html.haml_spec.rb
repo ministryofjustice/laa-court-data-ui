@@ -51,8 +51,9 @@ RSpec.describe 'hearings/_attendees_v2', type: :view do
 
     context 'with defence_counsel' do
       it 'displays list of defence council' do
+        text_match = /Mark Jones \(junior\) for Leon Goodwin.*David Williams \(junior\) for not available/
         is_expected.to have_tag('p.govuk-body#defence',
-                                text: /mark jones \(junior\).*david williams \(junior\)/)
+                                text: text_match)
       end
     end
 
