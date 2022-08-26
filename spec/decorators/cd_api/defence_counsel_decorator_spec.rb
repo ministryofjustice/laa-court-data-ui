@@ -101,12 +101,10 @@ RSpec.describe CdApi::DefenceCounselDecorator, type: :decorator do
     end
 
     context 'when defendant_id to defendant_details match fails' do
-      let(:mapped_defendants) do
-        [nil]
-      end
+      let(:mapped_defendants) { [nil, defendant.id] }
       let(:defendant) { build(:defendant, first_name: 'John', middle_name: 'Jim', last_name: nil) }
 
-      it { is_expected.to eql('Bob Smith (QC) for not available') }
+      it { is_expected.to eql('Bob Smith (QC) for not available<br>Bob Smith (QC) for not available') }
     end
 
     context 'when names are lower case' do
