@@ -30,27 +30,17 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
   describe '#defence_counsel_list' do
     subject(:call) { decorator.defence_counsel_list }
 
+    before { allow_any_instance_of(described_class).to receive(:decorate_all).with(any_args).and_return([]) }
+
     let(:hearing_summary) { build :hearing_summary, defence_counsels: }
 
-    context 'with multiple defence_counsels' do
-      let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
-      let(:defence_counsel1) do
-        build :defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior'
-      end
-      let(:defence_counsel2) { build :defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC' }
-
-      it { is_expected.to eql('Jammy Dodger (Junior)<br>Bob Smith (QC)') }
-    end
-
-    context 'when there are multiple defendents in defence_counsels' do
+    context 'when there are multiple defendants in defence_counsels' do
       let(:hearing_summary) { build :hearing_summary, defence_counsels:, defendants: }
-      let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
+      let(:defence_counsels) { [defence_counsel1] }
       let(:defence_counsel1) do
         build :defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
                                 defendants: defendant_ids
       end
-      let(:defence_counsel2) { build :defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC' }
-
       let(:defendant_ids) do
         [defendant1, defendant2].map(&:id)
       end
@@ -60,10 +50,15 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       let(:defendant1) { build(:defendant, first_name: 'John', middle_name: '', last_name: 'Doe') }
       let(:defendant2) { build(:defendant, first_name: 'Jane', middle_name: '', last_name: 'Doe') }
 
-      it 'returns defence counsel list' do
-        expect(decorator.defence_counsel_list).to eql('Jammy Dodger (Junior) for John Doe<br>' \
-                                                      'Jammy Dodger (Junior) for Jane Doe<br>' \
-                                                      'Bob Smith (QC)')
+      before do
+        allow_any_instance_of(described_class).to receive(:decorate_all).with(any_args).and_return([])
+      end
+
+      it 'maps defence_counsels defendants' do
+        decorator.defence_counsel_list
+        decorator.defence_counsels.each do |defence_counsel|
+          expect(defence_counsel.defendants).to eq([defendant1, defendant2])
+        end
       end
     end
 
@@ -73,14 +68,21 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       it { is_expected.to eql 'Not available' }
     end
 
-    context 'with missing defence_counsels details' do
-      let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
-      let(:defence_counsel1) do
-        build :defence_counsel, first_name: '', middle_name: '', last_name: '', status: 'Junior'
+    context 'when defence counsels defendant ids fail to match' do
+      let(:defence_counsels) { [defence_counsel] }
+      let(:defence_counsel) do
+        build :defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC',
+                                defendants: [defendant.id]
       end
-      let(:defence_counsel2) { build :defence_counsel, first_name: 'Bob', last_name: 'Smith', status: '' }
+      let(:defendant) { build :defendant }
+      let(:hearing_summary) { build :hearing_summary, defence_counsels:, defendants: [] }
 
-      it { is_expected.to eql ' (Junior)<br>Bob Smith ()' }
+      it 'returns defendant id' do
+        decorator.defence_counsel_list
+        decorator.defence_counsels.each do |defence_counsel|
+          expect(defence_counsel.defendants).to eq([defendant.id])
+        end
+      end
     end
   end
 

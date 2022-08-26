@@ -36,6 +36,8 @@ module CdApi
     def formatted_defendant_names
       names = []
       defendants.map do |defendant|
+        next(names << I18n.t('generic.not_available').downcase) if defendant.nil?
+
         names << format_defendant_name(defendant&.first_name, defendant&.middle_name, defendant&.last_name)
       end
 

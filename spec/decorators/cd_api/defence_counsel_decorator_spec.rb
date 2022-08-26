@@ -99,5 +99,14 @@ RSpec.describe CdApi::DefenceCounselDecorator, type: :decorator do
 
       it { is_expected.to eql('Bob Smith (QC) for John Jim') }
     end
+
+    context 'when defendant_id to defendant_details match fails' do
+      let(:mapped_defendants) do
+        [nil]
+      end
+      let(:defendant) { build(:defendant, first_name: 'John', middle_name: 'Jim', last_name: nil) }
+
+      it { is_expected.to eql('Bob Smith (QC) for not available') }
+    end
   end
 end
