@@ -303,7 +303,7 @@ GEM
     pg (1.4.3)
     prometheus_exporter (2.0.3)
       webrick
-    pry (0.13.1)
+    pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
     pry-byebug (3.10.1)
@@ -312,7 +312,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (5.0.0)
-    puma (5.6.4)
+    puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
@@ -360,7 +360,7 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.7.1)
+    redis (4.8.0)
     regexp_parser (2.5.0)
     request_store (1.5.1)
       rack (>= 1.4)
@@ -549,7 +549,7 @@ DEPENDENCIES
   puma (>= 5.6.4)
   rails (~> 7.0.3.1)
   rails-controller-testing
-  redis (~> 4.7.1)
+  redis (~> 4.8.0)
   rspec-html-matchers (~> 0.10.0)
   rspec-rails (~> 5.1, >= 5.1.2)
   rspec_junit_formatter
