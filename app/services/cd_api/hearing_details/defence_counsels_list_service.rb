@@ -46,7 +46,7 @@ module CdApi
       end
 
       def formatted_name(person_details)
-        name(**person_details) || t('generic.not_available')
+        name(**person_details) || I18n.t('generic.not_available')
       end
 
       def name(first_name:, middle_name:, last_name:, **_opts)

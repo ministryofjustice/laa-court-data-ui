@@ -30,13 +30,13 @@ module CdApi
     end
 
     def formatted_status
-      status || I18n.t('generic.not_available').downcase
+      status || t('generic.not_available').downcase
     end
 
     def formatted_defendant_names
       names = []
       defendants.map do |defendant|
-        next(names << I18n.t('generic.not_available').downcase) if defendant.nil? || defendant.is_a?(String)
+        next(names << t('generic.not_available').downcase) if defendant.nil? || defendant.is_a?(String)
 
         names << format_defendant_name(defendant&.first_name, defendant&.middle_name, defendant&.last_name)
       end
