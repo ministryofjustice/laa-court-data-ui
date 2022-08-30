@@ -39,7 +39,7 @@ module CdApi
           end
 
           person_details = defendant.defendant_details&.person_details
-          defendant_name = format_defendant_name(**person_details&.attributes&.symbolize_keys)
+          defendant_name = name(**person_details&.attributes&.symbolize_keys)
 
           @result << ("#{sentence} for #{defendant_name}")
         end
@@ -49,7 +49,7 @@ module CdApi
         name(**person_details) || I18n.t('generic.not_available')
       end
 
-      def name(first_name:, middle_name:, last_name:, **_opts)
+      def name(first_name:, middle_name:, last_name:, **)
         return nil unless first_name || middle_name || last_name
 
         [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
@@ -57,12 +57,6 @@ module CdApi
 
       def formatted_status(status)
         status || I18n.t('generic.not_available').downcase
-      end
-
-      def format_defendant_name(first_name:, middle_name:, last_name:, **_opts)
-        return nil unless first_name || middle_name || last_name
-
-        [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
       end
     end
   end

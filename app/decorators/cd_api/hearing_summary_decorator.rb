@@ -5,7 +5,6 @@ module CdApi
     attr_accessor :day
 
     def defence_counsel_list
-      # TODO: Add logic of attendance days for each defence
       return t('generic.not_available') if defence_counsels.blank?
 
       safe_join(defence_counsel_sentences, tag.br)

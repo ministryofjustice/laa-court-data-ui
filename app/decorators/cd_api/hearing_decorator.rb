@@ -8,7 +8,6 @@ module CdApi
     end
 
     def defence_counsels_list
-      # TODO: Add logic of attendance days for each defence
       return t('generic.not_available') if hearing.defence_counsels.blank?
 
       safe_join(defence_counsel_sentences, tag.br)
@@ -30,7 +29,6 @@ module CdApi
 
     def map_defence_counsels
       hearing.prosecution_cases.each do |pc|
-        # TODO: Confirm that defendant details is the same across cases and searching cases for a defence_counsel.defendant.id is accurate
         hearing.defence_counsels.each do |defence_counsel|
           defence_counsel.defendants.map! do |dc_defendant_id|
             next dc_defendant_id unless dc_defendant_id.is_a?(String)
