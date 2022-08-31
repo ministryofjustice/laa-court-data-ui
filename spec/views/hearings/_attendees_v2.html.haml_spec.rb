@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
-RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
+RSpec.describe 'hearings/_attendees_v2', type: :view do
   include RSpecHtmlMatchers
-  subject(:render_partial) { render partial: 'attendees_v2', locals: { hearing: hearing.hearing } }
+  subject(:render_partial) do
+    render partial: 'hearings/attendees_v2',
+           locals: { hearing: decorated_hearing, hearing_details: decorated_hearing.hearing }
+  end
+
+  let(:decorated_hearing) { view.decorate(hearing, CdApi::HearingDecorator) }
+  let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
+  let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
+  let(:hearing) { CdApi::Hearing.find(hearing_id, params: { date: hearing_day.strftime('%F') }) }
 
   not_available_text = /Not available/
   not_available_test = 'displays not available'
@@ -30,10 +38,6 @@ RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
     end
   end
 
-  let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
-  let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
-  let(:hearing) { CdApi::Hearing.find(hearing_id, params: { date: hearing_day.strftime('%F') }) }
-
   context 'when hearing data is present', stub_v2_hearing_data: true do
     include_examples 'returns correct headers'
 
@@ -47,8 +51,9 @@ RSpec.describe 'hearings/_attendees_v2.html.haml', type: :view do
 
     context 'with defence_counsel' do
       it 'displays list of defence council' do
+        text_match = /Mark Jones \(junior\) for Leon Goodwin.*David Williams \(junior\) for not available/
         is_expected.to have_tag('p.govuk-body#defence',
-                                text: /mark jones \(junior\).*david williams \(junior\)/)
+                                text: text_match)
       end
     end
 

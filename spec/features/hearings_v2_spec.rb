@@ -11,16 +11,22 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
   let(:hearing_id) { '345be88a-31cf-4a30-9de3-da98e973367e' }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
-    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
+    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true)
+    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
     allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
-    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
     sign_in user
     visit(url)
   end
 
   context 'when user views hearing page', stub_v2_hearing_data: true do
     let(:url) { "hearings/#{hearing_id}?column=date&direction=asc&page=0&urn=#{case_reference}" }
+
+    context 'with multiple defence counsels', stub_v2_hearing_events: true do
+      it 'displays details section' do
+        expect(page).to have_text('Mark Jones (junior) for Leon Goodwin' \
+                                  'David Williams (junior) for not available')
+      end
+    end
 
     context 'with hearing events', stub_v2_hearing_events: true do
       it 'requests data for hearing summary' do

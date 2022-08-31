@@ -22,7 +22,7 @@ module CdApi
     def name
       return nil unless first_name || middle_name || last_name
 
-      [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
+      [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
     end
 
     def formatted_name
@@ -36,6 +36,8 @@ module CdApi
     def formatted_defendant_names
       names = []
       defendants.map do |defendant|
+        next(names << t('generic.not_available').downcase) if defendant.nil? || defendant.is_a?(String)
+
         names << format_defendant_name(defendant&.first_name, defendant&.middle_name, defendant&.last_name)
       end
 
@@ -45,7 +47,7 @@ module CdApi
     def format_defendant_name(first_name, middle_name, last_name)
       return nil unless first_name || middle_name || last_name
 
-      [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
+      [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
     end
   end
 end
