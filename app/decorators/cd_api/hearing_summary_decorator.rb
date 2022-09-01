@@ -25,12 +25,18 @@ module CdApi
     end
 
     def mapped_defence_counsels
-      defence_counsels.each do |defence_counsel|
+      attended_defence_counsels.each do |defence_counsel|
         defence_counsel.defendants.map! do |defendant_id|
           details = defendants.find { |defendant| (defendant.id == defendant_id) }
 
           details || defendant_id
         end
+      end
+    end
+
+    def attended_defence_counsels
+      defence_counsels.filter_map do |defence_counsel|
+        defence_counsel if defence_counsel.attendance_days.include?(day.strftime('%Y-%m-%d'))
       end
     end
   end
