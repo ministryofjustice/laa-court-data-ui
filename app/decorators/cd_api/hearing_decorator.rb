@@ -18,11 +18,14 @@ module CdApi
     private
 
     def defence_counsel_sentences
-      decorated_defence_counsels || []
+      return [t('generic.not_available')] if decorated_defence_counsels.empty?
+
+      decorated_defence_counsels
     end
 
     def decorated_defence_counsels
-      CdApi::HearingDetails::DefenceCounselsListService.call(mapped_defence_counsels)
+      service = CdApi::HearingDetails::DefenceCounselsListService
+      @decorated_defence_counsels ||= service.call(mapped_defence_counsels)
     end
 
     def mapped_defence_counsels

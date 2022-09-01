@@ -93,8 +93,6 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
     end
 
     context 'when defence counsel did not attend on the hearing day' do
-      subject(:call) { decorator.defence_counsel_list }
-
       let(:hearing_summary) { build :hearing_summary, defence_counsels: }
 
       let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
@@ -111,6 +109,18 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
         expect_any_instance_of(described_class).to receive(:decorate_all).with([defence_counsel1], any_args)
         decorator.defence_counsel_list
       end
+    end
+
+    context 'when no defence counsels attended the hearing day' do
+      let(:hearing_summary) { build :hearing_summary, defence_counsels: }
+
+      let(:defence_counsels) { [defence_counsel1] }
+      let(:defence_counsel1) do
+        build(:defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
+                                attendance_days: [])
+      end
+
+      it { is_expected.to eql 'Not available' }
     end
   end
 

@@ -155,6 +155,22 @@ RSpec.describe CdApi::HearingDecorator, type: :decorator do
       end
     end
 
+    context 'when no defence counsels attending the hearing day' do
+      let(:defence_counsels) { [defence_counsel1] }
+      let(:defence_counsel1) do
+        build :defence_counsel, first_name: 'Jane', last_name: 'Doe', attendance_days: []
+      end
+
+      before do
+        allow(CdApi::HearingDetails::DefenceCounselsListService).to receive(:call)
+          .with([]).and_return([])
+      end
+
+      it 'returns not available' do
+        expect(decorator.defence_counsels_list).to eq 'Not available'
+      end
+    end
+
     context 'when there is no current_sitting_day' do
       let(:mapped_defence_counsels) { [] }
       let(:day) { nil }
