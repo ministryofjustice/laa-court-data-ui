@@ -2,6 +2,8 @@
 
 module CdApi
   class HearingDecorator < BaseDecorator
+    attr_accessor :current_sitting_day
+
     def cracked_ineffective_trial
       @cracked_ineffective_trial ||= decorate(object.hearing.cracked_ineffective_trial,
                                               CdApi::CrackedIneffectiveTrialDecorator)
@@ -29,16 +31,28 @@ module CdApi
 
     def map_defence_counsels
       hearing.prosecution_cases.each do |pc|
-        hearing.defence_counsels.each do |defence_counsel|
-          defence_counsel.defendants.map! do |dc_defendant_id|
-            next dc_defendant_id unless dc_defendant_id.is_a?(String)
+        map_defence_counsels_defendants_to_case(pc)
+      end
+      hearing.defence_counsels.select { |defence_counsel| attended_hearing_day?(defence_counsel) }
+    end
 
-            defendant_details = pc.defendants.find { |defendant| (dc_defendant_id == defendant.id) }
-            defendant_details || dc_defendant_id
+    def map_defence_counsels_defendants_to_case(prosecution_case)
+      hearing.defence_counsels.each do |defence_counsel|
+        defence_counsel.defendants.map! do |dc_defendant_id|
+          next dc_defendant_id unless dc_defendant_id.is_a?(String)
+
+          defendant_details = prosecution_case.defendants.find do |defendant|
+            (dc_defendant_id == defendant.id)
           end
+          defendant_details || dc_defendant_id
         end
       end
-      hearing.defence_counsels
+    end
+
+    def attended_hearing_day?(defence_counsel)
+      return false unless current_sitting_day
+
+      defence_counsel.attendance_days.include?(DateTime.parse(current_sitting_day).strftime('%Y-%m-%d'))
     end
   end
 end
