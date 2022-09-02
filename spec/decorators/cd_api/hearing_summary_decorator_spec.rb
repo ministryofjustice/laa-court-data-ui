@@ -31,7 +31,6 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
     subject(:call) { decorator.defence_counsel_list }
 
     before do
-      allow_any_instance_of(described_class).to receive(:decorate_all).with(any_args).and_return([])
       allow_any_instance_of(described_class).to receive(:day).and_return(sitting_day)
     end
 
@@ -121,6 +120,30 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       end
 
       it { is_expected.to eql 'Not available' }
+    end
+
+    context 'when called again after day has been altered' do
+      let(:hearing_summary) { build :hearing_summary, defence_counsels: }
+
+      let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
+      let(:defence_counsel1) do
+        build(:defence_counsel, first_name: 'First', last_name: 'Counsel', status: 'Junior',
+                                attendance_days: ['2022-01-01'])
+      end
+      let(:defence_counsel2) do
+        build(:defence_counsel, first_name: 'Second', last_name: 'Counsel', status: 'Junior',
+                                attendance_days: ['2022-01-01'])
+      end
+
+      before { decorator.defence_counsel_list }
+
+      it 'returns new un-memoized defence counsel list' do
+        allow_any_instance_of(described_class).to receive(:day).and_return(DateTime.parse('2022-01-01'))
+        expect_any_instance_of(described_class).to receive(:decorate_all).with(
+          [defence_counsel1, defence_counsel2], any_args
+        )
+        decorator.defence_counsel_list
+      end
     end
   end
 
