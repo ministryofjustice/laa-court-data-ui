@@ -105,4 +105,21 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       it { is_expected.to eql [] }
     end
   end
+
+  describe '#formatted_estimated_duration' do 
+
+    context "when there is an estimated duration" do 
+      it "returns formated estimated duration in a sentence" do
+        expect(subject.formatted_estimated_duration).to eq "Estimated duration 20 days"
+      end
+    end
+
+    context "when there is no estimated duration" do 
+      let(:hearing_summary) { build :hearing_summary, estimated_duration: nil }
+      it "returns nil" do
+        expect(subject.formatted_estimated_duration).to be_nil
+      end
+    end
+    
+  end
 end
