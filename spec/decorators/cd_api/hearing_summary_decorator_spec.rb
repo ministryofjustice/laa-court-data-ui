@@ -30,7 +30,13 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
   describe '#defence_counsel_list' do
     subject(:call) { decorator.defence_counsel_list }
 
-    before { allow_any_instance_of(described_class).to receive(:decorate_all).with(any_args).and_return([]) }
+    before do
+      allow_any_instance_of(described_class).to receive(:day).and_return(sitting_day)
+    end
+
+    let(:day) { '2022-05-17' }
+    let(:formatted_date) { sitting_day.strftime('%Y-%m-%d') }
+    let(:sitting_day) { DateTime.parse(day) }
 
     let(:hearing_summary) { build :hearing_summary, defence_counsels: }
 
@@ -39,7 +45,7 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       let(:defence_counsels) { [defence_counsel1] }
       let(:defence_counsel1) do
         build :defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
-                                defendants: defendant_ids
+                                defendants: defendant_ids, attendance_days: [formatted_date]
       end
       let(:defendant_ids) do
         [defendant1, defendant2].map(&:id)
@@ -82,6 +88,61 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
         decorator.defence_counsels.each do |defence_counsel|
           expect(defence_counsel.defendants).to eq([defendant.id])
         end
+      end
+    end
+
+    context 'when defence counsel did not attend on the hearing day' do
+      let(:hearing_summary) { build :hearing_summary, defence_counsels: }
+
+      let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
+      let(:defence_counsel1) do
+        build(:defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
+                                attendance_days: [formatted_date])
+      end
+      let(:defence_counsel2) do
+        build(:defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
+                                attendance_days: ['2022-01-01'])
+      end
+
+      it 'returns defence counsels that attended on the hearing day' do
+        expect_any_instance_of(described_class).to receive(:decorate_all).with([defence_counsel1], any_args)
+        decorator.defence_counsel_list
+      end
+    end
+
+    context 'when no defence counsels attended the hearing day' do
+      let(:hearing_summary) { build :hearing_summary, defence_counsels: }
+
+      let(:defence_counsels) { [defence_counsel1] }
+      let(:defence_counsel1) do
+        build(:defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
+                                attendance_days: [])
+      end
+
+      it { is_expected.to eql 'Not available' }
+    end
+
+    context 'when called again after day has been altered' do
+      let(:hearing_summary) { build :hearing_summary, defence_counsels: }
+
+      let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
+      let(:defence_counsel1) do
+        build(:defence_counsel, first_name: 'First', last_name: 'Counsel', status: 'Junior',
+                                attendance_days: ['2022-01-01'])
+      end
+      let(:defence_counsel2) do
+        build(:defence_counsel, first_name: 'Second', last_name: 'Counsel', status: 'Junior',
+                                attendance_days: ['2022-01-01'])
+      end
+
+      before { decorator.defence_counsel_list }
+
+      it 'returns new un-memoized defence counsel list' do
+        allow_any_instance_of(described_class).to receive(:day).and_return(DateTime.parse('2022-01-01'))
+        expect_any_instance_of(described_class).to receive(:decorate_all).with(
+          [defence_counsel1, defence_counsel2], any_args
+        )
+        decorator.defence_counsel_list
       end
     end
   end

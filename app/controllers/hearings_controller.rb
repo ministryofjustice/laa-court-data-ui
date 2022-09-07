@@ -65,17 +65,24 @@ class HearingsController < ApplicationController
                                   end, HearingDecorator)
   end
 
+  def hearing_params
+    { date: paginator.current_item.hearing_date.strftime('%F') }
+  end
+
   def hearing_v2_call
-    hearing_params = { date: paginator.current_item.hearing_date.strftime('%F') }
-    @hearing ||= decorate_hearing(CdApi::Hearing.find(hearing_id,
-                                                      params: hearing_params))
+    @hearing ||= decorate_hearing(CdApi::Hearing.find(hearing_id, params: hearing_params))
+    @hearing&.current_sitting_day = paginator.current_item.hearing_date.strftime('%F')
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page
-    @hearing ||= decorate_hearing(CdApi::Hearing.new)
+    @hearing ||= helpers.decorate(CdApi::Hearing.new, CdApi::HearingDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-    logger.error 'SERVER_ERROR_OCCURRED'
-    Sentry.capture_exception(e)
+    log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
+  end
+
+  def log_and_capture_error(exception, log_messsage)
+    logger.error log_messsage
+    Sentry.capture_exception(exception)
   end
 
   def decorate_hearing(undecorated_hearing)
@@ -108,8 +115,7 @@ class HearingsController < ApplicationController
     logger.info 'USING_V2_ENDPOINT_CASE_SUMMARIES'
     @prosecution_case = helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-    Rails.logger.error 'SERVER_ERROR_OCCURRED'
-    Sentry.capture_exception(e)
+    log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
   end
 
@@ -124,8 +130,7 @@ class HearingsController < ApplicationController
     logger.info 'EVENTS_NOT_AVAILABLE'
     nil
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-    logger.error 'ERROR_CALLING_EVENTS'
-    Sentry.capture_exception(e)
+    log_and_capture_error(e, 'ERROR_CALLING_EVENTS')
     show_alert(I18n.t('hearings.show.flash.notice.events_error'),
                "#{I18n.t('error.refresh')} #{I18n.t('error.it_helpdesk')}")
     nil
