@@ -113,7 +113,6 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
       end
     end
 
-
     context 'with estimated duration on multiday hearings' do
       let(:hearing_summaries) { [hearing_summary] }
       let(:hearing1_day1) { build :hearing_day, sitting_day: '2021-01-19T10:45:00.000Z' }
@@ -149,7 +148,6 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
       it 'does not render provider for hearing day' do
         expect(rendered).not_to have_selector('tbody.govuk-table__body tr:nth-child(2)',
                                               text: 'Fred Dibnah (QC)')
-
       end
     end
   end
