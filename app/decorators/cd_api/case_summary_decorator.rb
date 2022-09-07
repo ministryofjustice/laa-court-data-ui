@@ -15,7 +15,8 @@ module CdApi
     def sorted_hearing_summaries_with_day
       Enumerator.new do |enum|
         sorter.sorted_hearings.each do |hearing|
-          sorter.sorted_hearing_days(hearing).each do |day|
+          sorter.sorted_hearing_days(hearing).each_with_index do |day, index|
+            hearing.estimated_duration = nil if index != 0
             hearing.day = day
             enum.yield(hearing)
           end

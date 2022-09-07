@@ -16,7 +16,6 @@ module CdApi
 
     def formatted_estimated_duration
       return unless estimated_duration
-
       "#{t('hearing_summary.estimated_duration')} #{estimated_duration.downcase}"
     end
 

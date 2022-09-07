@@ -18,5 +18,9 @@
           = link_to hearing_summary.day.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id, urn: case_summary.prosecution_case_reference, column: case_summary.hearings_sort_column, direction: case_summary.hearings_sort_direction, page: idx), class: 'govuk-link'
         %td.govuk-table__cell
           = hearing_summary.hearing_type
+          - if hearing_summary.estimated_duration
+            %br 
+            %span.app-body-secondary
+              = hearing_summary.formatted_estimated_duration
         %td.govuk-table__cell
           = hearing_summary ? hearing_summary.defence_counsel_list : t('generic.not_available')

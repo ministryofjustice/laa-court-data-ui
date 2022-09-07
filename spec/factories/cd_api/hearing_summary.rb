@@ -8,7 +8,7 @@ FactoryBot.define do
     hearing_days { [] }
     defendants { [] }
     defence_counsels { [] }
-    estimated_duration { "20 DAYS" }
+    estimated_duration { '20 DAYS' }
 
     trait :with_hearing_days do
       hearing_day1 = FactoryBot.build :hearing_day

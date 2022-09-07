@@ -109,5 +109,28 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
           .and have_selector('tbody.govuk-table__body tr:nth-child(4)', text: %r{20/01/2021.*Sentence}m)
       end
     end
+
+    context 'with estimated duration on multiday hearings' do
+      let(:hearing_summaries) { [hearing_summary] }
+      let(:hearing1_day1) { build :hearing_day, sitting_day: '2021-01-19T10:45:00.000Z' }
+      let(:hearing1_day2) { build :hearing_day, sitting_day: '2021-01-20T10:45:00.000Z' }
+      let(:hearing_summary) do
+        build :hearing_summary, id: 'hearing1-uuid', hearing_type: 'Trial',
+                                hearing_days: [hearing1_day1, hearing1_day2], defence_counsels:
+      end
+
+      it 'renders formated estimated duration on the first hearing day' do
+        expect(rendered)
+          .to have_selector('tbody.govuk-table__body tr:nth-child(1)',
+                            text: %r{19/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
+          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: %r{20/01/2021.*Trial}m)
+      end
+
+      it 'does not render duplicated estmated duration' do
+        expect(rendered)
+          .not_to have_selector('tbody.govuk-table__body tr:nth-child(2)',
+                                text: %r{20/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
+      end
+    end
   end
 end
