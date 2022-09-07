@@ -50,10 +50,27 @@ RSpec.describe 'hearings/_attendees_v2', type: :view do
     end
 
     context 'with defence_counsel' do
+      before do
+        allow(decorated_hearing).to receive(:current_sitting_day).and_return('2019-10-23')
+      end
+
       it 'displays list of defence council' do
         text_match = /Mark Jones \(junior\) for Leon Goodwin.*David Williams \(junior\) for not available/
         is_expected.to have_tag('p.govuk-body#defence',
                                 text: text_match)
+      end
+    end
+
+    context 'when defence counsel did not attend' do
+      let(:unattended_day) { '2099-10-23' }
+
+      before do
+        allow(decorated_hearing).to receive(:current_sitting_day).and_return(unattended_day)
+      end
+
+      it 'displays list of defence council' do
+        text_match = /Mark Jones \(junior\) for Leon Goodwin.*David Williams \(junior\) for not available/
+        is_expected.not_to have_tag('p.govuk-body#defence', text: text_match)
       end
     end
 

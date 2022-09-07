@@ -32,7 +32,10 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
   let(:hearing2_day) { build :hearing_day, sitting_day: '2021-01-19T15:19:15.000Z' }
 
   let(:defence_counsels) { [defence_counsel] }
-  let(:defence_counsel) { build :defence_counsel, first_name: 'Fred', last_name: 'Dibnah', status: 'QC' }
+  let(:defence_counsel) do
+    build :defence_counsel, first_name: 'Fred', last_name: 'Dibnah', status: 'QC', attendance_days:
+  end
+  let(:attendance_days) { %w[2021-01-17 2021-01-18 2021-01-19] }
 
   before do
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
@@ -110,6 +113,7 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
       end
     end
 
+
     context 'with estimated duration on multiday hearings' do
       let(:hearing_summaries) { [hearing_summary] }
       let(:hearing1_day1) { build :hearing_day, sitting_day: '2021-01-19T10:45:00.000Z' }
@@ -130,6 +134,22 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
         expect(rendered)
           .not_to have_selector('tbody.govuk-table__body tr:nth-child(2)',
                                 text: %r{20/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
+      end
+    end
+
+    context 'when defence counsel did not attend hearing day' do
+      let(:attendance_days) { %w[2021-01-17 2021-01-19] }
+
+      it 'renders provider list per row' do
+        expect(rendered)
+          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: 'Fred Dibnah (QC)')
+          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: 'Fred Dibnah (QC)')
+      end
+
+      it 'does not render provider for hearing day' do
+        expect(rendered).not_to have_selector('tbody.govuk-table__body tr:nth-child(2)',
+                                              text: 'Fred Dibnah (QC)')
+
       end
     end
   end

@@ -155,7 +155,8 @@
         "last_name": "jones",
         "status": "junior",
         "attendance_days": [
-          "2021-03-29"
+          "2021-03-29",
+          "2019-10-23"
         ],
         "defendants": [
           "b39400d5-046f-4588-9268-bfc47c40cafb"
@@ -168,7 +169,8 @@
         "last_name": "williams",
         "status": "junior",
         "attendance_days": [
-          "2021-03-29"
+          "2021-03-29",
+          "2019-10-23"
         ],
         "defendants": [
           "fc449b85-35e5-47a5-9670-3d1d30891108"
