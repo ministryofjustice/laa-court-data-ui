@@ -166,4 +166,22 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       it { is_expected.to eql [] }
     end
   end
+
+  describe '#formatted_estimated_duration' do
+    subject(:call) { decorator.formatted_estimated_duration }
+
+    context 'when there is an estimated duration' do
+      it 'returns formated estimated duration in a sentence' do
+        expect(call).to eq 'Estimated duration 20 days'
+      end
+    end
+
+    context 'when there is no estimated duration' do
+      let(:hearing_summary) { build :hearing_summary, estimated_duration: nil }
+
+      it 'returns nil' do
+        expect(call).to be_nil
+      end
+    end
+  end
 end

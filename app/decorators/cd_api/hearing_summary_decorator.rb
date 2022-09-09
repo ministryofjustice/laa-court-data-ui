@@ -14,6 +14,11 @@ module CdApi
       @hearing_days ||= decorate_all(object.hearing_days, CdApi::HearingDayDecorator)
     end
 
+    def formatted_estimated_duration
+      return unless estimated_duration
+      "#{t('hearing_summary.estimated_duration')} #{estimated_duration.downcase}"
+    end
+
     private
 
     def defence_counsel_sentences
