@@ -25,10 +25,6 @@ linters:
       - "app/views/prosecution_cases/cd_api/_show_v2.html.haml"
       - "app/views/prosecution_cases/show.html.haml"
 
-  # Offense count: 43
-  LineLength:
-    enabled: false
-
   # Offense count: 1
   IdNames:
     exclude:
