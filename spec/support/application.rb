@@ -8,9 +8,7 @@ module Application
     def fixture_file(file, options = {})
       base_path = %w[spec fixtures]
       path = base_path.append(options[:relative_path]).append(file).compact
-      File.read(
-        Rails.root.join(*path)
-      )
+      Rails.root.join(*path).read
     end
 
     def with_env(env)
