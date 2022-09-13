@@ -23,9 +23,7 @@ RSpec::Matchers.define :be_valid_against_schema do |options = {}|
   end
 
   def default_schema
-    File.read(
-      Rails.root.join('config', 'schemas', 'prosecution_case_search_result.json')
-    )
+    Rails.root.join('config', 'schemas', 'prosecution_case_search_result.json').read
   end
 
   description do
