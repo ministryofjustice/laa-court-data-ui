@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@ministryofjustice/frontend": "^1.4.2",
-    "@rails/ujs": "^7.0.3",
+    "@rails/ujs": "^7.0.4",
     "@hotwired/turbo-rails": "^7.1.1",
     "@rails/webpacker": "5.4.3",
     "govuk-frontend": "^4.3.1",
