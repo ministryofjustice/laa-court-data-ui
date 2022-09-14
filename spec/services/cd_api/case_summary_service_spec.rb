@@ -10,7 +10,7 @@ RSpec.describe CdApi::CaseSummaryService do
 
       context 'when successful response', stub_v2_hearing_summary: true, vcr: true do
         it 'returns response with prosecution case reference' do
-          expect(case_service.prosecution_case_reference).to be_kind_of(String)
+          expect(case_service.prosecution_case_reference).to be_a(String)
         end
 
         it 'returns response with hearing summaries' do

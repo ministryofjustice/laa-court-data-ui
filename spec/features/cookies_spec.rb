@@ -69,7 +69,7 @@ RSpec.feature 'Cookies', type: :feature do
       visit cookies_settings_path
 
       within '#new_cookie' do
-        expect(find('#cookie-analytics-false-field').checked?).to be true
+        expect(find_by_id('cookie-analytics-false-field').checked?).to be true
       end
     end
   end
@@ -84,7 +84,7 @@ RSpec.feature 'Cookies', type: :feature do
         expect(page).to have_text "You've set your cookie preferences."
       end
       within '#new_cookie' do
-        expect(find('#cookie-analytics-true-field').checked?).to be true
+        expect(find_by_id('cookie-analytics-true-field').checked?).to be true
       end
       expect(page).not_to have_css '.app-cookie-banner'
     end
@@ -110,7 +110,7 @@ RSpec.feature 'Cookies', type: :feature do
         expect(page).to have_text "You've set your cookie preferences."
       end
       within '#new_cookie' do
-        expect(find('#cookie-analytics-false-field').checked?).to be true
+        expect(find_by_id('cookie-analytics-false-field').checked?).to be true
       end
       expect(page).not_to have_css '.app-cookie-banner'
     end

@@ -144,6 +144,11 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/NestedGroups:
   Max: 4
 
+RSpec/NoExpectationExample:
+  Exclude:
+    - spec/features/unlinked_defendant_flow_spec.rb
+    - spec/features/breadcrumbs_spec.rb
+
 # => Style
 Style/Documentation:
   Enabled: false

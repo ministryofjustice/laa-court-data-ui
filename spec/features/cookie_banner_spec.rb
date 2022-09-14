@@ -34,7 +34,7 @@ RSpec.feature 'Cookies', type: :feature do
       click_link 'change your cookie settings'
 
       within '#new_cookie' do
-        expect(find('#cookie-analytics-true-field').checked?).to be true
+        expect(find_by_id('cookie-analytics-true-field').checked?).to be true
       end
     end
   end
@@ -72,7 +72,7 @@ RSpec.feature 'Cookies', type: :feature do
       click_link 'change your cookie settings'
 
       within '#new_cookie' do
-        expect(find('#cookie-analytics-false-field').checked?).to be true
+        expect(find_by_id('cookie-analytics-false-field').checked?).to be true
       end
     end
   end
@@ -107,7 +107,7 @@ RSpec.feature 'Cookies', type: :feature do
       click_link 'change your cookie settings'
 
       within '#new_cookie' do
-        expect(find('#cookie-analytics-true-field').checked?).to be true
+        expect(find_by_id('cookie-analytics-true-field').checked?).to be true
       end
     end
   end
