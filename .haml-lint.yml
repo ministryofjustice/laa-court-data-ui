@@ -1,4 +1,4 @@
-inherits_from:  .haml-lint_todo.yml
+inherits_from: .haml-lint_todo.yml
 linters:
   LineLength:
-    max: 130
+    max: 180
