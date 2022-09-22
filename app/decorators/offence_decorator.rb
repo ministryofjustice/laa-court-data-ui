@@ -1,13 +1,6 @@
 # frozen_string_literal: true
 
 class OffenceDecorator < BaseDecorator
-  # TODO: mot reason text mappings for 'Elected' and 'Directed'
-  MODE_OF_TRIAL_REASON_MAPPINGS = {
-    1 => nil,
-    2 => nil,
-    6 => nil
-  }.freeze
-
   def plea_list
     return t('generic.not_available') if pleas.blank?
     return pleas unless pleas.is_a?(Enumerable)
@@ -18,7 +11,6 @@ class OffenceDecorator < BaseDecorator
   def mode_of_trial_reason_list
     return t('generic.not_available') if mode_of_trial_reasons.blank?
     return mode_of_trial_reasons unless mode_of_trial_reasons.is_a?(Enumerable)
-
     safe_join(mode_of_trial_reason_descriptions.compact, tag.br)
   end
 
@@ -43,7 +35,6 @@ class OffenceDecorator < BaseDecorator
   end
 
   def mode_of_trial_reason_description(reason)
-    description = reason&.description || t('generic.not_available')
-    MODE_OF_TRIAL_REASON_MAPPINGS.fetch(reason&.code&.to_i, description)
+    reason&.description || t('generic.not_available')
   end
 end
