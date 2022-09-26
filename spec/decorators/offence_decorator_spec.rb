@@ -134,14 +134,16 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
       context 'when more than one reason exists' do
         let(:mode_of_trial_reason_array) do
-          [{ code: '4',
-             description: 'Defendant elects trial by jury' },
-           { code: '5',
-             description: 'Court directs trial by jury' }]
+          [{ code: '5',
+             description: 'Court directs trial by jury' },
+           { code: '1',
+             description: 'Summary-only offence' },
+           { code: '2',
+             description: 'Indictable-only offence' }]
         end
 
         it {
-          is_expected.to eql('Defendant elects trial by jury<br>Court directs trial by jury')
+          is_expected.to eql('Court directs trial by jury<br>Summary-only offence<br>Indictable-only offence')
         }
       end
     end
@@ -191,45 +193,6 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
       it { expect { call }.not_to raise_error }
       it { is_expected.to eql('mode of trial reason is a string') }
-    end
-
-    context 'when the mode of trial reason code means the description should be hidden' do
-      before do
-        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
-      end
-
-      [1, 2, 6].each do |code|
-        context "when exactly one reason exists, with code #{code}" do
-          let(:mode_of_trial_reason_array) do
-            [{ code:,
-               description: 'description to be hidden' }]
-          end
-
-          it { is_expected.to eql('') }
-        end
-      end
-
-      context 'when more than one reason exists, all of which should be hidden' do
-        let(:mode_of_trial_reason_array) do
-          [{ code: '2',
-             description: 'Indictable-only offence' },
-           { code: '6',
-             description: 'Low value offence triable summarily only' }]
-        end
-
-        it { is_expected.to eql('') }
-      end
-
-      context 'when more than one reason exists, one of which should be hidden' do
-        let(:mode_of_trial_reason_array) do
-          [{ code: '2',
-             description: 'Indictable-only offence' },
-           { code: '5',
-             description: 'Court directs trial by jury' }]
-        end
-
-        it { is_expected.to eql('Court directs trial by jury') }
-      end
     end
   end
 end
