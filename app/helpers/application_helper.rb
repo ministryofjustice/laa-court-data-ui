@@ -45,6 +45,10 @@ module ApplicationHelper
     Feature.enabled?(:hearing_summaries)
   end
 
+  def analytics_cookies_accepted?
+    @analytics_cookies_accepted
+  end
+
   private
 
   def decorator_instance(object, decorator_class = nil)
