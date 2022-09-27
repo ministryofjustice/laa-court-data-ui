@@ -27,4 +27,4 @@
 
   %p.govuk-body= t('cookie_settings.section_settings.paragraph_two_no_js')
 
-= render(partial: 'form')
+= render(partial: 'form', locals: { cookie: @cookie })
