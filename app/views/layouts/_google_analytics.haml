@@ -1,5 +1,4 @@
-- analytics_cookies_accepted = analytics_cookies_accepted if local_assigns[:analytics_cookies_accepted]
-- if @analytics_cookies_accepted || analytics_cookies_accepted
+- if @analytics_cookies_accepted
   :javascript
     let googleTrackingID = "#{ENV.fetch('GA_TRACKING_ID', nil)}"
 

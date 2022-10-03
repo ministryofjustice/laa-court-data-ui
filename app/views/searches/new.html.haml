@@ -7,4 +7,4 @@
                                         term: @term,
                                         label: @label }
     = render partial: 'error', locals: { error: @error } if @error
-    = render partial: 'results', locals: { results: @results, term: @term, dob: @dob } if @results
+    = render partial: 'results', locals: { results: @results, term: @term, dob: @dob, cookies_preferences_set: @cookies_preferences_set } if @results

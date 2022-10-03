@@ -29,3 +29,7 @@ linters:
   IdNames:
     exclude:
       - "app/views/devise/shared/_error_messages.html.haml"
+
+  InstanceVariables:
+    exclude: 
+      - app/views/layouts/_google_analytics.haml

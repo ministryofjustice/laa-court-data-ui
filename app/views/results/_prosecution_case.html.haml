@@ -9,7 +9,7 @@
       %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.national_insurance_number')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.arrest_summons_number')
   %tbody.govuk-table__body
-    - @results.each do |cse|
+    - results.each do |cse|
       - cse.defendants.each do |defendant|
         %tr.govuk-table__row
           %td.govuk-table__cell
