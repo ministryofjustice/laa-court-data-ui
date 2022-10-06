@@ -28,6 +28,13 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
       end
     end
 
+    context 'with multiple prosecution counsels', stub_v2_hearing_events: true do
+      it 'displays details section' do
+        expect(page).to have_text('John Smith' \
+                                  'Jane Doe')
+      end
+    end
+
     context 'with hearing events', stub_v2_hearing_events: true do
       it 'requests data for hearing summary' do
         expect(a_request(:get, api_summary_path))

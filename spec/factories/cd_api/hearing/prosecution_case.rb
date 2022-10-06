@@ -5,7 +5,7 @@ FactoryBot.define do
   factory :hearing_prosecution_case, class: 'CdApi::ProsecutionCase' do
     association :hearing_details
 
-    id { 'Mr' }
+    id { SecureRandom.uuid }
     prosecution_case_identifier { {} }
     status { 'INACTIVE' }
     statement_of_facts { 'Fuga laudantium tenetur next level et.' }
