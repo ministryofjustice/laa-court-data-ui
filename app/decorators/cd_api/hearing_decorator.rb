@@ -13,14 +13,6 @@ module CdApi
       safe_join(defence_counsel_sentences, tag.br)
     end
 
-    def prosecution_counsels_list
-      formatted_prosecution_counsels = filter_prosecution_counsels.map { |pc| "#{pc.first_name&.capitalize} #{pc.last_name&.capitalize}" }
-
-      return t('generic.not_available') if formatted_prosecution_counsels.blank?
-
-      safe_join(formatted_prosecution_counsels, tag.br)
-    end
-
     private
 
     def defence_counsel_sentences
@@ -36,10 +28,6 @@ module CdApi
 
     def mapped_defence_counsels
       @mapped_defence_counsels ||= map_defence_counsels
-    end
-
-    def filter_prosecution_counsels
-      hearing.prosecution_counsels.select { |prosecution_counsel| attended_hearing_day?(prosecution_counsel) }
     end
 
     def map_defence_counsels
