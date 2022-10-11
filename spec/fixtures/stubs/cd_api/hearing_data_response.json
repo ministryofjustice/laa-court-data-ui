@@ -143,7 +143,22 @@
           "810a1f9e-3614-481c-9e53-7ee658f05aca"
         ],
         "attendance_days": [
-          "2021-03-29"
+          "2021-03-29",
+          "2019-10-23"
+        ]
+      },
+      {
+        "title": "",
+        "first_name": "Jane",
+        "middle_name": "",
+        "last_name": "Doe",
+        "status": "junior",
+        "prosecution_cases": [
+          "810a1f9e-3614-481c-9e53-7ee658f05aca"
+        ],
+        "attendance_days": [
+          "2021-03-29",
+          "2019-10-23"
         ]
       }
     ],

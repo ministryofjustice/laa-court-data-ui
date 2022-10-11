@@ -10,9 +10,15 @@ module CdApi
     end
 
     def defence_counsels_list
-      return t('generic.not_available') if hearing.defence_counsels.blank?
-
       safe_join(defence_counsel_sentences, tag.br)
+    end
+
+    def prosecution_counsels_list
+      formatted_prosecution_counsels = filter_prosecution_counsels.map { |pc| "#{pc.first_name&.capitalize} #{pc.last_name&.capitalize}" }
+
+      return t('generic.not_available') if formatted_prosecution_counsels.blank?
+
+      safe_join(formatted_prosecution_counsels, tag.br)
     end
 
     private
@@ -30,6 +36,10 @@ module CdApi
 
     def mapped_defence_counsels
       @mapped_defence_counsels ||= map_defence_counsels
+    end
+
+    def filter_prosecution_counsels
+      hearing.prosecution_counsels.select { |prosecution_counsel| attended_hearing_day?(prosecution_counsel) }
     end
 
     def map_defence_counsels
@@ -52,10 +62,10 @@ module CdApi
       end
     end
 
-    def attended_hearing_day?(defence_counsel)
+    def attended_hearing_day?(counsels)
       return false unless current_sitting_day
 
-      defence_counsel.attendance_days.include?(DateTime.parse(current_sitting_day).strftime('%Y-%m-%d'))
+      counsels.attendance_days.include?(DateTime.parse(current_sitting_day).strftime('%Y-%m-%d'))
     end
   end
 end
