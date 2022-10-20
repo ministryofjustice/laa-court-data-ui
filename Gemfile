@@ -30,7 +30,7 @@ gem 'sentry-rails', '~> 5.4.2'
 gem 'sentry-sidekiq', '~> 5.4.2'
 gem 'sidekiq', '~> 6.5'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 1.3.0'
+gem 'turbo-rails', '~> 1.3.1'
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
 group :test do
