@@ -136,7 +136,7 @@ class LaaReferencesController < ApplicationController
 
   def log_sentry_error(exception, errors)
     Sentry.with_scope do |scope|
-      scope.set_extra('error_message', errors)
+      scope&.set_extra('error_message', errors)
       Sentry.capture_exception(exception)
     end
   end
