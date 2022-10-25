@@ -99,6 +99,9 @@ Performance/StringInclude:
   Enabled: true
 
 # => Rails
+Rails/ActionControllerFlashBeforeRender:
+  Enabled: false
+
 Rails/EnvironmentVariableAccess:
   AllowReads: true
 
