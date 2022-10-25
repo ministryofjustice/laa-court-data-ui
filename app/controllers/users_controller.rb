@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   def new; end
 
+  def edit; end
+
   def create
     @user = build_user
     authorize!(:create, @user)
@@ -21,8 +23,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  def edit; end
 
   def update
     if @user.update(user_params)
