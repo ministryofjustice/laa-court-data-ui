@@ -46,6 +46,6 @@ RSpec.describe 'Cookie banner', type: :request do
   end
 
   def empty_turbo_frame
-    "<turbo-frame id='hideable'></turbo-frame>\n"
+    "<turbo-frame id='removable'></turbo-frame>\n"
   end
 end
