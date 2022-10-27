@@ -28,11 +28,11 @@ Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
 Layout/EmptyLinesAroundAttributeAccessor:
-    Enabled: true
+  Enabled: true
 
 Layout/LineLength:
   Max: 110
-  AllowedPatterns: ['(\A|\s)#','.*\s+ # .*', "body: '{\".*\":", "%r{http.*"]
+  AllowedPatterns: ['(\A|\s)#', '.*\s+ # .*', 'body: ''{".*":', "%r{http.*"]
   AllowHeredoc: true
 
 Layout/RedundantLineBreak:
@@ -99,7 +99,8 @@ Performance/StringInclude:
   Enabled: true
 
 # => Rails
-Rails/ActionControllerFlashBeforeRender:
+#new
+Rails/ActionControllerFlashBeforeRender: # 4 errors
   Enabled: false
 
 Rails/EnvironmentVariableAccess:
@@ -110,7 +111,7 @@ Rails/FilePath:
 
 Rails/HasManyOrHasOneDependent:
   Exclude:
-   - app/models/cd_api/*
+    - app/models/cd_api/*
 
 Rails/HelperInstanceVariable:
   Exclude:
@@ -128,11 +129,14 @@ RSpec/AnyInstance:
   Enabled: false
 
 RSpec/Capybara/FeatureMethods:
-  EnabledMethods: ['feature', 'scenario']
+  EnabledMethods: ["feature", "scenario"]
 
 RSpec/ExampleLength:
   Exclude:
     - spec/features/**/*
+
+RSpec/FactoryBot/ConsistentParenthesesStyle: #120 errors
+  Enabled: false
 
 RSpec/ImplicitSubject:
   Enabled: false
@@ -151,6 +155,12 @@ RSpec/NoExpectationExample:
   Exclude:
     - spec/features/unlinked_defendant_flow_spec.rb
     - spec/features/breadcrumbs_spec.rb
+
+RSpec/Rails/InferredSpecType: #122 errors
+  Enabled: false
+
+RSpec/SortMetadata: #38 errors
+  Enabled: false
 
 # => Style
 Style/Documentation:
