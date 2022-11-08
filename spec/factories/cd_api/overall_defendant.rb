@@ -15,7 +15,7 @@ FactoryBot.define do
     maat_reference { 1_234_567 }
 
     trait :with_hearing_days do
-      hearing_days { build :hearing_days }
+      hearing_days { build(:hearing_days) }
     end
   end
 end

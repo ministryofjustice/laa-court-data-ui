@@ -7,7 +7,7 @@ RSpec.describe 'prosecution_cases/cd_api/_show_v2.html.haml', type: :view do
 
   let(:decorated_case_summary) { view.decorate(case_summary, CdApi::CaseSummaryDecorator) }
   let(:case_summary) do
-    build :case_summary, prosecution_case_reference: ''
+    build(:case_summary, prosecution_case_reference: '')
   end
 
   before do

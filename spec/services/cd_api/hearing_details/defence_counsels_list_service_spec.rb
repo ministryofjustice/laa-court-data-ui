@@ -6,21 +6,21 @@ RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
 
     let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
     let(:defence_counsel1) do
-      build :defence_counsel, defendants: [hearing_defendant1, hearing_defendant2], first_name: 'Jane',
-                              last_name: 'Doe'
+      build(:defence_counsel, defendants: [hearing_defendant1, hearing_defendant2], first_name: 'Jane',
+                              last_name: 'Doe')
     end
-    let(:defence_counsel2) { build :defence_counsel }
+    let(:defence_counsel2) { build(:defence_counsel) }
 
-    let(:hearing_defendant1) { build :hearing_defendant, :with_defendant_details }
-    let(:hearing_defendant2) { build :hearing_defendant, :with_defendant_details }
+    let(:hearing_defendant1) { build(:hearing_defendant, :with_defendant_details) }
+    let(:hearing_defendant2) { build(:hearing_defendant, :with_defendant_details) }
 
     context 'when defence counsel has multiple defendants' do
       let(:defence_counsels) { [defence_counsel1, defence_counsel2, defence_counsel3, defence_counsel4] }
       let(:defence_counsel3) do
-        build :defence_counsel, first_name: 'Jim', last_name: 'Cleo',
-                                defendants: [hearing_defendant1, hearing_defendant2]
+        build(:defence_counsel, first_name: 'Jim', last_name: 'Cleo',
+                                defendants: [hearing_defendant1, hearing_defendant2])
       end
-      let(:defence_counsel4) { build :defence_counsel, first_name: 'Ab', last_name: 'Ba', status: 'QC' }
+      let(:defence_counsel4) { build(:defence_counsel, first_name: 'Ab', last_name: 'Ba', status: 'QC') }
 
       it 'returns list of defence_counsels paired with their defendants' do
         expect(case_service_call).to eq(['Jane Doe (Junior) for Vince James',
@@ -31,15 +31,15 @@ RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
     end
 
     context 'when names are lower case' do
-      let(:hearing_defendant1) { build :hearing_defendant, defendant_details: }
-      let(:defendant_details) { build :hearing_defendant_details, person_details: }
+      let(:hearing_defendant1) { build(:hearing_defendant, defendant_details:) }
+      let(:defendant_details) { build(:hearing_defendant_details, person_details:) }
       let(:person_details) do
-        build :hearing_person_details, first_name: 'john', middle_name: 'doe', last_name: 'smith'
+        build(:hearing_person_details, first_name: 'john', middle_name: 'doe', last_name: 'smith')
       end
 
       let(:defence_counsel1) do
-        build :defence_counsel, defendants: [hearing_defendant1, hearing_defendant2], first_name: 'jane',
-                                last_name: 'doe', status: 'junior'
+        build(:defence_counsel, defendants: [hearing_defendant1, hearing_defendant2], first_name: 'jane',
+                                last_name: 'doe', status: 'junior')
       end
 
       it 'capitalizes the names' do
@@ -58,7 +58,7 @@ RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
 
     context 'when there are no defendants' do
       let(:defence_counsels) { [defence_counsel] }
-      let(:defence_counsel) { build :defence_counsel, first_name: 'John', last_name: 'Doe', status: 'QC' }
+      let(:defence_counsel) { build(:defence_counsel, first_name: 'John', last_name: 'Doe', status: 'QC') }
 
       it 'returns empty list' do
         expect(case_service_call).to eq(['John Doe (QC)'])
@@ -68,8 +68,8 @@ RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
     context 'when defendant is an id' do
       let(:defence_counsels) { [defence_counsel1] }
       let(:defence_counsel1) do
-        build :defence_counsel, defendants: [hearing_defendant1.id, hearing_defendant2.id],
-                                first_name: 'Jane', last_name: 'Doe', status: 'QC'
+        build(:defence_counsel, defendants: [hearing_defendant1.id, hearing_defendant2.id],
+                                first_name: 'Jane', last_name: 'Doe', status: 'QC')
       end
 
       it 'returns defence counsel list with unavailable defendant details' do

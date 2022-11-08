@@ -135,9 +135,6 @@ RSpec/ExampleLength:
   Exclude:
     - spec/features/**/*
 
-RSpec/FactoryBot/ConsistentParenthesesStyle: #120 errors
-  Enabled: false
-
 RSpec/ImplicitSubject:
   Enabled: false
 

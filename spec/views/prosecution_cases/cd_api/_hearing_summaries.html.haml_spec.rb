@@ -8,32 +8,32 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
   end
 
   let(:decorated_case_summary) { view.decorate(case_summary, CdApi::CaseSummaryDecorator) }
-  let(:case_summary) { build :case_summary, prosecution_case_reference: 'THECASEURN', hearing_summaries: }
+  let(:case_summary) { build(:case_summary, prosecution_case_reference: 'THECASEURN', hearing_summaries:) }
 
   let(:hearing_summaries) { [] }
 
   let(:hearing_summary) do
-    build :hearing_summary, id: 'hearing-uuid', hearing_type: 'First hearing', hearing_days: [hearing_day],
-                            defence_counsels:
+    build(:hearing_summary, id: 'hearing-uuid', hearing_type: 'First hearing', hearing_days: [hearing_day],
+                            defence_counsels:)
   end
 
   let(:hearing_summary1) do
-    build :hearing_summary, id: 'hearing1-uuid', hearing_type: 'Trial', hearing_days: [hearing1_day],
-                            defence_counsels:
+    build(:hearing_summary, id: 'hearing1-uuid', hearing_type: 'Trial', hearing_days: [hearing1_day],
+                            defence_counsels:)
   end
 
   let(:hearing_summary2) do
-    build :hearing_summary, id: 'hearing2-uuid', hearing_type: 'Sentence', hearing_days: [hearing2_day],
-                            defence_counsels:
+    build(:hearing_summary, id: 'hearing2-uuid', hearing_type: 'Sentence', hearing_days: [hearing2_day],
+                            defence_counsels:)
   end
 
-  let(:hearing_day) { build :hearing_day, sitting_day: '2021-01-17T10:30:00.000Z' }
-  let(:hearing1_day) { build :hearing_day, sitting_day: '2021-01-18T13:00:00.000Z' }
-  let(:hearing2_day) { build :hearing_day, sitting_day: '2021-01-19T15:19:15.000Z' }
+  let(:hearing_day) { build(:hearing_day, sitting_day: '2021-01-17T10:30:00.000Z') }
+  let(:hearing1_day) { build(:hearing_day, sitting_day: '2021-01-18T13:00:00.000Z') }
+  let(:hearing2_day) { build(:hearing_day, sitting_day: '2021-01-19T15:19:15.000Z') }
 
   let(:defence_counsels) { [defence_counsel] }
   let(:defence_counsel) do
-    build :defence_counsel, first_name: 'Fred', last_name: 'Dibnah', status: 'QC', attendance_days:
+    build(:defence_counsel, first_name: 'Fred', last_name: 'Dibnah', status: 'QC', attendance_days:)
   end
   let(:attendance_days) { %w[2021-01-17 2021-01-18 2021-01-19] }
 
@@ -94,14 +94,14 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
     end
 
     context 'with multiple hearing days per hearing' do
-      let(:hearing_day) { build :hearing_day, sitting_day: '2021-01-17T13:30:15.000Z' }
-      let(:hearing2_day) { build :hearing_day, sitting_day: '2021-01-20T16:00:00.000Z' }
+      let(:hearing_day) { build(:hearing_day, sitting_day: '2021-01-17T13:30:15.000Z') }
+      let(:hearing2_day) { build(:hearing_day, sitting_day: '2021-01-20T16:00:00.000Z') }
 
-      let(:hearing1_day1) { build :hearing_day, sitting_day: '2021-01-19T10:45:00.000Z' }
-      let(:hearing1_day2) { build :hearing_day, sitting_day: '2021-01-20T10:45:00.000Z' }
+      let(:hearing1_day1) { build(:hearing_day, sitting_day: '2021-01-19T10:45:00.000Z') }
+      let(:hearing1_day2) { build(:hearing_day, sitting_day: '2021-01-20T10:45:00.000Z') }
       let(:hearing_summary1) do
-        build :hearing_summary, id: 'hearing1-uuid', hearing_type: 'Trial',
-                                hearing_days: [hearing1_day1, hearing1_day2], defence_counsels:
+        build(:hearing_summary, id: 'hearing1-uuid', hearing_type: 'Trial',
+                                hearing_days: [hearing1_day1, hearing1_day2], defence_counsels:)
       end
 
       it 'sorts hearings by hearing_days collection then by hearing day datetime' do
@@ -115,11 +115,11 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
     context 'with estimated duration on multiday hearings' do
       let(:hearing_summaries) { [hearing_summary] }
-      let(:hearing1_day1) { build :hearing_day, sitting_day: '2021-01-19T10:45:00.000Z' }
-      let(:hearing1_day2) { build :hearing_day, sitting_day: '2021-01-20T10:45:00.000Z' }
+      let(:hearing1_day1) { build(:hearing_day, sitting_day: '2021-01-19T10:45:00.000Z') }
+      let(:hearing1_day2) { build(:hearing_day, sitting_day: '2021-01-20T10:45:00.000Z') }
       let(:hearing_summary) do
-        build :hearing_summary, id: 'hearing1-uuid', hearing_type: 'Trial',
-                                hearing_days: [hearing1_day1, hearing1_day2], defence_counsels:
+        build(:hearing_summary, id: 'hearing1-uuid', hearing_type: 'Trial',
+                                hearing_days: [hearing1_day1, hearing1_day2], defence_counsels:)
       end
 
       it 'renders formated estimated duration on the first hearing day' do

@@ -9,8 +9,8 @@ FactoryBot.define do
 
     trait :with_overall_defendants do
       after(:build) do |case_summary|
-        defendant1 = FactoryBot.build :overall_defendant, case_summary: case_summary
-        defendant2 = FactoryBot.build :overall_defendant, case_summary: case_summary
+        defendant1 = FactoryBot.build(:overall_defendant, case_summary:)
+        defendant2 = FactoryBot.build(:overall_defendant, case_summary:)
         case_summary.overall_defendants = [defendant1, defendant2]
       end
     end

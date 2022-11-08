@@ -8,15 +8,15 @@ RSpec.describe 'prosecution_cases/cd_api/_overall_defendants.html.haml', type: :
   let(:results) { [case_summary] }
 
   let(:case_summary) do
-    build :case_summary, prosecution_case_reference: 'THECASEURN', overall_defendants:
+    build(:case_summary, prosecution_case_reference: 'THECASEURN', overall_defendants:)
   end
 
   let(:hearings) { [] }
   let(:overall_defendants) { [overall_defendant] }
   let(:defendant_name) { 'Joe Bloggs' }
   let(:overall_defendant) do
-    build :overall_defendant, id: 'a-defendant-uuid', first_name: 'Joe', last_name: 'Bloggs',
-                              maat_reference: '1234567', date_of_birth: '1968-07-14', name: ''
+    build(:overall_defendant, id: 'a-defendant-uuid', first_name: 'Joe', last_name: 'Bloggs',
+                              maat_reference: '1234567', date_of_birth: '1968-07-14', name: '')
   end
 
   before do

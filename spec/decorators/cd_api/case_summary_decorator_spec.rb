@@ -7,7 +7,7 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
   end
 
-  let(:case_summary) { build :case_summary }
+  let(:case_summary) { build(:case_summary) }
   let(:view_object) { view_class.new }
 
   let(:view_class) do
@@ -39,8 +39,8 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
 
     context 'with multiple v2 hearing_summaries' do
       let(:hearing_summaries) { [hearing_summary1, hearing_summary2] }
-      let(:hearing_summary1) { build :hearing_summary }
-      let(:hearing_summary2) { build :hearing_summary }
+      let(:hearing_summary1) { build(:hearing_summary) }
+      let(:hearing_summary2) { build(:hearing_summary) }
 
       it { is_expected.to all(be_instance_of(CdApi::HearingSummaryDecorator)) }
     end
@@ -56,7 +56,7 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
     subject(:call) { decorator.defendants }
 
     context 'with multiple overall defendants' do
-      let(:case_summary) { build :case_summary, :with_overall_defendants }
+      let(:case_summary) { build(:case_summary, :with_overall_defendants) }
 
       it { is_expected.to all(be_instance_of(CdApi::OverallDefendantDecorator)) }
     end
