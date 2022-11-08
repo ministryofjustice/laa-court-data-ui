@@ -3,7 +3,7 @@
 RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
   subject(:decorator) { described_class.new(hearing_summary, view_object) }
 
-  let(:hearing_summary) { build :hearing_summary }
+  let(:hearing_summary) { build(:hearing_summary) }
   let(:view_object) { view_class.new }
 
   let(:view_class) do
@@ -38,14 +38,14 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
     let(:formatted_date) { sitting_day.strftime('%Y-%m-%d') }
     let(:sitting_day) { DateTime.parse(day) }
 
-    let(:hearing_summary) { build :hearing_summary, defence_counsels: }
+    let(:hearing_summary) { build(:hearing_summary, defence_counsels:) }
 
     context 'when there are multiple defendants in defence_counsels' do
-      let(:hearing_summary) { build :hearing_summary, defence_counsels:, defendants: }
+      let(:hearing_summary) { build(:hearing_summary, defence_counsels:, defendants:) }
       let(:defence_counsels) { [defence_counsel1] }
       let(:defence_counsel1) do
-        build :defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
-                                defendants: defendant_ids, attendance_days: [formatted_date]
+        build(:defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
+                                defendants: defendant_ids, attendance_days: [formatted_date])
       end
       let(:defendant_ids) do
         [defendant1, defendant2].map(&:id)
@@ -77,11 +77,11 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
     context 'when defence counsels defendant ids fail to match' do
       let(:defence_counsels) { [defence_counsel] }
       let(:defence_counsel) do
-        build :defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC',
-                                defendants: [defendant.id]
+        build(:defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC',
+                                defendants: [defendant.id])
       end
-      let(:defendant) { build :defendant }
-      let(:hearing_summary) { build :hearing_summary, defence_counsels:, defendants: [] }
+      let(:defendant) { build(:defendant) }
+      let(:hearing_summary) { build(:hearing_summary, defence_counsels:, defendants: []) }
 
       it 'returns defendant id' do
         decorator.defence_counsel_list
@@ -92,7 +92,7 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
     end
 
     context 'when defence counsel did not attend on the hearing day' do
-      let(:hearing_summary) { build :hearing_summary, defence_counsels: }
+      let(:hearing_summary) { build(:hearing_summary, defence_counsels:) }
 
       let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
       let(:defence_counsel1) do
@@ -111,7 +111,7 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
     end
 
     context 'when no defence counsels attended the hearing day' do
-      let(:hearing_summary) { build :hearing_summary, defence_counsels: }
+      let(:hearing_summary) { build(:hearing_summary, defence_counsels:) }
 
       let(:defence_counsels) { [defence_counsel1] }
       let(:defence_counsel1) do
@@ -123,7 +123,7 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
     end
 
     context 'when called again after day has been altered' do
-      let(:hearing_summary) { build :hearing_summary, defence_counsels: }
+      let(:hearing_summary) { build(:hearing_summary, defence_counsels:) }
 
       let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
       let(:defence_counsel1) do
@@ -150,12 +150,12 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
   describe '#hearing_days' do
     subject(:call) { decorator.hearing_days }
 
-    let(:hearing_summary) { build :hearing_summary, hearing_days: }
+    let(:hearing_summary) { build(:hearing_summary, hearing_days:) }
 
     context 'with multiple hearing_days' do
       let(:hearing_days) { [hearing_day1, hearing_day2] }
-      let(:hearing_day1) { build :hearing_day }
-      let(:hearing_day2) { build :hearing_day }
+      let(:hearing_day1) { build(:hearing_day) }
+      let(:hearing_day2) { build(:hearing_day) }
 
       it { is_expected.to all(be_instance_of(CdApi::HearingDayDecorator)) }
     end
@@ -177,7 +177,7 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
     end
 
     context 'when there is no estimated duration' do
-      let(:hearing_summary) { build :hearing_summary, estimated_duration: nil }
+      let(:hearing_summary) { build(:hearing_summary, estimated_duration: nil) }
 
       it 'returns nil' do
         expect(call).to be_nil
