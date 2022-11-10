@@ -3,7 +3,7 @@
 RSpec.describe CdApi::HearingDayDecorator, type: :decorator do
   subject(:decorator) { described_class.new(hearing_day, view_object) }
 
-  let(:hearing_day) { build :hearing_day }
+  let(:hearing_day) { build(:hearing_day) }
   let(:view_object) { view_class.new }
 
   let(:view_class) do
@@ -25,7 +25,7 @@ RSpec.describe CdApi::HearingDayDecorator, type: :decorator do
     subject(:call) { decorator.to_datetime }
 
     context 'when there are sitting days' do
-      let(:hearing_day) { build :hearing_day, sitting_day: }
+      let(:hearing_day) { build(:hearing_day, sitting_day:) }
       let(:sitting_day) { '2021-01-19T10:45:00.000Z' }
 
       it 'returns sitting day in datetime type' do
@@ -38,7 +38,7 @@ RSpec.describe CdApi::HearingDayDecorator, type: :decorator do
     end
 
     context 'when there are no sitting days' do
-      let(:hearing_day) { build :hearing_day, sitting_day: nil }
+      let(:hearing_day) { build(:hearing_day, sitting_day: nil) }
 
       it 'returns nil' do
         expect(call).to be_nil

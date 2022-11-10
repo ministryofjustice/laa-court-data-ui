@@ -6,8 +6,8 @@ RSpec.describe 'hearings/show', type: :view, stub_v2_hearing_data: true,
 
   let(:case_reference) { 'TEST12345' }
   let(:prosecution_case) do
-    build :case_summary, :with_hearing_summaries,
-          prosecution_case_reference: case_reference
+    build(:case_summary, :with_hearing_summaries,
+          prosecution_case_reference: case_reference)
   end
   let(:decorated_prosecution_case) { view.decorate(prosecution_case, CdApi::CaseSummaryDecorator) }
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }

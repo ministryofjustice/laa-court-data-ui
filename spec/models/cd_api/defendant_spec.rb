@@ -8,13 +8,13 @@ RSpec.describe CdApi::Defendant, type: :model do
     let(:offence_summaries) { [build(:offence_summary, laa_application:)] }
 
     context 'when maat_reference present' do
-      let(:laa_application) { build :laa_application, reference: '2123456' }
+      let(:laa_application) { build(:laa_application, reference: '2123456') }
 
       it { is_expected.to be_truthy }
     end
 
     context 'when maat_reference not present' do
-      let(:laa_application) { build :laa_application, reference: '' }
+      let(:laa_application) { build(:laa_application, reference: '') }
 
       it { is_expected.to be_falsey }
     end
@@ -26,7 +26,7 @@ RSpec.describe CdApi::Defendant, type: :model do
     end
 
     context 'when maat_reference is prefixed with a Z' do
-      let(:laa_application) { build :laa_application, reference: 'Z1000586' }
+      let(:laa_application) { build(:laa_application, reference: 'Z1000586') }
 
       it { is_expected.to be_falsey }
     end

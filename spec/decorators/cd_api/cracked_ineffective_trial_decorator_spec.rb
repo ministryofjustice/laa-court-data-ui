@@ -3,7 +3,7 @@
 RSpec.describe CdApi::CrackedIneffectiveTrialDecorator, type: :decorator do
   subject(:decorator) { described_class.new(cracked_ineffective_trial, view_object) }
 
-  let(:cracked_ineffective_trial) { build :cracked_ineffective_trial }
+  let(:cracked_ineffective_trial) { build(:cracked_ineffective_trial) }
   let(:view_object) { view_class.new }
 
   let(:view_class) do
@@ -31,8 +31,8 @@ RSpec.describe CdApi::CrackedIneffectiveTrialDecorator, type: :decorator do
   describe '#cracked_on_sentence' do
     subject(:call) { decorator.cracked_on_sentence(hearing.hearing) }
 
-    let(:hearing) { build :hearing, hearing: hearing_details }
-    let(:hearing_details) { build :hearing_details, :with_hearing_days }
+    let(:hearing) { build(:hearing, hearing: hearing_details) }
+    let(:hearing_details) { build(:hearing_details, :with_hearing_days) }
 
     before do
       allow(cracked_ineffective_trial).to receive_messages(type:)

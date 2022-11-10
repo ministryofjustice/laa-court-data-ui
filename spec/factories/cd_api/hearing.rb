@@ -7,7 +7,7 @@ FactoryBot.define do
     shared_time { '2022-07-22T15:31:42.832Z[UTC]' }
 
     trait :with_hearing_details do
-      hearing { build :hearing_details }
+      hearing { build(:hearing_details) }
     end
   end
 
@@ -30,7 +30,7 @@ FactoryBot.define do
 
     trait :with_hearing_days do
       after(:build) do |hearing|
-        hearing_day1 = FactoryBot.build :hearing_day, hearing: hearing
+        hearing_day1 = FactoryBot.build(:hearing_day, hearing:)
         hearing.hearing_days = [hearing_day1]
       end
     end

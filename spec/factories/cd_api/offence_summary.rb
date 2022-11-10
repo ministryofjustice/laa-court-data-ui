@@ -18,7 +18,7 @@ FactoryBot.define do
     laa_application { {} }
 
     trait :with_laa_application do
-      laa_application { build :laa_application }
+      laa_application { build(:laa_application) }
     end
   end
 end

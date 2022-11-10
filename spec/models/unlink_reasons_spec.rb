@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe UnlinkReason, type: :model do
-  subject(:unlink_reason) { create :unlink_reason }
+  subject(:unlink_reason) { create(:unlink_reason) }
 
   it { is_expected.to respond_to(:code, :description, :text_required, :text_required?) }
 

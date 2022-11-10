@@ -10,7 +10,7 @@ FactoryBot.define do
     bail_status { {} }
 
     trait :with_person_details do
-      person_details { build :hearing_person_details }
+      person_details { build(:hearing_person_details) }
     end
   end
 end
