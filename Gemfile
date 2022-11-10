@@ -39,6 +39,7 @@ group :test do
   gem 'capybara'
   gem 'capybara_table'
   gem 'codeclimate-test-reporter', '>= 1.0.7', require: false
+  gem 'rspec'
   gem 'fakeredis', require: 'fakeredis/rspec'
   gem 'haml_lint', require: false
   gem 'i18n-tasks', '~> 1.0.12'
