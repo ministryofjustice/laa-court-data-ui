@@ -283,7 +283,7 @@ GEM
     parser (3.1.2.1)
       ast (~> 2.4.1)
     pg (1.4.4)
-    prometheus_exporter (2.0.3)
+    prometheus_exporter (2.0.4)
       webrick
     pry (0.14.1)
       coderay (~> 1.1)
@@ -520,7 +520,7 @@ DEPENDENCIES
   net-smtp (~> 0.3.2)
   oauth2 (~> 2.0.9)
   pg (>= 0.18, < 2.0)
-  prometheus_exporter (= 2.0.3)
+  prometheus_exporter (= 2.0.4)
   pry
   pry-byebug
   pry-rails
