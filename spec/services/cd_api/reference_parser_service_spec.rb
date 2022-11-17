@@ -16,7 +16,7 @@ RSpec.describe CdApi::ReferenceParserService do
   describe '#value' do
     subject { described_class.new(term).value }
 
-    let(:term) { "\t ye \r 74 \/ 44  - 78  \n b  " }
+    let(:term) { "\t ye \r 74 / 44  - 78  \n b  " }
 
     it 'returns term stripped whitespace, symobls and upcased' do
       is_expected.to eql 'YE744478B'
@@ -27,7 +27,7 @@ RSpec.describe CdApi::ReferenceParserService do
     subject { described_class.new(term).kind }
 
     context 'with a national insurance number' do
-      let(:term) { "\t ye \r 74 \/ 44  - 78  \n b  " }
+      let(:term) { "\t ye \r 74 / 44  - 78  \n b  " }
 
       it { is_expected.to be :nino }
     end
