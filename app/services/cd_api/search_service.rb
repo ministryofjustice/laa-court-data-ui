@@ -43,7 +43,7 @@ module CdApi
     end
 
     def urn(term)
-      term.delete("\s\t\r\n\/\-").upcase
+      term.delete("\s\t\r\n/-").upcase
     end
 
     def reference

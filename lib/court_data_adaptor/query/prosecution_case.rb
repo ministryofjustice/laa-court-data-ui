@@ -27,7 +27,7 @@ module CourtDataAdaptor
       private
 
       def urn
-        term.delete("\s\t\r\n\/\-").upcase
+        term.delete("\s\t\r\n/-").upcase
       end
     end
   end

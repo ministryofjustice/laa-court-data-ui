@@ -207,3 +207,7 @@ Rails/I18nLocaleTexts:
 
 RSpec/VerifiedDoubleReference:
   Enabled: false
+
+Style/RedundantStringEscape:
+  Exclude: 
+    - app/services/cd_api/reference_parser_service.rb
