@@ -10,7 +10,7 @@ module CourtDataAdaptor
 
         def initialize(term)
           @original_value = term
-          @value = @original_value.delete("\s\t\r\n/-").upcase
+          @value = @original_value.delete('strn/-').upcase
         end
 
         attr_reader :original_value, :value
