@@ -49,7 +49,6 @@ threads threads_count, threads_count
 
 preload_app!
 
-rackup DefaultRackup
 port ENV.fetch('PORT', 3000)
 environment 'production'
 pidfile ENV.fetch('PIDFILE', 'tmp/pids/server.pid')
