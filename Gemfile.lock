@@ -420,7 +420,7 @@ GEM
       connection_pool (>= 2.2.5)
       rack (~> 2.0)
       redis (>= 4.5.0, < 5)
-    sidekiq_alive (2.1.5)
+    sidekiq_alive (2.1.7)
       sidekiq
       webrick
     simplecov (0.21.2)
