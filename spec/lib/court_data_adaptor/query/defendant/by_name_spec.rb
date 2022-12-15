@@ -13,7 +13,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
     CourtDataAdaptor::Resource::ProsecutionCase
   end
 
-  it_behaves_like 'court_data_adaptor acts_as_resource object', resource: resource do
+  it_behaves_like('court_data_adaptor acts_as_resource object', resource:) do
     let(:klass) { described_class }
     let(:instance) { described_class.new(nil) }
   end
