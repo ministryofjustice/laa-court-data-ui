@@ -20,7 +20,7 @@
     "postcss": "^8.4.20"
   },
   "devDependencies": {
-    "axe-core": "^4.6.1",
+    "axe-core": "^4.6.2",
     "cypress": "^12.3.0",
     "cypress-axe": "^1.2.0",
     "standard": "^17.0.0",
