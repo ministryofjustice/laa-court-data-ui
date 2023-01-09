@@ -300,7 +300,7 @@ GEM
     puma (6.0.1)
       nio4r (~> 2.0)
     racc (1.6.1)
-    rack (2.2.4)
+    rack (2.2.5)
     rack-proxy (0.7.2)
       rack
     rack-test (2.0.2)
@@ -421,9 +421,10 @@ GEM
       connection_pool (>= 2.2.5)
       rack (~> 2.0)
       redis (>= 4.5.0, < 5)
-    sidekiq_alive (2.1.7)
-      sidekiq
-      webrick
+    sidekiq_alive (2.1.8)
+      rack (< 3)
+      sidekiq (>= 5, < 8)
+      webrick (>= 1, < 2)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
