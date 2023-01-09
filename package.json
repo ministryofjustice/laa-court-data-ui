@@ -11,7 +11,7 @@
     "start:testserver": "bundle exec puma & wait-on http://localhost:9292/"
   },
   "dependencies": {
-    "@ministryofjustice/frontend": "^1.6.0",
+    "@ministryofjustice/frontend": "^1.6.3",
     "@rails/ujs": "^7.0.4",
     "@hotwired/turbo-rails": "^7.2.4",
     "@rails/webpacker": "5.4.3",
