@@ -186,6 +186,28 @@ commands:
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec \
+              --exclude-pattern "**/features/*_spec.rb" \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              $TESTFILES
+            tmp/cc-test-reporter format-coverage -t simplecov -o "tmp/coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+  rspec-feature-tests:
+    steps:
+      - db-setup
+      - run:
+          name: Run rspec feature tests
+          command: |
+            tmp/cc-test-reporter before-build
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)
+            RUBYOPT=-W:no-deprecated \
+            bundle exec rspec spec/features \
               --format progress \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
@@ -268,6 +290,7 @@ jobs:
       - *attach-tmp-workspace
       - browser-tools/install-browser-tools
       - rspec
+      - rspec-feature-tests
       - persist_to_workspace:
           root: tmp
           paths:

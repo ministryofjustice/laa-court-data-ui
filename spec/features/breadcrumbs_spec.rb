@@ -11,7 +11,8 @@ RSpec.feature 'Breadcrumb', type: :feature, stub_unlinked: true do
 
     it 'breadcrumbs are not displayed' do
       within_breadcrumbs do
-        expect(page).not_to have_content(/.+/)
+        breadcrumbs = page.find('.govuk-breadcrumbs__list', visible: false)
+        expect(breadcrumbs.text).to eq ""
       end
     end
   end
