@@ -204,19 +204,10 @@ commands:
       - run:
           name: Run rspec feature tests
           command: |
-            tmp/cc-test-reporter before-build
-            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec spec/features \
               --format progress \
               --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              $TESTFILES
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
 
   upload-coverage:
     steps:
@@ -287,15 +278,22 @@ jobs:
       - checkout
       - restore-dependencies
       - *attach-tmp-workspace
-      - browser-tools/install-browser-tools
       - rspec
-      - rspec-feature-tests
       - persist_to_workspace:
           root: tmp
           paths:
             - coverage/codeclimate.*.json
       - store_artifacts:
           path: tmp/coverage
+
+  feature-tests:
+    executor: test-executor
+    parallelism: 4
+    steps:
+      - checkout
+      - restore-dependencies
+      - browser-tools/install-browser-tools
+      - rspec-feature-tests
 
   upload-test-coverage:
     executor: test-executor
@@ -404,6 +402,9 @@ workflows:
           requires:
             - build-test-container
       - rspec-tests:
+          requires:
+            - build-test-container
+      - feature-tests:
           requires:
             - build-test-container
       - upload-test-coverage:
