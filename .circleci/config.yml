@@ -184,7 +184,7 @@ commands:
             mkdir /tmp/test-results
             tmp/cc-test-reporter before-build
             EXCLUDE_FILES="spec/features/*_spec.rb"
-            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | grep -ve "spec/features/*" | circleci tests split)
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | grep -ve "spec/features/*" | circleci tests split --split-by=timings)
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec \
               --format progress \
@@ -204,10 +204,17 @@ commands:
       - run:
           name: Run rspec feature tests
           command: |
+            mkdir /tmp/test-results
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec spec/features \
               --format progress \
               --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
 
   upload-coverage:
     steps:
