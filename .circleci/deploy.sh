@@ -72,12 +72,6 @@ function _circleci_deploy() {
   printf '\e[33mFormulating Image name...\e[0m\n'
   docker_image_tag=${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${REPO_NAME}:app-${CIRCLE_SHA1}
 
-  # decrypt and apply secrets first so changes can be picked up by deployment
-  printf '\e[33mDecrypting and Applying Secrets...\e[0m\n'
-  echo "${GIT_CRYPT_KEY}" | base64 -d > git-crypt.key
-  git-crypt unlock git-crypt.key
-  kubectl apply -f .k8s/${cluster}/${environment}/secrets.yaml 2> /dev/null
-
   # apply deployment with specfied image
   printf '\e[33mDeploying Image...\e[0m\n'
   kubectl set image -f .k8s/${cluster}/${environment}/deployment.yaml laa-court-data-ui-app=${docker_image_tag} laa-court-data-ui-metrics=${docker_image_tag} --local -o yaml | kubectl apply -f -
