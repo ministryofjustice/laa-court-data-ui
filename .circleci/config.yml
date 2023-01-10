@@ -186,7 +186,7 @@ commands:
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec \
-              --exclude-pattern "**/features/*_spec.rb" \
+              --exclude-pattern "spec/features/*/*_spec.rb","spec/features/*_spec.rb","spec/features/**/*_spec.rb","spec/features/**/**/*_spec.rb" \
               --format progress \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
@@ -288,7 +288,7 @@ jobs:
 
   feature-tests:
     executor: test-executor
-    parallelism: 4
+    parallelism: 1
     steps:
       - checkout
       - restore-dependencies
