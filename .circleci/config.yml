@@ -183,10 +183,10 @@ commands:
           command: |
             mkdir /tmp/test-results
             tmp/cc-test-reporter before-build
-            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)
+            EXCLUDE_FILES="spec/features/*_spec.rb"
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | grep -ve "spec/features/*" | circleci tests split)
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec \
-              --exclude-pattern "spec/features/*/*_spec.rb","spec/features/*_spec.rb","spec/features/**/*_spec.rb","spec/features/**/**/*_spec.rb" \
               --format progress \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
