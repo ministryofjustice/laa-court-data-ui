@@ -83,6 +83,14 @@ executors:
           POSTGRES_PASSWORD: "circleci"
           POSTGRES_DB: laa_court_data_ui_test
 
+  test-executor-without-postgres:
+    working_directory: ~/repo
+    docker:
+      - image: cimg/ruby:3.1.2-browsers
+        environment:
+          RAILS_ENV: test
+          TZ: Europe/London
+
   cloud-platform-executor:
     resource_class: small
     docker:
@@ -236,13 +244,13 @@ commands:
 # ------------------
 jobs:
   build-test-container:
-    executor: test-executor
+    executor: test-executor-without-postgres
     steps:
       - checkout
       - build-base
 
   linter-tests:
-    executor: test-executor
+    executor: test-executor-without-postgres
     parallelism: 1
     steps:
       - checkout
@@ -274,7 +282,7 @@ jobs:
       - upload-coverage
 
   scan-docker-image:
-    executor: test-executor
+    executor: test-executor-without-postgres
     parallelism: 1
     steps:
       - checkout
