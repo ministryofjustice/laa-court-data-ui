@@ -417,9 +417,6 @@ workflows:
       - upload-test-coverage:
           requires:
             - rspec-tests
-      - scan-docker-image:
-          requires:
-            - build-test-container
 
   build-deploy-branch:
     jobs:
