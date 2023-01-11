@@ -175,7 +175,7 @@ commands:
           command: |
             mkdir /tmp/test-results
             tmp/cc-test-reporter before-build
-            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split)
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec \
               --format progress \
