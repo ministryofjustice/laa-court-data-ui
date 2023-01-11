@@ -161,8 +161,6 @@ kubectl -n laa-court-data-ui-<env> get secrets <secret-name> -o json
 
 For more details on how to add or update Kubernetes Secrets, see the [Cloud Platform documentation](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/deploying-an-app/add-secrets-to-deployment.html#adding-a-secret-to-an-application).
 
-Secrets are also held as secure notes in [LastPass](https://www.google.com/aclk?sa=l&ai=DChcSEwjAyMfAkLv8AhUTuu0KHZxaBOgYABAAGgJkZw&sig=AOD64_2tmUeW60VxPzOvaRIGmoGGukhGZg&q&adurl&ved=2ahUKEwiOssLAkLv8AhWUWcAKHRZtCk0Q0Qx6BAgJEAE), in the `Shared-LAA Assess a Claim/laa-court-data-ui folder. This provides redundancy in the event that a Kubernetes Secret is deleted from the cluster; it can be recreated using the data held in LastPass.
-
-There is no automatic syncing of secrets between LastPass and Kubernetes. If secret data is added or changed in one, it must be manually reflected in the other.
+Secrets are backed up outside of Kubernetes, these back ups need to be updated any time the secrets are updated. Please refer to this [Confluence document](https://dsdmoj.atlassian.net/wiki/spaces/CFP/pages/4273504650/Secrets+Strategy+Post+Git-Crypt#Where-We-Are-Storing-Secrets-Now) for more information 
 
 
