@@ -22,7 +22,7 @@ gem 'json-schema', '~> 3.0'
 gem 'logstasher'
 gem 'oauth2', '~> 2.0.9'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'prometheus_exporter', '2.0.7'
+gem 'prometheus_exporter', '2.0.8'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 7.0.4'
 gem 'redis', '~> 4.8.0'
@@ -46,7 +46,7 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 6.0'
-  gem 'rubocop', '~> 1.43', require: false
+  gem 'rubocop', '~> 1.44', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
