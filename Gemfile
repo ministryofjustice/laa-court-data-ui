@@ -38,7 +38,6 @@ group :test do
   gem 'brakeman'
   gem 'capybara'
   gem 'capybara_table'
-  gem 'fakeredis', require: 'fakeredis/rspec'
   gem 'haml_lint', require: false
   gem 'i18n-tasks', '~> 1.0.12'
   gem 'launchy'

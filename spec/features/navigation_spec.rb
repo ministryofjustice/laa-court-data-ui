@@ -69,13 +69,5 @@ RSpec.feature 'Navigation', type: :feature do
         end
       end
     end
-
-    scenario 'visit sidekiq console via link' do
-      visit '/'
-      click_link 'Sidekiq'
-      expect(page).to have_current_path(sidekiq_web_path)
-      expect(page).to have_content('Sidekiq')
-      expect(page).to have_content('Dashboard')
-    end
   end
 end

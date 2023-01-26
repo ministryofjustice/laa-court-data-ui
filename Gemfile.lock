@@ -153,7 +153,6 @@ GEM
       railties (>= 5.0.0)
     faker (3.1.0)
       i18n (>= 1.8.11, < 2)
-    fakeredis (0.1.4)
     faraday (1.10.2)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -515,7 +514,6 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
-  fakeredis
   foreman
   govuk_design_system_formbuilder (~> 3.3)
   govuk_notify_rails (~> 2.2.0)
