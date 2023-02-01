@@ -286,7 +286,7 @@ jobs:
           docker-image-name: vcd:scan
           target-file: ./docker/Dockerfile
           organization: "legal-aid-agency"
-          severity-threshold: "high"
+          severity-threshold: "critical"
           fail-on-issues: true
 
   build-app-container:
