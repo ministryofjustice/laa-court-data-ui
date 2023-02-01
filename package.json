@@ -15,7 +15,7 @@
     "@rails/ujs": "^7.0.4",
     "@hotwired/turbo-rails": "^7.2.5",
     "@rails/webpacker": "5.4.3",
-    "govuk-frontend": "^4.4.1",
+    "govuk-frontend": "^4.5.0",
     "jquery": "3.6.3",
     "postcss": "^8.4.21"
   },
