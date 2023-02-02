@@ -31,7 +31,7 @@ gem 'sentry-sidekiq', '~> 5.7.0'
 gem 'sidekiq', '~> 6.5'
 gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 1.3.3'
-gem 'webpacker', '~> 5.4', '>= 5.4.3'
+gem 'webpacker', '~> 5.4'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.6'
