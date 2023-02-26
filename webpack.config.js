@@ -1,6 +1,6 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 
 const config = {
   mode: 'production',
@@ -37,17 +37,17 @@ const config = {
       },
       {
         test: /\.(?:sa|sc|c)ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif|eot|woff2|woff|ttf|svg|ico)$/i,
-        use: 'file-loader',
+        use: 'file-loader'
       }
     ]
   },
   plugins: [
     new RemoveEmptyScriptsPlugin(),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin()
   ],
   output: {
     path: path.resolve(__dirname, 'app/assets/builds'),

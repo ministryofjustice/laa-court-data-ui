@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 import '../stylesheets/application.scss'
-import * as Turbo from "@hotwired/turbo"
+import '@hotwired/turbo'
 require('@rails/ujs').start()
 
 // Uncomment to copy all static images under ../images to the output folder and reference
