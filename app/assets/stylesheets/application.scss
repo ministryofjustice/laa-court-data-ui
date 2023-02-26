@@ -1,0 +1,25 @@
+@function frontend-font-url($filename) {
+  @return url("../fonts/" + $filename);
+}
+
+@function frontend-image-url($filename) {
+  @return url("../images/" + $filename);
+}
+
+$govuk-font-url-function: frontend-font-url;
+$govuk-image-url-function: frontend-image-url;
+
+$moj-images-path: "../images/";
+$moj-fonts-path: "../fonts/";
+
+@import "~govuk-frontend/govuk/all";
+@import "@ministryofjustice/frontend/moj/all";
+@import "core/typography";
+
+@import "components/forms";
+@import "components/custom_styles";
+@import "components/hearing_events";
+@import "components/notification_banner";
+@import "components/sortable_table";
+@import "components/summary";
+@import "components/phase_banner";

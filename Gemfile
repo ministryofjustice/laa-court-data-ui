@@ -31,7 +31,6 @@ gem 'sentry-sidekiq', '~> 5.8.0'
 gem 'sidekiq', '~> 6.5'
 gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 1.3.3'
-gem 'webpacker', '~> 5.4'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.6'
@@ -84,3 +83,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'net-imap', '~> 0.3.4'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.3.3'
+
+gem "jsbundling-rails", "~> 1.1"
+
+gem "sprockets-rails", "~> 3.4", :require => 'sprockets/railtie'

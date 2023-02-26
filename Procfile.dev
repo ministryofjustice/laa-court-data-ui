@@ -2,3 +2,4 @@
 # for local heroku - run `heroku local`
 #
 web: RUBYOPT=-W:no-deprecated rails s -p 3000
+js: yarn build --watch
