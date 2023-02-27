@@ -49,7 +49,7 @@ references:
       key: v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
-        - public/packs-test
+        - app/assets/build
 
   _attach-tmp-workspace: &attach-tmp-workspace
     attach_workspace:
