@@ -68,7 +68,7 @@ COPY . .
 # note: webpacker:compile appended to the assets:precompile task
 RUN SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here \
 RAILS_ENV=production \
-yarn build 2> /dev/null
+bundle exec rails assets:precompile 2> /dev/null
 
 # tidy up installation
 RUN apk update && apk del build-dependencies
