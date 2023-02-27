@@ -42,7 +42,7 @@ references:
       name: Install and compile assets
       command: |
         RUBYOPT=-W:no-deprecated \
-        yarn build --progress --color
+        yarn install && yarn build --progress --color
 
   _save-assets: &save-assets
     save_cache:
