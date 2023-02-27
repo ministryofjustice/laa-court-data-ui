@@ -42,7 +42,7 @@ references:
       name: Install and compile assets
       command: |
         RUBYOPT=-W:no-deprecated \
-        bundle exec rails assets:precompile
+        yarn build --progress --color
 
   _save-assets: &save-assets
     save_cache:
