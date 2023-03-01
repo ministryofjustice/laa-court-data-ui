@@ -33,9 +33,9 @@ references:
   _restore-assets: &restore-assets
     restore_cache:
       keys:
-        - v3-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
         # fallback to using the latest asset cache if no exact match is found
-        - v3-yarn-
+        - v4-yarn-
 
   _install-assets: &install-assets
     run:
@@ -46,7 +46,7 @@ references:
 
   _save-assets: &save-assets
     save_cache:
-      key: v3-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      key: v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
         - app/assets/builds
