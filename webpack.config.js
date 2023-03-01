@@ -52,6 +52,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'app/assets/builds'),
     filename: '[name].js',
+    assetModuleFilename: '[name][ext]',
     chunkFilename: '[id].[chunkhash].js'
   }
 }

@@ -1,16 +1,16 @@
 @function frontend-font-url($filename) {
-  @return url("../fonts/" + $filename);
+  @return url("~govuk-frontend/govuk/assets/fonts/" + $filename);
 }
 
 @function frontend-image-url($filename) {
-  @return url("../images/" + $filename);
+  @return url("~govuk-frontend/govuk/assets/images/" + $filename);
 }
 
 $govuk-font-url-function: frontend-font-url;
 $govuk-image-url-function: frontend-image-url;
 
-$moj-images-path: "../images/";
-$moj-fonts-path: "../fonts/";
+$moj-images-path: "@ministryofjustice/frontend/moj/assets/images/";
+$moj-fonts-path: "@ministryofjustice/frontend/moj/assets/fonts/";
 
 @import "~govuk-frontend/govuk/all";
 @import "@ministryofjustice/frontend/moj/all";
