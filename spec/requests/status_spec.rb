@@ -17,7 +17,7 @@ RSpec.describe 'status', type: :request do
       end
 
       it 'returns "Not Available"' do
-        expect(JSON.parse(response.body).values).to be_all('Not Available')
+        expect(response.parsed_body.values).to be_all('Not Available')
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe 'status', type: :request do
       end
 
       it 'returns JSON' do
-        expect { JSON.parse(response.body) }.not_to raise_error
+        expect { response.parsed_body }.not_to raise_error
       end
 
       it 'returns JSON with app information' do
