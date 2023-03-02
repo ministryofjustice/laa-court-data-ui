@@ -1,35 +1,21 @@
 const path = require('path')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 
 const config = {
   mode: 'production',
   devtool: 'source-map',
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-        uglifyOptions: {
-          compress: {
-            ie8: true,
-            warnings: false
-          },
-          mangle: {
-            ie8: true
-          },
-          output: {
-            comments: false,
-            ie8: true
-          }
-        }
-      })
-    ]
-  },
   resolve: {
     extensions: ['.mjs']
   },
-  entry: './assets/main.js',
+  entry: {
+    application: [
+      path.resolve(__dirname, 'app', 'assets', 'javascript', 'application.js'),
+      path.resolve(__dirname, 'app', 'assets', 'stylesheets', 'application.scss')
+    ],
+    unlink: path.resolve(__dirname, 'app', 'assets', 'javascript', 'unlink.js'),
+    govuk_frontend: path.resolve(__dirname, 'app', 'assets', 'javascript', 'govuk-frontend.js')
+  },
   module: {
     rules: [
       {
@@ -38,7 +24,7 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'es3']
+            presets: ['@babel/preset-env']
           }
         }
       },
@@ -48,13 +34,26 @@ const config = {
         resolve: {
           fullySpecified: false
         }
+      },
+      {
+        test: /\.(?:sa|sc|c)ss$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(png|jpe?g|gif|eot|woff2|woff|ttf|svg|ico)$/i,
+        type: 'asset/resource'
       }
     ]
   },
+  plugins: [
+    new RemoveEmptyScriptsPlugin(),
+    new MiniCssExtractPlugin()
+  ],
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'app/assets/builds'),
     filename: '[name].js',
-    sourceMapFilename: '[name].js.map'
+    assetModuleFilename: '[name][ext]',
+    chunkFilename: '[id].[chunkhash].js'
   }
 }
 

@@ -33,23 +33,23 @@ references:
   _restore-assets: &restore-assets
     restore_cache:
       keys:
-        - v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
         # fallback to using the latest asset cache if no exact match is found
-        - v1-yarn-
+        - v4-yarn-
 
   _install-assets: &install-assets
     run:
       name: Install and compile assets
       command: |
         RUBYOPT=-W:no-deprecated \
-        bundle exec rails assets:precompile
+        yarn install && yarn build --progress --color
 
   _save-assets: &save-assets
     save_cache:
-      key: v1-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      key: v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
-        - public/packs-test
+        - app/assets/builds
 
   _attach-tmp-workspace: &attach-tmp-workspace
     attach_workspace:

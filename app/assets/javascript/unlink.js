@@ -9,8 +9,6 @@ function Unlinking () {
   if (!unlinkReasonCode.value) { hide() }
   if (unlinkReasonCode.value === otherReasonCode) { show() }
 
-  // TODO: should really rely on a data-text-required flag ir similar set by backend
-  //
   unlinkReasonCode.onchange = function () {
     (this.value === otherReasonCode) ? show() : hide()
   }
