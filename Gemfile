@@ -11,7 +11,7 @@ gem 'bootsnap', '>= 1.7.0', require: false
 
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
-gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'devise', '~> 4.9'
 gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
@@ -30,7 +30,7 @@ gem 'sentry-rails', '~> 5.8.0'
 gem 'sentry-sidekiq', '~> 5.8.0'
 gem 'sidekiq', '~> 6.5'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 1.3.3'
+gem 'turbo-rails', '~> 1.4.0'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.6'
