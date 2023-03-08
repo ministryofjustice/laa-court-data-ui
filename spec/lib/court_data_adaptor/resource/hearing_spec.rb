@@ -36,7 +36,7 @@ RSpec.describe CourtDataAdaptor::Resource::Hearing do
     context 'when exists' do
       let(:instance) { described_class.new(defendant_names: ['Joe Bloggs', 'Fred Dibnah']) }
 
-      it { is_expected.to match_array(['Joe Bloggs', 'Fred Dibnah']) }
+      it { is_expected.to contain_exactly('Joe Bloggs', 'Fred Dibnah') }
     end
 
     context 'when not exists' do
