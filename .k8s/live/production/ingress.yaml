@@ -24,6 +24,7 @@ metadata:
         deny 20.219.196.158;
         deny 162.55.51.218;
         deny 35.78.59.144;
+        deny 80.78.22.106;
         if ($http_spider_name ~* "crawlergo") {
           return 403;
         }
