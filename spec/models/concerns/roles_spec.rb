@@ -66,7 +66,7 @@ RSpec.describe Roles, type: :concern do
   describe '#roles' do
     let(:object) { test_class.new(roles: ['stormtrooper']) }
 
-    it { expect(object.roles).to match_array(['stormtrooper']) }
+    it { expect(object.roles).to contain_exactly('stormtrooper') }
   end
 
   # rubocop:disable RSpec/PredicateMatcher

@@ -182,7 +182,7 @@ RSpec.describe HearingDecorator, type: :decorator do
     before { allow(hearing).to receive_messages(hearing_events:) }
 
     it 'filters events by day' do
-      is_expected.to match_array([hearing_event1, hearing_event2])
+      is_expected.to contain_exactly(hearing_event1, hearing_event2)
     end
 
     it 'sorts events by datetime' do
