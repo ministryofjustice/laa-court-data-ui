@@ -22,7 +22,11 @@ if Rails.env.development?
   Sidekiq::Testing.inline!
 end
 
-redis_url = "rediss://:#{ENV.fetch('REDIS_PASSWORD', nil)}@#{ENV.fetch('REDIS_HOST', nil)}:6379" if ENV['REDIS_HOST'].present? && ENV['REDIS_PASSWORD'].present?
+if ENV['REDIS_HOST'].present? && ENV['REDIS_PASSWORD'].present?
+  redis_url = "rediss://:#{ENV.fetch('REDIS_PASSWORD',
+                                     nil)}@#{ENV.fetch('REDIS_HOST',
+                                                       nil)}:6379"
+end
 
 module Dashboard; end
 
