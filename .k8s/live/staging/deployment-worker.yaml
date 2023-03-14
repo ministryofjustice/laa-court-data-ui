@@ -72,11 +72,16 @@ spec:
                 secretKeyRef:
                   name: lcdui-rds
                   key: url
-            - name: REDIS_URL
+            - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
                   name: lcdui-elasticache
-                  key: url
+                  key: primary_endpoint_address
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-elasticache
+                  key: auth_token
             - name: GOVUK_NOTIFY_API_KEY
               valueFrom:
                 secretKeyRef:
