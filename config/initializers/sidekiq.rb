@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'sidekiq'
 # Sidekiq uses Redis to store all of its job and operational data.
 # By default, Sidekiq tries to connect to Redis at localhost:6379
 #
@@ -19,4 +20,16 @@ Sidekiq.default_job_options = { retry: 5 }
 if Rails.env.development?
   require 'sidekiq/testing'
   Sidekiq::Testing.inline!
+end
+
+redis_url = "rediss://:#{ENV.fetch('REDIS_PASSWORD', nil)}@#{ENV.fetch('REDIS_HOST', nil)}:6379" if ENV['REDIS_HOST'].present? && ENV['REDIS_PASSWORD'].present?
+
+module Dashboard; end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: redis_url } if redis_url
+end
+
+Sidekiq.configure_server do |config|
+  config.redis = { url: redis_url } if redis_url
 end
