@@ -20,3 +20,19 @@ if Rails.env.development?
   require 'sidekiq/testing'
   Sidekiq::Testing.inline!
 end
+
+if ENV['REDIS_HOST'].present? && ENV['REDIS_PASSWORD'].present?
+  redis_url = "rediss://:#{ENV.fetch('REDIS_PASSWORD',
+                                     nil)}@#{ENV.fetch('REDIS_HOST',
+                                                       nil)}:6379"
+end
+
+module Dashboard; end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: redis_url } if redis_url
+end
+
+Sidekiq.configure_server do |config|
+  config.redis = { url: redis_url } if redis_url
+end
