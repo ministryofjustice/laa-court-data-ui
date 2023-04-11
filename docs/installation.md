@@ -39,6 +39,9 @@ nvm install
 # install node modules using yarn
 yarn install --frozen-lockfile
 
+# build dependencies via webpack
+yarn build
+
 # setup database
 rails db:setup
 rails db:migrate
