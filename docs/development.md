@@ -139,7 +139,7 @@ source .env
 
 ### A note on assets
 
-The rails asset pipeline is disabled and all related config is commented out (it does not seem possible to remove sprockets entirely). We are using `webpacker` gem wrapper for `webpack`, and `yarn` for js dependency management.
+The rails asset pipeline is disabled and all related config is commented out (it does not seem possible to remove sprockets entirely). We are using `jsbundling-rails` gem wrapper for compiling and building asset dependencies, and `yarn` for node.js dependency management.
 
 ### Secret management
 
@@ -161,6 +161,6 @@ kubectl -n laa-court-data-ui-<env> get secrets <secret-name> -o json
 
 For more details on how to add or update Kubernetes Secrets, see the [Cloud Platform documentation](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/deploying-an-app/add-secrets-to-deployment.html#adding-a-secret-to-an-application).
 
-Secrets are backed up outside of Kubernetes, these back ups need to be updated any time the secrets are updated. Please refer to this [Confluence document](https://dsdmoj.atlassian.net/wiki/spaces/CFP/pages/4273504650/Secrets+Strategy+Post+Git-Crypt#Where-We-Are-Storing-Secrets-Now) for more information 
+Secrets are backed up outside of Kubernetes, these back ups need to be updated any time the secrets are updated. Please refer to this [Confluence document](https://dsdmoj.atlassian.net/wiki/spaces/CFP/pages/4273504650/Secrets+Strategy+Post+Git-Crypt#Where-We-Are-Storing-Secrets-Now) for more information
 
 
