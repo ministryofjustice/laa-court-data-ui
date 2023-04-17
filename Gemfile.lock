@@ -78,10 +78,10 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     awesome_print (1.9.2)
-    axe-core-api (4.6.1)
+    axe-core-api (4.6.0)
       dumb_delegator
       virtus
-    axe-core-rspec (4.6.1)
+    axe-core-rspec (4.6.0)
       axe-core-api
       dumb_delegator
       virtus
@@ -151,7 +151,7 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    faker (3.2.0)
+    faker (3.1.1)
       i18n (>= 1.8.11, < 2)
     faraday (1.10.2)
       faraday-em_http (~> 1.0)
@@ -272,7 +272,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.14.3)
+    nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     notifications-ruby-client (5.3.0)
@@ -348,7 +348,7 @@ GEM
       redis-client (>= 0.9.0)
     redis-client (0.14.0)
       connection_pool
-    regexp_parser (2.8.0)
+    regexp_parser (2.7.0)
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.1.0)
@@ -381,21 +381,21 @@ GEM
     rspec-support (3.11.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.50.2)
+    rubocop (1.48.1)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.2.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.28.0, < 2.0)
+      rubocop-ast (>= 1.26.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.28.0)
       parser (>= 3.2.1.0)
     rubocop-capybara (2.17.1)
       rubocop (~> 1.41)
-    rubocop-performance (1.17.1)
+    rubocop-performance (1.16.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     rubocop-rails (2.19.1)
@@ -544,7 +544,7 @@ DEPENDENCIES
   rspec-html-matchers (~> 0.10.0)
   rspec-rails (~> 6.0)
   rspec_junit_formatter
-  rubocop (~> 1.50)
+  rubocop (~> 1.48)
   rubocop-performance
   rubocop-rails
   rubocop-rspec
