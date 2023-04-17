@@ -6,18 +6,16 @@ require_dependency 'feature_flag'
 class Search
   include ActiveModel::Model
 
-  # rubocop:disable Rails/OutputSafety
   def self.filters
     [
       _filter(id: :case_reference,
-              name: I18n.t('search_filter.radio_case_reference_label')),
+              name: sanitize_html(I18n.t('search_filter.radio_case_reference_label'))),
       _filter(id: :defendant_reference,
-              name: I18n.t('search_filter.radio_defendant_reference_label_html').html_safe),
+              name: sanitize_html(I18n.t('search_filter.radio_defendant_reference_label_html').html_safe)),
       _filter(id: :defendant_name,
-              name: I18n.t('search_filter.radio_defendant_name_label_html').html_safe)
+              name: sanitize_html(I18n.t('search_filter.radio_defendant_name_label_html').html_safe))
     ]
   end
-  # rubocop:enable Rails/OutputSafety
 
   private_class_method def self._filter(args)
     SearchFilter.new(**args)
@@ -27,6 +25,10 @@ class Search
 
   def filters
     self.class.filters
+  end
+
+  def self.sanitize_html(html_string)
+    ActionController::Base.helpers.sanitize(html_string, tags: ['b'])
   end
 
   validates :filter,
