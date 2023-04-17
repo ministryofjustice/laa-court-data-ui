@@ -11,9 +11,9 @@ class Search
       _filter(id: :case_reference,
               name: sanitize_html(I18n.t('search_filter.radio_case_reference_label'))),
       _filter(id: :defendant_reference,
-              name: sanitize_html(I18n.t('search_filter.radio_defendant_reference_label_html').html_safe)),
+              name: sanitize_html(I18n.t('search_filter.radio_defendant_reference_label_html'))),
       _filter(id: :defendant_name,
-              name: sanitize_html(I18n.t('search_filter.radio_defendant_name_label_html').html_safe))
+              name: sanitize_html(I18n.t('search_filter.radio_defendant_name_label_html')))
     ]
   end
 
