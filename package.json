@@ -33,7 +33,7 @@
     "webpack-remove-empty-scripts": "^1.0.3"
   },
   "devDependencies": {
-    "axe-core": "^4.6.3",
+    "axe-core": "^4.7.0",
     "cypress": "^12.9.0",
     "cypress-axe": "^1.4.0",
     "standard": "^17.0.0",
