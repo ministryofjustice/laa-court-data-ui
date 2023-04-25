@@ -17,7 +17,7 @@
     label: { text: t('laa_reference.link.form.maat_reference.label') },
     hint: { text: t('laa_reference.link.form.maat_reference.hint') }
 
-  = f.govuk_submit t('laa_reference.link.form.submit'), prevent_double_click: true, data: { disable_with: 'Linking...' }
+  = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }
 
   = govuk_detail(t('laa_reference.missing_maat_id.label')) do
     %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
