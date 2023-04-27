@@ -48,5 +48,6 @@ module LaaCourtDataUi
     config.x.court_data_api_config.uri = ENV.fetch('COURT_DATA_API_URL', nil)
     config.x.court_data_api_config.user = ENV.fetch('COURT_DATA_API_USERNAME', nil)
     config.x.court_data_api_config.secret = ENV.fetch('COURT_DATA_API_SECRET', nil)
+    config.x.split_io.key = ENV.fetch('SPLIT_IO_KEY', nil)
   end
 end

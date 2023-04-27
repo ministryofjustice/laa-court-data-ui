@@ -86,3 +86,5 @@ gem 'net-smtp', '~> 0.3.3'
 gem 'jsbundling-rails', '~> 1.1'
 
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
+
+gem "splitclient-rb", "~> 8.1"
