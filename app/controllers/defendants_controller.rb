@@ -3,7 +3,7 @@
 # rubocop:disable Metrics
 
 require_dependency 'court_data_adaptor'
-require_dependency 'feature_flag'
+require_dependency 'split_flag'
 
 class DefendantsController < ApplicationController
   before_action :load_and_authorize_defendant_search
@@ -52,7 +52,7 @@ class DefendantsController < ApplicationController
   end
 
   def load_and_authorize_defendant_search
-    if Feature.enabled?(:defendants_page)
+    if SplitFlag.on?(current_user.email, :defendant_v2_page)
       @defendant_search = CdApi::SearchService.new('uuid_reference', { uuid: defendant_params[:id],
                                                                        urn: defendant_params[:urn] }, nil)
     else

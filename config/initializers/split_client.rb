@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'splitclient-rb'
+
 RELOAD_RATE_IN_SECONDS = 60.seconds.to_i
 
 if Rails.env.production?
