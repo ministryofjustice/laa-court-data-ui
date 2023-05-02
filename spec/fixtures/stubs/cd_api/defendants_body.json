@@ -29,14 +29,14 @@
                     "mode_of_trial": null,
                     "start_date": "2019-10-17",
                     "proceedings_concluded": false,
-                    "plea": {
+                    "pleas": [{
                         "date": null,
                         "value": null,
                         "originating_hearing_id": null,
                         "offence_id": null,
                         "application_id": null,
                         "delegated_powers": null
-                    },
+                    }],
                     "verdict": {
                         "date": null,
                         "type": null,
@@ -66,14 +66,14 @@
                 "mode_of_trial": "Either way",
                 "start_date": "2019-10-17",
                 "proceedings_concluded": false,
-                "plea": {
+                "pleas": [{
                   "date": "2019-10-17",
                   "value": "Not guilty",
                   "originating_hearing_id": null,
                   "offence_id": null,
                   "application_id": null,
                   "delegated_powers": null
-                },
+                }],
                 "verdict": {
                   "date": null,
                   "type": null,
@@ -123,14 +123,14 @@
                     "mode_of_trial": "Indictable only",
                     "start_date": "2019-10-17",
                     "proceedings_concluded": false,
-                    "plea": {
+                    "pleas": [{
                         "date": null,
                         "value": null,
                         "originating_hearing_id": null,
                         "offence_id": null,
                         "application_id": null,
                         "delegated_powers": null
-                    },
+                    }],
                     "verdict": {
                         "date": null,
                         "type": null,
@@ -180,14 +180,14 @@
                     "mode_of_trial": "Either way",
                     "start_date": "2019-10-17",
                     "proceedings_concluded": false,
-                    "plea": {
+                    "pleas": [{
                         "date": null,
                         "value": null,
                         "originating_hearing_id": null,
                         "offence_id": null,
                         "application_id": null,
                         "delegated_powers": null
-                    },
+                    }],
                     "verdict": {
                         "date": null,
                         "type": null,
@@ -237,14 +237,14 @@
                     "mode_of_trial": "Indictable only",
                     "start_date": "2019-10-17",
                     "proceedings_concluded": false,
-                    "plea": {
+                    "pleas": [{
                         "date": null,
                         "value": null,
                         "originating_hearing_id": null,
                         "offence_id": null,
                         "application_id": null,
                         "delegated_powers": null
-                    },
+                    }],
                     "verdict": {
                         "date": null,
                         "type": null,
