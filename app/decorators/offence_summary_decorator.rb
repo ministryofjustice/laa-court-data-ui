@@ -2,11 +2,21 @@
 
 class OffenceSummaryDecorator < BaseDecorator
   def plea_sentence
-    return t('generic.not_available') if plea&.value.blank?
-    return_plea plea
+    return t('generic.not_available') if pleas.blank?
+    return pleas unless pleas.is_a?(Enumerable)
+
+    safe_join(plea_sentences, tag.br)
   end
 
   private
+
+  def plea_sentences
+    sorted_pleas.map { |plea| return_plea(plea) }
+  end
+
+  def sorted_pleas
+    pleas.sort_by { |plea| plea&.date || Date.new.iso8601 }
+  end
 
   def return_plea(plea)
     t('offence.plea.sentence',
