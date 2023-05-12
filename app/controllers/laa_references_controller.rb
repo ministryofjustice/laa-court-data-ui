@@ -19,8 +19,6 @@ class LaaReferencesController < ApplicationController
   add_breadcrumb (proc { |v| v.controller.defendant.name }),
                  (proc { |v| v.defendant_path(v.controller.defendant.id) })
 
-  rescue_from CourtDataAdaptor::Errors::UnprocessableEntity, with: :adaptor_error_handler
-
   def new; end
 
   def create
@@ -36,6 +34,10 @@ class LaaReferencesController < ApplicationController
 
   def defendant
     @defendant ||= @defendant_search.call
+  rescue CourtDataAdaptor::Errors::UnprocessableEntity
+    logger.info 'CDA_GETDEFENDANT_RETURNED_UNPROCESSABLE'
+    flash[:alert] = I18n.t('error.connection_error_message', it_helpdesk: I18n.t('error.it_helpdesk'))
+    redirect_back(fallback_location: authenticated_root_path)
   end
 
   def prosecution_case_reference
@@ -117,11 +119,6 @@ class LaaReferencesController < ApplicationController
                     else
                       LinkAttempt.new
                     end
-  end
-
-  def adaptor_error_handler(exception)
-    log_sentry_error(exception, exception.errors)
-    render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
   end
 
   def render_new(title, message)
