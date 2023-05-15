@@ -62,7 +62,7 @@ RSpec.feature 'defendants view', type: :feature, stub_defendants_uuid_urn_search
           headers: { 'Content-Type' => 'application/vnd.api+json' }
         )
 
-        stub_request(:get, %r{#{api_url}/defendants/500})
+      stub_request(:get, %r{#{api_url}/defendants/500})
         .to_return(
           status: 422
         )
@@ -88,7 +88,7 @@ RSpec.feature 'defendants view', type: :feature, stub_defendants_uuid_urn_search
 
       scenario 'laa_references page returns to previous page' do
         visit "laa_references/new?id=500&urn=#{case_urn}"
-        expect(page.current_path).to eq "/"
+        expect(page).to have_current_path '/'
       end
     end
 
