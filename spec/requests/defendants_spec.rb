@@ -28,6 +28,11 @@ RSpec.describe 'defendants', type: :request do
           body: defendant_by_id_fixture,
           headers: { 'Content-Type' => 'application/vnd.api+json' }
         )
+
+      stub_request(:get, %r{#{api_url}/defendants/500})
+        .to_return(
+          status: 424
+        )
     end
 
     context 'with unlinked defendant' do
@@ -54,6 +59,16 @@ RSpec.describe 'defendants', type: :request do
       include_examples 'renders common defendant details'
 
       it { expect(response).to render_template('defendants/_form') }
+    end
+
+    context 'with error from CDA' do
+      before do
+        get "/defendants/500/edit?urn=#{case_reference_from_fixture}"
+      end
+
+      it 'redirects to the previous page' do
+        expect(response).to redirect_to :back
+      end
     end
   end
 
