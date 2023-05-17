@@ -16,6 +16,7 @@ class SearchesController < ApplicationController
     authorize! :create, @search
 
     @results = @search.execute if @search.valid?
+    render 'new'
   rescue ActiveResource::BadRequest => e
     Rails.logger.info 'CLIENT_ERROR_OCCURRED'
     handle_client_error e
