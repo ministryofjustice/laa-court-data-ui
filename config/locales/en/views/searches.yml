@@ -4,6 +4,9 @@ en:
     breadcrumb: Search
     dob:
       legend_text: Defendant date of birth
+    error:
+      failure: Unable to complete the search. Please try again in a moment.
+      unprocessable: Unable to complete the search. Please adjust the search terms and try again.
     no_result:
       body: There are no matching results.
       body_guide: 'Improve your search results by:'
@@ -49,9 +52,6 @@ en:
       case_reference_label: Unique reference number
       defendant_name_label: Defendant name
       defendant_reference_label: Defendant ASN or National insurance number
-    error:
-      unprocessable: Unable to complete the search. Please adjust the search terms and try again.
-      failure: Unable to complete the search. Please try again in a moment.
   search_filter:
     breadcrumb: Home
     legend_text: Search for
