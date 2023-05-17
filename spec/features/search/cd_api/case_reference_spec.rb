@@ -55,7 +55,7 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
     expect(page).to be_accessible.within '#main-content'
   end
 
-  scenario 'with error from CDA', :stub_defendants_cda_failed do
+  scenario 'with error from common_platform', :stub_defendants_cda_failed do
     visit '/'
 
     choose 'A case by URN'
@@ -67,6 +67,23 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
       expect(page).to have_content('Unable to complete the search. Please try again in a moment.')
+    end
+
+    expect(page).to be_accessible.within '#main-content'
+  end
+
+  scenario 'with error from CDA', :stub_defendants_failed_search do
+    visit '/'
+
+    choose 'A case by URN'
+    click_button 'Continue'
+    fill_in 'search-term-field', with: 'error'
+    click_button 'Search'
+
+    expect(page).not_to have_css('.govuk-body', text: 'There are no matching results')
+    expect(page).to have_css('.govuk-error-summary')
+    within '.govuk-error-summary' do
+      expect(page).to have_content('Unable to complete the search. Please adjust the search terms and try again.')
     end
 
     expect(page).to be_accessible.within '#main-content'
