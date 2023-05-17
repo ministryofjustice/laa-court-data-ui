@@ -83,7 +83,8 @@ RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
     expect(page).not_to have_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
-      expect(page).to have_content('Unable to complete the search. Please adjust the search terms and try again.')
+      expect(page)
+        .to have_content('Unable to complete the search. Please adjust the search terms and try again.')
     end
 
     expect(page).to be_accessible.within '#main-content'
