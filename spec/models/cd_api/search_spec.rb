@@ -121,8 +121,8 @@ RSpec.describe Search, type: :model do
         )
       end
 
-      it 'returns empty array' do
-        expect(search_instance.execute).to eq []
+      it 'returns correct exception' do
+        expect { search_instance.execute }.to raise_error(ActiveResource::BadRequest)
       end
     end
 
@@ -138,16 +138,10 @@ RSpec.describe Search, type: :model do
         allow(cdapi_search_service).to receive(:call).with(any_args).and_raise(
           ActiveResource::ServerError, 'Failed.'
         )
-        allow(Sentry).to receive(:capture_exception)
       end
 
-      it 'returns empty array' do
-        expect(search_instance.execute).to eq []
-      end
-
-      it 'send exception to Sentry' do
-        search_instance.execute
-        expect(Sentry).to have_received(:capture_exception)
+      it 'returns correct exception' do
+        expect { search_instance.execute }.to raise_error(ActiveResource::ServerError)
       end
     end
   end

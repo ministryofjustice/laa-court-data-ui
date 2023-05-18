@@ -150,13 +150,6 @@ class DefendantsController < ApplicationController
     flash.now[:alert] = { title:, message: }
     render 'edit'
   end
-
-  def log_sentry_error(exception, errors)
-    Sentry.with_scope do |scope|
-      scope&.set_extra('error_message', errors)
-      Sentry.capture_exception(exception)
-    end
-  end
 end
 
 # rubocop:enable Metrics

@@ -100,6 +100,15 @@ RSpec.configure do |config|
       )
   end
 
+  config.before(:each, stub_defendants_cda_failed: true) do
+    stub_request(:get, %r{http.*/v2/defendants})
+      .to_return(
+        status: 424,
+        body: '',
+        headers: { 'Content-Type' => 'application/json' }
+      )
+  end
+
   config.before(:each, stub_unlink_v2: true) do
     stub_request(
       :get,

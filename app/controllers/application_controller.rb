@@ -58,4 +58,11 @@ class ApplicationController < ActionController::Base
     Current.request_id = request.headers['laa-transaction-id'] || request.request_id
     response.set_header('laa-transaction-id', Current.request_id)
   end
+
+  def log_sentry_error(exception, errors)
+    Sentry.with_scope do |scope|
+      scope&.set_extra('error_message', errors)
+      Sentry.capture_exception(exception)
+    end
+  end
 end

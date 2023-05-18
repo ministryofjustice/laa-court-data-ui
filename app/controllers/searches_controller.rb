@@ -17,6 +17,12 @@ class SearchesController < ApplicationController
 
     @results = @search.execute if @search.valid?
     render 'new'
+  rescue ActiveResource::BadRequest => e
+    Rails.logger.info 'CLIENT_ERROR_OCCURRED'
+    handle_client_error e
+  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+    Rails.logger.error 'SERVER_ERROR_OCCURRED'
+    handle_server_error e
   end
 
   private
@@ -73,5 +79,22 @@ class SearchesController < ApplicationController
              else
                I18n.t('search.term.case_reference_label')
              end
+  end
+
+  def handle_client_error(exception)
+    logger.info 'CLIENT_ERROR_OCCURRED'
+    @laa_reference&.errors&.from_json(exception.response.body)
+    render_error(I18n.t('search.error.unprocessable'), @laa_reference&.errors&.full_messages&.join(', '))
+  end
+
+  def handle_server_error(exception)
+    logger.error 'SERVER_ERROR_OCCURRED'
+    log_sentry_error(exception, @laa_reference&.errors)
+    render_error(I18n.t('search.error.failure'), I18n.t('error.it_helpdesk'))
+  end
+
+  def render_error(title, message)
+    flash.now[:alert] = { title:, message: }
+    render 'new'
   end
 end
