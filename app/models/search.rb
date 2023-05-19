@@ -59,17 +59,6 @@ class Search
 
   def query_cd_api
     CdApi::SearchService.call(filter:, term:, dob:)
-  rescue ActiveResource::BadRequest
-    Rails.logger.info 'CLIENT_ERROR_OCCURRED'
-    empty_collection
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-    Rails.logger.error 'SERVER_ERROR_OCCURRED'
-    Sentry.capture_exception(e)
-    empty_collection
-  end
-
-  def empty_collection
-    []
   end
 
   def query_cda
