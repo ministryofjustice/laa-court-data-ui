@@ -24,7 +24,7 @@
     "file-loader": "^6.2.0",
     "govuk-frontend": "^4.6.0",
     "jquery": "3.6.4",
-    "mini-css-extract-plugin": "^2.7.5",
+    "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.23",
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",
