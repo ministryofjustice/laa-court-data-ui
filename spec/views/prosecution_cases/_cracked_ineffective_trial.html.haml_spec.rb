@@ -91,6 +91,7 @@ RSpec.describe 'prosecution_cases/_cracked_ineffective_trial.html.haml', type: :
       expect(rendered).to be_blank
     end
   end
+
   # rubocop:disable RSpec/IndexedLet
   context 'with multiple cracked ineffective trials' do
     let(:hearings) { [hearing, hearing1, hearing2] }

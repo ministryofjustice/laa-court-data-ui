@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # rubocop:disable RSpec/IndexedLet
 RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :view do
   subject(:render_partial) do
@@ -153,4 +154,3 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
   end
 end
 # rubocop:enable RSpec/IndexedLet
-

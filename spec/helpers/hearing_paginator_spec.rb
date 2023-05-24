@@ -295,4 +295,3 @@ RSpec.describe HearingPaginator, type: :helper do
   end
 end
 # rubocop:enable RSpec/IndexedLet
-

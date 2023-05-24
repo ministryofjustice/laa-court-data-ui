@@ -34,7 +34,6 @@ RSpec.shared_context 'with multiple hearings to sort' do
 end
 # rubocop:enable RSpec/IndexedLet
 
-
 RSpec.shared_examples 'sort hearings' do
   include_context 'with multiple hearings to sort'
 

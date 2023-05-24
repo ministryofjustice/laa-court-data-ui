@@ -29,7 +29,8 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       expect(prosecution_case).to respond_to(:hearings)
     end
   end
-# rubocop:disable RSpec/IndexedLet
+
+  # rubocop:disable RSpec/IndexedLet
   describe '#hearings' do
     subject(:call) { decorator.hearings }
 

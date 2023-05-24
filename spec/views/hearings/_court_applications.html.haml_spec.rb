@@ -138,4 +138,3 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
   end
 end
 # rubocop:enable RSpec/IndexedLet
-

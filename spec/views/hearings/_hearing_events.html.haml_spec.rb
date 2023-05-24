@@ -94,4 +94,3 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
   end
 end
 # rubocop:enable RSpec/IndexedLet
-
