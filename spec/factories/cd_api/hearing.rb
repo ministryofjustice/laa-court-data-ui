@@ -7,7 +7,7 @@ FactoryBot.define do
     shared_time { '2022-07-22T15:31:42.832Z[UTC]' }
 
     trait :with_hearing_details do
-      hearing { build(:hearing_details) }
+      hearing { association :hearing_details }
     end
   end
 

@@ -16,7 +16,7 @@ FactoryBot.define do
     isYouth { nil }
 
     trait :with_defendant_details do
-      defendant_details { build(:hearing_defendant_details, :with_person_details) }
+      defendant_details { association :hearing_defendant_details, :with_person_details }
     end
   end
 end
