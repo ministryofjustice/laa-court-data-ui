@@ -37,6 +37,7 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
 
     before { allow(case_summary).to receive(:hearings).and_return(hearing_summaries) }
 
+    # rubocop:disable RSpec/IndexedLet
     context 'with multiple v2 hearing_summaries' do
       let(:hearing_summaries) { [hearing_summary1, hearing_summary2] }
       let(:hearing_summary1) { build(:hearing_summary) }
@@ -44,6 +45,7 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
 
       it { is_expected.to all(be_instance_of(CdApi::HearingSummaryDecorator)) }
     end
+    # rubocop:enable RSpec/IndexedLet
 
     context 'with no hearing_summaries' do
       let(:hearing_summaries) { [] }
@@ -71,6 +73,7 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
   describe '#sorted_hearing_summaries_with_day' do
     subject(:call) { decorator.sorted_hearing_summaries_with_day }
 
+    # rubocop:disable RSpec/IndexedLet
     let(:decorator_class) { CdApi::HearingSummaryDecorator }
     let(:decorated_hearing_summaries) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
     let(:decorated_hearing1) { view_object.decorate(hearing1, decorator_class) }
@@ -88,6 +91,7 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
       allow(test_decorator).to receive(:hearings_sort_column).and_return(column)
       allow(test_decorator).to receive(:hearings_sort_direction).and_return(direction)
     end
+    # rubocop:enable RSpec/IndexedLet
 
     it { is_expected.to be_instance_of(Enumerator) }
     it { is_expected.to all(be_instance_of(CdApi::HearingSummaryDecorator)) }

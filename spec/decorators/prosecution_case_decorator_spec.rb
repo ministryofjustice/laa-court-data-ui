@@ -29,7 +29,7 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       expect(prosecution_case).to respond_to(:hearings)
     end
   end
-
+# rubocop:disable RSpec/IndexedLet
   describe '#hearings' do
     subject(:call) { decorator.hearings }
 
@@ -206,6 +206,7 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       it { is_expected.to be_truthy }
     end
   end
+  # rubocop:enable RSpec/IndexedLet
 
   describe '#column_sort_icon' do
     subject(:call) { decorator.column_sort_icon }

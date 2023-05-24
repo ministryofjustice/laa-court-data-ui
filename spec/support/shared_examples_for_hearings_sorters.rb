@@ -2,6 +2,7 @@
 
 require 'court_data_adaptor'
 
+# rubocop:disable RSpec/IndexedLet
 RSpec.shared_context 'with multiple hearings to sort' do
   let(:hearings) { [hearing1, hearing2, hearing3] }
 
@@ -31,6 +32,8 @@ RSpec.shared_context 'with multiple hearings to sort' do
   let(:hearing2_provider_list) { 'Hob Nob (QC)<br>Malted Milk (Junior)' }
   let(:hearing3_provider_list) { 'Custard Cream (Junior)' }
 end
+# rubocop:enable RSpec/IndexedLet
+
 
 RSpec.shared_examples 'sort hearings' do
   include_context 'with multiple hearings to sort'

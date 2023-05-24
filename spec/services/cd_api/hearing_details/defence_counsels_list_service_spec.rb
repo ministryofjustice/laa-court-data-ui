@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
+  # rubocop:disable RSpec/IndexedLet
   describe '#call' do
     subject(:case_service_call) { described_class.call(defence_counsels) }
 
@@ -78,4 +79,5 @@ RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
       end
     end
   end
+  # rubocop:enable RSpec/IndexedLet
 end
