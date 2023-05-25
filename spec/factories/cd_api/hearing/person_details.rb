@@ -3,7 +3,7 @@
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
   factory :hearing_person_details, class: 'CdApi::PersonDetails' do
-    association :hearing_details
+    hearing_details
 
     title { 'Mr' }
     first_name { 'Vince' }

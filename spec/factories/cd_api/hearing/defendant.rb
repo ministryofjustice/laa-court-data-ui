@@ -3,7 +3,7 @@
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
   factory :hearing_defendant, class: 'CdApi::Defendant' do
-    association :hearing_details
+    hearing_details
 
     id { SecureRandom.uuid }
     prosecution_case_id { '' }
@@ -16,7 +16,7 @@ FactoryBot.define do
     isYouth { nil }
 
     trait :with_defendant_details do
-      defendant_details { build(:hearing_defendant_details, :with_person_details) }
+      defendant_details { association :hearing_defendant_details, :with_person_details }
     end
   end
 end
