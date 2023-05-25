@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable RSpec/IndexedLet
 RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
   subject(:render_partial) { render partial: 'court_applications', locals: { hearing: decorated_hearing } }
 
@@ -137,4 +136,3 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
     end
   end
 end
-# rubocop:enable RSpec/IndexedLet

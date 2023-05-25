@@ -36,7 +36,6 @@ RSpec.describe CdApi::HearingDecorator, type: :decorator do
     end
   end
 
-  # rubocop:disable RSpec/IndexedLet
   describe '#defence_counsels_list' do
     let(:hearing_details) do
       build(:hearing_details, defence_counsels:, prosecution_cases: [prosecution_case],
@@ -265,5 +264,4 @@ RSpec.describe CdApi::HearingDecorator, type: :decorator do
       end
     end
   end
-  # rubocop:enable RSpec/IndexedLet
 end

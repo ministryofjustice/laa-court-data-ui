@@ -28,7 +28,6 @@ RSpec.describe CourtApplicationDecorator, type: :decorator do
 
     before { allow(court_application).to receive_messages(respondents:) }
 
-    # rubocop:disable RSpec/IndexedLet
     context 'with multiple respondents' do
       let(:respondents) { [respondent1, respondent2] }
       let(:respondent1) { CourtDataAdaptor::Resource::CourtApplicationParty.new(synonym: 'Defendant') }
@@ -50,7 +49,6 @@ RSpec.describe CourtApplicationDecorator, type: :decorator do
 
       it { is_expected.to eql '<br>Defendant' }
     end
-    # rubocop:enable RSpec/IndexedLet
   end
 
   describe '#applicant_synonym' do

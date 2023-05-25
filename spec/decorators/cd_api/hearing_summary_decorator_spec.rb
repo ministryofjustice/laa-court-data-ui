@@ -27,7 +27,6 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
     it { is_expected.to respond_to(:defence_counsels) }
   end
 
-  # rubocop:disable RSpec/IndexedLet
   describe '#defence_counsel_list' do
     subject(:call) { decorator.defence_counsel_list }
 
@@ -167,7 +166,6 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       it { is_expected.to eql [] }
     end
   end
-  # rubocop:enable RSpec/IndexedLet
 
   describe '#formatted_estimated_duration' do
     subject(:call) { decorator.formatted_estimated_duration }

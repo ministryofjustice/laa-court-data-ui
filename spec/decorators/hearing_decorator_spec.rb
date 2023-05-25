@@ -23,7 +23,6 @@ RSpec.describe HearingDecorator, type: :decorator do
     it { is_expected.to respond_to(:providers) }
   end
 
-  # rubocop:disable RSpec/IndexedLet
   describe '#provider_list' do
     subject(:call) { decorator.provider_list }
 
@@ -190,5 +189,4 @@ RSpec.describe HearingDecorator, type: :decorator do
       is_expected.to eql([hearing_event1, hearing_event2])
     end
   end
-  # rubocop:enable RSpec/IndexedLet
 end

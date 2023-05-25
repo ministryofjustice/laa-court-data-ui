@@ -9,7 +9,6 @@ RSpec.shared_context 'with single hearing and hearing day' do
   end
 end
 
-# rubocop:disable RSpec/IndexedLet
 RSpec.shared_context 'with multiple hearings and hearing days' do
   let(:hearings) { [hearing1, hearing2, hearing3] }
 
@@ -294,4 +293,3 @@ RSpec.describe HearingPaginator, type: :helper do
     }
   end
 end
-# rubocop:enable RSpec/IndexedLet
