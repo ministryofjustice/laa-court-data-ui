@@ -28,7 +28,7 @@ gem 'rails', '~> 7.0.5'
 gem 'redis', '~> 5.0.6'
 gem 'sentry-rails', '~> 5.9.0'
 gem 'sentry-sidekiq', '~> 5.9.0'
-gem 'sidekiq', '~> 7.1.0'
+gem 'sidekiq', '~> 7.1.1'
 gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 1.4.0'
 
