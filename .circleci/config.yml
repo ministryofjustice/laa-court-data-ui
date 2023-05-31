@@ -257,7 +257,7 @@ jobs:
     parallelism: 4
     steps:
       - checkout
-      - install-or-restore-assets
+      - restore-dependencies
       - *attach-tmp-workspace
       - browser-tools/install-browser-tools
       - rspec
