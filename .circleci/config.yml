@@ -30,27 +30,6 @@ references:
         - ~/.bundle
         - ~/vendor/bundle
 
-  _restore-assets: &restore-assets
-    restore_cache:
-      keys:
-        - v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        # fallback to using the latest asset cache if no exact match is found
-        - v4-yarn-
-
-  _install-assets: &install-assets
-    run:
-      name: Install and compile assets
-      command: |
-        RUBYOPT=-W:no-deprecated \
-        yarn install && yarn build --progress --color
-
-  _save-assets: &save-assets
-    save_cache:
-      key: v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      paths:
-        - node_modules
-        - app/assets/builds
-
   _attach-tmp-workspace: &attach-tmp-workspace
     attach_workspace:
       at: ~/repo/tmp
@@ -101,16 +80,37 @@ commands:
       - *install-bundle
       - *save-bundle
 
+  install-or-restore-assets:
+    description: Install, or restore from cache, javascript package dependencies
+    steps:
+      - restore_cache:
+          keys:
+            - v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            # fallback to using the latest asset cache if no exact match is found
+            - v4-yarn-
+      - run:
+          name: Install javascript package dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v4-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - app/assets/builds
+
+  precompile-assets:
+    description: Precompile assets
+    steps:
+      - run:
+          command: bundle exec rails assets:precompile
+
   install-compile-assets:
     steps:
-      - *restore-assets
-      - *install-assets
-      - *save-assets
+      - install-or-restore-assets
 
   restore-dependencies:
     steps:
       - *restore-bundle
-      - *restore-assets
+      - install-or-restore-assets
 
   build-base:
     steps:
@@ -170,6 +170,7 @@ commands:
   rspec:
     steps:
       - db-setup
+      - precompile-assets
       - run:
           name: Run rspec tests
           command: |
@@ -256,7 +257,7 @@ jobs:
     parallelism: 4
     steps:
       - checkout
-      - restore-dependencies
+      - install-or-restore-assets
       - *attach-tmp-workspace
       - browser-tools/install-browser-tools
       - rspec
