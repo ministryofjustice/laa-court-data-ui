@@ -9,7 +9,8 @@
 
   = f.govuk_text_field(:username,
     label: { text: t('users.form.fields.username_label') },
-    hint: { text: t('users.form.fields.username_hint') } )
+    hint: { text: t('users.form.fields.username_hint') },
+    maxlength: 10 )
 
   = f.govuk_email_field(:email,
     label: { text: t('users.form.fields.email_label') } )
