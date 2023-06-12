@@ -9,7 +9,8 @@ module CdApi
     def judicial_results_prompt_list
       return [] if map_judicial_result_prompts.blank?
       decorate_all(map_judicial_result_prompts.select do |prompt|
-        filter_judicial_results_prompts(prompt) end, CdApi::JudicialResultsPromptDecorator)
+                     filter_judicial_results_prompts(prompt)
+                   end, CdApi::JudicialResultsPromptDecorator)
     end
 
     private
@@ -29,7 +30,7 @@ end
 module CdApi
   class JudicialResultsPromptDecorator < BaseDecorator
     def formatted_entry
-      value.to_s.gsub(/\n/, '<br/>').html_safe
+      value.to_s.gsub(/\n/, '<br/>').html_safe?
     end
   end
 end
