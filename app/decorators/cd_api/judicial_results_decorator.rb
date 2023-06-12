@@ -7,11 +7,20 @@ module CdApi
     end
 
     def judicial_results_prompt_list
-      decorate_all(prompts.flat_map.select do |prompt|
-                     Rails.application.config.x.judicial_results.filter.to_a[0][1].any? do |filter|
-                       filter.to_s.downcase.starts_with?(prompt.label.downcase)
-                     end
-                   end, CdApi::JudicialResultsPromptDecorator)
+      decorate_all(judicial_results_prompt_list.select { |prompt| filter_judicial_results_prompt(prompt) },
+                   CdApi::JudicialResultsPromptDecorator)
+    end
+  end
+
+  private
+
+  def judicial_results_prompt_list
+    prompts.flat_map
+  end
+
+  def filter_judicial_results_prompt(prompt)
+    Rails.application.config.x.judicial_results.filter.to_a[0][1].any? do |filter|
+      filter.to_s.downcase.starts_with?(prompt.label.downcase)
     end
   end
 end
