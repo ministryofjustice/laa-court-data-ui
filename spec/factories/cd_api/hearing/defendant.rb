@@ -18,5 +18,19 @@ FactoryBot.define do
     trait :with_defendant_details do
       defendant_details { association :hearing_defendant_details, :with_person_details }
     end
+
+    trait :with_offences do
+      after(:build) do |offences|
+        offence = FactoryBot.build(:hearing_offences)
+        offences.offences = [offence]
+      end
+    end
+
+    trait :with_offences_and_results do
+      after(:build) do |offences|
+        offence = FactoryBot.build(:hearing_offences, :with_judicial_results)
+        offences.offences = [offence]
+      end
+    end
   end
 end

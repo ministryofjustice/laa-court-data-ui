@@ -48,7 +48,7 @@ FactoryBot.define do
   end
 
   factory :prosecution_cases, class: 'CdApi::Hearing' do
-    id { 'cdd5ebe7-5515-464d-8627-f1c15b120742' }
+    id { SecureRandom.uuid }
     defendants { [] }
 
     trait :with_defendants do
