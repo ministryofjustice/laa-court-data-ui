@@ -30,7 +30,7 @@
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.24",
     "sass": "^1.63.2",
-    "sass-loader": "^13.3.1",
+    "sass-loader": "^13.3.2",
     "webpack": "^5.85.1",
     "webpack-cli": "^5.1.4",
     "webpack-remove-empty-scripts": "^1.0.3"
