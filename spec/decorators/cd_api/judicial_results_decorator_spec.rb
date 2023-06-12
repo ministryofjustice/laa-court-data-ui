@@ -28,4 +28,34 @@ RSpec.describe CdApi::JudicialResultsDecorator, type: :decorator do
       is_expected.to eq '22/10/2021'
     end
   end
+
+  describe 'judicial_results_prompt_list' do
+    subject(:call) { decorator.judicial_results_prompt_list }
+
+    context 'when no results' do
+      it 'provides an empty list' do
+        is_expected.to eql []
+      end
+    end
+
+    context 'when results present' do
+      let(:judicial_results) { build(:judicial_results, :with_prompts) }
+
+      it 'provides decorated entries' do
+        is_expected.to all(be_a(CdApi::JudicialResultsPromptDecorator))
+      end
+
+      it 'has one entry' do
+        is_expected.to have_attributes(size: 1)
+      end
+    end
+
+    context 'when label present' do
+      let(:judicial_results) { build(:judicial_results, :with_prompts) }
+
+      it 'is formatted correctly' do
+        expect(subject.first.formatted_entry).to eql 'Test Label<br/>Test Label'
+      end
+    end
+  end
 end

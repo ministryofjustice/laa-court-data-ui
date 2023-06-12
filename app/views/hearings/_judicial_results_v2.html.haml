@@ -20,7 +20,7 @@
                   %h2.govuk-heading-s
                     = jrp.label
                   %p.govuk-body
-                    = jrp.formatted_entry
+                    = sanitize jrp.formatted_entry
                   %hr.govuk-section-break--visible
           - else
             %p.govuk-body

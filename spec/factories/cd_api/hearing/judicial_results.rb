@@ -15,4 +15,10 @@ FactoryBot.define do
       end
     end
   end
+
+  factory :prompts, class: 'CdApi::Defendant' do
+    type_id { 'fbed768b-ee95-4434-87c8-e81cbc8d24c8' }
+    label { 'Next hearing in Crown Court' }
+    value { "Test Label\nTest Label" }
+  end
 end
