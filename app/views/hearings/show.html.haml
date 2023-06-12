@@ -36,7 +36,7 @@
     - else
       = render partial: 'court_applications_v2', locals: { hearing: @hearing.try(:hearing) }
 
-    - if Feature.enabled?(:hearing)
+    - if Feature.enabled?(:judicial_results)
       = render partial: 'judicial_results_v2', locals: { hearing: @hearing }
 
 - if Rails.configuration.x.display_raw_responses
