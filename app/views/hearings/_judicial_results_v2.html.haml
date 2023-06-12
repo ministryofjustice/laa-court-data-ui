@@ -1,0 +1,31 @@
+%h2.govuk-heading-l{ :class => "govuk-!-margin-bottom-4" }
+  = t('hearings.show.judicial_results.heading')
+- if hearing.defendants_list.any?
+  .govuk-accordion{ :data => {:module => "govuk-accordion"}, :id => "accordion-judicial-" + hearing.hearing.id }
+    - hearing.defendants_list.each do |dl|
+      - dl.each do |defendant|
+        .govuk-accordion__section
+          .govuk-accordion__section-header
+            %h3.govuk-accordion__section-heading
+              %span.govuk-accordion__section-button
+                = defendant.defendant_name
+          .govuk-accordion__section-content.govuk-details__text
+            - if defendant.judicial_results_list.any?
+              - defendant.judicial_results_list.each do |result|
+                %span.govuk-caption-m
+                  = result.formatted_date
+                %h1.govuk-heading-m
+                  = result.label
+                - if result.judicial_results_prompt_list.any?
+                  - result.judicial_results_prompt_list.each do |jrp|
+                    %h2.govuk-heading-s
+                      = jrp.label
+                    %p.govuk-body
+                      = jrp.formatted_entry
+                    %hr.govuk-section-break--visible
+            - else
+              %p.govuk-body
+                = t('hearings.show.judicial_results.none')
+- else
+  %p.govuk-body
+    = t('hearings.show.judicial_results.none')

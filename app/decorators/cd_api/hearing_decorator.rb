@@ -21,6 +21,12 @@ module CdApi
       safe_join(formatted_prosecution_counsels, tag.br)
     end
 
+    def defendants_list
+      hearing.prosecution_cases.map do |pc|
+        decorate_all(pc.defendants, CdApi::DefendantsDecorator)
+      end
+    end
+
     private
 
     def defence_counsel_sentences
@@ -66,6 +72,16 @@ module CdApi
       return false unless current_sitting_day
 
       counsels.attendance_days.include?(DateTime.parse(current_sitting_day).strftime('%Y-%m-%d'))
+    end
+
+    def map_defendants_to_case
+      hearing.prosecution_cases.each do |pc|
+        map_defendant(pc)
+      end
+    end
+
+    def map_defendant(prosecution_case)
+      prosecution_case.defendants.map
     end
   end
 end

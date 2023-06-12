@@ -31,6 +31,9 @@ en:
           no_hearing_details: No hearing details available
           server_error: Error retrieving data from server
       hearing_type: Hearing type
+      judicial_results:
+        heading: Judicial Results
+        none: No judicial results are associated with this hearing
       pagination:
         next_page: Next
         previous_page: Previous
