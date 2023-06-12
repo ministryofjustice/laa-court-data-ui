@@ -54,7 +54,7 @@ RSpec.describe CdApi::JudicialResultsDecorator, type: :decorator do
       let(:judicial_results) { build(:judicial_results, :with_prompts) }
 
       it 'is formatted correctly' do
-        expect(subject.first.formatted_entry).to eql 'Test Label<br/>Test Label'
+        expect(call.first.formatted_entry).to eql 'Test Label<br/>Test Label'
       end
     end
   end
