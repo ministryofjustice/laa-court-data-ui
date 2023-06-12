@@ -74,15 +74,5 @@ module CdApi
 
       counsels.attendance_days.include?(DateTime.parse(current_sitting_day).strftime('%Y-%m-%d'))
     end
-
-    def map_defendants_to_case
-      hearing.prosecution_cases.each do |pc|
-        map_defendant(pc)
-      end
-    end
-
-    def map_defendant(prosecution_case)
-      prosecution_case.defendants.map
-    end
   end
 end
