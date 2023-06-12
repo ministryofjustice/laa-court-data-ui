@@ -59,4 +59,10 @@ RSpec.describe 'hearings/show', type: :view, stub_v2_hearing_data: true,
       is_expected.to render_template('hearings/_court_applications_v2')
     end
   end
+
+  context 'when viewing the judicial results' do
+    it 'displays the v2 partial' do
+      is_expected.to render_template('hearings/_judicial_results_v2')
+    end
+  end
 end

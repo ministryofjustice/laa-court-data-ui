@@ -7,20 +7,21 @@ module CdApi
     end
 
     def judicial_results_prompt_list
-      decorate_all(judicial_results_prompt_list.select { |prompt| filter_judicial_results_prompt(prompt) },
-                   CdApi::JudicialResultsPromptDecorator)
+      return [] if map_judicial_result_prompts.blank?
+      decorate_all(map_judicial_result_prompts.select do |prompt|
+        filter_judicial_results_prompts(prompt) end, CdApi::JudicialResultsPromptDecorator)
     end
-  end
 
-  private
+    private
 
-  def judicial_results_prompt_list
-    prompts.flat_map
-  end
+    def map_judicial_result_prompts
+      prompts.flat_map
+    end
 
-  def filter_judicial_results_prompt(prompt)
-    Rails.application.config.x.judicial_results.filter.to_a[0][1].any? do |filter|
-      filter.to_s.downcase.starts_with?(prompt.label.downcase)
+    def filter_judicial_results_prompts(prompt)
+      Rails.application.config.x.judicial_results.filter.to_a[0][1].any? do |filter|
+        filter.to_s.downcase.starts_with?(prompt.label.downcase)
+      end
     end
   end
 end
@@ -28,7 +29,7 @@ end
 module CdApi
   class JudicialResultsPromptDecorator < BaseDecorator
     def formatted_entry
-      value.to_s.gsub(/\n/, '<br/>').html_safe?
+      value.to_s.gsub(/\n/, '<br/>').html_safe
     end
   end
 end

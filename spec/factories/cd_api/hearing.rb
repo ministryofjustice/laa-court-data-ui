@@ -28,6 +28,13 @@ FactoryBot.define do
     defendant_judicial_results { [] }
     defendant_attendance { [] }
 
+    trait :with_prosecution_cases do
+      after(:build) do |hearing|
+        first_prosecution = FactoryBot.build(:prosecution_cases, :with_defendants)
+        hearing.prosecution_cases = [first_prosecution]
+      end
+    end
+
     trait :with_hearing_days do
       after(:build) do |hearing|
         hearing_day1 = FactoryBot.build(:hearing_day, hearing:)
@@ -37,6 +44,18 @@ FactoryBot.define do
 
     trait :with_defence_counsels do
       defence_counsels { [build(:defence_counsels)] }
+    end
+  end
+
+  factory :prosecution_cases, class: 'CdApi::Hearing' do
+    id { 'cdd5ebe7-5515-464d-8627-f1c15b120742' }
+    defendants { [] }
+
+    trait :with_defendants do
+      after(:build) do |hearing|
+        hearing_defendant = FactoryBot.build(:defendant)
+        hearing.defendants = [hearing_defendant]
+      end
     end
   end
 end

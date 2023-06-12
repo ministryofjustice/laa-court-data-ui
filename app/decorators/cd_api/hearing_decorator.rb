@@ -22,7 +22,7 @@ module CdApi
     end
 
     def defendants_list
-      hearing.prosecution_cases.map do |pc|
+      hearing.prosecution_cases.flat_map do |pc|
         decorate_all(pc.defendants, CdApi::DefendantsDecorator)
       end
     end
