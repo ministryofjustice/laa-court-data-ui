@@ -8,6 +8,7 @@ RSpec.describe 'hearings_v2', type: :request do
   before do
     allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
     allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
+    allow(Feature).to receive(:enabled?).with(:judicial_results).and_return(true)
   end
 
   context 'when authenticated', stub_v2_hearing_summary: true, stub_v2_hearing_data: true,
