@@ -20,8 +20,8 @@ module CdApi
     end
 
     def filter_judicial_results_prompts(prompt)
-      Rails.application.config.x.judicial_results.filter.to_a[0][1].any? do |filter|
-        filter.to_s.downcase.starts_with?(prompt.label.downcase)
+      Rails.application.config.x.judicial_results['filter'].any? do |filter|
+        filter['type_id'] == prompt.type_id
       end
     end
   end

@@ -1,0 +1,1841 @@
+---
+-
+  type_id: "c3a39c2f-b056-442f-8dfc-604b5434f956"
+  short_code: "NONE"
+  label: "0: None or unknown"
+-
+  type_id: "b9c6047b-fb84-4b12-97a1-2175e4b8bbac"
+  short_code: "AD"
+  label: "Absolute discharge"
+-
+  type_id: "45206a54-5ac0-4978-aa1a-0b2a36d90ad0"
+  short_code: "AYSO"
+  label: "Address of youth on supervision order"
+-
+  type_id: "e8a046a9-6970-4bd3-a0bf-9cece0aefce2"
+  short_code: "ASD"
+  label: "Adjourned sine die"
+-
+  type_id: "4231382a-edc9-478b-821c-a051a03d8b4e"
+  short_code: "ASDH"
+  label: "Adjourned Sine Die in accordance with Henderson v Crown Prosecution Service 2016"
+-
+  type_id: "d278650c-e429-11e8-9f32-f2801f1b9fd1"
+  short_code: "A"
+  label: "Adjournment"
+-
+  type_id: "9eea52a6-f821-4c6f-8cd2-27534708dbac"
+  short_code: "AEC"
+  label: "Adjournment (enforcement case)"
+-
+  type_id: "cd5c4aeb-8ce9-492e-ae39-0ca32723710f"
+  short_code: "ADJNN"
+  label: "Adjournment (No Notice)"
+-
+  type_id: "9fd6a4ef-1055-4e54-b035-f1130a524388"
+  short_code: "NSR"
+  label: "Adjournment reason:"
+-
+  type_id: "7fc17a01-2f5a-4433-aae9-28e0c959f73b"
+  short_code: "ADJR"
+  label: "Adjournment reasons"
+-
+  type_id: "c32b9ca1-78da-4c7c-bde6-8218aed2bb80"
+  short_code: "ADR"
+  label: "Adjournment refused"
+-
+  type_id: "a24c302f-94dd-4d8c-b9eb-f1dbe2869b47"
+  short_code: "AREMA"
+  label: "Adult remittal for sentence - Adjournment"
+-
+  type_id: "46620c39-47c3-4265-8a49-42fbd63f0201"
+  short_code: "REMICU"
+  label: "Adult remittal for sentence In custody"
+-
+  type_id: "0fcddac3-f2f9-4c36-84ce-b3babcc57cb0"
+  short_code: "OATC"
+  label: "Aggravated by a terrorist connection"
+-
+  type_id: "10afbc0f-9abc-4557-be5d-7a97121db2c0"
+  short_code: "OATC - Copy"
+  label: "Aggravated by a terrorist connection - Copy"
+-
+  type_id: "72c64a04-0820-4580-bc61-e2d26566dc35"
+  short_code: "AEW"
+  label: "Aggravated due to emergency worker offence"
+-
+  type_id: "29c0a838-14ac-42c0-870c-ee1a133601e3"
+  short_code: "DISV"
+  label: "Aggravated due to hostility based on disability of victim"
+-
+  type_id: "6bd5d409-d656-4829-9ebd-f795e4564c7c"
+  short_code: "SEXO"
+  label: "Aggravated due to sexual orientation"
+-
+  type_id: "0bfb5f42-062b-4473-9c10-bf98315f8117"
+  short_code: "SEXOV"
+  label: "Aggravated due to sexual orientation of victim"
+-
+  type_id: "f25de68a-e719-42dd-9153-6687af843434"
+  short_code: "TGG"
+  label: "Aggravated due to transgender"
+-
+  type_id: "6fcb509f-1343-46df-a79b-7f650d84d3f2"
+  short_code: "TGV"
+  label: "Aggravated due to transgender of victim"
+-
+  type_id: "99fab6e9-8d9f-4631-85b4-08ce0a7ccf45"
+  short_code: "AEOCI"
+  label: "An attachment of earnings order"
+-
+  type_id: "482983fc-6a69-4c37-8c17-95109bf70d88"
+  short_code: "ABTR"
+  label: "Anti-social behaviour injunction transferred"
+-
+  type_id: "b9d81454-a565-4a86-bcf9-e7c58bb89dba"
+  short_code: "ASBOV"
+  label: "Anti-social behaviour order varied"
+-
+  type_id: "48b8ff83-2d5d-4891-bab1-b0f5edcd3822"
+  short_code: "APA"
+  label: "Appeal abandoned"
+-
+  type_id: "177f29cd-49e9-41d1-aafb-5730d7414dd4"
+  short_code: "AACA"
+  label: "Appeal against conviction allowed"
+-
+  type_id: "3b1f0a20-15cf-4795-98b1-ea87ebab2ec6"
+  short_code: "ACSD"
+  label: "Appeal against conviction and sentence dismissed"
+-
+  type_id: "548bf6b7-d152-4f08-8c9e-a079bf377e9b"
+  short_code: "AACD"
+  label: "Appeal against conviction dismissed"
+-
+  type_id: "a2640f68-104b-4ef6-9758-56956bd61825"
+  short_code: "ASV"
+  label: "Appeal against conviction dismissed and sentence varied"
+-
+  type_id: "d861586a-df88-440d-98d4-63cc2a680ae1"
+  short_code: "AASA"
+  label: "Appeal against sentence allowed"
+-
+  type_id: "573b195d-5795-43f1-92bb-204de1305b8b"
+  short_code: "AASD"
+  label: "Appeal against sentence dismissed"
+-
+  type_id: "453539d1-c1a0-475d-9a02-16a659e6bc34"
+  short_code: "AW"
+  label: "Appeal withdrawn"
+-
+  type_id: "d3902789-4cc8-4753-a15f-7e26dd39f6ae"
+  short_code: "RFSD"
+  label: "Application refused"
+-
+  type_id: "8cdc7be1-fc94-485b-83ee-410e710f6665"
+  short_code: "VT"
+  label: "Application to vacate granted"
+-
+  type_id: "633d192a-cc90-484e-aa1d-318816b7d44a"
+  short_code: "SMIP"
+  label: "Appointment for the Purpose of Cross Examination"
+-
+  type_id: "9c88a9f3-fc2f-4001-80f1-c6e88c12defd"
+  short_code: "PORAR6"
+  label: "Assessments/Reports - make available for reports to be prepared"
+-
+  type_id: "e073f3ba-2585-4c0d-8c31-e51a1662d143"
+  short_code: "PORAR2"
+  label: "Assessments/Reports - participate in any assistance or treatment considered appropriate for misuse of class A drugs"
+-
+  type_id: "1aa6a828-fedb-43bd-89e8-bc74586d5e85"
+  short_code: "PORAR3"
+  label: "Assessments/Reports - provide pre-sentence drug test samples"
+-
+  type_id: "12e15e99-e0f9-4e6c-bf1c-1de8bdda1f3b"
+  short_code: "PORAR7"
+  label: "Assessments/Reports - report to a youth justice team for a report to be made"
+-
+  type_id: "09be7e95-2ed6-448c-9550-fd2f84a0c9e3"
+  short_code: "PORAR5"
+  label: "Assessments/Reports - report to the local office of a provider of probation services for a report to be made"
+-
+  type_id: "136725da-5b0a-43d3-adac-54f916bcf2bb"
+  short_code: "PORAR4"
+  label: "Assessments/Reports - report to the local probation office for a report to be made"
+-
+  type_id: "525c4660-9a0b-4a86-80fc-0efce539d6a5"
+  short_code: "PORAR1"
+  label: "Assessments/Reports - undergo an assessment for dependency on Class A drugs and participate in any follow-up assessment, assistance or treatment considered appropriate"
+-
+  type_id: "c93c5a18-838a-41d3-a017-c203b37f5655"
+  short_code: "DEF"
+  label: "At request of the defence"
+-
+  type_id: "1d55fdeb-7dbc-46ec-b3ff-7b15fe08a476"
+  short_code: "PROS"
+  label: "At request of the prosecution"
+-
+  type_id: "9b816cc1-7836-44b2-a706-b09ab110f790"
+  short_code: "CBBCA"
+  label: "Bail granted conditionally pending appeal to the Court of Appeal Criminal Division"
+-
+  type_id: "52c3a7dc-3ec2-4d42-b808-24d69d645afe"
+  short_code: "BAILREVC"
+  label: "Bail reviewed - conditions varied or imposed"
+-
+  type_id: "96304290-42d3-4e51-b743-f59c15b5a20d"
+  short_code: "BOPG"
+  label: "Bind Over Parent / Guardian"
+-
+  type_id: "76c0d994-decd-4a2a-93ca-958f4595181e"
+  short_code: "BOJ"
+  label: "Bind over to come up for judgment when called on"
+-
+  type_id: "e2f51977-ea53-4ac8-8951-75975da06bc5"
+  short_code: "BOCOND"
+  label: "Bind over to keep the peace"
+-
+  type_id: "1aa874c4-d4de-49bd-b3e3-de8b326f186a"
+  short_code: "BOI"
+  label: "Bind over to keep the peace and Imprison"
+-
+  type_id: "2c2bc8f2-4dd5-4670-b391-bdaca5b3e4f0"
+  short_code: "BOW"
+  label: "Bind over witness to keep the peace"
+-
+  type_id: "c0924745-4afd-4cc6-b26b-d130915714c1"
+  short_code: "BOWI"
+  label: "Bind over witness to keep the peace and Imprison"
+-
+  type_id: "a0bdcc1b-fd72-4515-91ba-01807dfdf880"
+  short_code: "CPH"
+  label: "Case part heard"
+-
+  type_id: "e3fb46ee-e406-4f73-9bf1-71d513da8cc7"
+  short_code: "ROPENED"
+  label: "Case reopened"
+-
+  type_id: "3460fd99-92b8-4e6d-857d-cef2a085ff56"
+  short_code: "CC232"
+  label: "Certificate of conviction under Section 232A of the Criminal Justice Act 2003 / Section 310 of the Sentencing Act 2020"
+-
+  type_id: "e617e587-7276-4434-b676-d0d1c84e317c"
+  short_code: "TAINTAQ"
+  label: "Certificate of Tainted Acquittal"
+-
+  type_id: "056b630b-b743-45fd-ba33-1b16774f7534"
+  short_code: "LACLAMP"
+  label: "Clamping order (non payment of criminal legal aid)"
+-
+  type_id: "604b831e-472b-4a6f-98e5-35f66aa35bda"
+  short_code: "CLOPO"
+  label: "Closure order"
+-
+  type_id: "1f049b19-8708-4059-a337-d97ed71f6083"
+  short_code: "CLOSEE"
+  label: "Closure order extended"
+-
+  type_id: "c5c66c82-5c4f-4d70-80bf-f2db676fd6ca"
+  short_code: "CCSCORP"
+  label: "Committed to Crown Court for Sentence - corporation"
+-
+  type_id: "35430208-3705-44ce-b5d5-153c0337f6ab"
+  short_code: "CCSIB"
+  label: "Committed to Crown Court for sentence - in custody with bail direction"
+-
+  type_id: "3132bf21-692c-497a-9de1-56c9e137bab8"
+  short_code: "CCSI"
+  label: "Committed to Crown Court for sentence in custody"
+-
+  type_id: "a6b9fa40-dac3-4fdd-8c8a-257f47a72c48"
+  short_code: "MHCCRH"
+  label: "Committed to Crown Court for sentence in hospital for Restriction Order"
+-
+  type_id: "61dc2dfb-df0a-4ea3-8821-4506cb51e7ec"
+  short_code: "CCSILA"
+  label: "Committed to Crown Court for sentence in Local Authority Accommodation"
+-
+  type_id: "e29075e0-3b52-4340-bd39-e47887a2322e"
+  short_code: "MHCCRP"
+  label: "Committed to Crown Court for sentence in prison for restriction order"
+-
+  type_id: "404de620-d5ce-4eb4-87c4-f7e96271d240"
+  short_code: "CCSIYDA"
+  label: "Committed to Crown Court for sentence in Youth Detention Accommodation"
+-
+  type_id: "b0076de5-5769-472f-b97d-31f3b5688cbf"
+  short_code: "CCSC"
+  label: "Committed to Crown Court for sentence on conditional bail"
+-
+  type_id: "3c03001c-56b3-4c64-bc0f-a3c57c3f424f"
+  short_code: "CCSU"
+  label: "Committed to Crown Court for sentence on unconditional bail"
+-
+  type_id: "3d478ff9-2d62-4a32-b2d6-3f0489c99a6e"
+  short_code: "CCSBCERT"
+  label: "Committed to Crown Court for sentence. Details of breaches found by the court"
+-
+  type_id: "07279eef-d996-459c-9cbb-e354cc5bb71e"
+  short_code: "CCQB"
+  label: "Committed to the Crown Court in custody for consideration of the question of bail in a charge of murder"
+-
+  type_id: "72393fb6-77dd-45b2-98f5-6612966de882"
+  short_code: "yoi"
+  label: "Committed to young offender institution"
+-
+  type_id: "4a026ff3-e1aa-407e-aafa-015723c1dbd0"
+  short_code: "COV"
+  label: "Community order amended"
+-
+  type_id: "418b3aa7-65ab-4a4a-bab9-2f96b698118c"
+  short_code: "co"
+  label: "Community order England / Wales"
+-
+  type_id: "ae89b99c-e0e3-47b5-b218-24d4fca3ca53"
+  short_code: "FCOMP"
+  label: "Compensation"
+-
+  type_id: "d27c9b7c-93df-4d79-8880-68f98e05473b"
+  short_code: "CALAN"
+  label: "Compensation against LA- Notice"
+-
+  type_id: "c03d6fc1-0aa2-4e6c-a1d5-0ff501e1ae6c"
+  short_code: "CMPR"
+  label: "Compensation order reduced"
+-
+  type_id: "0649851f-01f8-48fb-928d-6fe100042b2a"
+  short_code: "PORCO3"
+  label: "Computer -  not to use"
+-
+  type_id: "6889288e-5e4a-4523-be2c-cc993a00af29"
+  short_code: "PORCO2"
+  label: "Computer - not to delete any history of computer use"
+-
+  type_id: "f5eb4016-d862-4b0a-b9bc-7b3e535476e5"
+  short_code: "PORCO4"
+  label: "Computer - not to possess any device capable of storing digital images unless it is made available on request"
+-
+  type_id: "bd82eb10-60c4-437d-80e1-f4aff5a7e3d8"
+  short_code: "PORCO1"
+  label: "Computer - not to use any device capable of accessing the internet unless it can retain and display a history of internet use and it is made available to police for inspection upon request"
+-
+  type_id: "e2330e83-a07a-4961-95f3-e97a2f190f91"
+  short_code: "CDEMPT"
+  label: "Condemnation of Terrorist Publications"
+-
+  type_id: "554c2622-c1cc-459e-a98d-b7f317ab065c"
+  short_code: "CD"
+  label: "Conditional discharge"
+-
+  type_id: "cb0842d5-9b42-4930-99b3-ae835b56aa56"
+  short_code: "CDN"
+  label: "Conditional discharge (no notice produced)"
+-
+  type_id: "31b29c58-cfd2-41c6-addf-53f5a2c99fdc"
+  short_code: "CON"
+  label: "Confiscation"
+-
+  type_id: "76b02133-4927-4f21-9f79-1ce361a17b0f"
+  short_code: "CONFAA"
+  label: "Confiscation order"
+-
+  type_id: "93f72bfb-00b7-4a12-9b1c-d4c2f3ab1006"
+  short_code: "CONFD"
+  label: "Confiscation order discharged"
+-
+  type_id: "733545c5-5612-40b8-bd81-df1a6a154182"
+  short_code: "CONF"
+  label: "Confiscation order where Court does not decide the available amount"
+-
+  type_id: "30d79db7-37fa-4c89-9129-926aa633d186"
+  short_code: "CONTF"
+  label: "Contempt of court findings"
+-
+  type_id: "0ced3039-579c-48a3-9274-cee8c68ba608"
+  short_code: "DCDO"
+  label: "Contingent destruction order for dog (proper control)"
+-
+  type_id: "5f1ba04a-b32c-4659-9333-7f190fd2e4c2"
+  short_code: "CDD"
+  label: "Contingent destruction order for dog (unless exemption)"
+-
+  type_id: "fb1a3668-4675-4541-ad61-7ca3c24ca0cc"
+  short_code: "QC"
+  label: "Conviction quashed"
+-
+  type_id: "384babe5-c734-4208-a2e9-297573e112d3"
+  short_code: "CORP"
+  label: "Corporation sent to Crown Court for trial"
+-
+  type_id: "76d43772-0660-4a33-b5c6-8f8ccaf6b4e3"
+  short_code: "FCOST"
+  label: "Costs"
+-
+  type_id: "f5d492b8-a09b-4f70-9ceb-aa06c306a7dc"
+  short_code: "FCPC"
+  label: "Costs to Crown Prosecution Service"
+-
+  type_id: "2236c06f-ad8e-4620-abbe-0ee214fa885c"
+  short_code: "CQUASH"
+  label: "Count quashed"
+-
+  type_id: "685cc7e9-8bd1-4559-a05c-d8a7a89f9779"
+  short_code: "cremfile"
+  label: "Count to remain on file"
+-
+  type_id: "b8cf3072-e1df-4b81-800b-181335dd735f"
+  short_code: "COVID"
+  label: "COVID-19 pandemic impacts"
+-
+  type_id: "56e808c5-cd8f-4882-b8e2-c2f615e09c11"
+  short_code: "CRIMBO"
+  label: "Criminal behaviour order"
+-
+  type_id: "f0395277-4d26-4785-acb5-5be597d97ae6"
+  short_code: "CRIMBOF"
+  label: "Criminal behaviour order until further order"
+-
+  type_id: "3cf4b38f-004d-4eb4-8fdb-5d285c11ab47"
+  short_code: "CRIMBV"
+  label: "Criminal behaviour order variation"
+-
+  type_id: "9f88fcf8-d880-468b-ba2a-9e274f6c9518"
+  short_code: "CURFREQ"
+  label: "Curfew requirement"
+-
+  type_id: "35281909-a205-450e-94e2-fc1121493530"
+  short_code: "CUREM"
+  label: "Curfew requirement with electronic monitoring"
+-
+  type_id: "3f608dba-20ad-4710-bebc-d78b4b3ff08d"
+  short_code: "CFL"
+  label: "Custody for life"
+-
+  type_id: "d844cdd8-c110-4bb8-b8f2-1a8bd5fdc0c7"
+  short_code: "LIMPS2O"
+  label: "Custody for life for second listed offence (S.273 SA 2020 / S.224A CJA 2003)"
+-
+  type_id: "6e42d694-a785-4cbf-a4a8-09f2d1802d4d"
+  short_code: "CFLS"
+  label: "Custody for life for serious offence (S.274 SA 2020 / S.225 CJA 2003)"
+-
+  type_id: "1eaf4352-7d9f-4e6e-b0aa-ce27a8300b74"
+  short_code: "DWA"
+  label: "Dealt with at away Court"
+-
+  type_id: "b565b0b3-ccee-4807-9c21-3167bc04197f"
+  short_code: "DWB"
+  label: "Dealt with on behalf of other Court"
+-
+  type_id: "0a685c6d-cf16-4027-885f-0ef908991d72"
+  short_code: "RECO"
+  label: "Decision of the Court about the recoverable amount"
+-
+  type_id: "7f97155f-ff61-4349-bd24-f4b4684e645b"
+  short_code: "RECA"
+  label: "Decisions of the Court about the recoverable amount"
+-
+  type_id: "8f9539a0-bd05-4002-9146-d55920cbab9e"
+  short_code: "deads"
+  label: "Defendant committed suicide"
+-
+  type_id: "52770cf4-41a8-4c04-a41c-2b12a95cb8dd"
+  short_code: "dead"
+  label: "Defendant has died"
+-
+  type_id: "92e15189-c44c-47af-a6d1-e5e2f1f54c92"
+  short_code: "barring"
+  label: "Defendant notified will or may be subject to barring from working with children and/or vulnerable adults"
+-
+  type_id: "0b472a9c-5bef-4de7-bbd9-20d22e6d07eb"
+  short_code: "DCCFSA"
+  label: "Defendant's costs payable from central funds  - sum assessed"
+-
+  type_id: "b2fb2c0e-5c71-4a07-a870-506030f2d5ce"
+  short_code: "DCCFSTA"
+  label: "Defendant's costs payable from central funds  - sum to be assessed"
+-
+  type_id: "8c67b30a-418c-11e8-842f-0ed5f89f718b"
+  short_code: "DDCH"
+  label: "Defendant's details changed"
+-
+  type_id: "7dcc9315-917f-408c-bb77-df8b978f503d"
+  short_code: "DS"
+  label: "Deferred sentence"
+-
+  type_id: "852cf8c1-bb0f-444f-97f1-64ff8561413d"
+  short_code: "ADESF"
+  label: "Destruction of animals involved in fighting made under Section 38 Animal Welfare Act 2006"
+-
+  type_id: "892de3ce-1e80-454e-8c72-44e694b06e93"
+  short_code: "DETMP"
+  label: "Detained at Her Majesty's pleasure (under 18)(S.259 SA 2020 / S.90 PCC(S)A 2020)"
+-
+  type_id: "70fe7114-b511-4d9b-a550-2c040b9a8d34"
+  short_code: "DETSO"
+  label: "Detained for specified period for serious offence (under 18)(S.250 SA 2020 / S.91 PCC(S)A 2000)"
+-
+  type_id: "6bdf9b66-ba54-44ad-921a-9700bc56343c"
+  short_code: "DCHPS"
+  label: "Detention 1 day in courthouse or police station"
+-
+  type_id: "66a52d4d-7ec6-430d-a2fe-5963fe9ba095"
+  short_code: "DTO"
+  label: "Detention and training order"
+-
+  type_id: "035b0eab-7aca-4037-9bf2-02135d128598"
+  short_code: "DYDA"
+  label: "Detention in youth detention accommodation (breach requirement)"
+-
+  type_id: "f62d4a71-0f52-402e-9223-5dcbcc9a0021"
+  short_code: "NXX"
+  label: "Direction made under section 36 of the Youth Justice and Criminal Evidence Act 1999 that the accused shall not cross examine the following witness in person"
+-
+  type_id: "d3139b79-696b-4cb7-a39d-7f06fcc24f4a"
+  short_code: "DISCH"
+  label: "Discharged"
+-
+  type_id: "cd7eb000-e95e-426d-958a-44cffc01d6d8"
+  short_code: "DISCLO"
+  label: "Disclosure order"
+-
+  type_id: "4850390f-13b3-4aa0-bae5-2dd0427b97eb"
+  short_code: "disc"
+  label: "Discontinued"
+-
+  type_id: "cf8a3c59-63f5-4757-8783-88f1e31aa653"
+  short_code: "DDDTO"
+  label: "Discretionary disqualification until test passed only"
+-
+  type_id: "20a7e0f4-abc5-4beb-8af0-a327de1d6e7e"
+  short_code: "DDDT"
+  label: "Discretionary with disqualification until ordinary test passed"
+-
+  type_id: "14d66587-8fbe-424f-a369-b1144f1684e3"
+  short_code: "DISM"
+  label: "Dismissed"
+-
+  type_id: "512cd848-5092-4099-b12b-26f5328f0707"
+  short_code: "DNULL"
+  label: "Dismissed - proceedings deemed a nullity"
+-
+  type_id: "66e5680a-7f1f-49e3-b790-b87f5f1a61ed"
+  short_code: "DIC"
+  label: "Dismissed (civil matter)"
+-
+  type_id: "07dc4087-c9cb-4b2e-9a80-85778689c401"
+  short_code: "DINI"
+  label: "Dismissed (no appearance by informant)"
+-
+  type_id: "f8bd4d1f-1467-4903-b1e6-d2249ccc8c25"
+  short_code: "DINE"
+  label: "Dismissed (No evidence offered)"
+-
+  type_id: "df0c3533-e4ce-4e10-b63f-8e81bd9c4242"
+  short_code: "DDRNL"
+  label: "Disqualification for life for non-endorsable offence"
+-
+  type_id: "2d1e7af9-e6c4-446f-b235-1eeafb8ca698"
+  short_code: "DDRAL"
+  label: "Disqualification for life for non-endorsable offence (assault by driving a motor vehicle)"
+-
+  type_id: "94abdf77-0fff-4040-ab38-93a29043012e"
+  short_code: "DDRVL"
+  label: "Disqualification for life for non-endorsable offence (vehicle used for purposes of crime)"
+-
+  type_id: "3ae7caf1-d5ff-4534-9fbb-17a3a04cb9ab"
+  short_code: "DDRN"
+  label: "Disqualification for non-endorsable offence"
+-
+  type_id: "663d9c78-0e56-4931-9f3a-5301a7e94147"
+  short_code: "DDRA"
+  label: "Disqualification for non-endorsable offence (assault by driving a motor vehicle)"
+-
+  type_id: "6ef33dcf-3fd3-46d6-bc41-f7bfb7f5ced6"
+  short_code: "DDRV"
+  label: "Disqualification for non-endorsable offence (vehicle used for purposes of crime)"
+-
+  type_id: "a4a6b90a-f5de-40a4-822a-1efe2a5bc49c"
+  short_code: "DFD"
+  label: "Disqualification from driving"
+-
+  type_id: "6d72674d-1ca6-490a-a1c4-0a6404169f66"
+  short_code: "DCO"
+  label: "Disqualification from involvement as a director etc of a company"
+-
+  type_id: "94f2989a-f4fd-4a39-a67f-71a4c0828f9d"
+  short_code: "ADISQL"
+  label: "Disqualification order relating to animals for life"
+-
+  type_id: "ef2eb362-dae5-4ad7-87c6-d1262d55533e"
+  short_code: "ADISQ"
+  label: "Disqualification order relating to animals for period"
+-
+  type_id: "46606b13-7ef9-463e-8b1a-ceeddc7b4b7e"
+  short_code: "DPRT"
+  label: "Disqualification period reduced to"
+-
+  type_id: "a59be074-10ea-4552-bc83-51d069304402"
+  short_code: "DCUSTL"
+  label: "Disqualified for having custody of a dog for life"
+-
+  type_id: "63f54361-69dd-4d8e-aece-8d87a6064d20"
+  short_code: "DCUST"
+  label: "Disqualified for having custody of a dog for period"
+-
+  type_id: "e715521c-a4ae-40b3-b127-7612a0b6f32e"
+  short_code: "DDISL"
+  label: "Disqualified from keeping a dog for life"
+-
+  type_id: "0b4fee38-ee9b-4aef-9179-cda3e1dbc607"
+  short_code: "DDIS"
+  label: "Disqualified from keeping a dog for period"
+-
+  type_id: "26eec36f-7bdc-4b1a-9b46-ba161f52a4e2"
+  short_code: "ANI"
+  label: "Disqualified from keeping animal stated for a defined period"
+-
+  type_id: "577acd37-0473-4ad8-ac06-adbf7e9beb2c"
+  short_code: "ANIL"
+  label: "Disqualified from keeping stated animal for life"
+-
+  type_id: "238fc228-f948-430e-b0a1-7c9bdcafac46"
+  short_code: "DSPA"
+  label: "Driving disqualification suspended pending appeal"
+-
+  type_id: "d3ca848c-ab33-4650-a0e6-36f1b86998a2"
+  short_code: "DSPAS"
+  label: "Driving disqualification suspended pending appeal in a later session"
+-
+  type_id: "b0aeb4fc-df63-4e2f-af88-97e3f23e847f"
+  short_code: "LEN"
+  label: "Driving record endorsed (no points)"
+-
+  type_id: "cee54856-4450-4f28-a8a9-72b688726201"
+  short_code: "LEP"
+  label: "Driving record endorsed with penalty points"
+-
+  type_id: "6069e7b4-4fb1-4109-ad82-fc62bcd7d329"
+  short_code: "BWTD"
+  label: "Enforcement warrant with bail (dated)"
+-
+  type_id: "c39dc548-69ef-453b-9770-22959cdc27b1"
+  short_code: "BWTU"
+  label: "Enforcement warrant with bail (undated)"
+-
+  type_id: "3f68a99b-293b-483c-a4df-8751351ba6b4"
+  short_code: "NBWT"
+  label: "Enforcement warrant without bail"
+-
+  type_id: "4e170564-93b2-4d45-b653-90099acf8313"
+  short_code: "ESO"
+  label: "Engagement and support order"
+-
+  type_id: "c514dcec-804c-11e8-adc0-fa7ae01bbebc"
+  short_code: "EP"
+  label: "Equivocal plea"
+-
+  type_id: "8443967b-787f-4a03-a7ac-ce583160d9f1"
+  short_code: "EUROW"
+  label: "European Extradition Warrant Details"
+-
+  type_id: "7a31e2e7-3a90-4210-aa6e-b7c226af4b97"
+  short_code: "ERP"
+  label: "Exclusion not to enter for a period"
+-
+  type_id: "752aab8f-ba5f-45a8-80c8-4df7770e70e4"
+  short_code: "EXTDVS"
+  label: "Extended sentence of detention for violent, sexual or terrorism offence (18-20)(S.267 / s.226A CJA)"
+-
+  type_id: "1dd2e245-a9af-4d04-84b6-92f64dc312fe"
+  short_code: "EXTDVSU"
+  label: "Extended sentence of detention for violent, sexual or terrorism offence (under 18)(S.254 SA 2020 / S.226B CJA 2003)"
+-
+  type_id: "a920be42-b376-420b-ace9-d2d0634559b0"
+  short_code: "EXTIVS"
+  label: "Extended sentence of imprisonment for violent, sexual or terrorism offence (21 and over)(S.280 SA 2020 / S.226A CJA 2003)"
+-
+  type_id: "8eea9e98-bf07-4537-a9e6-4e0af43e3f65"
+  short_code: "E1A"
+  label: "Extradition Part 1 - Adjourn for consent to deal with other offences"
+-
+  type_id: "68bf682e-073c-46ad-83e0-edf528cfe856"
+  short_code: "E1BRCB"
+  label: "Extradition Part 1 - Breach/FTA - Remanded Conditional Bail"
+-
+  type_id: "cb909522-0ac6-412b-b931-70aea76368a7"
+  short_code: "E1BRC"
+  label: "Extradition Part 1 - Breach/FTA - Remanded in Custody"
+-
+  type_id: "704ddf59-320c-4c8d-8af3-ff0a0b5bfac0"
+  short_code: "E1BRRIB"
+  label: "Extradition Part 1 - Breach/FTA - Remanded in Custody with Bail Direction"
+-
+  type_id: "8c477dc3-ce3e-42f5-9efc-fa1501ef0a45"
+  short_code: "E1BRUCB"
+  label: "Extradition Part 1 - Breach/FTA - Remanded on Unconditional Bail"
+-
+  type_id: "d2f1fa4b-f8bd-498c-b67b-240bc228719c"
+  short_code: "E1CONOTR"
+  label: "Extradition Part 1 - Consent for other offences being dealt with"
+-
+  type_id: "f843eeea-4254-442a-8696-a622a1753e1b"
+  short_code: "E1BV"
+  label: "Extradition Part 1 Bail Varied after Order"
+-
+  type_id: "1811c93b-7be2-4ab9-9a44-156db1fb6493"
+  short_code: "E1CONC"
+  label: "Extradition Part 1 Consents in Custody"
+-
+  type_id: "7db1e14f-ce09-4a6d-ac69-0bf6d25fa887"
+  short_code: "E1CONCB"
+  label: "Extradition Part 1 Consents on Conditional Bail"
+-
+  type_id: "41d39307-9e0d-4bc4-9c45-4a6b36ab4f2f"
+  short_code: "E1CONUCB"
+  label: "Extradition Part 1 Consents on Unconditional Bail"
+-
+  type_id: "5525383f-3f2f-491f-8fd6-cc60235e465b"
+  short_code: "E1CONCRIB"
+  label: "Extradition Part 1 Consents Ordered in Custody with Bail Direction"
+-
+  type_id: "1a7d8a85-5364-408e-bd02-14f8722720d5"
+  short_code: "E1D"
+  label: "Extradition Part 1 Discharged"
+-
+  type_id: "c4fc495d-12e3-4110-89a2-398734903227"
+  short_code: "E1DAB"
+  label: "Extradition Part 1 Discharged - Remanded Conditional Bail Pending Appeal"
+-
+  type_id: "212eb7d4-3f04-4b17-8ae7-1bdd8703823f"
+  short_code: "E1DAC"
+  label: "Extradition Part 1 Discharged - Remanded in Custody Pending Appeal"
+-
+  type_id: "9ae1c868-b817-4f40-8bd1-f27351e62886"
+  short_code: "E1DARIB"
+  label: "Extradition Part 1 Discharged - Remanded in Custody Pending Appeal with Bail Direction"
+-
+  type_id: "36e380bf-9727-4262-9bb9-a9eaaf09aafe"
+  short_code: "E1DUCB"
+  label: "Extradition Part 1 Discharged - Remanded Unconditional Bail Pending Appeal"
+-
+  type_id: "cd4618b0-e285-4c9a-b3f6-85db0b76b803"
+  short_code: "E1C"
+  label: "Extradition Part 1 Ordered in Custody"
+-
+  type_id: "d7cb0193-c98d-4a56-9c4d-357593f9a473"
+  short_code: "E1NIC"
+  label: "Extradition Part 1 Ordered in Custody (no issues)"
+-
+  type_id: "2ed825ff-e9fd-47dc-a1ec-e23a8f1bea43"
+  short_code: "E1RIB"
+  label: "Extradition Part 1 Ordered in Custody with Bail Direction"
+-
+  type_id: "14782711-a874-4233-a322-8fd9cda93519"
+  short_code: "E1NIRIB"
+  label: "Extradition Part 1 Ordered in Custody with Bail Direction (no issues)"
+-
+  type_id: "f77e69cc-8776-4cad-b6ff-b7b9e294232c"
+  short_code: "E1CB"
+  label: "Extradition Part 1 Ordered on Conditional Bail"
+-
+  type_id: "104b6920-a213-4711-8ca0-f446663f615f"
+  short_code: "E1NICB"
+  label: "Extradition Part 1 Ordered on Conditional Bail (no issues)"
+-
+  type_id: "743f92c0-b3a1-409e-b126-950f866fa974"
+  short_code: "E1UCB"
+  label: "Extradition Part 1 Ordered on Unconditional Bail"
+-
+  type_id: "741822dc-f44a-42b5-a6da-74578253b14b"
+  short_code: "E1NIUCB"
+  label: "Extradition Part 1 Ordered on Unconditional Bail (no issues)"
+-
+  type_id: "f4d9af57-1426-42c6-89db-388ebf4341c6"
+  short_code: "E1RE"
+  label: "Extradition Part 1 Time for Removal Extended"
+-
+  type_id: "023e08a9-e9e4-4c4a-8d49-f8b71502e2ac"
+  short_code: "E2BV"
+  label: "Extradition Part 2 - Bail Varied after Order"
+-
+  type_id: "a23f000b-db5c-4ddc-97fa-fc3c7279eaeb"
+  short_code: "E2BRC"
+  label: "Extradition Part 2 - Breach/FTA - Remanded in Custody"
+-
+  type_id: "781b58ce-25d8-4e5d-ac7c-e90ebfe3a66c"
+  short_code: "E2BRRIB"
+  label: "Extradition Part 2 - Breach/FTA - Remanded in Custody with Bail Direction"
+-
+  type_id: "19c7e415-f427-4c8f-9b29-48c6d9944c3b"
+  short_code: "E2BRCB"
+  label: "Extradition Part 2 - Breach/FTA - Remanded on Conditional Bail"
+-
+  type_id: "1c7f63d4-a552-4bad-9208-6a4717c41d84"
+  short_code: "E2BRUCB"
+  label: "Extradition Part 2 - Breach/FTA - Remanded on Unconditional Bail"
+-
+  type_id: "8462f4b8-6f07-4e07-bc94-edd164bda32d"
+  short_code: "E2CONC"
+  label: "Extradition Part 2 - Consents in Custody"
+-
+  type_id: "13888bb0-e791-4766-8f6f-68b552490314"
+  short_code: "E2CONRIB"
+  label: "Extradition Part 2 - Consents in Custody with Bail Direction"
+-
+  type_id: "97cf6e31-8536-4668-ab8c-d9eebf075dc9"
+  short_code: "E2CONCB"
+  label: "Extradition Part 2 - Consents on Conditional Bail"
+-
+  type_id: "169fd937-6e4d-44b2-82cd-bfdd654c3cf8"
+  short_code: "E2CONUCB"
+  label: "Extradition Part 2 - Consents on Unconditional Bail"
+-
+  type_id: "11f145c9-fc20-49ec-8d3f-73a67cdbe226"
+  short_code: "E2C"
+  label: "Extradition Part 2 - Sent to the Secretary of State in Custody"
+-
+  type_id: "c2879b48-9ffd-4a5c-ba81-86c829048059"
+  short_code: "E2RIB"
+  label: "Extradition Part 2 - Sent to the Secretary of State in Custody with Bail Direction"
+-
+  type_id: "9f934386-89d7-40b4-85a3-82813c493cb4"
+  short_code: "E2CB"
+  label: "Extradition Part 2 - Sent to the Secretary of State on Conditional Bail"
+-
+  type_id: "50286528-5810-4529-9a02-9134e4340876"
+  short_code: "E2UCB"
+  label: "Extradition Part 2 - Sent to the Secretary of State on Unconditional Bail"
+-
+  type_id: "1fb18037-89d4-445e-a3a1-71cfddacff96"
+  short_code: "E2D"
+  label: "Extradition Part 2 Discharged"
+-
+  type_id: "76064312-cfe4-4c1c-b22e-a51675d2a605"
+  short_code: "E2DAB"
+  label: "Extradition Part 2 Discharged - Remanded Conditional Bail Pending Appeal"
+-
+  type_id: "ce6096a6-3d2e-46d0-9040-b35e8cb13f9d"
+  short_code: "E2DAC"
+  label: "Extradition Part 2 Discharged - Remanded in Custody Pending Appeal"
+-
+  type_id: "f5ed1e2d-8548-467b-a6b6-5d28a95b9a90"
+  short_code: "E2DARIB"
+  label: "Extradition Part 2 Discharged - Remanded in Custody Pending Appeal with Bail Direction"
+-
+  type_id: "443ec622-864a-4b4a-a5fa-292b1519c1e9"
+  short_code: "E2DUCB"
+  label: "Extradition Part 2 Discharged - Remanded Unconditional Bail Pending Appeal"
+-
+  type_id: "9f707be3-97fb-4ea8-984b-41547adc189c"
+  short_code: "FGMPOVP"
+  label: "Female genital mutilation protection order varied"
+-
+  type_id: "969f150c-cd05-46b0-9dd9-30891efcc766"
+  short_code: "FO"
+  label: "Fine"
+-
+  type_id: "c3179e14-8754-4496-9190-3a9e47da0af7"
+  short_code: "FBO"
+  label: "Football banning order"
+-
+  type_id: "d14c2611-0b4c-478c-a1ec-53bf44bcaa1f"
+  short_code: "FBOI"
+  label: "Football banning order arising from offence outside England and Wales"
+-
+  type_id: "1e5b87b6-e5d0-4417-86b3-f0baa7acda66"
+  short_code: "FBOC"
+  label: "Football banning order made on complaint"
+-
+  type_id: "adf86eb7-2eb7-4575-bab5-63001eb23382"
+  short_code: "FBOT"
+  label: "Football banning order terminated"
+-
+  type_id: "fefede3e-436b-4cd6-a967-7c63d1cb4bce"
+  short_code: "FBOTR"
+  label: "Football banning order termination refused"
+-
+  type_id: "73265700-cb68-4a88-86a8-53fcc6f5d6ba"
+  short_code: "FBOV"
+  label: "Football banning order varied"
+-
+  type_id: "746af2ca-6116-4653-8780-48e8daf20164"
+  short_code: "ABM"
+  label: "For a bail application to be made"
+-
+  type_id: "baeb58d5-727a-4cf1-80fc-1ce2ac26f57f"
+  short_code: "FCM"
+  label: "For a case management hearing (must attend)"
+-
+  type_id: "dd0798ff-c7e9-4c56-814a-4c7786ddc29c"
+  short_code: "FCMN"
+  label: "For a case management hearing (no need to appear)"
+-
+  type_id: "754648e5-7770-4486-97d0-84572cc6e956"
+  short_code: "LL"
+  label: "For a live link hearing"
+-
+  type_id: "f3e818b5-2e38-4cd9-8f68-6e2d9fab5304"
+  short_code: "MPR"
+  label: "For a medical or psychiatric report to be prepared"
+-
+  type_id: "80b4aa18-cc49-48b8-a489-704fc0f5aa8f"
+  short_code: "NH"
+  label: "For a Newton hearing"
+-
+  type_id: "029d370b-90f5-4650-b985-a61e9ec8db99"
+  short_code: "PSR"
+  label: "For a pre-sentence report to be prepared"
+-
+  type_id: "7341864c-ac5d-4bbf-8417-ba68171d6bf9"
+  short_code: "INT"
+  label: "For an interpreter to attend court"
+-
+  type_id: "4a8fa9dd-de9b-4d20-86aa-6476848bba7f"
+  short_code: "ADV"
+  label: "For consideration of advance information"
+-
+  type_id: "a491b93c-6d96-4431-93ee-180d87d6e94f"
+  short_code: "LAD"
+  label: "For legal advice or representation"
+-
+  type_id: "6469173f-3f20-4434-9da0-99b6d207dc04"
+  short_code: "NINE"
+  label: "For service of Section 9 witness statements"
+-
+  type_id: "4958de15-8a0a-4d2b-9f7e-56e037cf03da"
+  short_code: "trial"
+  label: "For the trial to take place"
+-
+  type_id: "2852b770-a7ad-11e8-98d0-529269fb1459"
+  short_code: "FDEST"
+  label: "Forfeiture and destruction"
+-
+  type_id: "7610d8a1-07fe-4e69-812d-22f821d3f334"
+  short_code: "FORFC"
+  label: "Forfeiture order (cash)"
+-
+  type_id: "285f5fb8-6c90-45ba-a7ce-4be76867f3e9"
+  short_code: "FORFMS"
+  label: "Forfeiture order (land vehicle - Modern Slavery Act 2015)"
+-
+  type_id: "32177be4-0a1f-4889-9ca2-c729f49d7d85"
+  short_code: "forfov"
+  label: "Forfeiture order (other than vehicle)"
+-
+  type_id: "290435b9-cce7-43be-b340-1c7db48c5413"
+  short_code: "FORVEPO"
+  label: "Forfeiture order (Vehicle - Section 33C of the Environmental Protection Act 1990)"
+-
+  type_id: "ea0f378d-b33c-4be5-af63-6d3d73178750"
+  short_code: "REVU"
+  label: "Further review of court order"
+-
+  type_id: "cfe8ea34-4461-42e1-836c-2319924b4ea6"
+  short_code: "DGEN"
+  label: "General disqualification for a period"
+-
+  type_id: "95d8d079-3680-4819-9bf7-5e268aae8ff0"
+  short_code: "DGENL"
+  label: "General disqualification for life"
+-
+  type_id: "2b3f7c20-8fc1-4fad-9076-df196c24b27e"
+  short_code: "G"
+  label: "Granted"
+-
+  type_id: "ef1f6633-3c0b-4adc-b5b8-8ef21e91417f"
+  short_code: "MHGO"
+  label: "Guardianship Order"
+-
+  type_id: "9161f3cb-e821-44e5-a9ee-4680b358a037"
+  short_code: "GPTAC"
+  label: "Guilty plea taken into account"
+-
+  type_id: "ed6c7388-9103-41c2-af4f-3fe69d8582e8"
+  short_code: "HD"
+  label: "Hearsay direction"
+-
+  type_id: "04437aef-8b44-424e-9cd0-75a10a00f256"
+  short_code: "DHA"
+  label: "Hospital direction and limitation direction"
+-
+  type_id: "a96c1135-3057-453e-80c8-602a7f79013a"
+  short_code: "MHHO"
+  label: "Hospital order"
+-
+  type_id: "abb95a52-2a75-40c3-8d3f-a1d75a199c47"
+  short_code: "imp"
+  label: "Imprisonment"
+-
+  type_id: "2f08896a-07b0-45b9-b7da-f919b8520480"
+  short_code: "IQUASH"
+  label: "Indictment quashed"
+-
+  type_id: "5ec54bfb-cde0-4ad2-bf87-d266e54fe072"
+  short_code: "IREMFILE"
+  label: "Indictment to remain on file"
+-
+  type_id: "a1f2e6d7-7a21-41f8-9a9a-854b25a606d4"
+  short_code: "INSUF"
+  label: "Insufficient court time to hear the case"
+-
+  type_id: "c2fa19f6-dabf-43fc-9f12-2347fc9b8cc5"
+  short_code: "CRIMBI"
+  label: "Interim criminal behaviour order made until further order"
+-
+  type_id: "9be66be8-58d2-430c-a0b7-7f759ab0e48a"
+  short_code: "MHHI"
+  label: "Interim hospital order"
+-
+  type_id: "cf50fa81-671e-4598-b42b-721e45288240"
+  short_code: "MHHIC"
+  label: "Interim hospital order extended"
+-
+  type_id: "76b5369f-8030-4472-b77a-ff724d845129"
+  short_code: "KCPOI"
+  label: "Interim knife crime prevention order"
+-
+  type_id: "a03c2035-9b51-4ce8-8149-3654b7c558e9"
+  short_code: "ISHPO"
+  label: "Interim sexual harm prevention order"
+-
+  type_id: "1123f154-af61-4ee1-9e22-91a8d92b0a27"
+  short_code: "ISRO"
+  label: "Interim sexual risk order"
+-
+  type_id: "381648c7-ca3e-4368-a75d-dbdebbf22bcd"
+  short_code: "SATPOI"
+  label: "Interim slavery and trafficking prevention order"
+-
+  type_id: "1f718324-37e4-45e6-8a98-52d5749e6348"
+  short_code: "ISTRO"
+  label: "Interim slavery and trafficking risk order"
+-
+  type_id: "fd270ec7-a30c-4731-b26e-613c0fe96320"
+  short_code: "KCPO"
+  label: "Knife crime prevention order"
+-
+  type_id: "58434a04-c731-42b2-94eb-f6d809423a96"
+  short_code: "KCPOV"
+  label: "Knife crime prevention order varied"
+-
+  type_id: "a40b540c-340d-4af7-b941-e517dc9a4a92"
+  short_code: "LAAG"
+  label: "Legal Aid Appeal Granted"
+-
+  type_id: "48965f2b-1060-4ead-a26d-2097a76c7364"
+  short_code: "LAAR"
+  label: "Legal Aid Appeal Refused"
+-
+  type_id: "cd7befa7-bade-4f84-8906-6d03a9d2c6c2"
+  short_code: "LAREP"
+  label: "Legal Aid Representation Varied"
+-
+  type_id: "422a9cce-79ca-4678-8824-8744b4e2d32e"
+  short_code: "LAREPCC"
+  label: "Legal Aid Representation Varied (Crown Court)"
+-
+  type_id: "c5520033-7389-4815-a5c9-bf28fcebb134"
+  short_code: "LATG"
+  label: "Legal Aid Transfer Granted"
+-
+  type_id: "02f9f594-b283-48c5-be12-d235eb8919d9"
+  short_code: "LATR"
+  label: "Legal Aid Transfer Refused"
+-
+  type_id: "0d990e02-9f25-4511-a6af-9e10cf4abb87"
+  short_code: "LAWD"
+  label: "Legal Aid Withdrawn"
+-
+  type_id: "afc127e1-789a-4cbd-b48d-c3009d8f11b8"
+  short_code: "LOO"
+  label: "Length of order"
+-
+  type_id: "3bfd5af4-b80a-405c-9089-1a533aec0ace"
+  short_code: "LPEX"
+  label: "Licensed Premises - Exclusion Order"
+-
+  type_id: "d65f3285-f5f0-4ab1-b703-0c95f0f6ed89"
+  short_code: "LIMP2"
+  label: "Life imprisonment for second listed offence (S.283 SA 2020 / S.224A CJA 2003)"
+-
+  type_id: "cf70d7ed-8049-4fe2-b02f-5a23b5e39184"
+  short_code: "LIMPSO"
+  label: "Life imprisonment for serious offence (S.274)"
+-
+  type_id: "96349367-2d04-4265-978f-6c6b417497fd"
+  short_code: "MCL"
+  label: "Mandatory custody for life"
+-
+  type_id: "cfbe83c8-935b-4410-a68c-49452519f2d3"
+  short_code: "MLI"
+  label: "Mandatory life imprisonment"
+-
+  type_id: "dc86a3bd-2fa0-4f90-b046-4ecc8d6c6265"
+  short_code: "MHTR"
+  label: "Mental health treatment"
+-
+  type_id: "5473390c-dbe2-4026-a95f-8bb99d2e011d"
+  short_code: "MHTRNR"
+  label: "Mental health treatment non-residential patient"
+-
+  type_id: "54f41331-f5cb-44b3-ab88-ae063fb39e26"
+  short_code: "MHTRR"
+  label: "Mental health treatment residential patient"
+-
+  type_id: "69b94eb5-cc9c-4b36-901e-09169e588af0"
+  short_code: "MAC"
+  label: "Mention at conclusion"
+-
+  type_id: "1bcdae76-37f8-4331-9076-fd46dbd4b1fc"
+  short_code: "MINDDB"
+  label: "Minimum sentence of detention in young offender institution for domestic burglary"
+-
+  type_id: "7f410e16-bda3-4bca-944e-ef88832e41b5"
+  short_code: "MINDDT"
+  label: "Minimum sentence of detention in young offender institution for drug trafficking"
+-
+  type_id: "97fdae65-37a0-4156-912f-a35363e26f31"
+  short_code: "MINIDB"
+  label: "Minimum sentence of Imprisonment for domestic burglary"
+-
+  type_id: "47f143eb-7961-4e85-834b-1aa5e47cb3ef"
+  short_code: "MINIDT"
+  label: "Minimum sentence of Imprisonment for drug trafficking"
+-
+  type_id: "1c6567ac-cdff-43ad-95fe-ebc68960d708"
+  short_code: "MPSO"
+  label: "Money payment supervision order"
+-
+  type_id: "f5759650-31a1-11e8-b467-0ed5f89f718b"
+  short_code: "SECMF"
+  label: "Money security forfeited"
+-
+  type_id: "a395f8db-9473-4172-8474-c0fb5e1bbefb"
+  short_code: "DISG"
+  label: "Motivated by hostility towards persons who have a disability or a particular disability"
+-
+  type_id: "f00359b5-7303-403b-b59e-0b1a1daa89bc"
+  short_code: "NEXH"
+  label: "Next hearing"
+-
+  type_id: "fbed768b-ee95-4434-87c8-e81cbc8d24c8"
+  short_code: "NHCCS"
+  label: "Next hearing in Crown Court"
+-
+  type_id: "70c98fa6-804d-11e8-adc0-fa7ae01bbebc"
+  short_code: "NHMC"
+  label: "Next hearing in magistrates' court"
+-
+  type_id: "29e02fa1-42ce-4eec-914e-e62508397a16"
+  short_code: "NCR"
+  label: "No compensation reason"
+-
+  type_id: "af322d0a-ba2a-47f1-8d46-7b3ea423d689"
+  short_code: "NDMC"
+  label: "No disqualification - Mitigating Circumstances"
+-
+  type_id: "808313d1-f450-4410-b2f1-97409d7b4074"
+  short_code: "NDSR"
+  label: "No disqualification - Special Reasons"
+-
+  type_id: "f121db73-57fb-4f74-9ab1-0843aabe4605"
+  short_code: "NESR"
+  label: "No endorsement - Special Reasons"
+-
+  type_id: "88fd00c6-d63c-4f4e-9a86-4628856a9557"
+  short_code: "NGJ"
+  label: "No evidence offered - verdict of not guilty by order of Judge"
+-
+  type_id: "187f05c9-8467-4741-8b9e-7a3a5b06f6f6"
+  short_code: "NOEVS"
+  label: "No evidence offered (summary offence in the Crown Court)"
+-
+  type_id: "5e272729-a76b-485c-8784-bddef53f700e"
+  short_code: "NFBO"
+  label: "No football banning order"
+-
+  type_id: "8fce92ff-22af-4d33-999f-e9c5b9b0f429"
+  short_code: "NFAC"
+  label: "No further action taken in respect of conduct (contempt)"
+-
+  type_id: "baf94928-04ae-4609-8e96-efc9f081b2be"
+  short_code: "NCOSTS"
+  label: "No order for costs"
+-
+  type_id: "49939c7c-750f-403e-9ce1-f82e3e568065"
+  short_code: "NSP"
+  label: "No separate penalty"
+-
+  type_id: "e513f78d-6ba3-45b2-a3f9-668c9543f76c"
+  short_code: "NOTRO"
+  label: "No travel restriction order"
+-
+  type_id: "23d744a1-d71c-4849-b6a3-b736d71ea438"
+  short_code: "NOVID"
+  label: "No video link reason"
+-
+  type_id: "8c81d29b-5621-4f2c-9e05-297241822ba6"
+  short_code: "DDOR"
+  label: "Obligatory but reduced disqualification for special reasons"
+-
+  type_id: "b2d06bbc-e90e-4df8-8851-6e4a70894828"
+  short_code: "DDO"
+  label: "Obligatory disqualification"
+-
+  type_id: "77605e84-5f8c-45b3-b5d6-0ffda8bfa058"
+  short_code: "DDOL"
+  label: "Obligatory disqualification for life"
+-
+  type_id: "d1783a6d-c598-4bf1-add8-e5a45cb915ea"
+  short_code: "DDOTEL"
+  label: "Obligatory disqualification for life and until extended test passed"
+-
+  type_id: "c2c346d1-dc13-48c8-b557-ef3dabcb1b9b"
+  short_code: "DDOTE"
+  label: "Obligatory disqualification until extended test passed"
+-
+  type_id: "456d4705-b04c-4b45-9ae9-abd6e721c659"
+  short_code: "ONI"
+  label: "Offence not on indictment"
+-
+  type_id: "9bb5d310-0fef-450d-91d6-117f894001bb"
+  short_code: "TIC"
+  label: "Offences taken into consideration"
+-
+  type_id: "5e253119-9aab-4d0d-8288-bcdbf3695d86"
+  short_code: "ORD"
+  label: "Order"
+-
+  type_id: "7959646e-ce77-4862-b6fe-5fb3a953c427"
+  short_code: "ODIS"
+  label: "Order discharged"
+-
+  type_id: "b6eeca33-a188-4d00-a470-391b245c45a4"
+  short_code: "ADEP"
+  label: "Order for deprivation of animal"
+-
+  type_id: "b914e5b8-b84c-4ffd-8d20-634d8ad6ef00"
+  short_code: "DEPV"
+  label: "Order for deprivation of rights (vehicle) - Section 143 of the Powers of Criminal Courts (Sentencing) Act 2000 / Section 155 of the Sentencing Act 2020"
+-
+  type_id: "0a68824c-e5bb-43d0-b3c1-ae8aee0bfec8"
+  short_code: "DEPO"
+  label: "Order for deprivation of the defendant's rights (other than vehicle) - Section 143 of the Powers of Criminal Courts (Sentencing) Act 2000 / Section 155 of the Sentencing Act 2020"
+-
+  type_id: "cf10ee96-c82c-46c7-8a34-0c9d08aca134"
+  short_code: "ADES"
+  label: "Order for destruction in the interests of the animal made under Section 37 Animal Welfare Act 2006"
+-
+  type_id: "bbc3f8e9-b29c-40d2-8564-0e918693ed89"
+  short_code: "DN"
+  label: "Order for dog to be neutered"
+-
+  type_id: "0d9938aa-4291-4fe2-b4a6-b5dc4d0b4e11"
+  short_code: "CDREM"
+  label: "Order for remittal of a civil debt"
+-
+  type_id: "e3b29e1a-6c4c-4b17-ad5d-bd32d311edaf"
+  short_code: "DEROSA"
+  label: "Order made under Section 39 of the Sentencing Act 2020"
+-
+  type_id: "2e83102c-a262-4bb3-a48d-c2107a094a66"
+  short_code: "OREV"
+  label: "Order revoked"
+-
+  type_id: "98dc94c8-45f0-4961-bb34-cd979dcc2874"
+  short_code: "DDES"
+  label: "Order that dog be destroyed"
+-
+  type_id: "14f22747-685e-4bd9-91e7-fb372d8c3b72"
+  short_code: "OTC"
+  label: "Order to continue"
+-
+  type_id: "95d2a99a-d8ce-43ae-b5d0-d0dfd8d850f1"
+  short_code: "DKPC"
+  label: "Order to keep dog under proper control"
+-
+  type_id: "feb9ebe0-b9bf-4b71-92e3-dcf5ceeeeada"
+  short_code: "CFCAOA"
+  label: "Other party's costs from central funds - sum assessed"
+-
+  type_id: "ed37c314-3700-4646-94f7-b2ec2cf8cef2"
+  short_code: "CFCAOTA"
+  label: "Other party's costs from central funds - sum to be assessed"
+-
+  type_id: "9f275019-2de3-4bfb-8a39-4931d69d71df"
+  short_code: "OTPR"
+  label: "Other prohibitions"
+-
+  type_id: "abb3357b-7279-4ca1-bb63-aed322d92f6c"
+  short_code: "PARO"
+  label: "Parenting order"
+-
+  type_id: "158f2196-fe4e-4e69-bdfb-eeaba8abb432"
+  short_code: "PAROA"
+  label: "Parenting order (adult case)"
+-
+  type_id: "a1da4951-6587-4fdf-beb3-e0101517b42d"
+  short_code: "PAROACG"
+  label: "Parenting order (Adult case) with counselling and guidance sessions"
+-
+  type_id: "9ab81922-11e4-4050-aea3-46f49cb29949"
+  short_code: "PAROCG"
+  label: "Parenting order with counselling and guidance sessions"
+-
+  type_id: "b786ce8a-ce7a-4fa1-94ce-a3d9777574e4"
+  short_code: "IPC"
+  label: "Pay costs to named party (inter partes costs)"
+-
+  type_id: "7b0933f8-405e-434a-9bfe-871f794260cb"
+  short_code: "DDPR"
+  label: "Points but reduced disqualification for mitigating circumstance"
+-
+  type_id: "73fe22ca-76bd-4aba-bdea-6dfef8ee03a2"
+  short_code: "DDP"
+  label: "Points disqualification"
+-
+  type_id: "651cbf5b-b7f0-4921-ba01-e18ad2ac763b"
+  short_code: "DDPL"
+  label: "Points disqualification for life"
+-
+  type_id: "097dfa33-6c62-4ed1-af46-6c6786b66d65"
+  short_code: "DDPTE"
+  label: "Points with disqualification until extended test passed"
+-
+  type_id: "986fcd15-3d5e-46b8-91b0-e9ff0b116e8b"
+  short_code: "PY"
+  label: "Present yourself"
+-
+  type_id: "62510cc8-7dd6-4c98-bc3a-fa24c730f91c"
+  short_code: "STAYP"
+  label: "Proceedings stayed"
+-
+  type_id: "5d9865fd-2c26-4241-9203-69b752616263"
+  short_code: "RIBAWP"
+  label: "Prosecutor's appeal withdrawn (Defendant in Prison). Accordance with earlier decision"
+-
+  type_id: "5ab30f3f-ef9a-46d0-8ccc-ddd2be8f4eee"
+  short_code: "CFCAPA"
+  label: "Prosecutor's costs from central funds - sum assessed"
+-
+  type_id: "ab3df821-8a0b-408e-802d-ea04e3a1a8c5"
+  short_code: "CFCAPTA"
+  label: "Prosecutor's costs from central funds - sum to be assessed"
+-
+  type_id: "1e86205c-b992-4984-bcb2-c3c4b63daece"
+  short_code: "EXRIBA48"
+  label: "Prosecutor's notice of appeal received. Remanded in custody - Extradition"
+-
+  type_id: "af519666-bd10-423a-8f4b-9173a5daafca"
+  short_code: "PSPO"
+  label: "Psychoactive Substances Prohibition Order"
+-
+  type_id: "08f9b07e-ed90-4522-9d14-7d9162186758"
+  short_code: "PSPOA"
+  label: "Psychoactive Substances Prohibition Order with premises access prohibition"
+-
+  type_id: "bc4bb54f-1fa8-43d8-8021-c1e07994d5f6"
+  short_code: "RA"
+  label: "Racially aggravated offence"
+-
+  type_id: "07f5229c-cf4c-45f2-a49b-703d11bf5b41"
+  short_code: "RARE"
+  label: "Racially and religiously aggravated offence"
+-
+  type_id: "4f54fb4b-71ce-41e3-8654-4a305e756c4a"
+  short_code: "reas"
+  label: "Reasons"
+-
+  type_id: "600edfc3-a584-4f9f-a52e-5bb8a99646c1"
+  short_code: "SUMRCC"
+  label: "Refer for a full court hearing"
+-
+  type_id: "f029c131-16b3-4a6d-895d-00b609d858e9"
+  short_code: "YOP"
+  label: "Referral order"
+-
+  type_id: "bcd4f58f-c53e-420f-8d54-c42f125522f9"
+  short_code: "RE"
+  label: "Religiously aggravated offence"
+-
+  type_id: "22e52dce-1e58-464f-bd48-7e219747f08f"
+  short_code: "RIYDA"
+  label: "Remand in Youth Detention Accommodation"
+-
+  type_id: "3b86539b-4572-4eb6-a85e-6b9603da0e87"
+  short_code: "ROR"
+  label: "Remand on own Recognisance"
+-
+  type_id: "16a25613-487d-4359-8fc6-9a3968ff669f"
+  short_code: "REMMED"
+  label: "Remanded for medical reports"
+-
+  type_id: "d0a369c9-5a28-40ec-99cb-da7943550b18"
+  short_code: "RI"
+  label: "Remanded in custody"
+-
+  type_id: "3a529001-2f43-45ba-a0a8-d3ced7e9e7ad"
+  short_code: "RC"
+  label: "Remanded on conditional bail"
+-
+  type_id: "16e77ec9-b350-4525-8888-5b3242a5e361"
+  short_code: "RDLO"
+  label: "Remedial Order"
+-
+  type_id: "6ab74bbd-3b3b-4658-a6f7-b2be94bd3baa"
+  short_code: "REPO"
+  label: "Reparation order"
+-
+  type_id: "37853bb7-8844-4cc1-8a34-fa7e4d89d87f"
+  short_code: "RESTIT"
+  label: "Restitution Order"
+-
+  type_id: "8e7f7ffd-eceb-44ea-8efd-bc6c99913d85"
+  short_code: "RESTRAD"
+  label: "Restraining order discharged"
+-
+  type_id: "c2200b1d-a47d-4d02-9b88-58f8bbed7ea9"
+  short_code: "RESTRAV"
+  label: "Restraining order varied"
+-
+  type_id: "b3666e81-b553-4a15-afa3-ad954fedc1e5"
+  short_code: "RDET"
+  label: "Return to detention order (breach requirement of DTO)"
+-
+  type_id: "6c535814-ea88-42da-a347-31fb6da7d851"
+  short_code: "RDETO"
+  label: "Return to detention order (offence committed during currency of a detention and training order)"
+-
+  type_id: "66105417-41c8-420d-820f-40b61b507442"
+  short_code: "vulnerability"
+  label: "Risk or vulnerability factors"
+-
+  type_id: "0d7aa3c4-839c-4d91-892d-059c5e997e5b"
+  short_code: "RUREAS"
+  label: "Ruling"
+-
+  type_id: "491e30e9-2508-4e3a-9291-dfaf16d975ab"
+  short_code: "SCC"
+  label: "Sent to Crown Court for trial"
+-
+  type_id: "fd31a2e7-5b38-4297-a442-3065141f3660"
+  short_code: "CCICORP"
+  label: "Sent to Crown Court for trial - Corporation"
+-
+  type_id: "dce6c482-7d60-4272-bd06-cbb94d15f039"
+  short_code: "CCIITDH"
+  label: "Sent to Crown Court for trial and transfer direction to Hospital"
+-
+  type_id: "4ea1c855-03cc-48f8-8d58-970ea673f15d"
+  short_code: "CCII"
+  label: "Sent to Crown Court for trial in custody"
+-
+  type_id: "d4fa6715-b1b3-4145-bedc-061ccf33df50"
+  short_code: "CCIILA"
+  label: "Sent to Crown Court for trial in Local Authority Accommodation"
+-
+  type_id: "d271def7-14a1-4a92-a40b-b6ee5d4654ff"
+  short_code: "CCIIYDA"
+  label: "Sent to Crown Court for trial in youth detention accommodation"
+-
+  type_id: "b318ca35-8b6a-41e5-a674-879ac9a05cc2"
+  short_code: "CCIC"
+  label: "Sent to Crown Court for trial on conditional bail"
+-
+  type_id: "705140dc-833a-4aa0-a872-839009fc4494"
+  short_code: "CCIU"
+  label: "Sent to Crown Court for trial on unconditional bail"
+-
+  type_id: "062373fb-ada8-49a1-b7de-659426ba6b88"
+  short_code: "CCIIB"
+  label: "Sent to Crown Court in custody for trial with bail direction"
+-
+  type_id: "77b2055a-33af-47f9-bb60-1f8bf3a95cd8"
+  short_code: "SAC"
+  label: "Sentence at conclusion"
+-
+  type_id: "55f15ecf-ea80-40f4-848d-29e7b8d73ae2"
+  short_code: "SV"
+  label: "Sentence varied"
+-
+  type_id: "b76f60f7-5b62-403d-aed6-8610f3280b82"
+  short_code: "STSDY"
+  label: "Serious terrorism sentence of detention in a young offender institution (S.268A SA 2020)"
+-
+  type_id: "09d2c46f-1b4a-4e86-9dca-55054035e331"
+  short_code: "STSI"
+  label: "Serious terrorism sentence of imprisonment (S.282A SA 2020)"
+-
+  type_id: "af590f98-21cb-43e7-b992-2a9d444acb2b"
+  short_code: "SETASIDE"
+  label: "Set Aside (Single Justice Procedure hearing)"
+-
+  type_id: "c87f94f8-bb0c-4113-a107-546026ba6dbd"
+  short_code: "SHPO"
+  label: "Sexual harm prevention order"
+-
+  type_id: "bb09512f-3d01-4f3d-ab7e-fefa5a7ccba4"
+  short_code: "SHPOR"
+  label: "Sexual harm prevention order renewed"
+-
+  type_id: "69cf9e2e-f117-4311-952d-e286af84c3be"
+  short_code: "SHOPV"
+  label: "Sexual harm prevention order varied"
+-
+  type_id: "6ccc5c31-ebcb-449e-aa47-792e6932fdfa"
+  short_code: "SRO"
+  label: "Sexual risk order"
+-
+  type_id: "b11520af-2dee-4ab8-b450-afccc1c1f539"
+  short_code: "SROV"
+  label: "Sexual risk order varied"
+-
+  type_id: "ee8a9064-e558-47db-8b18-6818b1c120bf"
+  short_code: "STPO"
+  label: "Slavery and trafficking prevention order"
+-
+  type_id: "46462550-d55d-4789-99b6-fc069c22c58f"
+  short_code: "SATPOA"
+  label: "Slavery and trafficking prevention order made on application"
+-
+  type_id: "ee94aaf8-5152-4a6e-b17e-63891e6209c4"
+  short_code: "SATPOV"
+  label: "Slavery and trafficking prevention order varied"
+-
+  type_id: "7b2ac1e1-a802-41e3-a8e7-20661330a9e3"
+  short_code: "STRO"
+  label: "Slavery and Trafficking Reparation Order"
+-
+  type_id: "61aed8b6-c797-48ae-bc48-a61e90382523"
+  short_code: "STRIO"
+  label: "Slavery and trafficking risk order"
+-
+  type_id: "ad62a85b-5977-494a-9a5f-8c82a8d1e89d"
+  short_code: "STROV"
+  label: "Slavery and trafficking risk order varied"
+-
+  type_id: "4f640ea6-88d4-4a3a-b816-ff5a79eaaa14"
+  short_code: "SPECC"
+  label: "Special custodial sentence of imprisonment for offender of particular concern (S.278 SA 2020 / 236A CJA 2003)"
+-
+  type_id: "0c5824cd-b6db-4c8f-a8c3-92e7e4cc0195"
+  short_code: "DIRS"
+  label: "Special measures"
+-
+  type_id: "028f5bea-fe0c-4c1b-a650-e4e0a4259f01"
+  short_code: "SMVR"
+  label: "Special measures direction: A video recording be admitted of the evidence in chief of the interview"
+-
+  type_id: "41a18cc7-3106-4e84-8f66-ad52fe6dee75"
+  short_code: "SMVN"
+  label: "Special measures direction: A video recording is not to be admitted because the requirements for its admission have not been complied with"
+-
+  type_id: "c20cca8f-6ef5-4dff-b8fa-d05a9b0a1a0d"
+  short_code: "SMI"
+  label: "Special measures direction: The examination is to be conducted through an intermediary"
+-
+  type_id: "b172d954-5aca-447b-b19e-2c836053b0af"
+  short_code: "SMVS"
+  label: "Special measures direction: The recording must be made in the presence of specified person(s)"
+-
+  type_id: "52218899-8f26-45cd-ae30-aeff5c189261"
+  short_code: "SMWG"
+  label: "Special measures direction: Wigs and gowns shall not be worn for the duration of the evidence of a specified witness"
+-
+  type_id: "ee74631f-c144-4a25-8a93-0253b98a7642"
+  short_code: "SMDW"
+  label: "Special measures direction: Witness be prevented from seeing the defendant by means of a screen"
+-
+  type_id: "702b365f-dde6-4543-8fb5-1324c6a84ec4"
+  short_code: "SMSM"
+  label: "Special measures direction: Witness be prevented from seeing the defendant by specified means"
+-
+  type_id: "67a91dc8-f4f9-4f80-b644-e219326045cc"
+  short_code: "SMAC"
+  label: "Special measures direction: Witness to be provided with an aid to commumication"
+-
+  type_id: "02c8aef6-601a-46e8-bbe5-d614e0da764a"
+  short_code: "SMLL"
+  label: "Special measures direction: Witness to give evidence by means of a live link"
+-
+  type_id: "38fdaaae-2a4c-4e6b-abf4-a6cdd212c6a9"
+  short_code: "SMP"
+  label: "Special measures direction: Witness to give evidence in private"
+-
+  type_id: "c96f71cd-7a0a-4ca5-9dc7-c0de96cd91ab"
+  short_code: "SPECCD"
+  label: "Special sentence of detention for terrorist offender of particular concern (under 18)(S.252A SA 2000)"
+-
+  type_id: "daeed745-29b6-4a2a-8c09-28b51c55af8a"
+  short_code: "SPOV"
+  label: "Stalking protection order varied"
+-
+  type_id: "3d2c05b3-fcd6-49c2-b5a9-52855be7f90a"
+  short_code: "SUMRTO"
+  label: "Summons on referral to other court"
+-
+  type_id: "d8837a45-8281-49b3-8349-49b423193148"
+  short_code: "SR"
+  label: "Summons rejected"
+-
+  type_id: "fd391847-f640-402e-a958-f33a014e6684"
+  short_code: "SDO"
+  label: "Supervision Default Order"
+-
+  type_id: "70c6d432-4f1e-4f09-a50a-52dbffcca819"
+  short_code: "DTBS"
+  label: "Supervision on breach of Detention and Training Order"
+-
+  type_id: "46b80388-11c6-4d10-aa8e-a1987e7ad562"
+  short_code: "ABISOV"
+  label: "Supervision order (made on breach of anti-social behaviour injunction) varied"
+-
+  type_id: "80d611e4-595a-4e7f-8356-0dc36f2943d0"
+  short_code: "ABISO"
+  label: "Supervision order made on breach of anti-social behaviour injunction"
+-
+  type_id: "51bdda09-978f-49bc-a3ce-f0e828a5e07f"
+  short_code: "SURR"
+  label: "Surcharge remitted"
+-
+  type_id: "a05f96e2-d36f-48aa-b6f4-1daefd10bca3"
+  short_code: "SURDIS"
+  label: "Surety discharged"
+-
+  type_id: "1f9c69f6-8fb6-478e-95ba-4501974c3c00"
+  short_code: "SSID"
+  label: "Suspended sentence of detention in a young offender institution activated unaltered"
+-
+  type_id: "01c907a7-6035-40d0-9b90-e25799797dda"
+  short_code: "SSIVD"
+  label: "Suspended sentence of detention in a young offender institution activated with lesser term"
+-
+  type_id: "d4490cde-3f85-4f51-9545-e2648e458a13"
+  short_code: "SSI"
+  label: "Suspended sentence of imprisonment activated unaltered"
+-
+  type_id: "8847f470-7bf6-4d7f-aad3-efb31104f337"
+  short_code: "SSIV"
+  label: "Suspended sentence of imprisonment activated with lesser term"
+-
+  type_id: "5679e5b7-0ca8-4d2a-ba80-7a50025fb589"
+  short_code: "SUSPSD"
+  label: "Suspended sentence order - detention in a young offender institution"
+-
+  type_id: "8b1cff00-a456-40da-9ce4-f11c20959084"
+  short_code: "SUSPS"
+  label: "Suspended sentence order - imprisonment"
+-
+  type_id: "726c4beb-9ead-4b6b-bed9-b761b5b43553"
+  short_code: "SUSPVD"
+  label: "Suspended sentence order of detention amended"
+-
+  type_id: "c5b29640-fb51-4483-a1a9-845b75c7e8a4"
+  short_code: "SUSPAD"
+  label: "Suspended sentence order of detention amended - supervising court or operational period or supervision period"
+-
+  type_id: "280a5606-c70a-432f-bdfe-a9dfd49f18c5"
+  short_code: "SUSPV"
+  label: "Suspended sentence order of imprisonment  amended"
+-
+  type_id: "27bbe7cb-5884-4b68-9c1e-a3373cce6ce6"
+  short_code: "SUSPA"
+  label: "Suspended sentence order of imprisonment  amended - supervising court or operational period or supervision period"
+-
+  type_id: "06f0ddcd-30d5-49ac-9500-3d66daeeda9b"
+  short_code: "SUSPSDS"
+  label: "Suspended sentence order Scotland - detention in a young offender institution"
+-
+  type_id: "98138ec8-5dd3-11e8-9c2d-fa7ae01bbebc"
+  short_code: "text"
+  label: "Text"
+-
+  type_id: "dbe2d8b6-9275-46c0-ae66-a9cd3032d87f"
+  short_code: "NBC"
+  label: "The case is not before this court"
+-
+  type_id: "8cb6ca49-ee65-47c4-93c3-ce8de13866c9"
+  short_code: "DECDT"
+  label: "The court decided that"
+-
+  type_id: "4632d712-6cf7-4929-af0d-9bf4a4436ee3"
+  short_code: "NOTRIAL"
+  label: "The Court did not proceed with the trial in the defendant's absence"
+-
+  type_id: "d18e6f8d-e91d-4d2b-8585-5513cfd07d13"
+  short_code: "BCD"
+  label: "The court directs that evidence relating to the bad character of the defendant be admitted in the proceedings"
+-
+  type_id: "fe77f387-ee64-4cef-8e95-c0776b9799e7"
+  short_code: "BCO"
+  label: "The court gives leave for evidence of the bad character of a person to be admitted in the proceedings"
+-
+  type_id: "b1ac3990-4208-42f1-bbea-fa9b1e99568c"
+  short_code: "LORDC"
+  label: "The Court orders that the Lord Chancellor pay compensation"
+-
+  type_id: "d9edfc2f-3743-47eb-8970-c24a79f42578"
+  short_code: "REVO"
+  label: "The court will review this order"
+-
+  type_id: "346edadd-5b2f-4e52-9d71-cd2296508cdf"
+  short_code: "NVR"
+  label: "The new and amended requirements are"
+-
+  type_id: "df6903b1-5ec3-457d-9731-b146628812db"
+  short_code: "TPC"
+  label: "Third Party Costs"
+-
+  type_id: "69ff04d5-84e8-4a61-8478-82c2999c1969"
+  short_code: "AWI"
+  label: "To attend or a warrant to issue"
+-
+  type_id: "e15c9dc1-5d7a-4f7a-8d61-b443f99b2724"
+  short_code: "AP"
+  label: "To attend or to return the plea form sent with the summons"
+-
+  type_id: "c2eca548-4511-4023-bbe6-50fe0b679b4a"
+  short_code: "PLEA"
+  label: "To plead guilty or not guilty to the offence(s)"
+-
+  type_id: "7fa3becd-7468-4c20-9153-927e8ea8db48"
+  short_code: "MEDC"
+  label: "To produce a medical certificate"
+-
+  type_id: "02fe0408-5fc2-4c4a-b9b6-fd0d1b1500d6"
+  short_code: "tie"
+  label: "To tie up with other cases"
+-
+  type_id: "6cb15971-c945-4398-b7c9-3f8b743a4de3"
+  short_code: "TIMP"
+  label: "Total custodial period"
+-
+  type_id: "694e4340-1d24-4d3b-ac20-c86cf8863335"
+  short_code: "TRANC"
+  label: "Transfer to another Crown Court"
+-
+  type_id: "fd43ac29-3b74-42f8-94ac-9f3736bb32ae"
+  short_code: "TRANM"
+  label: "Transfer to another magistrates' court"
+-
+  type_id: "0021c162-50ee-4769-b30c-c15be2202427"
+  short_code: "TRO"
+  label: "Travel restriction order"
+-
+  type_id: "4d2fc4cf-970e-49db-83af-2756e43e106e"
+  short_code: "UNABLE"
+  label: "Unable to proceed with case on the Common Platform, entered into Libra"
+-
+  type_id: "af829b2e-b3ae-43cf-83cc-25e3b7b17adb"
+  short_code: "UND"
+  label: "Undertakings given"
+-
+  type_id: "9c1dcdfa-ec44-4167-bbd4-d29c3a63a7fc"
+  short_code: "UNF"
+  label: "Unexpected circumstances meant that the case could not be heard"
+-
+  type_id: "5edd3a3a-8dc7-43e4-96c4-10fed16278ac"
+  short_code: "FVEBD"
+  label: "Vehicle Excise Back Duty"
+-
+  type_id: "d3fbd2cf-80e9-4261-b4e2-463904407d96"
+  short_code: "VOO"
+  label: "Violent offender order"
+-
+  type_id: "1b594f17-1358-46ef-91df-a8111702d977"
+  short_code: "WCD"
+  label: "Warrant for arrest on complaint with bail (dated)"
+-
+  type_id: "c8170e38-197a-4f35-867c-e56eb877a0f9"
+  short_code: "WCU"
+  label: "Warrant for arrest on complaint with bail (undated)"
+-
+  type_id: "7fa9dafc-1463-44fb-9d30-75f008cdc917"
+  short_code: "WCN"
+  label: "Warrant for arrest on complaint without bail"
+-
+  type_id: "c8c962df-e28c-4ea8-8496-721badb77b7b"
+  short_code: "WOFR"
+  label: "Warrant for arrest redated"
+-
+  type_id: "b4f7c223-b9d1-4409-b6d3-039f66eb9645"
+  short_code: "WOFD"
+  label: "Warrant for arrest with bail (dated)"
+-
+  type_id: "671df737-9901-4fa5-b245-aeff0c4c7495"
+  short_code: "WOFU"
+  label: "Warrant for arrest with bail (undated)"
+-
+  type_id: "c98cb51f-8639-49c1-91f0-a7e820c34355"
+  short_code: "WOFN"
+  label: "Warrant for arrest without bail"
+-
+  type_id: "73242763-44db-4d57-a855-44a6cf4f6226"
+  short_code: "WOFEX"
+  label: "Warrant for arrest without bail executed on day of issue"
+-
+  type_id: "87eed0b7-b141-4a3c-b7b0-ea8bb23ec3b2"
+  short_code: "WNE"
+  label: "Warrant not executed"
+-
+  type_id: "9b35f4f5-531e-48b4-858d-d81e15e77c23"
+  short_code: "WABSN"
+  label: "Warrant of arrest without bail on sentence of imprisonment in absence"
+-
+  type_id: "4d5f25a5-9102-472f-a2da-c58d1eeb9c93"
+  short_code: "WWDN"
+  label: "Warrant withdrawn"
+-
+  type_id: "40cf92bc-1dd9-492c-a7c5-d0d337e91994"
+  short_code: "WCOD"
+  label: "Wasted costs order - defendant to pay"
+-
+  type_id: "53bff4bf-2074-4e5d-9f6d-cc88ec641ff5"
+  short_code: "WCOP"
+  label: "Wasted costs order - Prosecutor to pay"
+-
+  type_id: "d6d42439-6b06-476e-bf6b-06ac747b47ba"
+  short_code: "WCOS"
+  label: "Wasted Costs Order Solicitor to Pay"
+-
+  type_id: "54f1d352-4919-4664-8184-b2e909fd39d8"
+  short_code: "ASBC"
+  label: "Where closure order is in under Anti-social Behaviour, Crime and Policing Act 2014"
+-
+  type_id: "babf96e5-86f7-4c14-b461-51c6f2aa2067"
+  short_code: "SOA"
+  label: "Where closure order is under Sexual Offences Act 2003"
+-
+  type_id: "eb2e4c4f-b738-4a4d-9cce-0572cecb7cb8"
+  short_code: "WDRN"
+  label: "Withdrawn"
+-
+  type_id: "6feb0f2e-8d1e-40c7-af2c-05b28c69e5fc"
+  short_code: "WDRNNOT"
+  label: "Withdrawn (notice produced)"
+-
+  type_id: "c8326b9e-56eb-406c-b74b-9f90c772b657"
+  short_code: "WDRNOS"
+  label: "Withdrawn (recharge at named Court)"
+-
+  type_id: "eaecff82-32da-4cc1-b530-b55195485cc7"
+  short_code: "WDRNOU"
+  label: "Withdrawn (recharge at unnamed Court)"
+-
+  type_id: "e0ae61f5-bbfa-4562-bc6d-ac59a484a06b"
+  short_code: "WDRNOFF"
+  label: "Withdrawn in favour of another offence"
+-
+  type_id: "fe2670ca-8fe9-4558-86a8-c611a18fd866"
+  short_code: "SUMWITN"
+  label: "Witness summons"
+-
+  type_id: "b62abb7e-a79c-4c2b-bd40-1876542c4b75"
+  short_code: "YDDLAA"
+  label: "Youth Detention - Designated Local Authority Amended"
+-
+  type_id: "42db63c0-8edf-4d91-b1c6-cc6b05c34dd3"
+  short_code: "AREMY"
+  label: "Youth remittal - Adjournment"
