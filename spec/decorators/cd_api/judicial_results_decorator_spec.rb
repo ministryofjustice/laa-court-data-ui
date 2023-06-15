@@ -29,8 +29,8 @@ RSpec.describe CdApi::JudicialResultsDecorator, type: :decorator do
     end
   end
 
-  describe 'judicial_results_prompt_list' do
-    subject(:call) { decorator.judicial_results_prompt_list }
+  describe '#filtered_prompts' do
+    subject(:call) { decorator.filtered_prompts }
 
     context 'when no results' do
       it 'provides an empty list' do

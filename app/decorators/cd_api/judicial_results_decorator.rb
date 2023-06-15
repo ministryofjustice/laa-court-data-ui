@@ -6,31 +6,32 @@ module CdApi
       ordered_date&.to_datetime&.strftime('%d/%m/%Y')
     end
 
-    def judicial_results_prompt_list
-      return [] if map_judicial_result_prompts.blank?
-      decorate_all(map_judicial_result_prompts.select do |prompt|
-                     filter_judicial_results_prompts(prompt)
-                   end, CdApi::JudicialResultsPromptDecorator)
+    def filtered_prompts
+      return [] if prompts.blank?
+
+      decorated_and_filtered_prompts
     end
 
     private
 
-    def map_judicial_result_prompts
-      prompts.flat_map
+    def decorated_and_filtered_prompts
+      @decorated_prompts ||= decorate_all(filter_prompts, CdApi::JudicialResultsPromptDecorator)
     end
 
-    def filter_judicial_results_prompts(prompt)
-      Rails.application.config.x.judicial_results['filter'].any? do |filter|
-        filter['type_id'] == prompt.type_id
+    def filter_prompts
+      prompts.select do |prompt|
+        filter_by_allowed_prompts(prompt)
       end
     end
-  end
-end
 
-module CdApi
-  class JudicialResultsPromptDecorator < BaseDecorator
-    def formatted_entry
-      value.to_s.gsub(/\n/, '<br/>')
+    def filter_by_allowed_prompts(prompt)
+      allowed_judicial_results_prompts.select do |judicial_result|
+        judicial_result['type_id'] == prompt.type_id
+      end
+    end
+
+    def allowed_judicial_results_prompts
+      Rails.application.config.x.allowed_judicial_results
     end
   end
 end
