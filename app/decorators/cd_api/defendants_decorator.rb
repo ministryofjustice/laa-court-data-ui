@@ -7,7 +7,7 @@ module CdApi
        defendant_details.person_details.last_name].compact.reject(&:empty?).join(' ')
     end
 
-    def judicial_results_list
+    def judicial_results_from_offences
       decorate_all(offences.flat_map(&:judicial_results), CdApi::JudicialResultsDecorator)
     end
   end
