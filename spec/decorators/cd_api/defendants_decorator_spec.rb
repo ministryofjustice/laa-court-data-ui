@@ -31,8 +31,8 @@ RSpec.describe CdApi::DefendantsDecorator, type: :decorator do
     end
   end
 
-  describe 'judicial_results_list' do
-    subject(:call) { decorator.judicial_results_list }
+  describe '#judicial_results_from_offences' do
+    subject(:call) { decorator.judicial_results_from_offences }
 
     context 'when results not present' do
       it 'provides an empty list' do

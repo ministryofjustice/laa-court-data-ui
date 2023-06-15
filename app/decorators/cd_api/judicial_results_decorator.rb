@@ -15,7 +15,7 @@ module CdApi
     private
 
     def decorated_and_filtered_prompts
-      @decorated_prompts ||= decorate_all(filter_prompts, CdApi::JudicialResultsPromptDecorator)
+      @decorated_and_filtered_prompts ||= decorate_all(filter_prompts, CdApi::JudicialResultsPromptDecorator)
     end
 
     def filter_prompts
