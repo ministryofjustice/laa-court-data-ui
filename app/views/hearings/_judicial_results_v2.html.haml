@@ -9,19 +9,18 @@
             %span.govuk-accordion__section-button
               = defendant.defendant_name
         .govuk-accordion__section-content.govuk-details__text
-          - if defendant.judicial_results_list.any?
-            - defendant.judicial_results_list.each do |result|
+          - if defendant.judicial_results_from_offences.any?
+            - defendant.judicial_results_from_offences.each do |judicial_result|
               %span.govuk-caption-m
-                = result.formatted_date
+                = judicial_result.formatted_date
               %h1.govuk-heading-m
-                = result.label
-              - if result.judicial_results_prompt_list.any?
-                - result.judicial_results_prompt_list.each do |jrp|
-                  %h2.govuk-heading-s
-                    = jrp.label
-                  %p.govuk-body
-                    = sanitize jrp.formatted_entry
-                  %hr.govuk-section-break--visible
+                = judicial_result.label
+              - judicial_result.filtered_prompts.each do |prompt|
+                %h2.govuk-heading-s
+                  = prompt.label
+                %p.govuk-body
+                  = sanitize prompt.formatted_entry
+                %hr.govuk-section-break--visible
           - else
             %p.govuk-body
               = t('hearings.show.judicial_results.none')
