@@ -36,6 +36,7 @@
     "webpack-remove-empty-scripts": "^1.0.3"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "axe-core": "^4.7.2",
     "cypress": "^12.16.0",
     "cypress-axe": "^1.4.0",
