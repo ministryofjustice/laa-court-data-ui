@@ -70,6 +70,12 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
       message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
     }
   end
+  let(:maat_invalid_request_with_message) do
+    {
+      title: 'The link to the court data source could not be removed. MAAT reference Fake error message here',
+      message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
+    }
+  end
   let(:maat_invalid_username) do
     {
       title: 'Unable to unlink this defendant',
@@ -200,7 +206,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
       end
     end
 
-    context 'with Downstream error', stub_v2_unlink_cda_failure: true do
+    context 'with Downstream error and no error message', stub_v2_unlink_cda_failure: true do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -210,6 +216,23 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
 
       it 'flashes alert' do
         expect(flash.now[:alert]).to match(maat_invalid_request)
+      end
+
+      it 'renders edit_defendant_path' do
+        expect(response).to render_template('edit')
+      end
+    end
+
+    context 'with Downstream error and error message', stub_v2_unlink_cda_failure_with_message: true do
+      let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
+
+      before do
+        patch "/defendants/#{defendant_id}?urn=#{prosecution_case_reference_from_fixture}",
+              params:
+      end
+
+      it 'flashes alert with error message' do
+        expect(flash.now[:alert]).to match(maat_invalid_request_with_message)
       end
 
       it 'renders edit_defendant_path' do

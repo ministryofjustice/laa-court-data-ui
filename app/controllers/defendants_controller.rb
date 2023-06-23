@@ -105,14 +105,21 @@ class DefendantsController < ApplicationController
 
   def handle_client_error(exception)
     logger.info 'CLIENT_ERROR_OCCURRED'
-    @laa_reference.errors.from_json(exception.response.body)
+    exception_body_message(exception)
     render_edit(I18n.t('defendants.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
   end
 
   def handle_server_error(exception)
     logger.error 'SERVER_ERROR_OCCURRED'
-    log_sentry_error(exception, @laa_reference.errors)
-    render_edit(I18n.t('defendants.unlink.failure', error_messages: ''), I18n.t('error.it_helpdesk'))
+    log_sentry_error(exception, exception_body_message(exception))
+    render_edit(
+      I18n.t('defendants.unlink.failure',
+             error_messages: @laa_reference.errors.full_messages.join(', ')), I18n.t('error.it_helpdesk')
+    )
+  end
+
+  def exception_body_message(exception)
+    @laa_reference.errors.from_json(exception.response.body)
   end
 
   def unlink_laa_reference_and_redirect

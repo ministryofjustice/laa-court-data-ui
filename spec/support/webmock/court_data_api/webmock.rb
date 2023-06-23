@@ -167,6 +167,15 @@ RSpec.configure do |config|
     )
   end
 
+  config.before(:each, stub_v2_unlink_cda_failure_with_message: true) do
+    stub_request(
+      :patch, %r{/v2/laa_references/#{defendant_id}/}
+    ).to_return(
+      status: 500,
+      body: { 'errors' => { 'maat_reference' => ['Fake error message here'] } }.to_json
+    )
+  end
+
   config.before(:each, stub_v2_hearing_events: true) do
     stub_request(
       :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
