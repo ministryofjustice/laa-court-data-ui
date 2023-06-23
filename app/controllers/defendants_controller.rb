@@ -112,7 +112,7 @@ class DefendantsController < ApplicationController
   def handle_server_error(exception)
     logger.error 'SERVER_ERROR_OCCURRED'
     log_sentry_error(exception, @laa_reference.errors)
-    render_edit(I18n.t('defendants.unlink.failure'), I18n.t('error.it_helpdesk'))
+    render_edit(I18n.t('defendants.unlink.failure', error_messages: ''), I18n.t('error.it_helpdesk'))
   end
 
   def unlink_laa_reference_and_redirect

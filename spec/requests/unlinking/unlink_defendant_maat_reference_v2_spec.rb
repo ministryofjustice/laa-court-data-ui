@@ -66,9 +66,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
   end
   let(:maat_invalid_request) do
     {
-      # rubocop:disable Style/FormatStringToken
-      title: 'The link to the court data source could not be removed. %{error_messages}',
-      # rubocop:enable Style/FormatStringToken
+      title: 'The link to the court data source could not be removed. ',
       message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
     }
   end
