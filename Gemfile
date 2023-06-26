@@ -28,7 +28,7 @@ gem 'rails', '~> 7.0.5'
 gem 'redis', '~> 5.0.6'
 gem 'sentry-rails', '~> 5.9.0'
 gem 'sentry-sidekiq', '~> 5.9.0'
-gem 'sidekiq', '~> 7.1.1'
+gem 'sidekiq', '~> 7.1.2'
 gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 1.4.0'
 
@@ -79,7 +79,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'net-imap', '~> 0.3.4'
+gem 'net-imap', '~> 0.3.6'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.3.3'
 
