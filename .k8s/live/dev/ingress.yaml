@@ -28,6 +28,11 @@ metadata:
         if ($http_spider_name ~* "crawlergo") {
           return 403;
         }
+
+        location ~* /wp-content {
+          deny all;
+          return 403;
+        }
 spec:
   ingressClassName: modsec
   rules:
@@ -39,7 +44,7 @@ spec:
             backend:
               service:
                 name: laa-court-data-ui-app-service
-                port: 
+                port:
                   number: 80
   tls:
     - hosts:
