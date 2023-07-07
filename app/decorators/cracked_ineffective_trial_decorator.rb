@@ -4,7 +4,7 @@ class CrackedIneffectiveTrialDecorator < BaseDecorator
   VACATED_CRACKED_TRIAL_CODES = %w[A L M N O Q].freeze
 
   def cracked?
-    return unless type
+    return false unless type
 
     [
       type.casecmp('cracked').zero?,
