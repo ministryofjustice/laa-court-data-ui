@@ -28,7 +28,7 @@
     "govuk-frontend": "^4.6.0",
     "jquery": "3.7.0",
     "mini-css-extract-plugin": "^2.7.6",
-    "postcss": "^8.4.24",
+    "postcss": "^8.4.25",
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2",
     "webpack": "^5.88.1",
