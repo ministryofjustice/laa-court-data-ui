@@ -30,6 +30,8 @@ module Capybara
   Node::Simple.include CapybaraExtensions::Matchers
 end
 
+Webdrivers::Chromedriver.required_version = "114.0.5735.90"
+
 Capybara.configure do |config|
   # https://www.rubydoc.info/github/jnicklas/capybara/Capybara.configure
   config.automatic_label_click = true
