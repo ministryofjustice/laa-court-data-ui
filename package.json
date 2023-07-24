@@ -38,7 +38,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "axe-core": "^4.7.2",
-    "cypress": "^12.17.1",
+    "cypress": "^12.17.2",
     "cypress-axe": "^1.4.0",
     "standard": "^17.1.0",
     "stylelint": "^15.10.1",
