@@ -30,6 +30,7 @@ module Capybara
   Node::Simple.include CapybaraExtensions::Matchers
 end
 
+# TODO: Remove this line when the latest stable version of chrome works with our rspec/capybara tests
 Webdrivers::Chromedriver.required_version = '114.0.5735.90'
 
 Capybara.configure do |config|
