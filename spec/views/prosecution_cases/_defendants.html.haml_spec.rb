@@ -24,8 +24,7 @@ RSpec.describe 'prosecution_cases/_defendants.html.haml', type: :view do
 
   before do
     allow(view).to receive(:govuk_page_title).and_return 'A Gov uk page title'
-    allow(prosecution_case).to receive(:hearings).and_return(hearings)
-    allow(prosecution_case).to receive(:defendants).and_return(defendants)
+    allow(prosecution_case).to receive_messages(hearings:, defendants:)
     assign(:prosecution_case, prosecution_case)
     assign(:results, results)
   end

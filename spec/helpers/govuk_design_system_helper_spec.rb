@@ -58,8 +58,7 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
 
     context 'when no page title provided' do
       before do
-        allow(controller).to receive(:controller_name).and_return 'Widgets'
-        allow(controller).to receive(:action_name).and_return 'show'
+        allow(controller).to receive_messages(controller_name: 'Widgets', action_name: 'show')
         helper.govuk_page_title
       end
 

@@ -38,7 +38,7 @@ RSpec.describe Roles, type: :concern do
 
     context 'when role not present' do
       it 'renders object invalid' do
-        expect(object).to be_invalid
+        expect(object).not_to be_valid
       end
 
       it 'adds error to object' do
@@ -53,7 +53,7 @@ RSpec.describe Roles, type: :concern do
 
     context 'when role not one of those allowed' do
       it 'renders object invalid' do
-        expect(object).to be_invalid
+        expect(object).not_to be_valid
       end
 
       it 'adds error to object' do

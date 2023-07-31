@@ -39,8 +39,8 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
   before do
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
-    allow(decorated_case_summary).to receive(:hearings_sort_column).and_return 'date'
-    allow(decorated_case_summary).to receive(:hearings_sort_direction).and_return 'asc'
+    allow(decorated_case_summary).to receive_messages(hearings_sort_column: 'date',
+                                                      hearings_sort_direction: 'asc')
     render_partial
   end
 

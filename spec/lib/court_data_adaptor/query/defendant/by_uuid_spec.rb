@@ -30,9 +30,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByUuid do
       allow(instance).to receive(:refresh_token_if_required!)
       allow(resource).to receive(:includes).and_return(resultset)
       allow(resultset).to receive(:includes).with('offences').and_return(resultset)
-      allow(resultset).to receive(:find).and_return(resultset)
-      allow(resultset).to receive(:first).and_return(resultset)
-      allow(resultset).to receive(:each_with_object).and_return(Array)
+      allow(resultset).to receive_messages(find: resultset, first: resultset, each_with_object: Array)
       call
     end
 

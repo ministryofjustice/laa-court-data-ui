@@ -34,9 +34,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
       before do
         allow(instance).to receive(:refresh_token_if_required!)
         allow(resource).to receive(:includes).with(:defendants).and_return(resultset)
-        allow(resultset).to receive(:where).and_return(resultset)
-        allow(resultset).to receive(:all).and_return(resultset)
-        allow(resultset).to receive(:each_with_object).and_return(Array)
+        allow(resultset).to receive_messages(where: resultset, all: resultset, each_with_object: Array)
         call
       end
 
