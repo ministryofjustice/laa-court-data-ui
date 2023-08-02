@@ -16,8 +16,7 @@ RSpec.describe DefendantHelper, type: :helper do
 
       context 'when defendant linked' do
         before do
-          allow(defendant).to receive(:linked?).and_return(true)
-          allow(defendant).to receive(:id).and_return(id)
+          allow(defendant).to receive_messages(linked?: true, id:)
         end
 
         it { is_expected.to eql "/defendants/#{id}/edit?urn=#{prosecution_case_reference}" }
@@ -25,8 +24,7 @@ RSpec.describe DefendantHelper, type: :helper do
 
       context 'when defendant not linked' do
         before do
-          allow(defendant).to receive(:linked?).and_return(false)
-          allow(defendant).to receive(:id).and_return(id)
+          allow(defendant).to receive_messages(linked?: false, id:)
         end
 
         it { is_expected.to eql "/laa_references/new?id=#{id}&urn=#{prosecution_case_reference}" }
@@ -37,8 +35,7 @@ RSpec.describe DefendantHelper, type: :helper do
       subject { helper.defendant_link_path(defendant) }
 
       before do
-        allow(defendant).to receive(:linked?).and_return(true)
-        allow(defendant).to receive(:id).and_return(id)
+        allow(defendant).to receive_messages(linked?: true, id:)
       end
 
       it { is_expected.to eql "/defendants/#{id}/edit" }

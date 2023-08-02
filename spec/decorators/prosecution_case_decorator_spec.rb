@@ -66,8 +66,8 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
       allow(decorated_hearing1).to receive(:provider_list).and_return(hearing1_provider_list)
       allow(decorated_hearing2).to receive(:provider_list).and_return(hearing2_provider_list)
       allow(decorated_hearing3).to receive(:provider_list).and_return(hearing3_provider_list)
-      allow(test_decorator).to receive(:hearings_sort_column).and_return(column)
-      allow(test_decorator).to receive(:hearings_sort_direction).and_return(direction)
+      allow(test_decorator).to receive_messages(hearings_sort_column: column,
+                                                hearings_sort_direction: direction)
     end
 
     it { is_expected.to be_instance_of(Enumerator) }
