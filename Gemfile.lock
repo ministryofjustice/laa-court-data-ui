@@ -182,7 +182,7 @@ GEM
     foreman (0.87.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    govuk_design_system_formbuilder (4.1.0)
+    govuk_design_system_formbuilder (4.1.1)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -199,7 +199,7 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
-    haml_lint (0.49.0)
+    haml_lint (0.49.2)
       haml (>= 4.0, < 6.2)
       parallel (~> 1.10)
       rainbow
@@ -208,7 +208,7 @@ GEM
     hashdiff (1.0.1)
     hashie (5.0.0)
     highline (2.0.3)
-    html-attributes-utils (1.0.0)
+    html-attributes-utils (1.0.2)
       activesupport (>= 6.1.4.4)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
@@ -259,11 +259,11 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     mini_portile2 (2.8.4)
-    minitest (5.18.1)
+    minitest (5.19.0)
     msgpack (1.6.0)
     multi_xml (0.6.0)
     multipart-post (2.3.0)
-    net-imap (0.3.6)
+    net-imap (0.3.7)
       date
       net-protocol
     net-pop (0.1.2)
@@ -385,7 +385,7 @@ GEM
     rspec-support (3.12.0)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.54.2)
+    rubocop (1.55.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -393,7 +393,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.28.0, < 2.0)
+      rubocop-ast (>= 1.28.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.29.0)
@@ -409,7 +409,7 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
-    rubocop-rspec (2.23.0)
+    rubocop-rspec (2.23.1)
       rubocop (~> 1.33)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
@@ -536,7 +536,7 @@ DEPENDENCIES
   launchy
   listen (>= 3.0.5, < 3.9)
   logstasher
-  net-imap (~> 0.3.6)
+  net-imap (~> 0.3.7)
   net-pop (~> 0.1.2)
   net-smtp (~> 0.3.3)
   oauth2 (~> 2.0.9)
@@ -552,7 +552,7 @@ DEPENDENCIES
   rspec-html-matchers (~> 0.10.0)
   rspec-rails (~> 6.0)
   rspec_junit_formatter
-  rubocop (~> 1.54)
+  rubocop (~> 1.55)
   rubocop-performance
   rubocop-rails
   rubocop-rspec

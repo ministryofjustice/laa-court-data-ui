@@ -44,7 +44,7 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 6.0'
-  gem 'rubocop', '~> 1.54', require: false
+  gem 'rubocop', '~> 1.55', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -79,7 +79,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'net-imap', '~> 0.3.6'
+gem 'net-imap', '~> 0.3.7'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.3.3'
 
