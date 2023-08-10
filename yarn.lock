@@ -1337,10 +1337,10 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.0.3.tgz#71f08e958883af64f6a20489318b5e95d2c6dc5b"
   integrity sha512-Iefl21FZD+ck1di6xSHMYzSzRiNJTHV4NrAzCfDfqc/wPz4xncrP8f2/fJ+2jzwKIaDn76UVMsALh7R5OzsF8Q==
 
-"@rails/ujs@^7.0.6":
-  version "7.0.6"
-  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-7.0.6.tgz#fd8937c92335f3da9495e07292511ad5f7547a6a"
-  integrity sha512-s5v3AC6AywOIFMz0RIMW83Xc8FPIvKMkP3ZHFlM4ISNkhdUwP9HdhVtxxo6z3dIhe9vI0Our2A8kN/QpUV02Qg==
+"@rails/ujs@^7.0.7":
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-7.0.7.tgz#54af8d66160a8a7bf7d8f184703d2bf4b3fab914"
+  integrity sha512-J2v5Ca7HgejO7diGKiDylaVDQKmbQ5FJih6Oo3hXuBKEuXlcaccJu64lj8MNVLaPVyZx0g4gaOQZQz95QEb/hg==
 
 "@sideway/address@^4.1.3":
   version "4.1.4"
