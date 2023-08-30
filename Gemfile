@@ -25,7 +25,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'prometheus_exporter', '2.0.8'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 7.0.6'
-gem 'redis', '~> 5.0.6'
+gem 'redis', '~> 5.0.7'
 gem 'sentry-rails', '~> 5.10.0'
 gem 'sentry-sidekiq', '~> 5.10.0'
 gem 'sidekiq', '~> 7.1.2'
@@ -44,7 +44,7 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 6.0'
-  gem 'rubocop', '~> 1.55', require: false
+  gem 'rubocop', '~> 1.56', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
