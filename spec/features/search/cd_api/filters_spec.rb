@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Search filters', type: :feature, js: true do
+RSpec.feature 'Search filters', :js, type: :feature do
   let(:user) { create(:user) }
 
   before do

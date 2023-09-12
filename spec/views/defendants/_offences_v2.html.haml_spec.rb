@@ -8,7 +8,7 @@ RSpec.describe 'defendants/_offences_v2.html.haml', type: :view do
   let(:case_urn) { 'TEST12345' }
   let(:defendant) { CdApi::Defendant.find(:all, params: { uuid: defendant_id, urn: case_urn }).first }
 
-  context 'when the defendant has an offence', stub_defendants_uuid_urn_search: true do
+  context 'when the defendant has an offence', :stub_defendants_uuid_urn_search do
     before do
       assign(:defendant, defendant)
     end

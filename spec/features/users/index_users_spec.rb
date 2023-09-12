@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Index users', type: :feature, js: true do
+RSpec.feature 'Index users', :js, type: :feature do
   before do
     sign_in user
     visit '/'

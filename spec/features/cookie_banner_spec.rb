@@ -77,7 +77,7 @@ RSpec.feature 'Cookies', type: :feature do
     end
   end
 
-  context 'when visting defendants page', stub_defendants_uuid_urn_search: true do
+  context 'when visting defendants page', :stub_defendants_uuid_urn_search do
     let(:user) { create(:user) }
     let(:case_urn) { 'TEST12345' }
     let(:defendant_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }

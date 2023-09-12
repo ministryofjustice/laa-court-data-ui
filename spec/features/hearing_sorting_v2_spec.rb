@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
+RSpec.feature 'Hearing sorting', :vcr, type: :feature do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }

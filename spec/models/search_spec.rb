@@ -44,7 +44,7 @@ RSpec.describe Search, type: :model do
       search_instance.execute
     end
 
-    context 'when searching by case reference', stub_no_results: true do
+    context 'when searching by case reference', :stub_no_results do
       subject(:search_instance) { described_class.new(filter:, term:) }
 
       let(:filter) { 'case_reference' }
@@ -63,7 +63,7 @@ RSpec.describe Search, type: :model do
       end
     end
 
-    context 'when searching by defendant name', stub_no_results: true do
+    context 'when searching by defendant name', :stub_no_results do
       subject(:search_instance) { described_class.new(filter:, term:, dob:) }
 
       let(:filter) { 'defendant_name' }
@@ -82,7 +82,7 @@ RSpec.describe Search, type: :model do
       end
     end
 
-    context 'when searching by defendant reference', stub_no_results: true do
+    context 'when searching by defendant reference', :stub_no_results do
       subject(:search_instance) { described_class.new(filter:, term:) }
 
       let(:filter) { 'defendant_reference' }

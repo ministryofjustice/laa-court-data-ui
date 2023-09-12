@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Breadcrumb', type: :feature, stub_unlinked: true do
+RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }

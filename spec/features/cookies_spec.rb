@@ -126,7 +126,7 @@ RSpec.feature 'Cookies', type: :feature do
     end
   end
 
-  context 'when redirected to cookies page from search page', stub_case_search: true do
+  context 'when redirected to cookies page from search page', :stub_case_search do
     let(:user) { create(:user) }
 
     before do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Password change', type: :feature, js: true do
+RSpec.feature 'Password change', :js, type: :feature do
   let(:user) { create(:user, :with_caseworker_role) }
 
   before do

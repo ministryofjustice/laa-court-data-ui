@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: true do
+RSpec.feature 'Unlinked defendant page flow', :stub_unlinked, type: :feature do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
   let(:defendant_name) { 'Jammy Dodger' }
@@ -28,7 +28,7 @@ RSpec.feature 'Unlinked defendant page flow', type: :feature, stub_unlinked: tru
     then_unlinked_defendant_page_displayed
   end
 
-  scenario 'user navigates from case to hearings view', stub_hearing: true do
+  scenario 'user navigates from case to hearings view', :stub_hearing do
     when_viewing_case(case_urn)
     then_case_view_displayed
     click_link(hearing_day)
