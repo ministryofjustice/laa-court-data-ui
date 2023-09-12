@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'prosecution cases', type: :request, stub_case_search: true do
+RSpec.describe 'prosecution cases', :stub_case_search, type: :request do
   let(:user) { create(:user) }
   let(:case_reference) { 'TEST12345' }
 

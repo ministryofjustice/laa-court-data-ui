@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Password reset', type: :feature, js: true do
+RSpec.feature 'Password reset', :js, type: :feature do
   let(:user) { create(:user, :with_caseworker_role) }
 
   let(:reset_flash_notice) do

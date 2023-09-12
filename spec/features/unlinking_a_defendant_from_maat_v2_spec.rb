@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlink_v2: true do
+RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink_v2, type: :feature do
   let(:case_urn) { 'TEST12345' }
   let(:api_url_v2) { CdApi::BaseModel.site }
   let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}/" }
@@ -125,7 +125,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', type: :feature, stub_unlink_v2:
       end
     end
 
-    context 'when user unlinks defendant with failure', stub_v2_unlink_bad_response: true do
+    context 'when user unlinks defendant with failure', :stub_v2_unlink_bad_response do
       before do
         click_govuk_detail_summary 'Remove link to court data'
         select 'Linked to wrong case ID (correct defendant)', from: 'Reason for unlinking'

@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: true do
+RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request do
   let(:user) { create(:user) }
 
   let(:case_urn) { 'TEST12345' }
@@ -42,7 +42,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
       post '/laa_references', params:
     end
 
-    context 'with valid params', stub_v2_link_success: true do
+    context 'with valid params', :stub_v2_link_success do
       it 'sends a link request to the adapter' do
         expect(a_request(:post, cd_api_request_path)
           .with(body: expected_request_payload.to_json))
@@ -63,7 +63,7 @@ RSpec.describe 'link defendant with no maat id', type: :request, stub_unlinked: 
     end
 
     context 'with invalid defendant_id' do
-      context 'when not a uuid', stub_v2_link_failure_with_invalid_defendant_uuid: true do
+      context 'when not a uuid', :stub_v2_link_failure_with_invalid_defendant_uuid do
         let(:defendant_id) { 'not-a-uuid' }
 
         it 'flashes alert' do

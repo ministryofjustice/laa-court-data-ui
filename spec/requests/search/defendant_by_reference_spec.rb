@@ -54,7 +54,7 @@ RSpec.describe 'Defendant by reference search', type: :request do
       end
     end
 
-    context 'when no results', type: :request, stub_no_results: true do
+    context 'when no results', :stub_no_results, type: :request do
       before do
         allow_any_instance_of(Search).to receive(:execute).and_return([])
         post '/searches', params: search_params

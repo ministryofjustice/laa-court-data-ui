@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Case reference search', type: :feature, vcr: true, js: true do
+RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
   let(:user) { create(:user) }
 
   before do

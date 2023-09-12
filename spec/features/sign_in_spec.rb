@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Sign in', type: :feature, js: true do
+RSpec.feature 'Sign in', :js, type: :feature do
   let(:user) do
     create(:user,
            email: 'bob.smith@example.com',

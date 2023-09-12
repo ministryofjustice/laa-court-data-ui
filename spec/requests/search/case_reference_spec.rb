@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'case reference search', type: :request, stub_case_search: true do
+RSpec.describe 'case reference search', :stub_case_search, type: :request do
   let(:user) { create(:user) }
 
   before do
@@ -44,7 +44,7 @@ RSpec.describe 'case reference search', type: :request, stub_case_search: true d
       end
     end
 
-    context 'when no results', stub_no_results: true do
+    context 'when no results', :stub_no_results do
       before do
         allow_any_instance_of(Search).to receive(:execute).and_return([])
         post '/searches', params: { search: { term: 'T20200001', filter: :case_reference } }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: true do
+RSpec.feature 'Defendant by reference search', :vcr, :js, type: :feature do
   let(:user) { create(:user) }
 
   before do

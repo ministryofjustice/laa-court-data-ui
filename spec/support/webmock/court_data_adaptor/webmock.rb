@@ -5,7 +5,7 @@ require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
-  config.before(:each, stub_oauth_token: true) do
+  config.before(:each, :stub_oauth_token) do
     stub_request(:post, %r{http.*/oauth/token})
       .to_return(
         status: 200,
@@ -14,7 +14,7 @@ RSpec.configure do |config|
       )
   end
 
-  config.before(:each, stub_no_results: true) do
+  config.before(:each, :stub_no_results) do
     stub_request(:get, %r{http.*/api/internal/v1/.*filter.*})
       .to_return(
         status: 200,
@@ -23,7 +23,7 @@ RSpec.configure do |config|
       )
   end
 
-  config.before(:each, stub_case_search: true) do
+  config.before(:each, :stub_case_search) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=.*&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
@@ -34,7 +34,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_case_search_test12345: true) do
+  config.before(:each, :stub_case_search_test12345) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
@@ -45,7 +45,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_defendant_ref_search: true) do
+  config.before(:each, :stub_defendant_ref_search) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[(arrest_summons_number|national_insurance_number)\]=.*&include=defendants.*}
@@ -56,7 +56,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_defendant_name_search: true) do
+  config.before(:each, :stub_defendant_name_search) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[date_of_birth\]=.*&filter\[name\]=.*&include=defendants.*}
@@ -67,7 +67,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_unlinked: true) do
+  config.before(:each, :stub_unlinked) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=#{case_urn}&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
@@ -96,11 +96,11 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_link_success: true) do
+  config.before(:each, :stub_link_success) do
     stub_request(:post, %r{/api/internal/v1/laa_references}).to_return(status: 202, body: '')
   end
 
-  config.before(:each, stub_link_failure_with_invalid_defendant_uuid: true) do
+  config.before(:each, :stub_link_failure_with_invalid_defendant_uuid) do
     stub_request(
       :post, %r{/api/internal/v1/laa_references}
     ).to_return(
@@ -114,7 +114,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_link_failure_with_unknown_maat_reference: true) do
+  config.before(:each, :stub_link_failure_with_unknown_maat_reference) do
     stub_request(
       :post, %r{/api/internal/v1/laa_references}
     ).to_return(
@@ -126,7 +126,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_linked: true) do
+  config.before(:each, :stub_linked) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/prosecution_cases\?filter.*arrest_summons_number.*#{defendant_asn}&include=defendants,defendants.offences}
@@ -146,7 +146,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_hearing: true) do
+  config.before(:each, :stub_hearing) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events,providers}
@@ -157,7 +157,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_hearing_no_providers: true) do
+  config.before(:each, :stub_hearing_no_providers) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/hearings/.*\?include=hearing_events,providers}

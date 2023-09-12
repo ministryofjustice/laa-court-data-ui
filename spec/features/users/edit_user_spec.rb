@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Edit user', type: :feature, js: true do
+RSpec.feature 'Edit user', :js, type: :feature do
   before do
     sign_in user
   end
