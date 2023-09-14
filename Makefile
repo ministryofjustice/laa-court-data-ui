@@ -8,7 +8,7 @@ install: #: install all requirements
 	@brew bundle
 	@RUBYOPT=-W:no-deprecated
 	@printf "\e[33mMAKE: install ruby $$(cat .ruby-version)...\e[0m\n"
-	@rvm install $$(cat .ruby-version)
+	@rbenv install $$(cat .ruby-version)
 	@printf "\e[33mMAKE: installing bundler...\e[0m\n"
 	@gem install bundler -v $$(cat Gemfile.lock | tail -1 | tr -d " ")
 	@printf "\e[33mMAKE: installing ruby dependencies...\e[0m\n"
