@@ -266,7 +266,6 @@ jobs:
       - checkout
       - restore-dependencies
       - *attach-tmp-workspace
-      # TODO: Remove the apt-get update and install-chrome steps after webdriver gem has fixed its chrome compatibility issue.
       - run: sudo apt-get update
       - browser-tools/install-chrome
       - run: sudo apt autoremove
