@@ -66,13 +66,13 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
       scenario 'user can navigate to next hearing day' do
         click_link 'Next'
         expect(page)
-          .to have_selector('h1', text: 'Hearing day')
-          .and have_selector('h1', text: '24/10/2019')
+          .to have_css('h1', text: 'Hearing day')
+          .and have_css('h1', text: '24/10/2019')
 
         click_link 'Next'
         expect(page)
-          .to have_selector('h1', text: 'Hearing day')
-          .and have_selector('h1', text: '25/10/2019')
+          .to have_css('h1', text: 'Hearing day')
+          .and have_css('h1', text: '25/10/2019')
       end
     end
 
@@ -82,13 +82,13 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
       scenario 'user can navigate to previous hearing days' do
         click_link 'Previous'
         expect(page)
-          .to have_selector('h1', text: 'Hearing day')
-          .and have_selector('h1', text: '30/10/2019')
+          .to have_css('h1', text: 'Hearing day')
+          .and have_css('h1', text: '30/10/2019')
 
         click_link 'Previous'
         expect(page)
-          .to have_selector('h1', text: 'Hearing day')
-          .and have_selector('h1', text: '29/10/2019')
+          .to have_css('h1', text: 'Hearing day')
+          .and have_css('h1', text: '29/10/2019')
       end
     end
   end

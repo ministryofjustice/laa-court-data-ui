@@ -33,11 +33,11 @@ RSpec.feature 'Index users', :js, type: :feature do
       expect(page).to have_govuk_page_title(text: 'List of users')
 
       within '.govuk-table__head' do
-        expect(page).to have_selector('.govuk-table__header', text: 'Name')
-        expect(page).to have_selector('.govuk-table__header', text: 'Username')
-        expect(page).to have_selector('.govuk-table__header', text: 'Email')
-        expect(page).to have_selector('.govuk-table__header', text: 'Last Sign In')
-        expect(page).to have_selector('.govuk-table__header', text: 'Action')
+        expect(page).to have_css('.govuk-table__header', text: 'Name')
+        expect(page).to have_css('.govuk-table__header', text: 'Username')
+        expect(page).to have_css('.govuk-table__header', text: 'Email')
+        expect(page).to have_css('.govuk-table__header', text: 'Last Sign In')
+        expect(page).to have_css('.govuk-table__header', text: 'Action')
       end
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
       expect(row).to have_link(other_user.name, href: user_path(other_user))

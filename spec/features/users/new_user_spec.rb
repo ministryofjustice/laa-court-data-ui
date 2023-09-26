@@ -68,10 +68,10 @@ RSpec.feature 'New user', type: :feature do
       expect(page).to have_govuk_flash(:notice, text: 'User successfully added')
 
       expect(page).to have_govuk_page_title(text: 'Jim Bob\'s account')
-      expect(page).to have_selector('.govuk-table__cell', text: 'Jim Bob')
-      expect(page).to have_selector('.govuk-table__cell', text: 'jim.bob@example.com')
-      expect(page).to have_selector('.govuk-table__cell', text: 'bob-j')
-      expect(page).to have_selector('.govuk-table__cell', text: 'Caseworker, Admin')
+      expect(page).to have_css('.govuk-table__cell', text: 'Jim Bob')
+      expect(page).to have_css('.govuk-table__cell', text: 'jim.bob@example.com')
+      expect(page).to have_css('.govuk-table__cell', text: 'bob-j')
+      expect(page).to have_css('.govuk-table__cell', text: 'Caseworker, Admin')
     end
   end
 end

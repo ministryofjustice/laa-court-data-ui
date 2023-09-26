@@ -32,7 +32,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
     allow(court_application2).to receive(:type).and_return(court_application_type2)
   end
 
-  it { is_expected.to have_selector('.govuk-heading-l', text: 'Applications') }
+  it { is_expected.to have_css('.govuk-heading-l', text: 'Applications') }
 
   context 'with no court applications' do
     let(:court_applications) { nil }

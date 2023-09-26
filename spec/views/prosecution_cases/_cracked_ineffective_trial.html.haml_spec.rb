@@ -7,18 +7,18 @@ RSpec.shared_examples 'cracked_ineffective_trial with case level result' do |opt
 
   it 'displays case result section' do
     render_partial
-    expect(rendered).to have_selector('th.govuk-table__header', text: /Case results/)
+    expect(rendered).to have_css('th.govuk-table__header', text: /Case results/)
   end
 
   it 'displays the cracked_ineffective_trial type' do
     render_partial
-    expect(rendered).to have_selector('td.govuk-table__cell', text: /#{type_text}/)
+    expect(rendered).to have_css('td.govuk-table__cell', text: /#{type_text}/)
   end
 
   it 'displays reason' do
     render_partial
-    expect(rendered).to have_selector('td.govuk-table__cell',
-                                      text: /Reason for cracked, vacated or ineffective trial/)
+    expect(rendered).to have_css('td.govuk-table__cell',
+                                 text: /Reason for cracked, vacated or ineffective trial/)
   end
 end
 

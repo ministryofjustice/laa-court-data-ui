@@ -29,15 +29,15 @@ RSpec.describe 'prosecution_cases/_defendants.html.haml', type: :view do
     assign(:results, results)
   end
 
-  it { is_expected.to have_selector('.govuk-heading-l', text: 'Defendants') }
+  it { is_expected.to have_css('.govuk-heading-l', text: 'Defendants') }
 
   it do
     is_expected
-      .to have_selector('.govuk-table__header', text: 'Name')
-      .and have_selector('.govuk-table__header', text: 'Date of birth')
-      .and have_selector('.govuk-table__header', text: 'MAAT number')
+      .to have_css('.govuk-table__header', text: 'Name')
+      .and have_css('.govuk-table__header', text: 'Date of birth')
+      .and have_css('.govuk-table__header', text: 'MAAT number')
   end
 
   it { is_expected.to have_link('Joe Bloggs') }
-  it { is_expected.to have_selector('.govuk-table__cell', text: '14/07/1968') }
+  it { is_expected.to have_css('.govuk-table__cell', text: '14/07/1968') }
 end

@@ -21,8 +21,8 @@ RSpec.describe 'hearings/_hearing_events_v2.html.haml', type: :view do
   context 'with hearing events', :stub_v2_hearing_events do
     it 'displays hearing event row columns' do
       is_expected
-        .to have_selector('thead th', text: 'Time')
-        .and have_selector('thead th', text: 'Event')
+        .to have_css('thead th', text: 'Time')
+        .and have_css('thead th', text: 'Event')
     end
 
     context 'with hearing_events notes' do
