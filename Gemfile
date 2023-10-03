@@ -33,7 +33,7 @@ gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 1.4.0'
 
 group :test do
-  gem 'axe-core-rspec', '~> 4.7'
+  gem 'axe-core-rspec', '~> 4.8'
   gem 'brakeman'
   gem 'capybara'
   gem 'capybara_table'
