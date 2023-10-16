@@ -59,8 +59,8 @@ RSpec.describe 'hearings/show', type: :view do
         .and_return(cracked_ineffective_trial)
     end
 
-    it { is_expected.to have_selector('div.govuk-heading-s', text: /Result/) }
-    it { is_expected.to have_selector('p.govuk-body', text: /Ineffective: Another case over-ran/) }
+    it { is_expected.to have_css('div.govuk-heading-s', text: /Result/) }
+    it { is_expected.to have_css('p.govuk-body', text: /Ineffective: Another case over-ran/) }
   end
 
   context 'without cracked_ineffective_trial' do
@@ -72,6 +72,6 @@ RSpec.describe 'hearings/show', type: :view do
         .and_return(cracked_ineffective_trial)
     end
 
-    it { is_expected.not_to have_selector('h2.govuk-heading-l', text: /Result/) }
+    it { is_expected.not_to have_css('h2.govuk-heading-l', text: /Result/) }
   end
 end
