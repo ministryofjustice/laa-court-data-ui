@@ -38,7 +38,7 @@ group :test do
   gem 'capybara'
   gem 'capybara_table'
   gem 'haml_lint', require: false
-  gem 'i18n-tasks', '~> 1.0.12'
+  gem 'i18n-tasks', '~> 1.0.13'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.10.0'
