@@ -436,7 +436,7 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.14.0)
-    sidekiq_alive (2.3.0)
+    sidekiq_alive (2.3.1)
       rack (< 3)
       sidekiq (>= 5, < 8)
       webrick (>= 1, < 2)
