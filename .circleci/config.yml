@@ -186,15 +186,13 @@ commands:
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec \
               --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
+              --format RspecJunitFormatter
               $TESTFILES
             tmp/cc-test-reporter format-coverage -t simplecov -o "tmp/coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+          path: /tmp/screenshots
 
   upload-coverage:
     steps:
