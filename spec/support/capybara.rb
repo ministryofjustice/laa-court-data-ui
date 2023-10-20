@@ -32,6 +32,8 @@ module Capybara
   Node::Simple.include CapybaraExtensions::Matchers
 end
 
+Capybara.save_path = "tmp/screenshots"
+
 Capybara.configure do |config|
   # https://www.rubydoc.info/github/jnicklas/capybara/Capybara.configure
   config.automatic_label_click = true
