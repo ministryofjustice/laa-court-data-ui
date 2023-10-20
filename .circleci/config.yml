@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   aws-cli: circleci/aws-cli@4.0.0
-  browser-tools: circleci/browser-tools@1.4.6
+  browser-tools: circleci/browser-tools@1.4.3
   slack: circleci/slack@3.4.2
   snyk: snyk/snyk@1.7.0
 
@@ -187,13 +187,17 @@ commands:
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec \
               --format progress \
-              --format RspecJunitFormatter
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
               $TESTFILES
             tmp/cc-test-reporter format-coverage -t simplecov -o "tmp/coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/screenshots
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
 
   upload-coverage:
     steps:
