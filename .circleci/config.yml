@@ -181,7 +181,7 @@ commands:
           name: Run rspec tests
           command: |
             mkdir /tmp/test-results
-            mkdir /tmp/screenshots
+            mkdir tmp/screenshots
             tmp/cc-test-reporter before-build
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             RUBYOPT=-W:no-deprecated \
@@ -194,7 +194,7 @@ commands:
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
-          path: /tmp/screenshots
+          path: tmp/screenshots
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
