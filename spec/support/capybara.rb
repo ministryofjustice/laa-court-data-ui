@@ -6,7 +6,9 @@
 # https://github.com/DavyJonesLocker/capybara-extensions
 #
 require 'capybara_table/rspec'
+require 'capybara-screenshot/rspec'
 require_relative 'capybara_extensions'
+# require 'capybara-screenshot/cucumber'
 require 'axe-rspec'
 
 module Capybara
