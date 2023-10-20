@@ -34,5 +34,5 @@ Capybara.configure do |config|
   # https://www.rubydoc.info/github/jnicklas/capybara/Capybara.configure
   config.automatic_label_click = true
   config.default_max_wait_time = 1
-  config.javascript_driver = :selenium_chrome_headless
+  config.javascript_driver = :selenium_chrome
 end
