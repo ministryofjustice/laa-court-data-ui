@@ -28,7 +28,7 @@ RSpec.feature 'Delete user', :js, type: :feature do
 
   def alert_message
     page.driver.browser.switch_to.alert
-  rescue StandardError
+  rescue Selenium::WebDriver::Error::NoSuchAlertError
     retry
   end
 end
