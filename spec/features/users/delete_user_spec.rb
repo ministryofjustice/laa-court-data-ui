@@ -26,9 +26,9 @@ RSpec.feature 'Delete user', :js, type: :feature do
     end
   end
 
-  def alert_message()
-      page.driver.browser.switch_to.alert
-  rescue
-      retry
+  def alert_message
+    page.driver.browser.switch_to.alert
+  rescue StandardError
+    retry
   end
 end
