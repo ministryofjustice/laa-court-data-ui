@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, notice: I18n.t('users.destroy.flash.success')
+    redirect_to users_path, status: :see_other, notice: I18n.t('users.destroy.flash.success')
   end
 
   private

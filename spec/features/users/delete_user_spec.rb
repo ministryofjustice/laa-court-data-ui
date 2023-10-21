@@ -18,8 +18,11 @@ RSpec.feature 'Delete user', :js, type: :feature do
         click_link 'Delete'
       end
 
-      binding.pry
+      # binding.pry
 
+      # row.native.attribute('outerHTML')
+      # row.find_link('Delete').native.attribute('innerHTML')
+      #  row.native.attribute('outerHTML')
       warning = page.driver.browser.switch_to.alert
       expect(warning.text).to eql "Are you sure you want to delete #{other_user.name}'s account?"
       warning.accept
