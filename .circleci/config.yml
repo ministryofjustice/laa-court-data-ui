@@ -270,7 +270,8 @@ jobs:
       - restore-dependencies
       - *attach-tmp-workspace
       - run: sudo apt-get update
-      - browser-tools/install-chrome
+      - browser-tools/install-chrome:
+          chrome-version: 118.0.5993.70
       - run: sudo apt autoremove
       - rspec
       - persist_to_workspace:
