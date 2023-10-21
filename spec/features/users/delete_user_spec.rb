@@ -13,12 +13,12 @@ RSpec.feature 'Delete user', :js, type: :feature do
       visit users_path
 
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
+
+
       within row do
         click_link 'Delete'
       end
-
-      screenshot_and_save_page
-      # screenshot_and_open_image
+binding.pry
       warning = page.driver.browser.switch_to.alert
       expect(warning.text).to eql "Are you sure you want to delete #{other_user.name}'s account?"
       warning.accept
