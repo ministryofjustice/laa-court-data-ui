@@ -44,7 +44,7 @@
                 = t('users.index.edit')
                 %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
               |
-              = link_to user_path(user), method: :delete, data: { confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
+              = link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: t('users.index.delete_confirmation', name: user.name)}, class: 'govuk-link' do
                 = t('users.index.delete')
                 %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
 

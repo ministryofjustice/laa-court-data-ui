@@ -14,7 +14,7 @@ RSpec.feature 'Delete user', :js, type: :feature do
 
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
       within row do
-        click_link 'Delete'
+        find_link('Delete').click
       end
 
       warning = alert_message
