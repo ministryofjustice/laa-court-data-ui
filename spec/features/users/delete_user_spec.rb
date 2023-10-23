@@ -17,21 +17,12 @@ RSpec.feature 'Delete user', :js, type: :feature do
         find_link('Delete').click
       end
 
-      warning = alert_message
+      warning = page.driver.browser.switch_to.alert
       expect(warning.text).to eql "Are you sure you want to delete #{other_user.name}'s account?"
       warning.accept
 
       expect(page).to have_current_path(users_path)
       expect(page).to have_govuk_flash(:notice, text: 'User successfully deleted')
     end
-  end
-
-  def alert_message
-    retries ||= 0
-    page.driver.browser.switch_to.alert
-  rescue Selenium::WebDriver::Error::NoSuchAlertError
-    retries += 1
-    retry if retries <= 5
-    raise
   end
 end
