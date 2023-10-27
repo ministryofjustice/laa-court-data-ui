@@ -45,7 +45,7 @@ RSpec.feature 'Index users', :js, type: :feature do
       expect(row).to have_link(other_user.email, href: "mailto:#{other_user.email}")
       expect(row).to have_link('Edit', href: edit_user_path(other_user))
       expect(row).to have_link('Delete', href: user_path(other_user)) { |link|
-                       link['data-method'] == 'delete'
+                       link['data-turbo-method'] == 'delete'
                      }
 
       expect(page).to be_accessible.within '#main-content'
