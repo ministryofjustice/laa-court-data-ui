@@ -25,12 +25,12 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'prometheus_exporter', '2.0.8'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 7.0.8'
-gem 'redis', '~> 5.0.7'
-gem 'sentry-rails', '~> 5.11.0'
-gem 'sentry-sidekiq', '~> 5.11.0'
-gem 'sidekiq', '~> 7.1.5'
+gem 'redis', '~> 5.0.8'
+gem 'sentry-rails', '~> 5.12.0'
+gem 'sentry-sidekiq', '~> 5.12.0'
+gem 'sidekiq', '~> 7.1.6'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 1.4.0'
+gem 'turbo-rails', '~> 1.5.0'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.8'
@@ -79,7 +79,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'net-imap', '~> 0.3.7'
+gem 'net-imap', '~> 0.4.2'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.4.0'
 
