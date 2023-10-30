@@ -53,7 +53,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
     it 'displays all "court applications"' do
       render_partial
       expect(rendered).to have_selector(list_element, text: /Application for transfer of legal aid/)
-      expect(rendered).to have_selector(list_element, text: /Application for case to be dismissed/)
+        .and(have_selector(list_element, text: /Application for case to be dismissed/))
     end
 
     context 'with respondents' do
@@ -64,9 +64,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
       before { allow(court_application1).to receive(:respondents).and_return(respondents) }
 
       it 'displays respondent_synonyms with line breaks' do
-        is_expected.to have_selector(list_element, text: /Defendant.*Suspect/) do |content|
-          expect(content).to have_selector('br')
-        end
+        is_expected.to have_selector(list_element, text: /Defendant.*Suspect/).and(have_css('br'))
       end
     end
 
@@ -99,13 +97,13 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
       it 'displays both result codes' do
         render_partial
         expect(rendered).to have_selector(list_element, text: /4600/)
-        expect(rendered).to have_selector(list_element, text: /4601/)
+          .and(have_selector(list_element, text: /4601/))
       end
 
       it 'displays both result texts' do
         render_partial
-        expect(rendered).to have_selector('dd.govuk-summary-list__value', text: /Legal Aid Transfer Granted/)
-        expect(rendered).to have_selector('dd.govuk-summary-list__value', text: /Legal Aid Transfer Denied/)
+        expect(rendered).to have_css('dd.govuk-summary-list__value', text: /Legal Aid Transfer Granted/)
+          .and(have_css('dd.govuk-summary-list__value', text: /Legal Aid Transfer Denied/))
       end
 
       context 'with result text containing html, unicode and crlf_escape_sequences' do
