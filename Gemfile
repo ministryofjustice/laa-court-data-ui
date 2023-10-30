@@ -13,6 +13,7 @@ gem 'breadcrumbs_on_rails'
 gem 'cancancan'
 gem 'devise', '~> 4.9'
 gem 'govuk_notify_rails', '~> 2.2.0'
+gem 'mutex_m'
 
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 4.1'
