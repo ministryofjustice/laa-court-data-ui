@@ -25,6 +25,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
   end
   let(:court_application_class) { CourtDataAdaptor::Resource::CourtApplication }
   let(:court_application_type_class) { CourtDataAdaptor::Resource::CourtApplicationType }
+  let(:list_element) { 'dd.govuk-summary-list__value' }
 
   before do
     allow(hearing).to receive_messages(id: '123', court_applications:)
@@ -51,10 +52,8 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
     it 'displays all "court applications"' do
       render_partial
-      expect(rendered).to have_tag('dd.govuk-summary-list__value') do
-        with_text(/Application for transfer of legal aid/)
-        with_text(/Application for case to be dismissed/)
-      end
+      expect(rendered).to have_selector(list_element, text: /Application for transfer of legal aid/)
+      expect(rendered).to have_selector(list_element, text: /Application for case to be dismissed/)
     end
 
     context 'with respondents' do
@@ -65,15 +64,15 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
       before { allow(court_application1).to receive(:respondents).and_return(respondents) }
 
       it 'displays respondent_synonyms with line breaks' do
-        is_expected.to have_tag('dd.govuk-summary-list__value', text: /Defendant.*Suspect/) do
-          with_tag(:br)
+        is_expected.to have_selector(list_element, text: /Defendant.*Suspect/) do |content|
+          expect(content).to have_selector('br')
         end
       end
     end
 
     context 'with no applicant synonym' do
       it 'displays the synonym "Applicant"' do
-        is_expected.not_to have_tag('dd.govuk-summary-list__value', text: /Applicant/)
+        is_expected.not_to have_selector(list_element, text: /Applicant/)
       end
     end
 
@@ -81,7 +80,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
       before { allow(court_application_type1).to receive(:applicant_appellant_flag).and_return(true) }
 
       it 'displays the synonym "Applicant"' do
-        is_expected.to have_tag('dd.govuk-summary-list__value', text: /Applicant/)
+        is_expected.to have_selector(list_element, text: /Applicant/)
       end
     end
 
@@ -99,18 +98,14 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
       it 'displays both result codes' do
         render_partial
-        expect(rendered).to have_tag('dd.govuk-summary-list__value') do
-          with_text(/4600/)
-          with_text(/4601/)
-        end
+        expect(rendered).to have_selector(list_element, text: /4600/)
+        expect(rendered).to have_selector(list_element, text: /4601/)
       end
 
       it 'displays both result texts' do
         render_partial
-        expect(rendered).to have_tag('dd.govuk-summary-list__value') do
-          with_text(/Legal Aid Transfer Granted/)
-          with_text(/Legal Aid Transfer Denied/)
-        end
+        expect(rendered).to have_selector('dd.govuk-summary-list__value', text: /Legal Aid Transfer Granted/)
+        expect(rendered).to have_selector('dd.govuk-summary-list__value', text: /Legal Aid Transfer Denied/)
       end
 
       context 'with result text containing html, unicode and crlf_escape_sequences' do

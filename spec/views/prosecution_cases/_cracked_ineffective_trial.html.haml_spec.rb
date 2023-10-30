@@ -144,15 +144,13 @@ RSpec.describe 'prosecution_cases/_cracked_ineffective_trial.html.haml', type: :
 
     it 'displays all "cracks"' do
       render_partial
-      expect(rendered).to have_tag('td.govuk-table__cell') do
-        with_text(/Vacated on/)
-        with_text(/Cracked on/)
-      end
+      expect(rendered).to have_selector('td.govuk-table__cell', text: /Vacated on/)
+      expect(rendered).to have_selector('td.govuk-table__cell', text: /Cracked on/)
     end
 
     it 'does not display "non-cracks"' do
       render_partial
-      expect(rendered).not_to have_tag('td.govuk-table__cell', text: /Ineffective/)
+      expect(rendered).not_to have_selector('td.govuk-table__cell', text: /Ineffective/)
     end
   end
 
