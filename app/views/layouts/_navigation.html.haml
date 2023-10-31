@@ -19,5 +19,5 @@
     %li.govuk-header__navigation-item
       = link_to t('layouts.application.header.navigation.sign_out'),
           destroy_user_session_path,
-          method: :delete,
+          data: { turbo_method: :delete },
           class: 'govuk-header__link'
