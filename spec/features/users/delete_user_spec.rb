@@ -16,7 +16,7 @@ RSpec.feature 'Delete user', :js, type: :feature do
       within row do
         find_link('Delete').click
       end
-
+      sleep 1.second
       warning = page.driver.browser.switch_to.alert
       expect(warning.text).to eql "Are you sure you want to delete #{other_user.name}'s account?"
       warning.accept
