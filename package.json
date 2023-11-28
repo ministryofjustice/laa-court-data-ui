@@ -44,7 +44,7 @@
     "stylelint": "^15.11.0",
     "stylelint-config-gds": "^1.0.0",
     "stylelint-order": "^6.0.3",
-    "wait-on": "^7.0.1"
+    "wait-on": "^7.2.0"
   },
   "standard": {
     "globals": [
