@@ -6,7 +6,7 @@ module HearingHelper
   end
 
   def earliest_day_for(hearing)
-    hearing&.hearing_days&.map(&:to_datetime)&.sort&.first
+    hearing&.hearing_days&.map(&:to_datetime)&.min
   end
 
   def transform_and_sanitize(text)
