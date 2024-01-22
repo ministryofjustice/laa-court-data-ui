@@ -83,6 +83,6 @@ gem 'net-imap', '~> 0.4.9'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.4.0'
 
-gem 'jsbundling-rails', '~> 1.2'
+gem 'jsbundling-rails', '~> 1.3'
 
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
