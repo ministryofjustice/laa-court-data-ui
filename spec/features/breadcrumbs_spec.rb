@@ -11,7 +11,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
 
     it 'breadcrumbs are not displayed' do
       within_breadcrumbs do
-        expect(page).not_to have_content(/.+/)
+        expect(page).to have_no_content(/.+/)
       end
     end
   end
@@ -25,7 +25,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
     context 'when on search filters page' do
       scenario 'no breadcrumbs are displayed' do
         within '.govuk-breadcrumbs' do
-          expect(page).not_to have_content(/.+/)
+          expect(page).to have_no_content(/.+/)
         end
       end
     end
@@ -56,7 +56,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
 
-        click_link(case_urn, match: :first)
+        click_link_or_button(case_urn, match: :first)
         expect(page).to have_current_path(prosecution_case_path(case_urn))
         then_has_case_details_breadcrumbs(case_urn)
       end
@@ -67,8 +67,8 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
 
-        click_link(case_urn, match: :first)
-        click_link('Jammy Dodger')
+        click_link_or_button(case_urn, match: :first)
+        click_link_or_button('Jammy Dodger')
         expect(page).to have_current_path(%r{/laa_references/.+})
         then_has_defendant_details_breadcrumbs(case_urn, 'Jammy Dodger')
       end
@@ -79,8 +79,8 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
 
-        click_link(case_urn, match: :first)
-        click_link('23/10/2019', match: :first)
+        click_link_or_button(case_urn, match: :first)
+        click_link_or_button('23/10/2019', match: :first)
         expect(page).to have_current_path(hearing_path(hearing_id_from_fixture,
                                                        column: 'date',
                                                        direction: 'asc',
@@ -94,11 +94,11 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       when_i_choose_search_filter 'A case by URN'
       when_i_search_for case_urn
 
-      click_link(case_urn, match: :first)
+      click_link_or_button(case_urn, match: :first)
       expect(page).to have_current_path(prosecution_case_path(case_urn))
       then_has_case_details_breadcrumbs(case_urn)
 
-      click_link('Jammy Dodger')
+      click_link_or_button('Jammy Dodger')
       expect(page).to have_current_path(%r{/laa_references/.+})
       then_has_defendant_details_breadcrumbs(case_urn, 'Jammy Dodger')
 
@@ -106,7 +106,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       expect(page).to have_current_path(prosecution_case_path(case_urn))
       then_has_case_details_breadcrumbs(case_urn)
 
-      click_link('23/10/2019', match: :first)
+      click_link_or_button('23/10/2019', match: :first)
       expect(page).to have_current_path(hearing_path(hearing_id_from_fixture,
                                                      column: 'date',
                                                      direction: 'asc',
@@ -133,17 +133,17 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
 
   def when_i_choose_search_filter(search_filter_option)
     choose search_filter_option
-    click_button 'Continue'
+    click_link_or_button 'Continue'
   end
 
   def when_i_search_for(term)
     fill_in 'search-term-field', with: term
-    click_button 'Search'
+    click_link_or_button 'Search'
   end
 
   def click_breadcrumb(crumb)
     within_breadcrumbs do
-      click_link crumb
+      click_link_or_button crumb
     end
   end
 
@@ -155,7 +155,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
 
   def then_breadcrumbs_are_not_displayed
     within_breadcrumbs do
-      expect(page).not_to have_content(/.+/)
+      expect(page).to have_no_content(/.+/)
     end
   end
 

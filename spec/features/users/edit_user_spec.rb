@@ -12,7 +12,7 @@ RSpec.feature 'Edit user', :js, type: :feature do
       visit user_path(user)
 
       expect(page).to have_govuk_page_title(text: "#{user.name}'s account")
-      expect(page).not_to have_link('Edit', href: 'edit')
+      expect(page).to have_no_link('Edit', href: 'edit')
     end
 
     scenario 'cannot directly access edit page' do
@@ -33,7 +33,7 @@ RSpec.feature 'Edit user', :js, type: :feature do
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
 
       within(row) do
-        click_link 'Edit'
+        click_link_or_button 'Edit'
       end
 
       expect(page).to have_govuk_page_title(text: 'Edit user')
@@ -48,7 +48,7 @@ RSpec.feature 'Edit user', :js, type: :feature do
 
       fill_in 'Confirm email', with: ''
 
-      click_button 'Save'
+      click_link_or_button 'Save'
       expect(page).to have_govuk_error_summary('doesn\'t match Email')
       expect(page).to have_govuk_error_field(:user, :email_confirmation, 'doesn\'t match Email')
 
@@ -59,7 +59,7 @@ RSpec.feature 'Edit user', :js, type: :feature do
       expect(page).to be_accessible.within '#main-content'
 
       expect do
-        click_button 'Save'
+        click_link_or_button 'Save'
       end.to have_enqueued_job.on_queue('mailers')
 
       expect(page).to have_current_path(user_path(other_user))

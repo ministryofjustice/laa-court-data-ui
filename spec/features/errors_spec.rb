@@ -13,7 +13,7 @@ RSpec.feature 'Error page', type: :feature do
                                text: 'You can also browse from the homepage to find the information you need')
       expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
     end
-    click_link 'browse from the homepage'
+    click_link_or_button 'browse from the homepage'
     expect(page).to have_current_path('/')
   end
 
@@ -28,7 +28,7 @@ RSpec.feature 'Error page', type: :feature do
                                text: 'You can also browse from the homepage to find the information you need')
       expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
     end
-    click_link 'browse from the homepage'
+    click_link_or_button 'browse from the homepage'
     expect(page).to have_current_path('/')
   end
 
@@ -42,7 +42,7 @@ RSpec.feature 'Error page', type: :feature do
                                text: 'You can also browse from the homepage to find the information you need')
       expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
     end
-    click_link 'browse from the homepage'
+    click_link_or_button 'browse from the homepage'
     expect(page).to have_current_path('/')
   end
 
@@ -61,9 +61,9 @@ RSpec.feature 'Error page', type: :feature do
       visit '/'
 
       choose 'A case by URN'
-      click_button 'Continue'
+      click_link_or_button 'Continue'
       fill_in 'search-term-field', with: 'TEST12345'
-      click_button 'Search'
+      click_link_or_button 'Search'
 
       expect(page).to have_css('.govuk-error-summary')
       within '.govuk-error-summary' do
@@ -89,9 +89,9 @@ RSpec.feature 'Error page', type: :feature do
       visit '/'
 
       choose 'A case by URN'
-      click_button 'Continue'
+      click_link_or_button 'Continue'
       fill_in 'search-term-field', with: 'TEST12345'
-      click_button 'Search'
+      click_link_or_button 'Search'
 
       expect(page).to have_css('.govuk-error-summary')
       within '.govuk-error-summary' do
@@ -121,7 +121,7 @@ RSpec.feature 'Error page', type: :feature do
                                  text: 'You can also browse from the homepage to find the information ')
         expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
       end
-      click_link 'browse from the homepage'
+      click_link_or_button 'browse from the homepage'
       expect(page).to have_current_path('/')
     end
   end
@@ -145,7 +145,7 @@ RSpec.feature 'Error page', type: :feature do
                                  text: 'You can also browse from the homepage to find the information ')
         expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
       end
-      click_link 'browse from the homepage'
+      click_link_or_button 'browse from the homepage'
       expect(page).to have_current_path('/')
     end
   end
@@ -169,7 +169,7 @@ RSpec.feature 'Error page', type: :feature do
                                  text: 'You can also browse from the homepage to find the information ')
         expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
       end
-      click_link 'browse from the homepage'
+      click_link_or_button 'browse from the homepage'
       expect(page).to have_current_path('/')
     end
   end
@@ -193,7 +193,7 @@ RSpec.feature 'Error page', type: :feature do
                                  text: 'You can also browse from the homepage to find the information ')
         expect(page).to have_css('.govuk-link', text: 'browse from the homepage')
       end
-      click_link 'browse from the homepage'
+      click_link_or_button 'browse from the homepage'
       expect(page).to have_current_path('/')
     end
   end

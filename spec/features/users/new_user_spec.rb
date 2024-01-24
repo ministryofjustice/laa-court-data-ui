@@ -31,7 +31,7 @@ RSpec.feature 'New user', type: :feature do
       expect(page).to have_govuk_page_title(text: 'List of users')
 
       expect(page).to have_link(text: 'Create a new user')
-      click_link 'Create a new user'
+      click_link_or_button 'Create a new user'
       expect(page).to have_current_path(new_user_path)
 
       expect(page).to have_govuk_page_title(text: 'New user')
@@ -51,14 +51,14 @@ RSpec.feature 'New user', type: :feature do
       check 'Caseworker'
       check 'Admin'
 
-      click_button 'Save'
+      click_link_or_button 'Save'
       expect(page).to have_govuk_error_summary('Enter a username')
       expect(page).to have_govuk_error_field(:user, :username, 'Enter a username')
 
       fill_in 'Username', with: 'bob-j'
 
       expect do
-        click_button 'Save'
+        click_link_or_button 'Save'
       end.to have_enqueued_job.on_queue('mailers')
 
       new_user = User.find_by(email: 'jim.bob@example.com')

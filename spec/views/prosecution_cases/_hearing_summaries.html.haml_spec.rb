@@ -60,7 +60,7 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
     let(:hearings) { [] }
 
     it 'does not render any rows' do
-      expect(rendered).not_to have_css('tbody.govuk-table__body tr')
+      expect(rendered).to have_no_css('tbody.govuk-table__body tr')
     end
   end
 

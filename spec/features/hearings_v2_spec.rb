@@ -106,7 +106,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
       end
 
       it 'displays events section' do
-        expect(page).not_to have_css('.govuk-heading-l', text: 'Events')
+        expect(page).to have_no_css('.govuk-heading-l', text: 'Events')
       end
 
       it 'displays court applications section' do
@@ -141,7 +141,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
       end
 
       it 'displays events section' do
-        expect(page).not_to have_css('.govuk-heading-l', text: 'Events')
+        expect(page).to have_no_css('.govuk-heading-l', text: 'Events')
       end
 
       it 'displays court applications section' do
