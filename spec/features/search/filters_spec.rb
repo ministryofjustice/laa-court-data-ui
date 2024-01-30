@@ -25,7 +25,7 @@ RSpec.feature 'Search filters', :js, type: :feature do
     visit '/'
 
     choose 'A defendant by ASN or National insurance number'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     expect(page).to have_text('Defendant ASN or National insurance number')
 
     expect(page).to be_accessible.within '#main-content'
@@ -35,7 +35,7 @@ RSpec.feature 'Search filters', :js, type: :feature do
     visit '/'
 
     choose 'A defendant by name and date of birth'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     expect(page).to have_text('Defendant name')
 
     expect(page).to be_accessible.within '#main-content'
@@ -45,7 +45,7 @@ RSpec.feature 'Search filters', :js, type: :feature do
     visit '/'
 
     choose 'A case by URN'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     expect(page).to have_text('Unique reference number')
 
     expect(page).to be_accessible.within '#main-content'

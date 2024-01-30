@@ -11,7 +11,7 @@ RSpec.feature 'Index users', :js, type: :feature do
 
     scenario 'cannot index users' do
       expect(page).to have_current_path(authenticated_root_path)
-      expect(page).not_to have_link 'Manage users'
+      expect(page).to have_no_link 'Manage users'
     end
 
     scenario 'cannot directly index users' do
@@ -28,7 +28,7 @@ RSpec.feature 'Index users', :js, type: :feature do
     scenario 'can index users' do
       expect(page).to have_current_path(authenticated_root_path)
 
-      click_link 'Manage users'
+      click_link_or_button 'Manage users'
 
       expect(page).to have_govuk_page_title(text: 'List of users')
 

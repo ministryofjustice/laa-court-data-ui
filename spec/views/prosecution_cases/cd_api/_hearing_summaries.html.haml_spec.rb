@@ -50,7 +50,7 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
     let(:hearing_summaries) { [] }
 
     it 'does not render any rows' do
-      expect(rendered).not_to have_css('tbody.govuk-table__body tr')
+      expect(rendered).to have_no_css('tbody.govuk-table__body tr')
     end
   end
 
@@ -131,8 +131,8 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
       it 'does not render duplicated estmated duration' do
         expect(rendered)
-          .not_to have_css('tbody.govuk-table__body tr:nth-child(2)',
-                           text: %r{20/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
+          .to have_no_css('tbody.govuk-table__body tr:nth-child(2)',
+                          text: %r{20/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
       end
     end
 
@@ -146,8 +146,8 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
       end
 
       it 'does not render provider for hearing day' do
-        expect(rendered).not_to have_css('tbody.govuk-table__body tr:nth-child(2)',
-                                         text: 'Fred Dibnah (QC)')
+        expect(rendered).to have_no_css('tbody.govuk-table__body tr:nth-child(2)',
+                                        text: 'Fred Dibnah (QC)')
       end
     end
   end

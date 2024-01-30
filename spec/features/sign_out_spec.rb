@@ -6,7 +6,7 @@ RSpec.feature 'Sign out', type: :feature do
   before do
     sign_in user
     visit '/'
-    click_link 'Sign out'
+    click_link_or_button 'Sign out'
   end
 
   it 'displays signed out message' do
@@ -18,8 +18,8 @@ RSpec.feature 'Sign out', type: :feature do
   end
 
   it 'does not display navigation bar' do
-    expect(page).not_to have_css('nav')
-    expect(page).not_to have_link(user.name)
-    expect(page).not_to have_link('Sign out')
+    expect(page).to have_no_css('nav')
+    expect(page).to have_no_link(user.name)
+    expect(page).to have_no_link('Sign out')
   end
 end

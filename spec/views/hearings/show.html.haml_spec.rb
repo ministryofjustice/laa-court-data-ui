@@ -72,6 +72,6 @@ RSpec.describe 'hearings/show', type: :view do
         .and_return(cracked_ineffective_trial)
     end
 
-    it { is_expected.not_to have_css('h2.govuk-heading-l', text: /Result/) }
+    it { is_expected.to have_no_css('h2.govuk-heading-l', text: /Result/) }
   end
 end

@@ -20,13 +20,13 @@ RSpec.feature 'Password reset', :js, type: :feature do
 
   scenario 'caseworker resets their own password' do
     expect(page).to have_link('Forgot your password?')
-    click_link 'Forgot your password?'
+    click_link_or_button 'Forgot your password?'
 
     expect(page).to have_govuk_page_title(text: 'Forgot your password?')
     expect(page).to be_accessible.within '#main-content'
     fill_in 'Email', with: user.email
     expect do
-      click_button 'Send me reset password instructions'
+      click_link_or_button 'Send me reset password instructions'
     end.to have_enqueued_job.on_queue('mailers')
     expect(page).to have_current_path(new_user_session_path)
     expect(page).to have_govuk_flash(:notice, text: reset_flash_notice)

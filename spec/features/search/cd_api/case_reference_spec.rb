@@ -12,9 +12,9 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     visit '/'
 
     choose 'A case by URN'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'TEST12345'
-    click_button 'Search'
+    click_link_or_button 'Search'
     expect(page).to have_text 'Search results for "TEST12345"'
 
     within 'tbody.govuk-table__body' do
@@ -28,9 +28,9 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     visit '/'
 
     choose 'A case by URN'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'nonexistentcaseURN'
-    click_button 'Search'
+    click_link_or_button 'Search'
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
 
     expect(page).to be_accessible.within '#main-content'
@@ -40,11 +40,11 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     visit '/'
 
     choose 'A case by URN'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     fill_in 'search-term-field', with: ''
-    click_button 'Search'
+    click_link_or_button 'Search'
 
-    expect(page).not_to have_css('.govuk-body', text: 'There are no matching results')
+    expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
       expect(page).to have_content('Search term required')
@@ -59,11 +59,11 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     visit '/'
 
     choose 'A case by URN'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'error'
-    click_button 'Search'
+    click_link_or_button 'Search'
 
-    expect(page).not_to have_css('.govuk-body', text: 'There are no matching results')
+    expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
       expect(page).to have_content('Unable to complete the search. Please try again in a moment.')
@@ -76,11 +76,11 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     visit '/'
 
     choose 'A case by URN'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'error'
-    click_button 'Search'
+    click_link_or_button 'Search'
 
-    expect(page).not_to have_css('.govuk-body', text: 'There are no matching results')
+    expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
       expect(page)

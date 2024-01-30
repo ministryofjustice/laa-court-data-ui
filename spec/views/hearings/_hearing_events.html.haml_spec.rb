@@ -52,7 +52,7 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
     end
 
     it 'filters outs hearing events from other days' do
-      is_expected.not_to have_css('td.govuk-table__cell', text: 'day 2')
+      is_expected.to have_no_css('td.govuk-table__cell', text: 'day 2')
     end
 
     it 'sorts hearing events earliest to latest' do

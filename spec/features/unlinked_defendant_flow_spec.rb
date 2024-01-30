@@ -16,14 +16,14 @@ RSpec.feature 'Unlinked defendant page flow', :stub_unlinked, type: :feature do
     then_case_view_displayed
     then_defendant_list_displayed
 
-    click_link('Jammy Dodger')
+    click_link_or_button('Jammy Dodger')
     then_defendant_view_displayed_for(defendant_name)
   end
 
   scenario 'user navigates from case to defendant view' do
     when_viewing_case(case_urn)
     then_case_view_displayed
-    click_link(defendant_name)
+    click_link_or_button(defendant_name)
     then_defendant_view_displayed_for(defendant_name)
     then_unlinked_defendant_page_displayed
   end
@@ -31,7 +31,7 @@ RSpec.feature 'Unlinked defendant page flow', :stub_unlinked, type: :feature do
   scenario 'user navigates from case to hearings view', :stub_hearing do
     when_viewing_case(case_urn)
     then_case_view_displayed
-    click_link(hearing_day)
+    click_link_or_button(hearing_day)
     then_hearing_view_displayed_for(hearing_day)
   end
 
@@ -63,7 +63,7 @@ RSpec.feature 'Unlinked defendant page flow', :stub_unlinked, type: :feature do
   def when_user_links_maat_reference_on_defendant
     stub_linked_defendant
     fill_in 'MAAT ID', with: '2123456'
-    click_button 'Create link to court data'
+    click_link_or_button 'Create link to court data'
   end
 
   def then_unlinked_defendant_page_displayed

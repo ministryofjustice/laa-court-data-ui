@@ -3,7 +3,7 @@
 RSpec.feature 'Cookies', type: :feature do
   scenario 'viewing cookie settings' do
     visit cookies_path
-    click_link 'Cookie settings'
+    click_link_or_button 'Cookie settings'
 
     expect(page).to have_current_path cookies_settings_path, ignore_query: true
     within '.govuk-main-wrapper' do
@@ -14,7 +14,7 @@ RSpec.feature 'Cookies', type: :feature do
   context 'when on the cookies page' do
     scenario 'content should be available' do
       visit '/'
-      click_link('Cookies')
+      click_link_or_button('Cookies')
 
       expect(page).to have_current_path cookies_settings_path, ignore_query: true
       within '.govuk-main-wrapper' do
@@ -30,7 +30,7 @@ RSpec.feature 'Cookies', type: :feature do
         expect(page).to have_css('.app-no-js-only', text: 'Analytics cookies are unavailable')
         expect(page).to have_css('.app-js-only', text: 'Turn Google Analytics cookies on or off')
       end
-      click_link 'View cookies'
+      click_link_or_button 'View cookies'
 
       expect(page).to have_current_path cookies_path, ignore_query: true
     end
@@ -60,7 +60,7 @@ RSpec.feature 'Cookies', type: :feature do
         expect(page).to have_text 'Hide this message'
       end
 
-      click_link 'View cookies'
+      click_link_or_button 'View cookies'
 
       expect(page).to have_current_path cookies_path, ignore_query: true
     end
@@ -78,7 +78,7 @@ RSpec.feature 'Cookies', type: :feature do
     scenario 'cookie banner is not visible' do
       visit cookies_settings_path
       page.choose 'On'
-      click_button 'Save changes'
+      click_link_or_button 'Save changes'
 
       within '.govuk-notification-banner--success' do
         expect(page).to have_text "You've set your cookie preferences."
@@ -86,16 +86,16 @@ RSpec.feature 'Cookies', type: :feature do
       within '#new_cookie' do
         expect(find_by_id('cookie-analytics-true-field').checked?).to be true
       end
-      expect(page).not_to have_css '.app-cookie-banner'
+      expect(page).to have_no_css '.app-cookie-banner'
     end
 
     scenario 'notification banner links back to previous page' do
       visit unauthenticated_root_path
-      click_link 'Contact'
-      click_link 'Cookies'
+      click_link_or_button 'Contact'
+      click_link_or_button 'Cookies'
       page.choose 'On'
-      click_button 'Save changes'
-      click_link 'Go back to the page you were looking at'
+      click_link_or_button 'Save changes'
+      click_link_or_button 'Go back to the page you were looking at'
       expect(page).to have_current_path contact_us_path, ignore_query: true
     end
   end
@@ -104,7 +104,7 @@ RSpec.feature 'Cookies', type: :feature do
     scenario 'cookie banner is not visible' do
       visit cookies_settings_path
       page.choose 'Off'
-      click_button 'Save changes'
+      click_link_or_button 'Save changes'
 
       within '.govuk-notification-banner--success' do
         expect(page).to have_text "You've set your cookie preferences."
@@ -112,16 +112,16 @@ RSpec.feature 'Cookies', type: :feature do
       within '#new_cookie' do
         expect(find_by_id('cookie-analytics-false-field').checked?).to be true
       end
-      expect(page).not_to have_css '.app-cookie-banner'
+      expect(page).to have_no_css '.app-cookie-banner'
     end
 
     scenario 'notification banner links back to previous page' do
       visit unauthenticated_root_path
-      click_link 'Contact'
-      click_link 'Cookies'
+      click_link_or_button 'Contact'
+      click_link_or_button 'Cookies'
       page.choose 'Off'
-      click_button 'Save changes'
-      click_link 'Go back to the page you were looking at'
+      click_link_or_button 'Save changes'
+      click_link_or_button 'Go back to the page you were looking at'
       expect(page).to have_current_path contact_us_path, ignore_query: true
     end
   end
@@ -137,13 +137,13 @@ RSpec.feature 'Cookies', type: :feature do
       visit '/'
 
       choose 'A case by URN'
-      click_button 'Continue'
+      click_link_or_button 'Continue'
       fill_in 'search-term-field', with: 'TEST12345'
-      click_button 'Search'
-      click_link 'Cookies'
+      click_link_or_button 'Search'
+      click_link_or_button 'Cookies'
       page.choose 'Off'
-      click_button 'Save changes'
-      click_link 'Go back to the page you were looking at'
+      click_link_or_button 'Save changes'
+      click_link_or_button 'Go back to the page you were looking at'
       expect(page).to have_current_path(searches_path)
     end
   end
