@@ -31,4 +31,23 @@ RSpec.describe CdApi::Defendant, type: :model do
       it { is_expected.to be_falsey }
     end
   end
+
+  describe '#maat_reference' do
+    subject { defendant.maat_reference }
+
+    let(:defendant) { build(:defendant, offence_summaries:) }
+    let(:offence_summaries) { [build(:offence_summary, laa_application:)] }
+
+    context 'when maat_reference present' do
+      let(:laa_application) { build(:laa_application, reference: '2123456') }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context 'when maat_reference not present' do
+      let(:laa_application) { build(:laa_application, reference: '') }
+
+      it { is_expected.to be_empty }
+    end
+  end
 end

@@ -8,6 +8,10 @@ module CdApi
       maat_references.first.present? && maat_references.first.first != 'Z'
     end
 
+    def maat_reference
+      maat_references.first
+    end
+
     private
 
     def maat_references
