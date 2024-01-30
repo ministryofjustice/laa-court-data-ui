@@ -150,7 +150,7 @@ RSpec.describe 'prosecution_cases/_cracked_ineffective_trial.html.haml', type: :
 
     it 'does not display "non-cracks"' do
       render_partial
-      expect(rendered).not_to have_css('td.govuk-table__cell', text: /Ineffective/)
+      expect(rendered).to have_no_css('td.govuk-table__cell', text: /Ineffective/)
     end
   end
 

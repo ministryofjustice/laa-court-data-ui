@@ -70,7 +70,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
     context 'with no applicant synonym' do
       it 'displays the synonym "Applicant"' do
-        is_expected.not_to have_selector(list_element, text: /Applicant/)
+        is_expected.to have_no_selector(list_element, text: /Applicant/)
       end
     end
 
