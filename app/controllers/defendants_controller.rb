@@ -14,10 +14,10 @@ class DefendantsController < ApplicationController
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
-  add_breadcrumb (proc { |v| v.prosecution_case_name(v.controller.prosecution_case_reference) }),
-                 (proc { |v| v.prosecution_case_path(v.controller.prosecution_case_reference) })
-  add_breadcrumb (proc { |v| v.controller.defendant.name }),
-                 (proc { |v| v.defendant_path(v.controller.defendant.id) })
+  add_breadcrumb proc { |v| v.prosecution_case_name(v.controller.prosecution_case_reference) },
+                 proc { |v| v.prosecution_case_path(v.controller.prosecution_case_reference) }
+  add_breadcrumb proc { |v| v.controller.defendant.name },
+                 proc { |v| v.defendant_path(v.controller.defendant.id) }
 
   rescue_from CourtDataAdaptor::Errors::BadRequest, with: :adaptor_error_handler
 
