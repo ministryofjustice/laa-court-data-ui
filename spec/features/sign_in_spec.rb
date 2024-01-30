@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Sign in', type: :feature, js: true do
+RSpec.feature 'Sign in', :js, type: :feature do
   let(:user) do
     create(:user,
            email: 'bob.smith@example.com',
@@ -25,7 +25,7 @@ RSpec.feature 'Sign in', type: :feature, js: true do
       before do
         fill_in 'Username or email', with: user.email
         fill_in 'Password', with: user.password
-        click_button 'Sign in'
+        click_link_or_button 'Sign in'
       end
 
       it 'successful sign in message displayed' do
@@ -33,11 +33,11 @@ RSpec.feature 'Sign in', type: :feature, js: true do
       end
 
       it 'search filters page is displayed' do
-        expect(page).to have_selector('legend', text: 'Search for')
+        expect(page).to have_css('legend', text: 'Search for')
       end
 
       it 'navigation bar is displayed' do
-        expect(page).to have_selector('nav.govuk-header__navigation')
+        expect(page).to have_css('nav.govuk-header__navigation')
       end
 
       describe 'navigation bar' do
@@ -59,7 +59,7 @@ RSpec.feature 'Sign in', type: :feature, js: true do
       before do
         fill_in 'Username or email', with: user.username
         fill_in 'Password', with: user.password
-        click_button 'Sign in'
+        click_link_or_button 'Sign in'
       end
 
       it 'successful sign in message displayed' do
@@ -72,7 +72,7 @@ RSpec.feature 'Sign in', type: :feature, js: true do
     it 'invalid username, email or password displayed' do
       fill_in 'Username or email', with: 'billy bob'
       fill_in 'Password', with: user.password
-      click_button 'Sign in'
+      click_link_or_button 'Sign in'
       expect(page).to have_govuk_page_title(text: 'Sign in')
       expect(page).to have_govuk_flash(:alert, text: 'Invalid username or password')
     end

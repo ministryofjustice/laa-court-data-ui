@@ -8,7 +8,7 @@ RSpec.describe 'hearings/_court_applications_v2.html.haml', type: :view do
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
   let(:hearing) { CdApi::Hearing.find(hearing_id, params: { date: hearing_day.strftime('%F') }) }
 
-  context 'with court_applications present', stub_v2_hearing_data: true do
+  context 'with court_applications present', :stub_v2_hearing_data do
     it 'displays the section' do
       is_expected.to have_tag('h2.govuk-heading-l', text: /Court Applications/)
     end
@@ -23,7 +23,7 @@ RSpec.describe 'hearings/_court_applications_v2.html.haml', type: :view do
     end
   end
 
-  context 'with no court_applications present', stub_v2_empty_hearing_data: true do
+  context 'with no court_applications present', :stub_v2_empty_hearing_data do
     it 'displays the section' do
       is_expected.to have_tag('h2.govuk-heading-l', text: /Court Applications/)
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'prosecution cases', type: :request, stub_case_search: true, stub_v2_hearing_summary: true do
+RSpec.describe 'prosecution cases', :stub_case_search, :stub_v2_hearing_summary, type: :request do
   let(:user) { create(:user) }
   let(:case_reference) { 'TEST12345' }
 
@@ -16,7 +16,7 @@ RSpec.describe 'prosecution cases', type: :request, stub_case_search: true, stub
       expect(response).to render_template('prosecution_cases/show')
     end
 
-    context 'when defendants_search flag is on', stub_defendants_case_search: true do
+    context 'when defendants_search flag is on', :stub_defendants_case_search do
       before { allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true) }
 
       it 'renders prosecution_cases/show' do

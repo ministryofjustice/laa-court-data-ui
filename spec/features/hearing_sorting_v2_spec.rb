@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
+RSpec.feature 'Hearing sorting', :vcr, type: :feature do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
@@ -41,7 +41,7 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
     end
 
     scenario 'user can sort by date desc' do
-      click_link('Date')
+      click_link_or_button('Date')
       within :table, 'Hearings' do
         expect(page).to have_link("Date \u25BC", href: prosecution_cases_page_url('date', 'asc'),
                                                  class: 'govuk-link')
@@ -60,7 +60,7 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
     end
 
     scenario 'user clicks to sort by type desc' do
-      click_link('Hearing type')
+      click_link_or_button('Hearing type')
       within :table, 'Hearings' do
         expect(page).to have_link('Date', href: prosecution_cases_page_url('date', 'asc'),
                                           class: 'govuk-link')
@@ -82,8 +82,8 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
     end
 
     scenario 'user clicks (twice) to sort by type asc' do
-      click_link('Hearing type')
-      click_link('Hearing type')
+      click_link_or_button('Hearing type')
+      click_link_or_button('Hearing type')
 
       within :table, 'Hearings' do
         expect(page).to have_link('Date', href: prosecution_cases_page_url('date', 'desc'),
@@ -106,7 +106,7 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
     end
 
     scenario 'user clicks to sort by provider desc' do
-      click_link('Providers attending')
+      click_link_or_button('Providers attending')
       within :table, 'Hearings' do
         expect(page).to have_link('Date', href: prosecution_cases_page_url('date', 'asc'),
                                           class: 'govuk-link')
@@ -128,8 +128,8 @@ RSpec.feature 'Hearing sorting', type: :feature, vcr: true do
     end
 
     scenario 'user clicks (twice) to sort by provider asc' do
-      click_link('Providers attending')
-      click_link('Providers attending')
+      click_link_or_button('Providers attending')
+      click_link_or_button('Providers attending')
       within :table, 'Hearings' do
         expect(page).to have_link('Date', href: prosecution_cases_page_url('date', 'desc'),
                                           class: 'govuk-link')

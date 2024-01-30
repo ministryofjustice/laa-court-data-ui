@@ -38,7 +38,7 @@ RSpec.describe 'hearings/_attendees_v2', type: :view do
     end
   end
 
-  context 'when hearing data is present', stub_v2_hearing_data: true do
+  context 'when hearing data is present', :stub_v2_hearing_data do
     include_examples 'returns correct headers'
 
     context 'with defendant_names' do
@@ -92,7 +92,7 @@ RSpec.describe 'hearings/_attendees_v2', type: :view do
     end
   end
 
-  context 'when no hearing data is present', stub_v2_empty_hearing_data: true do
+  context 'when no hearing data is present', :stub_v2_empty_hearing_data do
     context 'with no defendant_names' do
       it not_available_test do
         is_expected.to have_tag('p.govuk-body#defendants', text: not_available_text)

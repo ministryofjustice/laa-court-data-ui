@@ -23,7 +23,7 @@ RSpec.describe CdApi::SearchService do
         end
       end
 
-      context 'when successful response', stub_defendants_case_search: true do
+      context 'when successful response', :stub_defendants_case_search do
         it 'response with array of defendants' do
           expect(search.size).to eq 4
         end
@@ -53,7 +53,7 @@ RSpec.describe CdApi::SearchService do
       end
     end
 
-    context 'when filter is defendant_name', stub_defendants_name_search: true do
+    context 'when filter is defendant_name', :stub_defendants_name_search do
       subject(:search) { described_class.call(filter:, term:, dob:) }
 
       let(:filter) { 'defendant_name' }
@@ -76,7 +76,7 @@ RSpec.describe CdApi::SearchService do
         expect(search.first).to respond_to :id
       end
 
-      context 'when unsuccessful response', stub_defendants_failed_search: true do
+      context 'when unsuccessful response', :stub_defendants_failed_search do
         before do
           stub_request(:get, %r{/v2/defendants}).to_return(status: 400, body: '',
                                                            headers: { 'Content-Type' => 'application/json' })
@@ -88,7 +88,7 @@ RSpec.describe CdApi::SearchService do
       end
     end
 
-    context 'when filter is defendant_reference', stub_defendants_ref_search: true do
+    context 'when filter is defendant_reference', :stub_defendants_ref_search do
       subject(:search) { described_class.call(filter:, term:, dob:) }
 
       let(:filter) { 'defendant_reference' }
@@ -148,7 +148,7 @@ RSpec.describe CdApi::SearchService do
         end
       end
 
-      context 'when unsuccessful response', stub_defendants_failed_search: true do
+      context 'when unsuccessful response', :stub_defendants_failed_search do
         it 'raises ActiveResource::BadRequest exception' do
           expect { search }.to raise_error(ActiveResource::BadRequest)
         end

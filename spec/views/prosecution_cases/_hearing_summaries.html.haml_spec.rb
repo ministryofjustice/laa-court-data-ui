@@ -46,21 +46,21 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
 
   before do
     allow(prosecution_case).to receive(:hearings).and_return(hearings)
-    allow(decorated_prosecution_case).to receive(:hearings_sort_column).and_return 'date'
-    allow(decorated_prosecution_case).to receive(:hearings_sort_direction).and_return 'asc'
+    allow(decorated_prosecution_case).to receive_messages(hearings_sort_column: 'date',
+                                                          hearings_sort_direction: 'asc')
     allow(hearing).to receive(:providers).and_return(providers)
     allow(hearing1).to receive(:providers).and_return(providers)
     allow(hearing2).to receive(:providers).and_return(providers)
     render_partial
   end
 
-  it { expect(rendered).to have_selector('.govuk-heading-l', text: 'Hearings') }
+  it { expect(rendered).to have_css('.govuk-heading-l', text: 'Hearings') }
 
   context 'with no hearings' do
     let(:hearings) { [] }
 
     it 'does not render any rows' do
-      expect(rendered).not_to have_selector('tbody.govuk-table__body tr')
+      expect(rendered).to have_no_css('tbody.govuk-table__body tr')
     end
   end
 
@@ -69,14 +69,14 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
 
     context 'with single hearing day per hearing' do
       it 'renders a row per hearing' do
-        expect(rendered).to have_selector('tbody tr.govuk-table__row', count: 3)
+        expect(rendered).to have_css('tbody tr.govuk-table__row', count: 3)
       end
 
       it 'renders hearing type per row' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: 'First hearing')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: 'Trial')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: 'Sentence')
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: 'First hearing')
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: 'Trial')
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: 'Sentence')
       end
 
       it 'renders link to hearing with urn' do
@@ -90,16 +90,16 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
 
       it 'sorts hearings by hearing day' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: '17/01/2021')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: '18/01/2021')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: '19/01/2021')
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: '17/01/2021')
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: '18/01/2021')
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: '19/01/2021')
       end
 
       it 'renders provider list per row' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: 'Fred Dibnah (QC)')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: 'Fred Dibnah (QC)')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: 'Fred Dibnah (QC)')
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: 'Fred Dibnah (QC)')
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: 'Fred Dibnah (QC)')
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: 'Fred Dibnah (QC)')
       end
     end
 
@@ -110,10 +110,10 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
 
       it 'sorts hearings by hearing_days collection then by hearing day datetime' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: %r{17/01/2021.*First hearing}m)
-          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: %r{19/01/2021.*Trial}m)
-          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: %r{20/01/2021.*Trial}m)
-          .and have_selector('tbody.govuk-table__body tr:nth-child(4)', text: %r{20/01/2021.*Sentence}m)
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: %r{17/01/2021.*First hearing}m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: %r{19/01/2021.*Trial}m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: %r{20/01/2021.*Trial}m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(4)', text: %r{20/01/2021.*Sentence}m)
       end
     end
   end

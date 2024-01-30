@@ -5,11 +5,11 @@ require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
-  config.before(:each, stub_v2_link_success: true) do
+  config.before(:each, :stub_v2_link_success) do
     stub_request(:post, %r{/v2/laa_references}).to_return(status: 202, body: '')
   end
 
-  config.before(:each, stub_v2_link_failure_with_invalid_defendant_uuid: true) do
+  config.before(:each, :stub_v2_link_failure_with_invalid_defendant_uuid) do
     stub_request(
       :post, %r{/v2/laa_references}
     ).to_return(
@@ -22,7 +22,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_link_failure_with_unknown_maat_reference: true) do
+  config.before(:each, :stub_v2_link_failure_with_unknown_maat_reference) do
     stub_request(
       :post, %r{/v2/laa_references}
     ).to_return(
@@ -34,7 +34,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_link_server_failure: true) do
+  config.before(:each, :stub_v2_link_server_failure) do
     stub_request(
       :post, %r{/v2/laa_references}
     ).to_return(
@@ -43,7 +43,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_link_cda_failure: true) do
+  config.before(:each, :stub_v2_link_cda_failure) do
     stub_request(
       :post, %r{/v2/laa_references}
     ).to_return(
@@ -52,7 +52,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_defendants_case_search: true) do
+  config.before(:each, :stub_defendants_case_search) do
     stub_request(
       :get, %r{http.*/v2/defendants\?urn=.*}
     ).to_return(
@@ -62,7 +62,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_defendants_ref_search: true) do
+  config.before(:each, :stub_defendants_ref_search) do
     stub_request(
       :get, %r{http.*/v2/defendants\?(asn|nino)=.*}
     ).to_return(
@@ -72,7 +72,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_defendants_name_search: true) do
+  config.before(:each, :stub_defendants_name_search) do
     stub_request(
       :get, %r{http.*/v2/defendants\?dob=.*&name=.*}
     ).to_return(
@@ -82,7 +82,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_no_v2_results: true) do
+  config.before(:each, :stub_no_v2_results) do
     stub_request(:get, %r{http.*/v2/defendants})
       .to_return(
         status: 200,
@@ -91,7 +91,7 @@ RSpec.configure do |config|
       )
   end
 
-  config.before(:each, stub_defendants_failed_search: true) do
+  config.before(:each, :stub_defendants_failed_search) do
     stub_request(:get, %r{http.*/v2/defendants})
       .to_return(
         status: 400,
@@ -100,7 +100,7 @@ RSpec.configure do |config|
       )
   end
 
-  config.before(:each, stub_defendants_cda_failed: true) do
+  config.before(:each, :stub_defendants_cda_failed) do
     stub_request(:get, %r{http.*/v2/defendants})
       .to_return(
         status: 424,
@@ -109,7 +109,7 @@ RSpec.configure do |config|
       )
   end
 
-  config.before(:each, stub_unlink_v2: true) do
+  config.before(:each, :stub_unlink_v2) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/defendants/#{defendant_id}\?include=offences}
@@ -129,7 +129,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_unlink_bad_request: true) do
+  config.before(:each, :stub_v2_unlink_bad_request) do
     stub_request(
       :patch, %r{/v2/laa_references/#{defendant_id}/}
     ).to_return(
@@ -139,7 +139,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_unlink_bad_response: true) do
+  config.before(:each, :stub_v2_unlink_bad_response) do
     stub_request(
       :patch, %r{/v2/laa_references/#{defendant_id}/}
     ).to_return(
@@ -149,7 +149,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_unlink_server_failure: true) do
+  config.before(:each, :stub_v2_unlink_server_failure) do
     stub_request(
       :patch, %r{/v2/laa_references/#{defendant_id}/}
     ).to_return(
@@ -158,7 +158,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_unlink_cda_failure: true) do
+  config.before(:each, :stub_v2_unlink_cda_failure) do
     stub_request(
       :patch, %r{/v2/laa_references/#{defendant_id}/}
     ).to_return(
@@ -167,7 +167,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_hearing_events: true) do
+  config.before(:each, :stub_v2_hearing_events) do
     stub_request(
       :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
     ).with(
@@ -179,7 +179,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_hearing_events_empty: true) do
+  config.before(:each, :stub_v2_hearing_events_empty) do
     stub_request(
       :get,  %r{/v2/hearings/#{hearing_id}/hearing_events}
     ).with(
@@ -191,7 +191,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_hearing_events_not_found: true) do
+  config.before(:each, :stub_v2_hearing_events_not_found) do
     stub_request(
       :get,  %r{/v2/hearings/#{hearing_id}/hearing_events}
     ).with(
@@ -201,7 +201,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_hearing_events_error: true) do
+  config.before(:each, :stub_v2_hearing_events_error) do
     stub_request(
       :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
     ).with(
@@ -211,7 +211,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_hearing_data: true) do
+  config.before(:each, :stub_v2_hearing_data) do
     stub_request(
       :get, %r{/v2/hearings/#{hearing_id}\?}
     ).with(
@@ -223,7 +223,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_empty_hearing_data: true) do
+  config.before(:each, :stub_v2_empty_hearing_data) do
     stub_request(
       :get, %r{/v2/hearings/#{hearing_id}\?}
     ).with(
@@ -235,7 +235,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_no_hearing_data: true) do
+  config.before(:each, :stub_v2_no_hearing_data) do
     stub_request(
       :get, %r{/v2/hearings/#{hearing_id}\?}
     ).with(
@@ -246,7 +246,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_hearing_data_error: true) do
+  config.before(:each, :stub_v2_hearing_data_error) do
     stub_request(
       :get, %r{/v2/hearings/#{hearing_id}\?}
     ).with(
@@ -257,7 +257,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_defendants_uuid_urn_search: true) do
+  config.before(:each, :stub_defendants_uuid_urn_search) do
     stub_request(
       :get, %r{/v2/defendants}
     ).with(
@@ -269,7 +269,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_hearing_summary: true) do
+  config.before(:each, :stub_v2_hearing_summary) do
     stub_request(
       :get, %r{/v2/case_summaries/#{case_reference}}
     ).to_return(
@@ -279,7 +279,7 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, stub_v2_hearing_summary_error: true) do
+  config.before(:each, :stub_v2_hearing_summary_error) do
     stub_request(
       :get, %r{/v2/case_summaries/#{case_reference}}
     ).to_return(

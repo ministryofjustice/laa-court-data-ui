@@ -13,7 +13,7 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
     expect(response).to render_template('searches/new')
   end
 
-  context 'when posting a query', stub_defendants_name_search: true do
+  context 'when posting a query', :stub_defendants_name_search do
     let(:search_params) do
       {
         search:
@@ -58,7 +58,7 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
       end
     end
 
-    context 'when no results', type: :request, stub_no_v2_results: true do
+    context 'when no results', :stub_no_v2_results, type: :request do
       before do
         allow_any_instance_of(Search).to receive(:execute).and_return([])
         post '/searches', params: search_params

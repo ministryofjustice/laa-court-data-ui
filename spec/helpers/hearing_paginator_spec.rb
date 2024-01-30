@@ -107,8 +107,8 @@ RSpec.describe HearingPaginator, type: :helper do
         allow(decorated_hearing1).to receive(:provider_list).and_return(hearing1_provider_list)
         allow(decorated_hearing2).to receive(:provider_list).and_return(hearing2_provider_list)
         allow(decorated_hearing3).to receive(:provider_list).and_return(hearing3_provider_list)
-        allow(prosecution_case_decorator).to receive(:hearings_sort_column).and_return(column)
-        allow(prosecution_case_decorator).to receive(:hearings_sort_direction).and_return(direction)
+        allow(prosecution_case_decorator).to receive_messages(hearings_sort_column: column,
+                                                              hearings_sort_direction: direction)
       end
 
       include_examples 'sort hearings'

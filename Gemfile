@@ -15,43 +15,43 @@ gem 'devise', '~> 4.9'
 gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 4.0'
+gem 'govuk_design_system_formbuilder', '~> 5.0'
 gem 'haml-rails', '~> 2.1.0'
-gem 'json_api_client', '~> 1.21'
-gem 'json-schema', '~> 4.0'
+gem 'json_api_client', '~> 1.22'
+gem 'json-schema', '~> 4.1'
 gem 'logstasher'
 gem 'oauth2', '~> 2.0.9'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'prometheus_exporter', '2.0.8'
+gem 'prometheus_exporter', '2.1.0'
 gem 'puma', '>= 5.6.4'
-gem 'rails', '~> 7.0.5'
-gem 'redis', '~> 5.0.6'
-gem 'sentry-rails', '~> 5.9.0'
-gem 'sentry-sidekiq', '~> 5.9.0'
-gem 'sidekiq', '~> 7.1.1'
+gem 'rails', '~> 7.0.8'
+gem 'redis', '~> 5.0.8'
+gem 'sentry-rails', '~> 5.16.1'
+gem 'sentry-sidekiq', '~> 5.16.1'
+gem 'sidekiq', '~> 7.2.1'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 1.4.0'
+gem 'turbo-rails', '~> 1.5.0'
 
 group :test do
-  gem 'axe-core-rspec', '~> 4.7'
+  gem 'axe-core-rspec', '~> 4.8'
   gem 'brakeman'
   gem 'capybara'
   gem 'capybara_table'
   gem 'haml_lint', require: false
-  gem 'i18n-tasks', '~> 1.0.12'
+  gem 'i18n-tasks', '~> 1.0.13'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter'
-  gem 'rspec-rails', '~> 6.0'
-  gem 'rubocop', '~> 1.52', require: false
+  gem 'rspec-rails', '~> 6.1'
+  gem 'rubocop', '~> 1.59', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'selenium-webdriver', '~> 4.16'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'vcr'
-  gem 'webdrivers'
   gem 'webmock'
 end
 
@@ -79,10 +79,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'net-imap', '~> 0.3.4'
+gem 'net-imap', '~> 0.4.9'
 gem 'net-pop', '~> 0.1.2'
-gem 'net-smtp', '~> 0.3.3'
+gem 'net-smtp', '~> 0.4.0'
 
-gem 'jsbundling-rails', '~> 1.1'
+gem 'jsbundling-rails', '~> 1.3'
 
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'

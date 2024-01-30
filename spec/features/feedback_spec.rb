@@ -22,7 +22,7 @@ RSpec.feature 'Feedback', type: :feature do
     choose 'Very satisfied'
 
     expect do
-      click_button 'Continue'
+      click_link_or_button 'Continue'
     end.to have_enqueued_job.on_queue('mailers')
 
     expect(page).to have_govuk_flash(:notice, text: 'Your feedback has been submitted')

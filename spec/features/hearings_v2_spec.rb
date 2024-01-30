@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: true,
-                                           stub_v2_hearing_summary: true do
+RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_summary, type: :feature do
   let(:user) { create(:user) }
   let(:api_url_v2) { CdApi::BaseModel.site }
   let(:api_events_path) { "#{api_url_v2}hearings/#{hearing_id}/hearing_events?date=2019-10-23" }
@@ -19,24 +18,24 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
     visit(url)
   end
 
-  context 'when user views hearing page', stub_v2_hearing_data: true do
+  context 'when user views hearing page', :stub_v2_hearing_data do
     let(:url) { "hearings/#{hearing_id}?column=date&direction=asc&page=0&urn=#{case_reference}" }
 
-    context 'with multiple defence counsels', stub_v2_hearing_events: true do
+    context 'with multiple defence counsels', :stub_v2_hearing_events do
       it 'displays details section' do
         expect(page).to have_text('Mark Jones (junior) for Leon Goodwin' \
                                   'David Williams (junior) for not available')
       end
     end
 
-    context 'with multiple prosecution counsels', stub_v2_hearing_events: true do
+    context 'with multiple prosecution counsels', :stub_v2_hearing_events do
       it 'displays details section' do
         expect(page).to have_text('John Smith' \
                                   'Jane Doe')
       end
     end
 
-    context 'with hearing events', stub_v2_hearing_events: true do
+    context 'with hearing events', :stub_v2_hearing_events do
       it 'requests data for hearing summary' do
         expect(a_request(:get, api_summary_path))
           .to have_been_made.once
@@ -71,7 +70,7 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
       end
     end
 
-    context 'with no hearing events', stub_v2_hearing_events_not_found: true do
+    context 'with no hearing events', :stub_v2_hearing_events_not_found do
       it 'requests data for hearing summary' do
         expect(a_request(:get, api_summary_path))
           .to have_been_made.once
@@ -108,7 +107,7 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
       end
 
       it 'displays events section' do
-        expect(page).not_to have_css('.govuk-heading-l', text: 'Events')
+        expect(page).to have_no_css('.govuk-heading-l', text: 'Events')
       end
 
       it 'displays court applications section' do
@@ -116,7 +115,7 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
       end
     end
 
-    context 'with error fetching hearing events', stub_v2_hearing_events_error: true do
+    context 'with error fetching hearing events', :stub_v2_hearing_events_error do
       it 'requests data for hearing summary' do
         expect(a_request(:get, api_summary_path))
           .to have_been_made.once
@@ -143,7 +142,7 @@ RSpec.feature 'Viewing the hearings page', type: :feature, stub_case_search: tru
       end
 
       it 'displays events section' do
-        expect(page).not_to have_css('.govuk-heading-l', text: 'Events')
+        expect(page).to have_no_css('.govuk-heading-l', text: 'Events')
       end
 
       it 'displays court applications section' do

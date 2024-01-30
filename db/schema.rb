@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_144829) do
-
+ActiveRecord::Schema[7.0].define(version: 2020_06_22_144829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,8 +18,8 @@ ActiveRecord::Schema.define(version: 2020_06_22_144829) do
     t.integer "code", null: false
     t.string "description", null: false
     t.boolean "text_required", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["code"], name: "index_unlink_reasons_on_code", unique: true
     t.index ["description"], name: "index_unlink_reasons_on_description", unique: true
   end
@@ -39,8 +38,8 @@ ActiveRecord::Schema.define(version: 2020_06_22_144829) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "roles", default: ["caseworker"], array: true

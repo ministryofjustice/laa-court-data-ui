@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CdApi::CaseSummary, stub_v2_hearing_summary: true, type: :model do
+RSpec.describe CdApi::CaseSummary, :stub_v2_hearing_summary, type: :model do
   subject(:case_summary) do
     described_class.find(case_reference)
   end

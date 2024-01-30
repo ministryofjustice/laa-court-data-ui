@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: true do
+RSpec.feature 'Defendant by reference search', :vcr, :js, type: :feature do
   let(:user) { create(:user) }
 
   before do
@@ -13,9 +13,9 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: tr
       visit '/'
 
       choose 'A defendant by ASN or National insurance number'
-      click_button 'Continue'
+      click_link_or_button 'Continue'
       fill_in 'search-term-field', with: 'HX685369B'
-      click_button 'Search'
+      click_link_or_button 'Search'
 
       expect(page).to have_text(
         'Search results for "HX685369B"'
@@ -33,9 +33,9 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: tr
       visit '/'
 
       choose 'A defendant by ASN or National insurance number'
-      click_button 'Continue'
+      click_link_or_button 'Continue'
       fill_in 'search-term-field', with: 'GP999999B'
-      click_button 'Search'
+      click_link_or_button 'Search'
 
       expect(page).to have_css('.govuk-body', text: 'There are no matching results')
 
@@ -46,11 +46,11 @@ RSpec.feature 'Defendant by reference search', type: :feature, vcr: true, js: tr
       visit '/'
 
       choose 'A defendant by ASN or National insurance number'
-      click_button 'Continue'
+      click_link_or_button 'Continue'
       fill_in 'search-term-field', with: ''
-      click_button 'Search'
+      click_link_or_button 'Search'
 
-      expect(page).not_to have_css('.govuk-body', text: 'There are no matching results')
+      expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
       expect(page).to have_css('.govuk-error-summary')
       within '.govuk-error-summary' do
         expect(page).to have_content('Search term required')

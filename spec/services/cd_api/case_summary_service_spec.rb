@@ -8,7 +8,7 @@ RSpec.describe CdApi::CaseSummaryService do
       let(:case_reference) { 'TEST12345' }
       let(:params) { { urn: case_reference } }
 
-      context 'when successful response', stub_v2_hearing_summary: true, vcr: true do
+      context 'when successful response', :stub_v2_hearing_summary, :vcr do
         it 'returns response with prosecution case reference' do
           expect(case_service.prosecution_case_reference).to be_a(String)
         end

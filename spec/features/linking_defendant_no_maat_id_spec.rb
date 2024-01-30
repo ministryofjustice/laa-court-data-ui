@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Linking a defendant with no MAAT id', type: :feature, stub_unlinked: true do
+RSpec.describe 'Linking a defendant with no MAAT id', :stub_unlinked, type: :feature do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
   let(:defendant_name) { 'Jammy Dodger' }
@@ -12,11 +12,11 @@ RSpec.describe 'Linking a defendant with no MAAT id', type: :feature, stub_unlin
 
   scenario 'user links defendant details with no maat id', :stub_v2_link_success do
     visit "prosecution_cases/#{case_urn}"
-    click_link('Jammy Dodger')
+    click_link_or_button('Jammy Dodger')
     expect(page).to have_text('The MAAT id is missing')
     find(:xpath, "//details[@class='govuk-details']", text: 'The MAAT id is missing').click
     expect(page).to have_button('Create link without MAAT ID')
-    click_button 'Create link without MAAT ID'
+    click_link_or_button 'Create link without MAAT ID'
     stub_linked_defendant
     expect(page).to have_govuk_flash(:notice, text: 'You have successfully linked to the court data source')
   end

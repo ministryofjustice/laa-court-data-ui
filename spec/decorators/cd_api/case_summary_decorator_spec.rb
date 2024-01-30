@@ -85,8 +85,8 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
       allow(decorated_hearing1).to receive(:defence_counsel_list).and_return(hearing1_defence_counsel_list)
       allow(decorated_hearing2).to receive(:defence_counsel_list).and_return(hearing2_defence_counsel_list)
       allow(decorated_hearing3).to receive(:defence_counsel_list).and_return(hearing3_defence_counsel_list)
-      allow(test_decorator).to receive(:hearings_sort_column).and_return(column)
-      allow(test_decorator).to receive(:hearings_sort_direction).and_return(direction)
+      allow(test_decorator).to receive_messages(hearings_sort_column: column,
+                                                hearings_sort_direction: direction)
     end
 
     it { is_expected.to be_instance_of(Enumerator) }

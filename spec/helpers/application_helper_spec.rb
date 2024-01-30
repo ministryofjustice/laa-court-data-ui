@@ -186,9 +186,8 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     before do
-      allow(decorated_prosecution_case).to receive(:hearings_sort_column).and_return hearings_sort_column
-      allow(decorated_prosecution_case).to receive(:hearings_sort_direction)
-        .and_return hearings_sort_direction
+      allow(decorated_prosecution_case).to receive_messages(hearings_sort_column:,
+                                                            hearings_sort_direction:)
     end
 
     context 'when column is provider, hearings_sort_column is date and hearings_sort_direction is asc' do

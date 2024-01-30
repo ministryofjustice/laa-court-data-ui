@@ -39,14 +39,14 @@ RSpec.describe CharLengthValidator, type: :validator do
   context 'with less chars than minimum' do
     let(:string_value) { 'aa' }
 
-    it { is_expected.to be_invalid }
+    it { is_expected.not_to be_valid }
     it { is_expected.to have_activemodel_error_type(:string_field, :too_short) }
   end
 
   context 'with less chars than minimum plus whitespace' do
     let(:string_value) { "\s\sa\sa\s\s\t" }
 
-    it { is_expected.to be_invalid }
+    it { is_expected.not_to be_valid }
     it { is_expected.to have_activemodel_error_type(:string_field, :too_short) }
   end
 

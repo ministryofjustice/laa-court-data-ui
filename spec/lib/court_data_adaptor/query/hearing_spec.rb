@@ -52,7 +52,7 @@ RSpec.describe CourtDataAdaptor::Query::Hearing do
     end
   end
 
-  context 'with results', stub_hearing: true do
+  context 'with results', :stub_hearing do
     subject(:result) { described_class.new(term).call }
 
     let(:term) { 'a-hearing-uuid' }

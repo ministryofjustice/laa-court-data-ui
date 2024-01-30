@@ -44,7 +44,7 @@ RSpec.describe Search, type: :model do
       search_instance.execute
     end
 
-    context 'when searching by case reference', stub_no_results: true do
+    context 'when searching by case reference', :stub_no_results do
       subject(:search_instance) { described_class.new(filter:, term:) }
 
       let(:filter) { 'case_reference' }
@@ -63,7 +63,7 @@ RSpec.describe Search, type: :model do
       end
     end
 
-    context 'when searching by defendant name', stub_no_results: true do
+    context 'when searching by defendant name', :stub_no_results do
       subject(:search_instance) { described_class.new(filter:, term:, dob:) }
 
       let(:filter) { 'defendant_name' }
@@ -82,7 +82,7 @@ RSpec.describe Search, type: :model do
       end
     end
 
-    context 'when searching by defendant reference', stub_no_results: true do
+    context 'when searching by defendant reference', :stub_no_results do
       subject(:search_instance) { described_class.new(filter:, term:) }
 
       let(:filter) { 'defendant_reference' }
@@ -112,14 +112,14 @@ RSpec.describe Search, type: :model do
       context 'with blank filter' do
         let(:filter) { nil }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:filter, 'Filter required') }
       end
 
       context 'with not included filter' do
         let(:filter) { 'invalid_filter' }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
 
         it {
           is_expected.to \
@@ -130,7 +130,7 @@ RSpec.describe Search, type: :model do
       context 'with blank term' do
         let(:term) { nil }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:term, 'Search term required') }
       end
 
@@ -149,21 +149,21 @@ RSpec.describe Search, type: :model do
       context 'with blank filter' do
         let(:filter) { nil }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:filter, 'Filter required') }
       end
 
       context 'with blank term' do
         let(:term) { nil }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:term, 'Search term required') }
       end
 
       context 'with non-alphanumeric chars as term' do
         let(:term) { '!' }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
 
         it {
           is_expected
@@ -174,14 +174,14 @@ RSpec.describe Search, type: :model do
       context 'with whitespace chars as term' do
         let(:term) { "\s\s\t" }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:term, 'Search term required') }
       end
 
       context 'with single char as term' do
         let(:term) { 'a' }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
 
         it {
           is_expected
@@ -192,7 +192,7 @@ RSpec.describe Search, type: :model do
       context 'with single char and whitespace as term' do
         let(:term) { "a\s\s\t" }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
 
         it {
           is_expected
@@ -215,7 +215,7 @@ RSpec.describe Search, type: :model do
       context 'with hyphen in term' do
         let(:term) { 'anne-marie' }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
 
         it {
           is_expected
@@ -226,7 +226,7 @@ RSpec.describe Search, type: :model do
       context 'with blank dob' do
         let(:dob) { nil }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:dob, 'Defendant date of birth required') }
       end
     end
@@ -239,14 +239,14 @@ RSpec.describe Search, type: :model do
       context 'with blank filter' do
         let(:filter) { nil }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:filter, 'Filter required') }
       end
 
       context 'with blank term' do
         let(:term) { nil }
 
-        it { is_expected.to be_invalid }
+        it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:term, 'Search term required') }
       end
     end

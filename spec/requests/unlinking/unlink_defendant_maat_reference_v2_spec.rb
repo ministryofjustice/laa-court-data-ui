@@ -25,7 +25,7 @@ RSpec.shared_examples 'invalid unlink_attempt request for CD API' do
   end
 end
 
-RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2: true do
+RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :request do
   include RSpecHtmlMatchers
 
   before do
@@ -66,9 +66,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
   end
   let(:maat_invalid_request) do
     {
-      # rubocop:disable Style/FormatStringToken
-      title: 'The link to the court data source could not be removed. %{error_messages}',
-      # rubocop:enable Style/FormatStringToken
+      title: 'The link to the court data source could not be removed. ',
       message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
     }
   end
@@ -112,7 +110,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
       end
     end
 
-    context 'with a request that returns a 400', stub_v2_unlink_bad_request: true do
+    context 'with a request that returns a 400', :stub_v2_unlink_bad_request do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -129,7 +127,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
       end
     end
 
-    context 'with a request that returns a 422', stub_v2_unlink_bad_response: true do
+    context 'with a request that returns a 422', :stub_v2_unlink_bad_response do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -202,7 +200,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
       end
     end
 
-    context 'with Downstream error', stub_v2_unlink_cda_failure: true do
+    context 'with Downstream error', :stub_v2_unlink_cda_failure do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -219,7 +217,7 @@ RSpec.describe 'unlink defendant maat reference', type: :request, stub_unlink_v2
       end
     end
 
-    context 'with Server error', stub_v2_unlink_server_failure: true do
+    context 'with Server error', :stub_v2_unlink_server_failure do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do

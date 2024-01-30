@@ -13,8 +13,8 @@ RSpec.feature 'Navigation', type: :feature do
         within '.govuk-header__content' do
           expect(page).to have_link('View court data')
           expect(page).to have_link(user.name)
-          expect(page).not_to have_link('Manage users')
-          expect(page).not_to have_link('Sidekiq')
+          expect(page).to have_no_link('Manage users')
+          expect(page).to have_no_link('Sidekiq')
           expect(page).to have_link('Sign out')
         end
       end
@@ -39,7 +39,7 @@ RSpec.feature 'Navigation', type: :feature do
           expect(page).to have_link('View court data')
           expect(page).to have_link(user.name)
           expect(page).to have_link('Manage users')
-          expect(page).not_to have_link('Sidekiq')
+          expect(page).to have_no_link('Sidekiq')
           expect(page).to have_link('Sign out')
         end
       end
@@ -63,7 +63,7 @@ RSpec.feature 'Navigation', type: :feature do
         within '.govuk-header__content' do
           expect(page).to have_link('View court data')
           expect(page).to have_link(user.name)
-          expect(page).not_to have_link('Manage users')
+          expect(page).to have_no_link('Manage users')
           expect(page).to have_link('Sidekiq')
           expect(page).to have_link('Sign out')
         end

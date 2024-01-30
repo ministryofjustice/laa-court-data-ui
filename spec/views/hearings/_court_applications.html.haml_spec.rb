@@ -27,13 +27,12 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
   let(:court_application_type_class) { CourtDataAdaptor::Resource::CourtApplicationType }
 
   before do
-    allow(hearing).to receive(:id).and_return('123')
-    allow(hearing).to receive(:court_applications).and_return(court_applications)
+    allow(hearing).to receive_messages(id: '123', court_applications:)
     allow(court_application1).to receive(:type).and_return(court_application_type1)
     allow(court_application2).to receive(:type).and_return(court_application_type2)
   end
 
-  it { is_expected.to have_selector('.govuk-heading-l', text: 'Applications') }
+  it { is_expected.to have_css('.govuk-heading-l', text: 'Applications') }
 
   context 'with no court applications' do
     let(:court_applications) { nil }
@@ -126,12 +125,12 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
     context 'with no judicial results' do
       it 'does not display Result text' do
         render_partial
-        expect(rendered).not_to have_css('dt.govuk-summary-list__key', text: /Result code/)
+        expect(rendered).to have_no_css('dt.govuk-summary-list__key', text: /Result code/)
       end
 
       it 'does not display Result code' do
         render_partial
-        expect(rendered).not_to have_css('dt.govuk-summary-list__key', text: /Result text/)
+        expect(rendered).to have_no_css('dt.govuk-summary-list__key', text: /Result text/)
       end
     end
   end

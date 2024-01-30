@@ -65,7 +65,7 @@ RSpec.describe CourtDataAdaptor::Query::ProsecutionCase do
     end
   end
 
-  context 'with results', stub_case_search_test12345: true do
+  context 'with results', :stub_case_search_test12345 do
     subject(:results) { described_class.new(term).call }
 
     let(:term) { 'TEST12345' }

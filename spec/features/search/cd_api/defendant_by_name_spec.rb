@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Defendant by name and dob search', type: :feature, vcr: true, js: true do
+RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
   let(:user) { create(:user) }
 
   before do
@@ -12,13 +12,13 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, vcr: true, js:
     visit '/'
 
     choose 'A defendant by name and date of birth'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'wendie bogisiche lowe'
     fill_in 'search_dob_3i', with: '27'
     fill_in 'search_dob_2i', with: '12'
     fill_in 'search_dob_1i', with: '2000'
 
-    click_button 'Search'
+    click_link_or_button 'Search'
 
     expect(page).to have_text(
       'Search results for "wendie bogisiche lowe, 27 December 2000"'
@@ -42,12 +42,12 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, vcr: true, js:
     visit '/'
 
     choose 'A defendant by name and date of birth'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'Wendie'
     fill_in 'search_dob_3i', with: '27'
     fill_in 'search_dob_2i', with: '12'
     fill_in 'search_dob_1i', with: '2000'
-    click_button 'Search'
+    click_link_or_button 'Search'
 
     expect(page).to have_text(
       'Search results for "Wendie, 27 December 2000"'
@@ -69,12 +69,12 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, vcr: true, js:
     visit '/'
 
     choose 'A defendant by name and date of birth'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'Fred Bloggs'
     fill_in 'search_dob_3i', with: '28'
     fill_in 'search_dob_2i', with: '11'
     fill_in 'search_dob_1i', with: '1928'
-    click_button 'Search'
+    click_link_or_button 'Search'
 
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
 
@@ -85,11 +85,11 @@ RSpec.feature 'Defendant by name and dob search', type: :feature, vcr: true, js:
     visit '/'
 
     choose 'A defendant by name and date of birth'
-    click_button 'Continue'
+    click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'Mickey Mouse'
-    click_button 'Search'
+    click_link_or_button 'Search'
 
-    expect(page).not_to have_css('.govuk-body', text: 'There are no matching results')
+    expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
       expect(page).to have_content('Defendant date of birth required')

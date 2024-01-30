@@ -59,7 +59,7 @@ function _circleci_deploy() {
   printf "\e[33mBranch: $CIRCLE_BRANCH\e[0m\n"
   printf "\e[33m--------------------------------------------------\e[0m\n"
   printf '\e[33mDocker login to registry (ECR)...\e[0m\n'
-  AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
+  AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} aws ecr get-login-password | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
 
   printf '\e[33mK8S Login...\e[0m\n'
   echo -n ${K8S_CLUSTER_CERT} | base64 -d > ./ca.crt

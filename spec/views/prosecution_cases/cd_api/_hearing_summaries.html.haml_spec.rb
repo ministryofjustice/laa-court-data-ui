@@ -39,18 +39,18 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
   before do
     allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
-    allow(decorated_case_summary).to receive(:hearings_sort_column).and_return 'date'
-    allow(decorated_case_summary).to receive(:hearings_sort_direction).and_return 'asc'
+    allow(decorated_case_summary).to receive_messages(hearings_sort_column: 'date',
+                                                      hearings_sort_direction: 'asc')
     render_partial
   end
 
-  it { expect(rendered).to have_selector('.govuk-heading-l', text: 'Hearings') }
+  it { expect(rendered).to have_css('.govuk-heading-l', text: 'Hearings') }
 
   context 'with no hearing summaries' do
     let(:hearing_summaries) { [] }
 
     it 'does not render any rows' do
-      expect(rendered).not_to have_selector('tbody.govuk-table__body tr')
+      expect(rendered).to have_no_css('tbody.govuk-table__body tr')
     end
   end
 
@@ -59,14 +59,14 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
     context 'with single hearing day per hearing summary' do
       it 'renders a row per hearing' do
-        expect(rendered).to have_selector('tbody tr.govuk-table__row', count: 3)
+        expect(rendered).to have_css('tbody tr.govuk-table__row', count: 3)
       end
 
       it 'renders hearing type per row' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: 'First hearing')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: 'Trial')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: 'Sentence')
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: 'First hearing')
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: 'Trial')
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: 'Sentence')
       end
 
       it 'renders link to hearing with urn' do
@@ -80,16 +80,16 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
       it 'sorts hearings by hearing day' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: '17/01/2021')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: '18/01/2021')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: '19/01/2021')
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: '17/01/2021')
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: '18/01/2021')
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: '19/01/2021')
       end
 
       it 'renders provider list per row' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: 'Fred Dibnah (QC)')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: 'Fred Dibnah (QC)')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: 'Fred Dibnah (QC)')
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: 'Fred Dibnah (QC)')
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: 'Fred Dibnah (QC)')
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: 'Fred Dibnah (QC)')
       end
     end
 
@@ -106,10 +106,10 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
       it 'sorts hearings by hearing_days collection then by hearing day datetime' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: %r{17/01/2021.*First hearing}m)
-          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: %r{19/01/2021.*Trial}m)
-          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: %r{20/01/2021.*Trial}m)
-          .and have_selector('tbody.govuk-table__body tr:nth-child(4)', text: %r{20/01/2021.*Sentence}m)
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: %r{17/01/2021.*First hearing}m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: %r{19/01/2021.*Trial}m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: %r{20/01/2021.*Trial}m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(4)', text: %r{20/01/2021.*Sentence}m)
       end
     end
 
@@ -124,15 +124,15 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
       it 'renders formated estimated duration on the first hearing day' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)',
-                            text: %r{19/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
-          .and have_selector('tbody.govuk-table__body tr:nth-child(2)', text: %r{20/01/2021.*Trial}m)
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)',
+                       text: %r{19/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: %r{20/01/2021.*Trial}m)
       end
 
       it 'does not render duplicated estmated duration' do
         expect(rendered)
-          .not_to have_selector('tbody.govuk-table__body tr:nth-child(2)',
-                                text: %r{20/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
+          .to have_no_css('tbody.govuk-table__body tr:nth-child(2)',
+                          text: %r{20/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
       end
     end
 
@@ -141,13 +141,13 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
 
       it 'renders provider list per row' do
         expect(rendered)
-          .to have_selector('tbody.govuk-table__body tr:nth-child(1)', text: 'Fred Dibnah (QC)')
-          .and have_selector('tbody.govuk-table__body tr:nth-child(3)', text: 'Fred Dibnah (QC)')
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: 'Fred Dibnah (QC)')
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: 'Fred Dibnah (QC)')
       end
 
       it 'does not render provider for hearing day' do
-        expect(rendered).not_to have_selector('tbody.govuk-table__body tr:nth-child(2)',
-                                              text: 'Fred Dibnah (QC)')
+        expect(rendered).to have_no_css('tbody.govuk-table__body tr:nth-child(2)',
+                                        text: 'Fred Dibnah (QC)')
       end
     end
   end

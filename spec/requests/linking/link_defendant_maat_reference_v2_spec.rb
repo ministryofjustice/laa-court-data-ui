@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_unlinked: true do
+RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :request do
   let(:user) { create(:user) }
 
   let(:case_urn) { 'TEST12345' }
@@ -55,7 +55,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
       post '/laa_references', params:
     end
 
-    context 'with valid params', stub_v2_link_success: true do
+    context 'with valid params', :stub_v2_link_success do
       it 'sends a link request to the adapter' do
         expect(a_request(:post, api_request_path)
           .with(body: expected_request_payload.to_json))
@@ -77,7 +77,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
     end
 
     context 'with invalid defendant_id' do
-      context 'when not a uuid', stub_v2_link_failure_with_invalid_defendant_uuid: true do
+      context 'when not a uuid', :stub_v2_link_failure_with_invalid_defendant_uuid do
         let(:defendant_id) { 'not-a-uuid' }
 
         it 'flashes alert' do
@@ -92,7 +92,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
 
     context 'with invalid maat_reference' do
       context 'when MAAT API does not know maat reference',
-              stub_v2_link_failure_with_unknown_maat_reference: true do
+              :stub_v2_link_failure_with_unknown_maat_reference do
         it 'flashes alert' do
           expect(flash.now[:alert]).to match(maat_invalid_reference)
         end
@@ -115,7 +115,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
       end
     end
 
-    context 'when server returns error', stub_v2_link_server_failure: true do
+    context 'when server returns error', :stub_v2_link_server_failure do
       it 'flashes alert' do
         expect(flash.now[:alert]).to match(maat_error_message)
       end
@@ -125,7 +125,7 @@ RSpec.describe 'link defendant maat reference', type: :request, vcr: true, stub_
       end
     end
 
-    context 'when cda returns error', stub_v2_link_cda_failure: true do
+    context 'when cda returns error', :stub_v2_link_cda_failure do
       it 'flashes alert' do
         expect(flash.now[:alert]).to match(maat_error_message)
       end

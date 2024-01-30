@@ -1,9 +1,10 @@
 version: 2.1
 
 orbs:
+  aws-cli: circleci/aws-cli@4.0.0
+  browser-tools: circleci/browser-tools@1.4.6
   slack: circleci/slack@3.4.2
-  snyk: snyk/snyk@1.1.2
-  browser-tools: circleci/browser-tools@1.1
+  snyk: snyk/snyk@1.7.0
 
 references:
   _restore-bundle: &restore-bundle
@@ -118,6 +119,12 @@ commands:
       - install-compile-assets
       - install-codeclimate-tt
 
+  aws-cli-setup:
+    steps:
+     - aws-cli/setup:
+        role_arn: $ECR_ROLE_TO_ASSUME
+        region: $ECR_REGION
+
   db-setup:
     steps:
       - run:
@@ -223,6 +230,7 @@ commands:
     steps:
       - checkout
       - setup_remote_docker
+      - aws-cli-setup
       - run:
           name: deploying to << parameters.environment >>
           command: |
@@ -258,7 +266,9 @@ jobs:
       - checkout
       - restore-dependencies
       - *attach-tmp-workspace
-      - browser-tools/install-browser-tools
+      - run: sudo apt-get update
+      - browser-tools/install-chrome
+      - run: sudo apt autoremove
       - rspec
       - persist_to_workspace:
           root: tmp
@@ -295,6 +305,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
+      - aws-cli-setup
       - *script-build-app-container
 
   deploy-dev:

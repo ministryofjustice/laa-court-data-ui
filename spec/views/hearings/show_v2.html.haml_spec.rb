@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'hearings/show', type: :view, stub_v2_hearing_data: true,
-                                stub_v2_hearing_summary: true do
+RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary, type: :view do
   subject(:render_view) { render }
 
   let(:case_reference) { 'TEST12345' }
