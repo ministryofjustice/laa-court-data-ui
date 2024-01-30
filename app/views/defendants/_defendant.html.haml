@@ -26,6 +26,6 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.maat_number')
       %td.govuk-table__cell
-        = Feature.enabled?(:defendants_page) ? defendant.representation_order.laa_application_reference : defendant.maat_reference
+        = defendant.maat_reference
 
 = link_to 'View case', prosecution_case_path(prosecution_case_reference), class: 'govuk-button govuk-button--secondary govuk-!-margin-bottom-9'
