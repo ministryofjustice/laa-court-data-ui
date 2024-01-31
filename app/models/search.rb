@@ -62,7 +62,7 @@ class Search
   end
 
   def query_cda
-    send("#{filter}_query")
+    send(:"#{filter}_query")
   end
 
   def case_reference_query
