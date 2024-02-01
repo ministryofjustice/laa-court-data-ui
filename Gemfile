@@ -44,11 +44,11 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 6.1'
-  gem 'rubocop', '~> 1.59', require: false
+  gem 'rubocop', '~> 1.60', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'selenium-webdriver', '~> 4.16'
+  gem 'selenium-webdriver', '~> 4.17'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'vcr'
