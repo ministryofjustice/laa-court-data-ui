@@ -21,6 +21,13 @@ module CdApi
       safe_join(formatted_prosecution_counsels, tag.br)
     end
 
+    def defendants_list
+      return [] if object.try(:hearing).nil? || hearing.prosecution_cases.blank?
+      hearing.prosecution_cases.flat_map do |pc|
+        decorate_all(pc.defendants, CdApi::DefendantsDecorator)
+      end
+    end
+
     private
 
     def defence_counsel_sentences
