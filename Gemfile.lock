@@ -264,7 +264,7 @@ GEM
     msgpack (1.7.2)
     multi_xml (0.6.0)
     multipart-post (2.3.0)
-    net-imap (0.4.9.1)
+    net-imap (0.4.10)
       date
       net-protocol
     net-pop (0.1.2)
@@ -534,7 +534,7 @@ DEPENDENCIES
   launchy
   listen (>= 3.0.5, < 3.9)
   logstasher
-  net-imap (~> 0.4.9)
+  net-imap (~> 0.4.10)
   net-pop (~> 0.1.2)
   net-smtp (~> 0.4.0)
   oauth2 (~> 2.0.9)
