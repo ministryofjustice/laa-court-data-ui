@@ -101,7 +101,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
-    brakeman (6.1.1)
+    brakeman (6.1.2)
       racc
     breadcrumbs_on_rails (4.1.0)
       railties (>= 5.0)
