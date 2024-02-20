@@ -48,7 +48,7 @@ group :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'selenium-webdriver', '~> 4.17'
+  gem 'selenium-webdriver', '~> 4.18'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'vcr'
