@@ -128,7 +128,7 @@ GEM
     colorize (1.1.0)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
-    crack (0.4.6)
+    crack (1.0.0)
       bigdecimal
       rexml
     crass (1.0.6)
@@ -185,7 +185,7 @@ GEM
     foreman (0.87.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (5.0.0)
+    govuk_design_system_formbuilder (5.1.0)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -421,7 +421,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    selenium-webdriver (4.17.0)
+    selenium-webdriver (4.18.1)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -473,7 +473,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.3.0)
     timeout (0.4.1)
-    turbo-rails (2.0.1)
+    turbo-rails (2.0.3)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
@@ -493,7 +493,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webmock (3.20.0)
+    webmock (3.21.2)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -525,7 +525,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   foreman
-  govuk_design_system_formbuilder (~> 5.0)
+  govuk_design_system_formbuilder (~> 5.1)
   govuk_notify_rails (~> 2.2.0)
   haml-rails (~> 2.1.0)
   haml_lint
@@ -556,7 +556,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
-  selenium-webdriver (~> 4.17)
+  selenium-webdriver (~> 4.18)
   sentry-rails (~> 5.16.1)
   sentry-sidekiq (~> 5.16.1)
   shoulda-matchers
@@ -566,7 +566,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.1.0)
   sprockets-rails (~> 3.4)
-  turbo-rails (~> 2.0.1)
+  turbo-rails (~> 2.0.3)
   tzinfo-data
   vcr
   web-console (>= 4.2.0)
