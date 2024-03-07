@@ -15,7 +15,7 @@ gem 'devise', '~> 4.9'
 gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 5.1'
+gem 'govuk_design_system_formbuilder', '~> 5.2'
 gem 'haml-rails', '~> 2.1.0'
 gem 'json_api_client', '~> 1.22'
 gem 'json-schema', '~> 4.1'
@@ -30,7 +30,7 @@ gem 'sentry-rails', '~> 5.16.1'
 gem 'sentry-sidekiq', '~> 5.16.1'
 gem 'sidekiq', '~> 7.2.2'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 2.0.3'
+gem 'turbo-rails', '~> 2.0.4'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.8'
@@ -68,7 +68,7 @@ end
 
 group :development do
   gem 'foreman'
-  gem 'listen', '>= 3.0.5', '< 3.9'
+  gem 'listen', '>= 3.0.5', '< 3.10'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.1.0'

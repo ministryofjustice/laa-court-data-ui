@@ -1252,18 +1252,18 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@hotwired/turbo-rails@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-8.0.2.tgz#c43d54d9346bcf14c897166556bfed92ed4c1d17"
-  integrity sha512-j+6THPc+CsaUdUXZTg6wQ+YcStO9kn6CuGzElqFxUmV/vyd1Jfm0RLZMIbaY8w9Qse7u6JBcrm4AcRxhIhYmaQ==
+"@hotwired/turbo-rails@^8.0.3":
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-8.0.3.tgz#e60375f4eea4b30ec0cd6d7e3fdb3d6349a2b57b"
+  integrity sha512-n5B9HdFsNiGJfXFAriCArmvFZyznIh/OriB5ZVAWz4Fsi4oLkpgmJNw5pibBAM7NMQQGN6cfKa/nhZT4LWcqbQ==
   dependencies:
-    "@hotwired/turbo" "^8.0.2"
+    "@hotwired/turbo" "^8.0.3"
     "@rails/actioncable" "^7.0"
 
-"@hotwired/turbo@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.2.tgz#c31cdadfe66b98983066a94073b26fc7e15835f0"
-  integrity sha512-3K6QZkwWfosAV8zuM5bY+kKF02jp1lMQGsWfSE6wXdZBRBP3ah+Vj26YNqYtkEomBwRWA0QKhZgyJP7xOQkVEg==
+"@hotwired/turbo@^8.0.3":
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.3.tgz#338e07278f4b3c76921328d3c92dbc4831c209d0"
+  integrity sha512-qLgp7d6JaegKjMToTJahosrFxV3odfSbiekispQ3soOzE5jnU+iEMWlRvYRe/jvy5Q+JWoywtf9j3RD4ikVjIg==
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
@@ -2330,10 +2330,10 @@ cypress-axe@^1.5.0:
   resolved "https://registry.yarnpkg.com/cypress-axe/-/cypress-axe-1.5.0.tgz#95082734583da77b51ce9b7784e14a442016c7a1"
   integrity sha512-Hy/owCjfj+25KMsecvDgo4fC/781ccL+e8p+UUYoadGVM2ogZF9XIKbiM6KI8Y3cEaSreymdD6ZzccbI2bY0lQ==
 
-cypress@^13.6.5:
-  version "13.6.5"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.6.5.tgz#d8ab22dda3b9a8abeebcb65dc8a2707cb73bf925"
-  integrity sha512-2NxSDcO2zHw5kTcosc6dzv2zppEqiXrFFhZw5cx/EWrSNZABTzpr/EyvYzGgrWm46o5173JUfuJfDQcaiZZPVQ==
+cypress@^13.6.6:
+  version "13.6.6"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.6.6.tgz#5133f231ed1c6e57dc8dcbf60aade220bcd6884b"
+  integrity sha512-S+2S9S94611hXimH9a3EAYt81QM913ZVA03pUmGDfLTFa5gyp85NJ8dJGSlEAEmyRsYkioS1TtnWtbv/Fzt11A==
   dependencies:
     "@cypress/request" "^3.0.0"
     "@cypress/xvfb" "^1.2.4"
