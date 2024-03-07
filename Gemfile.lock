@@ -296,7 +296,7 @@ GEM
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
-    pg (1.5.5)
+    pg (1.5.6)
     prometheus_exporter (2.1.0)
       webrick
     pry (0.14.2)
