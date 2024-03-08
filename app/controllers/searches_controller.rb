@@ -52,8 +52,7 @@ class SearchesController < ApplicationController
     year = search_params['dob(1i)']
     month = search_params['dob(2i)']
     day = search_params['dob(3i)']
-    @dob = Date.parse([day, month, year].join('-')) \
-      if day.present? && month.present? && year.present?
+    @dob = Date.parse([day, month, year].join('-')) if day.present? && month.present? && year.present?
   rescue Date::Error
     nil
   end
