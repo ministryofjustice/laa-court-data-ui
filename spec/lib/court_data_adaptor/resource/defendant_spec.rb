@@ -29,8 +29,8 @@ RSpec.describe CourtDataAdaptor::Resource::Defendant do
     let(:instance) { described_class.new }
   end
 
-  specify { is_expected.to respond_to(*accessible_properties) }
-  specify { is_expected.to respond_to(*readable_properties) }
+  it { is_expected.to respond_to(*accessible_properties) }
+  it { is_expected.to respond_to(*readable_properties) }
 
   describe '#linked?' do
     subject { defendant.linked? }
