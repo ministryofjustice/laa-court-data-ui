@@ -122,6 +122,20 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
       it { is_expected.to eql 'Not available' }
     end
 
+    context 'when it has no hearing sitting day' do
+      let(:day) { nil }
+      let(:sitting_day) { nil }
+      let(:hearing_summary) { build(:hearing_summary, defence_counsels:) }
+
+      let(:defence_counsels) { [defence_counsel1] }
+      let(:defence_counsel1) do
+        build(:defence_counsel, first_name: 'Jammy', last_name: 'Dodger', status: 'Junior',
+                                attendance_days: [])
+      end
+
+      it { is_expected.to eql 'Not available' }
+    end
+
     context 'when called again after day has been altered' do
       let(:hearing_summary) { build(:hearing_summary, defence_counsels:) }
 
