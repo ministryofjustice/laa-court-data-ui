@@ -276,7 +276,7 @@ GEM
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.4.0.1)
+    net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.0)
     nokogiri (1.16.3)
@@ -541,7 +541,7 @@ DEPENDENCIES
   logstasher
   net-imap (~> 0.4.10)
   net-pop (~> 0.1.2)
-  net-smtp (~> 0.4.0)
+  net-smtp (~> 0.5.0)
   oauth2 (~> 2.0.9)
   pg (>= 0.18, < 2.0)
   prometheus_exporter (= 2.1.0)
