@@ -81,7 +81,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'net-imap', '~> 0.4.10'
 gem 'net-pop', '~> 0.1.2'
-gem 'net-smtp', '~> 0.4.0'
+gem 'net-smtp', '~> 0.5.0'
 
 gem 'jsbundling-rails', '~> 1.3'
 
