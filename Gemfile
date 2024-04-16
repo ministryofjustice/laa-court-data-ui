@@ -26,13 +26,8 @@ gem 'prometheus_exporter', '2.1.0'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 7.0.8'
 gem 'redis', '~> 5.1.0'
-<<<<<<< HEAD
-gem 'sentry-rails', '~> 5.17.1'
-gem 'sentry-sidekiq', '~> 5.17.3'
-=======
 gem 'sentry-rails', '~> 5.17.3'
-gem 'sentry-sidekiq', '~> 5.17.1'
->>>>>>> a691685 (Bump sentry-rails from 5.17.1 to 5.17.3)
+gem 'sentry-sidekiq', '~> 5.17.3'
 gem 'sidekiq', '~> 7.2.2'
 gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 2.0.5'
