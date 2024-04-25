@@ -1263,18 +1263,18 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@hotwired/turbo-rails@^8.0.4":
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-8.0.3.tgz#e60375f4eea4b30ec0cd6d7e3fdb3d6349a2b57b"
-  integrity sha512-n5B9HdFsNiGJfXFAriCArmvFZyznIh/OriB5ZVAWz4Fsi4oLkpgmJNw5pibBAM7NMQQGN6cfKa/nhZT4LWcqbQ==
+"@hotwired/turbo-rails@^8.0.3":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-8.0.4.tgz#d224f524a9e33fe687cec5d706054eb6fe13fa5b"
+  integrity sha512-GHCv5+B2VzYZZvMFpg/g9JLx/8pl/8chcubSB7T+Xn1zYOMqAKB6cT80vvWUzxdwfm/2KfaRysfDz+BmvtjFaw==
   dependencies:
-    "@hotwired/turbo" "^8.0.3"
+    "@hotwired/turbo" "^8.0.4"
     "@rails/actioncable" "^7.0"
 
-"@hotwired/turbo@^8.0.3":
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.3.tgz#338e07278f4b3c76921328d3c92dbc4831c209d0"
-  integrity sha512-qLgp7d6JaegKjMToTJahosrFxV3odfSbiekispQ3soOzE5jnU+iEMWlRvYRe/jvy5Q+JWoywtf9j3RD4ikVjIg==
+"@hotwired/turbo@^8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.4.tgz#5c5361c06a37cdf10dcba4223f1afd0ca1c75091"
+  integrity sha512-mlZEFUZrJnpfj+g/XeCWWuokvQyN68WvM78JM+0jfSFc98wegm259vCbC1zSllcspRwbgXK31ibehCy5PA78/Q==
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
@@ -2378,10 +2378,10 @@ cypress-axe@^1.5.0:
   resolved "https://registry.yarnpkg.com/cypress-axe/-/cypress-axe-1.5.0.tgz#95082734583da77b51ce9b7784e14a442016c7a1"
   integrity sha512-Hy/owCjfj+25KMsecvDgo4fC/781ccL+e8p+UUYoadGVM2ogZF9XIKbiM6KI8Y3cEaSreymdD6ZzccbI2bY0lQ==
 
-cypress@^13.7.1:
-  version "13.7.1"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.7.1.tgz#d1208eb04efd46ef52a30480a5da71a03373261a"
-  integrity sha512-4u/rpFNxOFCoFX/Z5h+uwlkBO4mWzAjveURi3vqdSu56HPvVdyGTxGw4XKGWt399Y1JwIn9E1L9uMXQpc0o55w==
+cypress@^13.6.6:
+  version "13.8.1"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.8.1.tgz#f558e51b770a409e2360031bbd36c3f4fb3f2db4"
+  integrity sha512-Uk6ovhRbTg6FmXjeZW/TkbRM07KPtvM5gah1BIMp4Y2s+i/NMxgaLw0+PbYTOdw1+egE0FP3mWRiGcRkjjmhzA==
   dependencies:
     "@cypress/request" "^3.0.0"
     "@cypress/xvfb" "^1.2.4"
@@ -4645,7 +4645,7 @@ postcss-value-parser@^4.1.0, postcss-value-parser@^4.2.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@^8.4.28, postcss@^8.4.32, postcss@^8.4.33, postcss@^8.4.35:
+postcss@^8.4.28, postcss@^8.4.32, postcss@^8.4.33:
   version "8.4.35"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.35.tgz#60997775689ce09011edf083a549cea44aabe2f7"
   integrity sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==
@@ -4653,6 +4653,15 @@ postcss@^8.4.28, postcss@^8.4.32, postcss@^8.4.33, postcss@^8.4.35:
     nanoid "^3.3.7"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
+
+postcss@^8.4.38:
+  version "8.4.38"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.38.tgz#b387d533baf2054288e337066d81c6bee9db9e0e"
+  integrity sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==
+  dependencies:
+    nanoid "^3.3.7"
+    picocolors "^1.0.0"
+    source-map-js "^1.2.0"
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -4965,10 +4974,10 @@ sass-loader@^13.3.3:
   dependencies:
     neo-async "^2.6.2"
 
-sass@^1.71.1:
-  version "1.71.1"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.71.1.tgz#dfb09c63ce63f89353777bbd4a88c0a38386ee54"
-  integrity sha512-wovtnV2PxzteLlfNzbgm1tFXPLoZILYAMJtvoXXkD7/+1uP41eKkIt1ypWq5/q2uT94qHjXehEYfmjKOvjL9sg==
+sass@^1.72.0:
+  version "1.75.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.75.0.tgz#91bbe87fb02dfcc34e052ddd6ab80f60d392be6c"
+  integrity sha512-ShMYi3WkrDWxExyxSZPst4/okE9ts46xZmJDSawJQrnte7M1V9fScVB+uNXOVKRBt0PggHOwoZcn8mYX4trnBw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -5077,6 +5086,11 @@ slice-ansi@^4.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+
+source-map-js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.0.tgz#16b809c162517b5b8c3e7dcd315a2a5c2612b2af"
+  integrity sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==
 
 source-map-support@~0.5.20:
   version "0.5.21"
