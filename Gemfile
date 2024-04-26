@@ -48,6 +48,7 @@ group :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', '2.28.2'
   gem 'selenium-webdriver', '~> 4.19'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
@@ -64,7 +65,6 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rubocop-rspec_rails', '2.28.2'
 end
 
 group :development do
