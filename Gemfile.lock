@@ -243,7 +243,7 @@ GEM
       rack (>= 0.2)
     jwt (2.5.0)
     language_server-protocol (3.17.0.3)
-    launchy (3.0.0)
+    launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
     listen (3.9.0)
@@ -307,7 +307,7 @@ GEM
       pry (>= 0.13, < 0.15)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    public_suffix (5.0.4)
+    public_suffix (5.0.5)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
@@ -391,7 +391,7 @@ GEM
     rspec-support (3.13.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.62.1)
+    rubocop (1.63.4)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -558,7 +558,7 @@ DEPENDENCIES
   rspec-html-matchers (~> 0.10.0)
   rspec-rails (~> 6.1)
   rspec_junit_formatter
-  rubocop (~> 1.62)
+  rubocop (~> 1.63)
   rubocop-performance
   rubocop-rails
   rubocop-rspec
