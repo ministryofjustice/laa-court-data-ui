@@ -179,7 +179,7 @@ GEM
     foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (5.3.3)
+    govuk_design_system_formbuilder (5.4.0)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -524,7 +524,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   foreman
-  govuk_design_system_formbuilder (~> 5.3)
+  govuk_design_system_formbuilder (~> 5.4)
   govuk_notify_rails (~> 2.2.0)
   haml-rails (~> 2.1.0)
   haml_lint
