@@ -179,7 +179,7 @@ GEM
     foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (5.3.3)
+    govuk_design_system_formbuilder (5.4.0)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -257,7 +257,7 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
-    minitest (5.22.3)
+    minitest (5.23.0)
     msgpack (1.7.2)
     multi_xml (0.6.0)
     multipart-post (2.3.0)
@@ -522,7 +522,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   foreman
-  govuk_design_system_formbuilder (~> 5.3)
+  govuk_design_system_formbuilder (~> 5.4)
   govuk_notify_rails (~> 2.2.0)
   haml-rails (~> 2.1.0)
   haml_lint
