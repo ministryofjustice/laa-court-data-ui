@@ -18,7 +18,7 @@ RSpec.feature 'Gov UK Layout', type: :feature do
       end
 
       within '.govuk-phase-banner' do
-        expect(page).to have_css('.govuk-phase-banner__content', text: 'alpha')
+        expect(page).to have_css('.govuk-phase-banner__content', text: 'beta')
         expect(page).to have_css('.govuk-phase-banner__text', text: 'This is a new service')
       end
     end
