@@ -2,7 +2,7 @@
   %p.govuk-phase-banner__content
     %strong.govuk-tag.govuk-phase-banner__content__tag
       - if ENV.fetch('ENV', 'local') == 'production'
-        = t('generic.alpha')
+        = t('generic.beta')
       - else
         = ENV.fetch('ENV', 'local')
     %span.govuk-phase-banner__text
