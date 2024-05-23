@@ -15,7 +15,7 @@ gem 'devise', '~> 4.9'
 gem 'govuk_notify_rails', '~> 2.2.0'
 
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 5.3'
+gem 'govuk_design_system_formbuilder', '~> 5.4'
 gem 'haml-rails', '~> 2.1.0'
 gem 'json_api_client', '~> 1.22'
 gem 'json-schema', '~> 4.3'
@@ -48,7 +48,7 @@ group :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'selenium-webdriver', '~> 4.20'
+  gem 'selenium-webdriver', '~> 4.21'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'vcr'
