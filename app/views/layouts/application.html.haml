@@ -24,7 +24,7 @@
     = render partial: 'layouts/google_analytics'
   %body.govuk-template__body{ class: app_environment }
     :javascript
-      document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+      document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     %a.govuk-skip-link{ href: "#main-content","data-module":"govuk-skip-link" }
       = t('layouts.application.skip_content')
 
