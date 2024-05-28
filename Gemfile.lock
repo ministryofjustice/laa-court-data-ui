@@ -91,7 +91,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     base64 (0.2.0)
     bcrypt (3.1.20)
-    bigdecimal (3.1.7)
+    bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
@@ -101,7 +101,7 @@ GEM
       railties (>= 5.0)
     builder (3.2.4)
     byebug (11.1.3)
-    cancancan (3.5.0)
+    cancancan (3.6.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -302,7 +302,7 @@ GEM
     public_suffix (5.0.5)
     puma (6.4.2)
       nio4r (~> 2.0)
-    racc (1.7.3)
+    racc (1.8.0)
     rack (2.2.9)
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -384,7 +384,7 @@ GEM
     rspec-support (3.13.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.63.5)
+    rubocop (1.64.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -492,7 +492,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webmock (3.23.0)
+    webmock (3.23.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -551,7 +551,7 @@ DEPENDENCIES
   rspec-html-matchers (~> 0.10.0)
   rspec-rails (~> 6.1)
   rspec_junit_formatter
-  rubocop (~> 1.63)
+  rubocop (~> 1.64)
   rubocop-performance
   rubocop-rails
   rubocop-rspec
