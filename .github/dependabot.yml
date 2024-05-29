@@ -6,6 +6,10 @@ updates:
     interval: daily
     time: "03:00"
     timezone: Europe/London
+  groups:
+    rubocop:
+      patterns:
+        - "rubocop*"
   open-pull-requests-limit: 15
 - package-ecosystem: npm
   directory: "/"
@@ -13,6 +17,10 @@ updates:
     interval: daily
     time: "03:00"
     timezone: Europe/London
+  groups:
+    babel:
+      patterns:
+        - "*babel*"
   open-pull-requests-limit: 15
 - package-ecosystem: github-actions
   directory: "/"
