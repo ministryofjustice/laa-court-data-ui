@@ -85,4 +85,4 @@ gem 'net-smtp', '~> 0.5.0'
 
 gem 'jsbundling-rails', '~> 1.3'
 
-gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
+gem 'sprockets-rails', '~> 3.5', require: 'sprockets/railtie'
