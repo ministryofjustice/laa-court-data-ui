@@ -130,8 +130,8 @@ Rails/RequestReferer:
 RSpec/AnyInstance:
   Enabled: false
 
-RSpec/Capybara/FeatureMethods:
-  EnabledMethods: ["feature", "scenario"]
+RSpec/Dialect:
+  PreferredMethods: ["feature", "scenario"]
 
 RSpec/ExampleLength:
   Exclude:
