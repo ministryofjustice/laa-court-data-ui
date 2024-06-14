@@ -45,9 +45,12 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 6.1'
   gem 'rubocop', '~> 1.64', require: false
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
   gem 'selenium-webdriver', '~> 4.21'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
