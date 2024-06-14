@@ -155,7 +155,7 @@ RSpec/NoExpectationExample:
     - spec/features/unlinked_defendant_flow_spec.rb
     - spec/features/breadcrumbs_spec.rb
 
-RSpec/Rails/InferredSpecType: #122 errors
+RSpecRails/InferredSpecType: #122 errors
   Enabled: false
 
 RSpec/SortMetadata: #38 errors
