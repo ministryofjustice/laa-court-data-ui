@@ -71,6 +71,8 @@ spec:
               value: 'true'
             - name: DISPLAY_RAW_RESPONSES
               value: enabled
+            - name: JUDICIAL_RESULTS
+              value: 'true'
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:

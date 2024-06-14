@@ -26,6 +26,7 @@ RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary,
   before do
     allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
     allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
+    allow(Feature).to receive(:enabled?).with(:judicial_results).and_return(true)
 
     allow(view).to receive(:govuk_page_title).and_return 'Hearings Page'
 
@@ -56,6 +57,12 @@ RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary,
   context 'when viewing court applications' do
     it 'displays the v2 partial' do
       is_expected.to render_template('hearings/_court_applications_v2')
+    end
+  end
+
+  context 'when viewing the judicial results' do
+    it 'displays the v2 partial' do
+      is_expected.to render_template('hearings/_judicial_results_v2')
     end
   end
 end
