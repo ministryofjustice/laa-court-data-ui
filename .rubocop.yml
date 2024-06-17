@@ -1,9 +1,12 @@
 inherit_from: .rubocop_todo.yml
 
 require:
+  - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 AllCops:
   NewCops: enable
@@ -130,8 +133,8 @@ Rails/RequestReferer:
 RSpec/AnyInstance:
   Enabled: false
 
-RSpec/Capybara/FeatureMethods:
-  EnabledMethods: ["feature", "scenario"]
+RSpec/Dialect:
+  PreferredMethods: ["feature", "scenario"]
 
 RSpec/ExampleLength:
   Exclude:
@@ -155,7 +158,7 @@ RSpec/NoExpectationExample:
     - spec/features/unlinked_defendant_flow_spec.rb
     - spec/features/breadcrumbs_spec.rb
 
-RSpec/Rails/InferredSpecType: #122 errors
+RSpecRails/InferredSpecType: #122 errors
   Enabled: false
 
 RSpec/SortMetadata: #38 errors
