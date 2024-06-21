@@ -22,7 +22,7 @@ gem 'json-schema', '~> 4.3'
 gem 'logstasher'
 gem 'oauth2', '~> 2.0.9'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'prometheus_exporter', '2.1.0'
+gem 'prometheus_exporter', '2.1.1'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 7.0.8'
 gem 'redis', '~> 5.2.0'
@@ -51,7 +51,7 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
-  gem 'selenium-webdriver', '~> 4.21'
+  gem 'selenium-webdriver', '~> 4.22'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'vcr'
@@ -82,7 +82,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'net-imap', '~> 0.4.12'
+gem 'net-imap', '~> 0.4.13'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.5.0'
 
