@@ -57,7 +57,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ReferenceParser do
 
       terms.each do |term, message|
         it "#{term} - #{message}" do
-          expect(described_class.new(term).national_insurance_number?).to be_truthy, "expected #{term} to be considered a valid national insurance number because \"#{message}\""
+          expect(described_class.new(term)).to be_national_insurance_number, "expected #{term} to be considered a valid national insurance number because \"#{message}\""
         end
       end
     end
@@ -84,7 +84,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ReferenceParser do
 
       terms.each do |term, message|
         it "#{term} - #{message}" do
-          expect(described_class.new(term).national_insurance_number?).to be_falsey, "expected #{term} to be considered an invalid national insurance number because\"#{message}\""
+          expect(described_class.new(term)).not_to be_national_insurance_number, "expected #{term} to be considered an invalid national insurance number because\"#{message}\""
         end
       end
     end

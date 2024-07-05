@@ -257,8 +257,7 @@ GEM
     matrix (0.4.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.7)
-    minitest (5.24.0)
+    minitest (5.24.1)
     msgpack (1.7.2)
     multi_xml (0.6.0)
     multipart-post (2.3.0)
@@ -272,8 +271,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.0)
-    nokogiri (1.16.6)
-      mini_portile2 (~> 2.8.2)
+    nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
     notifications-ruby-client (5.3.0)
       jwt (>= 1.5, < 3)
@@ -349,7 +347,7 @@ GEM
       ffi (~> 1.0)
     redis (5.2.0)
       redis-client (>= 0.22.0)
-    redis-client (0.22.1)
+    redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
     request_store (1.5.1)
@@ -357,7 +355,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.0)
+    rexml (3.3.1)
       strscan
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
@@ -405,12 +403,12 @@ GEM
     rubocop-performance (1.21.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.25.0)
+    rubocop-rails (2.25.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rspec (3.0.1)
+    rubocop-rspec (3.0.2)
       rubocop (~> 1.61)
     rubocop-rspec_rails (2.30.0)
       rubocop (~> 1.61)
@@ -435,11 +433,12 @@ GEM
       sidekiq (>= 3.0)
     shoulda-matchers (6.2.0)
       activesupport (>= 5.2.0)
-    sidekiq (7.2.4)
+    sidekiq (7.3.0)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
+      logger
       rack (>= 2.2.4)
-      redis-client (>= 0.19.0)
+      redis-client (>= 0.22.2)
     sidekiq_alive (2.4.0)
       gserver (~> 0.0.1)
       sidekiq (>= 5, < 8)
@@ -506,7 +505,7 @@ GEM
     zeitwerk (2.6.16)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   activeresource (~> 6.1.0)
@@ -562,7 +561,7 @@ DEPENDENCIES
   sentry-rails (~> 5.17.3)
   sentry-sidekiq (~> 5.17.3)
   shoulda-matchers
-  sidekiq (~> 7.2.4)
+  sidekiq (~> 7.3.0)
   sidekiq_alive
   simplecov
   spring
