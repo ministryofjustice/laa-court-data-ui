@@ -44,8 +44,8 @@ module CdApi
     end
 
     def attended_defence_counsels
-      defence_counsels.filter_map do |defence_counsel|
-        defence_counsel if defence_counsel.attendance_days.include?(day.strftime('%Y-%m-%d'))
+      defence_counsels.select do |defence_counsel|
+        defence_counsel.attendance_days.include?(day.strftime('%Y-%m-%d'))
       end
     end
   end
