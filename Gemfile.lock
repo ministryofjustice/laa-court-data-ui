@@ -471,7 +471,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.3.0)
     timeout (0.4.1)
-    turbo-rails (2.0.5)
+    turbo-rails (2.0.6)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
@@ -567,7 +567,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.1.0)
   sprockets-rails (~> 3.5)
-  turbo-rails (~> 2.0.5)
+  turbo-rails (~> 2.0.6)
   tzinfo-data
   vcr
   web-console (>= 4.2.0)
