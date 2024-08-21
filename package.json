@@ -38,8 +38,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "axe-core": "^4.9.1",
-    "cypress": "^13.13.1",
-    "cypress-axe": "^1.5.0",
     "standard": "^17.1.0",
     "stylelint": "^15.11.0",
     "stylelint-config-gds": "^1.1.1",
@@ -49,9 +47,7 @@
   "standard": {
     "globals": [
       "dataLayer",
-      "googleTrackingID",
-      "Cypress",
-      "cy"
+      "googleTrackingID"
     ],
     "env": [
       "mocha"
