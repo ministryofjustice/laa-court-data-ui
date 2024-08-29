@@ -12,7 +12,7 @@
     "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "@babel/core": "^7.24.9",
+    "@babel/core": "^7.25.2",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@babel/plugin-proposal-private-methods": "^7.18.6",
@@ -45,6 +45,18 @@
     "stylelint-config-gds": "^1.1.1",
     "stylelint-order": "^6.0.4",
     "wait-on": "^7.2.0"
+  },
+  "resolutions": {
+    "@ampproject/remapping": "2.3.0",
+    "@babel/compat-data": "7.25.4",
+    "@babel/generator": "7.25.6",
+    "@babel/helper-compilation-targets": "7.25.2",
+    "@babel/helper-create-class-features-plugin": "7.25.4",
+    "@babel/helper-create-regexp-features-plugin": "7.25.2",
+    "@babel/helper-define-polyfill-provider": "0.6.2",
+    "@babel/helper-member-expression-to-functions": "7.24.8",
+    "@babel/helper-module-transforms": "7.25.2",
+    "@babel/helper-remap-async-to-generator": "7.25.0"
   },
   "standard": {
     "globals": [
