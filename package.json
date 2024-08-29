@@ -137,7 +137,16 @@
     "core-js-compat": "3.38.1",
     "cosmiconfig": "8.3.6",
     "css-functions-list": "3.2.2",
-    "cypress": "13.14.0"
+    "cypress": "13.14.0",
+    "data-view-buffer": "1.0.1",
+    "data-view-byte-length": "1.0.1",
+    "data-view-byte-offset": "1.0.0",
+    "dayjs": "1.11.13",
+    "debug": "4.3.6",
+    "decamelize-keys": "1.1.1",
+    "deep-is": "0.1.4",
+    "define-data-property": "1.1.4",
+    "define-properties": "1.2.1"
   },
   "standard": {
     "globals": [
