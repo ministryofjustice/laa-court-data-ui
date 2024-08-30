@@ -298,6 +298,7 @@ jobs:
           organization: "legal-aid-agency"
           severity-threshold: "critical"
           fail-on-issues: true
+          no-output-timeout: 20m
 
   build-app-container:
     executor: cloud-platform-executor
