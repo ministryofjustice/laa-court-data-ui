@@ -158,15 +158,17 @@
     "es-object-atoms": "1.0.0",
     "es-set-tostringtag": "2.0.3",
     "es-shim-unscopables": "1.0.2",
-    "eslint-import-resolver-node": "0.3.0",
-    "eslint-module-utils": "2.8.0",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-promise": "6.6.0",
-    "eslint-plugin-react": "7.35.0",
-    "eslint-scope": "7.2.2",
-    "eslint": "8.57.0",
     "espree": "9.6.1",
-    "esquery": "1.6.0"
+    "esquery": "1.6.0",
+    "fast-glob": "3.3.2",
+    "fast-uri": "3.0.1",
+    "fastq": "1.17.1",
+    "file-entry-cache": "7.0.2",
+    "flat-cache": "3.2.0",
+    "flat": "5.0.2",
+    "flatted": "3.3.1",
+    "function-bind": "1.1.2",
+    "function.prototype.name": "1.1.6"
   },
   "standard": {
     "globals": [
