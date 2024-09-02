@@ -93,7 +93,7 @@ GEM
     bcrypt (3.1.20)
     bigdecimal (3.1.8)
     bindex (0.8.1)
-    bootsnap (1.18.3)
+    bootsnap (1.18.4)
       msgpack (~> 1.2)
     brakeman (6.1.2)
       racc
@@ -241,7 +241,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    logger (1.6.0)
+    logger (1.6.1)
     logstasher (2.1.5)
       activesupport (>= 5.2)
       request_store
@@ -257,7 +257,7 @@ GEM
     matrix (0.4.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.24.1)
+    minitest (5.25.1)
     msgpack (1.7.2)
     multi_xml (0.6.0)
     multipart-post (2.3.0)
@@ -355,7 +355,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.1)
+    rexml (3.3.6)
       strscan
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
@@ -416,7 +416,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    selenium-webdriver (4.22.0)
+    selenium-webdriver (4.24.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -431,9 +431,9 @@ GEM
     sentry-sidekiq (5.17.3)
       sentry-ruby (~> 5.17.3)
       sidekiq (>= 3.0)
-    shoulda-matchers (6.2.0)
+    shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
-    sidekiq (7.3.0)
+    sidekiq (7.3.1)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       logger
@@ -496,7 +496,7 @@ GEM
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
-    websocket (1.2.10)
+    websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -557,11 +557,11 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
-  selenium-webdriver (~> 4.22)
+  selenium-webdriver (~> 4.24)
   sentry-rails (~> 5.17.3)
   sentry-sidekiq (~> 5.17.3)
   shoulda-matchers
-  sidekiq (~> 7.3.0)
+  sidekiq (~> 7.3.1)
   sidekiq_alive
   simplecov
   spring
