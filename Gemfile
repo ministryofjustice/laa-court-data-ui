@@ -18,7 +18,7 @@ gem 'govuk_notify_rails', '~> 3.0.0'
 gem 'govuk_design_system_formbuilder', '~> 5.5'
 gem 'haml-rails', '~> 2.1.0'
 gem 'json_api_client', '~> 1.22'
-gem 'json-schema', '~> 4.3'
+gem 'json-schema', '~> 5.0'
 gem 'logstasher'
 gem 'oauth2', '~> 2.0.9'
 gem 'pg', '>= 0.18', '< 2.0'
@@ -43,7 +43,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter'
-  gem 'rspec-rails', '~> 6.1'
+  gem 'rspec-rails', '~> 7.0'
   gem 'rubocop', '~> 1.65', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
@@ -82,7 +82,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'net-imap', '~> 0.4.14'
+gem 'net-imap', '~> 0.4.15'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.5.0'
 
