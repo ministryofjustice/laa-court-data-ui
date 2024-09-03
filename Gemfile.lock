@@ -374,10 +374,10 @@ GEM
     rspec-mocks (3.13.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-rails (6.1.4)
-      actionpack (>= 6.1)
-      activesupport (>= 6.1)
-      railties (>= 6.1)
+    rspec-rails (7.0.0)
+      actionpack (>= 7.0)
+      activesupport (>= 7.0)
+      railties (>= 7.0)
       rspec-core (~> 3.13)
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
@@ -550,7 +550,7 @@ DEPENDENCIES
   rails-controller-testing
   redis (~> 5.2.0)
   rspec-html-matchers (~> 0.10.0)
-  rspec-rails (~> 6.1)
+  rspec-rails (~> 7.0)
   rspec_junit_formatter
   rubocop (~> 1.65)
   rubocop-capybara

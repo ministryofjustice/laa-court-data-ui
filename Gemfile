@@ -43,7 +43,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter'
-  gem 'rspec-rails', '~> 6.1'
+  gem 'rspec-rails', '~> 7.0'
   gem 'rubocop', '~> 1.65', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
