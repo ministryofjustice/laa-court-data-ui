@@ -78,11 +78,11 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.2)
     awesome_print (1.9.2)
-    axe-core-api (4.9.1)
+    axe-core-api (4.10.0)
       dumb_delegator
       virtus
-    axe-core-rspec (4.9.1)
-      axe-core-api (= 4.9.1)
+    axe-core-rspec (4.10.0)
+      axe-core-api (= 4.10.0)
       dumb_delegator
       virtus
     axiom-types (0.1.1)
