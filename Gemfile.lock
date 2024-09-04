@@ -144,7 +144,7 @@ GEM
       railties (>= 6.1)
     dumb_delegator (1.0.0)
     erubi (1.13.0)
-    factory_bot (6.4.5)
+    factory_bot (6.4.6)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
