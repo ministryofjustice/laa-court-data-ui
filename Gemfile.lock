@@ -176,7 +176,7 @@ GEM
     faraday-retry (1.0.3)
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
-    ffi (1.16.3)
+    ffi (1.17.0-x86_64-linux-gnu)
     foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
