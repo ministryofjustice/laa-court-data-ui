@@ -144,7 +144,7 @@ GEM
       railties (>= 6.1)
     dumb_delegator (1.0.0)
     erubi (1.13.0)
-    factory_bot (6.4.6)
+    factory_bot (6.5.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
@@ -180,7 +180,7 @@ GEM
     foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (5.5.0)
+    govuk_design_system_formbuilder (5.6.0)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -292,7 +292,7 @@ GEM
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
-    pg (1.5.7)
+    pg (1.5.8)
     prometheus_exporter (2.1.1)
       webrick
     pry (0.14.2)
@@ -369,7 +369,7 @@ GEM
       rspec-mocks (~> 3.13.0)
     rspec-core (3.13.1)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.2)
+    rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-html-matchers (0.10.0)
@@ -452,7 +452,7 @@ GEM
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
-    simplecov-html (0.12.3)
+    simplecov-html (0.13.0)
     simplecov_json_formatter (0.1.4)
     snaky_hash (2.0.1)
       hashie
@@ -529,7 +529,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   foreman
-  govuk_design_system_formbuilder (~> 5.5)
+  govuk_design_system_formbuilder (~> 5.6)
   govuk_notify_rails (~> 3.0.0)
   haml-rails (~> 2.1.0)
   haml_lint

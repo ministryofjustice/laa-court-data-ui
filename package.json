@@ -28,7 +28,7 @@
     "govuk-frontend": "^4.7.0",
     "jquery": "3.7.1",
     "mini-css-extract-plugin": "^2.9.1",
-    "postcss": "^8.4.44",
+    "postcss": "^8.4.45",
     "sass": "^1.77.8",
     "sass-loader": "^14.2.1",
     "webpack": "^5.94.0",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "axe-core": "^4.10.0",
-    "cypress": "^13.14.1",
+    "cypress": "^13.14.2",
     "cypress-axe": "^1.5.0",
     "standard": "^17.1.0",
     "stylelint": "^15.11.0",
