@@ -304,7 +304,7 @@ GEM
     pry-rails (0.3.11)
       pry (>= 0.13.0)
     public_suffix (6.0.1)
-    puma (6.4.2)
+    puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.9)
@@ -422,7 +422,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    selenium-webdriver (4.24.0)
+    selenium-webdriver (4.25.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -476,7 +476,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.4.0)
     timeout (0.4.1)
-    turbo-rails (2.0.9)
+    turbo-rails (2.0.10)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     tzinfo (2.0.6)
@@ -562,7 +562,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
-  selenium-webdriver (~> 4.24)
+  selenium-webdriver (~> 4.25)
   sentry-rails (~> 5.17.3)
   sentry-sidekiq (~> 5.17.3)
   shoulda-matchers
@@ -572,7 +572,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.1.0)
   sprockets-rails (~> 3.5)
-  turbo-rails (~> 2.0.9)
+  turbo-rails (~> 2.0.10)
   tzinfo-data
   vcr
   web-console (>= 4.2.0)

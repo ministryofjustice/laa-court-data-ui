@@ -30,7 +30,7 @@ gem 'sentry-rails', '~> 5.17.3'
 gem 'sentry-sidekiq', '~> 5.17.3'
 gem 'sidekiq', '~> 7.3.2'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 2.0.9'
+gem 'turbo-rails', '~> 2.0.10'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.9'
@@ -51,7 +51,7 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
-  gem 'selenium-webdriver', '~> 4.24'
+  gem 'selenium-webdriver', '~> 4.25'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'vcr'
