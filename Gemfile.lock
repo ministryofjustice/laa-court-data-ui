@@ -58,7 +58,7 @@ GEM
     activerecord (7.0.8.4)
       activemodel (= 7.0.8.4)
       activesupport (= 7.0.8.4)
-    activeresource (6.1.1)
+    activeresource (6.1.2)
       activemodel (>= 6.0)
       activemodel-serializers-xml (~> 1.0)
       activesupport (>= 6.0)
@@ -520,7 +520,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  activeresource (~> 6.1.1)
+  activeresource (~> 6.1.2)
   awesome_print
   axe-core-rspec (~> 4.9)
   bootsnap (>= 1.7.0)
