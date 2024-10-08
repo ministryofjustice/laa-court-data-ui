@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.5'
 
-gem 'activeresource', '~> 6.1.1'
+gem 'activeresource', '~> 6.1.3'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.0', require: false
 
@@ -28,8 +28,8 @@ gem 'prometheus_exporter', '2.1.1'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 7.0.8'
 gem 'redis', '~> 5.3.0'
-gem 'sentry-rails', '~> 5.20.1'
-gem 'sentry-sidekiq', '~> 5.20.1'
+gem 'sentry-rails', '~> 5.21.0'
+gem 'sentry-sidekiq', '~> 5.21.0'
 gem 'sidekiq', '~> 7.3.2'
 gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 2.0.10'
