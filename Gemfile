@@ -17,7 +17,7 @@ gem 'govuk_notify_rails', '~> 3.0.0'
 # Faraday middleware gem is required until Faraday is upgraded to version 2
 gem 'faraday_middleware', '~> 1.2.1'
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 5.6'
+gem 'govuk_design_system_formbuilder', '~> 5.7'
 gem 'haml-rails', '~> 2.1.0'
 gem 'json_api_client', '~> 1.23'
 gem 'json-schema', '~> 5.0'
