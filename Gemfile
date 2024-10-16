@@ -32,7 +32,7 @@ gem 'sentry-rails', '~> 5.21.0'
 gem 'sentry-sidekiq', '~> 5.21.0'
 gem 'sidekiq', '~> 7.3.2'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 2.0.10'
+gem 'turbo-rails', '~> 2.0.11'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.9'
