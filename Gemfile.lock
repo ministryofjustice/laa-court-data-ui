@@ -395,7 +395,7 @@ GEM
     rspec-support (3.13.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.66.1)
+    rubocop (1.67.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -419,7 +419,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rspec (3.0.5)
+    rubocop-rspec (3.1.0)
       rubocop (~> 1.61)
     rubocop-rspec_rails (2.30.0)
       rubocop (~> 1.61)
@@ -563,7 +563,7 @@ DEPENDENCIES
   rspec-html-matchers (~> 0.10.0)
   rspec-rails (~> 7.0)
   rspec_junit_formatter
-  rubocop (~> 1.66)
+  rubocop (~> 1.67)
   rubocop-capybara
   rubocop-factory_bot
   rubocop-performance
