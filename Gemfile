@@ -84,7 +84,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'net-imap', '~> 0.4.17'
+gem 'net-imap', '~> 0.5.0'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.5.0'
 
