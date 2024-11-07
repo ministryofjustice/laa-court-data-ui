@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.5'
 
-gem 'activeresource', '~> 6.1.3'
+gem 'activeresource', '~> 6.1.4'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.0', require: false
 
@@ -30,7 +30,7 @@ gem 'rails', '~> 7.0.8'
 gem 'redis', '~> 5.3.0'
 gem 'sentry-rails', '~> 5.21.0'
 gem 'sentry-sidekiq', '~> 5.21.0'
-gem 'sidekiq', '~> 7.3.4'
+gem 'sidekiq', '~> 7.3.5'
 gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 2.0.11'
 
@@ -53,7 +53,7 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
-  gem 'selenium-webdriver', '~> 4.25'
+  gem 'selenium-webdriver', '~> 4.26'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'vcr'
