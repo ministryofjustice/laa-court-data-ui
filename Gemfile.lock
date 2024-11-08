@@ -296,7 +296,7 @@ GEM
       snaky_hash (~> 2.0)
       version_gem (~> 1.1)
     orm_adapter (0.5.0)
-    ostruct (0.6.0)
+    ostruct (0.6.1)
     parallel (1.26.3)
     parser (3.3.6.0)
       ast (~> 2.4.1)
