@@ -186,7 +186,7 @@ GEM
     foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (5.7.0)
+    govuk_design_system_formbuilder (5.7.1)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
