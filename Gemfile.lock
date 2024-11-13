@@ -78,12 +78,12 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.2)
     awesome_print (1.9.2)
-    axe-core-api (4.10.1)
+    axe-core-api (4.10.2)
       dumb_delegator
       ostruct
       virtus
-    axe-core-rspec (4.10.1)
-      axe-core-api (= 4.10.1)
+    axe-core-rspec (4.10.2)
+      axe-core-api (= 4.10.2)
       dumb_delegator
       ostruct
       virtus
@@ -186,7 +186,7 @@ GEM
     foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (5.7.0)
+    govuk_design_system_formbuilder (5.7.1)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -210,7 +210,7 @@ GEM
       rainbow
       rubocop (>= 1.0)
       sysexits (~> 1.1)
-    hashdiff (1.1.1)
+    hashdiff (1.1.2)
     hashie (5.0.0)
     highline (3.1.1)
       reline
@@ -268,11 +268,11 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.1)
-    msgpack (1.7.3)
+    msgpack (1.7.5)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
     multipart-post (2.4.1)
-    net-imap (0.5.0)
+    net-imap (0.5.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -364,7 +364,7 @@ GEM
     redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
-    reline (0.5.10)
+    reline (0.5.11)
       io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
@@ -387,7 +387,7 @@ GEM
     rspec-mocks (3.13.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-rails (7.0.1)
+    rspec-rails (7.1.0)
       actionpack (>= 7.0)
       activesupport (>= 7.0)
       railties (>= 7.0)
@@ -515,7 +515,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.18)
-    zlib (3.1.1)
+    zlib (3.2.0)
 
 PLATFORMS
   arm64-darwin-23
@@ -549,7 +549,7 @@ DEPENDENCIES
   launchy
   listen (>= 3.0.5, < 3.10)
   logstasher
-  net-imap (~> 0.5.0)
+  net-imap (~> 0.5.1)
   net-pop (~> 0.1.2)
   net-smtp (~> 0.5.0)
   oauth2 (~> 2.0.9)
@@ -563,7 +563,7 @@ DEPENDENCIES
   rails-controller-testing
   redis (~> 5.3.0)
   rspec-html-matchers (~> 0.10.0)
-  rspec-rails (~> 7.0)
+  rspec-rails (~> 7.1)
   rspec_junit_formatter
   rubocop (~> 1.66)
   rubocop-capybara
