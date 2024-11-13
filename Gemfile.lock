@@ -515,7 +515,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.18)
-    zlib (3.1.1)
+    zlib (3.2.0)
 
 PLATFORMS
   arm64-darwin-23
