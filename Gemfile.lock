@@ -447,7 +447,7 @@ GEM
       sidekiq (>= 3.0)
     shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
-    sidekiq (7.3.5)
+    sidekiq (7.3.6)
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
@@ -576,7 +576,7 @@ DEPENDENCIES
   sentry-rails (~> 5.21.0)
   sentry-sidekiq (~> 5.21.0)
   shoulda-matchers
-  sidekiq (~> 7.3.5)
+  sidekiq (~> 7.3.6)
   sidekiq_alive
   simplecov
   spring
