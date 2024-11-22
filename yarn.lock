@@ -5313,9 +5313,9 @@ through@^2.3.8:
   integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
 
 tldts-core@^6.1.61:
-  version "6.1.61"
-  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-6.1.61.tgz#5cd6507535ef5f5027ac9a1f52b9b60ecb9edfbd"
-  integrity sha512-In7VffkDWUPgwa+c9picLUxvb0RltVwTkSgMNFgvlGSWveCzGBemBqTsgJCL4EDFWZ6WH0fKTsot6yNhzy3ZzQ==
+  version "6.1.63"
+  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-6.1.63.tgz#094f2b05faf90cf1e228eda1caef658425c7c912"
+  integrity sha512-H1XCt54xY+QPbwhTgmxLkepX0MVHu3USfMmejiCOdkMbRcP22Pn2FVF127r/GWXVDmXTRezyF3Ckvhn4Fs6j7Q==
 
 tldts@^6.1.32:
   version "6.1.61"
