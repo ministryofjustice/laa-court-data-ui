@@ -3479,12 +3479,12 @@ is-extglob@^2.1.1:
   resolved "https://registry.npmjs.org/is-extglob/-/is-extglob-2.1.1.tgz"
   integrity sha1-qIwCU1eR8C7TfHahueqXc8gz+MI=
 
-is-finalizationregistry@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/is-finalizationregistry/-/is-finalizationregistry-1.0.2.tgz#c8749b65f17c133313e661b1289b95ad3dbd62e6"
-  integrity sha512-0by5vtUJs8iFQb5TYUHHPudOR+qXYIMKtiUzvLIZITZUjknFmziyBJuLhVRc+Ds0dREFlskDNJKYIdIzu/9pfw==
+is-finalizationregistry@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-finalizationregistry/-/is-finalizationregistry-1.1.0.tgz#d74a7d0c5f3578e34a20729e69202e578d495dc2"
+  integrity sha512-qfMdqbAQEwBw78ZyReKnlA8ezmPdb9BemzIIip/JkjaZUhitfXDkkr+3QTboW0JrSXT1QWyYShpvnNHGZ4c4yA==
   dependencies:
-    call-bind "^1.0.2"
+    call-bind "^1.0.7"
 
 is-fullwidth-code-point@^3.0.0:
   version "3.0.0"
@@ -5651,15 +5651,16 @@ which-boxed-primitive@^1.0.2:
     is-symbol "^1.0.3"
 
 which-builtin-type@^1.1.3:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/which-builtin-type/-/which-builtin-type-1.1.4.tgz#592796260602fc3514a1b5ee7fa29319b72380c3"
-  integrity sha512-bppkmBSsHFmIMSl8BO9TbsyzsvGjVoppt8xUiGzwiu/bhDCGxnpOKCxgqj6GuyHE0mINMDecBFPlOm2hzY084w==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/which-builtin-type/-/which-builtin-type-1.2.0.tgz#58042ac9602d78a6d117c7e811349df1268ba63c"
+  integrity sha512-I+qLGQ/vucCby4tf5HsLmGueEla4ZhwTBSqaooS+Y0BuxN4Cp+okmGuV+8mXZ84KDI9BA+oklo+RzKg0ONdSUA==
   dependencies:
+    call-bind "^1.0.7"
     function.prototype.name "^1.1.6"
     has-tostringtag "^1.0.2"
     is-async-function "^2.0.0"
     is-date-object "^1.0.5"
-    is-finalizationregistry "^1.0.2"
+    is-finalizationregistry "^1.1.0"
     is-generator-function "^1.0.10"
     is-regex "^1.1.4"
     is-weakref "^1.0.2"
