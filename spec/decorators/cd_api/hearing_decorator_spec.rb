@@ -264,4 +264,19 @@ RSpec.describe CdApi::HearingDecorator, type: :decorator do
       end
     end
   end
+
+  describe 'defendants_list' do
+    let(:hearing_details) { build(:hearing_details, :with_prosecution_cases) }
+    let(:defendants) { build(:defendant) }
+    let(:prosecution_cases) { build(:prosecution_cases, defendants:) }
+    let(:hearing) { build(:hearing, hearing: hearing_details) }
+
+    before do
+      allow(hearing).to receive(:hearing).and_return(hearing_details)
+    end
+
+    it 'returns a list of defendants' do
+      expect(decorator.defendants_list.count).to be > 0
+    end
+  end
 end
