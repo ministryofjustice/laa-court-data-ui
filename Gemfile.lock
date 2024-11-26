@@ -430,7 +430,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    selenium-webdriver (4.26.0)
+    selenium-webdriver (4.27.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -572,7 +572,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
-  selenium-webdriver (~> 4.26)
+  selenium-webdriver (~> 4.27)
   sentry-rails (~> 5.21.0)
   sentry-sidekiq (~> 5.21.0)
   shoulda-matchers
