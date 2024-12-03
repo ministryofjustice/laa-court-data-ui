@@ -553,7 +553,7 @@ DEPENDENCIES
   net-pop (~> 0.1.2)
   net-smtp (~> 0.5.0)
   oauth2 (~> 2.0.9)
-  pg (>= 0.18, < 2.0)
+  pg (= 1.5.9)
   prometheus_exporter (= 2.1.1)
   pry
   pry-byebug
@@ -587,9 +587,6 @@ DEPENDENCIES
   vcr
   web-console (>= 4.2.0)
   webmock
-
-RUBY VERSION
-   ruby 3.1.5p252
 
 BUNDLED WITH
    2.3.3

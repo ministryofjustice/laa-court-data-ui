@@ -3,8 +3,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.5'
-
 gem 'activeresource', '~> 6.1.4'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.0', require: false
@@ -23,7 +21,8 @@ gem 'json_api_client', '~> 1.23'
 gem 'json-schema', '~> 5.1'
 gem 'logstasher'
 gem 'oauth2', '~> 2.0.9'
-gem 'pg', '>= 0.18', '< 2.0'
+# gem 'pg', '>= 0.18', '< 2.0'
+gem 'pg', '1.5.9'
 gem 'prometheus_exporter', '2.1.1'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 7.0.8'
