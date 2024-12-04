@@ -70,15 +70,15 @@ module CapybaraExtensions
     end
 
     def has_govuk_detail_summary?(text, options = {})
-      has_selector?(detail_summary_selector, **options.merge(text:))
+      has_selector?(detail_summary_selector, text:, **options)
     end
 
     def has_no_govuk_detail_summary?(text, options = {})
-      has_no_selector?(detail_summary_selector, **options.merge(text:))
+      has_no_selector?(detail_summary_selector, text:, **options)
     end
 
     def click_govuk_detail_summary(text, options = {})
-      detail_summary = find(detail_summary_selector, **options.merge(text:))
+      detail_summary = find(detail_summary_selector, text:, **options)
       detail_summary.click
     end
 

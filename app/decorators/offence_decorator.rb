@@ -25,9 +25,11 @@ class OffenceDecorator < BaseDecorator
   end
 
   def plea_sentence(plea)
+    plea_date = plea&.pleaded_at&.to_date
+
     t('offence.plea.sentence',
       plea: plea&.code&.humanize || t('generic.not_available'),
-      pleaded_at: plea&.pleaded_at&.to_date&.strftime('%d/%m/%Y') || t('generic.not_available'))
+      pleaded_at: plea_date&.strftime('%d/%m/%Y') || t('generic.not_available'))
   end
 
   def mode_of_trial_reason_descriptions

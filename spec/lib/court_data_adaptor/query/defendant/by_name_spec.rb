@@ -29,7 +29,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByName do
 
     context 'with mocking' do
       let(:resource) { self.class.resource }
-      let(:resultset) { instance_double('ResultSet') }
+      let(:resultset) { instance_double('ResultSet') } # rubocop:disable RSpec/StringAsInstanceDoubleConstant
 
       before do
         allow(instance).to receive(:refresh_token_if_required!)

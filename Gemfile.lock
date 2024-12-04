@@ -554,7 +554,7 @@ DEPENDENCIES
   net-pop (~> 0.1.2)
   net-smtp (~> 0.5.0)
   oauth2 (~> 2.0.9)
-  pg (= 1.5.9)
+  pg (>= 1.5.9, < 2.0)
   prometheus_exporter (= 2.1.1)
   pry
   pry-byebug
