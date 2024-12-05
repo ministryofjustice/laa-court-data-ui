@@ -6,6 +6,8 @@ require_dependency 'feature_flag'
 class Search
   include ActiveModel::Model
 
+  attr_accessor :filter, :term, :dob, :version2
+
   def self.filters
     [
       _filter(id: :case_reference,
@@ -20,8 +22,6 @@ class Search
   private_class_method def self._filter(args)
     SearchFilter.new(**args)
   end
-
-  attr_accessor :filter, :term, :dob, :version2
 
   def filters
     self.class.filters
@@ -62,18 +62,13 @@ class Search
   end
 
   def query_cda
-    send(:"#{filter}_query")
-  end
-
-  def case_reference_query
-    CourtDataAdaptor::Query::ProsecutionCase.new(term)
-  end
-
-  def defendant_reference_query
-    CourtDataAdaptor::Query::Defendant::ByReference.new(term)
-  end
-
-  def defendant_name_query
-    CourtDataAdaptor::Query::Defendant::ByName.new(term, dob:)
+    case filter
+    when 'case_reference'
+      CourtDataAdaptor::Query::ProsecutionCase.new(term)
+    when 'defendant_reference'
+      CourtDataAdaptor::Query::Defendant::ByReference.new(term)
+    when 'defendant_name'
+      CourtDataAdaptor::Query::Defendant::ByName.new(term, dob:)
+    end
   end
 end

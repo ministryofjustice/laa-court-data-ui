@@ -19,8 +19,10 @@ class OffenceSummaryDecorator < BaseDecorator
   end
 
   def return_plea(plea)
+    plea_date = plea&.date&.to_date
+
     t('offence.plea.sentence',
       plea: plea&.value&.humanize || t('generic.not_available'),
-      pleaded_at: plea&.date&.to_date&.strftime('%d/%m/%Y') || t('generic.not_available'))
+      pleaded_at: plea_date&.strftime('%d/%m/%Y') || t('generic.not_available'))
   end
 end
