@@ -82,13 +82,14 @@ class SearchesController < ApplicationController
 
   def handle_client_error(exception)
     logger.info 'CLIENT_ERROR_OCCURRED'
-    @laa_reference&.errors&.from_json(exception.response.body)
-    render_error(I18n.t('search.error.unprocessable'), @laa_reference&.errors&.full_messages&.join(', '))
+
+    render_error(I18n.t('search.error.unprocessable'), exception.response.body)
   end
 
   def handle_server_error(exception)
     logger.error 'SERVER_ERROR_OCCURRED'
-    log_sentry_error(exception, @laa_reference&.errors)
+
+    log_sentry_error(exception, exception.response.body)
     render_error(I18n.t('search.error.failure'), I18n.t('error.it_helpdesk'))
   end
 

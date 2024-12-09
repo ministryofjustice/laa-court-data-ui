@@ -22,7 +22,7 @@ RSpec.describe CourtDataAdaptor::Query::Hearing do
     let(:instance) { described_class.new(term) }
     let(:term) { 'a-hearing-uuid' }
     let(:resource) { self.class.resource }
-    let(:resultset) { instance_double('ResultSet') }
+    let(:resultset) { instance_double('ResultSet') } # rubocop:disable RSpec/StringAsInstanceDoubleConstant
 
     before do
       allow(instance).to receive(:refresh_token_if_required!)
