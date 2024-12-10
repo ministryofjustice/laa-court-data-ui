@@ -283,9 +283,9 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.16.8-arm64-darwin)
+    nokogiri (1.17.0-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.8-x86_64-linux)
+    nokogiri (1.17.0-x86_64-linux)
       racc (~> 1.4)
     notifications-ruby-client (6.2.0)
       jwt (>= 1.5, < 3)
@@ -437,14 +437,14 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sentry-rails (5.21.0)
+    sentry-rails (5.22.0)
       railties (>= 5.0)
-      sentry-ruby (~> 5.21.0)
-    sentry-ruby (5.21.0)
+      sentry-ruby (~> 5.22.0)
+    sentry-ruby (5.22.0)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sentry-sidekiq (5.21.0)
-      sentry-ruby (~> 5.21.0)
+    sentry-sidekiq (5.22.0)
+      sentry-ruby (~> 5.22.0)
       sidekiq (>= 3.0)
     shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
@@ -574,8 +574,8 @@ DEPENDENCIES
   rubocop-rspec
   rubocop-rspec_rails
   selenium-webdriver (~> 4.26)
-  sentry-rails (~> 5.21.0)
-  sentry-sidekiq (~> 5.21.0)
+  sentry-rails (~> 5.22.0)
+  sentry-sidekiq (~> 5.22.0)
   shoulda-matchers
   sidekiq (~> 7.3.6)
   sidekiq_alive
