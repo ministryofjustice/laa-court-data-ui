@@ -42,7 +42,7 @@ module LaaCourtDataUi
     config.action_dispatch.signed_cookie_digest = 'SHA256'
     config.exceptions_app = routes
     config.active_job.queue_adapter = :sidekiq
-    config.x.support_email_address = 'assessaclaim@digital.justice.gov.uk'
+    config.x.support_email_address = 'access-court-data-team@digital.justice.gov.uk'
     config.x.display_raw_responses = %w[enabled true].include?(ENV.fetch('DISPLAY_RAW_RESPONSES', nil))
     config.action_mailer.deliver_later_queue_name = :mailers
     config.x.court_data_api_config.uri = ENV.fetch('COURT_DATA_API_URL', nil)
