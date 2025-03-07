@@ -83,7 +83,7 @@ cd .../laa-court-data-ui
 - configure UI to use and authenticate against local adaptor
 ```
 # .env.development.local
-COURT_DATA_ADAPTOR_API_URL: hhttp://localhost:9292/api/internal/v1
+COURT_DATA_ADAPTOR_API_URL: http://localhost:9292/api/internal/v1
 COURT_DATA_ADAPTOR_API_UID: uid-generated-by-adaptor-above
 COURT_DATA_ADAPTOR_API_SECRET: secret-generated-by-adaptor-above
 ```
@@ -162,5 +162,3 @@ kubectl -n laa-court-data-ui-<env> get secrets <secret-name> -o json
 For more details on how to add or update Kubernetes Secrets, see the [Cloud Platform documentation](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/deploying-an-app/add-secrets-to-deployment.html#adding-a-secret-to-an-application).
 
 Secrets are backed up outside of Kubernetes, these back ups need to be updated any time the secrets are updated. Please refer to this [Confluence document](https://dsdmoj.atlassian.net/wiki/spaces/CFP/pages/4273504650/Secrets+Strategy+Post+Git-Crypt#Where-We-Are-Storing-Secrets-Now) for more information
-
-

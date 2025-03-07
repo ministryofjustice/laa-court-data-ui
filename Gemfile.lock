@@ -186,7 +186,7 @@ GEM
     foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (5.7.1)
+    govuk_design_system_formbuilder (5.8.0)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -252,7 +252,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    logger (1.6.2)
+    logger (1.6.6)
     logstasher (2.1.5)
       activesupport (>= 5.2)
       request_store
@@ -372,7 +372,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.9)
+    rexml (3.4.1)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -430,8 +430,8 @@ GEM
       rubocop-rspec (~> 3, >= 3.0.1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    rubyzip (2.3.2)
-    selenium-webdriver (4.27.0)
+    rubyzip (2.4.1)
+    selenium-webdriver (4.29.1)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -539,7 +539,7 @@ DEPENDENCIES
   faker
   faraday_middleware (~> 1.2.1)
   foreman
-  govuk_design_system_formbuilder (~> 5.7)
+  govuk_design_system_formbuilder (~> 5.8)
   govuk_notify_rails (~> 3.0.0)
   haml-rails (~> 2.1.0)
   haml_lint
@@ -573,7 +573,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
-  selenium-webdriver (~> 4.26)
+  selenium-webdriver (~> 4.3)
   sentry-rails (~> 5.21.0)
   sentry-sidekiq (~> 5.21.0)
   shoulda-matchers
