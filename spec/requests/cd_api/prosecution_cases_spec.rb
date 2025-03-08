@@ -7,8 +7,8 @@ RSpec.describe 'prosecution cases', :stub_case_search, :stub_v2_hearing_summary,
   context 'when authenticated' do
     before do
       sign_in user
-      allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
-      allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
+      allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
+      allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(false)
       get "/prosecution_cases/#{case_reference}"
     end
 
@@ -17,7 +17,7 @@ RSpec.describe 'prosecution cases', :stub_case_search, :stub_v2_hearing_summary,
     end
 
     context 'when defendants_search flag is on', :stub_defendants_case_search do
-      before { allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true) }
+      before { allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(true) }
 
       it 'renders prosecution_cases/show' do
         expect(response).to render_template('prosecution_cases/show')

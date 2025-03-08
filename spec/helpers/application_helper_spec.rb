@@ -248,7 +248,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context 'when hearing summaries flag is true' do
       before do
-        allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
+        allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
       end
 
       it 'returns true' do
@@ -258,7 +258,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context 'when hearing summaries flag is false' do
       before do
-        allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
+        allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(false)
       end
 
       it 'returns false' do

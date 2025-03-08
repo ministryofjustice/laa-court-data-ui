@@ -52,7 +52,7 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def version_2?
-    Feature.enabled?(:hearing_summaries)
+    FeatureFlag.enabled?(:hearing_summaries)
   end
 
   def urn

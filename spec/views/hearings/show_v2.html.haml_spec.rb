@@ -24,8 +24,8 @@ RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary,
   end
 
   before do
-    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
-    allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(false)
+    allow(FeatureFlag).to receive(:enabled?).with(:hearing).and_return(true)
 
     allow(view).to receive(:govuk_page_title).and_return 'Hearings Page'
 

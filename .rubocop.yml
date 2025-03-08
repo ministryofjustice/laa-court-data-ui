@@ -214,5 +214,34 @@ RSpec/VerifiedDoubleReference:
   Enabled: false
 
 Style/RedundantStringEscape:
-  Exclude: 
+  Exclude:
     - app/services/cd_api/reference_parser_service.rb
+
+# Rails updates enforce double quotes, to avoid conflicts with the existing codebase
+# we are enforcing double quotes only on the files listed below
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  Include:
+    - config/boot.rb
+    - config/application.rb
+    - config/environment.rb
+    - config/environments/development.rb
+    - config/environments/production.rb
+    - config/environments/test.rb
+    - config/initializers/assets.rb
+    - config/initializers/content_security_policy.rb
+    - config/initializers/filter_parameter_logging.rb
+    - config/initializers/inflections.rb
+    - config/initializers/permissions_policy.rb
+    - bin/rails
+    - bin/rake
+    - bin/setup
+    # New files from Rails 7.1
+    - bin/brakeman
+    - bin/rubocop
+    - config/initializers/new_framework_defaults_7_2.rb
+    - config/puma.rb
+
+# The new Ruby version 3.4 enforces frozen string literals by default
+Style/FrozenStringLiteralComment:
+  Enabled: false

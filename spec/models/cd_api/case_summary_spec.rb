@@ -6,7 +6,7 @@ RSpec.describe CdApi::CaseSummary, :stub_v2_hearing_summary, type: :model do
   end
 
   before do
-    allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:hearing).and_return(true)
   end
 
   let(:case_reference) { 'TEST12345' }

@@ -5,7 +5,7 @@
                     locals: { defendant: defendant,
                     prosecution_case_reference: prosecution_case_reference }
 
-  - if Feature.enabled?(:defendants_page)
+  - if FeatureFlag.enabled?(:defendants_page)
     = render partial: 'defendants/offences_v2', locals: { defendant: defendant }
   - else
     = render partial: 'defendants/offences', locals: { defendant: defendant }

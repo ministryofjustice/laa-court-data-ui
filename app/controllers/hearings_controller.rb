@@ -34,7 +34,7 @@ class HearingsController < ApplicationController
   private
 
   def load_and_authorize_search
-    @prosecution_case_search = if Feature.enabled?(:hearing)
+    @prosecution_case_search = if FeatureFlag.enabled?(:hearing)
                                  CdApi::CaseSummaryService.new(urn: prosecution_case_reference)
                                else
                                  Search.new(filter: 'case_reference', term: prosecution_case_reference)
@@ -43,7 +43,7 @@ class HearingsController < ApplicationController
   end
 
   def set_hearing
-    if Feature.enabled?(:hearing)
+    if FeatureFlag.enabled?(:hearing)
       hearing_v2
     else
       hearing
@@ -55,7 +55,7 @@ class HearingsController < ApplicationController
   end
 
   def set_hearing_events
-    hearing_events if Feature.enabled?(:hearing)
+    hearing_events if FeatureFlag.enabled?(:hearing)
   end
 
   def hearing
@@ -103,7 +103,7 @@ class HearingsController < ApplicationController
   end
 
   def set_prosecution_case
-    Feature.enabled?(:hearing) ? prosecution_case_call_v2 : prosecution_case_call
+    FeatureFlag.enabled?(:hearing) ? prosecution_case_call_v2 : prosecution_case_call
   end
 
   def prosecution_case_call

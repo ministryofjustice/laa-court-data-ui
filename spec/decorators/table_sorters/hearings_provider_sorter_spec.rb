@@ -7,7 +7,7 @@ RSpec.describe TableSorters::HearingsProviderSorter do
   subject(:instance) { described_class.new(hearings, column, direction) }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(false)
+    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(false)
   end
 
   include_context 'with multiple hearings to sort'

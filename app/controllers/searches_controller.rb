@@ -28,7 +28,7 @@ class SearchesController < ApplicationController
   private
 
   def version_2?
-    Feature.enabled?(:defendants_search)
+    FeatureFlag.enabled?(:defendants_search)
   end
 
   def search_params

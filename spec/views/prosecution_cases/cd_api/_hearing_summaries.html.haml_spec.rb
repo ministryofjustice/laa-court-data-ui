@@ -38,7 +38,7 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
   let(:attendance_days) { %w[2021-01-17 2021-01-18 2021-01-19] }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
     allow(decorated_case_summary).to receive_messages(hearings_sort_column: 'date',
                                                       hearings_sort_direction: 'asc')
     render_partial

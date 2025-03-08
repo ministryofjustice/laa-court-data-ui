@@ -59,7 +59,7 @@ class LaaReferencesController < ApplicationController
   end
 
   def load_and_authorize_defendant_search
-    if Feature.enabled?(:defendants_page)
+    if FeatureFlag.enabled?(:defendants_page)
       @defendant_search = CdApi::SearchService.new('uuid_reference', { uuid: defendant_uuid,
                                                                        urn: laa_reference_params[:urn] }, nil)
     else

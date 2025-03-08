@@ -4,7 +4,7 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
   subject(:decorator) { described_class.new(case_summary, view_object) }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
   end
 
   let(:case_summary) { build(:case_summary) }
