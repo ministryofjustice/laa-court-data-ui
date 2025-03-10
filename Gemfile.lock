@@ -152,7 +152,7 @@ GEM
       dotenv (= 3.1.4)
       railties (>= 6.1)
     drb (2.2.1)
-    dumb_delegator (1.0.0)
+    dumb_delegator (1.1.0)
     erubi (1.13.1)
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
@@ -555,7 +555,7 @@ PLATFORMS
 DEPENDENCIES
   activeresource (~> 6.1.4)
   awesome_print
-  axe-core-rspec (~> 4.10)
+  axe-core-rspec (~> 4.10.2)
   bootsnap (>= 1.7.0)
   brakeman
   breadcrumbs_on_rails
