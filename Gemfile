@@ -61,7 +61,7 @@ end
 group :development, :test do
   gem 'awesome_print'
   gem 'colorize', require: false
-  gem 'dotenv-rails', require: 'dotenv/rails-now'
+  gem 'dotenv-rails', require: 'dotenv/load'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry'
