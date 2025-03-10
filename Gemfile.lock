@@ -512,9 +512,9 @@ GEM
     thread_safe (0.3.6)
     tilt (2.4.0)
     timeout (0.4.3)
-    turbo-rails (2.0.11)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
+    turbo-rails (2.0.13)
+      actionpack (>= 7.1.0)
+      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
@@ -613,11 +613,11 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.1.0)
   sprockets-rails (~> 3.5)
-  turbo-rails (~> 2.0.11)
+  turbo-rails (~> 2.0.13)
   tzinfo-data
   vcr
   web-console (>= 4.2.0)
   webmock
 
 BUNDLED WITH
-   2.3.3
+   2.6.5
