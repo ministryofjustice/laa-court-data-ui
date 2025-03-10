@@ -54,15 +54,10 @@ COPY Gemfile* ./
 # Installs bundler version used in Gemfile.lock
 # - only install production dependencies
 #
-# RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") \
-# && bundle config --global without test development \
-# && bundle config build.nokogiri --use-system-libraries \
-# && bundle check || bundle install --jobs=4 --retry=3
-
-RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ")
-RUN bundle config --global without test development
-RUN bundle config build.nokogiri --use-system-libraries
-RUN bundle check || bundle install --jobs=4 --retry=3
+RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") \
+&& bundle config --global without test development \
+&& bundle config build.nokogiri --use-system-libraries \
+&& bundle check || bundle install --jobs=4 --retry=3
 
 ####################
 # DEPENDENCIES END #
