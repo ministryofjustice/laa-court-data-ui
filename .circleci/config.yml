@@ -403,9 +403,10 @@ workflows:
             branches:
               ignore:
                 - main
-      - build-app-container:
-          requires:
-            - branch-build-approval
+      - build-app-container
+      # - build-app-container:
+      #     requires:
+      #       - branch-build-approval
       - hold-dev:
           type: approval
           requires:
@@ -422,11 +423,11 @@ workflows:
           context: laa-court-data-ui-live-staging
           requires:
             - hold-staging
-      - hold-uat:
-          type: approval
-          requires:
-            - build-app-container
+      # - hold-uat:
+      #     type: approval
+      #     requires:
+      #       - build-app-container
       - deploy-uat:
           context: laa-court-data-ui-live-uat
           requires:
-            - hold-uat
+            - build-app-container
