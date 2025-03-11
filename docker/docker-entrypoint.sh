@@ -4,8 +4,6 @@ set -ex
 
 printf '\e[33mINFO: DB migrate\e[0m\n'
 
-printenv
-
 RUBYOPT=-W:no-deprecated bundle exec rails db:create db:migrate
 
 # if REDIS_URL is not set then we start redis-server locally
