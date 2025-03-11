@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Faker
-  class UnlinkReason < Base
+  class UnlinkReason
     class << self
       def description
-        fetch('unlink_reason.description')
+        Faker::Base.fetch('unlink_reason.description')
       end
     end
   end
