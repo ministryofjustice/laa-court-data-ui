@@ -66,8 +66,18 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
-  # Send deprecation notices to registered listeners.
-  config.active_support.deprecation = :notify
+  config.active_support.report_deprecations = true
+
+  config.active_support.disallowed_deprecation_warnings = []
+
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = Logger::Formatter.new
+
+  if ENV.fetch("RAILS_LOG_TO_STDOUT", nil).present?
+    logger           = ActiveSupport::Logger.new($stdout)
+    logger.formatter = config.log_formatter
+    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
@@ -82,4 +92,18 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # see https://github.com/shadabahmed/logstasher
+  config.logstasher.enabled = true
+  config.logstasher.log_level = Logger::INFO
+  config.logstasher.logger = config.logger
+  config.logstasher.controller_enabled = true
+  config.logstasher.mailer_enabled = false
+  config.logstasher.record_enabled = false
+  config.logstasher.view_enabled = false
+  config.logstasher.job_enabled = true
+  config.logstasher.suppress_app_log = true
+  config.logstasher.source = "laa-court-data-ui-production-#{ENV.fetch('ENV', nil)}"
+  config.logstasher.backtrace = false
+  config.logstasher.logger_path = "log/logstasher.log"
 end
