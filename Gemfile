@@ -24,16 +24,16 @@ gem 'oauth2', '~> 2.0.9'
 gem 'pg', '>= 1.5.9', '< 2.0'
 gem 'prometheus_exporter', '2.1.1'
 gem 'puma', '>= 5.6.4'
-gem 'rails', '~> 7.0.8'
+gem 'rails', '~> 7.1'
 gem 'redis', '~> 5.3.0'
 gem 'sentry-rails', '~> 5.21.0'
 gem 'sentry-sidekiq', '~> 5.21.0'
 gem 'sidekiq', '~> 7.3.6'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 2.0.11'
+gem 'turbo-rails', '~> 2.0.13'
 
 group :test do
-  gem 'axe-core-rspec', '~> 4.10'
+  gem 'axe-core-rspec', '~> 4.10.2'
   gem 'brakeman'
   gem 'capybara'
   gem 'capybara_table'
@@ -61,7 +61,7 @@ end
 group :development, :test do
   gem 'awesome_print'
   gem 'colorize', require: false
-  gem 'dotenv-rails', require: 'dotenv/rails-now'
+  gem 'dotenv-rails', require: 'dotenv/load'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry'

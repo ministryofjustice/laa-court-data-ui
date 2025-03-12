@@ -2,7 +2,7 @@
 
 require 'feature_flag'
 
-RSpec.describe Feature do
+RSpec.describe FeatureFlag do
   context 'when environment variable is not set' do
     before do
       ENV['TEST_VAR'] = nil

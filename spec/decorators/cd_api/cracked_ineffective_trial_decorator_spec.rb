@@ -14,8 +14,8 @@ RSpec.describe CdApi::CrackedIneffectiveTrialDecorator, type: :decorator do
   end
 
   before do
-    allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
-    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:hearing).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
   end
 
   it_behaves_like 'a base decorator' do

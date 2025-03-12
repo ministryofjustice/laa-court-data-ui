@@ -6,8 +6,8 @@ RSpec.describe 'hearings_v2', type: :request do
   let(:case_reference) { 'TEST12345' }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(false)
-    allow(Feature).to receive(:enabled?).with(:hearing).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(false)
+    allow(FeatureFlag).to receive(:enabled?).with(:hearing).and_return(true)
   end
 
   context 'when authenticated', :stub_v2_hearing_summary, :stub_v2_hearing_data, :stub_v2_hearing_events,

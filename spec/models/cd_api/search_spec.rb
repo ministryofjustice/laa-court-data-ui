@@ -5,7 +5,7 @@ RSpec.describe Search, type: :model do
 
   before do
     allow_any_instance_of(described_class).to receive(:version2).and_return(true)
-    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(true)
   end
 
   it {

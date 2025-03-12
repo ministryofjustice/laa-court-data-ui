@@ -12,11 +12,11 @@ RSpec.describe 'Cookie banner', type: :request do
       end
 
       it 'sets analytics_cookies_set to true' do
-        expect(response.header['Set-Cookie']).to match(/analytics_cookies_set=true/)
+        expect(response.header['Set-Cookie']).to include(/analytics_cookies_set=true/)
       end
 
       it 'sets cookies_preferences_set to true' do
-        expect(response.header['Set-Cookie']).to match(/cookies_preferences_set=true/)
+        expect(response.header['Set-Cookie']).to include(/cookies_preferences_set=true/)
       end
     end
 
@@ -28,11 +28,11 @@ RSpec.describe 'Cookie banner', type: :request do
       end
 
       it 'sets analytics_cookies_set to true' do
-        expect(response.header['Set-Cookie']).to match(/analytics_cookies_set=false/)
+        expect(response.header['Set-Cookie']).to include(/analytics_cookies_set=false/)
       end
 
       it 'sets cookies_preferences_set to true' do
-        expect(response.header['Set-Cookie']).to match(/cookies_preferences_set=true/)
+        expect(response.header['Set-Cookie']).to include(/cookies_preferences_set=true/)
       end
     end
 

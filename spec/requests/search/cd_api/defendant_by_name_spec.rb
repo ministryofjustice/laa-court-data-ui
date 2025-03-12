@@ -4,7 +4,7 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
   let(:user) { create(:user) }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(true)
     sign_in user
   end
 
@@ -20,9 +20,9 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
         {
           filter: :defendant_name,
           term: 'trever glover',
-          'dob(3i)': '1',
-          'dob(2i)': '1',
-          'dob(1i)': '1990'
+          "dob(3i)": '1',
+          "dob(2i)": '1',
+          "dob(1i)": '1990'
         }
       }
     end

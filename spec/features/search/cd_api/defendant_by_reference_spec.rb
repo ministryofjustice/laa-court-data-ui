@@ -4,7 +4,7 @@ RSpec.feature 'Defendant by reference search', :vcr, :js, type: :feature do
   let(:user) { create(:user) }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:defendants_search).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(true)
     sign_in user
   end
 

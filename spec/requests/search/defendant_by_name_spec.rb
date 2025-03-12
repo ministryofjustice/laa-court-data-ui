@@ -19,9 +19,9 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
         {
           filter: :defendant_name,
           term: 'trever glover',
-          'dob(3i)': '1',
-          'dob(2i)': '1',
-          'dob(1i)': '1990'
+          "dob(3i)": '1',
+          "dob(2i)": '1',
+          "dob(1i)": '1990'
         }
       }
     end

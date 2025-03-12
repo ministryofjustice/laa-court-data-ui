@@ -55,7 +55,7 @@ COPY Gemfile* ./
 # - only install production dependencies
 #
 RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") \
-&& bundle config --global without test development \
+&& bundle config --local without test development \
 && bundle config build.nokogiri --use-system-libraries \
 && bundle check || bundle install --jobs=4 --retry=3
 

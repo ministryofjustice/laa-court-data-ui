@@ -7,7 +7,7 @@ RSpec.feature 'defendants view', :stub_defendants_uuid_urn_search, type: :featur
 
   context 'when version 2 is enabled' do
     before do
-      allow(Feature).to receive(:enabled?).with(:defendants_page).and_return(true)
+      allow(FeatureFlag).to receive(:enabled?).with(:defendants_page).and_return(true)
       sign_in user
     end
 
@@ -49,7 +49,7 @@ RSpec.feature 'defendants view', :stub_defendants_uuid_urn_search, type: :featur
 
   context 'when version 2 is disabled' do
     before do
-      allow(Feature).to receive(:enabled?).with(:defendants_page).and_return(false)
+      allow(FeatureFlag).to receive(:enabled?).with(:defendants_page).and_return(false)
       sign_in user
 
       stub_request(:get, %r{#{api_url}/prosecution_cases.*})

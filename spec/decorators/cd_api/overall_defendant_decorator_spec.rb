@@ -4,7 +4,7 @@ RSpec.describe CdApi::OverallDefendantDecorator, type: :decorator do
   subject(:decorator) { described_class.new(overall_defendant, view_object) }
 
   before do
-    allow(Feature).to receive(:enabled?).with(:hearing_summaries).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
   end
 
   let(:overall_defendant) { build(:overall_defendant) }

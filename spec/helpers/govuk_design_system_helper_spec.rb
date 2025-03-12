@@ -98,7 +98,7 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
     end
 
     it 'adds detail govuk data-module' do
-      is_expected.to have_tag(:details, with: { 'data-module': 'govuk-details' })
+      is_expected.to have_tag(:details, with: { "data-module": 'govuk-details' })
     end
 
     it 'adds nested summary tag with govuk class' do
