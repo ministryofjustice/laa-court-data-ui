@@ -33,7 +33,7 @@ RSpec.describe CdApi::Defendant, type: :model do
   end
 
   describe '#maat_reference' do
-    subject { defendant.maat_reference }
+    subject(:maat_reference) { defendant.maat_reference }
 
     let(:defendant) { build(:defendant, offence_summaries:) }
     let(:offence_summaries) { [build(:offence_summary, laa_application:)] }
@@ -48,6 +48,14 @@ RSpec.describe CdApi::Defendant, type: :model do
       let(:laa_application) { build(:laa_application, reference: '') }
 
       it { is_expected.to be_empty }
+    end
+
+    context 'when defendant is not instantiated with any offence summaries' do
+      let(:defendant) { build(:defendant) }
+
+      it 'does not raise an error' do
+        expect { maat_reference }.not_to raise_error
+      end
     end
   end
 end
