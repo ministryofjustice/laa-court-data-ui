@@ -13,7 +13,6 @@ FactoryBot.define do
     date_of_birth { '1994-03-02' }
     proceedings_concluded { false }
     representation_order { {} }
-    offence_summaries { [] }
     prosecution_case_reference { 'PKTEST22345' }
 
     trait :with_offence_summaries do
