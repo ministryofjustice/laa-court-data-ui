@@ -57,5 +57,13 @@ RSpec.describe CdApi::Defendant, type: :model do
         expect { maat_reference }.not_to raise_error
       end
     end
+
+    context 'when defendant is instantiated with explicitly nil for offence summaries' do
+      let(:defendant) { build(:defendant, offence_summaries: nil) }
+
+      it 'does not raise an error' do
+        expect { maat_reference }.not_to raise_error
+      end
+    end
   end
 end
