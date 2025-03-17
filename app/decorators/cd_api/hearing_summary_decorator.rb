@@ -44,8 +44,15 @@ module CdApi
     end
 
     def attended_defence_counsels
+      # Sometimes a hearing summary pertains to a specific day of a hearing.
+      # (c.f. CdApi::CaseSummaryDecorator.sorted_hearing_summaries_with_day)
+      # In those cases, we are only interested in the defence counsels who
+      # attended on that specific day. Otherwise, we are interested in
+      # all defence counsels
+      return defence_counsels unless day
+
       defence_counsels.select do |defence_counsel|
-        defence_counsel.attendance_days.include?(day.strftime('%Y-%m-%d'))
+        defence_counsel.attendance_days&.include?(day.strftime('%Y-%m-%d'))
       end
     end
   end
