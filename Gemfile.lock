@@ -527,7 +527,7 @@ GEM
     useragent (0.16.11)
     vcr (6.3.1)
       base64
-    version_gem (1.1.4)
+    version_gem (1.1.6)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
