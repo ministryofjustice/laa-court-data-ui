@@ -1002,12 +1002,12 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@ministryofjustice/frontend@^1.8.1":
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/@ministryofjustice/frontend/-/frontend-1.8.1.tgz#6bac39524ba406533d1ce51c55d4c8ff96ad358e"
-  integrity sha512-HNl8XXbNje/NtQRlGM57CTLlAGBTW+ziGTBkxXHDn7VauKNz418PnErDlKRWeaHIyc6V9twI5EbOj4lFCsvasw==
+"@ministryofjustice/frontend@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@ministryofjustice/frontend/-/frontend-3.6.0.tgz#012a3729102877bcfef4d7131250d83a01b223af"
+  integrity sha512-wIFY6N5iEM/VZS4vV5xXYPdf1mfL8ERu+PIIzZrX+hNOYZtMgj/vrhnQ7QxrQPIHsywbWAl8bSpLmvQ5kSm3TQ==
   dependencies:
-    govuk-frontend "^3.0.0 || ^4.0.0"
+    govuk-frontend "^5.0.0"
     moment "^2.27.0"
 
 "@nodelib/fs.scandir@2.1.5":
@@ -2704,10 +2704,15 @@ gopd@^1.0.1, gopd@^1.2.0:
   resolved "https://registry.yarnpkg.com/gopd/-/gopd-1.2.0.tgz#89f56b8217bdbc8802bd299df6d7f1081d7e51a1"
   integrity sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==
 
-"govuk-frontend@^3.0.0 || ^4.0.0", govuk-frontend@^4.7.0:
+govuk-frontend@^4.7.0:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-4.9.0.tgz#a09068130fa087e67de25956940cb8280a364372"
   integrity sha512-zfX+GBUKpWBeV6JwCIawEuI8VRWlskH8Ok8aNUjKOvzo3zIaNbcrv4IOwgy+oSnMoGh67Eeh+vb7+9GFxN2fNg==
+
+govuk-frontend@^5.0.0:
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.9.0.tgz#4064ac692019e60f030d6311c49330a6454a5689"
+  integrity sha512-8NzmyoDtRFYyHs413DfNPR8Zo6qw6Q02Mruxml/Yfy+EueaOI/JZ4gVM8d0pqzJmTiMcJuHhvxqYEgBRmqeoyA==
 
 graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.2.11, graceful-fs@^4.2.4:
   version "4.2.11"
