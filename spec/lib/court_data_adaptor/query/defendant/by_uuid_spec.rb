@@ -24,7 +24,7 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByUuid do
 
     let(:instance) { described_class.new(term) }
     let(:resource) { self.class.resource }
-    let(:resultset) { instance_double('ResultSet') } # rubocop:disable RSpec/StringAsInstanceDoubleConstant
+    let(:resultset) { instance_double('ResultSet') }
 
     before do
       allow(instance).to receive(:refresh_token_if_required!)

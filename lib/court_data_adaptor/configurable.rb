@@ -8,16 +8,12 @@ module CourtDataAdaptor
     end
 
     module InstanceMethods
-      def configuration
-        self.class.configuration
-      end
+      delegate :configuration, to: :class
       alias config configuration
     end
 
     module ClassMethods
-      def configuration
-        CourtDataAdaptor.configuration
-      end
+      delegate :configuration, to: :CourtDataAdaptor
       alias config configuration
     end
   end

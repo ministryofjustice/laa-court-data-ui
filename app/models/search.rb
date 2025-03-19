@@ -23,9 +23,7 @@ class Search
     SearchFilter.new(**args)
   end
 
-  def filters
-    self.class.filters
-  end
+  delegate :filters, to: :class
 
   def self.sanitize_html(html_string)
     ActionController::Base.helpers.sanitize(html_string, tags: ['b'])
