@@ -3,26 +3,28 @@ updates:
 - package-ecosystem: bundler
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
+    day: wednesday
     time: "03:00"
     timezone: Europe/London
   groups:
-    rubocop:
+    bundler:
       patterns:
-        - "rubocop*"
+        - "*"
   open-pull-requests-limit: 15
   allow:
     - dependency-type: "all"
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
+    day: thursday
     time: "03:00"
     timezone: Europe/London
   groups:
-    babel:
+    npm:
       patterns:
-        - "*babel*"
+        - "*"
   open-pull-requests-limit: 15
   allow:
     - dependency-type: "all"
@@ -33,6 +35,10 @@ updates:
     day: tuesday
     time: "03:00"
     timezone: Europe/London
+  groups:
+    actions:
+      patterns:
+        - "*"
   open-pull-requests-limit: 15
   allow:
     - dependency-type: "all"
