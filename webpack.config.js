@@ -41,10 +41,10 @@ const config = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
-              api: "legacy",
-            },
+              api: 'legacy'
+            }
           }
         ]
       },
