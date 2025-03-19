@@ -15,20 +15,20 @@ gem 'govuk_notify_rails', '~> 3.0.0'
 # Faraday middleware gem is required until Faraday is upgraded to version 2
 gem 'faraday_middleware', '~> 1.2.1'
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 5.7'
+gem 'govuk_design_system_formbuilder', '~> 5.9'
 gem 'haml-rails', '~> 2.1.0'
 gem 'json_api_client', '~> 1.23'
 gem 'json-schema', '~> 5.1'
 gem 'logstasher'
 gem 'oauth2', '~> 2.0.9'
 gem 'pg', '>= 1.5.9', '< 2.0'
-gem 'prometheus_exporter', '2.1.1'
+gem 'prometheus_exporter', '2.2.0'
 gem 'puma', '>= 5.6.4'
-gem 'rails', '~> 7.1'
-gem 'redis', '~> 5.3.0'
+gem 'rails', '~> 8.0'
+gem 'redis', '~> 5.4.0'
 gem 'sentry-rails', '~> 5.23.0'
 gem 'sentry-sidekiq', '~> 5.23.0'
-gem 'sidekiq', '~> 7.3.6'
+gem 'sidekiq', '~> 7.3.9'
 gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 2.0.13'
 
@@ -38,13 +38,13 @@ group :test do
   gem 'capybara'
   gem 'capybara_table'
   gem 'haml_lint', require: false
-  gem 'i18n-tasks', '~> 1.0.14'
+  gem 'i18n-tasks', '~> 1.0.15'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 7.1'
-  gem 'rubocop', '~> 1.66', require: false
+  gem 'rubocop', '~> 1.74', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false
