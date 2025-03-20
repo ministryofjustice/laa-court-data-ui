@@ -21,13 +21,9 @@ module CourtDataAdaptor
     end
 
     module InstanceMethods
-      def resource
-        self.class.resource
-      end
+      delegate :resource, to: :class
 
-      def refresh_token_if_required!
-        self.class.refresh_token_if_required!
-      end
+      delegate :refresh_token_if_required!, to: :class
     end
   end
 end
