@@ -69,6 +69,10 @@ COPY . .
 RUN SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here \
 RAILS_ENV=production \
 yarn install && yarn build 2> /dev/null
+RUN SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here \
+RAILS_ENV=production \
+bundle exec rails assets:precompile
+
 
 # tidy up installation
 RUN apk update && apk del build-dependencies
