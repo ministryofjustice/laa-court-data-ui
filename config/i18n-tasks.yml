@@ -70,6 +70,7 @@ search:
   ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)
   exclude:
     - app/assets/images
+    - app/assets/builds
     - app/assets/fonts
     - app/assets/videos
 
