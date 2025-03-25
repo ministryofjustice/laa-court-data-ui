@@ -56,7 +56,7 @@ spec:
             - name: DOMAIN_URL
               value: 'https://staging.view-court-data.service.justice.gov.uk'
             - name: COURT_DATA_ADAPTOR_API_URL
-              value: https://stage.court-data-adaptor.service.justice.gov.uk/api/internal/v1
+              value: https://test.court-data-adaptor.service.justice.gov.uk/api/internal/v1
             - name: RAILS_SERVE_STATIC_FILES
               value: enabled
             - name: GA_TRACKING_ID
