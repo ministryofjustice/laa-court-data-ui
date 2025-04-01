@@ -34,6 +34,7 @@ RSpec.feature 'Password change', :js, type: :feature do
 
     expect do
       click_link_or_button 'Change password'
+      sleep 0.1
     end.to have_enqueued_job.on_queue('mailers')
     expect(page).to have_govuk_flash(:notice, text: 'Password successfully updated')
     expect(page).to have_current_path(user_path(user))

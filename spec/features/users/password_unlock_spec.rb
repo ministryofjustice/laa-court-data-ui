@@ -25,6 +25,7 @@ RSpec.feature 'Password unlock', :js, type: :feature do
       if i + 1 == max_attempts
         expect do
           click_link_or_button 'Sign in'
+          sleep 0.1
         end.to have_enqueued_job.on_queue('mailers')
       else
         click_link_or_button 'Sign in'
@@ -47,6 +48,7 @@ RSpec.feature 'Password unlock', :js, type: :feature do
     fill_in 'Email', with: user.email
     expect do
       click_link_or_button 'Resend unlock instructions'
+      sleep 0.1
     end.to have_enqueued_job.on_queue('mailers')
     expect(page).to have_current_path(new_user_session_path)
     expect(page).to have_govuk_flash(:alert, text: resent_flash_notice)

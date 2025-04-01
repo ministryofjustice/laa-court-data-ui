@@ -27,6 +27,7 @@ RSpec.feature 'Password reset', :js, type: :feature do
     fill_in 'Email', with: user.email
     expect do
       click_link_or_button 'Send me reset password instructions'
+      sleep 0.1
     end.to have_enqueued_job.on_queue('mailers')
     expect(page).to have_current_path(new_user_session_path)
     expect(page).to have_govuk_flash(:notice, text: reset_flash_notice)

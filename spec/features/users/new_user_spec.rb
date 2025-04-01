@@ -59,6 +59,7 @@ RSpec.feature 'New user', type: :feature do
 
       expect do
         click_link_or_button 'Save'
+        sleep 0.1
       end.to have_enqueued_job.on_queue('mailers')
 
       new_user = User.find_by(email: 'jim.bob@example.com')
