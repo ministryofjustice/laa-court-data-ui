@@ -31,14 +31,14 @@ RSpec.describe 'Searches', type: :request do
   describe 'POST #create' do
     before { post '/searches', params: }
 
-    context 'when POSTing a valid case search', :stub_case_search do
+    context 'when POSTing a valid case search', :stub_defendants_case_search do
       let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
 
       include_examples 'renders results'
-      it { expect(response).to render_template('results/_prosecution_case') }
+      it { expect(response).to render_template('results/_defendant') }
     end
 
-    context 'when POSTing an invalid case search', :stub_case_search do
+    context 'when POSTing an invalid case search', :stub_defendants_case_search do
       let(:params) { { search: { filter: 'case_reference', term: nil } } }
 
       include_examples 'renders search validation errors'
@@ -52,24 +52,20 @@ RSpec.describe 'Searches', type: :request do
       end
     end
 
-    context 'when current_search_params exist' do
-      it 'redirect'
-    end
-
-    context 'when POSTing a valid defendant ASN or NINO search', :stub_defendant_ref_search do
+    context 'when POSTing a valid defendant ASN or NINO search', :stub_defendants_ref_search do
       let(:params) { { search: { filter: 'defendant_reference', term: 'JC123456A' } } }
 
       include_examples 'renders results'
       it { expect(response).to render_template('results/_defendant') }
     end
 
-    context 'when POSTing a invalid defendant ASN or NINO search', :stub_defendant_ref_search do
+    context 'when POSTing a invalid defendant ASN or NINO search', :stub_defendants_ref_search do
       let(:params) { { search: { filter: 'defendant_reference', term: nil } } }
 
       include_examples 'renders search validation errors'
     end
 
-    context 'when POSTing a valid defendant name search', :stub_defendant_name_search do
+    context 'when POSTing a valid defendant name search', :stub_defendants_name_search do
       let(:params) do
         {
           search:
@@ -123,7 +119,7 @@ RSpec.describe 'Searches', type: :request do
       end
     end
 
-    context 'when there are no results', :stub_no_results do
+    context 'when there are no results', :stub_no_v2_results do
       let(:params) { { search: { filter: 'case_reference', term: 'whatever' } } }
 
       it { expect(response).to render_template('searches/new') }
@@ -133,7 +129,7 @@ RSpec.describe 'Searches', type: :request do
     end
   end
 
-  describe 'GET #create', :stub_case_search do
+  describe 'GET #create', :stub_defendants_case_search do
     before { get '/searches', params: }
 
     context 'when GETing a valid search' do

@@ -4,8 +4,7 @@ RSpec.describe Search, type: :model do
   subject { described_class.new }
 
   before do
-    allow_any_instance_of(described_class).to receive(:version2).and_return(false)
-    allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(false)
+    allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(true)
   end
 
   it {
@@ -38,65 +37,110 @@ RSpec.describe Search, type: :model do
   end
 
   describe '#execute' do
+    let(:cdapi_search_service) { CdApi::SearchService }
+
     before do
-      allow(query_class).to receive(:new).and_return(query_instance)
-      allow(query_instance).to receive(:call)
-      search_instance.execute
+      allow(cdapi_search_service).to receive(:call).with(any_args).and_return([])
     end
 
-    context 'when searching by case reference', :stub_no_results do
-      subject(:search_instance) { described_class.new(filter:, term:) }
-
-      let(:filter) { 'case_reference' }
-      let(:term) { 'case-urn' }
-      let(:dob) { Date.parse('21-05-1987') }
-
-      let(:query_class) { CourtDataAdaptor::Query::ProsecutionCase }
-      let(:query_instance) { instance_double(query_class) }
-
-      it 'sends term to case reference query object' do
-        expect(query_class).to have_received(:new).with(term)
-      end
-
-      it 'calls case reference query object' do
-        expect(query_instance).to have_received(:call)
-      end
-    end
-
-    context 'when searching by defendant name', :stub_no_results do
-      subject(:search_instance) { described_class.new(filter:, term:, dob:) }
-
-      let(:filter) { 'defendant_name' }
-      let(:term) { 'defendant-name' }
-      let(:dob) { Date.parse('21-05-1987') }
-
-      let(:query_class) { CourtDataAdaptor::Query::Defendant::ByName }
-      let(:query_instance) { instance_double(query_class) }
-
-      it 'sends term and dob to defandant query object' do
-        expect(query_class).to have_received(:new).with(term, dob:)
-      end
-
-      it 'calls defendant query object' do
-        expect(query_instance).to have_received(:call)
-      end
-    end
-
-    context 'when searching by defendant reference', :stub_no_results do
+    context 'when filter is defendant_reference' do
       subject(:search_instance) { described_class.new(filter:, term:) }
 
       let(:filter) { 'defendant_reference' }
-      let(:term) { 'defendant-ni-number' }
+      let(:term) { [nino, asn].sample }
+      let(:dob) { Date.parse('30-06-1973') }
+      let(:nino) { 'GG121222B' }
+      let(:asn) { 'OC22ZJATX15T' }
 
-      let(:query_class) { CourtDataAdaptor::Query::Defendant::ByReference }
-      let(:query_instance) { instance_double(query_class) }
+      it 'calls defendant query object' do
+        search_instance.execute
+        expect(cdapi_search_service).to have_received(:call).with({ filter:, term:, dob: nil })
+      end
 
-      it 'sends term to defandant query object' do
-        expect(query_class).to have_received(:new).with(term)
+      it 'returns result' do
+        expect(search_instance.execute).to eq []
+      end
+    end
+
+    context 'when filter is case_reference' do
+      subject(:search_instance) { described_class.new(filter:, term:) }
+
+      let(:filter) { 'case_reference' }
+      let(:cd_api_defendant) { instance_double(CdApi::Defendant, id: 100) }
+      let(:term) { 'TEST12345' }
+      let(:dob) { Date.parse('30-06-1973') }
+
+      before do
+        allow(Rails.configuration.x.court_data_api_config).to receive(:uri).and_return('http://localhost:8000/v2')
+        allow(cdapi_search_service).to receive(:call).with(any_args).and_return([cd_api_defendant])
       end
 
       it 'calls defendant query object' do
-        expect(query_instance).to have_received(:call)
+        search_instance.execute
+        expect(cdapi_search_service).to have_received(:call).with({ filter:, term:, dob: nil })
+      end
+
+      it 'returns result' do
+        expect(search_instance.execute.first).to eq(cd_api_defendant)
+      end
+    end
+
+    context 'when filter is defendant_name' do
+      subject(:search_instance) { described_class.new(filter:, term:, dob:) }
+
+      let(:filter) { 'defendant_name' }
+      let(:term) { 'Maxie Turcotte Raynor' }
+      let(:dob) { Date.parse('30-06-1973') }
+
+      before do
+        allow(Rails.configuration.x.court_data_api_config).to receive(:uri).and_return('http://localhost:8000/v2')
+      end
+
+      it 'calls defendant query object' do
+        search_instance.execute
+        expect(cdapi_search_service).to have_received(:call).with({ filter:, term:, dob: })
+      end
+
+      it 'returns result' do
+        expect(search_instance.execute).to eq []
+      end
+    end
+
+    context 'when exception ActiveResource::BadRequest raised' do
+      subject(:search_instance) { described_class.new(filter:, term:, dob:) }
+
+      let(:filter) { 'case_reference' }
+      let(:term) { 'TEST12345' }
+      let(:dob) { Date.parse('30-06-1973') }
+      let(:cdapi_search_service) { CdApi::SearchService }
+
+      before do
+        allow(cdapi_search_service).to receive(:call).with(any_args).and_raise(
+          ActiveResource::BadRequest, ''
+        )
+      end
+
+      it 'returns correct exception' do
+        expect { search_instance.execute }.to raise_error(ActiveResource::BadRequest)
+      end
+    end
+
+    context 'when exception ActiveResource::ServerError raised' do
+      subject(:search_instance) { described_class.new(filter:, term:, dob:) }
+
+      let(:filter) { 'case_reference' }
+      let(:term) { 'TEST12345' }
+      let(:dob) { Date.parse('30-06-1973') }
+      let(:cdapi_search_service) { CdApi::SearchService }
+
+      before do
+        allow(cdapi_search_service).to receive(:call).with(any_args).and_raise(
+          ActiveResource::ServerError, 'Failed.'
+        )
+      end
+
+      it 'returns correct exception' do
+        expect { search_instance.execute }.to raise_error(ActiveResource::ServerError)
       end
     end
   end
