@@ -51,7 +51,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       end
     end
 
-    context 'when on case details page' do
+    context 'when on case details page', :stub_defendants_case_search do
       scenario 'expected breadcrumbs are displayed' do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
@@ -62,7 +62,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       end
     end
 
-    context 'when on defendant details page' do
+    context 'when on defendant details page', :stub_defendants_case_search do
       scenario 'expected breadcrumbs are displayed' do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
@@ -74,7 +74,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       end
     end
 
-    context 'when on hearing details page' do
+    context 'when on hearing details page', :stub_defendants_case_search do
       scenario 'expected breadcrumbs are displayed' do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
@@ -90,7 +90,8 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       end
     end
 
-    scenario 'user navigates search, prosecution case, defendant and hearings pages' do
+    scenario 'user navigates search, prosecution case, defendant and hearings pages',
+             :stub_defendants_case_search do
       when_i_choose_search_filter 'A case by URN'
       when_i_search_for case_urn
 
