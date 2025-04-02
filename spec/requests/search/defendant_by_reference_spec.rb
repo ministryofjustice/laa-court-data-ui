@@ -12,7 +12,7 @@ RSpec.describe 'Defendant by reference search', type: :request do
     expect(response).to render_template('searches/new')
   end
 
-  context 'when posting a query', :vcr do
+  context 'when posting a query', :stub_defendants_ref_search do
     let(:search_params) do
       {
         search:
@@ -33,12 +33,12 @@ RSpec.describe 'Defendant by reference search', type: :request do
       expect(response).to render_template('searches/new')
     end
 
-    context 'when results returned', :vcr do
+    context 'when results returned' do
       before { post '/searches', params: search_params }
 
       it 'assigns array of results' do
         expect(assigns(:results))
-          .to include(an_instance_of(CourtDataAdaptor::Resource::Defendant))
+          .to include(an_instance_of(CdApi::Defendant))
       end
 
       it 'renders searches/_results' do
@@ -54,7 +54,7 @@ RSpec.describe 'Defendant by reference search', type: :request do
       end
     end
 
-    context 'when no results', :stub_no_results, type: :request do
+    context 'when no results', :stub_no_v2_results, type: :request do
       before do
         allow_any_instance_of(Search).to receive(:execute).and_return([])
         post '/searches', params: search_params

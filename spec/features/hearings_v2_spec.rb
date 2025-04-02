@@ -10,7 +10,6 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
   let(:hearing_id) { '345be88a-31cf-4a30-9de3-da98e973367e' }
 
   before do
-    allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(true)
     allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
     allow(FeatureFlag).to receive(:enabled?).with(:hearing).and_return(true)
     sign_in user

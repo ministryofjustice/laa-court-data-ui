@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'case reference search', :stub_case_search, type: :request do
+RSpec.describe 'case reference search', :stub_defendants_case_search, type: :request do
   let(:user) { create(:user) }
 
   before do
@@ -32,19 +32,19 @@ RSpec.describe 'case reference search', :stub_case_search, type: :request do
     context 'when results returned' do
       it 'assigns array of results' do
         expect(assigns(:results))
-          .to include(an_instance_of(CourtDataAdaptor::Resource::ProsecutionCase))
+          .to include(an_instance_of(CdApi::Defendant))
       end
 
       it 'renders searches/_results' do
         expect(response).to render_template('searches/_results')
       end
 
-      it 'renders results/_prosecution_case' do
-        expect(response).to render_template('results/_prosecution_case')
+      it 'renders results/_defendant' do
+        expect(response).to render_template('results/_defendant')
       end
     end
 
-    context 'when no results', :stub_no_results do
+    context 'when no results', :stub_no_v2_results do
       before do
         allow_any_instance_of(Search).to receive(:execute).and_return([])
         post '/searches', params: { search: { term: 'T20200001', filter: :case_reference } }
