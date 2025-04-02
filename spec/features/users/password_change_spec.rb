@@ -34,8 +34,12 @@ RSpec.feature 'Password change', :js, type: :feature do
 
     expect do
       click_link_or_button 'Change password'
+      # This expectation forces Rspec to wait for the UI to reload before continuing,
+      # avoiding evaluating the `have_enqueued_job` expectation before the job has
+      # had a chance to be enqueued.
+      expect(page).to have_govuk_flash(:notice, text: 'Password successfully updated')
     end.to have_enqueued_job.on_queue('mailers')
-    expect(page).to have_govuk_flash(:notice, text: 'Password successfully updated')
+
     expect(page).to have_current_path(user_path(user))
   end
 end
