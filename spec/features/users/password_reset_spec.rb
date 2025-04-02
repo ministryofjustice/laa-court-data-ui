@@ -27,8 +27,12 @@ RSpec.feature 'Password reset', :js, type: :feature do
     fill_in 'Email', with: user.email
     expect do
       click_link_or_button 'Send me reset password instructions'
+
+      # This expectation forces Rspec to wait for the UI to reload before continuing,
+      # avoiding evaluating the `have_enqueued_job` expectation before the job has
+      # had a chance to be enqueued.
+      expect(page).to have_govuk_flash(:notice, text: reset_flash_notice)
     end.to have_enqueued_job.on_queue('mailers')
     expect(page).to have_current_path(new_user_session_path)
-    expect(page).to have_govuk_flash(:notice, text: reset_flash_notice)
   end
 end

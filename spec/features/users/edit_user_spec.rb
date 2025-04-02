@@ -60,10 +60,15 @@ RSpec.feature 'Edit user', :js, type: :feature do
 
       expect do
         click_link_or_button 'Save'
+
+        # This expectation forces Rspec to wait for the UI to reload before continuing,
+        # avoiding evaluating the `have_enqueued_job` expectation before the job has
+        # had a chance to be enqueued.
+        expect(page).to have_govuk_flash(:notice, text: 'User details successfully updated')
       end.to have_enqueued_job.on_queue('mailers')
 
       expect(page).to have_current_path(user_path(other_user))
-      expect(page).to have_govuk_flash(:notice, text: 'User details successfully updated')
+
       other_user.reload
       expect(other_user).to be_manager
       expect(other_user.email).to eql('changed@example.com')

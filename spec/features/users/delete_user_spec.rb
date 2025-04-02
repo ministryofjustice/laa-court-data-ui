@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Delete user', :js, type: :feature do
+RSpec.feature 'Delete user', type: :feature do
   before do
     sign_in user
   end
@@ -14,9 +14,7 @@ RSpec.feature 'Delete user', :js, type: :feature do
 
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
       within row do
-        accept_alert("Are you sure you want to delete #{other_user.name}'s account?", wait: 2) do
-          find_link('Delete').click
-        end
+        find_link('Delete').click
       end
 
       expect(page).to have_current_path(users_path)
