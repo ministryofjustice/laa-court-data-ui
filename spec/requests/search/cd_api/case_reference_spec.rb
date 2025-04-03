@@ -4,7 +4,6 @@ RSpec.describe 'case reference search', :stub_defendants_case_search, type: :req
   let(:user) { create(:user) }
 
   before do
-    allow(FeatureFlag).to receive(:enabled?).with(:defendants_search).and_return(true)
     sign_in user
   end
 

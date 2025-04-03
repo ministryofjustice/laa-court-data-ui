@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Search, type: :model do
+  pending 'Remove CDAAPI v1'
   subject { described_class.new }
 
   before do
