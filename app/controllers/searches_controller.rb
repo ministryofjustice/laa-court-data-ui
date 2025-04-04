@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new(filter:, term:, dob:, version2: version_2?)
+    @search = Search.new(filter:, term:, dob:, version2: true)
     authorize! :create, @search
 
     @results = @search.execute if @search.valid?
@@ -26,10 +26,6 @@ class SearchesController < ApplicationController
   end
 
   private
-
-  def version_2?
-    FeatureFlag.enabled?(:defendants_search)
-  end
 
   def search_params
     params.fetch(:search, most_recent_search_params).permit(:term, :dob, :filter)

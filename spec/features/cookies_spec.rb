@@ -133,7 +133,7 @@ RSpec.feature 'Cookies', type: :feature do
       sign_in user
     end
 
-    scenario 'notification banner links back to previous page' do
+    scenario 'notification banner links back to previous page', :stub_defendants_case_search do
       visit '/'
 
       choose 'A case by URN'
