@@ -112,7 +112,7 @@ RSpec.configure do |config|
   config.before(:each, :stub_unlink_v2) do
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/defendants/#{defendant_id}\?include=offences}
+      %r{http.*/api/internal/v1/defendants/#{defendant_id}\?filter\[full_hearing_data\]=false&include=offences}
     ).to_return(
       status: 200,
       body: load_json_stub('linked_defendant.json'),

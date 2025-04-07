@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v1/defendants/b3221b46-b98c-47b7-a285-be681d2cac4e?include=offences
+    uri: http://localhost:9292/api/internal/v1/defendants/b3221b46-b98c-47b7-a285-be681d2cac4e?filter%5Bfull_hearing_data%5D=false&include=offences
     body:
       encoding: US-ASCII
       string: ''

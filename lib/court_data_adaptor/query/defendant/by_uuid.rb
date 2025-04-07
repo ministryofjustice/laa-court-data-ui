@@ -11,6 +11,7 @@ module CourtDataAdaptor
 
           resource
             .includes('offences')
+            .where(full_hearing_data: false)
             .find(id)
             .first
         end
