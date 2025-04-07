@@ -89,4 +89,337 @@ http_interactions:
         Cs48i6KSGCtOMiJLfKlZjGWRzay2kECQPb13h97plW+D4snVPwAAAP//AwDQ
         JB3dyBQAAA==
   recorded_at: Tue, 23 Mar 2021 13:07:45 GMT
-recorded_with: VCR 6.0.0
+- request:
+    method: get
+    uri: http://localhost:8000/v2/defendants?dob=1990-01-01&name=trever%20glover
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 1ed539f9-c021-449c-8efd-0f845b5a9e37
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:48:24 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '23170'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - 1ed539f9-c021-449c-8efd-0f845b5a9e37
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"defendant_summaries": [{"id": "f91556d9-c9dd-4031-a494-e496d852e852",
+        "national_insurance_number": null, "arrest_summons_number": "TFL", "name":
+        "Trever Glover", "first_name": "Trever", "middle_name": null, "last_name":
+        "Glover", "date_of_birth": "1990-01-01", "proceedings_concluded": true, "representation_order":
+        {"laa_application_reference": "6010689", "effective_start_date": "2020-08-19",
+        "effective_end_date": "2020-08-19", "laa_contract_number": "2M213N"}, "offence_summaries":
+        [{"id": "eed1085a-9e43-4534-9abd-6d2c38951611", "code": "AA06007", "order_index":
+        2, "title": "Operate an unapproved quarantine centre / facility for captive
+        birds", "legislation": "Contrary to regulations 19(1) & 34(4) of the Animals
+        and Animal Products (Import and Export) (England) Regulations 2006", "wording":
+        "Has a violent past and fear that he will commit further offences and\n                interfere
+        with witnesse", "arrest_date": "2020-02-09", "charge_date": "2020-02-09",
+        "mode_of_trial": "Either Way", "start_date": "2020-02-09", "proceedings_concluded":
+        false, "pleas": [{"date": "2020-08-17", "value": "GUILTY", "originating_hearing_id":
+        "737e829e-c584-43ab-80f5-87b7b0d22719", "offence_id": null, "application_id":
+        null, "delegated_powers": {"user_id": null, "first_name": null, "last_name":
+        null}}], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": "6010689", "id":
+        "98e86937-9652-32a3-a9fb-dbd01eda86a5", "status_code": "GR", "description":
+        "Granted (One Advocate)", "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "90GD9122LAA"}, {"id": "30c6a873-5918-457e-aecf-953ea0de51a5", "national_insurance_number":
+        null, "arrest_summons_number": "TFL", "name": "Adriel Krajcik", "first_name":
+        "Adriel", "middle_name": null, "last_name": "Krajcik", "date_of_birth": "1990-01-01",
+        "proceedings_concluded": true, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "d9a05fcb-8262-48e2-9692-f3ab3abeb091",
+        "code": "CA03010", "order_index": 1, "title": "Use / install a television
+        set without a licence", "legislation": "Contrary to section 363(2) and (4)
+        of the Communications Act 2003.", "wording": "Has a violent past and fear
+        that he will commit further offences and\n                interfere with witnesse",
+        "arrest_date": "2020-02-09", "charge_date": "2020-02-09", "mode_of_trial":
+        "Summary", "start_date": "2020-02-09", "proceedings_concluded": true, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}, {"id": "7a3adff5-4075-4ad4-a932-8f1ce762272b",
+        "code": "CA03011", "order_index": 2, "title": "Possess a    television set
+        with intent to install / use without a licence", "legislation": "Contrary
+        to section 363(3)(a) and (4) of the Communications Act 2003.", "wording":
+        "Has a violent past and fear that he will commit further offences and\n                interfere
+        with witnesse", "arrest_date": "2020-02-09", "charge_date": "2020-02-09",
+        "mode_of_trial": "Summary", "start_date": "2020-02-09", "proceedings_concluded":
+        true, "pleas": [], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": null, "id": null,
+        "status_code": null, "description": null, "status_date": null, "effective_start_date":
+        null, "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "90GDAPP5055"}, {"id": "169a10b1-0c19-400c-b650-1da5913ba301", "national_insurance_number":
+        null, "arrest_summons_number": "TFL1", "name": "Trever HammesHand", "first_name":
+        "Trever", "middle_name": null, "last_name": "HammesHand", "date_of_birth":
+        "1990-01-01", "proceedings_concluded": true, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "58b941d3-05a2-4011-85cb-d47fc4be0205",
+        "code": "CA03012", "order_index": 1, "title": "Possess /    control TV set
+        with intent another use install without a licence", "legislation": "Contrary
+        to section 363(3)(b) and (4) of the    Communications Act 2003.", "wording":
+        "Has a violent past and fear that he will commit further offences and\n                interfere
+        with witnesse", "arrest_date": "2020-02-09", "charge_date": "2020-02-09",
+        "mode_of_trial": "Summary", "start_date": "2020-02-09", "proceedings_concluded":
+        true, "pleas": [], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": null, "id": null,
+        "status_code": null, "description": null, "status_date": null, "effective_start_date":
+        null, "effective_end_date": null, "contract_number": null}}, {"id": "e0e42774-d3f7-4be6-ac46-501a341f2ccd",
+        "code": "CA03013", "order_index": 2, "title": "Obstruct person executing search
+        warrant for TV receiver", "legislation": "Contrary to section 366(8)(a) and    (9)
+        of the Communications Act 2003.", "wording": "Has a violent past and fear
+        that he will commit further offences and\n                interfere with witnesse",
+        "arrest_date": "2020-02-09", "charge_date": "2020-02-09", "mode_of_trial":
+        "Summary", "start_date": "2020-02-09", "proceedings_concluded": true, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "90GDAPP5055"}, {"id": "ad8436e9-e316-4b9b-89cc-a39ed9ae672a", "national_insurance_number":
+        null, "arrest_summons_number": "PROSECUTOR", "name": "Trever Lang", "first_name":
+        "Trever", "middle_name": null, "last_name": "Lang", "date_of_birth": "1990-01-01",
+        "proceedings_concluded": false, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "72755c4a-73ed-4554-96fd-6d2cbed43f81",
+        "code": "CA03014", "order_index": 1, "title": "Fail / refuse give assistance
+        to person executing Communications Act search warrant", "legislation": "Contrary
+        to section 366(8)(b) and (9) of the Communications Act 2003.", "wording":
+        "Fail / refuse give assistance to person executing Communications Act search
+        warrant", "arrest_date": "2023-11-06", "charge_date": "2023-11-07", "mode_of_trial":
+        "Summary", "start_date": "2023-10-09", "proceedings_concluded": false, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "30GD3649423"}, {"id": "28f9b6ee-d759-4c96-89e9-738c5344cc6e", "national_insurance_number":
+        null, "arrest_summons_number": "PROSECUTOR", "name": "Trever Rutherford",
+        "first_name": "Trever", "middle_name": null, "last_name": "Rutherford", "date_of_birth":
+        "1990-01-01", "proceedings_concluded": false, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "13cb872b-4cc3-4439-8f7b-d582bb0f99bc",
+        "code": "CA03014", "order_index": 1, "title": "Fail    / refuse give assistance
+        to person executing Communications Act search warrant", "legislation": "Contrary
+        to section 366(8)(b) and    (9) of the Communications Act 2003.", "wording":
+        "Fail / refuse give assistance to person executing Communications Act search
+        warrant", "arrest_date": "2023-04-24", "charge_date": "2023-04-25", "mode_of_trial":
+        "Summary", "start_date": "2023-03-27", "proceedings_concluded": false, "pleas":
+        [{"date": "2023-04-27", "value": "NOT_GUILTY", "originating_hearing_id": "2448de9b-5d4d-4c13-b53c-a03ee29c4ba0",
+        "offence_id": null, "application_id": null, "delegated_powers": {"user_id":
+        null, "first_name": null, "last_name": null}}], "verdict": {"date": null,
+        "type": null, "originating_hearing_id": null, "offence_id": null}, "laa_application":
+        {"reference": null, "id": null, "status_code": null, "description": null,
+        "status_date": null, "effective_start_date": null, "effective_end_date": null,
+        "contract_number": null}}], "prosecution_case_reference": "97GD1119923"},
+        {"id": "a92bf4cd-bf18-492c-8f92-1c8d9253f901", "national_insurance_number":
+        null, "arrest_summons_number": "PROSECUTOR", "name": "Trever Rutherford",
+        "first_name": "Trever", "middle_name": null, "last_name": "Rutherford", "date_of_birth":
+        "1990-01-01", "proceedings_concluded": false, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "1f175f26-5644-42fd-8a3c-4bf21e7292e1",
+        "code": "CA03011", "order_index": 1, "title": "Possess a    television set
+        with intent to install / use without a licence", "legislation": "Contrary
+        to section 363(3)(a) and (4) of the Communications Act 2003.", "wording":
+        "Possess a television set with intent to install / use without a licence",
+        "arrest_date": "2023-04-24", "charge_date": "2023-04-25", "mode_of_trial":
+        "Summary", "start_date": "2023-03-27", "proceedings_concluded": false, "pleas":
+        [{"date": "2023-04-27", "value": "NOT_GUILTY", "originating_hearing_id": "2448de9b-5d4d-4c13-b53c-a03ee29c4ba0",
+        "offence_id": null, "application_id": null, "delegated_powers": {"user_id":
+        null, "first_name": null, "last_name": null}}], "verdict": {"date": null,
+        "type": null, "originating_hearing_id": null, "offence_id": null}, "laa_application":
+        {"reference": null, "id": null, "status_code": null, "description": null,
+        "status_date": null, "effective_start_date": null, "effective_end_date": null,
+        "contract_number": null}}], "prosecution_case_reference": "34GD4056723"},
+        {"id": "63ee3d79-c633-4694-a934-b2e6255110f6", "national_insurance_number":
+        null, "arrest_summons_number": "TFL", "name": "Wilford Glover", "first_name":
+        "Wilford", "middle_name": null, "last_name": "Glover", "date_of_birth": "1990-01-01",
+        "proceedings_concluded": true, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "4938eb46-16ce-402e-a492-10ef746ca4e4",
+        "code": "CA03010", "order_index": 1, "title": "Use / install a television
+        set without a licence", "legislation": "Contrary to section 363(2) and (4)
+        of the Communications Act 2003.", "wording": "Has a violent past and fear
+        that he will commit further offences and\n                interfere with witnesse",
+        "arrest_date": "2020-02-09", "charge_date": "2020-02-09", "mode_of_trial":
+        "Summary", "start_date": "2020-02-09", "proceedings_concluded": false, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}, {"id": "aeb1986e-a1da-427c-8666-cf9ca999ac7b",
+        "code": "CA03011", "order_index": 2, "title": "Possess a    television set
+        with intent to install / use without a licence", "legislation": "Contrary
+        to section 363(3)(a) and (4) of the Communications Act 2003.", "wording":
+        "Has a violent past and fear that he will commit further offences and\n                interfere
+        with witnesse", "arrest_date": "2020-02-09", "charge_date": "2020-02-09",
+        "mode_of_trial": "Summary", "start_date": "2020-02-09", "proceedings_concluded":
+        false, "pleas": [], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": null, "id": null,
+        "status_code": null, "description": null, "status_date": null, "effective_start_date":
+        null, "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "90GD9090191"}, {"id": "5c17d375-8270-4da7-a05e-d7c25c911b80", "national_insurance_number":
+        null, "arrest_summons_number": "TFL", "name": "Aliya GLOVER", "first_name":
+        "Aliya", "middle_name": null, "last_name": "GLOVER", "date_of_birth": "1990-01-01",
+        "proceedings_concluded": false, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "acc94211-2502-46ae-8a21-243f8926f7d4",
+        "code": "CA03010", "order_index": 1, "title": "Use / install a television
+        set without a licence", "legislation": "Contrary to section 363(2) and (4)
+        of the Communications Act 2003.", "wording": "Has a violent past and fear
+        that he will commit further offences and\n                interfere with witnesse",
+        "arrest_date": "2020-02-09", "charge_date": "2020-02-09", "mode_of_trial":
+        "Summary", "start_date": "2020-02-09", "proceedings_concluded": false, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}, {"id": "824895a8-102b-4c6b-baa6-0b476740f6b5",
+        "code": "CA03011", "order_index": 2, "title": "Possess a    television set
+        with intent to install / use without a licence", "legislation": "Contrary
+        to section 363(3)(a) and (4) of the Communications Act 2003.", "wording":
+        "Has a violent past and fear that he will commit further offences and\n                interfere
+        with witnesse", "arrest_date": "2020-02-09", "charge_date": "2020-02-09",
+        "mode_of_trial": "Summary", "start_date": "2020-02-09", "proceedings_concluded":
+        false, "pleas": [], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": null, "id": null,
+        "status_code": null, "description": null, "status_date": null, "effective_start_date":
+        null, "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "90GD9090192"}, {"id": "087fa0b2-085a-48e2-9bcc-4c4afc4cba57", "national_insurance_number":
+        null, "arrest_summons_number": "TFL", "name": "Danial GLOVER", "first_name":
+        "Danial", "middle_name": null, "last_name": "GLOVER", "date_of_birth": "1990-01-01",
+        "proceedings_concluded": false, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "81aa560a-e3a3-4797-a361-5353730279a4",
+        "code": "CA03010", "order_index": 1, "title": "Use / install a television
+        set without a licence", "legislation": "Contrary to section 363(2) and (4)
+        of the Communications Act 2003.", "wording": "Has a violent past and fear
+        that he will commit further offences and\n                interfere with witnesse",
+        "arrest_date": "2020-02-09", "charge_date": "2020-02-09", "mode_of_trial":
+        "Summary", "start_date": "2020-02-09", "proceedings_concluded": false, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}, {"id": "3a3390fa-8d6b-4496-90ea-a97d3f235b7c",
+        "code": "CA03011", "order_index": 2, "title": "Possess a    television set
+        with intent to install / use without a licence", "legislation": "Contrary
+        to section 363(3)(a) and (4) of the Communications Act 2003.", "wording":
+        "Has a violent past and fear that he will commit further offences and\n                interfere
+        with witnesse", "arrest_date": "2020-02-09", "charge_date": "2020-02-09",
+        "mode_of_trial": "Summary", "start_date": "2020-02-09", "proceedings_concluded":
+        false, "pleas": [], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": null, "id": null,
+        "status_code": null, "description": null, "status_date": null, "effective_start_date":
+        null, "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "90GD9090193"}, {"id": "bcf3520b-2ee6-4c89-ba97-9652772dbb5d", "national_insurance_number":
+        null, "arrest_summons_number": "TFL", "name": "Evert GLOVER", "first_name":
+        "Evert", "middle_name": null, "last_name": "GLOVER", "date_of_birth": "1990-01-01",
+        "proceedings_concluded": false, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "f80ca385-724d-45cc-9041-d55d0f1ca753",
+        "code": "CA03010", "order_index": 1, "title": "Use / install a television
+        set without a licence", "legislation": "Contrary to section 363(2) and (4)
+        of the Communications Act 2003.", "wording": "Has a violent past and fear
+        that he will commit further offences and\n                interfere with witnesse",
+        "arrest_date": "2020-02-09", "charge_date": "2020-02-09", "mode_of_trial":
+        "Summary", "start_date": "2020-02-09", "proceedings_concluded": false, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}, {"id": "3045c4bd-82ed-4cdb-9acb-2d4ca2dfb6ab",
+        "code": "CA03011", "order_index": 2, "title": "Possess a    television set
+        with intent to install / use without a licence", "legislation": "Contrary
+        to section 363(3)(a) and (4) of the Communications Act 2003.", "wording":
+        "Has a violent past and fear that he will commit further offences and\n                interfere
+        with witnesse", "arrest_date": "2020-02-09", "charge_date": "2020-02-09",
+        "mode_of_trial": "Summary", "start_date": "2020-02-09", "proceedings_concluded":
+        false, "pleas": [], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": null, "id": null,
+        "status_code": null, "description": null, "status_date": null, "effective_start_date":
+        null, "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "90GD9090194"}, {"id": "32ff7c25-1a19-4c54-a2a3-061952f27d8a", "national_insurance_number":
+        null, "arrest_summons_number": "TFL", "name": "Halie Schneider", "first_name":
+        "Halie", "middle_name": null, "last_name": "Schneider", "date_of_birth": "1990-01-01",
+        "proceedings_concluded": false, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "af27582f-1fcb-4922-a262-09f90f4a57a9",
+        "code": "CA03010", "order_index": 1, "title": "Use / install a television
+        set without a licence", "legislation": "Contrary to section 363(2) and (4)
+        of the Communications Act 2003.", "wording": "Has a violent past and fear
+        that he will commit further offences and\n                interfere with witnesse",
+        "arrest_date": "2020-02-09", "charge_date": "2020-02-09", "mode_of_trial":
+        "Summary", "start_date": "2020-02-09", "proceedings_concluded": false, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}, {"id": "ff688313-fb16-4885-8810-175f581b0bf1",
+        "code": "CA03011", "order_index": 2, "title": "Possess a    television set
+        with intent to install / use without a licence", "legislation": "Contrary
+        to section 363(3)(a) and (4) of the Communications Act 2003.", "wording":
+        "Has a violent past and fear that he will commit further offences and\n                interfere
+        with witnesse", "arrest_date": "2020-02-09", "charge_date": "2020-02-09",
+        "mode_of_trial": "Summary", "start_date": "2020-02-09", "proceedings_concluded":
+        false, "pleas": [], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": null, "id": null,
+        "status_code": null, "description": null, "status_date": null, "effective_start_date":
+        null, "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "90GDAPP5076"}, {"id": "659d955c-771e-4ecd-99a5-21d7e193304c", "national_insurance_number":
+        null, "arrest_summons_number": "TFL1", "name": "Allene GloverBarrows", "first_name":
+        "Allene", "middle_name": null, "last_name": "GloverBarrows", "date_of_birth":
+        "1990-01-01", "proceedings_concluded": false, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "8bdb9b8e-c2f9-4a1d-8e3c-868700bc0883",
+        "code": "CA03012", "order_index": 1, "title": "Possess /    control TV set
+        with intent another use install without a licence", "legislation": "Contrary
+        to section 363(3)(b) and (4) of the    Communications Act 2003.", "wording":
+        "Has a violent past and fear that he will commit further offences and\n                interfere
+        with witnesse", "arrest_date": "2020-02-09", "charge_date": "2020-02-09",
+        "mode_of_trial": "Summary", "start_date": "2020-02-09", "proceedings_concluded":
+        false, "pleas": [], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": null, "id": null,
+        "status_code": null, "description": null, "status_date": null, "effective_start_date":
+        null, "effective_end_date": null, "contract_number": null}}, {"id": "73e6621c-84e7-4374-8f1f-0497f37ba006",
+        "code": "CA03013", "order_index": 2, "title": "Obstruct person executing search
+        warrant for TV receiver", "legislation": "Contrary to section 366(8)(a) and    (9)
+        of the Communications Act 2003.", "wording": "Has a violent past and fear
+        that he will commit further offences and\n                interfere with witnesse",
+        "arrest_date": "2020-02-09", "charge_date": "2020-02-09", "mode_of_trial":
+        "Summary", "start_date": "2020-02-09", "proceedings_concluded": false, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "90GDAPP5076"}]}'
+  recorded_at: Mon, 07 Apr 2025 15:48:25 GMT
+recorded_with: VCR 6.3.1

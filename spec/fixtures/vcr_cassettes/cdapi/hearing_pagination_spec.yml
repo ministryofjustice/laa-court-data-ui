@@ -1,0 +1,997 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:8000/v2/case_summaries/91GD2357322
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 48a05734-2186-47ab-9f8a-ed85197b0ee9
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:17:24 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '6276'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - 48a05734-2186-47ab-9f8a-ed85197b0ee9
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"prosecution_case_reference": "91GD2357322", "hearing_summaries":
+        [{"id": "63a4e1e0-5ba3-4d89-ac8a-ebab621faaaa", "hearing_type": "Plea and
+        Trial Preparation", "estimated_duration": null, "defendants": [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9",
+        "first_name": "Alessandra", "middle_name": "Rebekah", "last_name": "DbOVsU",
+        "arrest_summons_number": "007", "date_of_birth": "1984-08-01", "national_insurance_number":
+        "HM672948D", "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre":
+        {"id": "89592405-c29b-3706-b1d3-b1dd3a08b227", "name": "Blackfriars Crown
+        Court", "welsh_name": null, "room_id": null, "room_name": null, "welsh_room_name":
+        null, "welsh_court_name": null, "short_oucode": "C01BL", "oucode_l2_code":
+        "1", "code": "C01BL00", "address": {"address_1": null, "address_2": null,
+        "address_3": null, "address_4": null, "address_5": null, "postcode": null}},
+        "hearing_days": [{"sitting_day": "2022-07-11T09:00:00+00:00", "listing_sequence":
+        0, "listed_duration_minutes": 20, "has_shared_results": false}], "defence_counsels":
+        []}, {"id": "6007774c-082a-404b-9c7a-1ca34f1e29b1", "hearing_type": "Trial",
+        "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre": {"id":
+        "89592405-c29b-3706-b1d3-b1dd3a08b227", "name": "Blackfriars Crown Court",
+        "welsh_name": null, "room_id": null, "room_name": null, "welsh_room_name":
+        null, "welsh_court_name": null, "short_oucode": "C01BL", "oucode_l2_code":
+        "1", "code": "C01BL00", "address": {"address_1": null, "address_2": null,
+        "address_3": null, "address_4": null, "address_5": null, "postcode": null}},
+        "hearing_days": [{"sitting_day": "2022-06-27T09:00:00+00:00", "listing_sequence":
+        0, "listed_duration_minutes": 720, "has_shared_results": false}], "defence_counsels":
+        []}, {"id": "0acac34e-bdc8-4232-9ef4-859d4a07e54d", "hearing_type": "Trial",
+        "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "MAGISTRATES", "court_centre":
+        {"id": "7e967376-eacf-4fca-9b30-21b0c5aad427", "name": "Bexley Magistrates''
+        Court", "welsh_name": null, "room_id": "8e912353-3b5d-36c3-953e-ad3b94b19de3",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "B01BH", "oucode_l2_code": "1", "code": "B01BH00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-13T09:00:00+00:00",
+        "listing_sequence": 0, "listed_duration_minutes": 1, "has_shared_results":
+        null}], "defence_counsels": [{"title": "", "first_name": "Test", "middle_name":
+        "", "last_name": "Def", "status": "Hospital order restriction case", "attendance_days":
+        ["2022-06-13"], "defendants": ["2c8689ab-0d9b-4705-9a47-18acff189551"]}]},
+        {"id": "1f58b12e-c820-4d1a-8e62-6b0d8c30ae42", "hearing_type": "Committal
+        for Sentence", "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre": {"id":
+        "e2d7754e-89ba-309f-8da5-08a8283258a7", "name": "Leeds Crown Court", "welsh_name":
+        null, "room_id": "fdee7cd4-a713-3f54-afad-56822483b3fa", "room_name": "Courtroom
+        02", "welsh_room_name": null, "welsh_court_name": null, "short_oucode": "C13LE",
+        "oucode_l2_code": "13", "code": "C13LE00", "address": {"address_1": null,
+        "address_2": null, "address_3": null, "address_4": null, "address_5": null,
+        "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-20T09:30:00+00:00",
+        "listing_sequence": 4, "listed_duration_minutes": 60, "has_shared_results":
+        null}], "defence_counsels": [{"title": "", "first_name": "Test", "middle_name":
+        "", "last_name": "Def", "status": "Hosp order case", "attendance_days": ["2022-06-20"],
+        "defendants": ["2c8689ab-0d9b-4705-9a47-18acff189551"]}]}, {"id": "40400f4b-4c02-4e7d-8f83-0d018a6b9642",
+        "hearing_type": "First hearing", "estimated_duration": null, "defendants":
+        [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9", "first_name": "Alessandra",
+        "middle_name": "Rebekah", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1984-08-01", "national_insurance_number": "HM672948D",
+        "maat_reference": null}, {"id": "2c8689ab-0d9b-4705-9a47-18acff189551", "first_name":
+        "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "MAGISTRATES", "court_centre":
+        {"id": "f8254db1-1683-483e-afb3-b87fde5a0a26", "name": "Lavender Hill Magistrates''
+        Court", "welsh_name": null, "room_id": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "B01LY", "oucode_l2_code": "1", "code": "B01LY00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-11T10:30:00+00:00",
+        "listing_sequence": 2, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}], "overall_defendants": [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9",
+        "first_name": "Alessandra", "middle_name": "Rebekah", "last_name": "DbOVsU",
+        "arrest_summons_number": "007", "date_of_birth": "1984-08-01", "national_insurance_number":
+        "HM672948D", "maat_reference": null}, {"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}]}'
+  recorded_at: Mon, 07 Apr 2025 15:17:25 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/case_summaries/91GD2357322
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - d30412f7-c9b0-4431-9e03-b6628129d4bb
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:17:24 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '6276'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - d30412f7-c9b0-4431-9e03-b6628129d4bb
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"prosecution_case_reference": "91GD2357322", "hearing_summaries":
+        [{"id": "63a4e1e0-5ba3-4d89-ac8a-ebab621faaaa", "hearing_type": "Plea and
+        Trial Preparation", "estimated_duration": null, "defendants": [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9",
+        "first_name": "Alessandra", "middle_name": "Rebekah", "last_name": "DbOVsU",
+        "arrest_summons_number": "007", "date_of_birth": "1984-08-01", "national_insurance_number":
+        "HM672948D", "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre":
+        {"id": "89592405-c29b-3706-b1d3-b1dd3a08b227", "name": "Blackfriars Crown
+        Court", "welsh_name": null, "room_id": null, "room_name": null, "welsh_room_name":
+        null, "welsh_court_name": null, "short_oucode": "C01BL", "oucode_l2_code":
+        "1", "code": "C01BL00", "address": {"address_1": null, "address_2": null,
+        "address_3": null, "address_4": null, "address_5": null, "postcode": null}},
+        "hearing_days": [{"sitting_day": "2022-07-11T09:00:00+00:00", "listing_sequence":
+        0, "listed_duration_minutes": 20, "has_shared_results": false}], "defence_counsels":
+        []}, {"id": "6007774c-082a-404b-9c7a-1ca34f1e29b1", "hearing_type": "Trial",
+        "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre": {"id":
+        "89592405-c29b-3706-b1d3-b1dd3a08b227", "name": "Blackfriars Crown Court",
+        "welsh_name": null, "room_id": null, "room_name": null, "welsh_room_name":
+        null, "welsh_court_name": null, "short_oucode": "C01BL", "oucode_l2_code":
+        "1", "code": "C01BL00", "address": {"address_1": null, "address_2": null,
+        "address_3": null, "address_4": null, "address_5": null, "postcode": null}},
+        "hearing_days": [{"sitting_day": "2022-06-27T09:00:00+00:00", "listing_sequence":
+        0, "listed_duration_minutes": 720, "has_shared_results": false}], "defence_counsels":
+        []}, {"id": "0acac34e-bdc8-4232-9ef4-859d4a07e54d", "hearing_type": "Trial",
+        "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "MAGISTRATES", "court_centre":
+        {"id": "7e967376-eacf-4fca-9b30-21b0c5aad427", "name": "Bexley Magistrates''
+        Court", "welsh_name": null, "room_id": "8e912353-3b5d-36c3-953e-ad3b94b19de3",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "B01BH", "oucode_l2_code": "1", "code": "B01BH00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-13T09:00:00+00:00",
+        "listing_sequence": 0, "listed_duration_minutes": 1, "has_shared_results":
+        null}], "defence_counsels": [{"title": "", "first_name": "Test", "middle_name":
+        "", "last_name": "Def", "status": "Hospital order restriction case", "attendance_days":
+        ["2022-06-13"], "defendants": ["2c8689ab-0d9b-4705-9a47-18acff189551"]}]},
+        {"id": "1f58b12e-c820-4d1a-8e62-6b0d8c30ae42", "hearing_type": "Committal
+        for Sentence", "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre": {"id":
+        "e2d7754e-89ba-309f-8da5-08a8283258a7", "name": "Leeds Crown Court", "welsh_name":
+        null, "room_id": "fdee7cd4-a713-3f54-afad-56822483b3fa", "room_name": "Courtroom
+        02", "welsh_room_name": null, "welsh_court_name": null, "short_oucode": "C13LE",
+        "oucode_l2_code": "13", "code": "C13LE00", "address": {"address_1": null,
+        "address_2": null, "address_3": null, "address_4": null, "address_5": null,
+        "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-20T09:30:00+00:00",
+        "listing_sequence": 4, "listed_duration_minutes": 60, "has_shared_results":
+        null}], "defence_counsels": [{"title": "", "first_name": "Test", "middle_name":
+        "", "last_name": "Def", "status": "Hosp order case", "attendance_days": ["2022-06-20"],
+        "defendants": ["2c8689ab-0d9b-4705-9a47-18acff189551"]}]}, {"id": "40400f4b-4c02-4e7d-8f83-0d018a6b9642",
+        "hearing_type": "First hearing", "estimated_duration": null, "defendants":
+        [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9", "first_name": "Alessandra",
+        "middle_name": "Rebekah", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1984-08-01", "national_insurance_number": "HM672948D",
+        "maat_reference": null}, {"id": "2c8689ab-0d9b-4705-9a47-18acff189551", "first_name":
+        "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "MAGISTRATES", "court_centre":
+        {"id": "f8254db1-1683-483e-afb3-b87fde5a0a26", "name": "Lavender Hill Magistrates''
+        Court", "welsh_name": null, "room_id": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "B01LY", "oucode_l2_code": "1", "code": "B01LY00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-11T10:30:00+00:00",
+        "listing_sequence": 2, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}], "overall_defendants": [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9",
+        "first_name": "Alessandra", "middle_name": "Rebekah", "last_name": "DbOVsU",
+        "arrest_summons_number": "007", "date_of_birth": "1984-08-01", "national_insurance_number":
+        "HM672948D", "maat_reference": null}, {"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}]}'
+  recorded_at: Mon, 07 Apr 2025 15:17:25 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/40400f4b-4c02-4e7d-8f83-0d018a6b9642?date=2022-06-11
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - d30412f7-c9b0-4431-9e03-b6628129d4bb
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:17:24 GMT
+      Server:
+      - uvicorn
+      Laa-Transaction-Id:
+      - d30412f7-c9b0-4431-9e03-b6628129d4bb
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 07 Apr 2025 15:17:26 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/40400f4b-4c02-4e7d-8f83-0d018a6b9642/hearing_events?date=2022-06-11
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - d30412f7-c9b0-4431-9e03-b6628129d4bb
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:17:25 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '62'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - d30412f7-c9b0-4431-9e03-b6628129d4bb
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"hearing_id": null, "has_active_hearing": null, "events": []}'
+  recorded_at: Mon, 07 Apr 2025 15:17:26 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/63a4e1e0-5ba3-4d89-ac8a-ebab621faaaa?date=2022-07-11
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - dbc75d88-e6a1-4d45-8022-8bcab945ffeb
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:17:25 GMT
+      Server:
+      - uvicorn
+      Laa-Transaction-Id:
+      - dbc75d88-e6a1-4d45-8022-8bcab945ffeb
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 07 Apr 2025 15:17:26 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/63a4e1e0-5ba3-4d89-ac8a-ebab621faaaa/hearing_events?date=2022-07-11
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - dbc75d88-e6a1-4d45-8022-8bcab945ffeb
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:17:25 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '62'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - dbc75d88-e6a1-4d45-8022-8bcab945ffeb
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"hearing_id": null, "has_active_hearing": null, "events": []}'
+  recorded_at: Mon, 07 Apr 2025 15:17:26 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/1f58b12e-c820-4d1a-8e62-6b0d8c30ae42?date=2022-06-20
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 1ba43c31-a98a-4700-a912-000d182e2452
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:18:19 GMT
+      Server:
+      - uvicorn
+      Laa-Transaction-Id:
+      - 1ba43c31-a98a-4700-a912-000d182e2452
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 07 Apr 2025 15:18:19 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/1f58b12e-c820-4d1a-8e62-6b0d8c30ae42/hearing_events?date=2022-06-20
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 1ba43c31-a98a-4700-a912-000d182e2452
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:18:19 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '62'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - 1ba43c31-a98a-4700-a912-000d182e2452
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"hearing_id": null, "has_active_hearing": null, "events": []}'
+  recorded_at: Mon, 07 Apr 2025 15:18:20 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/case_summaries/91GD2357322
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - b2d1db48-663f-494c-bafe-ac5fe5b4a08b
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:24:19 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '6276'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - b2d1db48-663f-494c-bafe-ac5fe5b4a08b
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"prosecution_case_reference": "91GD2357322", "hearing_summaries":
+        [{"id": "63a4e1e0-5ba3-4d89-ac8a-ebab621faaaa", "hearing_type": "Plea and
+        Trial Preparation", "estimated_duration": null, "defendants": [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9",
+        "first_name": "Alessandra", "middle_name": "Rebekah", "last_name": "DbOVsU",
+        "arrest_summons_number": "007", "date_of_birth": "1984-08-01", "national_insurance_number":
+        "HM672948D", "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre":
+        {"id": "89592405-c29b-3706-b1d3-b1dd3a08b227", "name": "Blackfriars Crown
+        Court", "welsh_name": null, "room_id": null, "room_name": null, "welsh_room_name":
+        null, "welsh_court_name": null, "short_oucode": "C01BL", "oucode_l2_code":
+        "1", "code": "C01BL00", "address": {"address_1": null, "address_2": null,
+        "address_3": null, "address_4": null, "address_5": null, "postcode": null}},
+        "hearing_days": [{"sitting_day": "2022-07-11T09:00:00+00:00", "listing_sequence":
+        0, "listed_duration_minutes": 20, "has_shared_results": false}], "defence_counsels":
+        []}, {"id": "6007774c-082a-404b-9c7a-1ca34f1e29b1", "hearing_type": "Trial",
+        "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre": {"id":
+        "89592405-c29b-3706-b1d3-b1dd3a08b227", "name": "Blackfriars Crown Court",
+        "welsh_name": null, "room_id": null, "room_name": null, "welsh_room_name":
+        null, "welsh_court_name": null, "short_oucode": "C01BL", "oucode_l2_code":
+        "1", "code": "C01BL00", "address": {"address_1": null, "address_2": null,
+        "address_3": null, "address_4": null, "address_5": null, "postcode": null}},
+        "hearing_days": [{"sitting_day": "2022-06-27T09:00:00+00:00", "listing_sequence":
+        0, "listed_duration_minutes": 720, "has_shared_results": false}], "defence_counsels":
+        []}, {"id": "0acac34e-bdc8-4232-9ef4-859d4a07e54d", "hearing_type": "Trial",
+        "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "MAGISTRATES", "court_centre":
+        {"id": "7e967376-eacf-4fca-9b30-21b0c5aad427", "name": "Bexley Magistrates''
+        Court", "welsh_name": null, "room_id": "8e912353-3b5d-36c3-953e-ad3b94b19de3",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "B01BH", "oucode_l2_code": "1", "code": "B01BH00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-13T09:00:00+00:00",
+        "listing_sequence": 0, "listed_duration_minutes": 1, "has_shared_results":
+        null}], "defence_counsels": [{"title": "", "first_name": "Test", "middle_name":
+        "", "last_name": "Def", "status": "Hospital order restriction case", "attendance_days":
+        ["2022-06-13"], "defendants": ["2c8689ab-0d9b-4705-9a47-18acff189551"]}]},
+        {"id": "1f58b12e-c820-4d1a-8e62-6b0d8c30ae42", "hearing_type": "Committal
+        for Sentence", "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre": {"id":
+        "e2d7754e-89ba-309f-8da5-08a8283258a7", "name": "Leeds Crown Court", "welsh_name":
+        null, "room_id": "fdee7cd4-a713-3f54-afad-56822483b3fa", "room_name": "Courtroom
+        02", "welsh_room_name": null, "welsh_court_name": null, "short_oucode": "C13LE",
+        "oucode_l2_code": "13", "code": "C13LE00", "address": {"address_1": null,
+        "address_2": null, "address_3": null, "address_4": null, "address_5": null,
+        "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-20T09:30:00+00:00",
+        "listing_sequence": 4, "listed_duration_minutes": 60, "has_shared_results":
+        null}], "defence_counsels": [{"title": "", "first_name": "Test", "middle_name":
+        "", "last_name": "Def", "status": "Hosp order case", "attendance_days": ["2022-06-20"],
+        "defendants": ["2c8689ab-0d9b-4705-9a47-18acff189551"]}]}, {"id": "40400f4b-4c02-4e7d-8f83-0d018a6b9642",
+        "hearing_type": "First hearing", "estimated_duration": null, "defendants":
+        [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9", "first_name": "Alessandra",
+        "middle_name": "Rebekah", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1984-08-01", "national_insurance_number": "HM672948D",
+        "maat_reference": null}, {"id": "2c8689ab-0d9b-4705-9a47-18acff189551", "first_name":
+        "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "MAGISTRATES", "court_centre":
+        {"id": "f8254db1-1683-483e-afb3-b87fde5a0a26", "name": "Lavender Hill Magistrates''
+        Court", "welsh_name": null, "room_id": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "B01LY", "oucode_l2_code": "1", "code": "B01LY00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-11T10:30:00+00:00",
+        "listing_sequence": 2, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}], "overall_defendants": [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9",
+        "first_name": "Alessandra", "middle_name": "Rebekah", "last_name": "DbOVsU",
+        "arrest_summons_number": "007", "date_of_birth": "1984-08-01", "national_insurance_number":
+        "HM672948D", "maat_reference": null}, {"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}]}'
+  recorded_at: Mon, 07 Apr 2025 15:24:19 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/0acac34e-bdc8-4232-9ef4-859d4a07e54d?date=2022-06-13
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - b2d1db48-663f-494c-bafe-ac5fe5b4a08b
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:24:19 GMT
+      Server:
+      - uvicorn
+      Laa-Transaction-Id:
+      - b2d1db48-663f-494c-bafe-ac5fe5b4a08b
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 07 Apr 2025 15:24:19 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/0acac34e-bdc8-4232-9ef4-859d4a07e54d/hearing_events?date=2022-06-13
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - b2d1db48-663f-494c-bafe-ac5fe5b4a08b
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:24:19 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '62'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - b2d1db48-663f-494c-bafe-ac5fe5b4a08b
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"hearing_id": null, "has_active_hearing": null, "events": []}'
+  recorded_at: Mon, 07 Apr 2025 15:24:19 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/6007774c-082a-404b-9c7a-1ca34f1e29b1?date=2022-06-27
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - baeeac80-0021-442d-bc3f-abf741bc6163
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:26:31 GMT
+      Server:
+      - uvicorn
+      Laa-Transaction-Id:
+      - baeeac80-0021-442d-bc3f-abf741bc6163
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 07 Apr 2025 15:26:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/6007774c-082a-404b-9c7a-1ca34f1e29b1/hearing_events?date=2022-06-27
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - baeeac80-0021-442d-bc3f-abf741bc6163
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:26:32 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '62'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - baeeac80-0021-442d-bc3f-abf741bc6163
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"hearing_id": null, "has_active_hearing": null, "events": []}'
+  recorded_at: Mon, 07 Apr 2025 15:26:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/case_summaries/91GD2357322
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 6d10952c-5914-44ca-bdf9-189e56f90476
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:27:31 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '6276'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - 6d10952c-5914-44ca-bdf9-189e56f90476
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"prosecution_case_reference": "91GD2357322", "hearing_summaries":
+        [{"id": "63a4e1e0-5ba3-4d89-ac8a-ebab621faaaa", "hearing_type": "Plea and
+        Trial Preparation", "estimated_duration": null, "defendants": [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9",
+        "first_name": "Alessandra", "middle_name": "Rebekah", "last_name": "DbOVsU",
+        "arrest_summons_number": "007", "date_of_birth": "1984-08-01", "national_insurance_number":
+        "HM672948D", "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre":
+        {"id": "89592405-c29b-3706-b1d3-b1dd3a08b227", "name": "Blackfriars Crown
+        Court", "welsh_name": null, "room_id": null, "room_name": null, "welsh_room_name":
+        null, "welsh_court_name": null, "short_oucode": "C01BL", "oucode_l2_code":
+        "1", "code": "C01BL00", "address": {"address_1": null, "address_2": null,
+        "address_3": null, "address_4": null, "address_5": null, "postcode": null}},
+        "hearing_days": [{"sitting_day": "2022-07-11T09:00:00+00:00", "listing_sequence":
+        0, "listed_duration_minutes": 20, "has_shared_results": false}], "defence_counsels":
+        []}, {"id": "6007774c-082a-404b-9c7a-1ca34f1e29b1", "hearing_type": "Trial",
+        "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre": {"id":
+        "89592405-c29b-3706-b1d3-b1dd3a08b227", "name": "Blackfriars Crown Court",
+        "welsh_name": null, "room_id": null, "room_name": null, "welsh_room_name":
+        null, "welsh_court_name": null, "short_oucode": "C01BL", "oucode_l2_code":
+        "1", "code": "C01BL00", "address": {"address_1": null, "address_2": null,
+        "address_3": null, "address_4": null, "address_5": null, "postcode": null}},
+        "hearing_days": [{"sitting_day": "2022-06-27T09:00:00+00:00", "listing_sequence":
+        0, "listed_duration_minutes": 720, "has_shared_results": false}], "defence_counsels":
+        []}, {"id": "0acac34e-bdc8-4232-9ef4-859d4a07e54d", "hearing_type": "Trial",
+        "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "MAGISTRATES", "court_centre":
+        {"id": "7e967376-eacf-4fca-9b30-21b0c5aad427", "name": "Bexley Magistrates''
+        Court", "welsh_name": null, "room_id": "8e912353-3b5d-36c3-953e-ad3b94b19de3",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "B01BH", "oucode_l2_code": "1", "code": "B01BH00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-13T09:00:00+00:00",
+        "listing_sequence": 0, "listed_duration_minutes": 1, "has_shared_results":
+        null}], "defence_counsels": [{"title": "", "first_name": "Test", "middle_name":
+        "", "last_name": "Def", "status": "Hospital order restriction case", "attendance_days":
+        ["2022-06-13"], "defendants": ["2c8689ab-0d9b-4705-9a47-18acff189551"]}]},
+        {"id": "1f58b12e-c820-4d1a-8e62-6b0d8c30ae42", "hearing_type": "Committal
+        for Sentence", "estimated_duration": null, "defendants": [{"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "CROWN", "court_centre": {"id":
+        "e2d7754e-89ba-309f-8da5-08a8283258a7", "name": "Leeds Crown Court", "welsh_name":
+        null, "room_id": "fdee7cd4-a713-3f54-afad-56822483b3fa", "room_name": "Courtroom
+        02", "welsh_room_name": null, "welsh_court_name": null, "short_oucode": "C13LE",
+        "oucode_l2_code": "13", "code": "C13LE00", "address": {"address_1": null,
+        "address_2": null, "address_3": null, "address_4": null, "address_5": null,
+        "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-20T09:30:00+00:00",
+        "listing_sequence": 4, "listed_duration_minutes": 60, "has_shared_results":
+        null}], "defence_counsels": [{"title": "", "first_name": "Test", "middle_name":
+        "", "last_name": "Def", "status": "Hosp order case", "attendance_days": ["2022-06-20"],
+        "defendants": ["2c8689ab-0d9b-4705-9a47-18acff189551"]}]}, {"id": "40400f4b-4c02-4e7d-8f83-0d018a6b9642",
+        "hearing_type": "First hearing", "estimated_duration": null, "defendants":
+        [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9", "first_name": "Alessandra",
+        "middle_name": "Rebekah", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1984-08-01", "national_insurance_number": "HM672948D",
+        "maat_reference": null}, {"id": "2c8689ab-0d9b-4705-9a47-18acff189551", "first_name":
+        "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}], "jurisdiction_type": "MAGISTRATES", "court_centre":
+        {"id": "f8254db1-1683-483e-afb3-b87fde5a0a26", "name": "Lavender Hill Magistrates''
+        Court", "welsh_name": null, "room_id": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "B01LY", "oucode_l2_code": "1", "code": "B01LY00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-06-11T10:30:00+00:00",
+        "listing_sequence": 2, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}], "overall_defendants": [{"id": "fa9efe41-fb5f-42fa-90b8-5804f3189aa9",
+        "first_name": "Alessandra", "middle_name": "Rebekah", "last_name": "DbOVsU",
+        "arrest_summons_number": "007", "date_of_birth": "1984-08-01", "national_insurance_number":
+        "HM672948D", "maat_reference": null}, {"id": "2c8689ab-0d9b-4705-9a47-18acff189551",
+        "first_name": "Eloise", "middle_name": "Ramon", "last_name": "DbOVsU", "arrest_summons_number":
+        "007", "date_of_birth": "1997-11-17", "national_insurance_number": "HM672948D",
+        "maat_reference": null}]}'
+  recorded_at: Mon, 07 Apr 2025 15:27:31 GMT
+recorded_with: VCR 6.3.1

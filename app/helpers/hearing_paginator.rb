@@ -91,6 +91,11 @@ class HearingPaginator
     @prosecution_case.hearings_sort_column = @column
     @prosecution_case.hearings_sort_direction = @direction
     if FeatureFlag.enabled?(:hearing)
+      # CaseSummaryDecorator decorates with sorted_hearing_summaries_with_day
+      # binding.pry
+      # ISSUE: prosecution case is:
+      # - CourtDataAdaptor::Resource::ProsecutionCase
+      # - but it must be CdApi::CaseSummary
       @prosecution_case.sorted_hearing_summaries_with_day.map do |hearing|
         PageItem.new(hearing.id, hearing.day)
       end

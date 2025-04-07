@@ -51,7 +51,6 @@ http_interactions:
       string: '{"data":[{"id":"61ae64af-e4b7-4476-928f-5b9bf8078ecb","type":"prosecution_cases","attributes":{"prosecution_case_reference":"CXBNSYAVIL"},"relationships":{"defendants":{"data":[{"id":"714fe7be-819e-4a10-97af-46922400513f","type":"defendants"}]}}}],"included":[{"id":"714fe7be-819e-4a10-97af-46922400513f","type":"defendants","attributes":{"name":"Maria
         Stoltenberg Prosacco","date_of_birth":"1962-02-03","national_insurance_number":"GP181930B","arrest_summons_number":"8KMZF92CXNEH","maat_reference":null},"relationships":{"offences":{"data":[{"id":"f394c472-8bad-4017-af20-03d206b8e876","type":"offences"}]}}},{"id":"f394c472-8bad-4017-af20-03d206b8e876","type":"offences","attributes":{"code":"Random
         string","order_index":1,"title":"Random string","mode_of_trial":"Random string"}}]}'
-    http_version: null
   recorded_at: Mon, 20 Apr 2020 13:45:54 GMT
 - request:
     method: get
@@ -102,6 +101,105 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"data":null}'
-    http_version: null
   recorded_at: Mon, 20 Apr 2020 13:45:57 GMT
-recorded_with: VCR 5.1.0
+- request:
+    method: get
+    uri: http://localhost:8000/v2/defendants?nino=GP181930B
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - a090c94d-e775-4a2a-abf6-29cbfff31aa1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:48:04 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '27'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - a090c94d-e775-4a2a-abf6-29cbfff31aa1
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"defendant_summaries": []}'
+  recorded_at: Mon, 07 Apr 2025 15:48:04 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/defendants?nino=GP999999B
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 113f6826-041a-4923-a4b6-59dd0ce4144e
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:48:05 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '27'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - 113f6826-041a-4923-a4b6-59dd0ce4144e
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"defendant_summaries": []}'
+  recorded_at: Mon, 07 Apr 2025 15:48:06 GMT
+recorded_with: VCR 6.3.1

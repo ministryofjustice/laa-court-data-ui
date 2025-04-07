@@ -504,4 +504,244 @@ http_interactions:
         xqjzMaJ5jJYdIzHHKL8xgmyMThojX8aoijFkfwwHv7HFf0fGfGfO+/7r1hi8
         fv//AAAA//8DAKRehEEqcgAA
   recorded_at: Thu, 20 May 2021 14:05:03 GMT
-recorded_with: VCR 6.0.0
+- request:
+    method: get
+    uri: http://localhost:8000/v2/case_summaries/TEST12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - afa29ba4-0611-40d6-b633-d042e304dc00
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:47:43 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '2543'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - afa29ba4-0611-40d6-b633-d042e304dc00
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"prosecution_case_reference": "TEST12345", "hearing_summaries": [{"id":
+        "25dc23c5-a887-4756-8819-fe37c34f428a", "hearing_type": "Trial - no witnesses",
+        "estimated_duration": null, "defendants": [{"id": "55ef0bd3-84c6-40e5-a373-9d50ed13a845",
+        "first_name": "Bea", "middle_name": null, "last_name": "Hayve", "arrest_summons_number":
+        null, "date_of_birth": null, "national_insurance_number": null, "maat_reference":
+        null}], "jurisdiction_type": "CROWN", "court_centre": {"id": "07e45c88-9e5d-3e44-b664-d5345bb13be2",
+        "name": "Croydon Crown Court", "welsh_name": null, "room_id": "731816c1-5ee4-373a-9bda-840e13a5bcb0",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "C01CY", "oucode_l2_code": "1", "code": "C01CY00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-03-16T10:00:00+00:00",
+        "listing_sequence": 1, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}, {"id": "8e3a8686-9f96-457b-900a-ea480cfca5f7",
+        "hearing_type": "Plea", "estimated_duration": null, "defendants": [{"id":
+        "5a7cdb63-d097-4903-a2f7-d61758b7f23f", "first_name": "John ", "middle_name":
+        null, "last_name": "Doe", "arrest_summons_number": null, "date_of_birth":
+        "1990-10-09", "national_insurance_number": null, "maat_reference": null}],
+        "jurisdiction_type": "CROWN", "court_centre": {"id": "9b583616-049b-30f9-a14f-028a53b7cfe8",
+        "name": "Liverpool Crown Court", "welsh_name": null, "room_id": "44169928-9769-3270-ba29-c8b20e26f153",
+        "room_name": "Courtroom 01 (Hilton)", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "C05LV", "oucode_l2_code": "5", "code": "C05LV00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-09-28T09:00:00+00:00",
+        "listing_sequence": 3, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}], "overall_defendants": [{"id": "55ef0bd3-84c6-40e5-a373-9d50ed13a845",
+        "first_name": "Bea", "middle_name": null, "last_name": "Hayve", "arrest_summons_number":
+        null, "date_of_birth": null, "national_insurance_number": null, "maat_reference":
+        null}, {"id": "5a7cdb63-d097-4903-a2f7-d61758b7f23f", "first_name": "John
+        ", "middle_name": null, "last_name": "Doe", "arrest_summons_number": null,
+        "date_of_birth": "1990-10-09", "national_insurance_number": null, "maat_reference":
+        null}]}'
+  recorded_at: Mon, 07 Apr 2025 15:47:45 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/case_summaries/TEST12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 8ce2cb8f-4098-40ee-bec9-9b9b52752cac
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:47:44 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '2543'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - 8ce2cb8f-4098-40ee-bec9-9b9b52752cac
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"prosecution_case_reference": "TEST12345", "hearing_summaries": [{"id":
+        "25dc23c5-a887-4756-8819-fe37c34f428a", "hearing_type": "Trial - no witnesses",
+        "estimated_duration": null, "defendants": [{"id": "55ef0bd3-84c6-40e5-a373-9d50ed13a845",
+        "first_name": "Bea", "middle_name": null, "last_name": "Hayve", "arrest_summons_number":
+        null, "date_of_birth": null, "national_insurance_number": null, "maat_reference":
+        null}], "jurisdiction_type": "CROWN", "court_centre": {"id": "07e45c88-9e5d-3e44-b664-d5345bb13be2",
+        "name": "Croydon Crown Court", "welsh_name": null, "room_id": "731816c1-5ee4-373a-9bda-840e13a5bcb0",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "C01CY", "oucode_l2_code": "1", "code": "C01CY00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-03-16T10:00:00+00:00",
+        "listing_sequence": 1, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}, {"id": "8e3a8686-9f96-457b-900a-ea480cfca5f7",
+        "hearing_type": "Plea", "estimated_duration": null, "defendants": [{"id":
+        "5a7cdb63-d097-4903-a2f7-d61758b7f23f", "first_name": "John ", "middle_name":
+        null, "last_name": "Doe", "arrest_summons_number": null, "date_of_birth":
+        "1990-10-09", "national_insurance_number": null, "maat_reference": null}],
+        "jurisdiction_type": "CROWN", "court_centre": {"id": "9b583616-049b-30f9-a14f-028a53b7cfe8",
+        "name": "Liverpool Crown Court", "welsh_name": null, "room_id": "44169928-9769-3270-ba29-c8b20e26f153",
+        "room_name": "Courtroom 01 (Hilton)", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "C05LV", "oucode_l2_code": "5", "code": "C05LV00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-09-28T09:00:00+00:00",
+        "listing_sequence": 3, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}], "overall_defendants": [{"id": "55ef0bd3-84c6-40e5-a373-9d50ed13a845",
+        "first_name": "Bea", "middle_name": null, "last_name": "Hayve", "arrest_summons_number":
+        null, "date_of_birth": null, "national_insurance_number": null, "maat_reference":
+        null}, {"id": "5a7cdb63-d097-4903-a2f7-d61758b7f23f", "first_name": "John
+        ", "middle_name": null, "last_name": "Doe", "arrest_summons_number": null,
+        "date_of_birth": "1990-10-09", "national_insurance_number": null, "maat_reference":
+        null}]}'
+  recorded_at: Mon, 07 Apr 2025 15:47:45 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/case_summaries/TEST12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 53ac9c77-ef36-4174-a0a7-c669c0f708ec
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:47:44 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '2543'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - 53ac9c77-ef36-4174-a0a7-c669c0f708ec
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"prosecution_case_reference": "TEST12345", "hearing_summaries": [{"id":
+        "25dc23c5-a887-4756-8819-fe37c34f428a", "hearing_type": "Trial - no witnesses",
+        "estimated_duration": null, "defendants": [{"id": "55ef0bd3-84c6-40e5-a373-9d50ed13a845",
+        "first_name": "Bea", "middle_name": null, "last_name": "Hayve", "arrest_summons_number":
+        null, "date_of_birth": null, "national_insurance_number": null, "maat_reference":
+        null}], "jurisdiction_type": "CROWN", "court_centre": {"id": "07e45c88-9e5d-3e44-b664-d5345bb13be2",
+        "name": "Croydon Crown Court", "welsh_name": null, "room_id": "731816c1-5ee4-373a-9bda-840e13a5bcb0",
+        "room_name": "Courtroom 01", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "C01CY", "oucode_l2_code": "1", "code": "C01CY00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-03-16T10:00:00+00:00",
+        "listing_sequence": 1, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}, {"id": "8e3a8686-9f96-457b-900a-ea480cfca5f7",
+        "hearing_type": "Plea", "estimated_duration": null, "defendants": [{"id":
+        "5a7cdb63-d097-4903-a2f7-d61758b7f23f", "first_name": "John ", "middle_name":
+        null, "last_name": "Doe", "arrest_summons_number": null, "date_of_birth":
+        "1990-10-09", "national_insurance_number": null, "maat_reference": null}],
+        "jurisdiction_type": "CROWN", "court_centre": {"id": "9b583616-049b-30f9-a14f-028a53b7cfe8",
+        "name": "Liverpool Crown Court", "welsh_name": null, "room_id": "44169928-9769-3270-ba29-c8b20e26f153",
+        "room_name": "Courtroom 01 (Hilton)", "welsh_room_name": null, "welsh_court_name":
+        null, "short_oucode": "C05LV", "oucode_l2_code": "5", "code": "C05LV00", "address":
+        {"address_1": null, "address_2": null, "address_3": null, "address_4": null,
+        "address_5": null, "postcode": null}}, "hearing_days": [{"sitting_day": "2022-09-28T09:00:00+00:00",
+        "listing_sequence": 3, "listed_duration_minutes": 20, "has_shared_results":
+        null}], "defence_counsels": []}], "overall_defendants": [{"id": "55ef0bd3-84c6-40e5-a373-9d50ed13a845",
+        "first_name": "Bea", "middle_name": null, "last_name": "Hayve", "arrest_summons_number":
+        null, "date_of_birth": null, "national_insurance_number": null, "maat_reference":
+        null}, {"id": "5a7cdb63-d097-4903-a2f7-d61758b7f23f", "first_name": "John
+        ", "middle_name": null, "last_name": "Doe", "arrest_summons_number": null,
+        "date_of_birth": "1990-10-09", "national_insurance_number": null, "maat_reference":
+        null}]}'
+  recorded_at: Mon, 07 Apr 2025 15:47:45 GMT
+recorded_with: VCR 6.3.1

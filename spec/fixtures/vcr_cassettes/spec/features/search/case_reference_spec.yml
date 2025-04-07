@@ -230,6 +230,141 @@ http_interactions:
       encoding: UTF-8
       base64_string: 'H4sIAPZspmAAA6pWSkksSVSyyivNyakFAAAA//8DAFj2dOgNAAAA
 
-'
+        '
   recorded_at: Thu, 20 May 2021 14:06:46 GMT
-recorded_with: VCR 6.0.0
+- request:
+    method: get
+    uri: http://localhost:8000/v2/defendants?urn=TEST12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 7807db4e-2184-43f0-94ae-9bbadcce13e9
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:47:49 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '2862'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - 7807db4e-2184-43f0-94ae-9bbadcce13e9
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"defendant_summaries": [{"id": "55ef0bd3-84c6-40e5-a373-9d50ed13a845",
+        "national_insurance_number": null, "arrest_summons_number": null, "name":
+        "Bea Hayve", "first_name": "Bea", "middle_name": null, "last_name": "Hayve",
+        "date_of_birth": null, "proceedings_concluded": false, "representation_order":
+        {"laa_application_reference": null, "effective_start_date": null, "effective_end_date":
+        null, "laa_contract_number": null}, "offence_summaries": [{"id": "bee70a2d-b28d-4b18-964b-b49ab11c3666",
+        "code": "TH68023A", "order_index": 1, "title": "Attempt robbery", "legislation":
+        "Contrary to section 1(1) of the    Criminal Attempts Act 1981.", "wording":
+        "On or in 1 March 2022 at Croydon attempted to rob Mr. Thom Khat of The Woolball
+        of a value unknown", "arrest_date": null, "charge_date": null, "mode_of_trial":
+        "Indictable", "start_date": "2022-03-01", "proceedings_concluded": false,
+        "pleas": [], "verdict": {"date": null, "type": null, "originating_hearing_id":
+        null, "offence_id": null}, "laa_application": {"reference": null, "id": null,
+        "status_code": null, "description": null, "status_date": null, "effective_start_date":
+        null, "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "Test12345"}, {"id": "5a7cdb63-d097-4903-a2f7-d61758b7f23f", "national_insurance_number":
+        null, "arrest_summons_number": null, "name": "John  Doe", "first_name": "John
+        ", "middle_name": null, "last_name": "Doe", "date_of_birth": "1990-10-09",
+        "proceedings_concluded": false, "representation_order": {"laa_application_reference":
+        null, "effective_start_date": null, "effective_end_date": null, "laa_contract_number":
+        null}, "offence_summaries": [{"id": "e4943c4d-b370-4864-b0c8-d3c1a5af1267",
+        "code": "RT88007B", "order_index": 1, "title": "Aid / abet driving of a motor
+        vehicle on a road / public place when alcohol level above the prescribed limit",
+        "legislation": "Contrary to section 5(1)(a) of the Road Traffic Act 1988,
+        Schedule 2 to the Road Traffic Offenders Act 1988 and section 44 of the Magistrates''
+        Courts Act 1980.", "wording": "On or in 6 September 2022 at bristol aidedabettedcounselled
+        and procured, Ellen Swamp to drive a motor vehicle, namely 2828282 on a road
+        namely 50 after consuming so much alcohol that the proportion of it in their
+        breath namely 50 microgrammes of alcohol in 100 millilitres of breath exceeded
+        the prescribed limit.", "arrest_date": null, "charge_date": null, "mode_of_trial":
+        "Summary", "start_date": "2022-09-06", "proceedings_concluded": false, "pleas":
+        [], "verdict": {"date": null, "type": null, "originating_hearing_id": null,
+        "offence_id": null}, "laa_application": {"reference": null, "id": null, "status_code":
+        null, "description": null, "status_date": null, "effective_start_date": null,
+        "effective_end_date": null, "contract_number": null}}], "prosecution_case_reference":
+        "test12345"}]}'
+  recorded_at: Mon, 07 Apr 2025 15:47:50 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/defendants?urn=NONEXISTENTCASEURN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 2a3308c3-00fe-4a5d-98f6-ac310d8b628e
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 07 Apr 2025 15:47:50 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '27'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - 2a3308c3-00fe-4a5d-98f6-ac310d8b628e
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"defendant_summaries": []}'
+  recorded_at: Mon, 07 Apr 2025 15:47:51 GMT
+recorded_with: VCR 6.3.1
