@@ -19,8 +19,8 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
     scenario 'user can see links to hearing pages' do
       within :table, 'Hearings' do
         expect(page).to have_link('23/10/2019', href: hearing_page_url(0), class: 'govuk-link')
-        expect(page).to have_link('26/10/2019', href: hearing_page_url(3), class: 'govuk-link')
-        expect(page).to have_link('31/10/2019', href: hearing_page_url(8), class: 'govuk-link')
+        expect(page).to have_link('26/10/2019', href: hearing_page_url(1), class: 'govuk-link')
+        expect(page).to have_link('31/10/2019', href: hearing_page_url(4), class: 'govuk-link')
       end
     end
 
@@ -50,7 +50,12 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
     end
 
     context 'with a last hearing\'s day displayed' do
-      before { click_link_or_button('31/10/2019') }
+      before do
+        click_link_or_button('31/10/2019')
+        # There are 3 sitting days for this hearing
+        click_link_or_button('Next')
+        click_link_or_button('Next')
+      end
 
       scenario 'user can see Previous page navigation only' do
         expect(page).to have_link('Previous')
@@ -67,12 +72,12 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
         click_link_or_button 'Next'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '24/10/2019')
+          .and have_css('h1', text: '26/10/2019')
 
         click_link_or_button 'Next'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '25/10/2019')
+          .and have_css('h1', text: '27/10/2019')
       end
     end
 
@@ -83,12 +88,12 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
         click_link_or_button 'Previous'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '30/10/2019')
+          .and have_css('h1', text: '28/10/2019')
 
         click_link_or_button 'Previous'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '29/10/2019')
+          .and have_css('h1', text: '27/10/2019')
       end
     end
   end
