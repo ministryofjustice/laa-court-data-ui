@@ -3,7 +3,7 @@
 require 'court_data_adaptor'
 
 RSpec.describe TableSorters::HearingsTypeSorter do
-  subject(:instance) { described_class.new(hearings, column, direction) }
+  subject(:instance) { described_class.new(hearing_summaries, column, direction) }
 
   include_context 'with multiple hearings to sort'
 

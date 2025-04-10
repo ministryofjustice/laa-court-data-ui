@@ -65,8 +65,6 @@ spec:
               value: 'true'
             - name: HEARING
               value: 'true'
-            - name: HEARING_SUMMARIES
-              value: 'true'
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
             - name: COURT_DATA_ADAPTOR_API_UID

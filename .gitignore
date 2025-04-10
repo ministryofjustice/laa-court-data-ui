@@ -48,3 +48,5 @@ cypress.env.json
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+spec/examples.txt

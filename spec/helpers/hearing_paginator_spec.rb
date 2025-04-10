@@ -42,7 +42,15 @@ RSpec.describe HearingPaginator, type: :helper do
 
   let(:hearings) { [] }
   let(:view_object) { view_class.new }
-  let(:view_class) { Class.new { include ApplicationHelper } }
+  let(:view_class) do
+    Class.new do
+      include ApplicationHelper
+
+      def t(*)
+        nil
+      end
+    end
+  end
 
   describe described_class::PageItem do
     it { is_expected.to respond_to(:id, :hearing_date) }
@@ -98,15 +106,15 @@ RSpec.describe HearingPaginator, type: :helper do
       subject(:call) { instance.items }
 
       let(:decorated_hearings) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
-      let(:decorated_hearing1) { view_object.decorate(hearing1) }
-      let(:decorated_hearing2) { view_object.decorate(hearing2) }
-      let(:decorated_hearing3) { view_object.decorate(hearing3) }
+      let(:decorated_hearing1) { view_object.decorate(hearing1, CdApi::HearingSummaryDecorator) }
+      let(:decorated_hearing2) { view_object.decorate(hearing2, CdApi::HearingSummaryDecorator) }
+      let(:decorated_hearing3) { view_object.decorate(hearing3, CdApi::HearingSummaryDecorator) }
 
       before do
         allow(prosecution_case).to receive_messages(hearings: decorated_hearings)
-        allow(decorated_hearing1).to receive(:provider_list).and_return(hearing1_provider_list)
-        allow(decorated_hearing2).to receive(:provider_list).and_return(hearing2_provider_list)
-        allow(decorated_hearing3).to receive(:provider_list).and_return(hearing3_provider_list)
+        allow(decorated_hearing1).to receive(:defence_counsel_list).and_return(hearing1_defence_counsel_list)
+        allow(decorated_hearing2).to receive(:defence_counsel_list).and_return(hearing2_defence_counsel_list)
+        allow(decorated_hearing3).to receive(:defence_counsel_list).and_return(hearing3_defence_counsel_list)
         allow(prosecution_case_decorator).to receive_messages(hearings_sort_column: column,
                                                               hearings_sort_direction: direction)
       end

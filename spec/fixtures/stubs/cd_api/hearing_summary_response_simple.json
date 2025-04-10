@@ -1,0 +1,113 @@
+{
+  "prosecution_case_reference": "TEST12345",
+  "hearing_summaries": [
+    {
+      "id": "345be88a-31cf-4a30-9de3-da98e973367e",
+      "hearing_type": "Trial (TRL)",
+      "estimated_duration": null,
+      "defendants": [],
+      "jurisdiction_type": "MAGISTRATES",
+      "court_centre": {
+        "id": "6131bd34-33d9-3d1e-8152-8b5a2084f1bd",
+        "name": "Derby Crown Court",
+        "welsh_name": "Llys Y Goron Derby",
+        "room_id": null,
+        "room_name": null,
+        "welsh_room_name": null,
+        "welsh_court_name": null,
+        "short_oucode": "C30DE",
+        "oucode_l2_code": "30",
+        "code": "C30DE00",
+        "address": {
+          "address_1": "Derby Combined Court Centre",
+          "address_2": "Morledge",
+          "address_3": "Derby",
+          "address_4": "",
+          "address_5": "",
+          "postcode": "DE1 2XE"
+        }
+      },
+      "hearing_days": [
+        {
+          "sitting_day": "2019-10-23T08:30:00+00:00",
+          "listing_sequence": 1,
+          "listed_duration_minutes": 1,
+          "has_shared_results": null
+        },
+        {
+          "sitting_day": "2019-10-24T08:45:00+00:00",
+          "listing_sequence": 1,
+          "listed_duration_minutes": 1,
+          "has_shared_results": null
+        },
+        {
+          "sitting_day": "2019-10-25T09:00:00+00:00",
+          "listing_sequence": 1,
+          "listed_duration_minutes": 1,
+          "has_shared_results": null
+        }
+      ],
+      "defence_counsels": []
+    },
+    {
+      "id": "c2002ca4-fa81-4639-9b7c-58940bfbe6f5",
+      "hearing_type": "Mention - Defendant to Attend (MDA)",
+      "estimated_duration": null,
+      "defendants": [],
+      "jurisdiction_type": "CROWN",
+      "court_centre": {
+        "id": "6131bd34-33d9-3d1e-8152-8b5a2084f1bd",
+        "name": "Derby Crown Court",
+        "welsh_name": "Llys Y Goron Derby",
+        "room_id": null,
+        "room_name": null,
+        "welsh_room_name": null,
+        "welsh_court_name": null,
+        "short_oucode": "C30DE",
+        "oucode_l2_code": "30",
+        "code": "C30DE00",
+        "address": {
+          "address_1": "Derby Combined Court Centre",
+          "address_2": "Morledge",
+          "address_3": "Derby",
+          "address_4": "",
+          "address_5": "",
+          "postcode": "DE1 2XE"
+        }
+      },
+      "hearing_days": [
+        {
+          "sitting_day": "2019-10-23T08:30:00+00:00",
+          "listing_sequence": 1,
+          "listed_duration_minutes": 1,
+          "has_shared_results": null
+        },
+        {
+          "sitting_day": "2019-10-27T08:45:00+00:00",
+          "listing_sequence": 1,
+          "listed_duration_minutes": 1,
+          "has_shared_results": null
+        },
+        {
+          "sitting_day": "2019-10-28T09:00:00+00:00",
+          "listing_sequence": 1,
+          "listed_duration_minutes": 1,
+          "has_shared_results": null
+        }
+      ],
+      "defence_counsels": []
+    }
+  ],
+  "overall_defendants": [
+    {
+      "id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
+      "first_name": "Jammy",
+      "middle_name": "",
+      "last_name": "Dodger",
+      "arrest_summons_number": "FPV3XYUJNPIB",
+      "date_of_birth": "2000-12-27",
+      "national_insurance_number": "HX685369B",
+      "maat_reference": "Z10000233"
+    }
+  ]
+}
