@@ -25,7 +25,6 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
 
   before do
     allow(FeatureFlag).to receive(:enabled?).with(:defendants_page).and_return(false)
-    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(false)
   end
 
   context 'when authenticated' do
