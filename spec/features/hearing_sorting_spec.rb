@@ -7,7 +7,6 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
   let(:hearing_id_from_fixture) { '345be88a-31cf-4a30-9de3-da98e973367e' }
 
   before do
-    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
     sign_in user
     visit "prosecution_cases/#{case_urn}"
   end

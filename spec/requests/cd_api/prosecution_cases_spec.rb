@@ -9,7 +9,6 @@ RSpec.describe 'prosecution cases', :stub_case_search,
   context 'when authenticated' do
     before do
       sign_in user
-      allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
       get "/prosecution_cases/#{case_reference}"
     end
 
