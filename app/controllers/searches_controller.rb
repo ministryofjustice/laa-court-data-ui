@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new(filter:, term:, dob:, version2: true)
+    @search = Search.new(filter:, term:, dob:)
     authorize! :create, @search
 
     @results = @search.execute if @search.valid?

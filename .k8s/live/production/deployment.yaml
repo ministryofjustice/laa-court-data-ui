@@ -61,10 +61,6 @@ spec:
               value: enabled
             - name: GA_TRACKING_ID
               value: 'UA-131160087-15'
-            - name: DEFENDANTS_SEARCH
-              value: 'true'
-            - name: HEARING
-              value: 'true'
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
             - name: COURT_DATA_ADAPTOR_API_UID

@@ -3,10 +3,6 @@
 RSpec.describe Search, type: :model do
   subject { described_class.new }
 
-  before do
-    allow_any_instance_of(described_class).to receive(:version2).and_return(true)
-  end
-
   it {
     is_expected.to \
       respond_to(:filters, :filter,

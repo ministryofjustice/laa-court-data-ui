@@ -2,7 +2,6 @@
 
 require_dependency 'court_data_adaptor'
 
-# rubocop:disable Metrics/ClassLength
 class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
                 :set_prosecution_case,
@@ -34,42 +33,11 @@ class HearingsController < ApplicationController
   private
 
   def load_and_authorize_search
-    @prosecution_case_search = if FeatureFlag.enabled?(:hearing)
-                                 CdApi::CaseSummaryService.new(urn: prosecution_case_reference)
-                               else
-                                 Search.new(filter: 'case_reference', term: prosecution_case_reference)
-                               end
+    @prosecution_case_search = CdApi::CaseSummaryService.new(urn: prosecution_case_reference)
     authorize! :create, @prosecution_case_search
   end
 
   def set_hearing
-    if FeatureFlag.enabled?(:hearing)
-      hearing_v2
-    else
-      hearing
-    end
-  end
-
-  def set_hearing_day
-    hearing_day
-  end
-
-  def set_hearing_events
-    hearing_events if FeatureFlag.enabled?(:hearing)
-  end
-
-  def hearing
-    logger.info 'USING_V1_ENDPOINT'
-    @hearing ||= helpers.decorate(@prosecution_case.hearings.find do |hearing|
-                                    hearing.id == hearing_id
-                                  end, HearingDecorator)
-  end
-
-  def hearing_params
-    { date: paginator.current_item.hearing_date.strftime('%F') }
-  end
-
-  def hearing_v2_call
     @hearing ||= decorate_hearing(CdApi::Hearing.find(hearing_id, params: hearing_params))
     @hearing&.current_sitting_day = paginator.current_item.hearing_date.strftime('%F')
   rescue ActiveResource::ResourceNotFound
@@ -78,6 +46,25 @@ class HearingsController < ApplicationController
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
+  end
+
+  def set_hearing_day
+    hearing_day
+  end
+
+  def set_hearing_events
+    @hearing_events ||= CdApi::HearingEvents.find(hearing_id,
+                                                  date: paginator.current_item.hearing_date.strftime('%F'))
+  rescue ActiveResource::ResourceNotFound
+    logger.info 'EVENTS_NOT_AVAILABLE'
+  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+    log_and_capture_error(e, 'ERROR_CALLING_EVENTS')
+    show_alert(I18n.t('hearings.show.flash.notice.events_error'),
+               "#{I18n.t('error.refresh')} #{I18n.t('error.it_helpdesk')}")
+  end
+
+  def hearing_params
+    { date: paginator.current_item.hearing_date.strftime('%F') }
   end
 
   def log_and_capture_error(exception, log_messsage)
@@ -89,11 +76,6 @@ class HearingsController < ApplicationController
     helpers.decorate(undecorated_hearing, CdApi::HearingDecorator)
   end
 
-  def hearing_v2
-    logger.info 'USING_V2_ENDPOINT_HEARING'
-    hearing_v2_call
-  end
-
   def hearing_day
     @hearing_day ||= paginator.current_item.hearing_date || helpers.earliest_day_for(@hearing)
   end
@@ -103,37 +85,11 @@ class HearingsController < ApplicationController
   end
 
   def set_prosecution_case
-    FeatureFlag.enabled?(:hearing) ? prosecution_case_call_v2 : prosecution_case_call
-  end
-
-  def prosecution_case_call
-    logger.info 'USING_V1_ENDPOINT_PROSECUTION_CASE'
-    @prosecution_case = helpers.decorate(@prosecution_case_search.execute.first, ProsecutionCaseDecorator)
-  end
-
-  def prosecution_case_call_v2
     logger.info 'USING_V2_ENDPOINT_CASE_SUMMARIES'
     @prosecution_case = helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
-  end
-
-  def hearing_events
-    logger.info 'USING_V2_ENDPOINT_HEARING_EVENTS'
-    @hearing_events ||= call_hearing_events
-  end
-
-  def call_hearing_events
-    CdApi::HearingEvents.find(hearing_id, { date: paginator.current_item.hearing_date.strftime('%F') })
-  rescue ActiveResource::ResourceNotFound
-    logger.info 'EVENTS_NOT_AVAILABLE'
-    nil
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-    log_and_capture_error(e, 'ERROR_CALLING_EVENTS')
-    show_alert(I18n.t('hearings.show.flash.notice.events_error'),
-               "#{I18n.t('error.refresh')} #{I18n.t('error.it_helpdesk')}")
-    nil
   end
 
   def show_alert(title, message)
@@ -156,4 +112,3 @@ class HearingsController < ApplicationController
     @direction ||= params[:direction]
   end
 end
-# rubocop:enable Metrics/ClassLength
