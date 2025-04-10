@@ -242,28 +242,4 @@ RSpec.describe ApplicationHelper, type: :helper do
       it { is_expected.to eql 'app-environment-local' }
     end
   end
-
-  describe '#v2_hearing_summaries?' do
-    subject(:v2_hearing_summaries?) { helper.v2_hearing_summaries? }
-
-    context 'when hearing summaries flag is true' do
-      before do
-        allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
-      end
-
-      it 'returns true' do
-        expect(v2_hearing_summaries?).to be(true)
-      end
-    end
-
-    context 'when hearing summaries flag is false' do
-      before do
-        allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(false)
-      end
-
-      it 'returns false' do
-        expect(v2_hearing_summaries?).to be(false)
-      end
-    end
-  end
 end

@@ -2,506 +2,164 @@
 http_interactions:
 - request:
     method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial,hearings.court_applications,hearings.court_applications.type,hearings.court_applications.judicial_results,hearings.court_applications.respondents
+    uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/case_summaries/TEST12345
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      User-Agent:
-      - Faraday v1.10.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
       Authorization:
-      - Bearer <BEARER_TOKEN>
+      - Basic <Basic>
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - ac60e10b-1a7a-4d2f-b9ce-18adb8641193
       Accept-Encoding:
-      - gzip,deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 20 May 2021 14:04:58 GMT
+      - Tue, 10 May 2022 20:48:33 GMT
       Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      - application/json
+      Content-Length:
+      - '3979'
       Connection:
       - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 8b82f081804ddb43ca57d9fe0cba1d46
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"ce1d627e2209b9c1fd86c63c060ab2ef"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 8b82f081804ddb43ca57d9fe0cba1d46
-      X-Runtime:
-      - '1.372894'
-      Content-Encoding:
-      - gzip
+      - ac60e10b-1a7a-4d2f-b9ce-18adb8641193
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
     body:
       encoding: UTF-8
-      base64_string: |
-        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
-        fv//AAAA//8DAKRehEEqcgAA
-  recorded_at: Thu, 20 May 2021 14:04:58 GMT
+      string: '{"prosecution_case_reference":"TEST12345","hearing_summaries":[{"id":"ffebc761-1b61-4ba5-b197-c7326d002d92","hearing_type":"Trial
+        (TRL)","estimated_duration":null,"defendants":[],"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-24T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-25T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]},{"id":"c2002ca4-fa81-4639-9b7c-58940bfbe6f5","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendants":[],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-26T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-27T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-28T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]},{"id":"51d383df-9bcc-4e66-ac86-008b7963d675","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendants":[],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-29T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-30T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-31T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]}],"overall_defendants":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","arrest_summons_number":"FPV3XYUJNPIB","date_of_birth":"2000-12-27","national_insurance_number":"HX685369B","maat_reference":"Z10000237"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","arrest_summons_number":"OYOYFT1DFB4S","date_of_birth":"1958-05-08","national_insurance_number":"YZ235772C","maat_reference":"Z10000204"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","arrest_summons_number":"5SLSOIL9Q2ZQ","date_of_birth":"1967-09-24","national_insurance_number":"AH506781B","maat_reference":"Z10000178"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"1PBAP0Q18V3F","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","maat_reference":"Z10000222"}]}'
+  recorded_at: Tue, 10 May 2022 20:48:32 GMT
 - request:
     method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial,hearings.court_applications,hearings.court_applications.type,hearings.court_applications.judicial_results,hearings.court_applications.respondents
+    uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/case_summaries/TEST12345
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      User-Agent:
-      - Faraday v1.10.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
       Authorization:
-      - Bearer <BEARER_TOKEN>
+      - Basic <Basic>
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - 743fbb96-6e03-4a81-a81d-28552789d120
       Accept-Encoding:
-      - gzip,deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 20 May 2021 14:05:00 GMT
+      - Tue, 10 May 2022 20:48:34 GMT
       Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      - application/json
+      Content-Length:
+      - '3979'
       Connection:
       - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - a2b61a24decde997bb1c2556ace1383d
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"ce1d627e2209b9c1fd86c63c060ab2ef"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - a2b61a24decde997bb1c2556ace1383d
-      X-Runtime:
-      - '1.648330'
-      Content-Encoding:
-      - gzip
+      - 743fbb96-6e03-4a81-a81d-28552789d120
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
     body:
       encoding: UTF-8
-      base64_string: |
-        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
-        fv//AAAA//8DAKRehEEqcgAA
-  recorded_at: Thu, 20 May 2021 14:05:00 GMT
+      string: '{"prosecution_case_reference":"TEST12345","hearing_summaries":[{"id":"ffebc761-1b61-4ba5-b197-c7326d002d92","hearing_type":"Trial
+        (TRL)","estimated_duration":null,"defendants":[],"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-24T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-25T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]},{"id":"c2002ca4-fa81-4639-9b7c-58940bfbe6f5","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendants":[],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-26T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-27T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-28T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]},{"id":"51d383df-9bcc-4e66-ac86-008b7963d675","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendants":[],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-29T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-30T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-31T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]}],"overall_defendants":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","arrest_summons_number":"FPV3XYUJNPIB","date_of_birth":"2000-12-27","national_insurance_number":"HX685369B","maat_reference":"Z10000237"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","arrest_summons_number":"OYOYFT1DFB4S","date_of_birth":"1958-05-08","national_insurance_number":"YZ235772C","maat_reference":"Z10000204"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","arrest_summons_number":"5SLSOIL9Q2ZQ","date_of_birth":"1967-09-24","national_insurance_number":"AH506781B","maat_reference":"Z10000178"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"1PBAP0Q18V3F","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","maat_reference":"Z10000222"}]}'
+  recorded_at: Tue, 10 May 2022 20:48:33 GMT
 - request:
     method: get
-    uri: https://laa-court-data-adaptor-dev.apps.live-1.cloud-platform.service.justice.gov.uk/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers,hearings.cracked_ineffective_trial,hearings.court_applications,hearings.court_applications.type,hearings.court_applications.judicial_results,hearings.court_applications.respondents
+    uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/case_summaries/TEST12345
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      User-Agent:
-      - Faraday v1.10.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
       Authorization:
-      - Bearer <BEARER_TOKEN>
+      - Basic <Basic>
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - '09299490-41f3-4765-b49e-56262ac31405'
       Accept-Encoding:
-      - gzip,deflate
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 20 May 2021 14:05:03 GMT
+      - Tue, 10 May 2022 20:48:36 GMT
       Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      - application/json
+      Content-Length:
+      - '3979'
       Connection:
       - keep-alive
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
       Laa-Transaction-Id:
-      - 25b890c78924d06987d8ea63901455f3
-      Vary:
-      - Accept,Accept-Encoding
-      Etag:
-      - W/"ce1d627e2209b9c1fd86c63c060ab2ef"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 25b890c78924d06987d8ea63901455f3
-      X-Runtime:
-      - '1.815529'
-      Content-Encoding:
-      - gzip
+      - '09299490-41f3-4765-b49e-56262ac31405'
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
     body:
       encoding: UTF-8
-      base64_string: |
-        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
-        fv//AAAA//8DAKRehEEqcgAA
-  recorded_at: Thu, 20 May 2021 14:05:03 GMT
-recorded_with: VCR 6.0.0
+      string: '{"prosecution_case_reference":"TEST12345","hearing_summaries":[{"id":"ffebc761-1b61-4ba5-b197-c7326d002d92","hearing_type":"Trial
+        (TRL)","estimated_duration":null,"defendants":[],"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-24T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-25T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]},{"id":"c2002ca4-fa81-4639-9b7c-58940bfbe6f5","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendants":[],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-26T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-27T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-28T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]},{"id":"51d383df-9bcc-4e66-ac86-008b7963d675","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendants":[],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_name":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-29T08:30:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-30T08:45:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null},{"sitting_day":"2019-10-31T09:00:00+00:00","listing_sequence":1,"listed_duration_minutes":1,"has_shared_results":null}],"defence_counsels":[]}],"overall_defendants":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","arrest_summons_number":"FPV3XYUJNPIB","date_of_birth":"2000-12-27","national_insurance_number":"HX685369B","maat_reference":"Z10000237"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","arrest_summons_number":"OYOYFT1DFB4S","date_of_birth":"1958-05-08","national_insurance_number":"YZ235772C","maat_reference":"Z10000204"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","arrest_summons_number":"5SLSOIL9Q2ZQ","date_of_birth":"1967-09-24","national_insurance_number":"AH506781B","maat_reference":"Z10000178"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"1PBAP0Q18V3F","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","maat_reference":"Z10000222"}]}'
+  recorded_at: Tue, 10 May 2022 20:48:34 GMT
+recorded_with: VCR 6.1.0
