@@ -6,6 +6,7 @@ class CourtApplicationsController < ApplicationController
 
   def show
     add_breadcrumb @application.application_title
+    @date_sort_direction = params.fetch(:date_sort_direction, "asc")
   end
 
   private
