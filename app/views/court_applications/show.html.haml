@@ -1,1 +1,19 @@
 = govuk_page_title(@application.case_summary.prosecution_case_reference, @application.application_title)
+%h2.govuk-heading-l
+  = t('.defendants')
+%table.govuk-table
+  %caption.govuk-table__caption.govuk-visually-hidden
+    = t('.defendants')
+  %thead.govuk-table__head
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'col' }= t('.defendant.name')
+      %th.govuk-table__header{ scope: 'col' }= t('.defendant.date_of_birth')
+      %th.govuk-table__header{ scope: 'col' }= t('.defendant.maat_number')
+  %tbody.govuk-table__body
+    %tr.govuk-table__row
+      %td.govuk-table__cell
+        = link_to @application.subject_summary.name, court_application_subject_path(@application.application_id), class: 'govuk-link'
+      %td.govuk-table__cell
+        = l(@application.subject_summary.date_of_birth)
+      %td.govuk-table__cell
+        = @application.subject_summary.maat_reference.presence ||t('search.result.defendant.unlinked')

@@ -158,4 +158,60 @@ http_interactions:
         only","start_date":"2019-10-17","title":"Trafficking into UK for sexual exploitation","wording":"Random
         string","proceedings_concluded":false,"legislation":"Theft Act 1978 s.2","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
   recorded_at: Fri, 11 Apr 2025 09:52:23 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/af7fc823e-428b-75da-9875-b182a23d174
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 6242943d-2a1a-4d6e-b81c-4408a6982289
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"d42801269aaddcb4188023dcdc55e39c"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.069348'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=1.09, instantiation.active_record;dur=0.10,
+        process_action.action_controller;dur=58.91
+      Content-Length:
+      - '1164'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"af7fc823e-428b-75da-9875-b182a23d174","short_id":"A25LO1OU0KE3","application_reference":"MyString","application_status":"DRAFT","application_title":"Appeal
+        against a conviction","application_type":"String","received_date":"2025-04-11","case_summary":[{"case_status":"ACTIVE","prosecution_case_id":"2c646634-9f24-42fd-865e-ef1e282b5953","prosecution_case_reference":"EPAYAQECKM"}],"hearing_summary":[],"subject_summary":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","date_of_next_hearing":null,"defendant_asn":"KQJXI10ZJXCI","defendant_dob":"1994-05-06","defendant_first_name":"Mauricio","defendant_last_name":"Rath","master_defendant_id":null,"offence_summary":[{"id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Trafficking into UK for sexual exploitation","wording":"Random
+        string","proceedings_concluded":false,"legislation":"Theft Act 1978 s.2","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{ "application_reference": "1234567"}}}'
+  recorded_at: Fri, 11 Apr 2025 09:52:23 GMT
 recorded_with: VCR 6.3.1

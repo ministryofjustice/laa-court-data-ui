@@ -1,0 +1,9 @@
+---
+en:
+  court_applications:
+    show:
+      defendant:
+        date_of_birth: Date of birth
+        maat_number: MAAT number
+        name: Name
+      defendants: Defendants
