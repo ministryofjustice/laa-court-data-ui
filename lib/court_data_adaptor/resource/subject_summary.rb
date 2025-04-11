@@ -9,8 +9,12 @@ module CourtDataAdaptor
         defendant_dob.to_date
       end
 
+      def offence_summary
+        @offence_summary ||= super.map { OffenceSummary.new(_1) }
+      end
+
       def maat_reference
-        representation_order["application_reference"]
+        offence_summary.map(&:maat_reference).uniq.compact.join
       end
     end
   end
