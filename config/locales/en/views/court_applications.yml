@@ -7,3 +7,8 @@ en:
         maat_number: MAAT number
         name: Name
       defendants: Defendants
+      hearing:
+        date: Date
+        providers: Providers attending
+        type: Hearing type
+      hearings: Hearings

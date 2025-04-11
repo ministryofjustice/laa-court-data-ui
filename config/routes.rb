@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :hearings, only: %i[show]
   resources :court_applications, only: %i[show] do
     resource :subject, only: %i[show]
+    resources :hearings, only: %i[show]
   end
 
   devise_for :users, controllers: {

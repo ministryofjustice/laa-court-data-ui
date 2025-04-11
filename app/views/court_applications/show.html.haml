@@ -17,3 +17,41 @@
         = l(@application.subject_summary.date_of_birth)
       %td.govuk-table__cell
         = @application.subject_summary.maat_reference.presence ||t('search.result.defendant.unlinked')
+
+%h2.govuk-heading-l
+  = t('.hearings')
+%table.govuk-table.app-sortable-table
+  %caption.govuk-table__caption.govuk-visually-hidden
+    = t('.hearings')
+  %thead.govuk-table__head
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'col' }
+        - direction = @date_sort_direction == 'asc' ? 'desc' : 'asc'
+        = link_to(court_application_path(id: @application.application_id, date_sort_direction: direction),
+                  class: 'govuk-link govuk-link--no-visited-state', "aria-label": "Sort date #{direction}") do
+
+          = t('.hearing.date')
+          = @date_sort_direction == 'asc' ? "\u25B2" : "\u25BC"
+      %th.govuk-table__header{ scope: 'col' }
+        = t('.hearing.type')
+      %th.govuk-table__header{ scope: 'col' }
+        = t('.hearing.providers')
+  %tbody.govuk-table__body
+    - @application.hearing_days_sorted_by(@date_sort_direction).each_with_index do |hearing_day|
+      %tr.govuk-table__row
+        %td.govuk-table__cell
+          = link_to hearing_day.day_string,
+                    court_application_hearing_path(@application.application_id,
+                                                   hearing_day.hearing.id,
+                                                   day: hearing_day.date),
+                    class: 'govuk-link'
+        %td.govuk-table__cell
+          = hearing_day.hearing.hearing_type
+        %td.govuk-table__cell
+          - if hearing_day.hearing.defence_counsels_on(hearing_day.date).any?
+            - hearing_day.hearing.defence_counsels_on(hearing_day.date).each_with_index do |counsel, idx|
+              - unless idx.zero?
+                %br
+              = counsel.name
+          - else
+            = t('generic.not_available')
