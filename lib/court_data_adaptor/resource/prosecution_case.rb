@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class ProsecutionCase < Base
+    class ProsecutionCase < V1
       has_many :defendants
       has_many :hearings
 

@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class Hearing < Base
+    class Hearing < V1
       acts_as_resource self
 
       has_many :providers

@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class CrackedIneffectiveTrial < Base
+    class CrackedIneffectiveTrial < V1
       acts_as_resource self
 
       belongs_to :hearing

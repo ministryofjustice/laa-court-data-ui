@@ -1,0 +1,14 @@
+---
+en:
+  court_applications:
+    show:
+      defendant:
+        date_of_birth: Date of birth
+        maat_number: MAAT number
+        name: Name
+      defendants: Defendants
+      hearing:
+        date: Date
+        providers: Providers attending
+        type: Hearing type
+      hearings: Hearings
