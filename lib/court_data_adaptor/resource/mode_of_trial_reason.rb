@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class ModeOfTrialReason < Base
+    class ModeOfTrialReason < V1
       acts_as_resource self
 
       property :code, type: :string

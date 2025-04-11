@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class CourtApplicationType < Base
+    class CourtApplicationType < V1
       acts_as_resource self
 
       belongs_to :court_application

@@ -2,8 +2,9 @@
 
 module CourtDataAdaptor
   module Resource
-    class HearingSummary < V1
-      acts_as_resource self
+    class V1 < Base
+      API_VERSION = 1
+      include ResourceConfiguration
     end
   end
 end

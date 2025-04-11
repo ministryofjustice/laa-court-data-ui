@@ -2,7 +2,7 @@
 
 require 'court_data_adaptor'
 
-RSpec.describe CourtDataAdaptor::Resource::Base, :vcr do
+RSpec.describe CourtDataAdaptor::Resource::V1, :vcr do
   # rubocop:disable Style/ClassAndModuleChildren, RSpec/LeakyConstantDeclaration, Lint/ConstantDefinitionInBlock
   class CourtDataAdaptor::Resource::MockResource < described_class
     acts_as_resource self
