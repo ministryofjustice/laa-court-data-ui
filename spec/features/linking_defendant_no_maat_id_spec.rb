@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Linking a defendant with no MAAT id', :stub_unlinked, type: :feature do
+RSpec.describe 'Linking a defendant with no MAAT id', :stub_unlinked, :stub_hearing_summary, type: :feature do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
+  let(:case_reference) { case_urn }
   let(:defendant_name) { 'Jammy Dodger' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
 

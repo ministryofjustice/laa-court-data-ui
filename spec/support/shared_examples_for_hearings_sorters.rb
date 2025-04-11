@@ -3,33 +3,43 @@
 require 'court_data_adaptor'
 
 RSpec.shared_context 'with multiple hearings to sort' do
-  let(:hearings) { [hearing1, hearing2, hearing3] }
-
+  let(:hearing_summaries) { [hearing1, hearing2, hearing3] }
   let(:hearing1) do
-    # TODO: provider_list is not an actual attribute of Hearing but a decorated method
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-1', hearing_type: 'Trial',
-                                            provider_list: hearing1_provider_list,
-                                            hearing_days: hearing1_days)
+    # TODO: defence_counsel_list is not an actual attribute of hearing_summary but a decorated method
+    # Use a decorated hearing_summary to test defence_counsel_list instead of altering the model
+    build(:hearing_summary, id: 'hearing-uuid-1', hearing_type: 'Trial',
+                            hearing_days: [hearing1_day1, hearing1_day2],
+                            defence_counsel_list: hearing1_defence_counsel_list)
   end
 
   let(:hearing2) do
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-2', hearing_type: 'Pre-Trial Review',
-                                            provider_list: hearing2_provider_list,
-                                            hearing_days: hearing2_days)
+    build(:hearing_summary, id: 'hearing-uuid-2', hearing_type: 'Pre-Trial Review',
+                            hearing_days: [hearing2_day1],
+                            defence_counsel_list: hearing2_defence_counsel_list)
   end
 
   let(:hearing3) do
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-3', hearing_type: 'Mention',
-                                            provider_list: hearing3_provider_list,
-                                            hearing_days: hearing3_days)
+    build(:hearing_summary, id: 'hearing-uuid-3', hearing_type: 'Mention', hearing_days: [hearing3_day1],
+                            defence_counsel_list: hearing3_defence_counsel_list)
   end
 
-  let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
-  let(:hearing2_days) { ['2021-01-20T10:00:00.000Z'] }
-  let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
-  let(:hearing1_provider_list) { 'Jammy Dodger (Junior)' }
-  let(:hearing2_provider_list) { 'Hob Nob (QC)<br>Malted Milk (Junior)' }
-  let(:hearing3_provider_list) { 'Custard Cream (Junior)' }
+  let(:hearing1_day1) do
+    CdApi::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-19T10:45:00.000Z'))
+  end
+  let(:hearing1_day2) do
+    CdApi::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-20T10:45:00.0s00Z'))
+  end
+
+  let(:hearing2_day1) do
+    CdApi::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-20T10:00:00.000Z'))
+  end
+  let(:hearing3_day1) do
+    CdApi::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-18T11:00:00.000Z'))
+  end
+
+  let(:hearing1_defence_counsel_list) { 'Jammy Dodger (Junior)' }
+  let(:hearing2_defence_counsel_list) { 'Hob Nob (QC)<br>Malted Milk (Junior)' }
+  let(:hearing3_defence_counsel_list) { 'Custard Cream (Junior)' }
 end
 
 RSpec.shared_examples 'sort hearings' do

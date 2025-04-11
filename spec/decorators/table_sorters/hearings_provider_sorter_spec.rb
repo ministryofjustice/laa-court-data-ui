@@ -3,12 +3,7 @@
 require 'court_data_adaptor'
 
 RSpec.describe TableSorters::HearingsProviderSorter do
-  # TODO: update hearings to use a decorated hearings
-  subject(:instance) { described_class.new(hearings, column, direction) }
-
-  before do
-    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(false)
-  end
+  subject(:instance) { described_class.new(hearing_summaries, column, direction) }
 
   include_context 'with multiple hearings to sort'
 
@@ -19,9 +14,10 @@ RSpec.describe TableSorters::HearingsProviderSorter do
       let(:column) { 'provider' }
       let(:direction) { 'asc' }
 
-      it 'sorts hearings by provider_list asc' do
-        expect(call.map(&:provider_list))
-          .to match([hearing3.provider_list, hearing2.provider_list, hearing1.provider_list])
+      it 'sorts hearings by defence_counsel_list asc' do
+        expect(call.map(&:defence_counsel_list))
+          .to match([hearing3.defence_counsel_list, hearing2.defence_counsel_list,
+                     hearing1.defence_counsel_list])
       end
     end
 
@@ -32,8 +28,9 @@ RSpec.describe TableSorters::HearingsProviderSorter do
       let(:direction) { 'desc' }
 
       it 'sorts hearings by provider list desc' do
-        expect(call.map(&:provider_list))
-          .to match([hearing1.provider_list, hearing2.provider_list, hearing3.provider_list])
+        expect(call.map(&:defence_counsel_list))
+          .to match([hearing1.defence_counsel_list, hearing2.defence_counsel_list,
+                     hearing3.defence_counsel_list])
       end
     end
   end

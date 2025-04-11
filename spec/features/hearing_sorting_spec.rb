@@ -115,7 +115,7 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
         rows = find_all('tbody/tr')
         expect(rows[2]).to have_link('31/10/2019', href: hearing_page_url(2, 'provider', 'desc'),
                                                    class: 'govuk-link')
-        expect(rows[2]).to have_text('Samira Schoen (Junior counsel)Hector Thompson (Junior counsel)')
+        expect(rows[2]).to have_text('Not available')
         expect(rows[3]).to have_link('26/10/2019', href: hearing_page_url(3, 'provider', 'desc'),
                                                    class: 'govuk-link')
         expect(rows[3]).to have_text('Not available')
@@ -144,7 +144,7 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
         expect(rows[3]).to have_text('Not available')
         expect(rows[8]).to have_link('31/10/2019', href: hearing_page_url(8, 'provider', 'asc'),
                                                    class: 'govuk-link')
-        expect(rows[8]).to have_text('Samira Schoen (Junior counsel)Hector Thompson (Junior counsel)')
+        expect(rows[8]).to have_text('Not available')
       end
     end
   end
