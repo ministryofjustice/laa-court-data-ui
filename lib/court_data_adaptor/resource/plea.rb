@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class Plea < Base
+    class Plea < V1
       acts_as_resource self
 
       property :code, type: :string

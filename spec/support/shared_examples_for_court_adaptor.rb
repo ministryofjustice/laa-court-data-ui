@@ -16,7 +16,9 @@ RSpec.shared_examples 'court_data_adaptor resource callbacks' do
   end
 
   describe '#save' do
-    before { instance.save }
+    before do
+      instance.save
+    end
 
     it 'calls token refresh' do
       expect(instance).to have_received(:refresh_token_if_required!)
