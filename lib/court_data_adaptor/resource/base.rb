@@ -1,6 +1,6 @@
 module CourtDataAdaptor
   module Resource
-    # Note: To inherit from this base class you will need to subclass it,
+    # NOTE: To inherit from this base class you will need to subclass it,
     # and in the subclass first define an API_VERSION constant and
     # *then* include ResourceConfiguration. This is because JsonApiClient
     # hard-defines "site" as soon as the resource class is parsed, meaning
@@ -14,7 +14,7 @@ module CourtDataAdaptor
         refresh_token_if_required!
       end
 
-      VERSION = '0.0.1'
+      VERSION = '0.0.1'.freeze
     end
   end
 end

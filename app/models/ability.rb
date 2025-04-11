@@ -71,6 +71,7 @@ class Ability
     can %i[show], CourtDataAdaptor::Query::Defendant::ByUuid
     can %i[show], CdApi::SearchService
     can %i[show], CourtDataAdaptor::Query::Hearing
+    can %i[show], CourtDataAdaptor::Resource::ApplicationSummary
   end
 
   def can_manage_links
