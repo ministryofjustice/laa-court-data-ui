@@ -30,6 +30,8 @@ class HearingDaysController < ApplicationController
   def load_hearing_details
     details = CdApi::Hearing.find(@hearing_day.hearing.id, params: { date: @hearing_day.date })
     @hearing_details = helpers.decorate(details, CdApi::HearingDecorator)
+    @hearing_details.current_sitting_day = @hearing_day.sitting_day
+    @hearing_details.skip_mapping_counsels_to_defendants = true
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     logger.error e
     Sentry.capture_exception(e)

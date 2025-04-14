@@ -38,10 +38,28 @@ RSpec.feature 'Court Application Hearings', :vcr do
                                                                                  first_hearing_id,
                                                                                  first_hearing_day)
 
-    expect(page).to have_content "11:20"
-    expect(page).to have_content "Est ut cum placeat."
-    expect(page).to have_content "Praesentium animi hic dolore."
+    # Details
+    expect(page).to have_content(
+      "Details\nHearing type\nMention - Defendant to Attend (MDA)"
+    ).and have_content(
+      "Court\nDerby Crown Court"
+    ).and have_content("Time listed\n16:19")
 
+    # Attendees
+    expect(page).to have_content(
+      "Attendees\nDefendants\nMauricio Rath"
+    ).and have_content(
+      "Defence advocates\nGlenn Walsh Macgyver (Customer counsel)"
+    ).and have_content(
+      "Prosecution advocates\nArden Macejkovic"
+    ).and have_content("Judges\nMyString MyString MyString")
+
+    # Events
+    expect(page).to have_content("11:20").and have_content("Est ut cum placeat.").and have_content(
+      "Praesentium animi hic dolore."
+    )
+
+    # Court applications
     expect(page).to have_content "Court Applications\nCOURT APPLICATION DESCRIPTION\n14 April 2025"
   end
 
