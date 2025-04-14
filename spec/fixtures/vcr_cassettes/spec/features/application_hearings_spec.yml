@@ -134,72 +134,6 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-23
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic <Basic>
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Laa-Transaction-Id:
-      - 186944fc-3c7e-4a57-b0f6-3b791c699a9f
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Mon, 14 Apr 2025 11:06:05 GMT
-      Server:
-      - uvicorn
-      Content-Length:
-      - '1167'
-      Content-Type:
-      - application/json; charset=utf-8
-      Laa-Transaction-Id:
-      - 186944fc-3c7e-4a57-b0f6-3b791c699a9f
-      Access-Control-Expose-Headers:
-      - Laa-Transaction-Id
-      Cache-Control:
-      - no-store
-      Content-Security-Policy:
-      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
-        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
-        'unsafe-inline'
-      Strict-Transport-Security:
-      - includeSubDomains; preload; max-age=2592000
-      Referrer-Policy:
-      - no-referrer
-      X-Frame-Options:
-      - SAMEORIGIN
-    body:
-      encoding: UTF-8
-      string: '{"hearing": {"id": "4a660116-95ee-41cf-9c19-354674c1b0b3", "jurisdiction_type":
-        "CROWN", "court_centre": {"id": "6131bd34-33d9-3d1e-8152-8b5a2084f1bd", "name":
-        "Derby Crown Court", "welsh_name": "Llys Y Goron Derby", "room_id": null,
-        "room_name": null, "welsh_room_name": null, "welsh_court_centre": null, "short_oucode":
-        "C30DE", "oucode_l2_code": "30", "code": "C30DE00", "address": {"address_1":
-        "Derby Combined Court Centre", "address_2": "Morledge", "address_3": "Derby",
-        "address_4": "", "address_5": "", "postcode": "DE1 2XE"}}, "hearing_language":
-        "WELSH", "has_shared_results": false, "court_applications": [], "hearing_type":
-        {"id": "bad5d912-2418-4052-83d6-096f251faff2", "description": "Mention - Defendant
-        to Attend (MDA)", "welsh_description": null}, "hearing_days": [{"sitting_day":
-        "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [],
-        "prosecution_counsels": [], "defence_counsels": [], "cracked_ineffective_trial":
-        {"id": null, "code": null, "description": null, "type": null, "date": null},
-        "prosecution_cases": [], "defendant_judicial_results": [], "defendant_attendance":
-        []}, "shared_time": "2025-03-06T12:10:56.016+00:00"}'
-  recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
-- request:
-    method: get
     uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80/hearing_events?date=2019-10-23
     body:
       encoding: US-ASCII
@@ -313,7 +247,20 @@ http_interactions:
         {"address_1": "The Court House", "address_2": "Palace Avenue", "address_3":
         "Maidstone", "address_4": "Kent", "address_5": "", "postcode": "ME15 6LL"}},
         "hearing_language": "ENGLISH", "has_shared_results": false, "court_applications":
-        [], "hearing_type": {"id": "06fa3c79-3176-4dcf-8178-0aaddb14248d", "description":
+        [{"id": "eccd86dc-cb1d-4874-9284-0fd8be9413b1",
+        "received_date": "2025-04-14", "application_reference": "MyString", "respondents":
+        [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
+        true, "notification_required": true}], "judicial_results": [], "plea": null,
+        "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
+        "CODE", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
+        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
+        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
+        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
+        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
+        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        true, "listing_notif_template": "String", "boxwork_notif_template": "String",
+        "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
+        true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type": {"id": "06fa3c79-3176-4dcf-8178-0aaddb14248d", "description":
         "Pre-Trial Review (PTR)", "welsh_description": null}, "hearing_days": [{"sitting_day":
         "2025-04-10T00:00:00.000Z", "has_shared_results": false}], "judiciary": [],
         "prosecution_counsels": [], "defence_counsels": [{"title": "MR", "first_name":
@@ -575,7 +522,20 @@ http_interactions:
         "C30DE", "oucode_l2_code": "30", "code": "C30DE00", "address": {"address_1":
         "Derby Combined Court Centre", "address_2": "Morledge", "address_3": "Derby",
         "address_4": "", "address_5": "", "postcode": "DE1 2XE"}}, "hearing_language":
-        "WELSH", "has_shared_results": false, "court_applications": [], "hearing_type":
+        "WELSH", "has_shared_results": false, "court_applications": [{"id": "eccd86dc-cb1d-4874-9284-0fd8be9413b1",
+        "received_date": "2025-04-14", "application_reference": "MyString", "respondents":
+        [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
+        true, "notification_required": true}], "judicial_results": [], "plea": null,
+        "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
+        "CODE", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
+        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
+        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
+        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
+        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
+        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        true, "listing_notif_template": "String", "boxwork_notif_template": "String",
+        "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
+        true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":
         {"id": "bad5d912-2418-4052-83d6-096f251faff2", "description": "Mention - Defendant
         to Attend (MDA)", "welsh_description": null}, "hearing_days": [{"sitting_day":
         "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [],
@@ -866,7 +826,20 @@ http_interactions:
         "C30DE", "oucode_l2_code": "30", "code": "C30DE00", "address": {"address_1":
         "Derby Combined Court Centre", "address_2": "Morledge", "address_3": "Derby",
         "address_4": "", "address_5": "", "postcode": "DE1 2XE"}}, "hearing_language":
-        "WELSH", "has_shared_results": false, "court_applications": [], "hearing_type":
+        "WELSH", "has_shared_results": false, "court_applications": [{"id": "eccd86dc-cb1d-4874-9284-0fd8be9413b1",
+        "received_date": "2025-04-14", "application_reference": "MyString", "respondents":
+        [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
+        true, "notification_required": true}], "judicial_results": [], "plea": null,
+        "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
+        "CODE", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
+        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
+        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
+        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
+        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
+        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        true, "listing_notif_template": "String", "boxwork_notif_template": "String",
+        "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
+        true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":
         {"id": "bad5d912-2418-4052-83d6-096f251faff2", "description": "Mention - Defendant
         to Attend (MDA)", "welsh_description": null}, "hearing_days": [{"sitting_day":
         "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [],
@@ -932,7 +905,20 @@ http_interactions:
         "C30DE", "oucode_l2_code": "30", "code": "C30DE00", "address": {"address_1":
         "Derby Combined Court Centre", "address_2": "Morledge", "address_3": "Derby",
         "address_4": "", "address_5": "", "postcode": "DE1 2XE"}}, "hearing_language":
-        "WELSH", "has_shared_results": false, "court_applications": [], "hearing_type":
+        "WELSH", "has_shared_results": false, "court_applications": [{"id": "eccd86dc-cb1d-4874-9284-0fd8be9413b1",
+        "received_date": "2025-04-14", "application_reference": "MyString", "respondents":
+        [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
+        true, "notification_required": true}], "judicial_results": [], "plea": null,
+        "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
+        "CODE", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
+        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
+        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
+        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
+        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
+        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        true, "listing_notif_template": "String", "boxwork_notif_template": "String",
+        "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
+        true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":
         {"id": "bad5d912-2418-4052-83d6-096f251faff2", "description": "Mention - Defendant
         to Attend (MDA)", "welsh_description": null}, "hearing_days": [{"sitting_day":
         "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [],
@@ -998,7 +984,20 @@ http_interactions:
         "C30DE", "oucode_l2_code": "30", "code": "C30DE00", "address": {"address_1":
         "Derby Combined Court Centre", "address_2": "Morledge", "address_3": "Derby",
         "address_4": "", "address_5": "", "postcode": "DE1 2XE"}}, "hearing_language":
-        "WELSH", "has_shared_results": false, "court_applications": [], "hearing_type":
+        "WELSH", "has_shared_results": false, "court_applications": [{"id": "eccd86dc-cb1d-4874-9284-0fd8be9413b1",
+        "received_date": "2025-04-14", "application_reference": "MyString", "respondents":
+        [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
+        true, "notification_required": true}], "judicial_results": [], "plea": null,
+        "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
+        "CODE", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
+        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
+        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
+        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
+        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
+        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        true, "listing_notif_template": "String", "boxwork_notif_template": "String",
+        "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
+        true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":
         {"id": "bad5d912-2418-4052-83d6-096f251faff2", "description": "Mention - Defendant
         to Attend (MDA)", "welsh_description": null}, "hearing_days": [{"sitting_day":
         "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [],
@@ -1121,4 +1120,83 @@ http_interactions:
         "2025-03-21T11:20:46.344000+00:00", "alterable": false, "note": "Praesentium
         animi hic dolore."}]}'
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
+- request:
+    method: get
+    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-23
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic <Basic>
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Laa-Transaction-Id:
+      - dbfdc5ef-e041-43ae-b172-32ce51602851
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 14 Apr 2025 13:39:15 GMT
+      Server:
+      - uvicorn
+      Content-Length:
+      - '2245'
+      Content-Type:
+      - application/json; charset=utf-8
+      Laa-Transaction-Id:
+      - dbfdc5ef-e041-43ae-b172-32ce51602851
+      Access-Control-Expose-Headers:
+      - Laa-Transaction-Id
+      Cache-Control:
+      - no-store
+      Content-Security-Policy:
+      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
+        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
+        'unsafe-inline'
+      Strict-Transport-Security:
+      - includeSubDomains; preload; max-age=2592000
+      Referrer-Policy:
+      - no-referrer
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: '{"hearing": {"id": "4a660116-95ee-41cf-9c19-354674c1b0b3", "jurisdiction_type":
+        "CROWN", "court_centre": {"id": "6131bd34-33d9-3d1e-8152-8b5a2084f1bd", "name":
+        "Derby Crown Court", "welsh_name": "Llys Y Goron Derby", "room_id": null,
+        "room_name": null, "welsh_room_name": null, "welsh_court_centre": null, "short_oucode":
+        "C30DE", "oucode_l2_code": "30", "code": "C30DE00", "address": {"address_1":
+        "Derby Combined Court Centre", "address_2": "Morledge", "address_3": "Derby",
+        "address_4": "", "address_5": "", "postcode": "DE1 2XE"}}, "hearing_language":
+        "WELSH", "has_shared_results": false, "court_applications": [{"id": "eccd86dc-cb1d-4874-9284-0fd8be9413b1",
+        "received_date": "2025-04-14", "application_reference": "MyString", "respondents":
+        [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
+        true, "notification_required": true}], "judicial_results": [], "plea": null,
+        "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
+        "CODE", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
+        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
+        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
+        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
+        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
+        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        true, "listing_notif_template": "String", "boxwork_notif_template": "String",
+        "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
+        true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":
+        {"id": "bad5d912-2418-4052-83d6-096f251faff2", "description": "Mention - Defendant
+        to Attend (MDA)", "welsh_description": null}, "hearing_days": [{"sitting_day":
+        "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [],
+        "prosecution_counsels": [], "defence_counsels": [], "cracked_ineffective_trial":
+        {"id": null, "code": null, "description": null, "type": null, "date": null},
+        "prosecution_cases": [], "defendant_judicial_results": [], "defendant_attendance":
+        []}, "shared_time": "2025-03-06T12:10:56.016+00:00"}'
+  recorded_at: Mon, 14 Apr 2025 13:39:15 GMT
 recorded_with: VCR 6.3.1

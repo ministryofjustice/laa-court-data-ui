@@ -27,7 +27,7 @@
   .govuk-grid-column-two-thirds
     .govuk-heading-l
       = t('.events')
-    - if @hearing_events
+    - if @hearing_events&.events&.any?
       %table.govuk-table
         %caption.govuk-table__caption.govuk-visually-hidden
           = t('.events')
@@ -45,3 +45,8 @@
                 - if event&.note.present?
                   %div{ class: 'govuk-!-padding-top-1' }
                     = transform_and_sanitize(event.note)
+    - else
+      %p.govuk-body
+        = t('.event.none')
+
+    = render partial: 'hearings/court_applications_v2', locals: { hearing: @hearing_details.hearing }

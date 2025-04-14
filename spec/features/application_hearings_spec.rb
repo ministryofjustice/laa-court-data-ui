@@ -41,6 +41,8 @@ RSpec.feature 'Court Application Hearings', :vcr do
     expect(page).to have_content "11:20"
     expect(page).to have_content "Est ut cum placeat."
     expect(page).to have_content "Praesentium animi hic dolore."
+
+    expect(page).to have_content "Court Applications\nCOURT APPLICATION DESCRIPTION\n14 April 2025"
   end
 
   scenario 'I navigate between hearing pages' do
@@ -82,6 +84,7 @@ RSpec.feature 'Court Application Hearings', :vcr do
                                                      problematic_hearing_id,
                                                      missing_hearing_day)
     expect(page).to have_content "11/04/2025"
+    expect(page).to have_content "No events are associated with this hearing"
     expect(page).to have_no_content "Something went wrong"
   end
 end

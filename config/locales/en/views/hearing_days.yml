@@ -6,6 +6,7 @@ en:
       details: Details
       event:
         event: Event
+        none: No events are associated with this hearing
         time: Time
       events: Events
       next: Next
