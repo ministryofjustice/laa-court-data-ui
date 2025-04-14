@@ -34,8 +34,8 @@ RSpec.feature 'Court Applications', :vcr do
     expect(page).to have_content "Mauricio Rath"
     expect(page).to have_content "06/05/1994"
     expect(page).to have_content "Not linked"
-    node = find("a", text: "Mauricio Rath")
-    expect(node["href"]).to eq court_application_subject_path(found_court_application_id)
+    click_on "Mauricio Rath"
+    expect(page).to have_current_path court_application_subject_path(found_court_application_id)
   end
 
   scenario 'I view a linked application' do

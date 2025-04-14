@@ -1,0 +1,4 @@
+- content_for :pre_heading do
+  %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
+    = t(".appeal")
+= govuk_page_title(@application.subject_summary.name, t(".defendant"))

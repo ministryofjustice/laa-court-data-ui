@@ -46,6 +46,7 @@
 
       %main.govuk-main-wrapper#main-content{ role: "main" }
         = render partial: 'layouts/flashes' unless flash.empty?
+        = content_for :pre_heading
         = content_for :page_heading
         = yield
 
