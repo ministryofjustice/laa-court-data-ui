@@ -1,0 +1,8 @@
+---
+en:
+  hearing_days:
+    show:
+      breadcrumb: Hearing day %{day}
+      next: Next
+      pagination_navigation: Pagination navigation
+      previous: Previous
