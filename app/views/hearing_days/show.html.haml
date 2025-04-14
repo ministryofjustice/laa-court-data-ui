@@ -16,3 +16,32 @@
             = link_to(t('.previous'),
                       court_application_hearing_hearing_day_path(@application.application_id, @previous_day.hearing.id, @previous_day.date),
               class: 'moj-pagination__link')
+
+
+.govuk-grid-row
+  .govuk-grid-column-one-third
+    .govuk-heading-l
+      = t('.details')
+    -# TODO ACD-569: Put hearing details here
+
+  .govuk-grid-column-two-thirds
+    .govuk-heading-l
+      = t('.events')
+    - if @hearing_events
+      %table.govuk-table
+        %caption.govuk-table__caption.govuk-visually-hidden
+          = t('.events')
+        %thead.govuk-table__head
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: 'col' }= t('.event.time')
+            %th.govuk-table__header{ scope: 'col' }= t('.event.event')
+        %tbody.govuk-table__body
+          - @hearing_events.events.each do |event|
+            %tr.govuk-table__row
+              %td.govuk-table__cell
+                = event.event_time.to_datetime.strftime('%H:%M')
+              %td.govuk-table__cell.hearing-events-table__cell--overflow-wrap
+                = event.recorded_label
+                - if event&.note.present?
+                  %div{ class: 'govuk-!-padding-top-1' }
+                    = transform_and_sanitize(event.note)

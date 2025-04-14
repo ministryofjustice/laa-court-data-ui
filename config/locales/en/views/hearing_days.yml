@@ -3,6 +3,11 @@ en:
   hearing_days:
     show:
       breadcrumb: Hearing day %{day}
+      details: Details
+      event:
+        event: Event
+        time: Time
+      events: Events
       next: Next
       pagination_navigation: Pagination navigation
       previous: Previous

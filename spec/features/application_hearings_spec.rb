@@ -37,6 +37,10 @@ RSpec.feature 'Court Application Hearings', :vcr do
     expect(page).to have_current_path court_application_hearing_hearing_day_path(court_application_id,
                                                                                  first_hearing_id,
                                                                                  first_hearing_day)
+
+    expect(page).to have_content "11:20"
+    expect(page).to have_content "Est ut cum placeat."
+    expect(page).to have_content "Praesentium animi hic dolore."
   end
 
   scenario 'I navigate between hearing pages' do
