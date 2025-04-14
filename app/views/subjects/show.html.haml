@@ -1,4 +1,30 @@
 - content_for :pre_heading do
   %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
     = t(".appeal")
-= govuk_page_title(@application.subject_summary.name, t(".defendant"))
+= govuk_page_title(@subject.name, t(".defendant"))
+
+.govuk-width-container
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      %table.govuk-table
+        %caption.govuk-table__caption.govuk-visually-hidden
+          = t(".defendant")
+        %tbody.govuk-table__body
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: "row" }
+              = t(".date_of_birth")
+            %td.govuk-table__cell
+              = l(@subject.date_of_birth)
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: "row" }
+              = t(".arrest_summons_number")
+            %td.govuk-table__cell
+              = @subject.defendant_asn
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: "row" }
+              = t(".maat_number")
+            %td.govuk-table__cell
+              = @subject.maat_reference
+= link_to t(".view_summary"),
+          court_application_path(@application.application_id),
+          class: "govuk-button govuk-button--secondary"

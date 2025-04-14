@@ -5,13 +5,14 @@ class SubjectsController < ApplicationController
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
   def show
-    add_breadcrumb @application.subject_summary.name
+    add_breadcrumb @subject.name
   end
 
   private
 
   def load_and_authorize_application
     @application = CourtDataAdaptor::Query::CourtApplication.new(params[:court_application_id]).call
+    @subject = @application.subject_summary
     authorize! :show, @application
   rescue JsonApiClient::Errors::ServiceUnavailable => e
     Sentry.capture_exception(e)

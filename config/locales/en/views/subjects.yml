@@ -3,4 +3,8 @@ en:
   subjects:
     show:
       appeal: Appeal
+      arrest_summons_number: ASN
+      date_of_birth: Date of birth
       defendant: Defendant
+      maat_number: MAAT number
+      view_summary: View application summary
