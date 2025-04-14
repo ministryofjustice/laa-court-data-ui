@@ -1,4 +1,3 @@
 - results.each do |defendant_court_applications|
-  
   -# = link_to defendant_court_applications.title, court_application_path(defendant_court_applications.id), class: 'govuk-link'
   = link_to defendant_court_applications.title, "#{'#' + defendant_court_applications.id}", class: 'govuk-link'
