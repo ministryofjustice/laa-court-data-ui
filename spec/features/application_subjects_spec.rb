@@ -2,7 +2,7 @@ RSpec.feature 'Court Application subjects', :vcr do
   let(:user) { create(:user) }
   let(:missing_court_application_id) { 'not-found-uuid' }
   let(:erroring_court_application_id) { 'erroring-court-application-id' }
-  let(:found_court_application_id) { 'e174af7f-75da-428b-9875-c823eb182a23' }
+  let(:found_court_application_id) { 'd174af7f-75da-428b-9875-c823eb182a23' }
   let(:linked_court_application_id) { 'af7fc823e-428b-75da-9875-b182a23d174' }
   let(:maat_id_from_vcr) { '1234567' }
 
@@ -40,5 +40,14 @@ RSpec.feature 'Court Application subjects', :vcr do
     sign_in user
     visit court_application_path(linked_court_application_id)
     expect(page).to have_content maat_id_from_vcr
+  end
+
+  scenario 'I view the offence details' do
+    sign_in user
+    visit court_application_subject_path(found_court_application_id)
+    expect(page).to have_content "Trafficking into UK"
+    expect(page).to have_content "Theft Act 1978 s.2"
+    expect(page).to have_content "Autrefois convict on 21/05/2024"
+    expect(page).to have_content "Indictable only"
   end
 end

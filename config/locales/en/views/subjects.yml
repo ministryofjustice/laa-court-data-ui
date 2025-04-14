@@ -7,4 +7,10 @@ en:
       date_of_birth: Date of birth
       defendant: Defendant
       maat_number: MAAT number
+      offence:
+        mode_of_trial: Mode of trial
+        offence_and_legislation: Offence and legislation
+        plea: Plea
+      offences: Offences
+      plea_summary: "%{value} on %{date}"
       view_summary: View application summary
