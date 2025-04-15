@@ -82,3 +82,9 @@
         = t('.event.none')
 
     = render partial: 'hearings/court_applications_v2', locals: { hearing: @hearing_details.hearing }
+
+    - if @application.subject_summary.proceedings_concluded
+      .govuk-heading-l
+        = t('.result')
+      .govuk-body
+        = @application.result_string

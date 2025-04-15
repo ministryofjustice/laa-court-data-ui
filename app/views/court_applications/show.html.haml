@@ -1,4 +1,9 @@
 = govuk_page_title(@application.case_summary.prosecution_case_reference, @application.application_title)
+
+.govuk-body
+  %strong
+    = t('.result')
+  = @application.result_string
 %h2.govuk-heading-l
   = t('.defendants')
 %table.govuk-table
