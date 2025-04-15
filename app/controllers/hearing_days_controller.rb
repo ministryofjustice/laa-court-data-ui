@@ -6,7 +6,7 @@ class HearingDaysController < ApplicationController
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
   def show
-    add_breadcrumb @application.application_title
+    add_breadcrumb @application.application_title, court_application_path(@application.application_id)
     add_breadcrumb t(".breadcrumb", day: @hearing_day.day_string)
   end
 
