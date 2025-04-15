@@ -5,6 +5,8 @@ class HearingDaysController < ApplicationController
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
 
+  HEARING_SORT_DIRECTION = "asc".freeze
+
   def show
     add_breadcrumb @application.application_title
     add_breadcrumb t(".breadcrumb", day: @hearing_day.day_string)
@@ -62,6 +64,6 @@ class HearingDaysController < ApplicationController
   end
 
   def flat_hearing_days
-    @flat_hearing_days ||= @application.hearing_days_sorted_by("asc")
+    @flat_hearing_days ||= @application.hearing_days_sorted_by(HEARING_SORT_DIRECTION)
   end
 end
