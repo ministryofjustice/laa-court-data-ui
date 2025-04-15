@@ -2,6 +2,7 @@
 en:
   hearing_days:
     show:
+      appeal: Appeal
       attendees: Attendees
       breadcrumb: Hearing day %{day}
       court: Court
