@@ -14,6 +14,10 @@ module CourtDataAdaptor
       def defence_counsels_on(date)
         defence_counsels.select { _1.attended_on?(date) }
       end
+
+      def court_centre
+        @court_centre ||= CourtCentre.new(super)
+      end
     end
   end
 end

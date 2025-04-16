@@ -31,6 +31,7 @@ RSpec.feature 'Court Applications', :vcr do
     visit court_application_path(found_court_application_id)
     expect(page).to have_content "Appeal against a conviction"
     expect(page).to have_content prosecution_case_urn_from_vcr
+    expect(page).to have_content "Result: Not available"
     expect(page).to have_content "Mauricio Rath"
     expect(page).to have_content "06/05/1994"
     expect(page).to have_content "Not linked"
@@ -51,8 +52,8 @@ RSpec.feature 'Court Applications', :vcr do
     expect(page).to have_content "10/04/2025 Pre-Trial Review (PTR) Mr Leone Spinka (Direct counsel)"
 
     node = find("a", text: "23/10/2019")
-    expect(node["href"]).to eq court_application_hearing_path(id_with_hearings, hearing_id_from_vcr,
-                                                              day: "2019-10-23")
+    expect(node["href"]).to eq court_application_hearing_hearing_day_path(id_with_hearings,
+                                                                          hearing_id_from_vcr, "2019-10-23")
 
     expect(page.body.index("23/10/2019")).to be < page.body.index("10/04/2025")
     click_on "Date"

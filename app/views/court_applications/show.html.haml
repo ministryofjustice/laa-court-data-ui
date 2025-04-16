@@ -1,4 +1,9 @@
 = govuk_page_title(@application.case_summary.prosecution_case_reference, @application.application_title)
+
+.govuk-body
+  %strong
+    = t('.result')
+  = @application.result_string
 %h2.govuk-heading-l
   = t('.defendants')
 %table.govuk-table
@@ -37,13 +42,13 @@
       %th.govuk-table__header{ scope: 'col' }
         = t('.hearing.providers')
   %tbody.govuk-table__body
-    - @application.hearing_days_sorted_by(@date_sort_direction).each_with_index do |hearing_day|
+    - @application.hearing_days_sorted_by(@date_sort_direction).each do |hearing_day|
       %tr.govuk-table__row
         %td.govuk-table__cell
           = link_to hearing_day.day_string,
-                    court_application_hearing_path(@application.application_id,
-                                                   hearing_day.hearing.id,
-                                                   day: hearing_day.date),
+                    court_application_hearing_hearing_day_path(@application.application_id,
+                                                               hearing_day.hearing.id,
+                                                               hearing_day.date),
                     class: 'govuk-link'
         %td.govuk-table__cell
           = hearing_day.hearing.hearing_type
