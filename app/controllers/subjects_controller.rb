@@ -7,17 +7,31 @@ class SubjectsController < ApplicationController
   def show; end
 
   def link
-    return render :show unless @link_attempt.valid?
+    return render :show unless @form_model.valid?
 
-    if CourtDataAdaptor::Query::LinkCourtApplication.call(@link_attempt)
+    if CourtDataAdaptor::Query::LinkCourtApplication.call(@form_model)
       redirect_to court_application_subject_path(@application.application_id),
                   flash: { notice: t('.success') }
     else
-      @link_attempt.errors.add(:maat_reference, t('.failure'))
+      @form_model.errors.add(:maat_reference, t('.failure'))
       render :show
     end
   rescue CourtDataAdaptor::Errors::BadRequest, CourtDataAdaptor::Errors::UnprocessableEntity => e
     handle_link_failure(e)
+  end
+
+  def unlink
+    return render :show unless @form_model.valid?
+
+    if CourtDataAdaptor::Query::UnlinkCourtApplication.call(@form_model)
+      redirect_to court_application_subject_path(@application.application_id),
+                  flash: { notice: t('.success') }
+    else
+      @form_model.errors.add(:maat_reference, t('.failure'))
+      render :show
+    end
+  rescue CourtDataAdaptor::Errors::BadRequest, CourtDataAdaptor::Errors::UnprocessableEntity => e
+    handle_unlink_failure(e)
   end
 
   private
@@ -35,16 +49,31 @@ class SubjectsController < ApplicationController
   end
 
   def load_link
-    @link_attempt = LinkAttempt.new(
-      defendant_id: @subject.subject_id,
-      username: current_user.username,
-      maat_reference: params.dig(:link_attempt, :maat_reference)
-    )
+    @form_model = if @subject.maat_linked?
+                    UnlinkAttempt.new(
+                      defendant_id: @subject.subject_id,
+                      username: current_user.username,
+                      reason_code: params.dig(:unlink_attempt, :reason_code).to_i,
+                      other_reason_text: params.dig(:unlink_attempt, :other_reason_text)
+                    )
+                  else
+                    LinkAttempt.new(
+                      defendant_id: @subject.subject_id,
+                      username: current_user.username,
+                      maat_reference: params.dig(:link_attempt, :maat_reference)
+                    )
+                  end
   end
 
   def handle_link_failure(exception)
     logger.warn "LINK FAILURE: #{exception.message}"
-    @link_attempt.errors.add(:maat_reference, t('subjects.link.failure'))
+    @form_model.errors.add(:maat_reference, t('subjects.link.failure'))
+    render :show
+  end
+
+  def handle_unlink_failure(exception)
+    logger.warn "UNLINK FAILURE: #{exception.message}"
+    @form_model.errors.add(:reason_code, t('subjects.unlink.failure'))
     render :show
   end
 end
