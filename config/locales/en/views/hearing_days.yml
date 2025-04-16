@@ -1,0 +1,24 @@
+---
+en:
+  hearing_days:
+    show:
+      appeal: Appeal
+      attendees: Attendees
+      breadcrumb: Hearing day %{day}
+      court: Court
+      defence_advocates: Defence advocates
+      defendants: Defendants
+      details: Details
+      event:
+        event: Event
+        none: No events are associated with this hearing
+        time: Time
+      events: Events
+      hearing_type: Hearing type
+      judges: Judges
+      next: Next
+      pagination_navigation: Pagination navigation
+      previous: Previous
+      prosecution_advocates: Prosecution advocates
+      result: Result
+      time_listed: Time listed
