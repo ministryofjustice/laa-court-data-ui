@@ -22,6 +22,10 @@ module CourtDataAdaptor
 
         date_sort_direction == "desc" ? ascending.reverse : ascending
       end
+
+      def result_string
+        CourtApplicationResultStringService.call(self)
+      end
     end
   end
 end

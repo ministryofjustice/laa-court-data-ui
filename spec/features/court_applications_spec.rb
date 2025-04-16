@@ -31,6 +31,7 @@ RSpec.feature 'Court Applications', :vcr do
     visit court_application_path(found_court_application_id)
     expect(page).to have_content "Appeal against a conviction"
     expect(page).to have_content prosecution_case_urn_from_vcr
+    expect(page).to have_content "Result: Not available"
     expect(page).to have_content "Mauricio Rath"
     expect(page).to have_content "06/05/1994"
     expect(page).to have_content "Not linked"

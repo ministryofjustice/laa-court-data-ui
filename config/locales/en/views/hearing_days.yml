@@ -2,6 +2,7 @@
 en:
   hearing_days:
     show:
+      appeal: Appeal
       attendees: Attendees
       breadcrumb: Hearing day %{day}
       court: Court
@@ -19,4 +20,5 @@ en:
       pagination_navigation: Pagination navigation
       previous: Previous
       prosecution_advocates: Prosecution advocates
+      result: Result
       time_listed: Time listed
