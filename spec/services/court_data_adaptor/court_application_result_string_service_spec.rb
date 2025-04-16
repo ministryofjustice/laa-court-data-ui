@@ -13,7 +13,9 @@ RSpec.describe CourtDataAdaptor::CourtApplicationResultStringService do
     }
   end
   let(:proceedings_concluded) { true }
-  let(:application_title) { "Appeal against conviction and sentence – Court of Appeal" }
+  let(:application_title) do
+    "Appeal against conviction and sentence by a Magistrates' Court to the Crown Court"
+  end
   let(:application_result) { "AW" }
 
   context "when proceedings are not concluded" do

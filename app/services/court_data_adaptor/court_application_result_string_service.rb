@@ -1,8 +1,6 @@
 module CourtDataAdaptor
   class CourtApplicationResultStringService
     TITLE_KEYS = {
-      "Appeal against conviction and sentence – Court of Appeal" => :conviction_and_sentence,
-      "Appeal against conviction – Court of Appeal" => :conviction,
       "Appeal against conviction and sentence by a Magistrates' Court to the Crown Court" =>
         :conviction_and_sentence,
       "Appeal against conviction by a Magistrates' Court to the Crown Court" => :conviction,
