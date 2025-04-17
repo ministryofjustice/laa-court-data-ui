@@ -3,7 +3,7 @@ class HearingDaysController < ApplicationController
                 :load_hearing_events
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
-  add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+  add_breadcrumb :application_search_breadcrumb_name, :search_breadcrumb_path
 
   HEARING_SORT_DIRECTION = "asc".freeze
 

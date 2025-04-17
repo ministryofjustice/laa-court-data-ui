@@ -2,7 +2,7 @@ class SubjectsController < ApplicationController
   before_action :load_and_authorize_application
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
-  add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+  add_breadcrumb :application_search_breadcrumb_name, :search_breadcrumb_path
 
   def show
     add_breadcrumb @subject.name
