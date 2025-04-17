@@ -17,3 +17,6 @@ en:
       offences: Offences
       plea_summary: "%{value} on %{date}"
       view_summary: View application summary
+    unlink:
+      failure: Unable to unlink the defendant
+      success: You have successfully unlinked from the court data source
