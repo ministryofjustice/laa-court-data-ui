@@ -13,10 +13,6 @@ RSpec.describe CdApi::HearingDayDecorator, type: :decorator do
     end
   end
 
-  before do
-    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
-  end
-
   it_behaves_like 'a base decorator' do
     let(:object) { hearing_day }
   end
