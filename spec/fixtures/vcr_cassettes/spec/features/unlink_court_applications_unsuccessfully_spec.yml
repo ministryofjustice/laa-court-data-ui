@@ -1,0 +1,237 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/22a301d1-8e5c-444e-a629-ac33b8e75f8c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 152a7ea0-6b1a-4dfb-a44e-dc40f93f6657
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"504f47adad6104994de8008e33403b9a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.134829'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=3.36, instantiation.active_record;dur=0.27,
+        process_action.action_controller;dur=109.82
+      Content-Length:
+      - '2179'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"22a301d1-8e5c-444e-a629-ac33b8e75f8c","short_id":"A25ZBMX22F4T","application_reference":"MyString","application_status":"DRAFT","application_title":"String","application_type":"String","received_date":"2025-04-16","case_summary":[{"case_status":"INACTIVE","prosecution_case_id":"c66bc813-7a9e-4c33-820c-349cd70974aa","prosecution_case_reference":"ZZNJSRWHCN"}],"hearing_summary":[{"id":"dde3c71c-7e67-4534-89b0-f856a7ad0298","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"2565ecb5-bd1b-3810-9520-f1db1ed94f95","name":"Peterborough
+        Magistrates'' Court","welsh_name":"Llys Ynadon Peterborough","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B35KE","oucode_l2_code":"35","code":"B35KE00","address":{"address_1":"Magistrates''
+        Court","address_2":"Bridge Street","address_3":"Peterborough","address_4":"Cambridgeshire","address_5":"","postcode":"PE1
+        1ED"}},"hearing_days":[{"sitting_day":"2025-04-16T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":605,"has_shared_results":null}],"defence_counsels":[]}],"subject_summary":{"subject_id":"423f6474-b928-4652-b79f-3d7b5356fe77","date_of_next_hearing":null,"defendant_asn":"WPVUWZ5X0TVH","defendant_dob":"1986-01-12","defendant_first_name":"Nicholas","defendant_last_name":"Simonis","master_defendant_id":null,"offence_summary":[{"id":"9b6e77fd-d740-4c01-b9d6-299f439bb584","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Aggravated vehicle taking","wording":"Random
+        string","proceedings_concluded":false,"legislation":"Sexual Offences Act 2003
+        s. 64, 65","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"7654321","id":"366712a0-a539-44fb-8a6a-c7de5c99c485","status_code":"AP","status_date":"2025-04-16","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
+  recorded_at: Thu, 17 Apr 2025 09:02:32 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/22a301d1-8e5c-444e-a629-ac33b8e75f8c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 1caa7bed-f2e2-4b25-adfa-2972ed75dbe7
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"504f47adad6104994de8008e33403b9a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.107611'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=2.15, instantiation.active_record;dur=0.12,
+        process_action.action_controller;dur=91.02
+      Content-Length:
+      - '2179'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"22a301d1-8e5c-444e-a629-ac33b8e75f8c","short_id":"A25ZBMX22F4T","application_reference":"MyString","application_status":"DRAFT","application_title":"String","application_type":"String","received_date":"2025-04-16","case_summary":[{"case_status":"INACTIVE","prosecution_case_id":"c66bc813-7a9e-4c33-820c-349cd70974aa","prosecution_case_reference":"ZZNJSRWHCN"}],"hearing_summary":[{"id":"dde3c71c-7e67-4534-89b0-f856a7ad0298","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"2565ecb5-bd1b-3810-9520-f1db1ed94f95","name":"Peterborough
+        Magistrates'' Court","welsh_name":"Llys Ynadon Peterborough","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B35KE","oucode_l2_code":"35","code":"B35KE00","address":{"address_1":"Magistrates''
+        Court","address_2":"Bridge Street","address_3":"Peterborough","address_4":"Cambridgeshire","address_5":"","postcode":"PE1
+        1ED"}},"hearing_days":[{"sitting_day":"2025-04-16T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":605,"has_shared_results":null}],"defence_counsels":[]}],"subject_summary":{"subject_id":"423f6474-b928-4652-b79f-3d7b5356fe77","date_of_next_hearing":null,"defendant_asn":"WPVUWZ5X0TVH","defendant_dob":"1986-01-12","defendant_first_name":"Nicholas","defendant_last_name":"Simonis","master_defendant_id":null,"offence_summary":[{"id":"9b6e77fd-d740-4c01-b9d6-299f439bb584","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Aggravated vehicle taking","wording":"Random
+        string","proceedings_concluded":false,"legislation":"Sexual Offences Act 2003
+        s. 64, 65","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"7654321","id":"366712a0-a539-44fb-8a6a-c7de5c99c485","status_code":"AP","status_date":"2025-04-16","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
+  recorded_at: Thu, 17 Apr 2025 09:22:22 GMT
+- request:
+    method: patch
+    uri: http://localhost:9292/api/internal/v2/court_application_laa_references/423f6474-b928-4652-b79f-3d7b5356fe77
+    body:
+      encoding: UTF-8
+      string: '{"laa_reference":{"subject_id":"423f6474-b928-4652-b79f-3d7b5356fe77","user_name":"berg-m64","unlink_reason_code":4,"unlink_other_reason_text":""}}'
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - cc07a52c-78b4-492d-92c3-fe60ddc6acc0
+      Content-Type:
+      - application/vnd.api+json
+      Cache-Control:
+      - no-cache
+      X-Runtime:
+      - '0.070594'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=10.52,
+        instantiation.active_record;dur=0.20, start_transaction.active_record;dur=0.01,
+        transaction.active_record;dur=6.11, process_action.action_controller;dur=60.50
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 17 Apr 2025 09:22:22 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/22a301d1-8e5c-444e-a629-ac33b8e75f8c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 7e5a7c10-a34d-49d0-b7cc-a18700144c83
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"b51bfda1e118f1489d701203f3bf94f8"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.071351'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=2.95, instantiation.active_record;dur=0.10,
+        start_transaction.active_record;dur=0.00, transaction.active_record;dur=2.10,
+        process_action.action_controller;dur=62.74
+      Content-Length:
+      - '2181'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"22a301d1-8e5c-444e-a629-ac33b8e75f8c","short_id":"A25ZBMX22F4T","application_reference":"MyString","application_status":"DRAFT","application_title":"String","application_type":"String","received_date":"2025-04-16","case_summary":[{"case_status":"INACTIVE","prosecution_case_id":"c66bc813-7a9e-4c33-820c-349cd70974aa","prosecution_case_reference":"ZZNJSRWHCN"}],"hearing_summary":[{"id":"dde3c71c-7e67-4534-89b0-f856a7ad0298","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"2565ecb5-bd1b-3810-9520-f1db1ed94f95","name":"Peterborough
+        Magistrates'' Court","welsh_name":"Llys Ynadon Peterborough","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B35KE","oucode_l2_code":"35","code":"B35KE00","address":{"address_1":"Magistrates''
+        Court","address_2":"Bridge Street","address_3":"Peterborough","address_4":"Cambridgeshire","address_5":"","postcode":"PE1
+        1ED"}},"hearing_days":[{"sitting_day":"2025-04-16T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":605,"has_shared_results":null}],"defence_counsels":[]}],"subject_summary":{"subject_id":"423f6474-b928-4652-b79f-3d7b5356fe77","date_of_next_hearing":null,"defendant_asn":"WPVUWZ5X0TVH","defendant_dob":"1986-01-12","defendant_first_name":"Nicholas","defendant_last_name":"Simonis","master_defendant_id":null,"offence_summary":[{"id":"9b6e77fd-d740-4c01-b9d6-299f439bb584","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Aggravated vehicle taking","wording":"Random
+        string","proceedings_concluded":false,"legislation":"Sexual Offences Act 2003
+        s. 64, 65","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"Z10000005","id":"28e9b7bb-7824-493f-819e-3c04b7bb25ab","status_code":"AP","status_date":"2025-04-17","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
+  recorded_at: Thu, 17 Apr 2025 09:22:23 GMT
+recorded_with: VCR 6.3.1
