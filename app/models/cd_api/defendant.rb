@@ -3,6 +3,7 @@
 module CdApi
   class Defendant < BaseModel
     has_many :offence_summaries, class_name: 'cd_api/offence_summary'
+    has_many :application_summaries, class_name: 'cd_api/application_summary'
 
     def linked?
       maat_references.first.present? && maat_references.first.first != 'Z'
