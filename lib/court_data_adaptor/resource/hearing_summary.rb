@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class HearingSummary < Base
+    class HearingSummary < V1
       acts_as_resource self
     end
   end

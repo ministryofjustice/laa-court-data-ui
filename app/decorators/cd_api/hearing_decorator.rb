@@ -2,7 +2,7 @@
 
 module CdApi
   class HearingDecorator < BaseDecorator
-    attr_accessor :current_sitting_day
+    attr_accessor :current_sitting_day, :skip_mapping_counsels_to_defendants
 
     def cracked_ineffective_trial
       @cracked_ineffective_trial ||= decorate(object.hearing.cracked_ineffective_trial,
@@ -21,6 +21,12 @@ module CdApi
       safe_join(formatted_prosecution_counsels, tag.br)
     end
 
+    def judiciary_list
+      return t('generic.not_available') if hearing.judiciary.none?
+
+      safe_join(hearing.judiciary.map { |jd| "#{jd.title} #{jd.first_name} #{jd.last_name}" }, tag.br)
+    end
+
     private
 
     def defence_counsel_sentences
@@ -31,7 +37,9 @@ module CdApi
 
     def decorated_defence_counsels
       service = CdApi::HearingDetails::DefenceCounselsListService
-      @decorated_defence_counsels ||= service.call(mapped_defence_counsels)
+      @decorated_defence_counsels ||= service.call(
+        mapped_defence_counsels, map_counsels_to_defendants: !skip_mapping_counsels_to_defendants
+      )
     end
 
     def mapped_defence_counsels

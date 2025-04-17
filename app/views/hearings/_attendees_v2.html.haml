@@ -29,4 +29,4 @@
     - unless hearing_details && hearing_details.judiciary&.any?
       = t('generic.not_available')
     - else
-      = safe_join(hearing_details.judiciary.map { |jd| "#{jd.title} #{jd.first_name} #{jd.last_name}"}, tag.br)
+      = hearing.judiciary_list

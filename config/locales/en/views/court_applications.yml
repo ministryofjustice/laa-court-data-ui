@@ -1,0 +1,36 @@
+---
+en:
+  court_applications:
+    results:
+      conviction:
+        AACA: Appeal against Conviction Allowed
+        AACD: Appeal against Conviction Dismissed
+        APA: Appeal Abandoned
+        ASV: Appeal against Conviction Dismissed & Sentence Varied
+        AW: Appeal Withdrawn
+      conviction_and_sentence:
+        AACA: Conviction Allowed
+        AACD & AASA: Appeal against Conviction Dismissed & Appeal against Sentence Allowed
+        ACSD: Appeal against Conviction and Sentence Dismissed
+        APA: Appeal Abandoned
+        ASV: Appeal against Conviction Dismissed & Sentence Varied (increased)
+        AW: Appeal Withdrawn
+      not_available: Not available
+      sentence:
+        AASA: Appeal against Sentence Allowed
+        AASD: Appeal against Sentence Dismissed
+        AASD & SV: Appeal against Sentence Dismissed & sentence varied
+        APA: Appeal Abandoned
+        AW: Appeal Withdrawn
+    show:
+      defendant:
+        date_of_birth: Date of birth
+        maat_number: MAAT number
+        name: Name
+      defendants: Defendants
+      hearing:
+        date: Date
+        providers: Providers attending
+        type: Hearing type
+      hearings: Hearings
+      result: 'Result:'
