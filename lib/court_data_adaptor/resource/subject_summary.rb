@@ -15,10 +15,6 @@ module CourtDataAdaptor
         @offence_summary ||= super.map { OffenceSummary.new(_1) }
       end
 
-      def maat_linked?
-        maat_reference.present?
-      end
-
       def maat_reference
         offence_summary.map(&:maat_reference).uniq.reject { _1&.starts_with?(DUMMY_MAAT_PREFIX) }.compact.join
       end

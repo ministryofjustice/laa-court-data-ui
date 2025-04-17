@@ -10,7 +10,8 @@ class SubjectsController < ApplicationController
     return render :show unless @form_model.valid?
 
     if CourtDataAdaptor::Query::LinkCourtApplication.call(@form_model)
-      redirect_to court_application_subject_path(@application.application_id),
+      redirect_to court_application_subject_path(@application.application_id,
+                                                 linked: @form_model.maat_reference),
                   flash: { notice: t('.success') }
     else
       handle_link_failure("Query failed without raising an exception")
@@ -23,7 +24,7 @@ class SubjectsController < ApplicationController
     return render :show unless @form_model.valid?
 
     if CourtDataAdaptor::Query::UnlinkCourtApplication.call(@form_model)
-      redirect_to court_application_subject_path(@application.application_id),
+      redirect_to court_application_subject_path(@application.application_id, unlinked: true),
                   flash: { notice: t('.success') }
     else
       handle_unlink_failure("Query failed without raising an exception")
@@ -37,6 +38,7 @@ class SubjectsController < ApplicationController
   def load_and_authorize_application
     @application = CourtDataAdaptor::Query::CourtApplication.new(params[:court_application_id]).call
     @subject = @application.subject_summary
+    @link_status = CourtApplicationLinkStatus.new(@subject, params)
     add_breadcrumb @subject.name
     authorize! :show, @application
   rescue JsonApiClient::Errors::ServiceUnavailable => e
@@ -47,7 +49,7 @@ class SubjectsController < ApplicationController
   end
 
   def load_link
-    @form_model = if @subject.maat_linked?
+    @form_model = if @link_status.maat_linked?
                     UnlinkAttempt.new(
                       defendant_id: @subject.subject_id,
                       username: current_user.username,
