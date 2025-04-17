@@ -28,7 +28,12 @@ Rails.application.routes.draw do
   resources :laa_references, only: %i[new create]
   resources :hearings, only: %i[show]
   resources :court_applications, only: %i[show] do
-    resource :subject, only: %i[show]
+    resource :subject, only: %i[show] do
+      member do
+        post :link
+        post :unlink
+      end
+    end
     resources :hearings, only: [] do
       resources :hearing_days, only: %i[show]
     end

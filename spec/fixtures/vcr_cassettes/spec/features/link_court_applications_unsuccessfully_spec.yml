@@ -1,0 +1,169 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/c07d4116-0d06-4150-b6a4-e412f556d931
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 168cfe97-ba67-4f6c-b422-920e35281010
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"23f69199bb0d06a8c535bfeb2f4a0365"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.058025'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=4.64, instantiation.active_record;dur=0.07,
+        start_transaction.active_record;dur=0.01, transaction.active_record;dur=5.86,
+        process_action.action_controller;dur=48.88
+      Content-Length:
+      - '1151'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"c07d4116-0d06-4150-b6a4-e412f556d931","short_id":"A25VDNLHQBLI","application_reference":"MyString","application_status":"DRAFT","application_title":"String","application_type":"String","received_date":"2025-04-16","case_summary":[{"case_status":"ACTIVE","prosecution_case_id":"4211946d-c9eb-4d1c-896a-4033d3f199ed","prosecution_case_reference":"TUCQXILPSM"}],"hearing_summary":[],"subject_summary":{"subject_id":"285d08ec-0cdd-4008-aa0c-baa57fb5b8ff","date_of_next_hearing":null,"defendant_asn":"YGT6J2F5VQUJ","defendant_dob":"1991-03-02","defendant_first_name":"Ardith","defendant_last_name":"Dickens","master_defendant_id":null,"offence_summary":[{"id":"72eb6e73-8a0f-4ef7-be4a-ee5125b9fb81","code":"PT00011","order_index":1,"mode_of_trial":"Summary
+        offence","start_date":"2019-10-17","title":"Causing or inciting prostitution
+        for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Road
+        Traffic Act 1988 s.173","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
+  recorded_at: Wed, 16 Apr 2025 14:52:30 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/c07d4116-0d06-4150-b6a4-e412f556d931
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - cf383acb-8f90-4fe8-93e8-adbf9713bf34
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"23f69199bb0d06a8c535bfeb2f4a0365"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.048384'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.80, instantiation.active_record;dur=0.10,
+        process_action.action_controller;dur=40.02
+      Content-Length:
+      - '1151'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"c07d4116-0d06-4150-b6a4-e412f556d931","short_id":"A25VDNLHQBLI","application_reference":"MyString","application_status":"DRAFT","application_title":"String","application_type":"String","received_date":"2025-04-16","case_summary":[{"case_status":"ACTIVE","prosecution_case_id":"4211946d-c9eb-4d1c-896a-4033d3f199ed","prosecution_case_reference":"TUCQXILPSM"}],"hearing_summary":[],"subject_summary":{"subject_id":"285d08ec-0cdd-4008-aa0c-baa57fb5b8ff","date_of_next_hearing":null,"defendant_asn":"YGT6J2F5VQUJ","defendant_dob":"1991-03-02","defendant_first_name":"Ardith","defendant_last_name":"Dickens","master_defendant_id":null,"offence_summary":[{"id":"72eb6e73-8a0f-4ef7-be4a-ee5125b9fb81","code":"PT00011","order_index":1,"mode_of_trial":"Summary
+        offence","start_date":"2019-10-17","title":"Causing or inciting prostitution
+        for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Road
+        Traffic Act 1988 s.173","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
+  recorded_at: Wed, 16 Apr 2025 14:52:30 GMT
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v2/court_application_laa_references
+    body:
+      encoding: UTF-8
+      string: '{"laa_reference":{"maat_reference":"7654321","subject_id":"285d08ec-0cdd-4008-aa0c-baa57fb5b8ff","user_name":"dick-i28"}}'
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 422
+      message: Unprocessable Content
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - c1ca69eb-8a91-4690-9c76-da8f6fb75c3a
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Cache-Control:
+      - no-cache
+      X-Runtime:
+      - '0.017210'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.85, instantiation.active_record;dur=0.09,
+        process_action.action_controller;dur=8.83
+      Content-Length:
+      - '178'
+    body:
+      encoding: UTF-8
+      string: '{"error":"Contract failed with: {:subject_id=\u003e[\"cannot be linked
+        right now as the associated court application is missing hearing summary data,
+        please try again later\"]}"}'
+  recorded_at: Wed, 16 Apr 2025 14:52:30 GMT
+recorded_with: VCR 6.3.1

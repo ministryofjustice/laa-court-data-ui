@@ -1,6 +1,9 @@
 ---
 en:
   subjects:
+    link:
+      failure: Unable to link the defendant to that MAAT ID
+      success: You have successfully linked to the court data source
     show:
       appeal: Appeal
       arrest_summons_number: ASN
@@ -14,3 +17,6 @@ en:
       offences: Offences
       plea_summary: "%{value} on %{date}"
       view_summary: View application summary
+    unlink:
+      failure: Unable to unlink the defendant
+      success: You have successfully unlinked from the court data source

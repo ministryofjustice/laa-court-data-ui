@@ -1,0 +1,56 @@
+RSpec.feature 'Link court applications' do
+  let(:user) { create(:user) }
+  let(:unlinked_court_application_id) { "22a301d1-8e5c-444e-a629-ac33b8e75f8c" }
+  let(:unlinked_court_application_with_problems_id) { 'c07d4116-0d06-4150-b6a4-e412f556d931' }
+  let(:linked_court_application_id) { 'd174af7f-75da-428b-9875-c823eb182a23' }
+
+  before { sign_in user }
+
+  context "when there are no problems upstream" do
+    around do |example|
+      VCR.use_cassette('spec/features/link_court_applications_successfully_spec',
+                       match_requests_on: %i[method path query]) do
+        example.run
+      end
+    end
+
+    scenario 'I view a linked court application subject' do
+      visit court_application_subject_path(linked_court_application_id)
+      expect(page).to have_content "MAAT number 1234567"
+      expect(page).to have_no_content "Enter the MAAT ID"
+    end
+
+    scenario 'I successfully link a court application' do
+      visit court_application_subject_path(unlinked_court_application_id)
+      expect(page).to have_content "Enter the MAAT ID"
+      fill_in "MAAT ID", with: '7654321'
+      click_on "Create link to court data"
+      expect(page).to have_content "You have successfully linked to the court data source"
+      expect(page).to have_content "MAAT number 7654321"
+      expect(page).to have_no_content "Enter the MAAT ID"
+    end
+
+    scenario 'I try to link with an invalid MAAT' do
+      visit court_application_subject_path(unlinked_court_application_id)
+      fill_in "MAAT ID", with: '123'
+      click_on "Create link to court data"
+      expect(page).to have_content "Enter a maat reference in the correct format"
+    end
+  end
+
+  context "when there are problems upstream" do
+    around do |example|
+      VCR.use_cassette('spec/features/link_court_applications_unsuccessfully_spec',
+                       match_requests_on: %i[method path query]) do
+        example.run
+      end
+    end
+
+    scenario 'I try to link but there are problems upstream' do
+      visit court_application_subject_path(unlinked_court_application_with_problems_id)
+      fill_in "MAAT ID", with: '7654321'
+      click_on "Create link to court data"
+      expect(page).to have_content "Unable to link the defendant to that MAAT ID"
+    end
+  end
+end
