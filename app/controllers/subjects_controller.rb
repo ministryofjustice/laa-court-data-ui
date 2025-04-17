@@ -13,11 +13,10 @@ class SubjectsController < ApplicationController
       redirect_to court_application_subject_path(@application.application_id),
                   flash: { notice: t('.success') }
     else
-      @form_model.errors.add(:maat_reference, t('.failure'))
-      render :show
+      handle_link_failure("Query failed without raising an exception")
     end
   rescue CourtDataAdaptor::Errors::BadRequest, CourtDataAdaptor::Errors::UnprocessableEntity => e
-    handle_link_failure(e)
+    handle_link_failure(e.message)
   end
 
   def unlink
@@ -27,11 +26,10 @@ class SubjectsController < ApplicationController
       redirect_to court_application_subject_path(@application.application_id),
                   flash: { notice: t('.success') }
     else
-      @form_model.errors.add(:maat_reference, t('.failure'))
-      render :show
+      handle_unlink_failure("Query failed without raising an exception")
     end
   rescue CourtDataAdaptor::Errors::BadRequest, CourtDataAdaptor::Errors::UnprocessableEntity => e
-    handle_unlink_failure(e)
+    handle_unlink_failure(e.message)
   end
 
   private
@@ -65,14 +63,14 @@ class SubjectsController < ApplicationController
                   end
   end
 
-  def handle_link_failure(exception)
-    logger.warn "LINK FAILURE: #{exception.message}"
+  def handle_link_failure(message)
+    logger.warn "LINK FAILURE (params: #{@form_model.as_json}): #{message}"
     @form_model.errors.add(:maat_reference, t('subjects.link.failure'))
     render :show
   end
 
-  def handle_unlink_failure(exception)
-    logger.warn "UNLINK FAILURE: #{exception.message}"
+  def handle_unlink_failure(message)
+    logger.warn "UNLINK FAILURE (params: #{@form_model.as_json}): #{message}"
     @form_model.errors.add(:reason_code, t('subjects.unlink.failure'))
     render :show
   end
