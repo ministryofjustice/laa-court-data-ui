@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class CourtApplication < Base
+    class CourtApplication < V1
       acts_as_resource self
 
       # NOTE: following the CDA naming, this should be has_one :type

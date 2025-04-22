@@ -2,7 +2,7 @@
 
 RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
   describe '#call' do
-    subject(:case_service_call) { described_class.call(defence_counsels) }
+    subject(:case_service_call) { described_class.call(defence_counsels, map_counsels_to_defendants:) }
 
     let(:defence_counsels) { [defence_counsel1, defence_counsel2] }
     let(:defence_counsel1) do
@@ -13,6 +13,7 @@ RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
 
     let(:hearing_defendant1) { build(:hearing_defendant, :with_defendant_details) }
     let(:hearing_defendant2) { build(:hearing_defendant, :with_defendant_details) }
+    let(:map_counsels_to_defendants) { true }
 
     context 'when defence counsel has multiple defendants' do
       let(:defence_counsels) { [defence_counsel1, defence_counsel2, defence_counsel3, defence_counsel4] }
@@ -75,6 +76,14 @@ RSpec.describe CdApi::HearingDetails::DefenceCounselsListService do
       it 'returns defence counsel list with unavailable defendant details' do
         expect(case_service_call).to eq(['Jane Doe (QC) for not available',
                                          'Jane Doe (QC) for not available'])
+      end
+
+      context "when not mapping to defendants" do
+        let(:map_counsels_to_defendants) { false }
+
+        it 'returns deduplicated defence counsel list with no defendant details' do
+          expect(case_service_call).to eq(['Jane Doe (QC)'])
+        end
       end
     end
   end

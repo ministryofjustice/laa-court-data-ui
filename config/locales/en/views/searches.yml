@@ -1,6 +1,7 @@
 ---
 en:
   search:
+    application_breadcrumb: Search for a case
     breadcrumb: Search
     dob:
       legend_text: Defendant date of birth

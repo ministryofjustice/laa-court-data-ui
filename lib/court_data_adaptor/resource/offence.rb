@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class Offence < Base
+    class Offence < V1
       acts_as_resource self
 
       belongs_to :defendant
