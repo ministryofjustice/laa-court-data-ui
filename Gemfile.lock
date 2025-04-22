@@ -84,12 +84,12 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
     awesome_print (1.9.2)
-    axe-core-api (4.10.2)
+    axe-core-api (4.10.3)
       dumb_delegator
       ostruct
       virtus
-    axe-core-rspec (4.10.2)
-      axe-core-api (= 4.10.2)
+    axe-core-rspec (4.10.3)
+      axe-core-api (= 4.10.3)
       dumb_delegator
       ostruct
       virtus
@@ -147,9 +147,9 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.6.1)
     docile (1.4.1)
-    dotenv (3.1.7)
-    dotenv-rails (3.1.7)
-      dotenv (= 3.1.7)
+    dotenv (3.1.8)
+    dotenv-rails (3.1.8)
+      dotenv (= 3.1.8)
       railties (>= 6.1)
     drb (2.2.1)
     dumb_delegator (1.1.0)
@@ -189,10 +189,10 @@ GEM
     faraday-retry (1.0.3)
     faraday_middleware (1.2.1)
       faraday (~> 1.0)
-    ffi (1.17.1-arm64-darwin)
-    ffi (1.17.1-x86_64-darwin)
-    ffi (1.17.1-x86_64-linux-gnu)
-    ffi (1.17.1-x86_64-linux-musl)
+    ffi (1.17.2-arm64-darwin)
+    ffi (1.17.2-x86_64-darwin)
+    ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-musl)
     foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -319,8 +319,8 @@ GEM
       version_gem (~> 1.1)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
-    parallel (1.26.3)
-    parser (3.3.7.4)
+    parallel (1.27.0)
+    parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
@@ -345,7 +345,7 @@ GEM
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.12)
+    rack (3.1.13)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -446,7 +446,7 @@ GEM
       rubocop-ast (>= 1.44.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.44.0)
+    rubocop-ast (1.44.1)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
     rubocop-capybara (2.22.1)
@@ -543,7 +543,7 @@ GEM
     useragent (0.16.11)
     vcr (6.3.1)
       base64
-    version_gem (1.1.6)
+    version_gem (1.1.7)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -579,7 +579,7 @@ PLATFORMS
 DEPENDENCIES
   activeresource (~> 6.1.4)
   awesome_print
-  axe-core-rspec (~> 4.10.2)
+  axe-core-rspec (~> 4.10.3)
   bootsnap (>= 1.7.0)
   brakeman
   breadcrumbs_on_rails
