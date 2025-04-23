@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe 'hearings/_hearing_events_v2.html.haml', type: :view do
+RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
   subject(:render_partial) do
-    render partial: 'hearing_events_v2', locals: { hearing_events:, hearing_day: }
+    render partial: 'hearing_events', locals: { hearing_events:, hearing_day: }
   end
 
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
@@ -14,7 +14,7 @@ RSpec.describe 'hearings/_hearing_events_v2.html.haml', type: :view do
 
   context 'without hearing_events', :stub_v2_hearing_events_empty do
     it 'renders template without error' do
-      is_expected.to render_template(:_hearing_events_v2)
+      is_expected.to render_template(:_hearing_events)
     end
   end
 

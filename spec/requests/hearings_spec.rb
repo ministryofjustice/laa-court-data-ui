@@ -12,14 +12,12 @@ RSpec.describe 'hearings_v2', type: :request do
       get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
     end
 
-    context 'when v2 is enabled' do
-      it 'shows renders the hearing page' do
-        expect(response).to render_template('hearings/show')
-      end
+    it 'shows renders the hearing page' do
+      expect(response).to render_template('hearings/show')
+    end
 
-      it 'shows v2 hearing table' do
-        expect(response).to render_template(:_hearing_events_v2)
-      end
+    it 'shows the hearing table' do
+      expect(response).to render_template(:_hearing_events)
     end
   end
 
@@ -45,7 +43,7 @@ RSpec.describe 'hearings_v2', type: :request do
     end
 
     it 'shows v2 hearing table' do
-      expect(response).to render_template(:_hearing_events_v2)
+      expect(response).to render_template(:_hearing_events)
     end
   end
 

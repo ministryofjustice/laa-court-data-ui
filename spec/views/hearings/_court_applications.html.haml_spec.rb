@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe 'hearings/_court_applications_v2.html.haml', type: :view do
+RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
   include RSpecHtmlMatchers
-  subject(:render_partial) { render partial: 'court_applications_v2', locals: { hearing: hearing.hearing } }
+  subject(:render_partial) { render partial: 'court_applications', locals: { hearing: hearing.hearing } }
 
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }

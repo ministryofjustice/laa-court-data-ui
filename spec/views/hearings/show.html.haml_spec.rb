@@ -33,26 +33,26 @@ RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary,
   end
 
   context 'when viewing hearing details' do
-    it 'displays the v2 partial' do
-      is_expected.to render_template('hearings/_details_v2')
+    it 'displays the partial' do
+      is_expected.to render_template('hearings/_details')
     end
   end
 
   context 'when viewing attendees' do
-    it 'displays the v2 partial' do
-      is_expected.to render_template('hearings/_attendees_v2')
+    it 'displays the partial' do
+      is_expected.to render_template('hearings/_attendees')
     end
   end
 
   context 'when viewing results' do
-    it 'displays the v2 partial' do
-      is_expected.to render_template('hearings/_hearing_result_v2')
+    it 'displays the partial' do
+      is_expected.to render_template('hearings/_hearing_result')
     end
   end
 
   context 'when viewing court applications' do
-    it 'displays the v2 partial' do
-      is_expected.to render_template('hearings/_court_applications_v2')
+    it 'displays the partial' do
+      is_expected.to render_template('hearings/_court_applications')
     end
   end
 end

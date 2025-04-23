@@ -6,19 +6,19 @@
 
 .govuk-grid-row
   .govuk-grid-column-one-third
-    = render partial: 'details_v2', locals: { hearing_summary: @prosecution_case.hearing_summaries.find { |each| each.id == @hearing_id },
+    = render partial: 'details', locals: { hearing_summary: @prosecution_case.hearing_summaries.find { |each| each.id == @hearing_id },
                                                         hearing_day: @hearing_day }
 
-    = render partial: 'attendees_v2', locals: { hearing: @hearing, hearing_details: @hearing.try(:hearing) }
+    = render partial: 'attendees', locals: { hearing: @hearing, hearing_details: @hearing.try(:hearing) }
 
   .govuk-grid-column-two-thirds
     - if @hearing_events
-      = render partial: 'hearing_events_v2', locals: { hearing_events: @hearing_events, hearing_day: @hearing_day }
+      = render partial: 'hearing_events', locals: { hearing_events: @hearing_events, hearing_day: @hearing_day }
 
     - if @hearing.try(:hearing).try(:cracked_ineffective_trial).try(:description)
-      = render partial: 'hearing_result_v2', locals: { hearing: @hearing }
+      = render partial: 'hearing_result', locals: { hearing: @hearing }
 
-    = render partial: 'court_applications_v2', locals: { hearing: @hearing.try(:hearing) }
+    = render partial: 'court_applications', locals: { hearing: @hearing.try(:hearing) }
 
 - if Rails.configuration.x.display_raw_responses
-  = render partial: 'raw_response_v2', locals: { hearing_summary: @prosecution_case.hearing_summaries, hearing: @hearing, hearing_events: @hearing_events}
+  = render partial: 'raw_response', locals: { hearing_summary: @prosecution_case.hearing_summaries, hearing: @hearing, hearing_events: @hearing_events}
