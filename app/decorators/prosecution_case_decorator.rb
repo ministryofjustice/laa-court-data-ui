@@ -7,17 +7,6 @@ class ProsecutionCaseDecorator < BaseDecorator
     @hearings ||= decorate_all(object.hearings)
   end
 
-  def sorted_hearings_with_day
-    Enumerator.new do |enum|
-      sorter.sorted_hearings.uniq(&:id).each do |hearing|
-        sorter.sorted_hearing_days(hearing).each do |day|
-          hearing.day = day
-          enum.yield(hearing)
-        end
-      end
-    end
-  end
-
   def cracked?
     hearings.map { |h| h.cracked_ineffective_trial&.cracked? }.any?
   end
@@ -39,11 +28,5 @@ class ProsecutionCaseDecorator < BaseDecorator
 
   def hearings_sort_direction
     @hearings_sort_direction ||= 'asc'
-  end
-
-  private
-
-  def sorter
-    TableSorters::HearingsSorter.for(hearings, hearings_sort_column, hearings_sort_direction)
   end
 end

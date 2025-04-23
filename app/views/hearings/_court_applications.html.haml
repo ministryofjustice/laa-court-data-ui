@@ -1,10 +1,13 @@
-- not_available = t('generic.not_available')
+:ruby
+  not_available = t('generic.not_available')
+  respondent_synonyms = t('hearings.show.court_applications.respondent_synonyms')
+  applicant_synonym = t('hearings.show.court_applications.applicant_synonym')
 
 %h2.govuk-heading-l{ :class => "govuk-!-margin-bottom-4" }
   = t('hearings.show.court_applications.heading')
-- if hearing&.court_applications.present?
-  .govuk-accordion{ :data => { :module => "govuk-accordion" }, :id => "accordion-" + hearing.id }
-    - decorate_each(hearing.court_applications) do |court_application|
+- if hearing && hearing.court_applications.present?
+  .govuk-accordion{ :data => {:module => "govuk-accordion"}, :id => "accordion-" + hearing.id }
+    - hearing.court_applications.each do |court_application|
       .govuk-accordion__section
         .govuk-accordion__section-header
           %h3.govuk-accordion__section-heading
@@ -26,8 +29,8 @@
                 = govuk_summary_list_entry(t('hearings.show.court_applications.result_text'), transform_and_sanitize(result&.text), key_class, value_class)
               - else
                 = govuk_summary_list_entry(t('hearings.show.court_applications.result_text'), not_available, key_class, value_class)
-            = govuk_summary_list_entry(t('hearings.show.court_applications.respondent_synonyms'), court_application.respondent_list, key_class, value_class)
-            = govuk_summary_list_entry(t('hearings.show.court_applications.applicant_synonym'), court_application.applicant_synonym, key_class, value_class)
+            = govuk_summary_list_entry(respondent_synonyms, safe_join(court_application.respondents.map { |rs| rs.synonym }, tag.br), key_class, value_class)
+            = govuk_summary_list_entry(applicant_synonym, court_application.type.applicant_appellant_flag ? 'Applicant' : '', key_class, value_class)
 
 - else
   %p.govuk-body
