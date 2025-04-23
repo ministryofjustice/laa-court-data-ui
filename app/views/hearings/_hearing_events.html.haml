@@ -8,12 +8,12 @@
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.time')
       %th.govuk-table__header{ scope: 'col' }= t('hearings.show.events.event')
   %tbody.govuk-table__body
-    - hearing.hearing_events_for_day(hearing_day).each do |event|
+    - hearing_events.events.each do |event|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = event.occurred_at.to_datetime.strftime('%H:%M')
+          = event.event_time.to_datetime.strftime('%H:%M')
         %td.govuk-table__cell.hearing-events-table__cell--overflow-wrap
-          = event.description
+          = event.recorded_label
           - if event&.note.present?
             %div{ class: 'govuk-!-padding-top-1' }
               = transform_and_sanitize(event.note)

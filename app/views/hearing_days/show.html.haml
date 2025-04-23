@@ -84,7 +84,7 @@
       %p.govuk-body
         = t('.event.none')
 
-    = render partial: 'hearings/court_applications_v2', locals: { hearing: @hearing_details.hearing }
+    = render partial: 'hearings/court_applications', locals: { hearing: @hearing_details.hearing }
 
     - if @application.subject_summary.proceedings_concluded
       .govuk-heading-l

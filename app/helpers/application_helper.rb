@@ -41,10 +41,6 @@ module ApplicationHelper
     "app-environment-#{ENV.fetch('ENV', 'local')}"
   end
 
-  def v2_hearing_summaries?
-    FeatureFlag.enabled?(:hearing_summaries)
-  end
-
   private
 
   def decorator_instance(object, decorator_class = nil)

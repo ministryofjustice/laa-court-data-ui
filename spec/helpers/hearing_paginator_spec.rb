@@ -5,7 +5,7 @@ require 'court_data_adaptor'
 RSpec.shared_context 'with single hearing and hearing day' do
   let(:hearings) { [hearing] }
   let(:hearing) do
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-1', hearing_days: ['2021-01-20T10:00:00.000Z'])
+    CdApi::HearingSummary.new(id: 'hearing-uuid-1', hearing_days: ['2021-01-20T10:00:00.000Z'])
   end
 end
 
@@ -13,36 +13,51 @@ RSpec.shared_context 'with multiple hearings and hearing days' do
   let(:hearings) { [hearing1, hearing2, hearing3] }
 
   let(:hearing1) do
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-1', hearing_days: hearing1_days)
+    CdApi::HearingSummary.new(id: 'hearing-uuid-1', hearing_days: hearing1_days)
   end
 
   let(:hearing2) do
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-2', hearing_days: hearing2_days)
+    CdApi::HearingSummary.new(id: 'hearing-uuid-2', hearing_days: hearing2_days)
   end
 
   let(:hearing3) do
-    CourtDataAdaptor::Resource::Hearing.new(id: 'hearing-uuid-3', hearing_days: hearing3_days)
+    CdApi::HearingSummary.new(id: 'hearing-uuid-3', hearing_days: hearing3_days)
   end
 
   let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
   let(:hearing2_days) { ['2021-01-20T10:00:00.000Z'] }
   let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
+
+  let(:fake_hearings) do
+    [
+      CdApi::HearingSummary.new(id: 'hearing-uuid-3').tap { _1.day = hearing3_days.first.to_datetime },
+      CdApi::HearingSummary.new(id: 'hearing-uuid-1').tap { _1.day = hearing1_days.first.to_datetime },
+      CdApi::HearingSummary.new(id: 'hearing-uuid-1').tap { _1.day = hearing1_days.last.to_datetime },
+      CdApi::HearingSummary.new(id: 'hearing-uuid-2').tap { _1.day = hearing2_days.first.to_datetime }
+    ]
+  end
 end
 
 RSpec.describe HearingPaginator, type: :helper do
   subject(:instance) { described_class.new(prosecution_case_decorator) }
 
-  let(:prosecution_case_decorator) { ProsecutionCaseDecorator.new(prosecution_case, view_object) }
+  let(:prosecution_case_decorator) { CdApi::CaseSummaryDecorator.new(prosecution_case, view_object) }
 
   let(:prosecution_case) do
-    instance_double(CourtDataAdaptor::Resource::ProsecutionCase,
-                    hearings:,
-                    prosecution_case_reference: 'ACASEURN')
+    CdApi::CaseSummary.new(hearings:, prosecution_case_reference: 'ACASEURN')
   end
 
   let(:hearings) { [] }
   let(:view_object) { view_class.new }
-  let(:view_class) { Class.new { include ApplicationHelper } }
+  let(:view_class) do
+    Class.new do
+      include ApplicationHelper
+
+      def t(*)
+        nil
+      end
+    end
+  end
 
   describe described_class::PageItem do
     it { is_expected.to respond_to(:id, :hearing_date) }
@@ -77,6 +92,12 @@ RSpec.describe HearingPaginator, type: :helper do
          described_class::PageItem.new('hearing-uuid-2', '2021-01-20T10:00:00.000Z'.to_datetime)]
       end
 
+      before do
+        allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
+          fake_hearings
+        )
+      end
+
       it { is_expected.to be_an(Array).and all(be_an(described_class::PageItem)) }
 
       it 'each item has an id' do
@@ -93,32 +114,18 @@ RSpec.describe HearingPaginator, type: :helper do
         is_expected.to eql(expected_result)
       end
     end
-
-    context 'when the hearings table sort column and direction are changed' do
-      subject(:call) { instance.items }
-
-      let(:decorated_hearings) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
-      let(:decorated_hearing1) { view_object.decorate(hearing1) }
-      let(:decorated_hearing2) { view_object.decorate(hearing2) }
-      let(:decorated_hearing3) { view_object.decorate(hearing3) }
-
-      before do
-        allow(prosecution_case).to receive_messages(hearings: decorated_hearings)
-        allow(decorated_hearing1).to receive(:provider_list).and_return(hearing1_provider_list)
-        allow(decorated_hearing2).to receive(:provider_list).and_return(hearing2_provider_list)
-        allow(decorated_hearing3).to receive(:provider_list).and_return(hearing3_provider_list)
-        allow(prosecution_case_decorator).to receive_messages(hearings_sort_column: column,
-                                                              hearings_sort_direction: direction)
-      end
-
-      it_behaves_like 'sort hearings'
-    end
   end
 
   describe '#current_item' do
     subject(:current_item) { instance.current_item }
 
     include_context 'with multiple hearings and hearing days'
+
+    before do
+      allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
+        fake_hearings
+      )
+    end
 
     context 'when current_page set' do
       let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
@@ -207,6 +214,12 @@ RSpec.describe HearingPaginator, type: :helper do
     context 'with multiple hearings and hearing days' do
       include_context 'with multiple hearings and hearing days'
 
+      before do
+        allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
+          fake_hearings
+        )
+      end
+
       it { is_expected.to be(3) }
     end
   end
@@ -233,6 +246,12 @@ RSpec.describe HearingPaginator, type: :helper do
     context 'with multiple hearings and hearing days' do
       include_context 'with multiple hearings and hearing days'
 
+      before do
+        allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
+          fake_hearings
+        )
+      end
+
       context 'when current page is first page' do
         let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
 
@@ -257,7 +276,14 @@ RSpec.describe HearingPaginator, type: :helper do
     subject { instance.next_page_link }
 
     include_context 'with multiple hearings and hearing days'
+
     let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
+
+    before do
+      allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
+        fake_hearings
+      )
+    end
 
     it { is_expected.to have_link('Next') }
 
@@ -277,7 +303,14 @@ RSpec.describe HearingPaginator, type: :helper do
     subject { instance.previous_page_link }
 
     include_context 'with multiple hearings and hearing days'
+
     let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+
+    before do
+      allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
+        fake_hearings
+      )
+    end
 
     it { is_expected.to have_link('Previous') }
 
