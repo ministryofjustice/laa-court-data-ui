@@ -118,7 +118,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
           judicial_result_class.new(cjs_code: '4600', text: free_text)
         end
 
-        include_examples 'free text fields'
+        it_behaves_like 'free text fields'
       end
     end
 

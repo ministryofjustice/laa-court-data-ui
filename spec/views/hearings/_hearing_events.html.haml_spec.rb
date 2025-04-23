@@ -75,7 +75,7 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
         end
         let(:hearing_events) { [hearing_event_with_special_characters] }
 
-        include_examples 'free text fields'
+        it_behaves_like 'free text fields'
       end
     end
 

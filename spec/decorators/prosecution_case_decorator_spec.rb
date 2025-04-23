@@ -73,7 +73,8 @@ RSpec.describe ProsecutionCaseDecorator, type: :decorator do
     it { is_expected.to be_instance_of(Enumerator) }
     it { is_expected.to all(be_instance_of(HearingDecorator)) }
 
-    include_examples 'sort hearings'
+    include_context 'with multiple hearings to sort'
+    it_behaves_like 'sort hearings'
 
     context 'when the hearings table sort column and direction are changed' do
       context 'when hearings_sort_column is date and hearings_sort_direction is asc' do

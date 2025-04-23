@@ -155,19 +155,19 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       context 'with open false' do
         subject(:markup) { helper.govuk_detail('My detail summary text', open: false) { 'my content' } }
 
-        include_examples 'adds details without open attribute'
+        it_behaves_like 'adds details without open attribute'
       end
 
       context 'with open nil' do
         subject(:markup) { helper.govuk_detail('My detail summary text', open: nil) { 'my content' } }
 
-        include_examples 'adds details without open attribute'
+        it_behaves_like 'adds details without open attribute'
       end
 
       context 'with open not specified' do
         subject(:markup) { helper.govuk_detail('My detail summary text') { 'my content' } }
 
-        include_examples 'adds details without open attribute'
+        it_behaves_like 'adds details without open attribute'
       end
     end
 

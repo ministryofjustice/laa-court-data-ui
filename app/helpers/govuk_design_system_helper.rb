@@ -86,9 +86,8 @@ module GovukDesignSystemHelper
   end
 
   def govuk_notification_banner_content(text, content)
-    tag.p(text, class: 'govuk-notification-banner__heading').concat(
-      (tag.p(content, class: 'govuk-body') unless content.nil?)
-    )
+    content_tag = tag.p(content, class: 'govuk-body') unless content.nil?
+    tag.p(text, class: 'govuk-notification-banner__heading').concat(content_tag)
   end
 
   def govuk_summary_key(key, tag_options_key)
