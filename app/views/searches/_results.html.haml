@@ -4,7 +4,7 @@
 - elsif results.first.is_a? CourtDataAdaptor::Resource::ProsecutionCase
   = render partial: 'results/prosecution_case', locals: { results: results }
 - else
-  - if ENV['SHOW_APPEALS'].to_s.downcase == 'true'
+  - if FeatureFlag.enabled?(:show_appeals)
     = render partial: 'results/defendant_appeals', locals: { cookies_preferences_set: cookies_preferences_set, results: results }
   - else
     = render partial: 'results/defendant', locals: { cookies_preferences_set: cookies_preferences_set, results: results }
