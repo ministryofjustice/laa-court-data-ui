@@ -22,8 +22,6 @@ linters:
       - "app/views/cookies/new.html.haml"
       - "app/views/hearings/_attendees.html.haml"
       - "app/views/hearings/_hearing_result.html.haml"
-      - "app/views/prosecution_cases/cd_api/_show_v2.html.haml"
-      - "app/views/prosecution_cases/show.html.haml"
 
   # Offense count: 1
   IdNames:
@@ -31,5 +29,5 @@ linters:
       - "app/views/devise/shared/_error_messages.html.haml"
 
   InstanceVariables:
-    exclude: 
+    exclude:
       - app/views/layouts/_google_analytics.haml

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe 'prosecution_cases/cd_api/_show_v2.html.haml', type: :view do
+RSpec.describe 'prosecution_cases/show.html.haml', type: :view do
   subject(:render_partial) do
-    render partial: 'prosecution_cases/cd_api/show_v2', locals: { case_summary: decorated_case_summary }
+    render locals: { prosecution_case: decorated_case_summary }
   end
 
   let(:decorated_case_summary) { view.decorate(case_summary, CdApi::CaseSummaryDecorator) }

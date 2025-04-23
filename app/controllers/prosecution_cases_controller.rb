@@ -9,6 +9,8 @@ class ProsecutionCasesController < ApplicationController
   def show
     add_breadcrumb prosecution_case_name(@prosecution_case.prosecution_case_reference),
                    prosecution_case_path(@prosecution_case.prosecution_case_reference)
+
+    render :show, locals: { prosecution_case: @prosecution_case }
   end
 
   private
