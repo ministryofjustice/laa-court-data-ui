@@ -111,7 +111,7 @@ RSpec.describe HearingPaginator, type: :helper do
                                                               hearings_sort_direction: direction)
       end
 
-      include_examples 'sort hearings'
+      it_behaves_like 'sort hearings'
     end
   end
 

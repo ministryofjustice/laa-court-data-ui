@@ -10,7 +10,7 @@ RSpec.describe CourtDataAdaptor::Resource::CourtApplicationType do
 
   it_behaves_like 'court_data_adaptor resource object', test_class: described_class
 
-  include_examples 'court_data_adaptor resource callbacks' do
+  it_behaves_like 'court_data_adaptor resource callbacks' do
     let(:instance) { described_class.new(court_application_id: nil) }
   end
 

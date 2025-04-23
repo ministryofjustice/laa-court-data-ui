@@ -66,13 +66,13 @@ RSpec.describe ApplicationHelper, type: :helper do
       context 'with unmodularized class' do
         before { stub_const('TestClass', test_class) }
 
-        include_examples 'returns or yields decorated object'
+        it_behaves_like 'returns or yields decorated object'
       end
 
       context 'with modularized class' do
         before { stub_const('TestModule::TestClass', test_class) }
 
-        include_examples 'returns or yields decorated object'
+        it_behaves_like 'returns or yields decorated object'
       end
     end
 
@@ -149,13 +149,13 @@ RSpec.describe ApplicationHelper, type: :helper do
       context 'with unmodularized class' do
         before { stub_const('TestClass', test_class) }
 
-        include_examples 'returns or yields all decorated objects'
+        it_behaves_like 'returns or yields all decorated objects'
       end
 
       context 'with modularized class' do
         before { stub_const('TestModule::TestClass', test_class) }
 
-        include_examples 'returns or yields all decorated objects'
+        it_behaves_like 'returns or yields all decorated objects'
       end
     end
 

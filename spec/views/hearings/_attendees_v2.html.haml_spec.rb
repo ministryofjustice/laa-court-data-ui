@@ -39,7 +39,7 @@ RSpec.describe 'hearings/_attendees_v2', type: :view do
   end
 
   context 'when hearing data is present', :stub_v2_hearing_data do
-    include_examples 'returns correct headers'
+    it_behaves_like 'returns correct headers'
 
     context 'with defendant_names' do
       it 'displays defendant names with line breaks' do

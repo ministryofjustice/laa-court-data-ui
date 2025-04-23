@@ -36,8 +36,6 @@ RSpec.shared_context 'with multiple v2 hearings to sort' do
 end
 
 RSpec.shared_examples 'sort v2 hearings' do
-  include_context 'with multiple v2 hearings to sort'
-
   context 'when column is date and direction is asc' do
     let(:column) { 'date' }
     let(:direction) { 'asc' }
