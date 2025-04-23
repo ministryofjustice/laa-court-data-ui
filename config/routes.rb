@@ -27,6 +27,12 @@ Rails.application.routes.draw do
   resources :defendants, only: %i[edit update]
   resources :laa_references, only: %i[new create]
   resources :hearings, only: %i[show]
+  resources :court_applications, only: %i[show] do
+    resource :subject, only: %i[show]
+    resources :hearings, only: [] do
+      resources :hearing_days, only: %i[show]
+    end
+  end
 
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',

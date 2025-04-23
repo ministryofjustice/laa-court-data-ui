@@ -2,7 +2,7 @@
 
 module CourtDataAdaptor
   module Resource
-    class HearingEvent < Base
+    class HearingEvent < V1
       acts_as_resource self
 
       belongs_to :hearing

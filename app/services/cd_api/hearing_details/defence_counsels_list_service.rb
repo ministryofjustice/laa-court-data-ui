@@ -3,12 +3,13 @@
 module CdApi
   module HearingDetails
     class DefenceCounselsListService
-      def self.call(defence_counsels)
-        new(defence_counsels).call
+      def self.call(defence_counsels, map_counsels_to_defendants: true)
+        new(defence_counsels, map_counsels_to_defendants:).call
       end
 
-      def initialize(defence_counsels)
+      def initialize(defence_counsels, map_counsels_to_defendants:)
         @defence_counsels = defence_counsels
+        @map_counsels_to_defendants = map_counsels_to_defendants
         @result = []
       end
 
@@ -27,7 +28,7 @@ module CdApi
           name_in_parts = defence_counsel.attributes.symbolize_keys
           sentence = "#{formatted_name(name_in_parts)} (#{formatted_status(status)})"
 
-          next (@result << sentence) if defence_counsel.defendants.empty?
+          next (@result << sentence) if defence_counsel.defendants.empty? || !@map_counsels_to_defendants
           build_defence_counsel_sentences_with_defendants(defence_counsel, sentence)
         end
       end
