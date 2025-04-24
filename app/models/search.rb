@@ -6,7 +6,7 @@ require_dependency 'feature_flag'
 class Search
   include ActiveModel::Model
 
-  attr_accessor :filter, :term, :dob, :version2
+  attr_accessor :filter, :term, :dob
 
   def self.filters
     [
@@ -44,29 +44,6 @@ class Search
             if: proc { |search| search.filter.eql?('defendant_name') }
 
   def execute
-    return query_cd_api if version2?
-    Rails.logger.info 'V1_SEARCH_DEFENDANTS'
-    query_cda.call
-  end
-
-  private
-
-  def version2?
-    version2
-  end
-
-  def query_cd_api
     CdApi::SearchService.call(filter:, term:, dob:)
-  end
-
-  def query_cda
-    case filter
-    when 'case_reference'
-      CourtDataAdaptor::Query::ProsecutionCase.new(term)
-    when 'defendant_reference'
-      CourtDataAdaptor::Query::Defendant::ByReference.new(term)
-    when 'defendant_name'
-      CourtDataAdaptor::Query::Defendant::ByName.new(term, dob:)
-    end
   end
 end

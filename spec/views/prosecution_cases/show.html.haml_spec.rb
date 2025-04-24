@@ -1,23 +1,28 @@
 # frozen_string_literal: true
 
-RSpec.describe 'prosecution_cases/show', type: :view do
-  subject(:render_view) { render }
+RSpec.describe 'prosecution_cases/show.html.haml', type: :view do
+  subject(:render_partial) do
+    render locals: { prosecution_case: decorated_case_summary }
+  end
 
-  let(:decorated_prosecution_case) { view.decorate(prosecution_case) }
-  let(:prosecution_case) do
-    CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'THECASEURN')
+  let(:decorated_case_summary) { view.decorate(case_summary, CdApi::CaseSummaryDecorator) }
+  let(:case_summary) do
+    build(:case_summary, prosecution_case_reference: '')
+  end
+
+  let(:case_summary_details) do
+    {
+      hearings_sort_column: 'date',
+      hearings_sort_direction: 'asc',
+      prosecution_case_reference: 'TEST12345'
+    }
   end
 
   before do
     allow(view).to receive(:govuk_page_title).and_return 'A Gov uk page title'
-    allow(decorated_prosecution_case).to receive_messages(hearings_sort_column: 'date',
-                                                          hearings_sort_direction: 'asc')
-    allow(prosecution_case).to receive_messages(hearings: [], defendants: [])
-    assign(:prosecution_case, decorated_prosecution_case)
+    allow(decorated_case_summary).to receive_messages(case_summary_details)
   end
 
-  it { is_expected.to have_content('A Gov uk page title') }
-  it { is_expected.to render_template(:_cracked_ineffective_trial) }
-  it { is_expected.to render_template(:_defendants) }
+  it { is_expected.to render_template(:_overall_defendants) }
   it { is_expected.to render_template(:_hearing_summaries) }
 end

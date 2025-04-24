@@ -3,8 +3,10 @@
 RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
+  let(:case_reference) { case_urn }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:hearing_id_from_fixture) { '345be88a-31cf-4a30-9de3-da98e973367e' }
+  let(:hearing_id) { hearing_id_from_fixture }
 
   context 'when not signed in' do
     before { visit unauthenticated_root_path }
@@ -51,7 +53,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       end
     end
 
-    context 'when on case details page', :stub_defendants_case_search do
+    context 'when on case details page', :stub_defendants_case_search, :stub_hearing_summary do
       scenario 'expected breadcrumbs are displayed' do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
@@ -62,7 +64,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       end
     end
 
-    context 'when on defendant details page', :stub_defendants_case_search do
+    context 'when on defendant details page', :stub_defendants_case_search, :stub_hearing_summary do
       scenario 'expected breadcrumbs are displayed' do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
@@ -74,7 +76,8 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       end
     end
 
-    context 'when on hearing details page', :stub_defendants_case_search do
+    context 'when on hearing details page', :stub_defendants_case_search, :stub_hearing_summary,
+            :stub_v2_hearing_data, :stub_v2_hearing_events do
       scenario 'expected breadcrumbs are displayed' do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
@@ -91,7 +94,8 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
     end
 
     scenario 'user navigates search, prosecution case, defendant and hearings pages',
-             :stub_defendants_case_search do
+             :stub_defendants_case_search, :stub_hearing_summary,
+             :stub_v2_hearing_data, :stub_v2_hearing_events do
       when_i_choose_search_filter 'A case by URN'
       when_i_search_for case_urn
 

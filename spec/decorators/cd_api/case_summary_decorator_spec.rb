@@ -3,10 +3,6 @@
 RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
   subject(:decorator) { described_class.new(case_summary, view_object) }
 
-  before do
-    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
-  end
-
   let(:case_summary) { build(:case_summary) }
   let(:view_object) { view_class.new }
 
@@ -92,8 +88,8 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
     it { is_expected.to be_instance_of(Enumerator) }
     it { is_expected.to all(be_instance_of(CdApi::HearingSummaryDecorator)) }
 
-    include_context 'with multiple v2 hearings to sort'
-    it_behaves_like 'sort v2 hearings'
+    include_context 'with multiple hearings to sort'
+    it_behaves_like 'sort hearings'
 
     context 'when the hearings table sort column and direction are changed' do
       context 'when hearings_sort_column is date and hearings_sort_direction is asc' do

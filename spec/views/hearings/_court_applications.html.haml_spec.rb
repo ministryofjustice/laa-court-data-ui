@@ -1,137 +1,36 @@
 # frozen_string_literal: true
 
 RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
-  subject(:render_partial) { render partial: 'court_applications', locals: { hearing: decorated_hearing } }
-
   include RSpecHtmlMatchers
+  subject(:render_partial) { render partial: 'court_applications', locals: { hearing: hearing.hearing } }
 
-  let(:hearing) { CourtDataAdaptor::Resource::Hearing.new }
-  let(:decorated_hearing) { view.decorate(hearing) }
-  let(:court_applications) { [court_application1, court_application2] }
-  let(:court_application1) { court_application_class.new(received_date: '2021-03-09') }
-  let(:court_application2) { court_application_class.new(received_date: '2021-05-10') }
-  let(:decorated_court_application) { view.decorate(court_application) }
-  let(:court_application_type1) do
-    court_application_type_class.new(description: 'Application for transfer of legal aid',
-                                     code: 'LA12505',
-                                     legislation: 'Pursuant to Regulation 14 of the Criminal Legal Aid',
-                                     applicant_appellant_flag: 'false')
-  end
-  let(:court_application_type2) do
-    court_application_type_class.new(description: 'Application for case to be dismissed',
-                                     code: 'CD12504',
-                                     legislation: 'Pursuant to Regulation 17 of the Courts Act',
-                                     applicant_appellant_flag: 'false')
-  end
-  let(:court_application_class) { CourtDataAdaptor::Resource::CourtApplication }
-  let(:court_application_type_class) { CourtDataAdaptor::Resource::CourtApplicationType }
+  let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
+  let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
+  let(:hearing) { CdApi::Hearing.find(hearing_id, params: { date: hearing_day.strftime('%F') }) }
 
-  before do
-    allow(hearing).to receive_messages(id: '123', court_applications:)
-    allow(court_application1).to receive(:type).and_return(court_application_type1)
-    allow(court_application2).to receive(:type).and_return(court_application_type2)
-  end
+  context 'with court_applications present', :stub_v2_hearing_data do
+    it 'displays the section' do
+      is_expected.to have_tag('h2.govuk-heading-l', text: /Court Applications/)
+    end
 
-  it { is_expected.to have_css('.govuk-heading-l', text: 'Applications') }
+    it 'displays all applications' do
+      is_expected.to have_tag('span.govuk-accordion__section-button',
+                              text: /Application for transfer of legal aid/)
+    end
 
-  context 'with no court applications' do
-    let(:court_applications) { nil }
-
-    it 'does not render content' do
-      render_partial
-      expect(rendered).to have_css('.govuk-body', text: /No court applications are associated with/)
+    it 'displays received date correctly' do
+      is_expected.to have_tag('div.govuk-accordion__section-summary', text: /29 March 2021/)
     end
   end
 
-  context 'with court applications' do
-    it 'displays court applications section once' do
-      render_partial
-      expect(rendered).to have_css('.govuk-heading-l', text: /Court Applications/).once
+  context 'with no court_applications present', :stub_v2_empty_hearing_data do
+    it 'displays the section' do
+      is_expected.to have_tag('h2.govuk-heading-l', text: /Court Applications/)
     end
 
-    it 'displays all "court applications"' do
-      render_partial
-      expect(rendered).to have_tag('dd.govuk-summary-list__value') do
-        with_text(/Application for transfer of legal aid/)
-        with_text(/Application for case to be dismissed/)
-      end
-    end
-
-    context 'with respondents' do
-      let(:respondents) { [respondent1, respondent2] }
-      let(:respondent1) { CourtDataAdaptor::Resource::CourtApplicationParty.new(synonym: 'Defendant') }
-      let(:respondent2) { CourtDataAdaptor::Resource::CourtApplicationParty.new(synonym: 'Suspect') }
-
-      before { allow(court_application1).to receive(:respondents).and_return(respondents) }
-
-      it 'displays respondent_synonyms with line breaks' do
-        is_expected.to have_tag('dd.govuk-summary-list__value', text: /Defendant.*Suspect/) do
-          with_tag(:br)
-        end
-      end
-    end
-
-    context 'with no applicant synonym' do
-      it 'displays the synonym "Applicant"' do
-        is_expected.not_to have_tag('dd.govuk-summary-list__value', text: /Applicant/)
-      end
-    end
-
-    context 'with an applicant synonym' do
-      before { allow(court_application_type1).to receive(:applicant_appellant_flag).and_return(true) }
-
-      it 'displays the synonym "Applicant"' do
-        is_expected.to have_tag('dd.govuk-summary-list__value', text: /Applicant/)
-      end
-    end
-
-    context 'with judicial results' do
-      let(:judicial_results) { [judicial_result1, judicial_result2] }
-      let(:judicial_result1) do
-        judicial_result_class.new(cjs_code: '4600', text: 'Legal Aid Transfer Granted')
-      end
-      let(:judicial_result2) do
-        judicial_result_class.new(cjs_code: '4601', text: 'Legal Aid Transfer Denied')
-      end
-      let(:judicial_result_class) { CourtDataAdaptor::Resource::JudicialResult }
-
-      before { allow(court_application1).to receive(:judicial_results).and_return(judicial_results) }
-
-      it 'displays both result codes' do
-        render_partial
-        expect(rendered).to have_tag('dd.govuk-summary-list__value') do
-          with_text(/4600/)
-          with_text(/4601/)
-        end
-      end
-
-      it 'displays both result texts' do
-        render_partial
-        expect(rendered).to have_tag('dd.govuk-summary-list__value') do
-          with_text(/Legal Aid Transfer Granted/)
-          with_text(/Legal Aid Transfer Denied/)
-        end
-      end
-
-      context 'with result text containing html, unicode and crlf_escape_sequences' do
-        let(:judicial_result1) do
-          judicial_result_class.new(cjs_code: '4600', text: free_text)
-        end
-
-        it_behaves_like 'free text fields'
-      end
-    end
-
-    context 'with no judicial results' do
-      it 'does not display Result text' do
-        render_partial
-        expect(rendered).to have_no_css('dt.govuk-summary-list__key', text: /Result code/)
-      end
-
-      it 'does not display Result code' do
-        render_partial
-        expect(rendered).to have_no_css('dt.govuk-summary-list__key', text: /Result text/)
-      end
+    it 'displays correct message' do
+      is_expected.to have_tag('p.govuk-body',
+                              text: /No court applications are associated with this hearing/)
     end
   end
 end
