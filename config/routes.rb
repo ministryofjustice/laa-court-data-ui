@@ -46,8 +46,6 @@ Rails.application.routes.draw do
     patch 'update_password', on: :member
   end
 
-  resources :feedback, only: %i[new create]
-
   post '/cookies/settings', to: 'cookies#create'
   get '/cookies/settings', to: 'cookies#new'
   get '/cookies', to: 'cookies#cookie_details'

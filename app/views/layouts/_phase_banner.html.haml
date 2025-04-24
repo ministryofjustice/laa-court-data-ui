@@ -6,4 +6,4 @@
       - else
         = ENV.fetch('ENV', 'local')
     %span.govuk-phase-banner__text
-      = t('layouts.application.header.phase_banner_html', feedback: new_feedback_path)
+      = t('layouts.application.header.phase_banner_html', feedback: Rails.configuration.x.feedback_url)
