@@ -1,5 +1,5 @@
 %turbo-frame#removable
-  .app-cookie-banner.govuk-cookie-banner{ 'aria-label': 'Cookies on View Court Data', role: 'region', data: { module: 'app-cookie-banner', nosnippet: ''} }
+  .app-cookie-banner.govuk-cookie-banner{ "aria-label": 'Cookies on View Court Data', role: 'region', data: { module: 'app-cookie-banner', nosnippet: '' } }
     .govuk-cookie-banner__message.govuk-width-container
       .govuk-grid-row
         .govuk-grid-column-two-thirds
@@ -9,7 +9,7 @@
               = t('layouts.application.cookies.confirmation_link_to_settings_html', href: cookies_settings_path).html_safe
 
           .govuk-button-group
-            %a.govuk-button{ 'data-module': 'govuk-button', type: 'button', draggable: 'false', 'href': update_cookies_path(hide_banner: true), 'data-cy': 'hide_message' }
+            %a.govuk-button{ "data-module": 'govuk-button', type: 'button', draggable: 'false', href: update_cookies_path(hide_banner: true), "data-cy": 'hide_message' }
               = t('layouts.application.cookies.hide_message')
   -# Script to add google analytics cookies
-  = render partial: 'layouts/google_analytics', analytics_cookies_accepted: true
+  = render partial: 'layouts/google_analytics', locals: { analytics_cookies_accepted: }

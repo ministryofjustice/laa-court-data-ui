@@ -6,28 +6,3 @@
 # Note that changes in the inspected code, or installation of new
 # versions of Haml-Lint, may require this file to be generated again.
 
-linters:
-  # Offense count: 395
-  RuboCop:
-    enabled: false
-
-  # Offense count: 1
-  ViewLength:
-    exclude:
-      - "app/views/cookies/cookie_details.html.haml"
-
-  # Offense count: 5
-  FinalNewline:
-    exclude:
-      - "app/views/cookies/new.html.haml"
-      - "app/views/hearings/_attendees.html.haml"
-      - "app/views/hearings/_hearing_result.html.haml"
-
-  # Offense count: 1
-  IdNames:
-    exclude:
-      - "app/views/devise/shared/_error_messages.html.haml"
-
-  InstanceVariables:
-    exclude:
-      - app/views/layouts/_google_analytics.haml

@@ -4,10 +4,10 @@
   = render "devise/shared/error_messages", resource: resource
 
   = f.govuk_email_field(:email,
-    label: { text: 'Email' },
-    autofocus: true,
-    autocomplete: 'email',
-    value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email))
+                        label: { text: 'Email' },
+                        autofocus: true,
+                        autocomplete: 'email',
+                        value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email))
 
   = f.govuk_submit(t('devise.confirmations.user.form.submit'))
 

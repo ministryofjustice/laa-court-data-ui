@@ -1,6 +1,6 @@
-%h2.govuk-heading-l{ :class => "govuk-!-margin-bottom-4" }
+%h2.govuk-heading-l{ class: "govuk-!-margin-bottom-4" }
   = t('search.result.hearing.heading')
-%table.govuk-table.app-sortable-table{ :class => "govuk-!-margin-bottom-9" }
+%table.govuk-table.app-sortable-table{ class: "govuk-!-margin-bottom-9" }
   %caption.govuk-table__caption.govuk-visually-hidden
     = t('search.result.hearing.caption')
   %thead.govuk-table__head
@@ -16,8 +16,8 @@
       %tr.govuk-table__row
         %td.govuk-table__cell
           = link_to hearing_summary.day.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id,
-          urn: case_summary.prosecution_case_reference, column: case_summary.hearings_sort_column,
-          direction: case_summary.hearings_sort_direction, page: idx), class: 'govuk-link'
+                                                                           urn: case_summary.prosecution_case_reference, column: case_summary.hearings_sort_column,
+                                                                           direction: case_summary.hearings_sort_direction, page: idx), class: 'govuk-link'
         %td.govuk-table__cell
           = hearing_summary.hearing_type
           - if hearing_summary.estimated_duration

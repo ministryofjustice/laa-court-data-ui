@@ -1,39 +1,39 @@
 - flash.each do |key, value|
   - if value.is_a?(String)
     - case key
-      - when 'alert'
+    - when 'alert'
+      .govuk-error-summary
+        .govuk-error-summary__title
+          = sanitize(value)
+        .govuk-error-message
+
+    - when 'notice'
+      .lcdui-notice-summary
         .govuk-error-summary
           .govuk-error-summary__title
             = sanitize(value)
           .govuk-error-message
 
-      - when 'notice'
-        .lcdui-notice-summary
-          .govuk-error-summary
-            .govuk-error-summary__title
-              = sanitize(value)
-            .govuk-error-message
+    - when 'success'
+      = govuk_notification_banner(sanitize(value), key.capitalize)
 
-      - when 'success'
-        = govuk_notification_banner(sanitize(value), key.capitalize)
+  - next unless value.is_a?(Hash)
+  - case key
+  - when 'alert'
+    .govuk-error-summary
+      .govuk-error-summary__title
+        = sanitize(value[:title])
+      - if value[:message]
+        .govuk-error-summary__body
+          = sanitize(value[:message])
+      .govuk-error-message
 
-  - if value.is_a?(Hash)
-    - case key
-      - when 'alert'
-        .govuk-error-summary
-          .govuk-error-summary__title
-            = sanitize(value[:title])
-          - if value[:message]
-            .govuk-error-summary__body
-              = sanitize(value[:message])
-          .govuk-error-message
-
-      - when 'notice'
-        .lcdui-notice-summary
-          .govuk-error-summary
-            .govuk-error-summary__title
-            = sanitize(value[:title])
-          - if value[:message]
-            .govuk-error-summary__body
-              = sanitize(value[:message])
-          .govuk-error-message
+  - when 'notice'
+    .lcdui-notice-summary
+      .govuk-error-summary
+        .govuk-error-summary__title
+        = sanitize(value[:title])
+      - if value[:message]
+        .govuk-error-summary__body
+          = sanitize(value[:message])
+      .govuk-error-message
