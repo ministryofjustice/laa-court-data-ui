@@ -6,6 +6,6 @@
       = render "devise/shared/error_messages", resource: resource
 
       = f.govuk_email_field(:email, label: { text: 'Email' }, autofocus: true, autocomplete: 'email')
-      = f.govuk_submit(t('devise.unlocks.user.form.submit'), 'data-turbo': 'false')
+      = f.govuk_submit(t('devise.unlocks.user.form.submit'), "data-turbo": 'false')
 
     = render "devise/shared/links"

@@ -6,25 +6,25 @@
       = f.govuk_error_summary
 
       = f.govuk_text_field(:login,
-        label: { text: t('users.form.fields.login_label') },
-        autofocus: true,
-        autocomplete: 'email',
-        'data-cy': 'login-username')
+                           label: { text: t('users.form.fields.login_label') },
+                           autofocus: true,
+                           autocomplete: 'email',
+                           "data-cy": 'login-username')
 
       = f.govuk_password_field(:password,
-        label: { text: 'Password' },
-        autocomplete: 'current-password',
-        'data-cy': 'login-password')
+                               label: { text: 'Password' },
+                               autocomplete: 'current-password',
+                               "data-cy": 'login-password')
 
       - if devise_mapping.rememberable?
         = f.govuk_collection_radio_buttons :remember_me,
-          [['1', 'Yes'], ['0', 'No']],
-          :first,
-          :last,
-          inline: :true,
-          legend: { text: 'Remember me', size: 's' },
-          hint: { text: 'Do you want to be remembered on this computer?' }
+                                           [%w[1 Yes], %w[0 No]],
+                                           :first,
+                                           :last,
+                                           inline: true,
+                                           legend: { text: 'Remember me', size: 's' },
+                                           hint: { text: 'Do you want to be remembered on this computer?' }
 
-        = f.govuk_submit(t('devise.sessions.user.form.submit'), 'data-cy': 'login-submit', 'data-turbo': 'false')
+        = f.govuk_submit(t('devise.sessions.user.form.submit'), "data-cy": 'login-submit', "data-turbo": 'false')
 
     = render "devise/shared/links"

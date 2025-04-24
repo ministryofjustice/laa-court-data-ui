@@ -24,6 +24,6 @@
 
     %h4 Defence counsels for hearing summary #{hidx}
     = 'none' if hearing_summary.defence_counsels.blank?
-    - Array(hearing_summary.defence_counsels).each.with_index do |event, pidx|
+    - Array(hearing_summary.defence_counsels).each.with_index do |event, _pidx|
       %pre
         = JSON.pretty_generate(event.attributes)

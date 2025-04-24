@@ -30,17 +30,17 @@
 
 - if can? :edit, @user
   = link_to t('users.show.edit_link'),
-    edit_user_path(@user),
-    'aria-label': t('users.show.edit_link_aria', name: @user.name),
-    class: 'govuk-button',
-    'data-module': 'govuk-button',
-    draggable: 'false',
-    role: 'button'
+            edit_user_path(@user),
+            "aria-label": t('users.show.edit_link_aria', name: @user.name),
+            class: 'govuk-button',
+            "data-module": 'govuk-button',
+            draggable: 'false',
+            role: 'button'
 
 = link_to t('users.show.change_password_link'),
-  change_password_user_path(@user),
-  'aria-label': t('users.show.change_password_link_aria', name: @user.name),
-  class: 'govuk-button',
-  'data-module': 'govuk-button',
-  draggable: 'false',
-  role: 'button'
+          change_password_user_path(@user),
+          "aria-label": t('users.show.change_password_link_aria', name: @user.name),
+          class: 'govuk-button',
+          "data-module": 'govuk-button',
+          draggable: 'false',
+          role: 'button'

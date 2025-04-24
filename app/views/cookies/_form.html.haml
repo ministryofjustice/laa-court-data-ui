@@ -1,15 +1,14 @@
-= form_for cookie, local: true, url: cookies_settings_path, html: {class: 'app-js-only', :"data-turbo" => false} do |f|
-
+= form_for cookie, local: true, url: cookies_settings_path, html: { class: 'app-js-only', "data-turbo": false } do |f|
   %h2.govuk-heading-l{ "data-cy" => "cookie-settings" }
     = t('cookie_settings.section_settings.heading')
 
   %p.govuk-body= t('cookie_settings.section_settings.paragraph_one')
 
   = f.govuk_collection_radio_buttons :analytics,
-    [['true', t('cookie_settings.form.cookies_on')], ['false', t('cookie_settings.form.cookies_off')]],
-    :first,
-    :last,
-    legend: { text: t('cookie_settings.form.heading') },
-    hint: { text: t('cookie_settings.form.hint') }
+                                     [['true', t('cookie_settings.form.cookies_on')], ['false', t('cookie_settings.form.cookies_off')]],
+                                     :first,
+                                     :last,
+                                     legend: { text: t('cookie_settings.form.heading') },
+                                     hint: { text: t('cookie_settings.form.hint') }
 
-  = f.govuk_submit(t('cookie_settings.form.save_changes'), 'data-cy': 'submit-cookies')
+  = f.govuk_submit(t('cookie_settings.form.save_changes'), "data-cy": 'submit-cookies')
