@@ -62,6 +62,16 @@ RSpec.configure do |config|
     )
   end
 
+  config.before(:each, :stub_appeals_defendants_case_search) do
+    stub_request(
+      :get, %r{http.*/v2/defendants\?urn=.*}
+    ).to_return(
+      status: 200,
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cd_api/defendants_body.json')
+    )
+  end
+
   config.before(:each, :stub_defendants_ref_search) do
     stub_request(
       :get, %r{http.*/v2/defendants\?(asn|nino)=.*}
