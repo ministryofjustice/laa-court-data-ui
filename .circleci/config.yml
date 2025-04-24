@@ -5,6 +5,7 @@ orbs:
   browser-tools: circleci/browser-tools@1.4.6
   slack: circleci/slack@3.4.2
   snyk: snyk/snyk@2.2.0
+  node: circleci/node@7.1.0
 
 references:
   _restore-bundle: &restore-bundle
@@ -115,6 +116,9 @@ commands:
 
   build-base:
     steps:
+      - node/install:
+          install-yarn: true
+          node-version: '20.19'
       - install-gems
       - install-compile-assets
       - install-codeclimate-tt

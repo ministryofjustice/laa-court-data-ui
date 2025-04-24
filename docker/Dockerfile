@@ -1,3 +1,4 @@
+FROM node:20.19-alpine AS node
 FROM ruby:3.3.6-alpine3.20
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Access Court Data"
@@ -5,6 +6,13 @@ LABEL Contact="<access-court-data-team@digital.justice.gov.uk>"
 
 # fail early and print all commands
 RUN set -ex
+
+# Get node 20.19 from the node image into the ruby image
+COPY --from=node /usr/lib /usr/lib
+COPY --from=node /usr/local/share /usr/local/share
+COPY --from=node /usr/local/lib /usr/local/lib
+COPY --from=node /usr/local/include /usr/local/include
+COPY --from=node /usr/local/bin /usr/local/bin
 
 # build dependencies:
 # --virtual: create virtual package for later deletion
