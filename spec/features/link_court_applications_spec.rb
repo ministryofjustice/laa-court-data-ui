@@ -34,7 +34,7 @@ RSpec.feature 'Link court applications' do
       visit court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: '123'
       click_on "Create link to court data"
-      expect(page).to have_content "Enter a maat reference in the correct format"
+      expect(page).to have_content "Enter a MAAT ID in the correct format"
     end
   end
 
