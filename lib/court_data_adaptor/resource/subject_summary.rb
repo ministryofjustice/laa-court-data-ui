@@ -1,6 +1,8 @@
 module CourtDataAdaptor
   module Resource
     class SubjectSummary < V2
+      DUMMY_MAAT_PREFIX = "Z".freeze
+
       def name
         [defendant_first_name, defendant_last_name].join(" ")
       end
@@ -14,7 +16,7 @@ module CourtDataAdaptor
       end
 
       def maat_reference
-        offence_summary.map(&:maat_reference).uniq.compact.join
+        offence_summary.map(&:maat_reference).uniq.reject { _1&.starts_with?(DUMMY_MAAT_PREFIX) }.compact.join
       end
     end
   end

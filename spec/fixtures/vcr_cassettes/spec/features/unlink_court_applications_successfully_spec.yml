@@ -1,0 +1,311 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/c07d4116-0d06-4150-b6a4-e412f556d931
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 9b178e2d-7f3f-4d29-91ac-e19f09c1db72
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"23f69199bb0d06a8c535bfeb2f4a0365"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.072516'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=1.21, instantiation.active_record;dur=0.10,
+        process_action.action_controller;dur=56.30
+      Content-Length:
+      - '1151'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"c07d4116-0d06-4150-b6a4-e412f556d931","short_id":"A25VDNLHQBLI","application_reference":"MyString","application_status":"DRAFT","application_title":"String","application_type":"String","received_date":"2025-04-16","case_summary":[{"case_status":"ACTIVE","prosecution_case_id":"4211946d-c9eb-4d1c-896a-4033d3f199ed","prosecution_case_reference":"TUCQXILPSM"}],"hearing_summary":[],"subject_summary":{"subject_id":"285d08ec-0cdd-4008-aa0c-baa57fb5b8ff","date_of_next_hearing":null,"defendant_asn":"YGT6J2F5VQUJ","defendant_dob":"1991-03-02","defendant_first_name":"Ardith","defendant_last_name":"Dickens","master_defendant_id":null,"offence_summary":[{"id":"72eb6e73-8a0f-4ef7-be4a-ee5125b9fb81","code":"PT00011","order_index":1,"mode_of_trial":"Summary
+        offence","start_date":"2019-10-17","title":"Causing or inciting prostitution
+        for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Road
+        Traffic Act 1988 s.173","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
+  recorded_at: Thu, 17 Apr 2025 09:02:32 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/d174af7f-75da-428b-9875-c823eb182a23
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 64475f59-d62d-4e18-8aeb-b3c874eb12ad
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"ac09a318f71ce34a522c9ceac1bcf6bb"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.118712'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=1.97, instantiation.active_record;dur=0.16,
+        process_action.action_controller;dur=108.18
+      Content-Length:
+      - '4083'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"d174af7f-75da-428b-9875-c823eb182a23","short_id":"A25LO1OU0KE3","application_reference":"MyString","application_status":"DRAFT","application_title":"Appeal
+        against a conviction","application_type":"String","received_date":"2025-04-11","case_summary":[{"case_status":"ACTIVE","prosecution_case_id":"2c646634-9f24-42fd-865e-ef1e282b5953","prosecution_case_reference":"EPAYAQECKM"}],"hearing_summary":[{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"e36d5c82-a0c7-43af-9a6c-9f52f9659aa0","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
+        Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
+        Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
+        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels":[{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
+        counsel","attendance_days":["2025-04-10"],"defendants":["b1c388d1-b669-4eb6-a797-4170eb291726"]}]}],"subject_summary":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","date_of_next_hearing":null,"defendant_asn":"KQJXI10ZJXCI","defendant_dob":"1994-05-06","defendant_first_name":"Mauricio","defendant_last_name":"Rath","master_defendant_id":null,"offence_summary":[{"id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Trafficking into UK for sexual exploitation","wording":"Random
+        string","proceedings_concluded":false,"legislation":"Theft Act 1978 s.2","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234568","id":"6a056306-5ecb-45cc-9ddd-b3eda78d0855","status_code":"AP","status_date":"2025-04-17","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{"date":"2024-05-21","value":"AUTREFOIS_CONVICT","originating_hearing_id":"9ffa3c33-e721-4db2-8d25-27c0b2479dd3","offence_id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","application_id":"e1d42d9d-2c74-4bf7-b1d2-aba708615962","delegated_powers":{"user_id":"ef5525d6-5462-45d6-af0d-2a53cc86ec57","first_name":"Jane","last_name":"Doe"}},"pleas":[{"date":"2024-05-21","value":"AUTREFOIS_CONVICT","originating_hearing_id":"9ffa3c33-e721-4db2-8d25-27c0b2479dd3","offence_id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","application_id":"e1d42d9d-2c74-4bf7-b1d2-aba708615962","delegated_powers":{"user_id":"ef5525d6-5462-45d6-af0d-2a53cc86ec57","first_name":"Jane","last_name":"Doe"}}]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
+  recorded_at: Thu, 17 Apr 2025 09:02:32 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/d174af7f-75da-428b-9875-c823eb182a23
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 4bf2dc1a-cc63-4606-984b-6772fed0200f
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"ac09a318f71ce34a522c9ceac1bcf6bb"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.144585'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=3.35, instantiation.active_record;dur=0.09,
+        process_action.action_controller;dur=130.07
+      Content-Length:
+      - '4083'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"d174af7f-75da-428b-9875-c823eb182a23","short_id":"A25LO1OU0KE3","application_reference":"MyString","application_status":"DRAFT","application_title":"Appeal
+        against a conviction","application_type":"String","received_date":"2025-04-11","case_summary":[{"case_status":"ACTIVE","prosecution_case_id":"2c646634-9f24-42fd-865e-ef1e282b5953","prosecution_case_reference":"EPAYAQECKM"}],"hearing_summary":[{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"e36d5c82-a0c7-43af-9a6c-9f52f9659aa0","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
+        Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
+        Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
+        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels":[{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
+        counsel","attendance_days":["2025-04-10"],"defendants":["b1c388d1-b669-4eb6-a797-4170eb291726"]}]}],"subject_summary":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","date_of_next_hearing":null,"defendant_asn":"KQJXI10ZJXCI","defendant_dob":"1994-05-06","defendant_first_name":"Mauricio","defendant_last_name":"Rath","master_defendant_id":null,"offence_summary":[{"id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Trafficking into UK for sexual exploitation","wording":"Random
+        string","proceedings_concluded":false,"legislation":"Theft Act 1978 s.2","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234568","id":"6a056306-5ecb-45cc-9ddd-b3eda78d0855","status_code":"AP","status_date":"2025-04-17","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{"date":"2024-05-21","value":"AUTREFOIS_CONVICT","originating_hearing_id":"9ffa3c33-e721-4db2-8d25-27c0b2479dd3","offence_id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","application_id":"e1d42d9d-2c74-4bf7-b1d2-aba708615962","delegated_powers":{"user_id":"ef5525d6-5462-45d6-af0d-2a53cc86ec57","first_name":"Jane","last_name":"Doe"}},"pleas":[{"date":"2024-05-21","value":"AUTREFOIS_CONVICT","originating_hearing_id":"9ffa3c33-e721-4db2-8d25-27c0b2479dd3","offence_id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","application_id":"e1d42d9d-2c74-4bf7-b1d2-aba708615962","delegated_powers":{"user_id":"ef5525d6-5462-45d6-af0d-2a53cc86ec57","first_name":"Jane","last_name":"Doe"}}]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
+  recorded_at: Thu, 17 Apr 2025 09:16:44 GMT
+- request:
+    method: patch
+    uri: http://localhost:9292/api/internal/v2/court_application_laa_references/6c3eded6-a6d6-4156-940d-e3b5f02deb96
+    body:
+      encoding: UTF-8
+      string: '{"laa_reference":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","user_name":"roha-t4","unlink_reason_code":4,"unlink_other_reason_text":""}}'
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 6e5d115a-5801-46e9-ab0c-0cd49be970b5
+      Content-Type:
+      - application/vnd.api+json
+      Cache-Control:
+      - no-cache
+      X-Runtime:
+      - '0.068128'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=7.78, instantiation.active_record;dur=0.22,
+        start_transaction.active_record;dur=0.00, transaction.active_record;dur=3.23,
+        process_action.action_controller;dur=57.65
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 17 Apr 2025 09:16:44 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/d174af7f-75da-428b-9875-c823eb182a23
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.4
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - e2cd6278-c3f0-45ac-aaa8-ebdc337bf900
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"1dff12da19d1fe4fa186c8c09a694a7d"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.081206'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=4.55, instantiation.active_record;dur=0.10,
+        start_transaction.active_record;dur=0.01, transaction.active_record;dur=3.58,
+        process_action.action_controller;dur=72.98
+      Content-Length:
+      - '4085'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"d174af7f-75da-428b-9875-c823eb182a23","short_id":"A25LO1OU0KE3","application_reference":"MyString","application_status":"DRAFT","application_title":"Appeal
+        against a conviction","application_type":"String","received_date":"2025-04-11","case_summary":[{"case_status":"ACTIVE","prosecution_case_id":"2c646634-9f24-42fd-865e-ef1e282b5953","prosecution_case_reference":"EPAYAQECKM"}],"hearing_summary":[{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"e36d5c82-a0c7-43af-9a6c-9f52f9659aa0","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
+        Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
+        Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
+        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels":[{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
+        counsel","attendance_days":["2025-04-10"],"defendants":["b1c388d1-b669-4eb6-a797-4170eb291726"]}]}],"subject_summary":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","date_of_next_hearing":null,"defendant_asn":"KQJXI10ZJXCI","defendant_dob":"1994-05-06","defendant_first_name":"Mauricio","defendant_last_name":"Rath","master_defendant_id":null,"offence_summary":[{"id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Trafficking into UK for sexual exploitation","wording":"Random
+        string","proceedings_concluded":false,"legislation":"Theft Act 1978 s.2","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"Z10000004","id":"199945ec-316f-42a7-8247-d0e05909e006","status_code":"AP","status_date":"2025-04-17","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{"date":"2024-05-21","value":"AUTREFOIS_CONVICT","originating_hearing_id":"9ffa3c33-e721-4db2-8d25-27c0b2479dd3","offence_id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","application_id":"e1d42d9d-2c74-4bf7-b1d2-aba708615962","delegated_powers":{"user_id":"ef5525d6-5462-45d6-af0d-2a53cc86ec57","first_name":"Jane","last_name":"Doe"}},"pleas":[{"date":"2024-05-21","value":"AUTREFOIS_CONVICT","originating_hearing_id":"9ffa3c33-e721-4db2-8d25-27c0b2479dd3","offence_id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","application_id":"e1d42d9d-2c74-4bf7-b1d2-aba708615962","delegated_powers":{"user_id":"ef5525d6-5462-45d6-af0d-2a53cc86ec57","first_name":"Jane","last_name":"Doe"}}]}],"proceedings_concluded":false,"organisation_name":null,"representation_order":{}}}'
+  recorded_at: Thu, 17 Apr 2025 09:16:44 GMT
+recorded_with: VCR 6.3.1
