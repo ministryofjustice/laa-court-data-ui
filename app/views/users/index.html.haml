@@ -3,11 +3,11 @@
 .govuk-grid-row
   .govuk-grid-column-two-thirds
     = link_to t('users.index.new_link'),
-      new_user_path,
-      class: 'govuk-button',
-      'data-module': 'govuk-button',
-      draggable: 'false',
-      role: 'button'
+              new_user_path,
+              class: 'govuk-button',
+              "data-module": 'govuk-button',
+              draggable: 'false',
+              role: 'button'
 
     %table.govuk-table
       %caption.govuk-table__caption.govuk-visually-hidden
@@ -28,7 +28,7 @@
 
       %tbody.govuk-table__body
         - @users.each do |user|
-          %tr.govuk-table__row{ "data-user-id": "#{user.id}" }
+          %tr.govuk-table__row{ "data-user-id": user.id.to_s }
             %td.govuk-table__cell
               = link_to user.name, user_path(user), class: 'govuk-link'
             %td.govuk-table__cell
@@ -44,7 +44,7 @@
                 = t('users.index.edit')
                 %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
               |
-              = link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: t('users.index.delete_confirmation', name: user.name)}, class: 'govuk-link' do
+              = link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
                 = t('users.index.delete')
                 %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
 

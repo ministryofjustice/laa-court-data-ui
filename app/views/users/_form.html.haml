@@ -2,27 +2,27 @@
   = f.govuk_error_summary
 
   = f.govuk_text_field(:first_name,
-    label: { text: t('users.form.fields.first_name_label') } )
+                       label: { text: t('users.form.fields.first_name_label') })
 
   = f.govuk_text_field(:last_name,
-    label: { text: t('users.form.fields.last_name_label') } )
+                       label: { text: t('users.form.fields.last_name_label') })
 
   = f.govuk_text_field(:username,
-    label: { text: t('users.form.fields.username_label') },
-    hint: { text: t('users.form.fields.username_hint') },
-    maxlength: 10 )
+                       label: { text: t('users.form.fields.username_label') },
+                       hint: { text: t('users.form.fields.username_hint') },
+                       maxlength: 10)
 
   = f.govuk_email_field(:email,
-    label: { text: t('users.form.fields.email_label') } )
+                        label: { text: t('users.form.fields.email_label') })
 
   = f.govuk_email_field(:email_confirmation,
-    value: user.email,
-    label: { text: t('users.form.fields.email_confirmation_label') } )
+                        value: user.email,
+                        label: { text: t('users.form.fields.email_confirmation_label') })
 
   = f.govuk_collection_check_boxes :roles,
-      User.valid_roles,
-      :to_s,
-      :titlecase,
-      legend: { text: t('users.form.fields.roles_legend') }
+                                   User.valid_roles,
+                                   :to_s,
+                                   :titlecase,
+                                   legend: { text: t('users.form.fields.roles_legend') }
 
-  = f.govuk_submit( t('users.form.fields.save_button'), 'data-turbo': 'false' )
+  = f.govuk_submit(t('users.form.fields.save_button'), "data-turbo": 'false')

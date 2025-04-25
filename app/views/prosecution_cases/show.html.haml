@@ -7,4 +7,5 @@
     = render partial: 'prosecution_cases/cd_api/hearing_summaries', locals: { case_summary: prosecution_case }
 
     - if Rails.configuration.x.display_raw_responses
-      = render partial: 'prosecution_cases/cd_api/raw_response', locals: { case_summary: prosecution_case }
+      = render partial: 'prosecution_cases/cd_api/raw_response',
+               locals: { case_summary: prosecution_case }

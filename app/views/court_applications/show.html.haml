@@ -21,7 +21,7 @@
       %td.govuk-table__cell
         = l(@application.subject_summary.date_of_birth)
       %td.govuk-table__cell
-        = @application.subject_summary.maat_reference.presence ||t('search.result.defendant.unlinked')
+        = @application.subject_summary.maat_reference.presence || t('search.result.defendant.unlinked')
 
 %h2.govuk-heading-l
   = t('.hearings')
@@ -34,7 +34,6 @@
         - direction = @date_sort_direction == 'asc' ? 'desc' : 'asc'
         = link_to(court_application_path(id: @application.application_id, date_sort_direction: direction),
                   class: 'govuk-link govuk-link--no-visited-state', "aria-label": "Sort date #{direction}") do
-
           = t('.hearing.date')
           = @date_sort_direction == 'asc' ? "\u25B2" : "\u25BC"
       %th.govuk-table__header{ scope: 'col' }

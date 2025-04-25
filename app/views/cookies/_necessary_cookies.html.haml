@@ -1,0 +1,19 @@
+%table.govuk-table
+  %caption.govuk-table__caption.govuk-visually-hidden
+    = t('cookies.section_necessary.table.caption')
+  %thead.govuk-table__head
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'col' }
+        = t('cookies.section_necessary.table.heading_one')
+      %th.govuk-table__header{ scope: 'col' }
+        = t('cookies.section_necessary.table.heading_two')
+      %th.govuk-table__header{ scope: 'col' }
+        = t('cookies.section_necessary.table.heading_three')
+  %tbody.govuk-table__body
+    %tr.govuk-table__row
+      %td.govuk-table__cell{ "data-cy" => "session-cookie-name" }
+        = t('cookies.section_necessary.table.row_one_a')
+      %td.govuk-table__cell{ "data-cy" => "session-cookie-purpose" }
+        = t('cookies.section_necessary.table.row_one_b')
+      %td.govuk-table__cell{ "data-cy" => "session-cookie-expires" }
+        = t('cookies.section_necessary.table.row_one_c')

@@ -2,9 +2,9 @@
   = f.govuk_error_summary
 
   = f.govuk_collection_radio_buttons :id,
-    Search.filters,
-    :id,
-    :name,
-    legend: { text: t('search_filter.legend_text'), size: 'xl' }
+                                     Search.filters,
+                                     :id,
+                                     :name,
+                                     legend: { text: t('search_filter.legend_text'), size: 'xl' }
 
-  = f.govuk_submit( t('generic.continue') )
+  = f.govuk_submit(t('generic.continue'))
