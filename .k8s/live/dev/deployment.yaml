@@ -71,6 +71,8 @@ spec:
               value: 'true'
             - name: HEARING_SUMMARIES
               value: 'true'
+            - name: SHOW_APPEALS
+              value: 'true'
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:

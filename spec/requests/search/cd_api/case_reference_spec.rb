@@ -59,7 +59,7 @@ RSpec.describe 'case reference search', :stub_defendants_case_search, type: :req
       end
     end
 
-    context 'when appeals flag is true', :stub_appeals_defendants_case_search do
+    context 'when appeals flag is true', :stub_defendants_case_search do
       before do
         allow(FeatureFlag).to receive(:enabled?).with(:show_appeals).and_return(true)
         post '/searches', params: { search: { term: 'T20200001', filter: :case_reference } }
