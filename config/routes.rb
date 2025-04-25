@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: {
-    confirmations: 'users/confirmations',
     passwords: 'users/passwords',
     sessions: 'users/sessions',
     unlocks: 'users/unlocks'
