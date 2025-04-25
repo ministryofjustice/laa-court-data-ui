@@ -10,7 +10,7 @@ class UnlinkAttempt
   validates :username, presence: true
   validates :reason_code, presence: true, inclusion: { in: :valid_reason_codes }
   validates :other_reason_text, presence: { if: :text_required? }
-  validates :other_reason_text, length: { maximum: 500 }
+  validates :other_reason_text, length: { maximum: 500, if: :text_required? }
 
   delegate :text_required?, to: :reason, allow_nil: true
 

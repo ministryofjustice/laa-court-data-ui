@@ -11,6 +11,8 @@ class CourtApplicationLinkStatus
   end
 
   def maat_reference
+    return unless maat_linked?
+
     @params[:linked].presence || @subject.maat_reference
   end
 
