@@ -27,7 +27,8 @@ AllCops:
     - db/migrate/*.rb
     - spec/spec_helpers.rb
     - spec/rails_helper.rb
-    - node_modules/**/*
+    - node_modules
+    - vendor/**/*
 
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
