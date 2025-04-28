@@ -21,7 +21,7 @@
         %td.govuk-table__cell
           = defendant.arrest_summons_number
         %td.govuk-table__cell
-          - if defendant&.application_summaries&.present?
+          - if defendant.application_summaries.present?
             = render partial: 'results/defendant_court_applications', locals: { results: defendant.application_summaries }
           - else
             = t('search.result.defendant.no_court_application_title')

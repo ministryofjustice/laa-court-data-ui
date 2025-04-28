@@ -3,8 +3,7 @@
   = render 'results/none'
 - elsif results.first.is_a? CourtDataAdaptor::Resource::ProsecutionCase
   = render partial: 'results/prosecution_case', locals: { results: results }
+- elsif FeatureFlag.enabled?(:show_appeals)
+  = render partial: 'results/defendant_appeals', locals: { results: results }
 - else
-  - if FeatureFlag.enabled?(:show_appeals)
-    = render partial: 'results/defendant_appeals', locals: { results: results }
-  - else
-    = render partial: 'results/defendant', locals: { results: results }
+  = render partial: 'results/defendant', locals: { results: results }
