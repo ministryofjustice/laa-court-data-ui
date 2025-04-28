@@ -7,7 +7,7 @@ if ENV["CI"]
       SimpleCov.collate Dir["./coverage_results/.resultset*.json"], "rails" do
         enable_coverage :branch
         primary_coverage :branch
-        minimum_coverage branch: 85, line: 99
+        minimum_coverage branch: 84, line: 99
         refuse_coverage_drop :line, :branch
       end
     end

@@ -241,7 +241,8 @@ jobs:
     parallelism: 1
     steps:
       - checkout
-      - restore-dependencies
+      - install-gems
+      - install-compile-assets
       - linter
       - rubocop
       - brakeman
