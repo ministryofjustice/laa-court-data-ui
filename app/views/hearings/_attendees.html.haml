@@ -1,19 +1,32 @@
-%div{ :class => "govuk-!-margin-bottom-9" }
+%div{ class: "govuk-!-margin-bottom-9" }
   %h2.govuk-heading-l
     = t('hearings.show.attendees.heading')
-  .govuk-heading-s{ :class => "govuk-!-margin-bottom-1" }
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     = t('hearings.show.attendees.defendants')
-  %p.govuk-body{ :class => "govuk-!-margin-bottom-2" }
-    = hearing.defendant_name_list
-  .govuk-heading-s{ :class => "govuk-!-margin-bottom-1" }
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defendants" }
+    - if hearing_details&.prosecution_cases&.any?
+      - cases = hearing_details.prosecution_cases
+      = safe_join(cases.map { |cs| cs.defendants.map { |df| "#{df.defendant_details.person_details.first_name} #{df.defendant_details.person_details.last_name}" } }, tag.br)
+    - else
+      = t('generic.not_available')
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     = t('hearings.show.attendees.defence')
-  %p.govuk-body{ :class => "govuk-!-margin-bottom-2" }
-    = hearing.provider_list
-  .govuk-heading-s{ :class => "govuk-!-margin-bottom-1" }
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defence" }
+    - if hearing_details&.defence_counsels&.any?
+      = safe_join([hearing.defence_counsels_list], tag.br)
+    - else
+      = t('generic.not_available')
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     = t('hearings.show.attendees.prosecution')
-  %p.govuk-body{ :class => "govuk-!-margin-bottom-2" }
-    = hearing.prosecution_advocate_name_list
-  .govuk-heading-s{ :class => "govuk-!-margin-bottom-1" }
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "prosecution" }
+    - if hearing_details&.prosecution_counsels&.any?
+      = hearing.prosecution_counsels_list
+    - else
+      = t('generic.not_available')
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     = t('hearings.show.attendees.judges')
-  %p.govuk-body{ :class => "govuk-!-margin-bottom-2" }
-    = hearing.judge_name_list
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "judges" }
+    - if hearing_details&.judiciary&.any?
+      = hearing.judiciary_list
+    - else
+      = t('generic.not_available')

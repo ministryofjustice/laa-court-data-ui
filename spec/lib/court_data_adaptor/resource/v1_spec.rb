@@ -19,7 +19,7 @@ RSpec.describe CourtDataAdaptor::Resource::V1, :vcr do
       let(:instance) { described_class.new }
     end
 
-    include_examples 'court_data_adaptor resource callbacks' do
+    it_behaves_like 'court_data_adaptor resource callbacks' do
       let(:instance) { described_class.new }
     end
 

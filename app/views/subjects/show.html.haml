@@ -1,57 +1,94 @@
 - content_for :pre_heading do
   %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
     = t(".appeal")
+- content_for :custom_packs do
+  = javascript_include_tag 'unlink', defer: true
 = govuk_page_title(@subject.name, t(".defendant"))
 
 .govuk-width-container
-  .govuk-grid-row
-    .govuk-grid-column-two-thirds
-      %table.govuk-table
-        %caption.govuk-table__caption.govuk-visually-hidden
-          = t(".defendant")
-        %tbody.govuk-table__body
-          %tr.govuk-table__row
-            %th.govuk-table__header{ scope: "row" }
-              = t(".date_of_birth")
-            %td.govuk-table__cell
-              = l(@subject.date_of_birth)
-          %tr.govuk-table__row
-            %th.govuk-table__header{ scope: "row" }
-              = t(".arrest_summons_number")
-            %td.govuk-table__cell
-              = @subject.defendant_asn
-          %tr.govuk-table__row
-            %th.govuk-table__header{ scope: "row" }
-              = t(".maat_number")
-            %td.govuk-table__cell
-              = @subject.maat_reference
-= link_to t(".view_summary"),
-          court_application_path(@application.application_id),
-          class: "govuk-button govuk-button--secondary"
+  :ruby
+    link_url = if @link_status.maat_linked?
+      unlink_court_application_subject_path(@application.application_id)
+    else
+      link_court_application_subject_path(@application.application_id)
+    end
+  = form_with(model: @form_model, url: link_url, data: { turbo: false }) do |f|
+    = f.govuk_error_summary
 
-%h2.govuk-heading-l
-  = t('.offences')
-%table.govuk-table.app-sortable-table
-  %caption.govuk-table__caption.govuk-visually-hidden
-    = t('.offences')
-  %thead.govuk-table__head
-    %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'col' }
-        = t('.offence.offence_and_legislation')
-      %th.govuk-table__header{ scope: 'col' }
-        = t('.offence.plea')
-      %th.govuk-table__header{ scope: 'col' }
-        = t('.offence.mode_of_trial')
-  %tbody.govuk-table__body
-    - @subject.offence_summary.each do |offence|
-      %tr.govuk-table__row
-        %td.govuk-table__cell
-          = offence.title
-          .govuk-hint
-            = offence.legislation
-        %td.govuk-table__cell
-          - offence.pleas.each do |plea|
-            %div
-              = t(".plea_summary", date: l(plea.date), value: plea.user_facing_value)
-        %td.govuk-table__cell
-          = offence.mode_of_trial
+    .govuk-grid-row
+      .govuk-grid-column-two-thirds
+        %table.govuk-table
+          %caption.govuk-table__caption.govuk-visually-hidden
+            = t(".defendant")
+          %tbody.govuk-table__body
+            %tr.govuk-table__row
+              %th.govuk-table__header{ scope: "row" }
+                = t(".date_of_birth")
+              %td.govuk-table__cell
+                = l(@subject.date_of_birth)
+            %tr.govuk-table__row
+              %th.govuk-table__header{ scope: "row" }
+                = t(".arrest_summons_number")
+              %td.govuk-table__cell
+                = @subject.defendant_asn
+            %tr.govuk-table__row
+              %th.govuk-table__header{ scope: "row" }
+                = t(".maat_number")
+              %td.govuk-table__cell
+                = @link_status.maat_reference
+
+    = link_to t(".view_summary"),
+              court_application_path(@application.application_id),
+              class: "govuk-button govuk-button--secondary"
+
+    %h2.govuk-heading-l
+      = t('.offences')
+    %table.govuk-table.app-sortable-table
+      %caption.govuk-table__caption.govuk-visually-hidden
+        = t('.offences')
+      %thead.govuk-table__head
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'col' }
+            = t('.offence.offence_and_legislation')
+          %th.govuk-table__header{ scope: 'col' }
+            = t('.offence.plea')
+          %th.govuk-table__header{ scope: 'col' }
+            = t('.offence.mode_of_trial')
+      %tbody.govuk-table__body
+        - @subject.offence_summary.each do |offence|
+          %tr.govuk-table__row
+            %td.govuk-table__cell
+              = offence.title
+              .govuk-hint
+                = offence.legislation
+            %td.govuk-table__cell
+              - offence.pleas.each do |plea|
+                %div
+                  = t(".plea_summary", date: l(plea.date), value: plea.user_facing_value)
+            %td.govuk-table__cell
+              = offence.mode_of_trial
+
+    .govuk-grid-row
+      .govuk-grid-column-two-thirds
+        - if @link_status.maat_linked?
+          = govuk_detail(t('defendants.unlink.detail'), open: @form_model.errors.present?) do
+            = f.govuk_collection_select :reason_code,
+                                        UnlinkReason.all,
+                                        :code,
+                                        :description,
+                                        options: { include_blank: t('generic.form.select.blank_option') },
+                                        label: { text: t('defendants.form.reason_code.label') }
+
+            = f.govuk_text_area :other_reason_text,
+                                label: { text: t('defendants.form.other_reason_text.label') },
+                                hint: { text: t('defendants.form.other_reason_text.hint') },
+                                rows: 5,
+                                max_chars: 500
+
+            = f.govuk_submit t('defendants.form.submit'), data: { disable_with: 'Unlinking...' }
+        - else
+          = f.govuk_text_field :maat_reference,
+                               label: { text: t('laa_reference.link.form.maat_reference.label') },
+                               hint: { text: t('laa_reference.link.form.maat_reference.hint') }
+
+          = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }

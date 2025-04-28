@@ -1,15 +1,11 @@
-= govuk_page_title(@prosecution_case.prosecution_case_reference, t('generic.case'))
+= govuk_page_title(prosecution_case.prosecution_case_reference, t('generic.case'))
 
-- if v2_hearing_summaries?
-  = render partial: 'prosecution_cases/cd_api/show_v2', locals: { case_summary: @prosecution_case }
-- else
-  .govuk-grid-row
-    .govuk-grid-column-two-thirds
-      = render partial: 'cracked_ineffective_trial', locals: { prosecution_case: @prosecution_case }
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
+    = render partial: 'prosecution_cases/cd_api/overall_defendants', locals: { case_summary: prosecution_case }
 
-      = render partial: 'defendants', locals: { prosecution_case: @prosecution_case }
+    = render partial: 'prosecution_cases/cd_api/hearing_summaries', locals: { case_summary: prosecution_case }
 
-      = render partial: 'hearing_summaries', locals: { prosecution_case: @prosecution_case }
-
-      - if Rails.configuration.x.display_raw_responses
-        = render partial: 'raw_response', locals: { prosecution_case: @prosecution_case }
+    - if Rails.configuration.x.display_raw_responses
+      = render partial: 'prosecution_cases/cd_api/raw_response',
+               locals: { case_summary: prosecution_case }

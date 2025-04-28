@@ -12,12 +12,12 @@ spec:
       maxSurge: 100%
   selector:
     matchLabels:
-      app: laa-court-data-ui
+      app: laa-court-data-ui-worker
       tier: worker
   template:
     metadata:
       labels:
-        app: laa-court-data-ui
+        app: laa-court-data-ui-worker
         tier: worker
     spec:
       containers:

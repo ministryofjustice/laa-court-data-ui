@@ -25,7 +25,6 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
 
   before do
     allow(FeatureFlag).to receive(:enabled?).with(:defendants_page).and_return(false)
-    allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(false)
   end
 
   context 'when authenticated' do
@@ -106,7 +105,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
         let(:maat_reference) { 'A2123456' }
 
         it 'displays error summary with invalid error' do
-          expect(response.body).to include('Enter a maat reference in the correct format')
+          expect(response.body).to include('Enter a MAAT ID in the correct format')
         end
 
         it 'renders laa_referencer/new' do

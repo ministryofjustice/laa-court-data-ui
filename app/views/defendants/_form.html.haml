@@ -2,8 +2,8 @@
   = f.govuk_error_summary
 
   = render partial: 'defendants/defendant',
-                    locals: { defendant: defendant,
-                    prosecution_case_reference: prosecution_case_reference }
+           locals: { defendant: defendant,
+                     prosecution_case_reference: prosecution_case_reference }
 
   - if FeatureFlag.enabled?(:defendants_page)
     = render partial: 'defendants/offences_v2', locals: { defendant: defendant }
@@ -14,17 +14,17 @@
 
   = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do
     = f.govuk_collection_select :reason_code,
-      unlink_reasons,
-      :code,
-      :description,
-      options: { include_blank: t('generic.form.select.blank_option') },
-      label: { text: t('defendants.form.reason_code.label') }
+                                unlink_reasons,
+                                :code,
+                                :description,
+                                options: { include_blank: t('generic.form.select.blank_option') },
+                                label: { text: t('defendants.form.reason_code.label') }
 
     = f.govuk_text_area :other_reason_text,
-      label: { text: t('defendants.form.other_reason_text.label') },
-      hint: { text: t('defendants.form.other_reason_text.hint') },
-      rows: 5,
-      max_chars: 500
+                        label: { text: t('defendants.form.other_reason_text.label') },
+                        hint: { text: t('defendants.form.other_reason_text.hint') },
+                        rows: 5,
+                        max_chars: 500
 
     = f.govuk_submit(t('defendants.form.submit'))
 

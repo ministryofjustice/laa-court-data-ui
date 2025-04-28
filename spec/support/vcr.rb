@@ -44,14 +44,14 @@ VCR.configure do |config|
   end
 
   config.filter_sensitive_data('<BEARER_TOKEN>') do |interaction|
-    authorization_header = interaction.request.headers['Authorization'].first
-    a_match = authorization_header.match(/^Bearer\s+([^,\s]+)/)
+    authorization_header = interaction.request.headers['Authorization']&.first
+    a_match = authorization_header&.match(/^Bearer\s+([^,\s]+)/)
     a_match&.captures&.first
   end
 
   config.filter_sensitive_data('<Basic>') do |interaction|
-    authorization_header = interaction.request.headers['Authorization'].first
-    a_match = authorization_header.match(/^Basic\s+([^,\s]+)/)
+    authorization_header = interaction.request.headers['Authorization']&.first
+    a_match = authorization_header&.match(/^Basic\s+([^,\s]+)/)
     a_match&.captures&.first
   end
 end

@@ -1,5 +1,5 @@
-%div{ :class => "govuk-!-margin-bottom-9" }
-  .govuk-heading-s
+%div{ class: "govuk-!-margin-bottom-9" }
+  .govuk-heading-l
     = t('hearings.show.result')
   %p.govuk-body
-    = hearing.cracked_ineffective_trial.description_sentence
+    = sanitize(hearing.cracked_ineffective_trial.description_sentence)

@@ -28,14 +28,18 @@ Rails.application.routes.draw do
   resources :laa_references, only: %i[new create]
   resources :hearings, only: %i[show]
   resources :court_applications, only: %i[show] do
-    resource :subject, only: %i[show]
+    resource :subject, only: %i[show] do
+      member do
+        post :link
+        post :unlink
+      end
+    end
     resources :hearings, only: [] do
       resources :hearing_days, only: %i[show]
     end
   end
 
   devise_for :users, controllers: {
-    confirmations: 'users/confirmations',
     passwords: 'users/passwords',
     sessions: 'users/sessions',
     unlocks: 'users/unlocks'
@@ -45,8 +49,6 @@ Rails.application.routes.draw do
     get 'change_password', on: :member
     patch 'update_password', on: :member
   end
-
-  resources :feedback, only: %i[new create]
 
   post '/cookies/settings', to: 'cookies#create'
   get '/cookies/settings', to: 'cookies#new'

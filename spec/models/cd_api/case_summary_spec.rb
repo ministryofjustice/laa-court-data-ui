@@ -5,10 +5,6 @@ RSpec.describe CdApi::CaseSummary, :stub_v2_hearing_summary, type: :model do
     described_class.find(case_reference)
   end
 
-  before do
-    allow(FeatureFlag).to receive(:enabled?).with(:hearing).and_return(true)
-  end
-
   let(:case_reference) { 'TEST12345' }
 
   it { is_expected.to respond_to(:prosecution_case_reference, :hearing_summaries, :overall_defendants) }

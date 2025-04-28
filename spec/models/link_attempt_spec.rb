@@ -25,7 +25,7 @@ RSpec.describe LinkAttempt, type: :model do
       is_expected.not_to \
         allow_value('A123456', '123456', '12345678', '')
         .for(:maat_reference)
-        .with_message(/Enter a maat reference in the correct format/)
+        .with_message(/Enter a MAAT ID in the correct format/)
     }
 
     context 'when no_maat_id set to true' do

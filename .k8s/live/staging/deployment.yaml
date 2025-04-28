@@ -63,12 +63,6 @@ spec:
               value: 'UA-131160087-16'
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
-            - name: DEFENDANTS_SEARCH
-              value: 'true'
-            - name: HEARING
-              value: 'true'
-            - name: HEARING_SUMMARIES
-              value: 'true'
             - name: DISPLAY_RAW_RESPONSES
               value: enabled
             - name: COURT_DATA_ADAPTOR_API_UID

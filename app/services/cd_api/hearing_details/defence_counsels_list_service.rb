@@ -36,13 +36,13 @@ module CdApi
       def build_defence_counsel_sentences_with_defendants(defence_counsel, sentence)
         defence_counsel.defendants.each do |defendant|
           unless defendant && !defendant.is_a?(String)
-            next @result << ("#{sentence} for #{I18n.t('generic.not_available').downcase}")
+            next @result << "#{sentence} for #{I18n.t('generic.not_available').downcase}"
           end
 
           person_details = defendant.defendant_details&.person_details
           defendant_name = name(**person_details&.attributes&.symbolize_keys)
 
-          @result << ("#{sentence} for #{defendant_name}")
+          @result << "#{sentence} for #{defendant_name}"
         end
       end
 

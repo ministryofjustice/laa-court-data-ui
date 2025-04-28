@@ -4,7 +4,7 @@ class CharLengthValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     return if value.nil? || char_length(value) >= options[:minimum]
 
-    record.errors.add(attribute, (options[:message] || :too_short), count: options[:minimum])
+    record.errors.add(attribute, options[:message] || :too_short, count: options[:minimum])
   end
 
   def char_length(value)

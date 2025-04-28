@@ -38,7 +38,7 @@ RSpec.describe 'defendants', type: :request do
       let(:defendant_fixture) { load_json_stub('unlinked/defendant_by_reference_body.json') }
       let(:defendant_by_id_fixture) { load_json_stub('unlinked_defendant.json') }
 
-      include_examples 'renders common defendant details'
+      it_behaves_like 'renders common defendant details'
 
       it { expect(response).to render_template('laa_references/_form') }
     end
@@ -51,7 +51,7 @@ RSpec.describe 'defendants', type: :request do
       let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
       let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
 
-      include_examples 'renders common defendant details'
+      it_behaves_like 'renders common defendant details'
 
       it { expect(response).to render_template('defendants/_form') }
     end

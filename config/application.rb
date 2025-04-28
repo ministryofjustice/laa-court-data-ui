@@ -42,10 +42,12 @@ module LaaCourtDataUi
     config.exceptions_app = routes
     config.active_job.queue_adapter = :sidekiq
     config.x.support_email_address = "access-court-data-team@digital.justice.gov.uk"
+    config.x.feedback_url = "https://www.smartsurvey.co.uk/s/04QYDH/"
     config.x.display_raw_responses = %w[enabled true].include?(ENV.fetch("DISPLAY_RAW_RESPONSES", nil))
     config.action_mailer.deliver_later_queue_name = :mailers
     config.x.court_data_api_config.uri = ENV.fetch("COURT_DATA_API_URL", nil)
     config.x.court_data_api_config.user = ENV.fetch("COURT_DATA_API_USERNAME", nil)
     config.x.court_data_api_config.secret = ENV.fetch("COURT_DATA_API_SECRET", nil)
+    config.active_support.to_time_preserves_timezone = :zone
   end
 end

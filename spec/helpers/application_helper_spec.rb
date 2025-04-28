@@ -66,13 +66,13 @@ RSpec.describe ApplicationHelper, type: :helper do
       context 'with unmodularized class' do
         before { stub_const('TestClass', test_class) }
 
-        include_examples 'returns or yields decorated object'
+        it_behaves_like 'returns or yields decorated object'
       end
 
       context 'with modularized class' do
         before { stub_const('TestModule::TestClass', test_class) }
 
-        include_examples 'returns or yields decorated object'
+        it_behaves_like 'returns or yields decorated object'
       end
     end
 
@@ -149,13 +149,13 @@ RSpec.describe ApplicationHelper, type: :helper do
       context 'with unmodularized class' do
         before { stub_const('TestClass', test_class) }
 
-        include_examples 'returns or yields all decorated objects'
+        it_behaves_like 'returns or yields all decorated objects'
       end
 
       context 'with modularized class' do
         before { stub_const('TestModule::TestClass', test_class) }
 
-        include_examples 'returns or yields all decorated objects'
+        it_behaves_like 'returns or yields all decorated objects'
       end
     end
 
@@ -240,30 +240,6 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context 'when application is running locally' do
       it { is_expected.to eql 'app-environment-local' }
-    end
-  end
-
-  describe '#v2_hearing_summaries?' do
-    subject(:v2_hearing_summaries?) { helper.v2_hearing_summaries? }
-
-    context 'when hearing summaries flag is true' do
-      before do
-        allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(true)
-      end
-
-      it 'returns true' do
-        expect(v2_hearing_summaries?).to be(true)
-      end
-    end
-
-    context 'when hearing summaries flag is false' do
-      before do
-        allow(FeatureFlag).to receive(:enabled?).with(:hearing_summaries).and_return(false)
-      end
-
-      it 'returns false' do
-        expect(v2_hearing_summaries?).to be(false)
-      end
     end
   end
 end
