@@ -155,7 +155,7 @@ commands:
           command: yarn run validate:scss
       - run:
           name: Run Haml-Lint
-          command: bundle exec haml-lint
+          command: bundle exec haml-lint app
 
   brakeman:
     steps:
