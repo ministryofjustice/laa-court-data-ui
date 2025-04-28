@@ -65,6 +65,8 @@ spec:
               value: enabled
             - name: DISPLAY_RAW_RESPONSES
               value: enabled
+            - name: SHOW_APPEALS
+              value: 'true'
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
