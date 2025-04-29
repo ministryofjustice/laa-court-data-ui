@@ -46,7 +46,7 @@ group :test do
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.10.0'
-  gem 'rspec_junit_formatter'
+  gem 'rspec_junit_formatter', require: false
   gem 'rspec-rails', '~> 7.1'
   gem 'rubocop', '~> 1.75', require: false
   gem 'rubocop-capybara', require: false
@@ -58,6 +58,7 @@ group :test do
   gem 'selenium-webdriver', '~> 4.31'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'simplecov-rcov'
   gem 'vcr'
   gem 'webmock'
 end

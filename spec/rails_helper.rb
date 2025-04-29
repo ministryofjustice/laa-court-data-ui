@@ -2,7 +2,17 @@
 
 # MUST be first
 require_relative 'simplecov_helper'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  enable_coverage :branch
+  unless ENV['CI']
+    primary_coverage :branch
+    minimum_coverage branch: 84, line: 99
+
+    SimpleCov.at_exit do
+      SimpleCov.result.format!
+    end
+  end
+end
 
 ENV['RAILS_ENV'] ||= 'test'
 

@@ -21,7 +21,7 @@ references:
       command: |
         bundler_version=$(cat Gemfile.lock | tail -1 | tr -d " ")
         gem install bundler -v $bundler_version
-        bundle config set path '~/vendor/bundle'
+        bundle config set path 'vendor/bundle'
         bundle check || bundle install --jobs=4 --retry=3
         bundle clean --force
 
@@ -30,7 +30,7 @@ references:
       key: v2-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/.bundle
-        - ~/vendor/bundle
+        - vendor/bundle
 
   _restore-assets: &restore-assets
     restore_cache:
@@ -121,7 +121,6 @@ commands:
           node-version: '20.19'
       - install-gems
       - install-compile-assets
-      - install-codeclimate-tt
 
   aws-cli-setup:
     steps:
@@ -156,7 +155,7 @@ commands:
           command: yarn run validate:scss
       - run:
           name: Run Haml-Lint
-          command: bundle exec haml-lint
+          command: bundle exec haml-lint app
 
   brakeman:
     steps:
@@ -184,42 +183,26 @@ commands:
       - run:
           name: Run rspec tests
           command: |
-            mkdir /tmp/test-results
-            tmp/cc-test-reporter before-build
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             RUBYOPT=-W:no-deprecated \
             bundle exec rspec \
               --format progress \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
-              $TESTFILES
-            tmp/cc-test-reporter format-coverage -t simplecov -o "tmp/coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
+              -- $TESTFILES
       - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
-
-  upload-coverage:
-    steps:
+          path: /tmp/test-results/rspec
       - run:
-          name: Upload coverage results to Code Climate
+          name: Stash coverage results
           command: |
-            tmp/cc-test-reporter sum-coverage --output - tmp/coverage/codeclimate.*.json | tmp/cc-test-reporter upload-coverage --input -
-
-  install-codeclimate-tt:
-    steps:
-      - run:
-          name: Install codeclimate test reporter
-          command: |
-            mkdir -p tmp/
-            mkdir -p tmp/coverage/
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > tmp/cc-test-reporter
-            chmod +x tmp/cc-test-reporter
+            mkdir coverage_results
+            cp -R coverage/.resultset.json coverage_results/.resultset-${CIRCLE_NODE_INDEX}.json
       - persist_to_workspace:
-          root: tmp
+          root: .
           paths:
-            - cc-test-reporter
+            - coverage_results
+      - store_artifacts:
+          path: ~/repo/coverage_results
 
   deploy-to:
     description: >
@@ -258,7 +241,8 @@ jobs:
     parallelism: 1
     steps:
       - checkout
-      - restore-dependencies
+      - install-gems
+      - install-compile-assets
       - linter
       - rubocop
       - brakeman
@@ -268,24 +252,34 @@ jobs:
     parallelism: 4
     steps:
       - checkout
-      - restore-dependencies
+      - install-gems
+      - install-compile-assets
       - *attach-tmp-workspace
       - run: sudo apt-get update
       - browser-tools/install-chrome
       - run: sudo apt autoremove
-      - rspec
-      - persist_to_workspace:
-          root: tmp
+      - save_cache:
+          name: Saving assets and dependencies cache for use in later steps
+          key: vcd-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - coverage/codeclimate.*.json
-      - store_artifacts:
-          path: tmp/coverage
+            - ~/repo
+      - rspec
 
-  upload-test-coverage:
+  coverage:
     executor: test-executor
     steps:
-      - *attach-tmp-workspace
-      - upload-coverage
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          name: Restoring assets and dependencies cache from tests
+          key: vcd-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Process coverage
+          command: |
+            bundle exec rake simplecov:process_coverage
+      - store_artifacts:
+          path: ~/repo/coverage
+          destination: coverage
 
   scan-docker-image:
     executor: test-executor
@@ -392,7 +386,7 @@ workflows:
       - rspec-tests:
           requires:
             - build-test-container
-      - upload-test-coverage:
+      - coverage:
           requires:
             - rspec-tests
       - scan-docker-image:
