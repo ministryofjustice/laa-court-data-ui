@@ -66,17 +66,17 @@ spec:
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: COURT_DATA_ADAPTOR_API_UID
             - name: COURT_DATA_ADAPTOR_API_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: COURT_DATA_ADAPTOR_API_SECRET
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: SECRET_KEY_BASE
             - name: DATABASE_URL
               valueFrom:
@@ -96,47 +96,47 @@ spec:
             - name: ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: ADMIN_PASSWORD
             - name: CASEWORKER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: CASEWORKER_PASSWORD
             - name: MANAGER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: MANAGER_PASSWORD
             - name: GOVUK_NOTIFY_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: GOVUK_NOTIFY_API_KEY
             - name: SENTRY_DSN
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: SENTRY_DSN
             - name: SLACK_ALERTS_WEBHOOK
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: SLACK_ALERTS_WEBHOOK
             - name: COURT_DATA_API_URL
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: COURT_DATA_API_URL
             - name: COURT_DATA_API_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: COURT_DATA_API_USERNAME
             - name: COURT_DATA_API_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: lcdui-secrets
+                  name: aws-secrets
                   key: COURT_DATA_API_SECRET
         - name: laa-court-data-ui-metrics
           image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-get-paid/laa-court-data-ui:set-me
