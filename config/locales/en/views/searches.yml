@@ -17,6 +17,7 @@ en:
       body_guide_two: double-checking your spelling
     page_title: Search
     result:
+      appeals_heading: "%{term} Search results"
       caption: Search results
       defendant:
         arrest_summons_number: ASN

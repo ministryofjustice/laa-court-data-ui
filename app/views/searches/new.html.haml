@@ -1,10 +1,11 @@
 = govuk_page_title(t('search.page_title'))
 
 .govuk-grid-row
-  .govuk-grid-column-two-thirds
+  .govuk-grid-column-full
     = render partial: 'form', locals: { search: @search,
                                         filter: @filter,
                                         term: @term,
                                         label: @label }
     = render partial: 'error', locals: { error: @error } if @error
-    = render partial: 'results', locals: { results: @results, term: @term, dob: @dob, cookies_preferences_set: @cookies_preferences_set } if @results
+.govuk-grid-row
+  = render partial: 'results', locals: { results: @results, term: @term, dob: @dob, cookies_preferences_set: @cookies_preferences_set } if @results
