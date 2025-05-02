@@ -1,8 +1,6 @@
 = govuk_page_title(@defendant.name, t('generic.defendant'))
 
-.govuk-grid-row
-  .govuk-grid-column-two-thirds
-    = render partial: 'form', locals: { link_attempt: @link_attempt,
-                                        defendant: @defendant,
-                                        defendant_uuid: @defendant_uuid,
-                                        prosecution_case_reference: @prosecution_case_reference }
+= render partial: 'form', locals: { link_attempt: @link_attempt,
+                                    defendant: @defendant,
+                                    defendant_uuid: @defendant_uuid,
+                                    prosecution_case_reference: @prosecution_case_reference }
