@@ -1,9 +1,10 @@
-%p{ class: 'govuk-body govuk-!-font-weight-bold' }
-  = t('search.no_result.body')
-%p.govuk-body
-  = t('search.no_result.body_guide')
-%ul.govuk-list.govuk-list--bullet
-  %li= t('search.no_result.body_guide_one')
-  %li= t('search.no_result.body_guide_two')
-  %li= t('search.no_result.body_guide_three')
-  %li= t('search.no_result.body_guide_four')
+.govuk-grid-column-two-thirds
+  %p{ class: 'govuk-body govuk-!-font-weight-bold' }
+    = t('search.no_result.body')
+  %p.govuk-body
+    = t('search.no_result.body_guide')
+  %ul.govuk-list.govuk-list--bullet
+    %li= t('search.no_result.body_guide_one')
+    %li= t('search.no_result.body_guide_two')
+    %li= t('search.no_result.body_guide_three')
+    %li= t('search.no_result.body_guide_four')

@@ -1,24 +1,28 @@
-.govuk-grid-column-two-thirds
-  %table.govuk-table
+%div{ class: "govuk-!-margin-left-3" }
+  %table.govuk-table.govuk-grid-column-one-thirds
     %caption.govuk-table__caption.govuk-visually-hidden
       = t('search.result.caption')
     %thead.govuk-table__head
       %tr.govuk-table__row
         %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.name')
-        %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.prosecution_case_reference')
         %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.date_of_birth')
-        %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.national_insurance_number')
+        %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.prosecution_case_reference')
         %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.arrest_summons_number')
+        %th.govuk-table__header{ scope: 'col' }= t('search.result.defendant.court_application_title')
     %tbody.govuk-table__body
       - results.each do |defendant|
         %tr.govuk-table__row
           %td.govuk-table__cell
             = link_to defendant.name, defendant_link_path(defendant, defendant.prosecution_case_reference), class: 'govuk-link'
           %td.govuk-table__cell
-            = link_to defendant.prosecution_case_reference, prosecution_case_path(defendant.prosecution_case_reference), class: 'govuk-link'
-          %td.govuk-table__cell
             = l(defendant.date_of_birth&.to_date)
           %td.govuk-table__cell
-            = defendant.national_insurance_number
+            = link_to defendant.prosecution_case_reference, prosecution_case_path(defendant.prosecution_case_reference), class: 'govuk-link'
+
           %td.govuk-table__cell
             = defendant.arrest_summons_number
+          %td.govuk-table__cell
+            - if defendant.application_summaries.present?
+              = render partial: 'results/defendant_court_applications', locals: { results: defendant.application_summaries }
+            - else
+              = t('search.result.defendant.no_court_application_title')

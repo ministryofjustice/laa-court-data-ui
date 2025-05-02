@@ -1,8 +1,9 @@
-= render partial: 'results_header', locals: { term: term, dob: dob }
-
+= render partial: 'results_header', locals: { term: term, dob: dob, results: results }
 - if results.empty?
   = render 'results/none'
 - elsif results.first.is_a? CourtDataAdaptor::Resource::ProsecutionCase
   = render partial: 'results/prosecution_case', locals: { results: results }
+- elsif FeatureFlag.enabled?(:show_appeals)
+  = render partial: 'results/defendant_appeals', locals: { results: results }
 - else
-  = render partial: 'results/defendant', locals: { cookies_preferences_set: cookies_preferences_set, results: results }
+  = render partial: 'results/defendant', locals: { results: results }

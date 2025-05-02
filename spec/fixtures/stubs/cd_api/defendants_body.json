@@ -92,7 +92,23 @@
                 }
               }
             ],
-            "prosecution_case_reference": "TEST12345"
+            "prosecution_case_reference": "TEST12345",
+            "application_summaries": [
+                {
+                    "id": "f38d0030-0b4a-4fa5-9484-bb37b1e6ab39",
+                    "short_id": "A25ULRHLVC7S",
+                    "reference": "Random_string",
+                    "title": "Appeal for conviction",
+                    "received_date": "2025-04-11"
+                },
+                {
+                    "id": "a3f937c8-f098-49db-b9be-941c0deb1390",
+                    "short_id": "A25P5N2QPDLU",
+                    "reference": "Random_string",
+                    "title": "Appeal for conviction",
+                    "received_date": "2025-04-11"
+                }
+            ]
         },
         {
             "id": "e4df41b4-92c7-476e-8ccc-014b30997978",
@@ -149,7 +165,23 @@
                     }
                 }
             ],
-            "prosecution_case_reference": "TEST12345"
+            "prosecution_case_reference": "TEST12345",
+            "application_summaries": [
+                {
+                    "id": "f38d0030-0b4a-4fa5-9484-bb37b1e6ab39",
+                    "short_id": "A25ULRHLVC7S",
+                    "reference": "Random_string",
+                    "title": "Appeal for conviction",
+                    "received_date": "2025-04-11"
+                },
+                {
+                    "id": "a3f937c8-f098-49db-b9be-941c0deb1390",
+                    "short_id": "A25P5N2QPDLU",
+                    "reference": "Random_string",
+                    "title": "Appeal for conviction",
+                    "received_date": "2025-04-11"
+                }
+            ]
         },
         {
             "id": "c443af48-79f2-4e55-b25d-fa936616d830",
@@ -206,7 +238,23 @@
                     }
                 }
             ],
-            "prosecution_case_reference": "TEST12345"
+            "prosecution_case_reference": "TEST12345",
+            "application_summaries": [
+                {
+                    "id": "f38d0030-0b4a-4fa5-9484-bb37b1e6ab39",
+                    "short_id": "A25ULRHLVC7S",
+                    "reference": "Random_string",
+                    "title": "Appeal for conviction",
+                    "received_date": "2025-04-11"
+                },
+                {
+                    "id": "a3f937c8-f098-49db-b9be-941c0deb1390",
+                    "short_id": "A25P5N2QPDLU",
+                    "reference": "Random_string",
+                    "title": "Appeal for conviction",
+                    "received_date": "2025-04-11"
+                }
+            ]
         },
         {
             "id": "5ec49191-bf63-416e-9b77-11e61613be6e",
@@ -263,7 +311,23 @@
                     }
                 }
             ],
-            "prosecution_case_reference": "TEST12345"
+            "prosecution_case_reference": "TEST12345",
+            "application_summaries": [
+                {
+                    "id": "f38d0030-0b4a-4fa5-9484-bb37b1e6ab39",
+                    "short_id": "A25ULRHLVC7S",
+                    "reference": "Random_string",
+                    "title": "Appeal for conviction",
+                    "received_date": "2025-04-11"
+                },
+                {
+                    "id": "a3f937c8-f098-49db-b9be-941c0deb1390",
+                    "short_id": "A25P5N2QPDLU",
+                    "reference": "Random_string",
+                    "title": "Appeal for conviction",
+                    "received_date": "2025-04-11"
+                }
+            ]
         }
     ]
 }
