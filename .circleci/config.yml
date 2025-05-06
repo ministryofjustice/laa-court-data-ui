@@ -204,27 +204,34 @@ commands:
       - store_artifacts:
           path: ~/repo/coverage_results
 
-  deploy-to:
-    description: >
-      Deploy image to the specified environment
-    parameters:
-      environment:
-        description: destination environment
-        type: string
-      cluster:
-        description: destination cluster
-        type: string
-    steps:
-      - checkout
-      - setup_remote_docker
-      - aws-cli-setup
-      - run:
-          name: deploying to << parameters.environment >>
-          command: |
-            .circleci/deploy.sh << parameters.environment >> << parameters.cluster >>
-      - slack/status:
-          success_message: ":tada: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> successful!"
-          failure_message: ":red_circle: deploy of <$CIRCLE_BUILD_URL|$CIRCLE_BRANCH> to << parameters.environment >> failed!"
+  deploy-to-environment:
+      description: Deploy image to the specified environment
+      parameters:
+        environment:
+          description: Name of environment to deploy to
+          type: string
+        registry:
+          description: Location of ECR images
+          type: string
+          default: ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com
+      steps:
+        - aws-cli/setup:
+            role_arn: $ECR_ROLE_TO_ASSUME
+            region: $ECR_REGION
+        - checkout
+        - run:
+            name: Authenticate K8s
+            command: |
+                echo -n ${K8S_CLUSTER_CERT} | base64 -d > ./ca.crt
+                kubectl config set-cluster ${K8S_CLUSTER_NAME} --certificate-authority=./ca.crt --server=${K8S_CLUSTER_URL}
+                kubectl config set-credentials circleci --token=${K8S_TOKEN}
+                kubectl config set-context ${K8S_CLUSTER_NAME} --cluster=${K8S_CLUSTER_NAME} --user=circleci --namespace=${K8S_NAMESPACE}
+                kubectl config use-context ${K8S_CLUSTER_NAME}
+                kubectl --namespace=${K8S_NAMESPACE} get pods
+        - run:
+            name: Deploy to << parameters.environment >>
+            command: |
+              .circleci/deploy.sh << parameters.environment >>
 
 # ------------------
 # JOBS
@@ -310,30 +317,26 @@ jobs:
   deploy-dev:
     executor: cloud-platform-executor
     steps:
-      - deploy-to:
+      - deploy-to-environment:
           environment: dev
-          cluster: live
 
   deploy-staging:
     executor: cloud-platform-executor
     steps:
-      - deploy-to:
+      - deploy-to-environment:
           environment: staging
-          cluster: live
 
   deploy-uat:
     executor: cloud-platform-executor
     steps:
-      - deploy-to:
+      - deploy-to-environment:
           environment: uat
-          cluster: live
 
   deploy-production:
     executor: cloud-platform-executor
     steps:
-      - deploy-to:
+      - deploy-to-environment:
           environment: production
-          cluster: live
 
 # ------------------
 # WORKFLOWS

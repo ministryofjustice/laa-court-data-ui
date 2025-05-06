@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laa-court-data-ui-worker
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicas.worker }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 100%
+  selector:
+    matchLabels:
+      app: laa-court-data-ui-worker
+      tier: worker
+  template:
+    metadata:
+      labels:
+        app: laa-court-data-ui-worker
+        tier: worker
+    spec:
+      containers:
+        - name: laa-court-data-ui-worker
+          imagePullPolicy: Always
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          command: ['bundle', 'exec', 'sidekiq']
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 7433
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 7433
+          env:
+            - name: ENV
+              value: {{ .Values.env }}
+            - name: RACK_ENV
+              value: 'production'
+            - name: RAILS_ENV
+              value: 'production'
+            - name: DOMAIN_URL
+              value: "https://{{ .Values.host }}"
+            - name: COURT_DATA_ADAPTOR_API_URL
+              value: {{ .Values.cdaHost }}
+            - name: RAILS_SERVE_STATIC_FILES
+              value: enabled
+            - name: RAILS_LOG_TO_STDOUT
+              value: enabled
+            - name: COURT_DATA_ADAPTOR_API_UID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: COURT_DATA_ADAPTOR_API_UID
+            - name: COURT_DATA_ADAPTOR_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: COURT_DATA_ADAPTOR_API_SECRET
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: SECRET_KEY_BASE
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-rds
+                  key: url
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-elasticache
+                  key: primary_endpoint_address
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lcdui-elasticache
+                  key: auth_token
+            - name: GOVUK_NOTIFY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: GOVUK_NOTIFY_API_KEY
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: SENTRY_DSN
+
