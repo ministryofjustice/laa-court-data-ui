@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics
-
 require_dependency 'court_data_adaptor'
 require_dependency 'feature_flag'
 
@@ -68,11 +66,6 @@ class LaaReferencesController < ApplicationController
     authorize! :show, @defendant_search
   end
 
-  def link_laa_reference_and_redirect
-    @laa_reference = resource.new(**resource_params)
-    resource_save
-  end
-
   def laa_reference_params
     params.permit(:id,
                   :urn,
@@ -86,27 +79,27 @@ class LaaReferencesController < ApplicationController
                                               username: current_user.username)
   end
 
-  def resource
-    logger.info 'USING_V2_ENDPOINT'
-    CdApi::LaaReferences
-  end
-
   def resource_params
     @resource_params ||= @link_attempt.to_link_attributes
   end
 
-  def resource_save
+  def link_laa_reference_and_redirect
     logger.info 'CALLING_V2_MAAT_LINK'
-    @laa_reference.save!
-  rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest
-    logger.info 'CLIENT_ERROR_OCCURRED'
-    render_new(I18n.t('laa_reference.link.unprocessable'), @laa_reference.errors.full_messages.join(', '))
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-    logger.error 'SERVER_ERROR_OCCURRED'
-    log_sentry_error(e, @laa_reference.errors)
-    render_new(I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
+    CourtDataAdaptor::Query::LinkDefendant.call(resource_params)
+  rescue CourtDataAdaptor::Errors::UnprocessableEntity => e
+    handle_error(e, I18n.t('laa_reference.link.unprocessable'))
+  rescue CourtDataAdaptor::Errors::BadRequest,
+         CourtDataAdaptor::Errors::InternalServerError,
+         CourtDataAdaptor::Errors::ClientError => e
+    handle_error(e, I18n.t('laa_reference.link.failure'))
   else
     redirect_to_edit_defendants
+  end
+
+  def handle_error(exception, title)
+    logger.error 'SERVER_ERROR_OCCURRED'
+    log_sentry_error(exception, exception.errors)
+    render_new(title, I18n.t('error.it_helpdesk'))
   end
 
   def no_maat_id?
@@ -131,5 +124,3 @@ class LaaReferencesController < ApplicationController
     flash[:notice] = I18n.t('laa_reference.link.success')
   end
 end
-
-# rubocop:enable Metrics

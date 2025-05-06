@@ -15,5 +15,9 @@ module CourtDataAdaptor
     class BadRequest < Error; end
 
     class UnprocessableEntity < Error; end
+
+    class InternalServerError < Error; end
+
+    class ClientError < Error; end
   end
 end
