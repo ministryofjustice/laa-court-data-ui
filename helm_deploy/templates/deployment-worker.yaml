@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: laa-court-data-ui-worker
+  name: laa-court-data-ui-background-worker
   namespace: {{ .Values.namespace }}
   labels:
     {{- include "laa-court-data-ui.labels" . | nindent 4 }}
@@ -14,16 +14,16 @@ spec:
       maxSurge: 100%
   selector:
     matchLabels:
-      app: laa-court-data-ui-worker
+      app: laa-court-data-ui-background-worker
       tier: worker
   template:
     metadata:
       labels:
-        app: laa-court-data-ui-worker
+        app: laa-court-data-ui-background-worker
         tier: worker
     spec:
       containers:
-        - name: laa-court-data-ui-worker
+        - name: laa-court-data-ui-background-worker
           imagePullPolicy: Always
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           command: ['bundle', 'exec', 'sidekiq']
