@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: laa-court-data-ui-app-ingress
   namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "laa-court-data-ui.labels" . | nindent 4 }}
   annotations:
     nginx.ingress.kubernetes.io/enable-modsecurity: "true"
     nginx.ingress.kubernetes.io/modsecurity-snippet: |
@@ -38,7 +40,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: laa-court-data-ui-app-service
+                name: laa-court-data-ui-service
                 port:
                   number: 80
   tls:
