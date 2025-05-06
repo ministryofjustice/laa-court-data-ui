@@ -14,4 +14,4 @@ spec:
       name: metrics
       targetPort: 9394
   selector:
-    app: laa-court-data-ui
+    app: laa-court-data-ui-web

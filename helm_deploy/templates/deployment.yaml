@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: laa-court-data-ui
+  name: laa-court-data-ui-web
   namespace: {{ .Values.namespace }}
   labels:
     {{- include "laa-court-data-ui.labels" . | nindent 4 }}
@@ -14,11 +14,11 @@ spec:
       maxSurge: 100%
   selector:
     matchLabels:
-      app: laa-court-data-ui
+      app: laa-court-data-ui-web
   template:
     metadata:
       labels:
-        app: laa-court-data-ui
+        app: laa-court-data-ui-web
     spec:
       containers:
         - name: laa-court-data-ui-app
