@@ -208,7 +208,7 @@ commands:
         registry:
           description: Location of ECR images
           type: string
-          default: ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com
+          default: 754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com
       steps:
         - aws-cli/setup:
             role_arn: $ECR_ROLE_TO_ASSUME
@@ -312,7 +312,7 @@ jobs:
           command: |
             aws ecr get-login-password --region $ECR_REGION | docker login \
             --username AWS --password-stdin \
-            ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com
+            754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com
       - run:
           name: Set ECR_TAGS environment variable for use in next step
           command: |
@@ -324,8 +324,8 @@ jobs:
           push_image: true
           tag: ${ECR_TAGS}
           region: $ECR_REGION
-          repo: $ECR_REPOSITORY
-          account_id: $AWS_ECR_REGISTRY_ID
+          repo: laa-get-paid/laa-court-data-ui
+          account_id: 754256621582
           extra_build_args: >-
             --build-arg APP_BUILD_DATE=${APP_BUILD_DATE}
             --build-arg APP_BUILD_TAG=${CIRCLE_SHA1}
