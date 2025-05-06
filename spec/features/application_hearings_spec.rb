@@ -47,11 +47,11 @@ RSpec.feature 'Court Application Hearings', :vcr do
 
     # Attendees
     expect(page).to have_content(
-      "Attendees\nDefendants\nMauricio Rath"
+      "Attendees\nAppellants\nMauricio Rath"
     ).and have_content(
-      "Defence advocates\nGlenn Walsh Macgyver (Customer counsel)"
+      "Appellant advocates\nGlenn Walsh Macgyver (Customer counsel)"
     ).and have_content(
-      "Prosecution advocates\nArden Macejkovic"
+      "Respondent advocates\nArden Macejkovic"
     ).and have_content("Judges\nMyString MyString MyString")
 
     # Events
