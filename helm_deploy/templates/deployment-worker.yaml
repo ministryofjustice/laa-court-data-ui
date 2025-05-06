@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: laa-court-data-ui-worker
   namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "laa-court-data-ui.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicas.worker }}
   strategy:
