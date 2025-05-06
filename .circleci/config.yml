@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   aws-cli: circleci/aws-cli@4.0.0
+  aws-ecr: circleci/aws-ecr@9.0.2
   browser-tools: circleci/browser-tools@1.4.6
   slack: circleci/slack@3.4.2
   snyk: snyk/snyk@2.2.0
@@ -56,12 +57,6 @@ references:
   _attach-tmp-workspace: &attach-tmp-workspace
     attach_workspace:
       at: ~/repo/tmp
-
-  _script-build-app-container: &script-build-app-container
-    run:
-      name: Build and push docker image
-      command: |
-        .circleci/build.sh
 
   _main-only: &main-only
     filters:
@@ -306,13 +301,36 @@ jobs:
           no-output-timeout: 20m
 
   build-app-container:
-    executor: cloud-platform-executor
+    executor: aws-ecr/default
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - aws-cli-setup
-      - *script-build-app-container
+      - aws-cli/setup:
+          role_arn: $ECR_ROLE_TO_ASSUME
+          region: $ECR_REGION
+      - run:
+          name: Login to ECR
+          command: |
+            aws ecr get-login-password --region $ECR_REGION | docker login \
+            --username AWS --password-stdin \
+            ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com
+      - run:
+          name: Set ECR_TAGS environment variable for use in next step
+          command: |
+            [[ "$CIRCLE_BRANCH" == "main" ]] && ECR_TAGS="main-$CIRCLE_SHA1,latest" || ECR_TAGS="branch-$CIRCLE_SHA1"
+            echo "export ECR_TAGS=$ECR_TAGS" >> "$BASH_ENV"
+            echo "export APP_BUILD_DATE=$(date +%Y-%m-%dT%H:%M:%S%z)"  >> "$BASH_ENV"
+            source "$BASH_ENV"
+      - aws-ecr/build_image:
+          push_image: true
+          tag: ${ECR_TAGS}
+          region: $ECR_REGION
+          repo: $ECR_REPOSITORY
+          account_id: $AWS_ECR_REGISTRY_ID
+          extra_build_args: >-
+            --build-arg APP_BUILD_DATE=${APP_BUILD_DATE}
+            --build-arg APP_BUILD_TAG=${CIRCLE_SHA1}
+            --build-arg APP_GIT_COMMIT=${CIRCLE_SHA1}
+            --build-arg APP_BRANCH_NAME=${CIRCLE_BRANCH}
 
   deploy-dev:
     executor: cloud-platform-executor
