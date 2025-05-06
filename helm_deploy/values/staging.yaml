@@ -10,5 +10,5 @@ host: staging.view-court-data.service.justice.gov.uk
 cdaHost: https://test.court-data-adaptor.service.justice.gov.uk/api/internal/v1
 googleAnalyticsId: 'UA-131160087-16'
 displayRawResponses: enabled
-identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-staging-green
+identifier: laa-court-data-ui-ingress-laa-court-data-ui-staging-green
 cert: laa-court-data-ui-staging-cert

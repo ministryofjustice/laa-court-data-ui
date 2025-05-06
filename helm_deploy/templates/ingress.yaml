@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: laa-court-data-ui-app-ingress
+  name: laa-court-data-ui-ingress
   namespace: {{ .Values.namespace }}
   labels:
     {{- include "laa-court-data-ui.labels" . | nindent 4 }}
