@@ -58,7 +58,7 @@ spec:
             - name: DOMAIN_URL
               value: "https://{{ .Values.host }}"
             - name: COURT_DATA_ADAPTOR_API_URL
-              value: {{ .Values.cdaUrl }}
+              value: {{ .Values.cdaHost }}
             - name: RAILS_SERVE_STATIC_FILES
               value: enabled
             - name: GA_TRACKING_ID
