@@ -325,7 +325,7 @@ jobs:
           tag: ${ECR_TAGS}
           region: $ECR_REGION
           repo: laa-get-paid/laa-court-data-ui
-          account_id: 754256621582
+          account_id: "754256621582"
           extra_build_args: >-
             --build-arg APP_BUILD_DATE=${APP_BUILD_DATE}
             --build-arg APP_BUILD_TAG=${CIRCLE_SHA1}
