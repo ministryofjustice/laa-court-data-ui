@@ -1,0 +1,47 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: laa-court-data-ui-app-ingress
+  namespace: {{ .Values.namespace }}
+  annotations:
+    nginx.ingress.kubernetes.io/enable-modsecurity: "true"
+    nginx.ingress.kubernetes.io/modsecurity-snippet: |
+      SecRuleEngine On
+      SecAction "id:900110,phase:1,nolog,pass,t:none,setvar:tx.inbound_anomaly_score_threshold=6"
+    external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.identifier }}
+    external-dns.alpha.kubernetes.io/aws-weight: "100"
+    nginx.ingress.kubernetes.io/server-snippet: |
+        deny 223.178.211.9;
+        deny 143.244.161.10;
+        deny 206.72.194.213;
+        deny 209.126.4.156;
+        deny 159.89.81.120;
+        deny 34.81.90.170;
+        deny 223.178.212.103;
+        deny 223.178.213.18;
+        deny 195.248.243.174;
+        deny 116.204.211.188;
+        deny 20.219.196.158;
+        deny 162.55.51.218;
+        deny 35.78.59.144;
+        deny 80.78.22.106;
+        if ($http_spider_name ~* "crawlergo") {
+          return 403;
+        }
+spec:
+  ingressClassName: modsec
+  rules:
+    - host: {{ .Values.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: laa-court-data-ui-app-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+      - {{ .Values.host }}
+      secretName: {{ .Values.cert }}
