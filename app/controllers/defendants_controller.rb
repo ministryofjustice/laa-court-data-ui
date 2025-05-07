@@ -28,7 +28,7 @@ class DefendantsController < ApplicationController
     render 'edit'
   end
 
-  def redirect_to_edit_defendants
+  def redirect_to_new_laa_reference
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
     flash[:notice] = I18n.t('defendants.unlink.success')
   end
@@ -87,41 +87,23 @@ class DefendantsController < ApplicationController
     @errors.map { |k, v| "#{k.to_s.humanize} #{v.join(', ')}" }.join("\n")
   end
 
-  def resource
-    logger.info 'USING_V2_ENDPOINT'
-    CdApi::LaaReferences
-  end
-
-  def resource_save
-    logger.info 'CALLING_V2_MAAT_UNLINK'
-    unlink
-  rescue ActiveResource::ResourceInvalid, ActiveResource::BadRequest => e
-    handle_client_error(e)
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
-    handle_server_error(e)
-  else
-    redirect_to_edit_defendants
-  end
-
-  def handle_client_error(exception)
-    logger.info 'CLIENT_ERROR_OCCURRED'
-    @laa_reference.errors.from_json(exception.response.body)
-    render_edit(I18n.t('defendants.unlink.unprocessable'), @laa_reference.errors.full_messages.join(', '))
-  end
-
-  def handle_server_error(exception)
-    logger.error 'SERVER_ERROR_OCCURRED'
-    log_sentry_error(exception, @laa_reference.errors)
-    render_edit(I18n.t('defendants.unlink.failure', error_messages: ''), I18n.t('error.it_helpdesk'))
-  end
-
   def unlink_laa_reference_and_redirect
-    @laa_reference = resource.new(id: resource_params[:defendant_id])
-    resource_save
+    logger.info 'CALLING_V2_MAAT_UNLINK'
+    CourtDataAdaptor::Query::UnlinkDefendant.call(resource_params)
+  rescue CourtDataAdaptor::Errors::UnprocessableEntity,
+         CourtDataAdaptor::Errors::BadRequest => e
+    handle_error(e, I18n.t('defendants.unlink.unprocessable'), e.error_string)
+  rescue CourtDataAdaptor::Errors::InternalServerError,
+         CourtDataAdaptor::Errors::ClientError => e
+    handle_error(e, I18n.t('defendants.unlink.failure'), I18n.t('error.it_helpdesk'))
+  else
+    redirect_to_new_laa_reference
   end
 
-  def unlink
-    @laa_reference.patch(nil, nil, resource_params.to_json)
+  def handle_error(exception, title, details)
+    logger.error 'SERVER_ERROR_OCCURRED'
+    log_sentry_error(exception, exception.errors)
+    render_edit(title, details)
   end
 
   def set_unlink_reasons

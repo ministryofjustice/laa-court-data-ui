@@ -43,7 +43,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
   let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:prosecution_case_reference_from_fixture) { 'TEST12345' }
-  let(:api_url_v2) { CdApi::BaseModel.site }
+  let(:api_url_v2) { "http://localhost:9292/api/internal/v2/" }
   let(:maat_reference) { 2_123_456 }
 
   let(:params) do
@@ -55,18 +55,18 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
       }
     }
   end
-  let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}/" }
+  let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}" }
   let(:api_request_payload) do
     {
-      defendant_id:,
-      user_name: user.username,
-      unlink_reason_code: 1,
-      maat_reference:
+      laa_reference: { defendant_id:,
+                       user_name: user.username,
+                       unlink_reason_code: 1,
+                       maat_reference: }
     }
   end
   let(:maat_invalid_request) do
     {
-      title: 'The link to the court data source could not be removed. ',
+      title: 'The link to the court data source could not be removed.',
       message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
     }
   end
@@ -92,7 +92,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
 
       it 'sends an unlink request to CDAPI Client' do
         expect(a_request(:patch, api_request_path)
-          .with(body: api_request_payload.to_json, headers: json_content))
+          .with(body: api_request_payload))
           .to have_been_made.once
       end
 
@@ -154,7 +154,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
 
       it 'sends an unlink request to CDAPI Client' do
         expect(a_request(:patch, api_request_path)
-          .with(body: api_request_payload.to_json, headers: json_content))
+          .with(body: api_request_payload.to_json))
           .to have_been_made.once
       end
 
@@ -173,11 +173,11 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
 
       let(:api_request_payload) do
         {
-          defendant_id:,
-          user_name: user.username,
-          unlink_reason_code: 7,
-          maat_reference:,
-          unlink_other_reason_text: 'a reason for unlinking'
+          laa_reference: { defendant_id:,
+                           user_name: user.username,
+                           unlink_reason_code: 7,
+                           maat_reference:,
+                           unlink_other_reason_text: 'a reason for unlinking' }
         }
       end
 
@@ -187,7 +187,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
 
       it 'sends an unlink request to CD API' do
         expect(a_request(:patch, api_request_path)
-          .with(body: api_request_payload.to_json, headers: json_content))
+          .with(body: api_request_payload.to_json))
           .to have_been_made.once
       end
 
