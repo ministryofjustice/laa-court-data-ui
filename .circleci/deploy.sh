@@ -52,4 +52,5 @@ else
       echo "Rollback failed. Consider manually running 'helm delete $BRANCH_RELEASE_NAME'"
       exit 1
     fi
+  fi
 fi
