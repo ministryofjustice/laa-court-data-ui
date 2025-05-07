@@ -31,7 +31,7 @@ RSpec.feature 'Court Application subjects', :vcr do
     expect(page).to have_content "06/05/1994"
     expect(page).to have_content "KQJXI10ZJXCI"
 
-    click_on "View application summary"
+    click_on "View appeal application summary"
 
     expect(page).to have_current_path court_application_path(found_court_application_id)
   end
