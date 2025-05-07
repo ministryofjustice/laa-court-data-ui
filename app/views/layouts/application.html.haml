@@ -22,6 +22,11 @@
     = tag.meta(property: 'og:image', content: asset_path('govuk-opengraph-image.png'))
     = render partial: 'layouts/google_analytics', locals: { analytics_cookies_accepted: @analytics_cookis_accepted }
   %body.govuk-template__body{ class: app_environment }
+    -# TODO: Delete before merge. This is purely to verify that the right pod is serving the right URL.
+    :css
+      body {
+        background-color: red !important;
+      }
     :javascript
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     %a.govuk-skip-link{ href: "#main-content", "data-module": "govuk-skip-link" }
