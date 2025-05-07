@@ -10,6 +10,7 @@ deploy_branch() {
   RELEASE_HOST="$BRANCH_RELEASE_NAME.view-court-data.cloud-platform.service.justice.gov.uk"
   # The identifier is of format <ingress name>-<namespace>-green
   IDENTIFIER="$BRANCH_RELEASE_NAME-app-ingress-laa-court-data-ui-dev-green"
+  echo "Deploying under release name: '$BRANCH_RELEASE_NAME' with identifier '$IDENTIFIER'..."
 
   helm upgrade $BRANCH_RELEASE_NAME ./helm_deploy/. \
     --install --wait \
