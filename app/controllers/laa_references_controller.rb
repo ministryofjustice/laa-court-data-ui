@@ -87,19 +87,19 @@ class LaaReferencesController < ApplicationController
     logger.info 'CALLING_V2_MAAT_LINK'
     CourtDataAdaptor::Query::LinkDefendant.call(resource_params)
   rescue CourtDataAdaptor::Errors::UnprocessableEntity => e
-    handle_error(e, I18n.t('laa_reference.link.unprocessable'))
+    handle_error(e, I18n.t('laa_reference.link.unprocessable'), e.error_string)
   rescue CourtDataAdaptor::Errors::BadRequest,
          CourtDataAdaptor::Errors::InternalServerError,
          CourtDataAdaptor::Errors::ClientError => e
-    handle_error(e, I18n.t('laa_reference.link.failure'))
+    handle_error(e, I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
   else
     redirect_to_edit_defendants
   end
 
-  def handle_error(exception, title)
+  def handle_error(exception, title, details)
     logger.error 'SERVER_ERROR_OCCURRED'
     log_sentry_error(exception, exception.errors)
-    render_new(title, I18n.t('error.it_helpdesk'))
+    render_new(title, details)
   end
 
   def no_maat_id?
