@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/managed-by: "Helm"
   annotations:
     meta.helm.sh/release-name: "laa-court-data-ui"
-    meta.helm.sh/release-namespace: "laa-court-data-ui-uat"
+    meta.helm.sh/release-namespace: "laa-court-data-ui-production"
     nginx.ingress.kubernetes.io/enable-modsecurity: "true"
     nginx.ingress.kubernetes.io/modsecurity-snippet: |
       SecRuleEngine On
