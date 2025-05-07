@@ -27,7 +27,7 @@ en:
         date_of_birth: Date of birth
         maat_number: MAAT number
         name: Name
-      defendants: Defendants
+      defendants: Appellants
       hearing:
         date: Date
         providers: Providers attending

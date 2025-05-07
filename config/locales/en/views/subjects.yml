@@ -8,7 +8,7 @@ en:
       appeal: Appeal
       arrest_summons_number: ASN
       date_of_birth: Date of birth
-      defendant: Defendant
+      defendant: Appellant
       maat_number: MAAT number
       offence:
         mode_of_trial: Mode of trial
@@ -16,7 +16,7 @@ en:
         plea: Plea
       offences: Offences
       plea_summary: "%{value} on %{date}"
-      view_summary: View application summary
+      view_summary: View appeal application summary
     unlink:
       failure: Unable to unlink the defendant
       success: You have successfully unlinked from the court data source
