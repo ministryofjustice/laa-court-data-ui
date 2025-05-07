@@ -8,8 +8,8 @@ BRANCH_RELEASE_NAME=$(echo $CIRCLE_BRANCH | tr '[:upper:]' '[:lower:]' | sed 's:
 deploy_branch() {
   # Set the deployment host, this will add the prefix of the branch name e.g crm457-1062-tempor
   RELEASE_HOST="$BRANCH_RELEASE_NAME.view-court-data.cloud-platform.service.justice.gov.uk"
-  # Set the ingress name, needs release name, namespace and -green suffix
-  IDENTIFIER="$BRANCH_RELEASE_NAME-laa-court-data-ui-dev-green"
+  # The identifier is of format <ingress name>-<namespace>-green
+  IDENTIFIER="$BRANCH_RELEASE_NAME-app-ingress-laa-court-data-ui-dev-green"
 
   helm upgrade $BRANCH_RELEASE_NAME ./helm_deploy/. \
     --install --wait \
