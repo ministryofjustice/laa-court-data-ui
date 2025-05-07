@@ -16,7 +16,9 @@ module CourtDataAdaptor
 
         connection_options[:status_handlers] = {
           400 => ApiRequestHandler,
-          422 => ApiRequestHandler
+          422 => ApiRequestHandler,
+          424 => ApiRequestHandler,
+          500 => ApiRequestHandler
         }
 
         connection do |conn|

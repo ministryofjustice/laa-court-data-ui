@@ -20,14 +20,16 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
 
   let(:expected_request_payload) do
     {
-      defendant_id:,
-      user_name: user.username
+      laa_reference: {
+        defendant_id:,
+        user_name: user.username
+      }
     }
   end
 
   context 'when authenticated' do
     let(:error_detail) do
-      'Defendant is not a valid uuid, MAAT reference 1234567 has no data created against Maat application.'
+      'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
     end
 
     let(:maat_error_message) do
