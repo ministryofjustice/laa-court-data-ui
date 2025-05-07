@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "laa-submit-crime-forms.fullname" . }}-web
+  name: {{ include "laa-court-data-ui.fullname" . }}-web
   namespace: {{ .Values.namespace }}
   labels:
     {{- include "laa-court-data-ui.labels" . | nindent 4 }}
@@ -14,11 +14,11 @@ spec:
       maxSurge: 100%
   selector:
     matchLabels:
-      app: {{ include "laa-submit-crime-forms.fullname" . }}-web
+      app: {{ include "laa-court-data-ui.fullname" . }}-web
   template:
     metadata:
       labels:
-        app: {{ include "laa-submit-crime-forms.fullname" . }}-web
+        app: {{ include "laa-court-data-ui.fullname" . }}-web
     spec:
       containers:
         - name: laa-court-data-ui-app
