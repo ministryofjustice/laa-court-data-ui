@@ -19,7 +19,7 @@ gem 'govuk_notify_rails', '~> 3.0.0'
 # Faraday middleware gem is required until Faraday is upgraded to version 2
 gem 'faraday_middleware', '~> 1.2.1'
 # rails GDS design system form builder
-gem 'govuk_design_system_formbuilder', '~> 5.9'
+gem 'govuk_design_system_formbuilder', '~> 5.10'
 gem 'haml-rails', '~> 2.1.0'
 gem 'json_api_client', '~> 1.23'
 gem 'json-schema', '~> 5.1'
@@ -47,7 +47,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter', require: false
-  gem 'rspec-rails', '~> 7.1'
+  gem 'rspec-rails', '~> 8.0'
   gem 'rubocop', '~> 1.75', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
@@ -55,7 +55,7 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
-  gem 'selenium-webdriver', '~> 4.31'
+  gem 'selenium-webdriver', '~> 4.32'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
