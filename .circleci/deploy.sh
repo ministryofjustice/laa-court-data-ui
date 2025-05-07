@@ -6,11 +6,10 @@ ENVIRONMENT=$1
 BRANCH_RELEASE_NAME=$(echo $CIRCLE_BRANCH | tr '[:upper:]' '[:lower:]' | sed 's:^\w*\/::' | tr -s ' _/[]().' '-' | cut -c1-18 | sed 's/-$//')
 
 deploy_branch() {
-  # Set the deployment host, this will add the prefix of the branch name e.g crm457-1062-tempor
-  RELEASE_HOST="$BRANCH_RELEASE_NAME.view-court-data.cloud-platform.service.justice.gov.uk"
+  # Set the deployment host, this will add the prefix of the branch name
+  RELEASE_HOST="$BRANCH_RELEASE_NAME.apps.live.cloud-platform.service.justice.gov.uk"
   # The identifier is of format <ingress name>-<namespace>-green
   IDENTIFIER="$BRANCH_RELEASE_NAME-app-ingress-laa-court-data-ui-dev-green"
-  echo "Deploying under release name: '$BRANCH_RELEASE_NAME' with identifier '$IDENTIFIER'..."
 
   helm upgrade $BRANCH_RELEASE_NAME ./helm_deploy/. \
     --install --wait \
@@ -24,6 +23,8 @@ deploy_branch() {
     --set fullnameOverride="$BRANCH_RELEASE_NAME"\
     --set replicas.web=1\
     --set branch=true
+
+  echo "DEPLOYED TO: $RELEASE_HOST"
 }
 
 deploy_main() {
