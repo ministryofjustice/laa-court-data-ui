@@ -1,11 +1,9 @@
 = govuk_page_title(@defendant.name, t('generic.defendant'))
 
-.govuk-grid-row
-  .govuk-grid-column-two-thirds
-    - content_for :custom_packs do
-      = javascript_include_tag 'unlink', defer: true
+- content_for :custom_packs do
+  = javascript_include_tag 'unlink', defer: true
 
-    = render partial: 'form', locals: { defendant: @defendant,
-                                        unlink_attempt: @unlink_attempt,
-                                        unlink_reasons: @unlink_reasons,
-                                        prosecution_case_reference: @prosecution_case_reference }
+= render partial: 'form', locals: { defendant: @defendant,
+                                    unlink_attempt: @unlink_attempt,
+                                    unlink_reasons: @unlink_reasons,
+                                    prosecution_case_reference: @prosecution_case_reference }
