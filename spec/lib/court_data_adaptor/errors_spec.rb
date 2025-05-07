@@ -85,7 +85,7 @@ RSpec.describe CourtDataAdaptor::Errors do
         end
       end
 
-      context 'when body is a hash containing a deeply buried user facing string' do
+      context 'when body is a hash containing a deeply buried user facing string about defendant' do
         let(:cda_formatted_error_body) do
           { "error" => "Contract failed with: {:defendant_id=>[\"cannot be linked right now " \
                        "as we do not have all the required information\"]}" }
@@ -97,6 +97,21 @@ RSpec.describe CourtDataAdaptor::Errors do
         it 'returns the completed string' do
           is_expected.to eq(
             "Defendant cannot be linked right now as we do not have all the required information"
+          )
+        end
+      end
+
+      context 'when body is a hash containing a deeply buried user facing string' do
+        let(:cda_formatted_error_body) do
+          { "error" => "Contract failed with: {:maat_reference=>[\"1111111 has no common platform data\"]}" }
+        end
+        let(:response) do
+          response_klass.new(422, cda_formatted_error_body)
+        end
+
+        it 'returns the completed string' do
+          is_expected.to eq(
+            "MAAT reference 1111111 has no common platform data"
           )
         end
       end
