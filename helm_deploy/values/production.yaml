@@ -9,6 +9,6 @@ env: production
 host: view-court-data.service.justice.gov.uk
 cdaHost: https://court-data-adaptor.service.justice.gov.uk/api/internal/v1
 googleAnalyticsId: 'UA-131160087-15'
-displayRawResponses: false
+displayRawResponses: "false"
 identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-production-green
 cert: laa-court-data-ui-production-cert
