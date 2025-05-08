@@ -3,7 +3,11 @@ kind: Ingress
 metadata:
   name: laa-court-data-ui-app-ingress
   namespace: laa-court-data-ui-dev
+  labels:
+    app.kubernetes.io/managed-by: "Helm"
   annotations:
+    meta.helm.sh/release-name: "laa-court-data-ui"
+    meta.helm.sh/release-namespace: "laa-court-data-ui-dev"
     nginx.ingress.kubernetes.io/enable-modsecurity: "true"
     nginx.ingress.kubernetes.io/modsecurity-snippet: |
       SecRuleEngine On
@@ -39,7 +43,7 @@ spec:
             backend:
               service:
                 name: laa-court-data-ui-app-service
-                port: 
+                port:
                   number: 80
   tls:
     - hosts:
