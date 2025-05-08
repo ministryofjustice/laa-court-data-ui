@@ -18,7 +18,7 @@ If release name contains chart name it will be used as a full name.
 {{- if contains $name .Release.Name }}
 {{- .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- else }}
-laa-court-data-ui
+{{- printf "laa-court-data-ui" }}
 {{- end }}
 {{- end }}
 {{- end }}
