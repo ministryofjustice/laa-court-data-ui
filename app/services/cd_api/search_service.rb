@@ -19,8 +19,6 @@ module CdApi
       case @filter
       when 'case_reference', 'defendant_name', 'defendant_reference'
         result
-      when 'uuid_reference'
-        result.first
       end
     end
 
@@ -36,10 +34,6 @@ module CdApi
 
     def defendant_name_params
       { name: @term, dob: @dob }
-    end
-
-    def uuid_reference_params
-      @term
     end
 
     def urn(term)

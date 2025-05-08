@@ -27,10 +27,6 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
     }
   end
 
-  before do
-    allow(FeatureFlag).to receive(:enabled?).with(:defendants_page).and_return(false)
-  end
-
   context 'when authenticated' do
     let(:maat_invalid_uuid) do
       {

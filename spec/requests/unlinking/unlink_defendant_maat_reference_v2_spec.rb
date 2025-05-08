@@ -31,7 +31,6 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
   before do
     create(:unlink_reason, code: 1, description: 'Reason not requiring text', text_required: false)
     create(:unlink_reason, code: 7, description: 'Reason requiring text', text_required: true)
-    allow(FeatureFlag).to receive(:enabled?).with(:defendants_page).and_return(false)
   end
 
   let(:user) { create(:user) }
