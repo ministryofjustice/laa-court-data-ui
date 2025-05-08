@@ -12,3 +12,5 @@ googleAnalyticsId: 'UA-131160087-15'
 displayRawResponses: "false"
 identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-production-green
 cert: laa-court-data-ui-production-cert
+featureFlags:
+  showAppeals: false

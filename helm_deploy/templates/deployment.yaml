@@ -67,6 +67,8 @@ spec:
               value: enabled
             - name: DISPLAY_RAW_RESPONSES
               value: "{{ .Values.displayRawResponses }}"
+            - name: SHOW_APPEALS
+              value: "{{ .Values.featureFlags.showAppeals }}"
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
