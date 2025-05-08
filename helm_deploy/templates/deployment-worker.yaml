@@ -1,3 +1,4 @@
+{{ if not .Values.branch }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -90,4 +91,4 @@ spec:
                 secretKeyRef:
                   name: aws-secrets
                   key: SENTRY_DSN
-
+{{ end }}

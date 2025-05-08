@@ -1,13 +1,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: laa-court-data-ui-app-ingress
+  name: {{ include "laa-court-data-ui.fullName" . }}-app-ingress
   namespace: {{ .Values.namespace }}
   labels:
     {{- include "laa-court-data-ui.labels" . | nindent 4 }}
   annotations:
-    meta.helm.sh/release-name: "laa-court-data-ui"
-    meta.helm.sh/release-namespace: {{ .Values.namespace }}
     nginx.ingress.kubernetes.io/enable-modsecurity: "true"
     nginx.ingress.kubernetes.io/modsecurity-snippet: |
       SecRuleEngine On
@@ -42,7 +40,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: laa-court-data-ui-service
+                name: {{ include "laa-court-data-ui.fullName" . }}-service
                 port:
                   number: 80
   tls:
