@@ -18,9 +18,13 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
   let(:api_request_path) { %r{.*/laa_references} }
 
   let(:expected_request_payload) do
-    {  defendant_id:,
-       user_name: user.username,
-       maat_reference: }
+    {
+      laa_reference: {
+        defendant_id:,
+        user_name: user.username,
+        maat_reference:
+      }
+    }
   end
 
   before do
@@ -31,14 +35,13 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
     let(:maat_invalid_uuid) do
       {
         title: 'Unable to link the defendant using the MAAT ID.',
-        message: 'Defendant is not a valid uuid, MAAT reference 1234567 ' \
-                 'has no data created against Maat application.'
+        message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
       }
     end
     let(:maat_invalid_reference) do
       {
         title: 'Unable to link the defendant using the MAAT ID.',
-        message: 'MAAT reference 1234567 has no common platform data created against Maat application.'
+        message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
       }
     end
     let(:maat_error_message) do

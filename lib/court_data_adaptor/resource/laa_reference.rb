@@ -5,7 +5,7 @@
 #
 module CourtDataAdaptor
   module Resource
-    class LaaReference < V1
+    class LaaReference < V2
       acts_as_resource self
     end
   end

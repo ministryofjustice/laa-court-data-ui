@@ -1,7 +1,7 @@
 = govuk_page_title(prosecution_case.prosecution_case_reference, t('generic.case'))
 
 .govuk-grid-row
-  .govuk-grid-column-two-thirds
+  .govuk-grid-column-full
     = render partial: 'prosecution_cases/cd_api/overall_defendants', locals: { case_summary: prosecution_case }
 
     = render partial: 'prosecution_cases/cd_api/hearing_summaries', locals: { case_summary: prosecution_case }
