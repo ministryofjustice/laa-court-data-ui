@@ -1,10 +1,13 @@
+{{ if not .Values.branch }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: laa-court-data-ui-worker
-  namespace: laa-court-data-ui-dev
+  name: laa-court-data-ui-background-worker
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "laa-court-data-ui.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas.worker }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -12,42 +15,38 @@ spec:
       maxSurge: 100%
   selector:
     matchLabels:
-      app: laa-court-data-ui-worker
+      app: laa-court-data-ui-background-worker
       tier: worker
   template:
     metadata:
       labels:
-        app: laa-court-data-ui-worker
+        app: laa-court-data-ui-background-worker
         tier: worker
     spec:
       containers:
-        - name: laa-court-data-ui-worker
+        - name: laa-court-data-ui-background-worker
           imagePullPolicy: Always
-          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-get-paid/laa-court-data-ui:set-me
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           command: ['bundle', 'exec', 'sidekiq']
           readinessProbe:
             httpGet:
               path: /
               port: 7433
-            initialDelaySeconds: 20
-            periodSeconds: 30
           livenessProbe:
             httpGet:
               path: /
               port: 7433
-            initialDelaySeconds: 30
-            periodSeconds: 60
           env:
             - name: ENV
-              value: 'dev'
+              value: {{ .Values.env }}
             - name: RACK_ENV
               value: 'production'
             - name: RAILS_ENV
               value: 'production'
             - name: DOMAIN_URL
-              value: 'https://dev.view-court-data.service.justice.gov.uk'
+              value: "https://{{ .Values.host }}"
             - name: COURT_DATA_ADAPTOR_API_URL
-              value: https://dev.court-data-adaptor.service.justice.gov.uk/api/internal/v1
+              value: {{ .Values.cdaHost }}
             - name: RAILS_SERVE_STATIC_FILES
               value: enabled
             - name: RAILS_LOG_TO_STDOUT
@@ -87,21 +86,9 @@ spec:
                 secretKeyRef:
                   name: aws-secrets
                   key: GOVUK_NOTIFY_API_KEY
-        - name: laa-court-data-ui-metrics
-          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-get-paid/laa-court-data-ui:set-me
-          imagePullPolicy: Always
-          command: ['sh', '-c', "bundle exec prometheus_exporter --bind 0.0.0.0"]
-          ports:
-          - containerPort: 9394
-          livenessProbe:
-            httpGet:
-              path: /metrics
-              port: 9394
-            initialDelaySeconds: 60
-            periodSeconds: 60
-          readinessProbe:
-            httpGet:
-              path: /metrics
-              port: 9394
-            initialDelaySeconds: 60
-            periodSeconds: 60
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: SENTRY_DSN
+{{ end }}
