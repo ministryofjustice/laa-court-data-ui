@@ -16,7 +16,7 @@ deploy_branch() {
     --namespace=${K8S_NAMESPACE} \
     --values ./helm_deploy/values/$ENVIRONMENT.yaml \
     --set image.repository="754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-assess-a-claim/laa-court-data-ui" \
-    --set image.tag="branch-$CIRCLE_SHA1" \
+    --set image.tag="$TAG" \
     --set identifier="$IDENTIFIER" \
     --set host="$RELEASE_HOST" \
     --set nameOverride="$BRANCH_RELEASE_NAME"\
@@ -33,12 +33,14 @@ deploy_main() {
     --namespace=${K8S_NAMESPACE} \
     --values ./helm_deploy/values/$ENVIRONMENT.yaml \
     --set image.repository="754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-assess-a-claim/laa-court-data-ui" \
-    --set image.tag="main-$CIRCLE_SHA1"
+    --set image.tag="$TAG"
 }
 
 if [[ "$CIRCLE_BRANCH" == "main" ]]; then
+  TAG="main-$CIRCLE_SHA1"
   deploy_main
 else
+  TAG="branch-$CIRCLE_SHA1"
   if [[ "$K8S_NAMESPACE" == "laa-court-data-ui-dev" ]]; then
     deploy_branch
     if [ $? -eq 0 ]; then
