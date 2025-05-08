@@ -66,7 +66,7 @@ spec:
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
             - name: DISPLAY_RAW_RESPONSES
-              value: {{ .Values.displayRawResponses }}
+              value: "{{ .Values.displayRawResponses }}"
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
