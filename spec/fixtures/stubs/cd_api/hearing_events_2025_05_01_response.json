@@ -1,0 +1,36 @@
+{
+  "hearing_id": "8afd2757-efee-427a-a622-89c06d0f7320",
+  "has_active_hearing": true,
+  "events": [
+      {
+          "id": "27a8e829-8782-479b-bfa2-9742b2442e6a",
+          "definition_id": "08405b3a-8e40-4805-9013-603dd918fb4e",
+          "defence_counsel_id": null,
+          "recorded_label": "Hearing event 0",
+          "event_time": "2025-05-01T00:00:00+00:00",
+          "last_modified_time": "2025-05-08T15:32:12.507000+00:00",
+          "alterable": false,
+          "note": "Some free text"
+      },
+      {
+          "id": "a8b3f28a-5566-4156-bf0d-483bd77ebdf4",
+          "definition_id": "6fe14c58-c180-4a19-b3db-2bcf4e29bb24",
+          "defence_counsel_id": null,
+          "recorded_label": "Hearing event 1",
+          "event_time": "2025-05-01T01:00:00+00:00",
+          "last_modified_time": "2025-05-08T15:32:12.518000+00:00",
+          "alterable": false,
+          "note": "Some free text"
+      },
+      {
+          "id": "e863fbd5-eafe-402f-979c-e93079226bb7",
+          "definition_id": "b4e4f9c7-1310-4cd4-a14e-7dc94202d9a9",
+          "defence_counsel_id": null,
+          "recorded_label": "Hearing event 2",
+          "event_time": "2025-05-01T02:00:00+00:00",
+          "last_modified_time": "2025-05-08T15:32:12.526000+00:00",
+          "alterable": false,
+          "note": "Some free text"
+      }
+  ]
+}
