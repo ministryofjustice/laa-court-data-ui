@@ -177,8 +177,6 @@ RSpec.configure do |config|
                  )
   end
 
-  # These are the API Stubs for the CDA V2 (without CDAPI)
-
   # /api/internal/v2/hearing_results/345be88a-31cf-4a30-9de3-da98e973367e.json?sitting_date=2019-10-23
   config.before(:each, :stub_internal_v2_hearing_results2) do
     stub_request(:get,
