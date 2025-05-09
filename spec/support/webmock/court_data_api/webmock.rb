@@ -121,7 +121,7 @@ RSpec.configure do |config|
 
     stub_request(
       :patch,
-      %r{http.*/v2/laa_references/#{defendant_id}/}
+      %r{http.*/v2/laa_references/#{defendant_id}}
     ).to_return(
       status: 202,
       body: '',
@@ -131,27 +131,27 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_unlink_bad_request) do
     stub_request(
-      :patch, %r{/v2/laa_references/#{defendant_id}/}
+      :patch, %r{/v2/laa_references/#{defendant_id}}
     ).to_return(
       status: 400,
       headers: { 'Content-Type' => 'application/json' },
-      body: { 'errors' => { 'user_name' => ['must not exceed 10 characters'] } }.to_json
+      body: { 'error' => "Contract error: {:user_name=>[\"must not exceed 10 characters\"]}" }.to_json
     )
   end
 
   config.before(:each, :stub_v2_unlink_bad_response) do
     stub_request(
-      :patch, %r{/v2/laa_references/#{defendant_id}/}
+      :patch, %r{/v2/laa_references/#{defendant_id}}
     ).to_return(
       status: 422,
       headers: { 'Content-Type' => 'application/json' },
-      body: { 'errors' => { 'user_name' => ['must not exceed 10 characters'] } }.to_json
+      body: { 'error' => "Contract error: {:user_name=>[\"must not exceed 10 characters\"]}" }.to_json
     )
   end
 
   config.before(:each, :stub_v2_unlink_server_failure) do
     stub_request(
-      :patch, %r{/v2/laa_references/#{defendant_id}/}
+      :patch, %r{/v2/laa_references/#{defendant_id}}
     ).to_return(
       status: 500,
       body: ''
@@ -160,7 +160,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_unlink_cda_failure) do
     stub_request(
-      :patch, %r{/v2/laa_references/#{defendant_id}/}
+      :patch, %r{/v2/laa_references/#{defendant_id}}
     ).to_return(
       status: 424,
       body: ''
