@@ -167,4 +167,31 @@ RSpec.configure do |config|
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end
+
+  config.before(:each, :stub_internal_v2_hearing_results) do
+    stub_request(:get,
+                 %r{http:.*/api/internal/v2/hearing_results/345be88a-31cf-4a30-9de3-da98e973367e})
+      .to_return(
+        status: 200,
+        body: load_json_stub('cda/internal_v2_hearing_results_response.json')
+      )
+  end
+
+  config.before(:each, :stub_internal_v2_hearing_not_found) do
+    stub_request(:get,
+                 %r{http:.*/api/internal/v2/hearing_results/345be88a-31cf-4a30-9de3-da98e973367e})
+      .to_return(
+        status: 404,
+        body: {}.to_json
+      )
+  end
+
+  config.before(:each, :stub_internal_v2_hearing_error) do
+    stub_request(:get,
+                 %r{http:.*/api/internal/v2/hearing_results/345be88a-31cf-4a30-9de3-da98e973367e})
+      .to_return(
+        status: 500,
+        body: ''
+      )
+  end
 end

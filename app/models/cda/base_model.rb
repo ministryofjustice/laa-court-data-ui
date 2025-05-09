@@ -1,6 +1,7 @@
 module Cda
   class BaseModel < ActiveResource::Base
     self.site = CourtDataAdaptor::Resource::V2.api_url
+    self.include_format_in_path = false
 
     def self.headers
       {
