@@ -4,8 +4,8 @@ require 'court_data_adaptor'
 
 RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink_v2, type: :feature do
   let(:case_urn) { 'TEST12345' }
-  let(:api_url_v2) { CdApi::BaseModel.site }
-  let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}/" }
+  let(:api_url_v2) { CourtDataAdaptor::Resource::V2.api_url }
+  let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}" }
 
   let(:user) { create(:user) }
 
@@ -68,10 +68,10 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink_v2, type: :feature
     context 'when user unlinks with success' do
       let(:api_request_payload) do
         {
-          defendant_id:,
-          user_name: user.username,
-          unlink_reason_code: 1,
-          maat_reference:
+          laa_reference: { defendant_id:,
+                           user_name: user.username,
+                           unlink_reason_code: 1,
+                           maat_reference: }
         }
       end
 
@@ -84,7 +84,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink_v2, type: :feature
 
         it 'sends an unlink request to CD API' do
           expect(a_request(:patch, api_request_path)
-            .with(body: api_request_payload.to_json))
+            .with(body: api_request_payload))
             .to have_been_made
         end
 
@@ -97,11 +97,11 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink_v2, type: :feature
       context 'with other reason' do
         let(:api_request_payload) do
           {
-            defendant_id:,
-            user_name: user.username,
-            unlink_reason_code: 7,
-            maat_reference:,
-            unlink_other_reason_text: 'Case already concluded'
+            laa_reference: { defendant_id:,
+                             user_name: user.username,
+                             unlink_reason_code: 7,
+                             maat_reference:,
+                             unlink_other_reason_text: 'Case already concluded' }
           }
         end
 
