@@ -8,6 +8,11 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
   let(:hearing_id_from_fixture) { '345be88a-31cf-4a30-9de3-da98e973367e' }
   let(:hearing_id) { hearing_id_from_fixture }
 
+  before do
+    dummy_token = instance_double('OAuth2::AccessToken', token: 'super-secret-key', expired?: false)
+    allow(CourtDataAdaptor::OauthTokenProvider).to receive(:token).and_return(dummy_token)
+  end
+
   context 'when not signed in' do
     before { visit unauthenticated_root_path }
 

@@ -1,0 +1,125 @@
+{
+  "prosecution_case_reference": "IGWTRAXVHK",
+  "hearing_summaries": [
+      {
+          "id": "8afd2757-efee-427a-a622-89c06d0f7320",
+          "hearing_type": "Plea and Trial Prepation (PTP)",
+          "estimated_duration": null,
+          "defendants": [],
+          "jurisdiction_type": "CROWN",
+          "court_centre": {
+              "id": "68c7e9af-2db7-3fc3-b6e8-e51653120790",
+              "name": "Maidstone Magistrates' Court",
+              "welsh_name": "Llys Ynadon Maidstone",
+              "room_id": null,
+              "room_name": null,
+              "welsh_room_name": null,
+              "welsh_court_name": null,
+              "short_oucode": "B46IR",
+              "oucode_l2_code": "46",
+              "code": "B46IR00",
+              "address": {
+                  "address_1": "The Court House",
+                  "address_2": "Palace Avenue",
+                  "address_3": "Maidstone",
+                  "address_4": "Kent",
+                  "address_5": "",
+                  "postcode": "ME15 6LL"
+              }
+          },
+          "hearing_days": [
+              {
+                  "sitting_day": "2025-05-01T00:00:00+00:00",
+                  "listing_sequence": 9,
+                  "listed_duration_minutes": 874,
+                  "has_shared_results": null
+              }
+          ],
+          "defence_counsels": []
+      },
+      {
+          "id": "7f1befbf-dccd-4b28-8f5a-b04a87569ff2",
+          "hearing_type": "Mention - Defendant to Attend (MDA)",
+          "estimated_duration": null,
+          "defendants": [],
+          "jurisdiction_type": "MAGISTRATES",
+          "court_centre": {
+              "id": "1b73c7dd-bef1-33f4-81f5-fbfa092d4c49",
+              "name": "Newcastle Magistrates' Court",
+              "welsh_name": "Llys Ynadon Newcastle",
+              "room_id": null,
+              "room_name": null,
+              "welsh_room_name": null,
+              "welsh_court_name": null,
+              "short_oucode": "B10JL",
+              "oucode_l2_code": "10",
+              "code": "B10JL00",
+              "address": {
+                  "address_1": "The Law Courts",
+                  "address_2": "The Quayside",
+                  "address_3": "Newcastle Upon Tyne",
+                  "address_4": "",
+                  "address_5": "",
+                  "postcode": "NE1 3LA"
+              }
+          },
+          "hearing_days": [
+              {
+                  "sitting_day": "2025-05-07T00:00:00+00:00",
+                  "listing_sequence": null,
+                  "listed_duration_minutes": 222,
+                  "has_shared_results": null
+              }
+          ],
+          "defence_counsels": []
+      },
+      {
+          "id": "6fe12c31-31ec-488d-ac11-27612dcf5757",
+          "hearing_type": "Application to Break Fixture (BFA)",
+          "estimated_duration": null,
+          "defendants": [],
+          "jurisdiction_type": "CROWN",
+          "court_centre": {
+              "id": "1868f485-d814-36d1-ad92-6ed6330693bc",
+              "name": "Cambridge Crown Court",
+              "welsh_name": "Llys Y Goron Caergrawnt",
+              "room_id": null,
+              "room_name": null,
+              "welsh_room_name": null,
+              "welsh_court_name": null,
+              "short_oucode": "C35CM",
+              "oucode_l2_code": "35",
+              "code": "C35CM00",
+              "address": {
+                  "address_1": "83 East Road",
+                  "address_2": "Cambridge",
+                  "address_3": "",
+                  "address_4": "",
+                  "address_5": "",
+                  "postcode": "CB1 1BT"
+              }
+          },
+          "hearing_days": [
+              {
+                  "sitting_day": "2025-05-08T00:00:00+00:00",
+                  "listing_sequence": null,
+                  "listed_duration_minutes": 576,
+                  "has_shared_results": null
+              }
+          ],
+          "defence_counsels": []
+      }
+  ],
+  "overall_defendants": [
+      {
+          "id": "4bcf26f9-3c6f-440a-94aa-7d084bcd715e",
+          "first_name": "Felix",
+          "middle_name": "Connelly",
+          "last_name": "McGlynn",
+          "arrest_summons_number": "3DDFXLGNGRNN",
+          "date_of_birth": "1960-11-16",
+          "national_insurance_number": "HP440787B",
+          "maat_reference": null
+      }
+  ]
+}

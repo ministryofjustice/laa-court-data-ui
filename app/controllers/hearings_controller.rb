@@ -32,13 +32,30 @@ class HearingsController < ApplicationController
 
   private
 
+  # TODO: remove this method, used only for debugging purposes
+  # and to compare the two APIs
+  def save_json(obj, filename)
+    File.write(filename,
+      JSON.pretty_generate(JSON.parse(obj.attributes.to_json))
+    )
+  end
+
   def load_and_authorize_search
     @prosecution_case_search = CdApi::CaseSummaryService.new(urn: prosecution_case_reference)
     authorize! :create, @prosecution_case_search
   end
 
   def set_hearing
-    @hearing ||= decorate_hearing(CdApi::Hearing.find(hearing_id, params: hearing_params))
+    # This is the API we are discontinuing:
+    # hearing_from_cdapi = CdApi::Hearing.find(hearing_id, params: hearing_params)
+
+    hearing = Cda::Hearing.find(hearing_id, params: {
+                                              sitting_date: hearing_params[:date]
+                                            }) # CDA V2 -> /api/internal/v2/hearing_results
+    # save_json(hearing_from_cdapi, 'hearing_from_cdapi.json')
+    # save_json(hearing, 'hearing_from_cda.json')
+
+    @hearing ||= decorate_hearing(hearing)
     @hearing&.current_sitting_day = paginator.current_item.hearing_date.strftime('%F')
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page

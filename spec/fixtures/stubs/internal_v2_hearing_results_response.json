@@ -1,0 +1,189 @@
+{
+    "hearing": {
+        "id": "8712e673-e37d-4263-badd-a5bc5ffea339",
+        "jurisdiction_type": "CROWN",
+        "court_centre": {
+            "id": "68c7e9af-2db7-3fc3-b6e8-e51653120790",
+            "name": "Maidstone Magistrates' Court",
+            "welsh_name": "Llys Ynadon Maidstone",
+            "room_id": null,
+            "room_name": null,
+            "welsh_room_name": null,
+            "welsh_court_centre": null,
+            "short_oucode": "B46IR",
+            "oucode_l2_code": "46",
+            "code": "B46IR00",
+            "address": {
+                "address_1": "The Court House",
+                "address_2": "Palace Avenue",
+                "address_3": "Maidstone",
+                "address_4": "Kent",
+                "address_5": "",
+                "postcode": "ME15 6LL"
+            }
+        },
+        "hearing_language": "WELSH",
+        "prosecution_cases": [
+            {
+                "id": "79224daf-4d6e-43bb-a6a6-81dfae6b6e5d",
+                "prosecution_case_identifier": {
+                    "case_urn": "IGWTRAXVHK",
+                    "prosecution_authority_id": "2413015f-26b9-45f6-888a-60f40144e621",
+                    "prosecution_authority_code": "DXUOHMAFCU",
+                    "prosecution_authority_name": null
+                },
+                "status": "ACTIVE",
+                "statement_of_facts": "Nihil voluptas swag iphone sartorial.",
+                "statement_of_facts_welsh": "Pbr&b eveniet gastropub.",
+                "defendants": [
+                    {
+                        "id": "4bcf26f9-3c6f-440a-94aa-7d084bcd715e",
+                        "prosecution_case_id": "79224daf-4d6e-43bb-a6a6-81dfae6b6e5d",
+                        "defendant_details": {
+                            "arrest_summons_number": "3DDFXLGNGRNN",
+                            "bail_conditions": "Velit dolor sapiente culpa.",
+                            "bail_status": {},
+                            "person_details": {
+                                "title": "MRS",
+                                "gender": "FEMALE",
+                                "first_name": "Felix",
+                                "last_name": "McGlynn",
+                                "date_of_birth": "1960-11-16",
+                                "nino": "HP440787B",
+                                "occupation": "statistician",
+                                "occupation_code": "0751",
+                                "documentation_language_needs": "WELSH"
+                            }
+                        },
+                        "offences": [
+                            {
+                                "id": "3d9a7976-c57f-4eed-ac26-aab8029705d8",
+                                "code": "PT00011",
+                                "title": "Abduction of unmarried girl under 18 from parent",
+                                "legislation": "Sexual Offences Act 1956 s.17",
+                                "mode_of_trial": "Indictable only",
+                                "wording": "Random string",
+                                "start_date": "2019-10-17",
+                                "order_index": 1,
+                                "allocation_decision": {},
+                                "plea": {},
+                                "verdict": {},
+                                "judicial_results": [
+                                    {
+                                        "id": "4d29d341-2fd8-4e67-8657-155d60df1a96",
+                                        "label": "Random String",
+                                        "is_adjournment_result": false,
+                                        "is_available_for_court_extract": false,
+                                        "is_convicted_result": false,
+                                        "is_financial_result": false,
+                                        "qualifier": "Random String",
+                                        "text": "PARDON",
+                                        "cjs_code": "2507",
+                                        "ordered_date": "2019-10-16",
+                                        "post_hearing_custody_status": "A",
+                                        "wording": null,
+                                        "prompts": [
+                                            {
+                                                "type_id": "0f6a2a80-e8f0-4f77-bb82-6fe3e940b244",
+                                                "is_available_for_court_extract": false,
+                                                "label": "Random String",
+                                                "welsh_label": "Llinyn ar hap",
+                                                "value": "Random String",
+                                                "welsh_value": "MyString",
+                                                "qualifier": "Random String",
+                                                "duration_sequence": 1,
+                                                "prompt_sequence": 1,
+                                                "prompt_reference": "Random String",
+                                                "total_penalty_points": 1,
+                                                "is_financial_imposition": false,
+                                                "user_groups": []
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "laa_application": {}
+                            }
+                        ],
+                        "judicial_results": [],
+                        "defence_organisation": {
+                            "organisation": {
+                                "name": null,
+                                "incorporation_number": null,
+                                "registered_charity_number": null,
+                                "address": {},
+                                "contact": {}
+                            },
+                            "laa_contract_number": null
+                        },
+                        "legal_aid_status": null,
+                        "proceedings_concluded": null,
+                        "is_youth": null
+                    }
+                ]
+            }
+        ],
+        "defendant_judicial_results": [],
+        "has_shared_results": false,
+        "court_applications": [
+            {
+                "id": "691604c0-0db3-4e81-8304-b031e36634c7",
+                "received_date": "2025-05-01",
+                "application_reference": "MyString",
+                "judicial_results": [],
+                "respondents": [
+                    {
+                        "id": "7e9f1725-1a91-4347-9533-1f02fc08f7d4",
+                        "synonym": "suspect",
+                        "summons_required": true,
+                        "notification_required": true
+                    }
+                ],
+                "defendant": {},
+                "type": {
+                    "id": "45a4bcd2-9bb6-42bb-aaff-31f8268242a3",
+                    "description": "String",
+                    "code": "String",
+                    "category_code": "String",
+                    "legislation": "string",
+                    "applicant_appellant_flag": true,
+                    "link_type": "LINKED",
+                    "jurisdiction": "MAGISTRATES",
+                    "appeal_flag": true,
+                    "plea_applicable_flag": true,
+                    "summons_template_type": "GENERIC_APPLICATION",
+                    "valid_from": "2021-04-01",
+                    "valid_to": "2021-04-30",
+                    "offence_active_order": "OFFENCE",
+                    "commr_of_oath_flag": true,
+                    "breach_type": "GENERIC_BREACH",
+                    "court_of_appeal_flag": true,
+                    "court_extract_avl_flag": true,
+                    "listing_notif_template": "String",
+                    "boxwork_notif_template": "String",
+                    "prosecutor_third_party_flag": true,
+                    "spi_out_applicable_flag": true,
+                    "hearing_code": "String"
+                }
+            }
+        ],
+        "hearing_type": {
+            "id": "9f059bce-852c-40ec-b0b6-4b93c50a10af",
+            "description": "Plea and Trial Prepation (PTP)",
+            "welsh_description": null
+        },
+        "hearing_days": [
+            {
+                "sitting_day": "2025-05-01T00:00:00.000Z",
+                "listing_sequence": 9,
+                "listed_duration_minutes": 874,
+                "has_shared_results": null
+            }
+        ],
+        "judiciary": [],
+        "prosecution_counsels": [],
+        "defence_counsels": [],
+        "cracked_ineffective_trial": {},
+        "defendant_attendance": []
+    },
+    "shared_time": "2025-05-01T15:02:42.754+00:00"
+}

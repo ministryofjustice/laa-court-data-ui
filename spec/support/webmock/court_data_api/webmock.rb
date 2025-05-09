@@ -179,6 +179,18 @@ RSpec.configure do |config|
     )
   end
 
+  config.before(:each, :stub_v2_hearing_events_2025_05_01) do
+    stub_request(
+      :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
+    ).with(
+      query: { date: '2025-05-01' }
+    ).to_return(
+      status: 200,
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cd_api/hearing_events_2025_05_01_response.json')
+    )
+  end
+
   config.before(:each, :stub_v2_hearing_events_empty) do
     stub_request(
       :get,  %r{/v2/hearings/#{hearing_id}/hearing_events}
@@ -211,6 +223,8 @@ RSpec.configure do |config|
     )
   end
 
+  # This should not happen, it should not be needed
+  # we should not calling CDAPI for hearing data
   config.before(:each, :stub_v2_hearing_data) do
     stub_request(
       :get, %r{/v2/hearings/#{hearing_id}\?}
@@ -286,6 +300,17 @@ RSpec.configure do |config|
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
       body: load_json_stub('cd_api/hearing_summary_response.json')
+    )
+  end
+
+  # http://localhost:8000/v2/case_summaries/IGWTRAXVHK
+  config.before(:each, :stub_cdapi_v2_hearing_summary2) do
+    stub_request(
+      :get, %r{http.*/v2/case_summaries/#{case_reference}}
+    ).to_return(
+      status: 200,
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cd_api/hearing_summary_response2.json')
     )
   end
 
