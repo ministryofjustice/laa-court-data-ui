@@ -1514,4 +1514,368 @@ http_interactions:
       encoding: UTF-8
       string: '{"hearing_id": null, "has_active_hearing": null, "events": []}'
   recorded_at: Thu, 10 Apr 2025 14:10:07 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80/event_log/2019-10-23
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 20fba4f4-6562-4daa-8292-63e3325db41e
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.010470'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.48, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=1.72
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 09 May 2025 10:36:36 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80/event_log/2019-10-26
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 7791c08b-7ab2-4019-b5b0-a43e85a44e0b
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.063676'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.30, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=1.71
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 09 May 2025 10:36:36 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80/event_log/2019-10-31
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 90049a10-aa02-42a6-9038-55a2d3ae6f44
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.013059'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.37, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=1.95
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 09 May 2025 10:36:37 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80/event_log/2019-11-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 8f6ee137-bf0a-4142-9fc2-856943340e43
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.012302'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.29, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=1.57
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 09 May 2025 10:36:37 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80/event_log/2019-11-02
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 4f11f48d-d80f-4a8f-960b-33b14d9ff75a
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.010344'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.30, halted_callback.action_controller;dur=0.00,
+        process_action.action_controller;dur=1.57
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 09 May 2025 10:36:37 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80/event_log/2019-10-27
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - f35ac55e-5dee-4fa6-bf53-ad2a233e1fff
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.010810'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.28, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=1.57
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 09 May 2025 10:36:37 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80/event_log/2019-10-28
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - '04782076-90e0-4b80-b8e1-4649a144adce'
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.009886'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.23, halted_callback.action_controller;dur=0.00,
+        process_action.action_controller;dur=1.45
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 09 May 2025 10:36:37 GMT
 recorded_with: VCR 6.3.1
