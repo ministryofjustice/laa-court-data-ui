@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-
-RSpec.feature 'Viewing the hearings page',  :stub_cdapi_v2_hearing_summary2, type: :feature do # :stub_case_search,
+RSpec.feature 'Viewing the hearings page', :stub_cdapi_v2_hearing_summary2, type: :feature do # :stub_case_search,
   let(:user) { create(:user) }
   let(:api_url_v2) { CdApi::BaseModel.site }
   let(:api_events_path) { "#{api_url_v2}hearings/#{hearing_id}/hearing_events?date=2025-05-01" }
@@ -27,7 +26,7 @@ RSpec.feature 'Viewing the hearings page',  :stub_cdapi_v2_hearing_summary2, typ
     VCR.turn_on!
   end
 
-  context 'when user views hearing page', :stub_v2_hearing_data  do
+  context 'when user views hearing page', :stub_v2_hearing_data do
     let(:url) { "hearings/#{hearing_id}?column=date&direction=asc&page=0&urn=#{case_reference}" }
 
     # context 'with multiple defence counsels', :stub_v2_hearing_events do

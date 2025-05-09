@@ -1,0 +1,157 @@
+{
+    "hearing": {
+        "id": "da7f74d1-0635-41eb-a344-6a22958f7089",
+        "jurisdiction_type": "CROWN",
+        "court_centre": {
+            "id": "b6a48a7e-8eb8-435d-8f93-1ef86a6daee2",
+            "name": "Ealing Magistrates' Court",
+            "welsh_name": "Llys Ynadon Ealing",
+            "room_id": null,
+            "room_name": null,
+            "welsh_room_name": null,
+            "welsh_court_centre": null,
+            "short_oucode": "B01FA",
+            "oucode_l2_code": "1",
+            "code": "B01FA00",
+            "address": {
+                "address_1": "The Court House",
+                "address_2": "Green Man Lane",
+                "address_3": "Ealing",
+                "address_4": "London",
+                "address_5": "",
+                "postcode": "W13 0SD"
+            }
+        },
+        "hearing_language": "ENGLISH",
+        "prosecution_cases": [
+            {
+                "id": "794c13d6-6e53-49ab-a1c2-9312f96ca61c",
+                "prosecution_case_identifier": {
+                    "case_urn": "ZYMTFEQKXH",
+                    "prosecution_authority_id": "e481555b-ea54-47d9-a27f-1100f1b9a557",
+                    "prosecution_authority_code": "MNCZKVXXAT",
+                    "prosecution_authority_name": null
+                },
+                "status": "INACTIVE",
+                "statement_of_facts": "Et rem sunt earum.",
+                "statement_of_facts_welsh": "Poutine debitis ethical.",
+                "defendants": [
+                    {
+                        "id": "45fcd63e-6cc6-4aba-a438-906ae67f12c8",
+                        "prosecution_case_id": "794c13d6-6e53-49ab-a1c2-9312f96ca61c",
+                        "defendant_details": {
+                            "arrest_summons_number": "C1AGXSXURRZT",
+                            "bail_conditions": "Corporis enim architecto vel.",
+                            "bail_status": {},
+                            "person_details": {
+                                "title": "MRS",
+                                "gender": "FEMALE",
+                                "first_name": "Stephen",
+                                "last_name": "Greenfelder",
+                                "date_of_birth": "1979-07-18",
+                                "nino": "EB365199B",
+                                "occupation": "actress",
+                                "occupation_code": "8049",
+                                "documentation_language_needs": "ENGLISH"
+                            }
+                        },
+                        "offences": [
+                            {
+                                "id": "1d6e3320-a45e-499c-adb0-de07b5652b47",
+                                "code": "PT00011",
+                                "title": "Breach of restraining order",
+                                "legislation": "Fraud Act 2006 s.7",
+                                "mode_of_trial": "Either way",
+                                "wording": "Random string",
+                                "start_date": "2019-10-17",
+                                "order_index": 1,
+                                "allocation_decision": {},
+                                "plea": {},
+                                "verdict": {},
+                                "judicial_results": [],
+                                "laa_application": {}
+                            }
+                        ],
+                        "judicial_results": [],
+                        "defence_organisation": {
+                            "organisation": {
+                                "name": null,
+                                "incorporation_number": null,
+                                "registered_charity_number": null,
+                                "address": {},
+                                "contact": {}
+                            },
+                            "laa_contract_number": null
+                        },
+                        "legal_aid_status": null,
+                        "proceedings_concluded": null,
+                        "is_youth": null
+                    }
+                ]
+            }
+        ],
+        "defendant_judicial_results": [],
+        "has_shared_results": true,
+        "court_applications": [
+            {
+                "id": "2d4bdee4-c5f3-4fc5-84e4-12cd39f537f3",
+                "received_date": "2025-05-09",
+                "application_reference": "MyString",
+                "judicial_results": [],
+                "respondents": [
+                    {
+                        "id": "79931e5e-9b81-4239-87bf-d158ad3e5872",
+                        "synonym": "complainant",
+                        "summons_required": true,
+                        "notification_required": true
+                    }
+                ],
+                "defendant": {},
+                "type": {
+                    "id": "ce21b4de-e99f-446d-87aa-b0d77cded511",
+                    "description": "String",
+                    "code": "String",
+                    "category_code": "String",
+                    "legislation": "string",
+                    "applicant_appellant_flag": true,
+                    "link_type": "LINKED",
+                    "jurisdiction": "MAGISTRATES",
+                    "appeal_flag": true,
+                    "plea_applicable_flag": true,
+                    "summons_template_type": "GENERIC_APPLICATION",
+                    "valid_from": "2021-04-01",
+                    "valid_to": null,
+                    "offence_active_order": "OFFENCE",
+                    "commr_of_oath_flag": true,
+                    "breach_type": "GENERIC_BREACH",
+                    "court_of_appeal_flag": true,
+                    "court_extract_avl_flag": true,
+                    "listing_notif_template": "String",
+                    "boxwork_notif_template": "String",
+                    "prosecutor_third_party_flag": true,
+                    "spi_out_applicable_flag": true,
+                    "hearing_code": "String"
+                }
+            }
+        ],
+        "hearing_type": {
+            "id": "8745899e-fc3d-4f26-976f-d7e53642c02c",
+            "description": "Pre-Trial Review (PTR)",
+            "welsh_description": null
+        },
+        "hearing_days": [
+            {
+                "sitting_day": "2025-05-09T00:00:00.000Z",
+                "listing_sequence": null,
+                "listed_duration_minutes": 898,
+                "has_shared_results": null
+            }
+        ],
+        "judiciary": [],
+        "prosecution_counsels": [],
+        "defence_counsels": [],
+        "cracked_ineffective_trial": {},
+        "defendant_attendance": []
+    },
+    "shared_time": "2025-05-09T11:05:57.333+00:00"
+}

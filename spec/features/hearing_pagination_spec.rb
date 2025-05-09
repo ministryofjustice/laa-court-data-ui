@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.feature 'Hearing pagination', :vcr, type: :feature do
-# RSpec.feature 'Hearing pagination', { cassette_name: 'hearing_pagination_cda', record: :new_episodes }, type: :feature do
+  # RSpec.feature 'Hearing pagination', { cassette_name: 'hearing_pagination_cda', record: :new_episodes }, type: :feature do
 
   let(:user) { create(:user) }
   let(:case_urn) { 'IGWTRAXVHK' }

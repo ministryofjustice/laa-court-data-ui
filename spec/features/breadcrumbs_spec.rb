@@ -11,6 +11,12 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
   before do
     dummy_token = instance_double('OAuth2::AccessToken', token: 'super-secret-key', expired?: false)
     allow(CourtDataAdaptor::OauthTokenProvider).to receive(:token).and_return(dummy_token)
+
+    VCR.turn_off!
+  end
+
+  after do
+    VCR.turn_on!
   end
 
   context 'when not signed in' do
@@ -82,7 +88,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
     end
 
     context 'when on hearing details page', :stub_defendants_case_search, :stub_hearing_summary,
-            :stub_v2_hearing_data, :stub_v2_hearing_events do
+            :stub_v2_hearing_events, :stub_internal_v2_hearing_results2 do
       scenario 'expected breadcrumbs are displayed' do
         when_i_choose_search_filter 'A case by URN'
         when_i_search_for case_urn
@@ -100,7 +106,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
 
     scenario 'user navigates search, prosecution case, defendant and hearings pages',
              :stub_defendants_case_search, :stub_hearing_summary,
-             :stub_v2_hearing_data, :stub_v2_hearing_events do
+             :stub_v2_hearing_events, :stub_internal_v2_hearing_results2 do
       when_i_choose_search_filter 'A case by URN'
       when_i_search_for case_urn
 

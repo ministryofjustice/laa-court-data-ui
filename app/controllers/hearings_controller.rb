@@ -36,8 +36,7 @@ class HearingsController < ApplicationController
   # and to compare the two APIs
   def save_json(obj, filename)
     File.write(filename,
-      JSON.pretty_generate(JSON.parse(obj.attributes.to_json))
-    )
+               JSON.pretty_generate(JSON.parse(obj.attributes.to_json)))
   end
 
   def load_and_authorize_search
@@ -45,13 +44,14 @@ class HearingsController < ApplicationController
     authorize! :create, @prosecution_case_search
   end
 
+  # rubocop:disable Metrics/AbcSize
   def set_hearing
     # This is the API we are discontinuing:
     # hearing_from_cdapi = CdApi::Hearing.find(hearing_id, params: hearing_params)
 
     hearing = Cda::Hearing.find(hearing_id, params: {
-                                              sitting_date: hearing_params[:date]
-                                            }) # CDA V2 -> /api/internal/v2/hearing_results
+                                  sitting_date: hearing_params[:date]
+                                }) # CDA V2 -> /api/internal/v2/hearing_results
     # save_json(hearing_from_cdapi, 'hearing_from_cdapi.json')
     # save_json(hearing, 'hearing_from_cda.json')
 
@@ -64,6 +64,7 @@ class HearingsController < ApplicationController
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
   end
+  # rubocop:enable Metrics/AbcSize
 
   def set_hearing_day
     hearing_day
