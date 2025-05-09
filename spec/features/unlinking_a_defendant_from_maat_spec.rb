@@ -4,8 +4,8 @@ require 'court_data_adaptor'
 
 RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink_v2, type: :feature do
   let(:case_urn) { 'TEST12345' }
-  let(:api_url_v2) { "http://localhost:9292/api/internal/v2/" }
-  let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}" }
+  let(:api_url_v2) { CourtDataAdaptor::Resource::V2.api_url }
+  let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}" }
 
   let(:user) { create(:user) }
 

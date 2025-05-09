@@ -43,7 +43,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
   let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:prosecution_case_reference_from_fixture) { 'TEST12345' }
-  let(:api_url_v2) { "http://localhost:9292/api/internal/v2/" }
+  let(:api_url_v2) { CourtDataAdaptor::Resource::V2.api_url }
   let(:maat_reference) { 2_123_456 }
 
   let(:params) do
@@ -55,7 +55,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
       }
     }
   end
-  let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}" }
+  let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}" }
   let(:api_request_payload) do
     {
       laa_reference: { defendant_id:,
