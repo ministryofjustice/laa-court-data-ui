@@ -64,21 +64,21 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_defendants_ref_search) do
     stub_request(
-      :get, %r{http.*/v2/defendants\?(asn|nino)=.*}
+      :get, %r{http.*/v2/prosecution_cases\?filter.*}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
-      body: load_json_stub('cd_api/defendants_body.json')
+      body: load_json_stub('cda/cases_body.json')
     )
   end
 
   config.before(:each, :stub_defendants_name_search) do
     stub_request(
-      :get, %r{http.*/v2/defendants\?dob=.*&name=.*}
+      :get, %r{http.*/v2/prosecution_cases\?filter.*}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
-      body: load_json_stub('cd_api/defendants_body.json')
+      body: load_json_stub('cda/cases_body.json')
     )
   end
 
