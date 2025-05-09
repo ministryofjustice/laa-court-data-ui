@@ -169,9 +169,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_hearing_events) do
     stub_request(
-      :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
-    ).with(
-      query: { date: '2019-10-23' }
+      :get, %r{/v2/hearings/#{hearing_id}/event_log/2019-10-23}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -181,9 +179,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_hearing_events_empty) do
     stub_request(
-      :get,  %r{/v2/hearings/#{hearing_id}/hearing_events}
-    ).with(
-      query: { date: '2019-10-23' }
+      :get, %r{/v2/hearings/#{hearing_id}/event_log/2019-10-23}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -193,9 +189,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_hearing_events_not_found) do
     stub_request(
-      :get,  %r{/v2/hearings/#{hearing_id}/hearing_events}
-    ).with(
-      query: { date: '2019-10-23' }
+      :get, %r{/v2/hearings/#{hearing_id}/event_log/2019-10-23}
     ).to_return(
       status: 404
     )
@@ -203,9 +197,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_hearing_events_error) do
     stub_request(
-      :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
-    ).with(
-      query: { date: '2019-10-23' }
+      :get, %r{/v2/hearings/#{hearing_id}/event_log/2019-10-23}
     ).to_return(
       status: 500
     )

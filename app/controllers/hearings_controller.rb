@@ -53,8 +53,8 @@ class HearingsController < ApplicationController
   end
 
   def set_hearing_events
-    @hearing_events ||= CdApi::HearingEvents.find(hearing_id,
-                                                  date: paginator.current_item.hearing_date.strftime('%F'))
+    @hearing_events ||= Cda::HearingEventLog.load(hearing_id,
+                                                  paginator.current_item.hearing_date.strftime('%F'))
   rescue ActiveResource::ResourceNotFound
     logger.info 'EVENTS_NOT_AVAILABLE'
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
