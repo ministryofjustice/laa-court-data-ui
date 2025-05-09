@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/defendants?dob=2000-12-27&name=wendie%20bogisiche%20lowe
+    uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/defendants?nino=HX685369B
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 14 Apr 2022 10:10:05 GMT
+      - Thu, 14 Apr 2022 10:10:14 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -52,10 +52,10 @@ http_interactions:
         string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Summary
         offence","start_date":"2019-10-17","proceedings_concluded":false,"plea":{"date":"2019-10-23","value":"NO_PLEA","originating_hearing_id":"89fc86c1-a92c-4250-b673-a4e6d5421477","offence_id":null,"application_id":null,"delegated_powers":null},"verdict":{"date":null,"type":null,"originating_hearing_id":null,"offence_id":null},"laa_application":{"reference":"Z10000199","id":"c78edb29-98b7-40d2-8bbe-ed02ba6792d0","status_code":"AP","description":"FAKE
         NEWS","status_date":"2022-04-08","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"}]}'
-  recorded_at: Thu, 14 Apr 2022 10:10:05 GMT
+  recorded_at: Thu, 14 Apr 2022 10:10:14 GMT
 - request:
     method: get
-    uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/defendants?dob=2000-12-27&name=Wendie
+    uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/defendants?nino=GP999999B
     body:
       encoding: US-ASCII
       string: ''
@@ -74,60 +74,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 14 Apr 2022 10:10:08 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '5183'
-      Connection:
-      - keep-alive
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains
-    body:
-      encoding: UTF-8
-      string: '{"defendant_summaries":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","national_insurance_number":"HX685369B","arrest_summons_number":"FPV3XYUJNPIB","name":"Wendie
-        Bogisiche Lowe","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","date_of_birth":"2000-12-27","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"6fc6b4a7-131c-464b-a9fe-7440e49311b9","code":"PT00011","order_index":1,"title":"Possessing
-        anything with intent to destroy or damage property","legislation":"Sexual
-        Offences Act 2003 s. 14","wording":"Random string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Indictable
-        only","start_date":"2019-10-17","proceedings_concluded":false,"plea":{"date":null,"value":null,"originating_hearing_id":null,"offence_id":null,"application_id":null,"delegated_powers":null},"verdict":{"date":null,"type":null,"originating_hearing_id":null,"offence_id":null},"laa_application":{"reference":"Z10000209","id":"7acbe647-19a5-4cb2-a13a-91902d38a8a2","status_code":"AP","description":"FAKE
-        NEWS","status_date":"2022-04-12","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","national_insurance_number":"YZ235772C","arrest_summons_number":"OYOYFT1DFB4S","name":"Marlin
-        Schaefer Leuschke","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","date_of_birth":"1958-05-08","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"8512f5d5-d0ea-4c10-b078-f0c3ee4d4dca","code":"PT00011","order_index":1,"title":"Fraud
-        by abuse of position","legislation":"Trade Descriptions Act 1968 ss.1, 8,
-        9, 12, 13, 14","wording":"Random string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Summary
-        offence","start_date":"2019-10-17","proceedings_concluded":false,"plea":{"date":null,"value":null,"originating_hearing_id":null,"offence_id":null,"application_id":null,"delegated_powers":null},"verdict":{"date":null,"type":null,"originating_hearing_id":null,"offence_id":null},"laa_application":{"reference":"Z10000175","id":"99453357-d837-4212-990d-4ca601465b41","status_code":"AP","description":"FAKE
-        NEWS","status_date":"2022-03-16","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","national_insurance_number":"AH506781B","arrest_summons_number":"5SLSOIL9Q2ZQ","name":"Randal
-        Huels Mitchell","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","date_of_birth":"1967-09-24","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"4f4cb25e-dc2c-476d-92cf-80b5fe487bfc","code":"PT00011","order_index":1,"title":"Possession
-        of Class B or C drug","legislation":"Fraud Act 2006 s.11","wording":"Random
-        string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Indictable
-        only","start_date":"2019-10-17","proceedings_concluded":false,"plea":{"date":null,"value":null,"originating_hearing_id":null,"offence_id":null,"application_id":null,"delegated_powers":null},"verdict":{"date":null,"type":null,"originating_hearing_id":null,"offence_id":null},"laa_application":{"reference":"Z10000178","id":"e2a05548-8b04-416a-8701-16cfce920764","status_code":"AP","description":"FAKE
-        NEWS","status_date":"2022-04-08","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","national_insurance_number":"JC123456A","arrest_summons_number":"1PBAP0Q18V3F","name":"Jammy  Dodger","first_name":"Jammy","middle_name":"","last_name":"Dodger","date_of_birth":"1987-05-21","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"177f2564-6e9d-4a9f-9ed6-9e5d7cb2eb6b","code":"PT00011","order_index":1,"title":"Racially-aggravated
-        criminal damage","legislation":"Sexual Offences Act 1956 s.19","wording":"Random
-        string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Summary
-        offence","start_date":"2019-10-17","proceedings_concluded":false,"plea":{"date":"2019-10-23","value":"NO_PLEA","originating_hearing_id":"89fc86c1-a92c-4250-b673-a4e6d5421477","offence_id":null,"application_id":null,"delegated_powers":null},"verdict":{"date":null,"type":null,"originating_hearing_id":null,"offence_id":null},"laa_application":{"reference":"Z10000199","id":"c78edb29-98b7-40d2-8bbe-ed02ba6792d0","status_code":"AP","description":"FAKE
-        NEWS","status_date":"2022-04-08","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"}]}'
-  recorded_at: Thu, 14 Apr 2022 10:10:08 GMT
-- request:
-    method: get
-    uri: https://laa-court-data-api-dev.apps.live.cloud-platform.service.justice.gov.uk/v2/defendants?dob=1928-11-28&name=Fred%20Bloggs
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic <Basic>
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 14 Apr 2022 10:10:10 GMT
+      - Thu, 14 Apr 2022 10:10:17 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -139,5 +86,128 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"defendant_summaries":[]}'
-  recorded_at: Thu, 14 Apr 2022 10:10:10 GMT
-recorded_with: VCR 6.1.0
+  recorded_at: Thu, 14 Apr 2022 10:10:17 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bnational_insurance_number%5D=HX685369B
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 9a3e2cab-53f3-4e90-a3e3-71c7cd5beefb
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.011364'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.48, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=1.92
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: '{"total_results": 1, "results": [{ "prosecution_case_reference": "TEST12345", "defendant_summaries":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","national_insurance_number":"HX685369B","arrest_summons_number":"FPV3XYUJNPIB","name":"Wendie
+        Bogisiche Lowe","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","date_of_birth":"2000-12-27","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"6fc6b4a7-131c-464b-a9fe-7440e49311b9","code":"PT00011","order_index":1,"title":"Possessing
+        anything with intent to destroy or damage property","legislation":"Sexual
+        Offences Act 2003 s. 14","wording":"Random string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","proceedings_concluded":false,"plea":{"date":null,"value":null,"originating_hearing_id":null,"offence_id":null,"application_id":null,"delegated_powers":null},"verdict":{"date":null,"type":null,"originating_hearing_id":null,"offence_id":null},"laa_application":{"reference":"Z10000209","id":"7acbe647-19a5-4cb2-a13a-91902d38a8a2","status_code":"AP","description":"FAKE
+        NEWS","status_date":"2022-04-12","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"},{"id":"018c6466-ffc3-4020-8b33-1d6702b4d189","national_insurance_number":"YZ235772C","arrest_summons_number":"OYOYFT1DFB4S","name":"Marlin
+        Schaefer Leuschke","first_name":"Marlin","middle_name":"Schaefer","last_name":"Leuschke","date_of_birth":"1958-05-08","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"8512f5d5-d0ea-4c10-b078-f0c3ee4d4dca","code":"PT00011","order_index":1,"title":"Fraud
+        by abuse of position","legislation":"Trade Descriptions Act 1968 ss.1, 8,
+        9, 12, 13, 14","wording":"Random string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Summary
+        offence","start_date":"2019-10-17","proceedings_concluded":false,"plea":{"date":null,"value":null,"originating_hearing_id":null,"offence_id":null,"application_id":null,"delegated_powers":null},"verdict":{"date":null,"type":null,"originating_hearing_id":null,"offence_id":null},"laa_application":{"reference":"Z10000175","id":"99453357-d837-4212-990d-4ca601465b41","status_code":"AP","description":"FAKE
+        NEWS","status_date":"2022-03-16","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"},{"id":"66ef1647-c5e3-4b10-a484-0227afb116fb","national_insurance_number":"AH506781B","arrest_summons_number":"5SLSOIL9Q2ZQ","name":"Randal
+        Huels Mitchell","first_name":"Randal","middle_name":"Huels","last_name":"Mitchell","date_of_birth":"1967-09-24","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"4f4cb25e-dc2c-476d-92cf-80b5fe487bfc","code":"PT00011","order_index":1,"title":"Possession
+        of Class B or C drug","legislation":"Fraud Act 2006 s.11","wording":"Random
+        string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","proceedings_concluded":false,"plea":{"date":null,"value":null,"originating_hearing_id":null,"offence_id":null,"application_id":null,"delegated_powers":null},"verdict":{"date":null,"type":null,"originating_hearing_id":null,"offence_id":null},"laa_application":{"reference":"Z10000178","id":"e2a05548-8b04-416a-8701-16cfce920764","status_code":"AP","description":"FAKE
+        NEWS","status_date":"2022-04-08","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"},{"id":"8b7a9989-84ba-493d-8780-a97465872c53","national_insurance_number":"JC123456A","arrest_summons_number":"1PBAP0Q18V3F","name":"Jammy  Dodger","first_name":"Jammy","middle_name":"","last_name":"Dodger","date_of_birth":"1987-05-21","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"177f2564-6e9d-4a9f-9ed6-9e5d7cb2eb6b","code":"PT00011","order_index":1,"title":"Racially-aggravated
+        criminal damage","legislation":"Sexual Offences Act 1956 s.19","wording":"Random
+        string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Summary
+        offence","start_date":"2019-10-17","proceedings_concluded":false,"plea":{"date":"2019-10-23","value":"NO_PLEA","originating_hearing_id":"89fc86c1-a92c-4250-b673-a4e6d5421477","offence_id":null,"application_id":null,"delegated_powers":null},"verdict":{"date":null,"type":null,"originating_hearing_id":null,"offence_id":null},"laa_application":{"reference":"Z10000199","id":"c78edb29-98b7-40d2-8bbe-ed02ba6792d0","status_code":"AP","description":"FAKE
+        NEWS","status_date":"2022-04-08","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"}]}]}'
+  recorded_at: Fri, 09 May 2025 14:56:56 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bnational_insurance_number%5D=GP999999B
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 1202a5b9-af15-4814-b152-ab9ad55ff070
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.011222'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.40, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=1.79
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: '{"total_results": 0, "results": []}'
+  recorded_at: Fri, 09 May 2025 14:56:57 GMT
+recorded_with: VCR 6.3.1

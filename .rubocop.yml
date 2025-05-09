@@ -118,6 +118,7 @@ Rails/FilePath:
 Rails/HasManyOrHasOneDependent:
   Exclude:
     - app/models/cd_api/*
+    - app/models/cda/*
 
 Rails/HelperInstanceVariable:
   Exclude:
