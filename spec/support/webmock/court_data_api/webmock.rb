@@ -223,13 +223,9 @@ RSpec.configure do |config|
     )
   end
 
-  # This should not happen, it should not be needed
-  # we should not calling CDAPI for hearing data
   config.before(:each, :stub_v2_hearing_data) do
     stub_request(
-      :get, %r{/v2/hearings/#{hearing_id}\?}
-    ).with(
-      query: { date: '2019-10-23' }
+      :get, %r{/api/internal/v2/hearing_results/#{hearing_id}}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },

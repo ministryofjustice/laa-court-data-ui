@@ -52,7 +52,6 @@ class HearingsController < ApplicationController
     hearing = Cda::Hearing.find(hearing_id, params: {
                                               sitting_date: hearing_params[:date]
                                             }) # CDA V2 -> /api/internal/v2/hearing_results
-    # save_json(hearing_from_cdapi, 'hearing_from_cdapi.json')
     # save_json(hearing, 'hearing_from_cda.json')
 
     @hearing ||= decorate_hearing(hearing)
