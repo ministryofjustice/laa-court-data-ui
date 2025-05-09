@@ -36,8 +36,7 @@ class HearingsController < ApplicationController
   # and to compare the two APIs
   def save_json(obj, filename)
     File.write(filename,
-      JSON.pretty_generate(JSON.parse(obj.attributes.to_json))
-    )
+               JSON.pretty_generate(JSON.parse(obj.attributes.to_json)))
   end
 
   def load_and_authorize_search
@@ -50,8 +49,8 @@ class HearingsController < ApplicationController
     # hearing_from_cdapi = CdApi::Hearing.find(hearing_id, params: hearing_params)
 
     hearing = Cda::Hearing.find(hearing_id, params: {
-                                              sitting_date: hearing_params[:date]
-                                            }) # CDA V2 -> /api/internal/v2/hearing_results
+                                  sitting_date: hearing_params[:date]
+                                }) # CDA V2 -> /api/internal/v2/hearing_results
     # save_json(hearing, 'hearing_from_cda.json')
 
     @hearing ||= decorate_hearing(hearing)
