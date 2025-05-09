@@ -223,8 +223,6 @@ RSpec.configure do |config|
     )
   end
 
-  # This should not happen, it should not be needed
-  # we should not calling CDAPI for hearing data
   config.before(:each, :stub_v2_hearing_data) do
     stub_request(
       :get, %r{/v2/hearings/#{hearing_id}\?}
