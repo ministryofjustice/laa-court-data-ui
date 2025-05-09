@@ -11,15 +11,15 @@ RSpec.describe CdApi::SearchService do
 
       context 'with dirty term' do
         let(:term) { 'a /case-URN' }
-        let(:resource) { CdApi::Defendant }
+        let(:cda_searcher) { CourtDataAdaptor::DefendantSearchService }
 
         before do
-          allow(resource).to receive(:find).with(any_args)
+          allow(cda_searcher).to receive(:call).with(any_args)
           search
         end
 
         it 'strips whitespace and some symbols' do
-          expect(resource).to have_received(:find).with(:all, params: { urn: 'ACASEURN' })
+          expect(cda_searcher).to have_received(:call).with('ACASEURN')
         end
       end
 
@@ -28,8 +28,8 @@ RSpec.describe CdApi::SearchService do
           expect(search.size).to eq 4
         end
 
-        it 'returns response mapped to CdApi::Defendant' do
-          expect(search.first).to be_instance_of(CdApi::Defendant)
+        it 'returns response mapped to Cda::Defendant' do
+          expect(search.first).to be_instance_of(Cda::Defendant)
         end
 
         it 'returns response that response to prosecution_case_reference' do
@@ -43,8 +43,10 @@ RSpec.describe CdApi::SearchService do
 
       context 'when unsuccessful response' do
         before do
-          stub_request(:get, %r{/v2/defendants}).to_return(status: 400, body: '',
-                                                           headers: { 'Content-Type' => 'application/json' })
+          stub_request(:get, %r{http.*/v2/prosecution_cases\?filter.*}).to_return(
+            status: 400, body: '',
+            headers: { 'Content-Type' => 'application/json' }
+          )
         end
 
         it 'raises ActiveResource::BadRequest exception' do
