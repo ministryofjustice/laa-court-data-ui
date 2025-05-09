@@ -1,0 +1,16 @@
+namespace: laa-court-data-ui-dev
+replicas:
+  worker: 1
+  web: 2
+image:
+  tag: ""
+  repository: "nginx"
+env: dev
+host: dev.view-court-data.service.justice.gov.uk
+cdaHost: https://dev.court-data-adaptor.service.justice.gov.uk/api/internal/v1
+googleAnalyticsId: 'UA-131160087-14'
+displayRawResponses: enabled
+identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-dev-green
+cert: laa-court-data-ui-dev-cert
+featureFlags:
+  showAppeals: true
