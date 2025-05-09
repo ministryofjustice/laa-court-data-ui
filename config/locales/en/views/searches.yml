@@ -41,7 +41,6 @@ en:
         providers: Providers attending
       offence:
         caption: Offence list
-        date: Date
         heading: Offences
         mode_of_trial: Mode of trial
         plea: Plea

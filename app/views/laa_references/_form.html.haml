@@ -8,10 +8,7 @@
 
   .govuk-grid-row
     .govuk-grid-column-full
-      - if FeatureFlag.enabled?(:defendants_page)
-        = render partial: 'defendants/offences_v2', locals: { defendant: defendant }
-      - else
-        = render partial: 'defendants/offences', locals: { defendant: defendant }
+      = render partial: 'defendants/offences', locals: { defendant: defendant }
 
       = hidden_field_tag(:urn, params[:urn])
 

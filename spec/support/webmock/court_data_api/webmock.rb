@@ -257,18 +257,6 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, :stub_defendants_uuid_urn_search) do
-    stub_request(
-      :get, %r{/v2/defendants}
-    ).with(
-      query: { urn: 'TEST12345', uuid: '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
-    ).to_return(
-      status: 200,
-      headers: { 'Content-Type' => 'application/json' },
-      body: load_json_stub('cd_api/defendants_body.json')
-    )
-  end
-
   config.before(:each, :stub_hearing_summary) do
     stub_request(
       :get, %r{/v2/case_summaries/#{case_reference}}
