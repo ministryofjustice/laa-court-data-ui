@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_summary, type: :feature do
+RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_summary,
+              :stub_internal_v2_hearing_results2, type: :feature do
   let(:user) { create(:user) }
   let(:api_url_v2) { CdApi::BaseModel.site }
   let(:api_events_path) { "#{api_url_v2}hearings/#{hearing_id}/hearing_events?date=2019-10-23" }
-  let(:api_data_path) { "#{api_url_v2}hearings/#{hearing_id}" }
+  let(:api_data_path) { "#{Cda::BaseModel.site}hearing_results/#{hearing_id}" }
   let(:case_reference) { 'TEST12345' }
   let(:api_summary_path) { "#{api_url_v2}case_summaries/#{case_reference}" }
   let(:hearing_id) { '345be88a-31cf-4a30-9de3-da98e973367e' }
@@ -45,7 +46,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
 
       it 'requests data for hearing data' do
         expect(a_request(:get, api_data_path)
-                 .with(query: { date: '2019-10-23' }))
+                 .with(query: { sitting_date: '2019-10-23' }))
           .to have_been_made.once
       end
 
@@ -80,7 +81,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
 
       it 'requests data for hearing data' do
         expect(a_request(:get, api_data_path)
-                 .with(query: { date: '2019-10-23' }))
+                 .with(query: { sitting_date: '2019-10-23' }))
           .to have_been_made.once
       end
 
@@ -125,7 +126,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
 
       it 'requests data for hearing data' do
         expect(a_request(:get, api_data_path)
-                 .with(query: { date: '2019-10-23' }))
+                 .with(query: { sitting_date: '2019-10-23' }))
           .to have_been_made.once
       end
 

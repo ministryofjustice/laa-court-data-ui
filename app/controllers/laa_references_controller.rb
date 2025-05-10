@@ -58,6 +58,7 @@ class LaaReferencesController < ApplicationController
 
   def load_and_authorize_defendant_search
     @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_uuid)
+
     authorize! :show, @defendant_search
   end
 

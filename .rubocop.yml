@@ -74,6 +74,9 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Max: 15
 
+Naming/VariableNumber:
+  Enabled: false
+
 Performance/AncestorsInclude:
   Enabled: true
 

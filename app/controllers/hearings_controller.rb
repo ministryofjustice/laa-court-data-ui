@@ -37,8 +37,13 @@ class HearingsController < ApplicationController
     authorize! :create, @prosecution_case_search
   end
 
+  # rubocop:disable Metrics/AbcSize
   def set_hearing
-    @hearing ||= decorate_hearing(CdApi::Hearing.find(hearing_id, params: hearing_params))
+    hearing = Cda::Hearing.find(hearing_id, params: {
+                                  sitting_date: hearing_params[:date]
+                                })
+
+    @hearing ||= decorate_hearing(hearing)
     @hearing&.current_sitting_day = paginator.current_item.hearing_date.strftime('%F')
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page
@@ -47,6 +52,7 @@ class HearingsController < ApplicationController
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
   end
+  # rubocop:enable Metrics/AbcSize
 
   def set_hearing_day
     hearing_day
