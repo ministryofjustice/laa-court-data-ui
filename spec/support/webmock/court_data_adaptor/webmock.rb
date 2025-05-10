@@ -169,6 +169,7 @@ RSpec.configure do |config|
   end
 
   # These are the API Stubs for the CDA V2 (without CDAPI)
+
   config.before(:each, :stub_internal_v2_hearing_results) do
     stub_request(:get,
                  %r{http.*/api/internal/v2/hearing_results/#{hearing_id}\?sitting_date=2025-05-01}).to_return(
@@ -177,7 +178,6 @@ RSpec.configure do |config|
                  )
   end
 
-  # /api/internal/v2/hearing_results/345be88a-31cf-4a30-9de3-da98e973367e.json?sitting_date=2019-10-23
   config.before(:each, :stub_internal_v2_hearing_results2) do
     stub_request(:get,
                  %r{http:.*/api/internal/v2/hearing_results/345be88a-31cf-4a30-9de3-da98e973367e\?sitting_date=2019-10-23})
@@ -186,4 +186,23 @@ RSpec.configure do |config|
         body: load_json_stub('cda/internal_v2_hearing_results_response2.json')
       )
   end
+
+  config.before(:each, :stub_internal_v2_hearing_not_found) do
+    stub_request(:get,
+                 %r{http:.*/api/internal/v2/hearing_results/345be88a-31cf-4a30-9de3-da98e973367e\?sitting_date=2019-10-23})
+      .to_return(
+        status: 404,
+        body: {}.to_json
+      )
+  end
+
+  config.before(:each, :stub_internal_v2_hearing_error) do
+    stub_request(:get,
+                 %r{http:.*/api/internal/v2/hearing_results/345be88a-31cf-4a30-9de3-da98e973367e\?sitting_date=2019-10-23})
+      .to_return(
+        status: 500,
+        body: ''
+      )
+  end
+
 end
