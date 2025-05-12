@@ -115,6 +115,24 @@ RSpec.describe OffenceDecorator, type: :decorator do
     end
   end
 
+  describe '#start_date' do
+    context 'when there is a start date' do
+      before { allow(offence).to receive(:start_date).and_return("2023-01-05") }
+
+      it "formats it" do
+        expect(decorator.start_date).to eq "05/01/2023"
+      end
+    end
+
+    context 'when there is no start date' do
+      before { allow(offence).to receive(:start_date).and_return(nil) }
+
+      it "returns nil" do
+        expect(decorator.start_date).to be_nil
+      end
+    end
+  end
+
   describe '#mode_of_trial_reason_list' do
     subject(:call) { decorator.mode_of_trial_reason_list }
 

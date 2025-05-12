@@ -14,6 +14,12 @@ class OffenceDecorator < BaseDecorator
     safe_join(mode_of_trial_reason_descriptions.compact, tag.br)
   end
 
+  def start_date
+    return unless super
+
+    Date.parse(super).strftime("%d/%m/%Y")
+  end
+
   private
 
   def plea_sentences
