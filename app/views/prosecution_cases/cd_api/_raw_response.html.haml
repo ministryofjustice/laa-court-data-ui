@@ -6,7 +6,7 @@
 
   %h3= 'Overall defendants'
   %pre
-    - case_summary.overall_defendants.each.with_index do |defendant, idx|
+    - case_summary.defendants.each.with_index do |defendant, idx|
       %h4 defendant #{idx}
       = JSON.pretty_generate(defendant.attributes)
 

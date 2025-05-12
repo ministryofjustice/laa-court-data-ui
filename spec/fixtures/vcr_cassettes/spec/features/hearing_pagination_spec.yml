@@ -1880,7 +1880,7 @@ http_interactions:
   recorded_at: Fri, 09 May 2025 10:36:37 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/case_summaries/IGWTRAXVHK
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=IGWTRAXVHK
     body:
       encoding: US-ASCII
       string: ''
@@ -1889,8 +1889,8 @@ http_interactions:
       - application/json
       Content-Type:
       - application/json
-      Laa-Transaction-Id:
-      - e03d0d70-7d33-4571-9b83-ed6b7b9a3bf9
+      Authorization:
+      - Bearer <BEARER_TOKEN>
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -1900,71 +1900,70 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Date:
-      - Wed, 07 May 2025 16:26:42 GMT
-      Server:
-      - uvicorn
-      Content-Length:
-      - '2767'
-      Content-Type:
-      - application/json; charset=utf-8
-      Laa-Transaction-Id:
-      - e03d0d70-7d33-4571-9b83-ed6b7b9a3bf9
-      Access-Control-Expose-Headers:
-      - Laa-Transaction-Id
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 015bff82-9547-4f96-b7ca-52d99318a4ed
       Cache-Control:
       - no-store
-      Content-Security-Policy:
-      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
-        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
-        'unsafe-inline'
-      Strict-Transport-Security:
-      - includeSubDomains; preload; max-age=2592000
-      Referrer-Policy:
-      - no-referrer
-      X-Frame-Options:
-      - SAMEORIGIN
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.071935'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=40.32,
+        halted_callback.action_controller;dur=0.01, process_action.action_controller;dur=53.93
+      Content-Length:
+      - '0'
     body:
       encoding: UTF-8
-      string: '{"prosecution_case_reference": "IGWTRAXVHK", "hearing_summaries": [{"id":
-        "8afd2757-efee-427a-a622-89c06d0f7320", "hearing_type": "Plea and Trial Prepation
-        (PTP)", "estimated_duration": null, "defendants": [], "jurisdiction_type":
-        "CROWN", "court_centre": {"id": "68c7e9af-2db7-3fc3-b6e8-e51653120790", "name":
-        "Maidstone Magistrates'' Court", "welsh_name": "Llys Ynadon Maidstone", "room_id":
-        null, "room_name": null, "welsh_room_name": null, "welsh_court_name": null,
-        "short_oucode": "B46IR", "oucode_l2_code": "46", "code": "B46IR00", "address":
-        {"address_1": "The Court House", "address_2": "Palace Avenue", "address_3":
-        "Maidstone", "address_4": "Kent", "address_5": "", "postcode": "ME15 6LL"}},
-        "hearing_days": [{"sitting_day": "2025-05-01T00:00:00+00:00", "listing_sequence":
-        9, "listed_duration_minutes": 874, "has_shared_results": null}], "defence_counsels":
-        []}, {"id": "7f1befbf-dccd-4b28-8f5a-b04a87569ff2", "hearing_type": "Mention
-        - Defendant to Attend (MDA)", "estimated_duration": null, "defendants": [],
-        "jurisdiction_type": "MAGISTRATES", "court_centre": {"id": "1b73c7dd-bef1-33f4-81f5-fbfa092d4c49",
-        "name": "Newcastle Magistrates'' Court", "welsh_name": "Llys Ynadon Newcastle",
-        "room_id": null, "room_name": null, "welsh_room_name": null, "welsh_court_name":
-        null, "short_oucode": "B10JL", "oucode_l2_code": "10", "code": "B10JL00",
-        "address": {"address_1": "The Law Courts", "address_2": "The Quayside", "address_3":
-        "Newcastle Upon Tyne", "address_4": "", "address_5": "", "postcode": "NE1
-        3LA"}}, "hearing_days": [{"sitting_day": "2025-05-07T00:00:00+00:00", "listing_sequence":
-        null, "listed_duration_minutes": 222, "has_shared_results": null}], "defence_counsels":
-        []}, {"id": "6fe12c31-31ec-488d-ac11-27612dcf5757", "hearing_type": "Application
-        to Break Fixture (BFA)", "estimated_duration": null, "defendants": [], "jurisdiction_type":
-        "CROWN", "court_centre": {"id": "1868f485-d814-36d1-ad92-6ed6330693bc", "name":
-        "Cambridge Crown Court", "welsh_name": "Llys Y Goron Caergrawnt", "room_id":
-        null, "room_name": null, "welsh_room_name": null, "welsh_court_name": null,
-        "short_oucode": "C35CM", "oucode_l2_code": "35", "code": "C35CM00", "address":
-        {"address_1": "83 East Road", "address_2": "Cambridge", "address_3": "", "address_4":
-        "", "address_5": "", "postcode": "CB1 1BT"}}, "hearing_days": [{"sitting_day":
-        "2025-05-08T00:00:00+00:00", "listing_sequence": null, "listed_duration_minutes":
-        576, "has_shared_results": null}], "defence_counsels": []}], "overall_defendants":
-        [{"id": "4bcf26f9-3c6f-440a-94aa-7d084bcd715e", "first_name": "Felix", "middle_name":
-        "Connelly", "last_name": "McGlynn", "arrest_summons_number": "3DDFXLGNGRNN",
-        "date_of_birth": "1960-11-16", "national_insurance_number": "HP440787B", "maat_reference":
-        null}]}'
-  recorded_at: Wed, 07 May 2025 16:26:42 GMT
+      string: '{"total_results": 1, "results": [{"prosecution_case_reference":"IGWTRAXVHK","case_status":"INACTIVE","defendant_summaries":[{"id":"3797ee37-cd75-4250-a3bf-b0bfbca4a3f3","first_name":"Jorge","middle_name":"Pacocha","last_name":"McClure","arrest_summons_number":"ZFRTWZ8DE3F9","date_of_birth":"2004-09-11","national_insurance_number":"BK351556C","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Causing or inciting prostitution
+        for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Criminal
+        Law Act 1967 s.5","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"bcbd13a4-6a83-4123-b4a6-062caba2b311","status_code":"AP","status_date":"2025-03-10","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},{"date":"2019-04-28","value":"PARDON","originating_hearing_id":"9ff6593d-d443-4e15-b136-8f19edd2756b","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]},{"id":"a5084e6c-6c51-43ec-89e1-482f0135f186","first_name":"Shayne","middle_name":"Cole","last_name":"Abbott","arrest_summons_number":"ZGWYZ74MKETB","date_of_birth":"1978-08-13","national_insurance_number":"HY997349A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"eb9743cd-fc2a-4b89-b2ee-7cb07f584f4c","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Making, custody or control of counterfeiting
+        materials etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Proceeds
+        of Crime Act 2002 s.339(1A)","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"2345678","id":"1ec2d006-f7af-4a85-b75a-5a22e93c954a","status_code":"AP","status_date":"2025-03-21","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"35af3c7d-ad6c-49e8-99b5-969aa92262df","first_name":"Shayla","middle_name":"Cormier","last_name":"Schneider","arrest_summons_number":"L6QWT20K8OE8","date_of_birth":"1984-04-15","national_insurance_number":"AM857041A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"79fdf32a-31e1-4e32-9f61-cfcf234bdc45","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Embracery","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.27","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"Z10000010","id":"dc5fda14-977f-4a4b-b7d5-27b8ff77e1c7","status_code":"AP","status_date":"2025-05-08","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"b8014abe-5655-4120-af97-89016da3ecc4","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"L2V0P69BY9YK","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"935fb847-3cb9-4278-b813-3d86b1288786","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Assaulting prison officer whilst
+        possessing firearm etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.4","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},{"date":"2025-03-06","value":"GUILTY","originating_hearing_id":"ebe6bb7d-6d09-473c-8c7f-272f07a9a63f","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]}],"hearing_summaries":[{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-26T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-10-27T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-10-28T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"25873815-363b-4938-9984-f54164d0eaa3","title":"Mrs.","first_name":"Savanna","middle_name":"Duncan","last_name":"Luettgen","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":null},{"id":"aa0e1b3e-9256-4319-88f7-5bed1b6450da","title":"Mrs.","first_name":"Magaret","middle_name":"Herman","last_name":"Jerde","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":["b8014abe-5655-4120-af97-89016da3ecc4"]},{"id":"4420fd7f-9e11-40cc-9235-9cd02985dbac","title":"MRS","first_name":"Lonnie","middle_name":"Leffler","last_name":"Ebert","status":"Global
+        counsel","attendance_days":["2025-04-29"],"defendants":["d7cbda51-5831-4481-bd11-69bd0164add5"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Application
+        to Break Fixture (BFA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-31T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-11-01T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-11-02T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"da79c754-5b14-4fcc-9b8c-5a47004d9572","title":"MISS","first_name":"Lucia","middle_name":"Spencer","last_name":"Ernser","status":"Product
+        counsel","attendance_days":["2025-04-21"],"defendants":["77650dbf-dfa7-4652-9016-45510e86be83"]}]}]}]}'
+  recorded_at: Mon, 12 May 2025 15:49:23 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/case_summaries/IGWTRAXVHK
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
     body:
       encoding: US-ASCII
       string: ''
@@ -1973,8 +1972,8 @@ http_interactions:
       - application/json
       Content-Type:
       - application/json
-      Laa-Transaction-Id:
-      - e1591433-5bd2-43e9-b3f7-f3e647a3e55e
+      Authorization:
+      - Bearer <BEARER_TOKEN>
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -1984,71 +1983,70 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Date:
-      - Wed, 07 May 2025 16:26:46 GMT
-      Server:
-      - uvicorn
-      Content-Length:
-      - '2767'
-      Content-Type:
-      - application/json; charset=utf-8
-      Laa-Transaction-Id:
-      - e1591433-5bd2-43e9-b3f7-f3e647a3e55e
-      Access-Control-Expose-Headers:
-      - Laa-Transaction-Id
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 6682e3ba-2b0a-45e9-af97-e3f1756c691e
       Cache-Control:
       - no-store
-      Content-Security-Policy:
-      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
-        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
-        'unsafe-inline'
-      Strict-Transport-Security:
-      - includeSubDomains; preload; max-age=2592000
-      Referrer-Policy:
-      - no-referrer
-      X-Frame-Options:
-      - SAMEORIGIN
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.011568'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.37, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=2.48
+      Content-Length:
+      - '0'
     body:
       encoding: UTF-8
-      string: '{"prosecution_case_reference": "IGWTRAXVHK", "hearing_summaries": [{"id":
-        "8afd2757-efee-427a-a622-89c06d0f7320", "hearing_type": "Plea and Trial Prepation
-        (PTP)", "estimated_duration": null, "defendants": [], "jurisdiction_type":
-        "CROWN", "court_centre": {"id": "68c7e9af-2db7-3fc3-b6e8-e51653120790", "name":
-        "Maidstone Magistrates'' Court", "welsh_name": "Llys Ynadon Maidstone", "room_id":
-        null, "room_name": null, "welsh_room_name": null, "welsh_court_name": null,
-        "short_oucode": "B46IR", "oucode_l2_code": "46", "code": "B46IR00", "address":
-        {"address_1": "The Court House", "address_2": "Palace Avenue", "address_3":
-        "Maidstone", "address_4": "Kent", "address_5": "", "postcode": "ME15 6LL"}},
-        "hearing_days": [{"sitting_day": "2025-05-01T00:00:00+00:00", "listing_sequence":
-        9, "listed_duration_minutes": 874, "has_shared_results": null}], "defence_counsels":
-        []}, {"id": "7f1befbf-dccd-4b28-8f5a-b04a87569ff2", "hearing_type": "Mention
-        - Defendant to Attend (MDA)", "estimated_duration": null, "defendants": [],
-        "jurisdiction_type": "MAGISTRATES", "court_centre": {"id": "1b73c7dd-bef1-33f4-81f5-fbfa092d4c49",
-        "name": "Newcastle Magistrates'' Court", "welsh_name": "Llys Ynadon Newcastle",
-        "room_id": null, "room_name": null, "welsh_room_name": null, "welsh_court_name":
-        null, "short_oucode": "B10JL", "oucode_l2_code": "10", "code": "B10JL00",
-        "address": {"address_1": "The Law Courts", "address_2": "The Quayside", "address_3":
-        "Newcastle Upon Tyne", "address_4": "", "address_5": "", "postcode": "NE1
-        3LA"}}, "hearing_days": [{"sitting_day": "2025-05-07T00:00:00+00:00", "listing_sequence":
-        null, "listed_duration_minutes": 222, "has_shared_results": null}], "defence_counsels":
-        []}, {"id": "6fe12c31-31ec-488d-ac11-27612dcf5757", "hearing_type": "Application
-        to Break Fixture (BFA)", "estimated_duration": null, "defendants": [], "jurisdiction_type":
-        "CROWN", "court_centre": {"id": "1868f485-d814-36d1-ad92-6ed6330693bc", "name":
-        "Cambridge Crown Court", "welsh_name": "Llys Y Goron Caergrawnt", "room_id":
-        null, "room_name": null, "welsh_room_name": null, "welsh_court_name": null,
-        "short_oucode": "C35CM", "oucode_l2_code": "35", "code": "C35CM00", "address":
-        {"address_1": "83 East Road", "address_2": "Cambridge", "address_3": "", "address_4":
-        "", "address_5": "", "postcode": "CB1 1BT"}}, "hearing_days": [{"sitting_day":
-        "2025-05-08T00:00:00+00:00", "listing_sequence": null, "listed_duration_minutes":
-        576, "has_shared_results": null}], "defence_counsels": []}], "overall_defendants":
-        [{"id": "4bcf26f9-3c6f-440a-94aa-7d084bcd715e", "first_name": "Felix", "middle_name":
-        "Connelly", "last_name": "McGlynn", "arrest_summons_number": "3DDFXLGNGRNN",
-        "date_of_birth": "1960-11-16", "national_insurance_number": "HP440787B", "maat_reference":
-        null}]}'
-  recorded_at: Wed, 07 May 2025 16:26:47 GMT
+      string: '{"total_results": 1, "results": [{"prosecution_case_reference":"IGWTRAXVHK","case_status":"INACTIVE","defendant_summaries":[{"id":"3797ee37-cd75-4250-a3bf-b0bfbca4a3f3","first_name":"Jorge","middle_name":"Pacocha","last_name":"McClure","arrest_summons_number":"ZFRTWZ8DE3F9","date_of_birth":"2004-09-11","national_insurance_number":"BK351556C","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Causing or inciting prostitution
+        for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Criminal
+        Law Act 1967 s.5","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"bcbd13a4-6a83-4123-b4a6-062caba2b311","status_code":"AP","status_date":"2025-03-10","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},{"date":"2019-04-28","value":"PARDON","originating_hearing_id":"9ff6593d-d443-4e15-b136-8f19edd2756b","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]},{"id":"a5084e6c-6c51-43ec-89e1-482f0135f186","first_name":"Shayne","middle_name":"Cole","last_name":"Abbott","arrest_summons_number":"ZGWYZ74MKETB","date_of_birth":"1978-08-13","national_insurance_number":"HY997349A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"eb9743cd-fc2a-4b89-b2ee-7cb07f584f4c","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Making, custody or control of counterfeiting
+        materials etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Proceeds
+        of Crime Act 2002 s.339(1A)","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"2345678","id":"1ec2d006-f7af-4a85-b75a-5a22e93c954a","status_code":"AP","status_date":"2025-03-21","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"35af3c7d-ad6c-49e8-99b5-969aa92262df","first_name":"Shayla","middle_name":"Cormier","last_name":"Schneider","arrest_summons_number":"L6QWT20K8OE8","date_of_birth":"1984-04-15","national_insurance_number":"AM857041A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"79fdf32a-31e1-4e32-9f61-cfcf234bdc45","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Embracery","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.27","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"Z10000010","id":"dc5fda14-977f-4a4b-b7d5-27b8ff77e1c7","status_code":"AP","status_date":"2025-05-08","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"b8014abe-5655-4120-af97-89016da3ecc4","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"L2V0P69BY9YK","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"935fb847-3cb9-4278-b813-3d86b1288786","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Assaulting prison officer whilst
+        possessing firearm etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.4","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},{"date":"2025-03-06","value":"GUILTY","originating_hearing_id":"ebe6bb7d-6d09-473c-8c7f-272f07a9a63f","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]}],"hearing_summaries":[{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-26T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-10-27T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-10-28T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"25873815-363b-4938-9984-f54164d0eaa3","title":"Mrs.","first_name":"Savanna","middle_name":"Duncan","last_name":"Luettgen","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":null},{"id":"aa0e1b3e-9256-4319-88f7-5bed1b6450da","title":"Mrs.","first_name":"Magaret","middle_name":"Herman","last_name":"Jerde","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":["b8014abe-5655-4120-af97-89016da3ecc4"]},{"id":"4420fd7f-9e11-40cc-9235-9cd02985dbac","title":"MRS","first_name":"Lonnie","middle_name":"Leffler","last_name":"Ebert","status":"Global
+        counsel","attendance_days":["2025-04-29"],"defendants":["d7cbda51-5831-4481-bd11-69bd0164add5"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Application
+        to Break Fixture (BFA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-31T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-11-01T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-11-02T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"da79c754-5b14-4fcc-9b8c-5a47004d9572","title":"MISS","first_name":"Lucia","middle_name":"Spencer","last_name":"Ernser","status":"Product
+        counsel","attendance_days":["2025-04-21"],"defendants":["77650dbf-dfa7-4652-9016-45510e86be83"]}]}]}]}'
+  recorded_at: Mon, 12 May 2025 15:49:23 GMT
 - request:
     method: get
-    uri: http://localhost:3000/api/internal/v2/hearing_results/8afd2757-efee-427a-a622-89c06d0f7320.json?date=2025-05-01
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
     body:
       encoding: US-ASCII
       string: ''
@@ -2079,92 +2077,59 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       X-Request-Id:
-      - afc89336-a8ee-4705-adcc-62f616f0f468
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"fa7043f28962167763c1ada0339b6358"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.153723'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.01,
-        process_action.action_controller;dur=140.30
-      Content-Length:
-      - '4248'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"8712e673-e37d-4263-badd-a5bc5ffea339","jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
-        Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
-        Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
-        6LL"}},"hearing_language":"WELSH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":false,"court_applications":[{"id":"691604c0-0db3-4e81-8304-b031e36634c7","received_date":"2025-05-01","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"7e9f1725-1a91-4347-9533-1f02fc08f7d4","synonym":"suspect","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"45a4bcd2-9bb6-42bb-aaff-31f8268242a3","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"9f059bce-852c-40ec-b0b6-4b93c50a10af","description":"Plea
-        and Trial Prepation (PTP)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-01T00:00:00.000Z","listing_sequence":9,"listed_duration_minutes":874,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-01T15:02:42.754+00:00"}'
-  recorded_at: Wed, 07 May 2025 16:26:50 GMT
-- request:
-    method: get
-    uri: http://localhost:8000/v2/hearings/8afd2757-efee-427a-a622-89c06d0f7320/hearing_events?date=2025-05-01
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Laa-Transaction-Id:
-      - e1591433-5bd2-43e9-b3f7-f3e647a3e55e
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 07 May 2025 16:26:49 GMT
-      Server:
-      - uvicorn
-      Content-Length:
-      - '97'
-      Content-Type:
-      - application/json; charset=utf-8
-      Laa-Transaction-Id:
-      - e1591433-5bd2-43e9-b3f7-f3e647a3e55e
-      Access-Control-Expose-Headers:
-      - Laa-Transaction-Id
+      - 6682e3ba-2b0a-45e9-af97-e3f1756c691e
       Cache-Control:
       - no-store
-      Content-Security-Policy:
-      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
-        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
-        'unsafe-inline'
-      Strict-Transport-Security:
-      - includeSubDomains; preload; max-age=2592000
-      Referrer-Policy:
-      - no-referrer
-      X-Frame-Options:
-      - SAMEORIGIN
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.011568'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.37, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=2.48
+      Content-Length:
+      - '0'
     body:
       encoding: UTF-8
-      string: '{"hearing_id": "8afd2757-efee-427a-a622-89c06d0f7320", "has_active_hearing":
-        false, "events": []}'
-  recorded_at: Wed, 07 May 2025 16:26:50 GMT
+      string: '{"total_results": 1, "results": [{"prosecution_case_reference":"TEST12345","case_status":"INACTIVE","defendant_summaries":[{"id":"3797ee37-cd75-4250-a3bf-b0bfbca4a3f3","first_name":"Jorge","middle_name":"Pacocha","last_name":"McClure","arrest_summons_number":"ZFRTWZ8DE3F9","date_of_birth":"2004-09-11","national_insurance_number":"BK351556C","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Causing or inciting prostitution
+        for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Criminal
+        Law Act 1967 s.5","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"bcbd13a4-6a83-4123-b4a6-062caba2b311","status_code":"AP","status_date":"2025-03-10","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},{"date":"2019-04-28","value":"PARDON","originating_hearing_id":"9ff6593d-d443-4e15-b136-8f19edd2756b","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]},{"id":"a5084e6c-6c51-43ec-89e1-482f0135f186","first_name":"Shayne","middle_name":"Cole","last_name":"Abbott","arrest_summons_number":"ZGWYZ74MKETB","date_of_birth":"1978-08-13","national_insurance_number":"HY997349A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"eb9743cd-fc2a-4b89-b2ee-7cb07f584f4c","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Making, custody or control of counterfeiting
+        materials etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Proceeds
+        of Crime Act 2002 s.339(1A)","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"2345678","id":"1ec2d006-f7af-4a85-b75a-5a22e93c954a","status_code":"AP","status_date":"2025-03-21","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"35af3c7d-ad6c-49e8-99b5-969aa92262df","first_name":"Shayla","middle_name":"Cormier","last_name":"Schneider","arrest_summons_number":"L6QWT20K8OE8","date_of_birth":"1984-04-15","national_insurance_number":"AM857041A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"79fdf32a-31e1-4e32-9f61-cfcf234bdc45","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Embracery","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.27","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"Z10000010","id":"dc5fda14-977f-4a4b-b7d5-27b8ff77e1c7","status_code":"AP","status_date":"2025-05-08","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"b8014abe-5655-4120-af97-89016da3ecc4","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"L2V0P69BY9YK","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"935fb847-3cb9-4278-b813-3d86b1288786","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Assaulting prison officer whilst
+        possessing firearm etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.4","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},{"date":"2025-03-06","value":"GUILTY","originating_hearing_id":"ebe6bb7d-6d09-473c-8c7f-272f07a9a63f","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]}],"hearing_summaries":[{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-26T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-10-27T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-10-28T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"25873815-363b-4938-9984-f54164d0eaa3","title":"Mrs.","first_name":"Savanna","middle_name":"Duncan","last_name":"Luettgen","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":null},{"id":"aa0e1b3e-9256-4319-88f7-5bed1b6450da","title":"Mrs.","first_name":"Magaret","middle_name":"Herman","last_name":"Jerde","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":["b8014abe-5655-4120-af97-89016da3ecc4"]},{"id":"4420fd7f-9e11-40cc-9235-9cd02985dbac","title":"MRS","first_name":"Lonnie","middle_name":"Leffler","last_name":"Ebert","status":"Global
+        counsel","attendance_days":["2025-04-29"],"defendants":["d7cbda51-5831-4481-bd11-69bd0164add5"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Application
+        to Break Fixture (BFA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-31T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-11-01T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-11-02T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"da79c754-5b14-4fcc-9b8c-5a47004d9572","title":"MISS","first_name":"Lucia","middle_name":"Spencer","last_name":"Ernser","status":"Product
+        counsel","attendance_days":["2025-04-21"],"defendants":["77650dbf-dfa7-4652-9016-45510e86be83"]}]}]}]}'
+  recorded_at: Mon, 12 May 2025 15:49:23 GMT
 - request:
     method: get
-    uri: http://localhost:3000/api/internal/v2/hearing_results/7f1befbf-dccd-4b28-8f5a-b04a87569ff2.json?date=2025-05-07
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
     body:
       encoding: US-ASCII
       string: ''
@@ -2195,92 +2160,59 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       X-Request-Id:
-      - 26f98087-d83f-4330-a501-9ba2c2636e5d
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"f1770370ea4e5659ba63e9955f6e1249"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.275579'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.00,
-        process_action.action_controller;dur=248.68
-      Content-Length:
-      - '4268'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"c4f9d010-92e3-4a83-a632-2151d3523c4e","jurisdiction_type":"MAGISTRATES","court_centre":{"id":"1b73c7dd-bef1-33f4-81f5-fbfa092d4c49","name":"Newcastle
-        Magistrates'' Court","welsh_name":"Llys Ynadon Newcastle","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B10JL","oucode_l2_code":"10","code":"B10JL00","address":{"address_1":"The
-        Law Courts","address_2":"The Quayside","address_3":"Newcastle Upon Tyne","address_4":"","address_5":"","postcode":"NE1
-        3LA"}},"hearing_language":"ENGLISH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":true,"court_applications":[{"id":"804a5c32-8470-4398-8760-7de4a239d57a","received_date":"2025-05-07","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"1b41f3a2-8e8d-4463-a269-f31427726f50","synonym":"appellant","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"4b0dd673-39e7-4869-819a-553355085c0d","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"a11e3fb7-a9d3-42f9-9bc9-f0669fc005f3","description":"Mention
-        - Defendant to Attend (MDA)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-07T00:00:00.000Z","listing_sequence":null,"listed_duration_minutes":222,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-07T11:07:50.294+00:00"}'
-  recorded_at: Wed, 07 May 2025 20:38:36 GMT
-- request:
-    method: get
-    uri: http://localhost:8000/v2/hearings/7f1befbf-dccd-4b28-8f5a-b04a87569ff2/hearing_events?date=2025-05-07
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Laa-Transaction-Id:
-      - 780d3faa-461b-43c9-9090-4c86d37676ad
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 07 May 2025 20:38:35 GMT
-      Server:
-      - uvicorn
-      Content-Length:
-      - '97'
-      Content-Type:
-      - application/json; charset=utf-8
-      Laa-Transaction-Id:
-      - 780d3faa-461b-43c9-9090-4c86d37676ad
-      Access-Control-Expose-Headers:
-      - Laa-Transaction-Id
+      - 6682e3ba-2b0a-45e9-af97-e3f1756c691e
       Cache-Control:
       - no-store
-      Content-Security-Policy:
-      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
-        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
-        'unsafe-inline'
-      Strict-Transport-Security:
-      - includeSubDomains; preload; max-age=2592000
-      Referrer-Policy:
-      - no-referrer
-      X-Frame-Options:
-      - SAMEORIGIN
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.011568'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.37, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=2.48
+      Content-Length:
+      - '0'
     body:
       encoding: UTF-8
-      string: '{"hearing_id": "7f1befbf-dccd-4b28-8f5a-b04a87569ff2", "has_active_hearing":
-        false, "events": []}'
-  recorded_at: Wed, 07 May 2025 20:38:36 GMT
+      string: '{"total_results": 1, "results": [{"prosecution_case_reference":"TEST12345","case_status":"INACTIVE","defendant_summaries":[{"id":"3797ee37-cd75-4250-a3bf-b0bfbca4a3f3","first_name":"Jorge","middle_name":"Pacocha","last_name":"McClure","arrest_summons_number":"ZFRTWZ8DE3F9","date_of_birth":"2004-09-11","national_insurance_number":"BK351556C","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Causing or inciting prostitution
+        for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Criminal
+        Law Act 1967 s.5","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"bcbd13a4-6a83-4123-b4a6-062caba2b311","status_code":"AP","status_date":"2025-03-10","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},{"date":"2019-04-28","value":"PARDON","originating_hearing_id":"9ff6593d-d443-4e15-b136-8f19edd2756b","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]},{"id":"a5084e6c-6c51-43ec-89e1-482f0135f186","first_name":"Shayne","middle_name":"Cole","last_name":"Abbott","arrest_summons_number":"ZGWYZ74MKETB","date_of_birth":"1978-08-13","national_insurance_number":"HY997349A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"eb9743cd-fc2a-4b89-b2ee-7cb07f584f4c","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Making, custody or control of counterfeiting
+        materials etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Proceeds
+        of Crime Act 2002 s.339(1A)","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"2345678","id":"1ec2d006-f7af-4a85-b75a-5a22e93c954a","status_code":"AP","status_date":"2025-03-21","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"35af3c7d-ad6c-49e8-99b5-969aa92262df","first_name":"Shayla","middle_name":"Cormier","last_name":"Schneider","arrest_summons_number":"L6QWT20K8OE8","date_of_birth":"1984-04-15","national_insurance_number":"AM857041A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"79fdf32a-31e1-4e32-9f61-cfcf234bdc45","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Embracery","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.27","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"Z10000010","id":"dc5fda14-977f-4a4b-b7d5-27b8ff77e1c7","status_code":"AP","status_date":"2025-05-08","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"b8014abe-5655-4120-af97-89016da3ecc4","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"L2V0P69BY9YK","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"935fb847-3cb9-4278-b813-3d86b1288786","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Assaulting prison officer whilst
+        possessing firearm etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.4","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},{"date":"2025-03-06","value":"GUILTY","originating_hearing_id":"ebe6bb7d-6d09-473c-8c7f-272f07a9a63f","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]}],"hearing_summaries":[{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-26T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-10-27T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-10-28T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"25873815-363b-4938-9984-f54164d0eaa3","title":"Mrs.","first_name":"Savanna","middle_name":"Duncan","last_name":"Luettgen","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":null},{"id":"aa0e1b3e-9256-4319-88f7-5bed1b6450da","title":"Mrs.","first_name":"Magaret","middle_name":"Herman","last_name":"Jerde","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":["b8014abe-5655-4120-af97-89016da3ecc4"]},{"id":"4420fd7f-9e11-40cc-9235-9cd02985dbac","title":"MRS","first_name":"Lonnie","middle_name":"Leffler","last_name":"Ebert","status":"Global
+        counsel","attendance_days":["2025-04-29"],"defendants":["d7cbda51-5831-4481-bd11-69bd0164add5"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Application
+        to Break Fixture (BFA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-31T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-11-01T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-11-02T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"da79c754-5b14-4fcc-9b8c-5a47004d9572","title":"MISS","first_name":"Lucia","middle_name":"Spencer","last_name":"Ernser","status":"Product
+        counsel","attendance_days":["2025-04-21"],"defendants":["77650dbf-dfa7-4652-9016-45510e86be83"]}]}]}]}'
+  recorded_at: Mon, 12 May 2025 15:49:23 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/case_summaries/IGWTRAXVHK
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
     body:
       encoding: US-ASCII
       string: ''
@@ -2289,8 +2221,8 @@ http_interactions:
       - application/json
       Content-Type:
       - application/json
-      Laa-Transaction-Id:
-      - 238b40d0-548d-4320-9a74-79181dc1a6b3
+      Authorization:
+      - Bearer <BEARER_TOKEN>
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
@@ -2300,1113 +2232,65 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Date:
-      - Wed, 07 May 2025 20:40:09 GMT
-      Server:
-      - uvicorn
-      Content-Length:
-      - '2767'
-      Content-Type:
-      - application/json; charset=utf-8
-      Laa-Transaction-Id:
-      - 238b40d0-548d-4320-9a74-79181dc1a6b3
-      Access-Control-Expose-Headers:
-      - Laa-Transaction-Id
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 6682e3ba-2b0a-45e9-af97-e3f1756c691e
       Cache-Control:
       - no-store
-      Content-Security-Policy:
-      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
-        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
-        'unsafe-inline'
-      Strict-Transport-Security:
-      - includeSubDomains; preload; max-age=2592000
-      Referrer-Policy:
-      - no-referrer
-      X-Frame-Options:
-      - SAMEORIGIN
-    body:
-      encoding: UTF-8
-      string: '{"prosecution_case_reference": "IGWTRAXVHK", "hearing_summaries": [{"id":
-        "8afd2757-efee-427a-a622-89c06d0f7320", "hearing_type": "Plea and Trial Prepation
-        (PTP)", "estimated_duration": null, "defendants": [], "jurisdiction_type":
-        "CROWN", "court_centre": {"id": "68c7e9af-2db7-3fc3-b6e8-e51653120790", "name":
-        "Maidstone Magistrates'' Court", "welsh_name": "Llys Ynadon Maidstone", "room_id":
-        null, "room_name": null, "welsh_room_name": null, "welsh_court_name": null,
-        "short_oucode": "B46IR", "oucode_l2_code": "46", "code": "B46IR00", "address":
-        {"address_1": "The Court House", "address_2": "Palace Avenue", "address_3":
-        "Maidstone", "address_4": "Kent", "address_5": "", "postcode": "ME15 6LL"}},
-        "hearing_days": [{"sitting_day": "2025-05-01T00:00:00+00:00", "listing_sequence":
-        9, "listed_duration_minutes": 874, "has_shared_results": null}], "defence_counsels":
-        []}, {"id": "7f1befbf-dccd-4b28-8f5a-b04a87569ff2", "hearing_type": "Mention
-        - Defendant to Attend (MDA)", "estimated_duration": null, "defendants": [],
-        "jurisdiction_type": "MAGISTRATES", "court_centre": {"id": "1b73c7dd-bef1-33f4-81f5-fbfa092d4c49",
-        "name": "Newcastle Magistrates'' Court", "welsh_name": "Llys Ynadon Newcastle",
-        "room_id": null, "room_name": null, "welsh_room_name": null, "welsh_court_name":
-        null, "short_oucode": "B10JL", "oucode_l2_code": "10", "code": "B10JL00",
-        "address": {"address_1": "The Law Courts", "address_2": "The Quayside", "address_3":
-        "Newcastle Upon Tyne", "address_4": "", "address_5": "", "postcode": "NE1
-        3LA"}}, "hearing_days": [{"sitting_day": "2025-05-07T00:00:00+00:00", "listing_sequence":
-        null, "listed_duration_minutes": 222, "has_shared_results": null}], "defence_counsels":
-        []}, {"id": "6fe12c31-31ec-488d-ac11-27612dcf5757", "hearing_type": "Application
-        to Break Fixture (BFA)", "estimated_duration": null, "defendants": [], "jurisdiction_type":
-        "CROWN", "court_centre": {"id": "1868f485-d814-36d1-ad92-6ed6330693bc", "name":
-        "Cambridge Crown Court", "welsh_name": "Llys Y Goron Caergrawnt", "room_id":
-        null, "room_name": null, "welsh_room_name": null, "welsh_court_name": null,
-        "short_oucode": "C35CM", "oucode_l2_code": "35", "code": "C35CM00", "address":
-        {"address_1": "83 East Road", "address_2": "Cambridge", "address_3": "", "address_4":
-        "", "address_5": "", "postcode": "CB1 1BT"}}, "hearing_days": [{"sitting_day":
-        "2025-05-08T00:00:00+00:00", "listing_sequence": null, "listed_duration_minutes":
-        576, "has_shared_results": null}], "defence_counsels": []}], "overall_defendants":
-        [{"id": "4bcf26f9-3c6f-440a-94aa-7d084bcd715e", "first_name": "Felix", "middle_name":
-        "Connelly", "last_name": "McGlynn", "arrest_summons_number": "3DDFXLGNGRNN",
-        "date_of_birth": "1960-11-16", "national_insurance_number": "HP440787B", "maat_reference":
-        null}]}'
-  recorded_at: Wed, 07 May 2025 20:40:10 GMT
-- request:
-    method: get
-    uri: http://localhost:8000/v2/case_summaries/IGWTRAXVHK
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
       Content-Type:
-      - application/json
-      Laa-Transaction-Id:
-      - 239b818c-58b2-4cbb-ad4a-8cd1773072f2
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 07 May 2025 20:40:09 GMT
-      Server:
-      - uvicorn
-      Content-Length:
-      - '2767'
-      Content-Type:
-      - application/json; charset=utf-8
-      Laa-Transaction-Id:
-      - 239b818c-58b2-4cbb-ad4a-8cd1773072f2
-      Access-Control-Expose-Headers:
-      - Laa-Transaction-Id
-      Cache-Control:
-      - no-store
-      Content-Security-Policy:
-      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
-        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
-        'unsafe-inline'
-      Strict-Transport-Security:
-      - includeSubDomains; preload; max-age=2592000
-      Referrer-Policy:
-      - no-referrer
-      X-Frame-Options:
-      - SAMEORIGIN
-    body:
-      encoding: UTF-8
-      string: '{"prosecution_case_reference": "IGWTRAXVHK", "hearing_summaries": [{"id":
-        "8afd2757-efee-427a-a622-89c06d0f7320", "hearing_type": "Plea and Trial Prepation
-        (PTP)", "estimated_duration": null, "defendants": [], "jurisdiction_type":
-        "CROWN", "court_centre": {"id": "68c7e9af-2db7-3fc3-b6e8-e51653120790", "name":
-        "Maidstone Magistrates'' Court", "welsh_name": "Llys Ynadon Maidstone", "room_id":
-        null, "room_name": null, "welsh_room_name": null, "welsh_court_name": null,
-        "short_oucode": "B46IR", "oucode_l2_code": "46", "code": "B46IR00", "address":
-        {"address_1": "The Court House", "address_2": "Palace Avenue", "address_3":
-        "Maidstone", "address_4": "Kent", "address_5": "", "postcode": "ME15 6LL"}},
-        "hearing_days": [{"sitting_day": "2025-05-01T00:00:00+00:00", "listing_sequence":
-        9, "listed_duration_minutes": 874, "has_shared_results": null}], "defence_counsels":
-        []}, {"id": "7f1befbf-dccd-4b28-8f5a-b04a87569ff2", "hearing_type": "Mention
-        - Defendant to Attend (MDA)", "estimated_duration": null, "defendants": [],
-        "jurisdiction_type": "MAGISTRATES", "court_centre": {"id": "1b73c7dd-bef1-33f4-81f5-fbfa092d4c49",
-        "name": "Newcastle Magistrates'' Court", "welsh_name": "Llys Ynadon Newcastle",
-        "room_id": null, "room_name": null, "welsh_room_name": null, "welsh_court_name":
-        null, "short_oucode": "B10JL", "oucode_l2_code": "10", "code": "B10JL00",
-        "address": {"address_1": "The Law Courts", "address_2": "The Quayside", "address_3":
-        "Newcastle Upon Tyne", "address_4": "", "address_5": "", "postcode": "NE1
-        3LA"}}, "hearing_days": [{"sitting_day": "2025-05-07T00:00:00+00:00", "listing_sequence":
-        null, "listed_duration_minutes": 222, "has_shared_results": null}], "defence_counsels":
-        []}, {"id": "6fe12c31-31ec-488d-ac11-27612dcf5757", "hearing_type": "Application
-        to Break Fixture (BFA)", "estimated_duration": null, "defendants": [], "jurisdiction_type":
-        "CROWN", "court_centre": {"id": "1868f485-d814-36d1-ad92-6ed6330693bc", "name":
-        "Cambridge Crown Court", "welsh_name": "Llys Y Goron Caergrawnt", "room_id":
-        null, "room_name": null, "welsh_room_name": null, "welsh_court_name": null,
-        "short_oucode": "C35CM", "oucode_l2_code": "35", "code": "C35CM00", "address":
-        {"address_1": "83 East Road", "address_2": "Cambridge", "address_3": "", "address_4":
-        "", "address_5": "", "postcode": "CB1 1BT"}}, "hearing_days": [{"sitting_day":
-        "2025-05-08T00:00:00+00:00", "listing_sequence": null, "listed_duration_minutes":
-        576, "has_shared_results": null}], "defence_counsels": []}], "overall_defendants":
-        [{"id": "4bcf26f9-3c6f-440a-94aa-7d084bcd715e", "first_name": "Felix", "middle_name":
-        "Connelly", "last_name": "McGlynn", "arrest_summons_number": "3DDFXLGNGRNN",
-        "date_of_birth": "1960-11-16", "national_insurance_number": "HP440787B", "maat_reference":
-        null}]}'
-  recorded_at: Wed, 07 May 2025 20:40:10 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/hearing_results/6fe12c31-31ec-488d-ac11-27612dcf5757.json?date=2025-05-08
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - a8caea46-fac1-4194-b51c-3ccd3a0ab613
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"01a3c5dce8ccd907a1e25531900d2fec"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
+      - text/html
       X-Runtime:
-      - '0.109617'
+      - '0.011568'
       Server-Timing:
-      - start_processing.action_controller;dur=0.00, unpermitted_parameters.action_controller;dur=0.00,
-        process_action.action_controller;dur=103.50
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.37, halted_callback.action_controller;dur=0.01,
+        process_action.action_controller;dur=2.48
       Content-Length:
-      - '4233'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"6c39eda6-c2d4-4332-bb9c-3d90357b9a4c","jurisdiction_type":"CROWN","court_centre":{"id":"1868f485-d814-36d1-ad92-6ed6330693bc","name":"Cambridge
-        Crown Court","welsh_name":"Llys Y Goron Caergrawnt","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C35CM","oucode_l2_code":"35","code":"C35CM00","address":{"address_1":"83
-        East Road","address_2":"Cambridge","address_3":"","address_4":"","address_5":"","postcode":"CB1
-        1BT"}},"hearing_language":"WELSH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":false,"court_applications":[{"id":"7b55de2d-0b58-4264-aa41-741e91166091","received_date":"2025-05-07","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"af57000d-1788-443c-8a57-39aec305558f","synonym":"complainant","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"6385ce1d-0dbf-458c-8234-0c23805ce2f4","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"cc669b4f-5a29-42a2-b448-d673a50363a0","description":"Application
-        to Break Fixture (BFA)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-08T00:00:00.000Z","listing_sequence":null,"listed_duration_minutes":576,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-07T14:09:54.987+00:00"}'
-  recorded_at: Wed, 07 May 2025 20:40:10 GMT
-- request:
-    method: get
-    uri: http://localhost:8000/v2/hearings/6fe12c31-31ec-488d-ac11-27612dcf5757/hearing_events?date=2025-05-08
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Laa-Transaction-Id:
-      - 239b818c-58b2-4cbb-ad4a-8cd1773072f2
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 07 May 2025 20:40:09 GMT
-      Server:
-      - uvicorn
-      Content-Length:
-      - '97'
-      Content-Type:
-      - application/json; charset=utf-8
-      Laa-Transaction-Id:
-      - 239b818c-58b2-4cbb-ad4a-8cd1773072f2
-      Access-Control-Expose-Headers:
-      - Laa-Transaction-Id
-      Cache-Control:
-      - no-store
-      Content-Security-Policy:
-      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
-        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
-        'unsafe-inline'
-      Strict-Transport-Security:
-      - includeSubDomains; preload; max-age=2592000
-      Referrer-Policy:
-      - no-referrer
-      X-Frame-Options:
-      - SAMEORIGIN
-    body:
-      encoding: UTF-8
-      string: '{"hearing_id": "6fe12c31-31ec-488d-ac11-27612dcf5757", "has_active_hearing":
-        false, "events": []}'
-  recorded_at: Wed, 07 May 2025 20:40:10 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/hearing_results/8afd2757-efee-427a-a622-89c06d0f7320.json?sitting_date=2025-05-01
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
       - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 25b57fd8-820e-416a-8c3a-73b424a689cd
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"fa7043f28962167763c1ada0339b6358"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.128455'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.00,
-        process_action.action_controller;dur=105.06
-      Content-Length:
-      - '4248'
     body:
       encoding: UTF-8
-      string: '{"hearing":{"id":"8712e673-e37d-4263-badd-a5bc5ffea339","jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
-        Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
-        Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
-        6LL"}},"hearing_language":"WELSH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":false,"court_applications":[{"id":"691604c0-0db3-4e81-8304-b031e36634c7","received_date":"2025-05-01","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"7e9f1725-1a91-4347-9533-1f02fc08f7d4","synonym":"suspect","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"45a4bcd2-9bb6-42bb-aaff-31f8268242a3","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"9f059bce-852c-40ec-b0b6-4b93c50a10af","description":"Plea
-        and Trial Prepation (PTP)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-01T00:00:00.000Z","listing_sequence":9,"listed_duration_minutes":874,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-01T15:02:42.754+00:00"}'
-  recorded_at: Thu, 08 May 2025 13:10:12 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/hearing_results/7f1befbf-dccd-4b28-8f5a-b04a87569ff2.json?sitting_date=2025-05-07
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 4348e3af-4c60-49fa-93c3-bd79f71c966f
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"f1770370ea4e5659ba63e9955f6e1249"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.111545'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.01,
-        process_action.action_controller;dur=105.58
-      Content-Length:
-      - '4268'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"c4f9d010-92e3-4a83-a632-2151d3523c4e","jurisdiction_type":"MAGISTRATES","court_centre":{"id":"1b73c7dd-bef1-33f4-81f5-fbfa092d4c49","name":"Newcastle
-        Magistrates'' Court","welsh_name":"Llys Ynadon Newcastle","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B10JL","oucode_l2_code":"10","code":"B10JL00","address":{"address_1":"The
-        Law Courts","address_2":"The Quayside","address_3":"Newcastle Upon Tyne","address_4":"","address_5":"","postcode":"NE1
-        3LA"}},"hearing_language":"ENGLISH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":true,"court_applications":[{"id":"804a5c32-8470-4398-8760-7de4a239d57a","received_date":"2025-05-07","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"1b41f3a2-8e8d-4463-a269-f31427726f50","synonym":"appellant","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"4b0dd673-39e7-4869-819a-553355085c0d","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"a11e3fb7-a9d3-42f9-9bc9-f0669fc005f3","description":"Mention
-        - Defendant to Attend (MDA)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-07T00:00:00.000Z","listing_sequence":null,"listed_duration_minutes":222,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-07T11:07:50.294+00:00"}'
-  recorded_at: Thu, 08 May 2025 13:10:12 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/hearing_results/6fe12c31-31ec-488d-ac11-27612dcf5757.json?sitting_date=2025-05-08
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - d46bbfa0-dd78-4359-abf6-15e5b61137e0
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"01a3c5dce8ccd907a1e25531900d2fec"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.131266'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.00, unpermitted_parameters.action_controller;dur=0.01,
-        process_action.action_controller;dur=125.17
-      Content-Length:
-      - '4233'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"6c39eda6-c2d4-4332-bb9c-3d90357b9a4c","jurisdiction_type":"CROWN","court_centre":{"id":"1868f485-d814-36d1-ad92-6ed6330693bc","name":"Cambridge
-        Crown Court","welsh_name":"Llys Y Goron Caergrawnt","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C35CM","oucode_l2_code":"35","code":"C35CM00","address":{"address_1":"83
-        East Road","address_2":"Cambridge","address_3":"","address_4":"","address_5":"","postcode":"CB1
-        1BT"}},"hearing_language":"WELSH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":false,"court_applications":[{"id":"7b55de2d-0b58-4264-aa41-741e91166091","received_date":"2025-05-07","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"af57000d-1788-443c-8a57-39aec305558f","synonym":"complainant","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"6385ce1d-0dbf-458c-8234-0c23805ce2f4","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"cc669b4f-5a29-42a2-b448-d673a50363a0","description":"Application
-        to Break Fixture (BFA)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-08T00:00:00.000Z","listing_sequence":null,"listed_duration_minutes":576,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-07T14:09:54.987+00:00"}'
-  recorded_at: Thu, 08 May 2025 13:10:12 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/hearing_results/8afd2757-efee-427a-a622-89c06d0f7320?sitting_date=2025-05-01
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 9195167a-ce89-4c9a-976a-4634f5415859
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"6ff1139a26c5e83f8e39a688e1a63d4e"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.506302'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.00,
-        process_action.action_controller;dur=482.83
-      Content-Length:
-      - '8425'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"8712e673-e37d-4263-badd-a5bc5ffea339","jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
-        Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
-        Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
-        6LL"}},"hearing_language":"WELSH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[{"id":"48e6cf83-d671-407e-ae32-1c9e3bc499a3","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"f5da540c-b8fd-49e7-871c-4c948e278ecd","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null},{"id":"f2860fe7-b9bb-4b80-aa55-004b0cd4b1a9","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"HGW2XAX11SAQ","bail_conditions":"Et
-        velit natus autem.","bail_status":{},"person_details":{"title":"MS","gender":"NOT_KNOWN","first_name":"Jeramy","last_name":"Sauer","date_of_birth":"1973-02-19","nino":"TE714906A","occupation":"lawyer","occupation_code":"0279","documentation_language_needs":"ENGLISH"}},"offences":[{"id":"d70a618c-f3c0-4645-8224-62f191e127eb","code":"PT00011","title":"Possession
-        of false identity documents","legislation":"Criminal Law Act 1977 s.54","mode_of_trial":"Either
-        way","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"5a827f10-7384-4ecf-8024-7103f8586fca","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"c2aa23a9-872c-480c-8863-b68c9a7f78d6","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":false,"court_applications":[{"id":"691604c0-0db3-4e81-8304-b031e36634c7","received_date":"2025-05-01","application_reference":"MyString","judicial_results":[{"id":"dc1c5ce8-eae9-4fcb-bd23-ff5edd12e45c","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"773dfaaf-da14-497a-a07a-fab268389596","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"respondents":[{"id":"7e9f1725-1a91-4347-9533-1f02fc08f7d4","synonym":"suspect","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"45a4bcd2-9bb6-42bb-aaff-31f8268242a3","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}},{"id":"21725384-ade4-40b4-b582-7bf70cdf5dbc","received_date":"2025-05-08","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"20d43051-7364-4a4d-a179-2ed966c16228","synonym":"suspect","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"fe3ae832-b2fd-44af-90ad-f1d02ace60c8","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"9f059bce-852c-40ec-b0b6-4b93c50a10af","description":"Plea
-        and Trial Prepation (PTP)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-01T00:00:00.000Z","listing_sequence":9,"listed_duration_minutes":874,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-01T15:02:42.754+00:00"}'
-  recorded_at: Fri, 09 May 2025 15:14:44 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/hearing_results/7f1befbf-dccd-4b28-8f5a-b04a87569ff2?sitting_date=2025-05-07
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - cbda6782-487b-4919-bf02-7d57599985fa
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"c9770264ad58d79fc6a92538bb40806c"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.232165'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.00,
-        process_action.action_controller;dur=225.25
-      Content-Length:
-      - '6775'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"c4f9d010-92e3-4a83-a632-2151d3523c4e","jurisdiction_type":"MAGISTRATES","court_centre":{"id":"1b73c7dd-bef1-33f4-81f5-fbfa092d4c49","name":"Newcastle
-        Magistrates'' Court","welsh_name":"Llys Ynadon Newcastle","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B10JL","oucode_l2_code":"10","code":"B10JL00","address":{"address_1":"The
-        Law Courts","address_2":"The Quayside","address_3":"Newcastle Upon Tyne","address_4":"","address_5":"","postcode":"NE1
-        3LA"}},"hearing_language":"ENGLISH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[{"id":"48e6cf83-d671-407e-ae32-1c9e3bc499a3","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"f5da540c-b8fd-49e7-871c-4c948e278ecd","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null},{"id":"f2860fe7-b9bb-4b80-aa55-004b0cd4b1a9","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"HGW2XAX11SAQ","bail_conditions":"Et
-        velit natus autem.","bail_status":{},"person_details":{"title":"MS","gender":"NOT_KNOWN","first_name":"Jeramy","last_name":"Sauer","date_of_birth":"1973-02-19","nino":"TE714906A","occupation":"lawyer","occupation_code":"0279","documentation_language_needs":"ENGLISH"}},"offences":[{"id":"d70a618c-f3c0-4645-8224-62f191e127eb","code":"PT00011","title":"Possession
-        of false identity documents","legislation":"Criminal Law Act 1977 s.54","mode_of_trial":"Either
-        way","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"5a827f10-7384-4ecf-8024-7103f8586fca","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"c2aa23a9-872c-480c-8863-b68c9a7f78d6","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":true,"court_applications":[{"id":"804a5c32-8470-4398-8760-7de4a239d57a","received_date":"2025-05-07","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"1b41f3a2-8e8d-4463-a269-f31427726f50","synonym":"appellant","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"4b0dd673-39e7-4869-819a-553355085c0d","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"a11e3fb7-a9d3-42f9-9bc9-f0669fc005f3","description":"Mention
-        - Defendant to Attend (MDA)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-07T00:00:00.000Z","listing_sequence":null,"listed_duration_minutes":222,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-07T11:07:50.294+00:00"}'
-  recorded_at: Fri, 09 May 2025 15:14:45 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/hearing_results/6fe12c31-31ec-488d-ac11-27612dcf5757?sitting_date=2025-05-08
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - b1a74039-31ce-451c-b9c7-5ea28ccf8bce
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"468eef6467784237bd61398a7f699678"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.274708'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.00,
-        process_action.action_controller;dur=223.69
-      Content-Length:
-      - '6740'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"6c39eda6-c2d4-4332-bb9c-3d90357b9a4c","jurisdiction_type":"CROWN","court_centre":{"id":"1868f485-d814-36d1-ad92-6ed6330693bc","name":"Cambridge
-        Crown Court","welsh_name":"Llys Y Goron Caergrawnt","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C35CM","oucode_l2_code":"35","code":"C35CM00","address":{"address_1":"83
-        East Road","address_2":"Cambridge","address_3":"","address_4":"","address_5":"","postcode":"CB1
-        1BT"}},"hearing_language":"WELSH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[{"id":"48e6cf83-d671-407e-ae32-1c9e3bc499a3","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"f5da540c-b8fd-49e7-871c-4c948e278ecd","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null},{"id":"f2860fe7-b9bb-4b80-aa55-004b0cd4b1a9","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"HGW2XAX11SAQ","bail_conditions":"Et
-        velit natus autem.","bail_status":{},"person_details":{"title":"MS","gender":"NOT_KNOWN","first_name":"Jeramy","last_name":"Sauer","date_of_birth":"1973-02-19","nino":"TE714906A","occupation":"lawyer","occupation_code":"0279","documentation_language_needs":"ENGLISH"}},"offences":[{"id":"d70a618c-f3c0-4645-8224-62f191e127eb","code":"PT00011","title":"Possession
-        of false identity documents","legislation":"Criminal Law Act 1977 s.54","mode_of_trial":"Either
-        way","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"5a827f10-7384-4ecf-8024-7103f8586fca","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"c2aa23a9-872c-480c-8863-b68c9a7f78d6","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":false,"court_applications":[{"id":"7b55de2d-0b58-4264-aa41-741e91166091","received_date":"2025-05-07","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"af57000d-1788-443c-8a57-39aec305558f","synonym":"complainant","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"6385ce1d-0dbf-458c-8234-0c23805ce2f4","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"cc669b4f-5a29-42a2-b448-d673a50363a0","description":"Application
-        to Break Fixture (BFA)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-08T00:00:00.000Z","listing_sequence":null,"listed_duration_minutes":576,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-07T14:09:54.987+00:00"}'
-  recorded_at: Fri, 09 May 2025 15:14:45 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/hearing_results/8afd2757-efee-427a-a622-89c06d0f7320
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 929dd7a1-ee8b-48e6-90ef-3b23d522292e
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"6ff1139a26c5e83f8e39a688e1a63d4e"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.700197'
-      Server-Timing:
-      - sql.active_record;dur=15.45, start_processing.action_controller;dur=0.01,
-        unpermitted_parameters.action_controller;dur=0.01, process_action.action_controller;dur=448.67
-      Content-Length:
-      - '8425'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"8712e673-e37d-4263-badd-a5bc5ffea339","jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
-        Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
-        Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
-        6LL"}},"hearing_language":"WELSH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[{"id":"48e6cf83-d671-407e-ae32-1c9e3bc499a3","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"f5da540c-b8fd-49e7-871c-4c948e278ecd","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null},{"id":"f2860fe7-b9bb-4b80-aa55-004b0cd4b1a9","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"HGW2XAX11SAQ","bail_conditions":"Et
-        velit natus autem.","bail_status":{},"person_details":{"title":"MS","gender":"NOT_KNOWN","first_name":"Jeramy","last_name":"Sauer","date_of_birth":"1973-02-19","nino":"TE714906A","occupation":"lawyer","occupation_code":"0279","documentation_language_needs":"ENGLISH"}},"offences":[{"id":"d70a618c-f3c0-4645-8224-62f191e127eb","code":"PT00011","title":"Possession
-        of false identity documents","legislation":"Criminal Law Act 1977 s.54","mode_of_trial":"Either
-        way","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"5a827f10-7384-4ecf-8024-7103f8586fca","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"c2aa23a9-872c-480c-8863-b68c9a7f78d6","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":false,"court_applications":[{"id":"691604c0-0db3-4e81-8304-b031e36634c7","received_date":"2025-05-01","application_reference":"MyString","judicial_results":[{"id":"dc1c5ce8-eae9-4fcb-bd23-ff5edd12e45c","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"773dfaaf-da14-497a-a07a-fab268389596","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"respondents":[{"id":"7e9f1725-1a91-4347-9533-1f02fc08f7d4","synonym":"suspect","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"45a4bcd2-9bb6-42bb-aaff-31f8268242a3","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}},{"id":"21725384-ade4-40b4-b582-7bf70cdf5dbc","received_date":"2025-05-08","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"20d43051-7364-4a4d-a179-2ed966c16228","synonym":"suspect","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"fe3ae832-b2fd-44af-90ad-f1d02ace60c8","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"9f059bce-852c-40ec-b0b6-4b93c50a10af","description":"Plea
-        and Trial Prepation (PTP)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-01T00:00:00.000Z","listing_sequence":9,"listed_duration_minutes":874,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-01T15:02:42.754+00:00"}'
-  recorded_at: Tue, 13 May 2025 16:45:57 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/hearing_results/7f1befbf-dccd-4b28-8f5a-b04a87569ff2
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - ae8b649b-9c23-4bca-9286-eced04d04577
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"c9770264ad58d79fc6a92538bb40806c"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.202919'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.00,
-        process_action.action_controller;dur=195.62
-      Content-Length:
-      - '6775'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"c4f9d010-92e3-4a83-a632-2151d3523c4e","jurisdiction_type":"MAGISTRATES","court_centre":{"id":"1b73c7dd-bef1-33f4-81f5-fbfa092d4c49","name":"Newcastle
-        Magistrates'' Court","welsh_name":"Llys Ynadon Newcastle","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B10JL","oucode_l2_code":"10","code":"B10JL00","address":{"address_1":"The
-        Law Courts","address_2":"The Quayside","address_3":"Newcastle Upon Tyne","address_4":"","address_5":"","postcode":"NE1
-        3LA"}},"hearing_language":"ENGLISH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[{"id":"48e6cf83-d671-407e-ae32-1c9e3bc499a3","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"f5da540c-b8fd-49e7-871c-4c948e278ecd","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null},{"id":"f2860fe7-b9bb-4b80-aa55-004b0cd4b1a9","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"HGW2XAX11SAQ","bail_conditions":"Et
-        velit natus autem.","bail_status":{},"person_details":{"title":"MS","gender":"NOT_KNOWN","first_name":"Jeramy","last_name":"Sauer","date_of_birth":"1973-02-19","nino":"TE714906A","occupation":"lawyer","occupation_code":"0279","documentation_language_needs":"ENGLISH"}},"offences":[{"id":"d70a618c-f3c0-4645-8224-62f191e127eb","code":"PT00011","title":"Possession
-        of false identity documents","legislation":"Criminal Law Act 1977 s.54","mode_of_trial":"Either
-        way","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"5a827f10-7384-4ecf-8024-7103f8586fca","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"c2aa23a9-872c-480c-8863-b68c9a7f78d6","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":true,"court_applications":[{"id":"804a5c32-8470-4398-8760-7de4a239d57a","received_date":"2025-05-07","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"1b41f3a2-8e8d-4463-a269-f31427726f50","synonym":"appellant","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"4b0dd673-39e7-4869-819a-553355085c0d","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"a11e3fb7-a9d3-42f9-9bc9-f0669fc005f3","description":"Mention
-        - Defendant to Attend (MDA)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-07T00:00:00.000Z","listing_sequence":null,"listed_duration_minutes":222,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-07T11:07:50.294+00:00"}'
-  recorded_at: Tue, 13 May 2025 16:45:58 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/hearing_results/6fe12c31-31ec-488d-ac11-27612dcf5757
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 14a37dda-aa5b-474d-b1eb-7012040bf245
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"468eef6467784237bd61398a7f699678"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.189025'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.00, unpermitted_parameters.action_controller;dur=0.00,
-        process_action.action_controller;dur=184.68
-      Content-Length:
-      - '6740'
-    body:
-      encoding: UTF-8
-      string: '{"hearing":{"id":"6c39eda6-c2d4-4332-bb9c-3d90357b9a4c","jurisdiction_type":"CROWN","court_centre":{"id":"1868f485-d814-36d1-ad92-6ed6330693bc","name":"Cambridge
-        Crown Court","welsh_name":"Llys Y Goron Caergrawnt","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C35CM","oucode_l2_code":"35","code":"C35CM00","address":{"address_1":"83
-        East Road","address_2":"Cambridge","address_3":"","address_4":"","address_5":"","postcode":"CB1
-        1BT"}},"hearing_language":"WELSH","prosecution_cases":[{"id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","prosecution_case_identifier":{"case_urn":"IGWTRAXVHK","prosecution_authority_id":"2413015f-26b9-45f6-888a-60f40144e621","prosecution_authority_code":"DXUOHMAFCU","prosecution_authority_name":null},"status":"ACTIVE","statement_of_facts":"Nihil
-        voluptas swag iphone sartorial.","statement_of_facts_welsh":"Pbr\u0026b eveniet
-        gastropub.","defendants":[{"id":"4bcf26f9-3c6f-440a-94aa-7d084bcd715e","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"3DDFXLGNGRNN","bail_conditions":"Velit
-        dolor sapiente culpa.","bail_status":{},"person_details":{"title":"MRS","gender":"FEMALE","first_name":"Felix","last_name":"McGlynn","date_of_birth":"1960-11-16","nino":"HP440787B","occupation":"statistician","occupation_code":"0751","documentation_language_needs":"WELSH"}},"offences":[{"id":"3d9a7976-c57f-4eed-ac26-aab8029705d8","code":"PT00011","title":"Abduction
-        of unmarried girl under 18 from parent","legislation":"Sexual Offences Act
-        1956 s.17","mode_of_trial":"Indictable only","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"4d29d341-2fd8-4e67-8657-155d60df1a96","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"PARDON","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"0f6a2a80-e8f0-4f77-bb82-6fe3e940b244","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[{"id":"48e6cf83-d671-407e-ae32-1c9e3bc499a3","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"f5da540c-b8fd-49e7-871c-4c948e278ecd","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null},{"id":"f2860fe7-b9bb-4b80-aa55-004b0cd4b1a9","prosecution_case_id":"79224daf-4d6e-43bb-a6a6-81dfae6b6e5d","defendant_details":{"arrest_summons_number":"HGW2XAX11SAQ","bail_conditions":"Et
-        velit natus autem.","bail_status":{},"person_details":{"title":"MS","gender":"NOT_KNOWN","first_name":"Jeramy","last_name":"Sauer","date_of_birth":"1973-02-19","nino":"TE714906A","occupation":"lawyer","occupation_code":"0279","documentation_language_needs":"ENGLISH"}},"offences":[{"id":"d70a618c-f3c0-4645-8224-62f191e127eb","code":"PT00011","title":"Possession
-        of false identity documents","legislation":"Criminal Law Act 1977 s.54","mode_of_trial":"Either
-        way","wording":"Random string","start_date":"2019-10-17","order_index":1,"allocation_decision":{},"plea":{},"verdict":{},"judicial_results":[{"id":"5a827f10-7384-4ecf-8024-7103f8586fca","label":"Random
-        String","is_adjournment_result":false,"is_available_for_court_extract":false,"is_convicted_result":false,"is_financial_result":false,"qualifier":"Random
-        String","text":"GUILTY","cjs_code":"2507","ordered_date":"2019-10-16","post_hearing_custody_status":"A","wording":null,"prompts":[{"type_id":"c2aa23a9-872c-480c-8863-b68c9a7f78d6","is_available_for_court_extract":false,"label":"Random
-        String","welsh_label":"Llinyn ar hap","value":"Random String","welsh_value":"MyString","qualifier":"Random
-        String","duration_sequence":1,"prompt_sequence":1,"prompt_reference":"Random
-        String","total_penalty_points":1,"is_financial_imposition":false,"user_groups":[]}]}],"laa_application":{}}],"judicial_results":[],"defence_organisation":{"organisation":{"name":null,"incorporation_number":null,"registered_charity_number":null,"address":{},"contact":{}},"laa_contract_number":null},"legal_aid_status":null,"proceedings_concluded":null,"is_youth":null}]}],"defendant_judicial_results":[],"has_shared_results":false,"court_applications":[{"id":"7b55de2d-0b58-4264-aa41-741e91166091","received_date":"2025-05-07","application_reference":"MyString","judicial_results":[],"respondents":[{"id":"af57000d-1788-443c-8a57-39aec305558f","synonym":"complainant","summons_required":true,"notification_required":true}],"defendant":{},"type":{"id":"6385ce1d-0dbf-458c-8234-0c23805ce2f4","description":"String","code":"String","category_code":"String","legislation":"string","applicant_appellant_flag":true,"link_type":"LINKED","jurisdiction":"MAGISTRATES","appeal_flag":true,"plea_applicable_flag":true,"summons_template_type":"GENERIC_APPLICATION","valid_from":"2021-04-01","valid_to":"2021-04-30","offence_active_order":"OFFENCE","commr_of_oath_flag":true,"breach_type":"GENERIC_BREACH","court_of_appeal_flag":true,"court_extract_avl_flag":true,"listing_notif_template":"String","boxwork_notif_template":"String","prosecutor_third_party_flag":true,"spi_out_applicable_flag":true,"hearing_code":"String"}}],"hearing_type":{"id":"cc669b4f-5a29-42a2-b448-d673a50363a0","description":"Application
-        to Break Fixture (BFA)","welsh_description":null},"hearing_days":[{"sitting_day":"2025-05-08T00:00:00.000Z","listing_sequence":null,"listed_duration_minutes":576,"has_shared_results":null}],"judiciary":[],"prosecution_counsels":[],"defence_counsels":[],"cracked_ineffective_trial":{},"defendant_attendance":[]},"shared_time":"2025-05-07T14:09:54.987+00:00"}'
-  recorded_at: Tue, 13 May 2025 16:45:58 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/hearings/8afd2757-efee-427a-a622-89c06d0f7320/event_log/2025-05-01
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - ad103a16-b970-430e-ac3b-d8680004fc59
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"662fae487f787ea713103b03672bd29f"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.462409'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.02, process_action.action_controller;dur=384.48
-      Content-Length:
-      - '996'
-    body:
-      encoding: UTF-8
-      string: '{"hearing_id":"8afd2757-efee-427a-a622-89c06d0f7320","has_active_hearing":true,"events":[{"id":"27a8e829-8782-479b-bfa2-9742b2442e6a","definition_id":"08405b3a-8e40-4805-9013-603dd918fb4e","defence_counsel_id":null,"recorded_label":"Hearing
-        event 0","event_time":"2025-05-01T00:00:00.000+00:00","last_modified_time":"2025-05-08T15:32:12.507+00:00","alterable":false,"note":"Some
-        free text"},{"id":"a8b3f28a-5566-4156-bf0d-483bd77ebdf4","definition_id":"6fe14c58-c180-4a19-b3db-2bcf4e29bb24","defence_counsel_id":null,"recorded_label":"Hearing
-        event 1","event_time":"2025-05-01T01:00:00.000+00:00","last_modified_time":"2025-05-08T15:32:12.518+00:00","alterable":false,"note":"Some
-        free text"},{"id":"e863fbd5-eafe-402f-979c-e93079226bb7","definition_id":"b4e4f9c7-1310-4cd4-a14e-7dc94202d9a9","defence_counsel_id":null,"recorded_label":"Hearing
-        event 2","event_time":"2025-05-01T02:00:00.000+00:00","last_modified_time":"2025-05-08T15:32:12.526+00:00","alterable":false,"note":"Some
-        free text"}]}'
-  recorded_at: Thu, 15 May 2025 13:13:04 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/hearings/7f1befbf-dccd-4b28-8f5a-b04a87569ff2/event_log/2025-05-07
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - f90a7d78-22b5-41b8-a1b5-64dc08501be4
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"8e380fdc755ac3a88147e739c89a5aee"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.069329'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, process_action.action_controller;dur=39.30
-      Content-Length:
-      - '92'
-    body:
-      encoding: UTF-8
-      string: '{"hearing_id":"7f1befbf-dccd-4b28-8f5a-b04a87569ff2","has_active_hearing":false,"events":[]}'
-  recorded_at: Thu, 15 May 2025 13:13:04 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/hearings/6fe12c31-31ec-488d-ac11-27612dcf5757/event_log/2025-05-08
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - '0'
-      X-Content-Type-Options:
-      - nosniff
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - ff97c324-e510-4838-b89f-fa4e27036923
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"a6785d4d8eb6700b55d2e68c0d5d0aa9"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.069710'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.00, process_action.action_controller;dur=64.36
-      Content-Length:
-      - '92'
-    body:
-      encoding: UTF-8
-      string: '{"hearing_id":"6fe12c31-31ec-488d-ac11-27612dcf5757","has_active_hearing":false,"events":[]}'
-  recorded_at: Thu, 15 May 2025 13:13:05 GMT
+      string: '{"total_results": 1, "results": [{"prosecution_case_reference":"TEST12345","case_status":"INACTIVE","defendant_summaries":[{"id":"3797ee37-cd75-4250-a3bf-b0bfbca4a3f3","first_name":"Jorge","middle_name":"Pacocha","last_name":"McClure","arrest_summons_number":"ZFRTWZ8DE3F9","date_of_birth":"2004-09-11","national_insurance_number":"BK351556C","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Causing or inciting prostitution
+        for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Criminal
+        Law Act 1967 s.5","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"bcbd13a4-6a83-4123-b4a6-062caba2b311","status_code":"AP","status_date":"2025-03-10","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-04-28","value":"UNFIT_TO_PLEAD","originating_hearing_id":"0ed4a1ce-24d1-4569-ae98-f4d24527f137","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}},{"date":"2019-04-28","value":"PARDON","originating_hearing_id":"9ff6593d-d443-4e15-b136-8f19edd2756b","offence_id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]},{"id":"a5084e6c-6c51-43ec-89e1-482f0135f186","first_name":"Shayne","middle_name":"Cole","last_name":"Abbott","arrest_summons_number":"ZGWYZ74MKETB","date_of_birth":"1978-08-13","national_insurance_number":"HY997349A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"eb9743cd-fc2a-4b89-b2ee-7cb07f584f4c","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Making, custody or control of counterfeiting
+        materials etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Proceeds
+        of Crime Act 2002 s.339(1A)","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"2345678","id":"1ec2d006-f7af-4a85-b75a-5a22e93c954a","status_code":"AP","status_date":"2025-03-21","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"35af3c7d-ad6c-49e8-99b5-969aa92262df","first_name":"Shayla","middle_name":"Cormier","last_name":"Schneider","arrest_summons_number":"L6QWT20K8OE8","date_of_birth":"1984-04-15","national_insurance_number":"AM857041A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"79fdf32a-31e1-4e32-9f61-cfcf234bdc45","code":"PT00011","order_index":1,"mode_of_trial":"Either
+        way","start_date":"2019-10-17","title":"Embracery","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.27","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"Z10000010","id":"dc5fda14-977f-4a4b-b7d5-27b8ff77e1c7","status_code":"AP","status_date":"2025-05-08","description":"FAKE
+        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"application_summaries":[]},{"id":"b8014abe-5655-4120-af97-89016da3ecc4","first_name":"Jammy","middle_name":"","last_name":"Dodger","arrest_summons_number":"L2V0P69BY9YK","date_of_birth":"1987-05-21","national_insurance_number":"JC123456A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"935fb847-3cb9-4278-b813-3d86b1288786","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+        only","start_date":"2019-10-17","title":"Assaulting prison officer whilst
+        possessing firearm etc.","wording":"Random string","proceedings_concluded":false,"legislation":"Offences
+        against the Person Act 1861 s.4","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{},"verdict":{},"plea":{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},"pleas":[{"date":"2025-03-06","value":"NOT_GUILTY","originating_hearing_id":"e3cbd40a-edaa-4ec5-b7f0-8ba348d7a7e7","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}},{"date":"2025-03-06","value":"GUILTY","originating_hearing_id":"ebe6bb7d-6d09-473c-8c7f-272f07a9a63f","offence_id":"935fb847-3cb9-4278-b813-3d86b1288786","application_id":null,"delegated_powers":{}}]}],"application_summaries":[]}],"hearing_summaries":[{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Mention
+        - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Pre-Trial
+        Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-26T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-10-27T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-10-28T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"25873815-363b-4938-9984-f54164d0eaa3","title":"Mrs.","first_name":"Savanna","middle_name":"Duncan","last_name":"Luettgen","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":null},{"id":"aa0e1b3e-9256-4319-88f7-5bed1b6450da","title":"Mrs.","first_name":"Magaret","middle_name":"Herman","last_name":"Jerde","status":"Junior
+        counsel","attendance_days":["2019-10-24"],"defendants":["b8014abe-5655-4120-af97-89016da3ecc4"]},{"id":"4420fd7f-9e11-40cc-9235-9cd02985dbac","title":"MRS","first_name":"Lonnie","middle_name":"Leffler","last_name":"Ebert","status":"Global
+        counsel","attendance_days":["2025-04-29"],"defendants":["d7cbda51-5831-4481-bd11-69bd0164add5"]}]},{"id":"0304d126-d773-41fd-af01-83e017cecd80","hearing_type":"Application
+        to Break Fixture (BFA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
+        Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
+        Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-31T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":true},{"sitting_day":"2019-11-01T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false},{"sitting_day":"2019-11-02T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"da79c754-5b14-4fcc-9b8c-5a47004d9572","title":"MISS","first_name":"Lucia","middle_name":"Spencer","last_name":"Ernser","status":"Product
+        counsel","attendance_days":["2025-04-21"],"defendants":["77650dbf-dfa7-4652-9016-45510e86be83"]}]}]}]}'
+  recorded_at: Mon, 12 May 2025 15:49:23 GMT
 recorded_with: VCR 6.3.1

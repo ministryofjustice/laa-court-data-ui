@@ -65,7 +65,7 @@ class Ability
   def can_search
     can %i[new create], SearchFilter
     can %i[new create], Search
-    can %i[new create], CdApi::CaseSummaryService
+    can %i[new create], CourtDataAdaptor::CaseSummaryService
     can %i[show], CourtDataAdaptor::Query::Defendant::ByUuid
     can %i[show], CourtDataAdaptor::Query::Hearing
     can %i[show], CourtDataAdaptor::Resource::ApplicationSummary
@@ -76,7 +76,7 @@ class Ability
   end
 
   def can_query_cdapi
-    can %i[read], CdApi::CaseSummary
+    can %i[read], Cda::ProsecutionCase
   end
 
   def can_manage_self

@@ -18,7 +18,7 @@ RSpec.describe 'prosecution cases', :stub_case_search,
 
     context 'when exception ActiveResource::BadRequest is raised' do
       before do
-        allow(CdApi::CaseSummary).to receive(:find).and_raise(ActiveResource::BadRequest, 'Fake error')
+        allow(Cda::ProsecutionCase).to receive(:find).and_raise(ActiveResource::BadRequest, 'Fake error')
         get "/prosecution_cases/#{case_reference}"
       end
 
@@ -33,7 +33,7 @@ RSpec.describe 'prosecution cases', :stub_case_search,
 
     context 'when exception ActiveResource::ServerError is raised' do
       before do
-        allow(CdApi::CaseSummary).to receive(:find).and_raise(ActiveResource::ServerError, 'Fake error')
+        allow(Cda::ProsecutionCase).to receive(:find).and_raise(ActiveResource::ServerError, 'Fake error')
       end
 
       let(:search_params) do

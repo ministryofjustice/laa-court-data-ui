@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
+RSpec.describe Cda::CaseSummaryDecorator, type: :decorator do
   subject(:decorator) { described_class.new(case_summary, view_object) }
 
-  let(:case_summary) { build(:case_summary) }
+  let(:case_summary) { build(:prosecution_case) }
   let(:view_object) { view_class.new }
 
   let(:view_class) do
@@ -31,7 +31,7 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
   describe '#hearings' do
     subject(:call) { decorator.hearings }
 
-    before { allow(case_summary).to receive(:hearings).and_return(hearing_summaries) }
+    before { allow(case_summary).to receive(:hearing_summaries).and_return(hearing_summaries) }
 
     context 'with multiple v2 hearing_summaries' do
       let(:hearing_summaries) { [hearing_summary1, hearing_summary2] }
@@ -52,13 +52,13 @@ RSpec.describe CdApi::CaseSummaryDecorator, type: :decorator do
     subject(:call) { decorator.defendants }
 
     context 'with multiple overall defendants' do
-      let(:case_summary) { build(:case_summary, :with_overall_defendants) }
+      let(:case_summary) { build(:prosecution_case, :with_defendant_summaries) }
 
       it { is_expected.to all(be_instance_of(CdApi::OverallDefendantDecorator)) }
     end
 
     context 'with no overall defendants' do
-      let(:overall_defendants) { [] }
+      let(:case_summary) { build(:prosecution_case) }
 
       it { is_expected.to be_empty }
     end

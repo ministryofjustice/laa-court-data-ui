@@ -2,7 +2,7 @@
 
 module CdApi
   class HearingSummaryDecorator < BaseDecorator
-    attr_accessor :day
+    attr_accessor :day, :defendants
 
     def defence_counsel_list
       return t('generic.not_available') if defence_counsels.blank?
@@ -45,7 +45,7 @@ module CdApi
 
     def attended_defence_counsels
       # Sometimes a hearing summary pertains to a specific day of a hearing.
-      # (c.f. CdApi::CaseSummaryDecorator.sorted_hearing_summaries_with_day)
+      # (c.f. Cda::CaseSummaryDecorator.sorted_hearing_summaries_with_day)
       # In those cases, we are only interested in the defence counsels who
       # attended on that specific day. Otherwise, we are interested in
       # all defence counsels

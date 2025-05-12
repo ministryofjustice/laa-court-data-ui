@@ -10,7 +10,7 @@
 # Configuration parameters: Max, AllowedIdentifiers, AllowedPatterns.
 RSpec/IndexedLet:
   Exclude:
-    - 'spec/decorators/cd_api/case_summary_decorator_spec.rb'
+    - 'spec/decorators/cda/case_summary_decorator_spec.rb'
     - 'spec/decorators/cd_api/hearing_decorator_spec.rb'
     - 'spec/decorators/cd_api/hearing_summary_decorator_spec.rb'
     - 'spec/decorators/court_application_decorator_spec.rb'

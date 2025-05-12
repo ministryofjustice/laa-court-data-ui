@@ -5,7 +5,8 @@ require 'court_data_adaptor'
 RSpec.shared_context 'with single hearing and hearing day' do
   let(:hearings) { [hearing] }
   let(:hearing) do
-    CdApi::HearingSummary.new(id: 'hearing-uuid-1', hearing_days: ['2021-01-20T10:00:00.000Z'])
+    CdApi::HearingSummary.new(id: 'hearing-uuid-1',
+                              hearing_days: [CdApi::HearingDay.new(sitting_day: '2021-01-20T10:00:00.000Z')])
   end
 end
 
@@ -41,10 +42,10 @@ end
 RSpec.describe HearingPaginator, type: :helper do
   subject(:instance) { described_class.new(prosecution_case_decorator) }
 
-  let(:prosecution_case_decorator) { CdApi::CaseSummaryDecorator.new(prosecution_case, view_object) }
+  let(:prosecution_case_decorator) { Cda::CaseSummaryDecorator.new(prosecution_case, view_object) }
 
   let(:prosecution_case) do
-    CdApi::CaseSummary.new(hearings:, prosecution_case_reference: 'ACASEURN')
+    Cda::ProsecutionCase.new(hearing_summaries: hearings, prosecution_case_reference: 'ACASEURN')
   end
 
   let(:hearings) { [] }

@@ -291,7 +291,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_hearing_summary_error) do
     stub_request(
-      :get, %r{/v2/case_summaries/#{case_reference}}
+      :get, %r{/v2/hearings/.*}
     ).to_return(
       status: 500,
       body: ''

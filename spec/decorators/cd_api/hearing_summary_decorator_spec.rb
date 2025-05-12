@@ -54,6 +54,7 @@ RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
         let(:defendant2) { build(:defendant, first_name: 'Jane', middle_name: '', last_name: 'Doe') }
 
         before do
+          decorator.defendants = defendants
           allow_any_instance_of(described_class).to receive(:decorate_all).with(any_args).and_return([])
         end
 

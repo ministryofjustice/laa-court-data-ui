@@ -7,8 +7,10 @@ RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :v
                      direction: 'asc' }
   end
 
-  let(:decorated_case_summary) { view.decorate(case_summary, CdApi::CaseSummaryDecorator) }
-  let(:case_summary) { build(:case_summary, prosecution_case_reference: 'THECASEURN', hearing_summaries:) }
+  let(:decorated_case_summary) { view.decorate(case_summary, Cda::CaseSummaryDecorator) }
+  let(:case_summary) do
+    build(:prosecution_case, prosecution_case_reference: 'THECASEURN', hearing_summaries:)
+  end
 
   let(:hearing_summaries) { [] }
 

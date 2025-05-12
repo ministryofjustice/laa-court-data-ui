@@ -3,7 +3,7 @@
 RSpec.describe CdApi::OverallDefendantDecorator, type: :decorator do
   subject(:decorator) { described_class.new(overall_defendant, view_object) }
 
-  let(:overall_defendant) { build(:overall_defendant) }
+  let(:overall_defendant) { build(:defendant_summary) }
   let(:view_object) { view_class.new }
 
   let(:view_class) do
@@ -25,7 +25,7 @@ RSpec.describe CdApi::OverallDefendantDecorator, type: :decorator do
     subject(:call) { decorator.name }
 
     let(:overall_defendant) do
-      build(:overall_defendant, first_name:, middle_name:, last_name:)
+      build(:defendant_summary, first_name:, middle_name:, last_name:)
     end
     let(:first_name) { 'John' }
     let(:middle_name) { 'Cluedo' }
@@ -47,8 +47,10 @@ RSpec.describe CdApi::OverallDefendantDecorator, type: :decorator do
   describe '#linked?' do
     subject(:call) { decorator.linked? }
 
+    let(:overall_defendant) { build(:defendant_summary) }
+
     context 'when maat_reference exists and does not begin with "Z"' do
-      let(:overall_defendant) { build(:overall_defendant, maat_reference: '1234567') }
+      before { overall_defendant.offence_summaries.first.laa_application.reference = '1234567' }
 
       it 'returns true' do
         expect(call).to be_truthy
@@ -56,7 +58,7 @@ RSpec.describe CdApi::OverallDefendantDecorator, type: :decorator do
     end
 
     context 'when maat_reference exists and begins with "Z"' do
-      let(:overall_defendant) { build(:overall_defendant, maat_reference: 'Z1234567') }
+      before { overall_defendant.offence_summaries.first.laa_application.reference = 'Z1234567' }
 
       it 'returns false' do
         expect(call).to be_falsey
@@ -64,7 +66,7 @@ RSpec.describe CdApi::OverallDefendantDecorator, type: :decorator do
     end
 
     context 'when maat_reference does not exist' do
-      let(:overall_defendant) { build(:overall_defendant, maat_reference: nil) }
+      before { overall_defendant.offence_summaries.first.laa_application = nil }
 
       it 'returns false' do
         expect(call).to be_falsey

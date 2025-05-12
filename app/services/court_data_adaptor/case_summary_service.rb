@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CdApi
+module CourtDataAdaptor
   class CaseSummaryService
     def self.call(params:)
       new(params).call
@@ -12,7 +12,7 @@ module CdApi
 
     def call
       Rails.logger.info 'V2_SEARCH_CASE_SUMMARIES'
-      CdApi::CaseSummary.find(@urn)
+      Cda::ProsecutionCase.find(@urn)
     end
   end
 end
