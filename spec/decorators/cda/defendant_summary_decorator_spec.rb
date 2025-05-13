@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CdApi::OverallDefendantDecorator, type: :decorator do
+RSpec.describe Cda::DefendantSummaryDecorator, type: :decorator do
   subject(:decorator) { described_class.new(overall_defendant, view_object) }
 
   let(:overall_defendant) { build(:defendant_summary) }

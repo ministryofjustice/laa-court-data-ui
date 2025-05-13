@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CdApi::HearingSummaryDecorator, type: :decorator do
+RSpec.describe Cda::HearingSummaryDecorator, type: :decorator do
   subject(:decorator) { described_class.new(hearing_summary, view_object) }
 
   let(:hearing_summary) { build(:hearing_summary) }

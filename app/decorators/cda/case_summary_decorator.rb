@@ -5,14 +5,14 @@ module Cda
     attr_writer :hearings_sort_column, :hearings_sort_direction
 
     def hearings
-      @hearings ||= decorate_all(object.hearing_summaries, CdApi::HearingSummaryDecorator).map do |hearing|
+      @hearings ||= decorate_all(object.hearing_summaries, Cda::HearingSummaryDecorator).map do |hearing|
         hearing.defendants = defendants
         hearing
       end
     end
 
     def defendants
-      @defendants ||= decorate_all(object.defendant_summaries, CdApi::OverallDefendantDecorator)
+      @defendants ||= decorate_all(object.defendant_summaries, Cda::DefendantSummaryDecorator)
     end
 
     def sorted_hearing_summaries_with_day

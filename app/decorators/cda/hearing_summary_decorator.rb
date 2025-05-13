@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CdApi
+module Cda
   class HearingSummaryDecorator < BaseDecorator
     attr_accessor :day, :defendants
 

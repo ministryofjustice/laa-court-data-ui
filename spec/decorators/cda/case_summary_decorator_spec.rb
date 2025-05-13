@@ -38,7 +38,7 @@ RSpec.describe Cda::CaseSummaryDecorator, type: :decorator do
       let(:hearing_summary1) { build(:hearing_summary) }
       let(:hearing_summary2) { build(:hearing_summary) }
 
-      it { is_expected.to all(be_instance_of(CdApi::HearingSummaryDecorator)) }
+      it { is_expected.to all(be_instance_of(Cda::HearingSummaryDecorator)) }
     end
 
     context 'with no hearing_summaries' do
@@ -54,7 +54,7 @@ RSpec.describe Cda::CaseSummaryDecorator, type: :decorator do
     context 'with multiple overall defendants' do
       let(:case_summary) { build(:prosecution_case, :with_defendant_summaries) }
 
-      it { is_expected.to all(be_instance_of(CdApi::OverallDefendantDecorator)) }
+      it { is_expected.to all(be_instance_of(Cda::DefendantSummaryDecorator)) }
     end
 
     context 'with no overall defendants' do
@@ -67,7 +67,7 @@ RSpec.describe Cda::CaseSummaryDecorator, type: :decorator do
   describe '#sorted_hearing_summaries_with_day' do
     subject(:call) { decorator.sorted_hearing_summaries_with_day }
 
-    let(:decorator_class) { CdApi::HearingSummaryDecorator }
+    let(:decorator_class) { Cda::HearingSummaryDecorator }
     let(:decorated_hearing_summaries) { [decorated_hearing1, decorated_hearing2, decorated_hearing3] }
     let(:decorated_hearing1) { view_object.decorate(hearing1, decorator_class) }
     let(:decorated_hearing2) { view_object.decorate(hearing2, decorator_class) }
@@ -86,7 +86,7 @@ RSpec.describe Cda::CaseSummaryDecorator, type: :decorator do
     end
 
     it { is_expected.to be_instance_of(Enumerator) }
-    it { is_expected.to all(be_instance_of(CdApi::HearingSummaryDecorator)) }
+    it { is_expected.to all(be_instance_of(Cda::HearingSummaryDecorator)) }
 
     include_context 'with multiple hearings to sort'
     it_behaves_like 'sort hearings'

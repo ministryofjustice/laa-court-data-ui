@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-module CdApi
-  class OverallDefendantDecorator < BaseDecorator
+module Cda
+  class DefendantSummaryDecorator < BaseDecorator
     def name
-      # TODO: Create a name service to build the name for reusability
       [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
     end
 
