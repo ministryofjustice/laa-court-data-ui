@@ -7,6 +7,7 @@ RSpec.feature 'Court Application Hearings', :vcr do
   let(:first_hearing_day) { '2019-10-23' }
   let(:problematic_application_id) { 'problematic-application-id' }
   let(:erroring_hearing_id) { 'erroring-hearing-id' }
+  let(:unresulted_hearing_id) { 'unresulted-hearing-id' }
   let(:problematic_hearing_id) { 'problematic-hearing-id' }
   let(:erroring_hearing_day) { '2025-04-10' }
   let(:missing_hearing_day) { '2025-04-11' }
@@ -89,6 +90,16 @@ RSpec.feature 'Court Application Hearings', :vcr do
                                                      erroring_hearing_id,
                                                      first_hearing_day)
     expect(page).to have_content "Sorry, something went wrong"
+  end
+
+  scenario 'Hearing is not resulted' do
+    sign_in user
+    visit court_application_hearing_hearing_day_path(problematic_application_id,
+                                                     unresulted_hearing_id,
+                                                     first_hearing_day)
+    # Page can be viewed, just missing data that is not returned
+    expect(page).to have_content "Appellant advocates\nNot available"
+    expect(page).to have_content "11:20 Est ut cum placeat"
   end
 
   scenario 'Hearing events are not available' do
