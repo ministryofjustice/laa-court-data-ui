@@ -6,12 +6,15 @@
     = t('search.result.offence.caption')
   %thead.govuk-table__head
     %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'col' }= t('search.result.offence.date')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.offence.title')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.offence.plea')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.offence.mode_of_trial')
   %tbody.govuk-table__body
     - decorate_each(defendant.offences) do |offence|
       %tr.govuk-table__row
+        %td.govuk-table__cell
+          = offence.start_date || t('generic.not_available')
         %td.govuk-table__cell
           = offence.title || t('generic.not_available')
           %span.app-body-secondary

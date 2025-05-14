@@ -11,6 +11,24 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       assign(:defendant, defendant)
     end
 
+    context 'when offence has a start date' do
+      before { allow(offence).to receive(:start_date).and_return('2023-01-01') }
+
+      it 'displays offence start date' do
+        is_expected.to have_css('.govuk-table__cell',
+                                text: %r{01/01/2023})
+      end
+    end
+
+    context 'when offence has no start date' do
+      before { allow(offence).to receive(:start_date).and_return(nil) }
+
+      it 'displays no offence start date' do
+        is_expected.to have_css('.govuk-table__cell',
+                                text: /Not available/)
+      end
+    end
+
     context 'when the offence has a mode of trial' do
       before { allow(offence).to receive(:mode_of_trial).and_return('Indictable only') }
 
