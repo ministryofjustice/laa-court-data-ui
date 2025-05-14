@@ -67,7 +67,7 @@ module CdApi
 
     def map_defence_counsels_defendants_to_case(prosecution_case)
       hearing.defence_counsels.each do |defence_counsel|
-        defence_counsel.defendants.map! do |dc_defendant_id|
+        defence_counsel.defendants&.map! do |dc_defendant_id|
           next dc_defendant_id unless dc_defendant_id.is_a?(String)
 
           defendant_details = prosecution_case.defendants.find do |defendant|
