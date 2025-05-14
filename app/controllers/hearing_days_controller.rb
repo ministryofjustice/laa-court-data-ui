@@ -30,7 +30,7 @@ class HearingDaysController < ApplicationController
   end
 
   def load_hearing_details
-    details = CdApi::Hearing.find(@hearing_day.hearing.id, params: { date: @hearing_day.date })
+    details = load_hearing
     @hearing_details = helpers.decorate(details, CdApi::HearingDecorator)
     @hearing_details.current_sitting_day = @hearing_day.sitting_day
     @hearing_details.skip_mapping_counsels_to_defendants = true
@@ -38,6 +38,14 @@ class HearingDaysController < ApplicationController
     logger.error e
     Sentry.capture_exception(e)
     redirect_to controller: :errors, action: :internal_error
+  end
+
+  def load_hearing
+    CdApi::Hearing.find(@hearing_day.hearing.id, params: { date: @hearing_day.date })
+  rescue ActiveResource::ResourceNotFound
+    # If the hearing has not been resulted, HMCTS will return a 404
+    # We want to handle this gracefully
+    CdApi::Hearing.new
   end
 
   def load_hearing_events
