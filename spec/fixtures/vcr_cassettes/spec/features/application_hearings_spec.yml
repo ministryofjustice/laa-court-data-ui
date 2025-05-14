@@ -57,6 +57,61 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 16:01:48 GMT
 - request:
     method: get
+    uri: http://localhost:9292/api/internal/v2/hearings/unresulted-hearing-id/event_log/2019-10-23
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 5bf411da-cc46-4264-9fe6-66c8b797f42e
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"02bccbc258433b5222a18c05174b3ca9"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.026645'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.32, instantiation.active_record;dur=0.03,
+        process_action.action_controller;dur=18.77
+      Content-Length:
+      - '411'
+    body:
+      encoding: UTF-8
+      string: '{"hearing_id":"0304d126-d773-41fd-af01-83e017cecd80","has_active_hearing":true,"events":[{"id":"4c523134-3e18-407a-94e5-6e9ad5cb507c","definition_id":"641d53b9-8ae9-40ac-be90-c884bcfd47f8","defence_counsel_id":null,"recorded_label":"Est
+        ut cum placeat.","event_time":"2019-10-23T11:20:46.344+00:00","last_modified_time":"2025-03-21T11:20:46.344+00:00","alterable":false,"note":"Praesentium
+        animi hic dolore."}]}'
+  recorded_at: Mon, 14 Apr 2025 16:01:48 GMT
+- request:
+    method: get
     uri: http://localhost:8000/v2/hearings/e36d5c82-a0c7-43af-9a6c-9f52f9659aa0?date=2025-04-10
     body:
       encoding: US-ASCII
