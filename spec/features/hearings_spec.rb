@@ -3,7 +3,7 @@
 RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_summary, type: :feature do
   let(:user) { create(:user) }
   let(:api_url_v2) { CdApi::BaseModel.site }
-  let(:api_events_path) { "#{api_url_v2}hearings/#{hearing_id}/hearing_events?date=2019-10-23" }
+  let(:api_events_path) { "#{Cda::BaseModel.site}hearings/#{hearing_id}/event_log/2019-10-23" }
   let(:api_data_path) { "#{api_url_v2}hearings/#{hearing_id}" }
   let(:case_reference) { 'TEST12345' }
   let(:api_summary_path) { "#{api_url_v2}case_summaries/#{case_reference}" }
@@ -38,8 +38,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
       end
 
       it 'requests data for hearing events' do
-        expect(a_request(:get, api_events_path)
-                 .with(query: { date: '2019-10-23' }))
+        expect(a_request(:get, api_events_path))
           .to have_been_made.once
       end
 
@@ -73,8 +72,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
       end
 
       it 'requests data for hearing events' do
-        expect(a_request(:get, api_events_path)
-                 .with(query: { date: '2019-10-23' }))
+        expect(a_request(:get, api_events_path))
           .to have_been_made.once
       end
 
@@ -118,8 +116,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
       end
 
       it 'requests data for hearing events' do
-        expect(a_request(:get, api_events_path)
-                 .with(query: { date: '2019-10-23' }))
+        expect(a_request(:get, api_events_path))
           .to have_been_made.once
       end
 
