@@ -44,6 +44,6 @@ class Search
             if: proc { |search| search.filter.eql?('defendant_name') }
 
   def execute
-    CdApi::SearchService.call(filter:, term:, dob:)
+    CourtDataAdaptor::DefendantSearchService.call(filter:, term:, dob:)
   end
 end

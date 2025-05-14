@@ -71,7 +71,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     expect(page).to be_accessible.within '#main-content'
   end
 
-  scenario 'with error from CDA', :stub_defendants_failed_search do
+  scenario 'with error from CDA', :stub_defendants_failed_case_search do
     visit '/'
 
     choose 'A case by URN'
