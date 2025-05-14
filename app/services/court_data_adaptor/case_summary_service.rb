@@ -2,17 +2,24 @@
 
 module CourtDataAdaptor
   class CaseSummaryService
-    def self.call(params:)
-      new(params).call
+    def self.call(urn)
+      new(urn).call
     end
 
-    def initialize(params)
-      @urn = params[:urn]
+    def initialize(urn)
+      @urn = urn
     end
 
     def call
       Rails.logger.info 'V2_SEARCH_CASE_SUMMARIES'
-      Cda::ProsecutionCase.find(@urn)
+
+      response = Cda::ProsecutionCaseSearchResponse.find(
+        :one,
+        params: { filter: { prosecution_case_reference: @urn } },
+        from: '/api/internal/v2/prosecution_cases'
+      )
+
+      response.results.first
     end
   end
 end

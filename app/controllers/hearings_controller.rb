@@ -33,7 +33,7 @@ class HearingsController < ApplicationController
   private
 
   def load_and_authorize_search
-    @prosecution_case_search = CourtDataAdaptor::CaseSummaryService.new(urn: prosecution_case_reference)
+    @prosecution_case_search = CourtDataAdaptor::CaseSummaryService.new(prosecution_case_reference)
     authorize! :create, @prosecution_case_search
   end
 
