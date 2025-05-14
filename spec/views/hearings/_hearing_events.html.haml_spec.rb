@@ -8,7 +8,7 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_events) do
-    Cda::HearingEventLog.load(hearing_id, hearing_day.strftime('%F'))
+    Cda::HearingEventLog.find_from_hearing_and_date(hearing_id, hearing_day.strftime('%F'))
   end
 
   context 'without hearing_events', :stub_v2_hearing_events_empty do
