@@ -29,7 +29,7 @@ RSpec.configure do |config|
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
-      body: load_json_stub('cda/cases_body.json')
+      body: load_json_stub('cda/internal_v2_prosecution_cases_response.json')
     )
   end
 
@@ -72,7 +72,7 @@ RSpec.configure do |config|
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
-      body: load_json_stub('cda/cases_body.json')
+      body: load_json_stub('cda/internal_v2_prosecution_cases_response.json')
     )
 
     stub_request(
