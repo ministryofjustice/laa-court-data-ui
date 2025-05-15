@@ -27,7 +27,7 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
     end
 
     it 'decorates the hearings cracked_ineffective_trial' do
-      decorator_class = CdApi::CrackedIneffectiveTrialDecorator
+      decorator_class = Cda::CrackedIneffectiveTrialDecorator
       expect(decorator.cracked_ineffective_trial).to be_an_instance_of(decorator_class)
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
 
     before do
       allow(hearing).to receive(:hearing).and_return(hearing_details)
-      allow(CdApi::HearingDetails::DefenceCounselsListService).to receive(:call)
+      allow(Cda::HearingDetails::DefenceCounselsListService).to receive(:call)
         .with(mapped_defence_counsels, map_counsels_to_defendants: true).and_return([])
       allow_any_instance_of(described_class).to receive(:current_sitting_day).and_return(day)
     end
@@ -65,13 +65,13 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
     it 'maps defendants in defence counsels' do
       decorator.defence_counsels_list
       decorator.hearing.defence_counsels.each do |defence_counsel|
-        expect(defence_counsel.defendants).to all(be_a(CdApi::Defendant))
+        expect(defence_counsel.defendants).to all(be_a(Cda::BaseModel))
       end
     end
 
-    it 'calls CdApi::Hearing::DefenceCounselsListService' do
+    it 'calls Cda::Hearing::DefenceCounselsListService' do
       decorator.defence_counsels_list
-      service = CdApi::HearingDetails::DefenceCounselsListService
+      service = Cda::HearingDetails::DefenceCounselsListService
       expect(service).to have_received(:call).with(hearing_details.defence_counsels,
                                                    map_counsels_to_defendants: true)
     end
@@ -125,7 +125,7 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
       it 'maps defendants in defence counsels' do
         decorator.defence_counsels_list
         decorator.hearing.defence_counsels.each do |defence_counsel|
-          expect(defence_counsel.defendants).to all(be_a(CdApi::Defendant))
+          expect(defence_counsel.defendants).to all(be_a(Cda::BaseModel))
         end
       end
     end
@@ -141,13 +141,13 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
       end
 
       before do
-        allow(CdApi::HearingDetails::DefenceCounselsListService).to receive(:call)
+        allow(Cda::HearingDetails::DefenceCounselsListService).to receive(:call)
           .with([defence_counsel1], map_counsels_to_defendants: true).and_return([])
         decorator.defence_counsels_list
       end
 
       it 'does not add the defence counsel to the list' do
-        service = CdApi::HearingDetails::DefenceCounselsListService
+        service = Cda::HearingDetails::DefenceCounselsListService
         expect(service).to have_received(:call).with([defence_counsel1], map_counsels_to_defendants: true)
       end
     end
@@ -159,7 +159,7 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
       end
 
       before do
-        allow(CdApi::HearingDetails::DefenceCounselsListService).to receive(:call)
+        allow(Cda::HearingDetails::DefenceCounselsListService).to receive(:call)
           .with([], map_counsels_to_defendants: true).and_return([])
       end
 
@@ -174,7 +174,7 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
 
       it 'does not add the defence counsel to the list' do
         decorator.defence_counsels_list
-        service = CdApi::HearingDetails::DefenceCounselsListService
+        service = Cda::HearingDetails::DefenceCounselsListService
         expect(service).to have_received(:call).with([], map_counsels_to_defendants: true)
       end
     end

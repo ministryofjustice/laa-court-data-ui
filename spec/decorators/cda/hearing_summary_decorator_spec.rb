@@ -50,8 +50,8 @@ RSpec.describe Cda::HearingSummaryDecorator, type: :decorator do
 
         let(:defendants) { [defendant1, defendant2] }
 
-        let(:defendant1) { build(:defendant, first_name: 'John', middle_name: '', last_name: 'Doe') }
-        let(:defendant2) { build(:defendant, first_name: 'Jane', middle_name: '', last_name: 'Doe') }
+        let(:defendant1) { build(:defendant_summary, first_name: 'John', middle_name: '', last_name: 'Doe') }
+        let(:defendant2) { build(:defendant_summary, first_name: 'Jane', middle_name: '', last_name: 'Doe') }
 
         before do
           decorator.defendants = defendants
@@ -78,7 +78,7 @@ RSpec.describe Cda::HearingSummaryDecorator, type: :decorator do
           build(:defence_counsel, first_name: 'Bob', last_name: 'Smith', status: 'QC',
                                   defendants: [defendant.id])
         end
-        let(:defendant) { build(:defendant) }
+        let(:defendant) { build(:defendant_summary) }
         let(:hearing_summary) { build(:hearing_summary, defence_counsels:, defendants: []) }
 
         it 'returns defendant id' do
@@ -186,7 +186,7 @@ RSpec.describe Cda::HearingSummaryDecorator, type: :decorator do
       let(:hearing_day1) { build(:hearing_day) }
       let(:hearing_day2) { build(:hearing_day) }
 
-      it { is_expected.to all(be_instance_of(CdApi::HearingDayDecorator)) }
+      it { is_expected.to all(be_instance_of(Cda::HearingDayDecorator)) }
     end
 
     context 'with no hearing_days' do

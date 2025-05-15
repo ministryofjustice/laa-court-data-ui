@@ -8,7 +8,7 @@ module Cda
 
     def cracked_ineffective_trial
       @cracked_ineffective_trial ||= decorate(object.hearing.cracked_ineffective_trial,
-                                              CdApi::CrackedIneffectiveTrialDecorator)
+                                              Cda::CrackedIneffectiveTrialDecorator)
     end
 
     def defence_counsels_list
@@ -42,7 +42,7 @@ module Cda
     end
 
     def decorated_defence_counsels
-      service = CdApi::HearingDetails::DefenceCounselsListService
+      service = Cda::HearingDetails::DefenceCounselsListService
       @decorated_defence_counsels ||= service.call(
         mapped_defence_counsels, map_counsels_to_defendants: !skip_mapping_counsels_to_defendants
       )

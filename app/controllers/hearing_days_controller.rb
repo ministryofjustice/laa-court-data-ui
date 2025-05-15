@@ -45,7 +45,7 @@ class HearingDaysController < ApplicationController
   rescue ActiveResource::ResourceNotFound
     # If the hearing has not been resulted, HMCTS will return a 404
     # We want to handle this gracefully
-    CdApi::Hearing.new
+    Cda::Hearing.new
   end
 
   def load_hearing_events
