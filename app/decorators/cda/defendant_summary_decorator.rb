@@ -1,11 +1,5 @@
-# frozen_string_literal: true
-
 module Cda
   class DefendantSummaryDecorator < BaseDecorator
-    def name
-      [first_name, middle_name, last_name].compact.reject(&:empty?).join(' ')
-    end
-
     def linked?
       maat_reference.present? && maat_reference.first != 'Z'
     end
