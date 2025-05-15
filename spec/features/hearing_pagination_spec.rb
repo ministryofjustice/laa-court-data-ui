@@ -2,9 +2,8 @@
 
 RSpec.feature 'Hearing pagination', :vcr, type: :feature do
   let(:user) { create(:user) }
-  let(:case_urn) { 'TEST12345' }
-  let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-  let(:hearing_id_from_fixture) { '345be88a-31cf-4a30-9de3-da98e973367e' }
+  let(:case_urn) { 'IGWTRAXVHK' }
+  let(:defendant_id) { '4bcf26f9-3c6f-440a-94aa-7d084bcd715' }
 
   before do
     sign_in user
@@ -12,27 +11,28 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
   end
 
   def hearing_page_url(page_param)
-    %r{hearings/.*\?column=date&direction=asc&page=#{page_param}&urn=TEST12345}
+    %r{hearings/.*\?column=date&direction=asc&page=#{page_param}&urn=IGWTRAXVHK}
   end
 
   context 'when viewing case details' do
     scenario 'user can see links to hearing pages' do
       within :table, 'Hearings' do
-        expect(page).to have_link('23/10/2019', href: hearing_page_url(0), class: 'govuk-link')
-        expect(page).to have_link('26/10/2019', href: hearing_page_url(1), class: 'govuk-link')
-        expect(page).to have_link('31/10/2019', href: hearing_page_url(4), class: 'govuk-link')
+        expect(page).to have_link('01/05/2025', href: hearing_page_url(0), class: 'govuk-link')
+        expect(page).to have_link('07/05/2025', href: hearing_page_url(1), class: 'govuk-link')
+        expect(page).to have_link('08/05/2025', href: hearing_page_url(2), class: 'govuk-link')
       end
     end
 
     scenario 'user can navigate to a paginated hearing page' do
-      click_link_or_button('23/10/2019')
+      click_link_or_button('01/05/2025')
+
       expect(page).to have_current_path(hearing_page_url(0), url: true)
     end
   end
 
   context 'when on hearing page' do
     context 'with first hearing\'s day displayed' do
-      before { click_link_or_button('23/10/2019') }
+      before { click_link_or_button('01/05/2025') }
 
       scenario 'user can see Next page navigation only' do
         expect(page).to have_no_link('Previous')
@@ -41,7 +41,7 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
     end
 
     context 'with a "middle" hearing\'s day displayed' do
-      before { click_link_or_button('26/10/2019') }
+      before { click_link_or_button('07/05/2025') }
 
       scenario 'user can see Next page and Previous navigation' do
         expect(page).to have_link('Previous')
@@ -50,12 +50,7 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
     end
 
     context 'with a last hearing\'s day displayed' do
-      before do
-        click_link_or_button('31/10/2019')
-        # There are 3 sitting days for this hearing
-        click_link_or_button('Next')
-        click_link_or_button('Next')
-      end
+      before { click_link_or_button('08/05/2025') }
 
       scenario 'user can see Previous page navigation only' do
         expect(page).to have_link('Previous')
@@ -66,34 +61,34 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
 
   context 'when navigating between hearing days' do
     context 'when on first page' do
-      before { click_link_or_button('23/10/2019') }
+      before { click_link_or_button('01/05/2025') }
 
       scenario 'user can navigate to next hearing day' do
         click_link_or_button 'Next'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '26/10/2019')
+          .and have_css('h1', text: '07/05/2025')
 
         click_link_or_button 'Next'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '27/10/2019')
+          .and have_css('h1', text: '08/05/2025')
       end
     end
 
     context 'when on last page' do
-      before { click_link_or_button('31/10/2019') }
+      before { click_link_or_button('08/05/2025') }
 
       scenario 'user can navigate to previous hearing days' do
         click_link_or_button 'Previous'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '28/10/2019')
+          .and have_css('h1', text: '07/05/2025')
 
         click_link_or_button 'Previous'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '27/10/2019')
+          .and have_css('h1', text: '01/05/2025')
       end
     end
   end

@@ -1,0 +1,613 @@
+{
+    "hearing": {
+      "id": "b3b49aa6-452c-4f20-8929-9c8aa1a632b7",
+      "jurisdiction_type": "MAGISTRATES",
+      "court_centre": {
+        "id": "b6a48a7e-8eb8-435d-8f93-1ef86a6daee2",
+        "name": "Ealing Magistrates' Court",
+        "welsh_name": null,
+        "room_id": "893976de-7fc2-3d10-a1eb-265ac87be8f6",
+        "room_name": "Courtroom 01",
+        "welsh_room_name": null,
+        "welsh_court_centre": null,
+        "short_oucode": "B01FA",
+        "oucode_l2_code": "1",
+        "code": "B01FA00",
+        "address": {
+          "address_1": "The Court House",
+          "address_2": "Green Man Lane",
+          "address_3": "Ealing",
+          "address_4": "London",
+          "address_5": "",
+          "postcode": "W13 0SD"
+        }
+      },
+      "hearing_language": "ENGLISH",
+      "has_shared_results": true,
+      "court_applications": [
+        {
+          "id": "baad8367-ab48-44fd-bd66-67482dc362b4",
+          "received_date": "2021-03-29",
+          "application_reference": "90GDAPPS502",
+          "respondents": [
+            {
+              "id": "9cec1ff1-93a7-4964-9a5e-38e38b6e361e",
+              "synonym": null,
+              "summons_required": null,
+              "notification_required": null
+            }
+          ],
+          "judicial_results": [
+            {
+              "id": "9ed4cd0c-203c-4c5c-b3ac-38168530b92e",
+              "label": "Legal Aid Transfer Refused",
+              "is_adjournment_result": false,
+              "is_financial_result": false,
+              "is_convicted_result": false,
+              "is_available_for_court_extract": true,
+              "qualifier": null,
+              "text": "Legal Aid Transfer Refused\nReasons testing reason for LATR",
+              "cjs_code": "4601",
+              "ordered_date": "2021-03-29",
+              "prompts": [
+                {
+                  "type_id": "29970ab4-99a6-48dd-bc7a-bfa68edef13e",
+                  "label": "Reasons",
+                  "welsh_label": null,
+                  "is_available_for_court_extract": true,
+                  "value": "testing reason for LATR",
+                  "welsh_value": null,
+                  "qualifier": null,
+                  "duration_sequence": null,
+                  "prompt_sequence": 100,
+                  "prompt_reference": "reasons",
+                  "total_penalty_points": null,
+                  "is_financial_imposition": true,
+                  "usergroups": null
+                }
+              ],
+              "post_hearing_custody_status": null,
+              "wording": null
+            }
+          ],
+          "plea": null,
+          "verdict": null,
+          "type": {
+            "id": "74b72f6f-414a-3464-a4a2-d91397b4c439",
+            "code": "LA12505",
+            "description": "Application for transfer of legal aid",
+            "legislation": "Pursuant to Regulation 14 of the Criminal Legal Aid (Determinations by a Court and Choice of Representative) Regulations 2013.",
+            "category_code": "CO",
+            "link_type": "LINKED",
+            "jurisdiction": "EITHER",
+            "appeal_flag": false,
+            "summons_template_type": "NOT_APPLICABLE",
+            "valid_from": null,
+            "valid_to": null,
+            "applicant_appellant_flag": false,
+            "plea_applicable_flag": false,
+            "offence_active_order": "NOT_APPLICABLE",
+            "commr_of_oath_flag": false,
+            "breach_type": "NOT_APPLICABLE",
+            "court_of_appeal_flag": false,
+            "court_extract_avl_flag": true,
+            "listing_notif_template": null,
+            "boxwork_notif_template": null,
+            "type_welsh": null,
+            "legislation_welsh": null,
+            "prosecutor_third_party_flag": false,
+            "spi_out_applicable_flag": true,
+            "hearing_code": null
+          }
+        }
+      ],
+      "hearing_type": {
+        "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776",
+        "description": "First hearing",
+        "welsh_description": null
+      },
+      "hearing_days": [
+        {
+          "sitting_day": "2021-03-29T09:01:00.000Z",
+          "has_shared_results": null
+        }
+      ],
+      "judiciary": [
+        {
+          "title": "Miss",
+          "first_name": "Antigoni",
+          "middle_name": null,
+          "last_name": "Efstathiou",
+          "type": "Magistrate",
+          "is_deputy": "False",
+          "is_bench_chairman": "True"
+        },
+        {
+          "title": "Mrs",
+          "first_name": "Janette Felicity",
+          "middle_name": null,
+          "last_name": "Ackerley",
+          "type": "Magistrate",
+          "is_deputy": "True",
+          "is_bench_chairman": "False"
+        }
+      ],
+      "prosecution_counsels": [
+        {
+          "title": "",
+          "first_name": "john",
+          "middle_name": "",
+          "last_name": "smith",
+          "status": "junior",
+          "prosecution_cases": [
+            "810a1f9e-3614-481c-9e53-7ee658f05aca"
+          ],
+          "attendance_days": [
+            "2021-03-29",
+            "2019-10-23"
+          ]
+        },
+        {
+          "title": "",
+          "first_name": "Jane",
+          "middle_name": "",
+          "last_name": "Doe",
+          "status": "junior",
+          "prosecution_cases": [
+            "810a1f9e-3614-481c-9e53-7ee658f05aca"
+          ],
+          "attendance_days": [
+            "2021-03-29",
+            "2019-10-23"
+          ]
+        }
+      ],
+      "defence_counsels": [
+        {
+          "title": "",
+          "first_name": "mark",
+          "middle_name": "",
+          "last_name": "jones",
+          "status": "junior",
+          "attendance_days": [
+            "2021-03-29",
+            "2019-10-23"
+          ],
+          "defendants": [
+            "b39400d5-046f-4588-9268-bfc47c40cafb"
+          ]
+        },
+        {
+          "title": "",
+          "first_name": "david",
+          "middle_name": "",
+          "last_name": "williams",
+          "status": "junior",
+          "attendance_days": [
+            "2021-03-29",
+            "2019-10-23"
+          ],
+          "defendants": [
+            "fc449b85-35e5-47a5-9670-3d1d30891108"
+          ]
+        }
+      ],
+      "cracked_ineffective_trial": {
+        "id": null,
+        "code": null,
+        "description": "Test Cracked Trial",
+        "type": null,
+        "date": null
+      },
+      "prosecution_cases": [
+        {
+          "id": "810a1f9e-3614-481c-9e53-7ee658f05acb",
+          "prosecution_case_identifier": {
+            "case_urn": "90GDAPPS502",
+            "prosecution_authority_id": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "prosecution_authority_code": "DERPF",
+            "prosecution_authority_name": "Derbyshire Police",
+            "contact": null
+          },
+          "status": "ACTIVE",
+          "statement_of_facts": null,
+          "statement_of_facts_welsh": null,
+          "defendants": [
+            {
+              "id": "b39400d5-046f-4588-9268-bfc47c40cafb",
+              "prosecution_case_id": "810a1f9e-3614-481c-9e53-7ee658f05acb",
+              "offences": [
+                {
+                  "id": "a538be81-f1d8-4ca2-a15f-31ac2648526d",
+                  "code": "CA03011",
+                  "title": "Possess a    television set with intent to install / use without a licence",
+                  "legislation": "Contrary to section 363(3)(a) and (4) of the Communications Act 2003.",
+                  "mode_of_trial": "Summary",
+                  "wording": "Has a violent past and fear that he will commit further offences and\n                interfere with witnesse",
+                  "start_date": "2020-02-09",
+                  "order_index": 2,
+                  "allocation_decision": {
+                    "date": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null,
+                    "mot_reason_id": null,
+                    "mot_reason_description": null,
+                    "mot_reason_code": null,
+                    "court_indicated_sentence": null,
+                    "sequence_number": null
+                  },
+                  "plea": {
+                    "date": null,
+                    "value": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null,
+                    "application_id": null,
+                    "delegated_powers": null
+                  },
+                  "verdict": {
+                    "date": null,
+                    "type": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null
+                  },
+                  "judicial_results": [
+                    {
+                      "id": "726b614e-520a-47ba-a12b-d52161b835be",
+                      "label": "Absolute discharge",
+                      "is_adjournment_result": false,
+                      "is_financial_result": false,
+                      "is_convicted_result": true,
+                      "is_available_for_court_extract": true,
+                      "qualifier": null,
+                      "text": "Absolute discharge\n",
+                      "cjs_code": "1017",
+                      "ordered_date": "2021-03-29",
+                      "prompts": [],
+                      "post_hearing_custody_status": null,
+                      "wording": null
+                    }
+                  ],
+                  "laa_application": {
+                    "reference": "6011162",
+                    "id": "31a80a9a-fb91-3043-a08b-d738abc86ef5",
+                    "status_code": "AP",
+                    "description": "Application Pending",
+                    "status_date": "2021-03-29",
+                    "effective_start_date": null,
+                    "effective_end_date": null,
+                    "laa_contract_number": null
+                  },
+                  "proceedings_concluded": null
+                },
+                {
+                  "id": "ec64fa20-8808-46d6-b6d1-50b1ed1b68b3",
+                  "code": "CA03010",
+                  "title": "Use / install a television set without a licence",
+                  "legislation": "Contrary to section 363(2) and (4) of the Communications Act 2003.",
+                  "mode_of_trial": "Summary",
+                  "wording": "Has a violent past and fear that he will commit further offences and\n                interfere with witnesse",
+                  "start_date": "2020-02-09",
+                  "order_index": 1,
+                  "allocation_decision": {
+                    "date": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null,
+                    "mot_reason_id": null,
+                    "mot_reason_description": null,
+                    "mot_reason_code": null,
+                    "court_indicated_sentence": null,
+                    "sequence_number": null
+                  },
+                  "plea": {
+                    "date": null,
+                    "value": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null,
+                    "application_id": null,
+                    "delegated_powers": null
+                  },
+                  "verdict": {
+                    "date": null,
+                    "type": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null
+                  },
+                  "judicial_results": [
+                    {
+                      "id": "f31550e0-a6b1-4a1d-94e9-46293dba09a7",
+                      "label": "Absolute discharge",
+                      "is_adjournment_result": false,
+                      "is_financial_result": false,
+                      "is_convicted_result": true,
+                      "is_available_for_court_extract": true,
+                      "qualifier": null,
+                      "text": "Absolute discharge\n",
+                      "cjs_code": "1017",
+                      "ordered_date": "2021-03-29",
+                      "prompts": [],
+                      "post_hearing_custody_status": null,
+                      "wording": null
+                    }
+                  ],
+                  "laa_application": {
+                    "reference": "6011162",
+                    "id": "31a80a9a-fb91-3043-a08b-d738abc86ef5",
+                    "status_code": "AP",
+                    "description": "Application Pending",
+                    "status_date": "2021-03-29",
+                    "effective_start_date": null,
+                    "effective_end_date": null,
+                    "laa_contract_number": null
+                  },
+                  "proceedings_concluded": null
+                }
+              ],
+              "defence_organisation": {
+                "organisation": {
+                  "name": null,
+                  "incorporation_number": null,
+                  "registered_charity_number": null,
+                  "address": {
+                    "address_1": null,
+                    "address_2": null,
+                    "address_3": null,
+                    "address_4": null,
+                    "address_5": null,
+                    "postcode": null
+                  },
+                  "contact": {
+                    "home": null,
+                    "work": null,
+                    "mobile": null,
+                    "email_primary": null,
+                    "email_secondary": null,
+                    "fax": null
+                  }
+                },
+                "laa_contract_number": null
+              },
+              "defendant_details": {
+                "person_details": {
+                  "title": "Mr",
+                  "first_name": "Leon",
+                  "middle_name": null,
+                  "last_name": "Goodwin",
+                  "date_of_birth": "1990-01-01",
+                  "gender": "MALE",
+                  "documentation_language_needs": "ENGLISH",
+                  "nino": null,
+                  "occupation": null,
+                  "occupation_code": null
+                },
+                "arrest_summons_number": "TFL",
+                "bail_conditions": "",
+                "bail_status": {
+                  "code": "A",
+                  "description": "Not applicable"
+                }
+              },
+              "judicial_results": [],
+              "legal_aid_status": "Pending",
+              "proceedings_concluded": null,
+              "isYouth": null
+            }
+          ]
+        },
+        {
+          "id": "810a1f9e-3614-481c-9e53-7ee658f05aca",
+          "prosecution_case_identifier": {
+            "case_urn": "90GDAPPS502",
+            "prosecution_authority_id": "bdc190e7-c939-37ca-be4b-9f615d6ef40e",
+            "prosecution_authority_code": "DERPF",
+            "prosecution_authority_name": "Derbyshire Police",
+            "contact": null
+          },
+          "status": "ACTIVE",
+          "statement_of_facts": null,
+          "statement_of_facts_welsh": null,
+          "defendants": [
+            {
+              "id": "b39400d5-046f-4588-9268-bfc47c40cafb",
+              "prosecution_case_id": "810a1f9e-3614-481c-9e53-7ee658f05aca",
+              "offences": [
+                {
+                  "id": "a538be81-f1d8-4ca2-a15f-31ac2648526d",
+                  "code": "CA03011",
+                  "title": "Possess a    television set with intent to install / use without a licence",
+                  "legislation": "Contrary to section 363(3)(a) and (4) of the Communications Act 2003.",
+                  "mode_of_trial": "Summary",
+                  "wording": "Has a violent past and fear that he will commit further offences and\n                interfere with witnesse",
+                  "start_date": "2020-02-09",
+                  "order_index": 2,
+                  "allocation_decision": {
+                    "date": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null,
+                    "mot_reason_id": null,
+                    "mot_reason_description": null,
+                    "mot_reason_code": null,
+                    "court_indicated_sentence": null,
+                    "sequence_number": null
+                  },
+                  "plea": {
+                    "date": null,
+                    "value": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null,
+                    "application_id": null,
+                    "delegated_powers": null
+                  },
+                  "verdict": {
+                    "date": null,
+                    "type": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null
+                  },
+                  "judicial_results": [
+                    {
+                      "id": "726b614e-520a-47ba-a12b-d52161b835be",
+                      "label": "Absolute discharge",
+                      "is_adjournment_result": false,
+                      "is_financial_result": false,
+                      "is_convicted_result": true,
+                      "is_available_for_court_extract": true,
+                      "qualifier": null,
+                      "text": "Absolute discharge\n",
+                      "cjs_code": "1017",
+                      "ordered_date": "2021-03-29",
+                      "prompts": [],
+                      "post_hearing_custody_status": null,
+                      "wording": null
+                    }
+                  ],
+                  "laa_application": {
+                    "reference": "6011162",
+                    "id": "31a80a9a-fb91-3043-a08b-d738abc86ef5",
+                    "status_code": "AP",
+                    "description": "Application Pending",
+                    "status_date": "2021-03-29",
+                    "effective_start_date": null,
+                    "effective_end_date": null,
+                    "laa_contract_number": null
+                  },
+                  "proceedings_concluded": null
+                },
+                {
+                  "id": "ec64fa20-8808-46d6-b6d1-50b1ed1b68b3",
+                  "code": "CA03010",
+                  "title": "Use / install a television set without a licence",
+                  "legislation": "Contrary to section 363(2) and (4) of the Communications Act 2003.",
+                  "mode_of_trial": "Summary",
+                  "wording": "Has a violent past and fear that he will commit further offences and\n                interfere with witnesse",
+                  "start_date": "2020-02-09",
+                  "order_index": 1,
+                  "allocation_decision": {
+                    "date": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null,
+                    "mot_reason_id": null,
+                    "mot_reason_description": null,
+                    "mot_reason_code": null,
+                    "court_indicated_sentence": null,
+                    "sequence_number": null
+                  },
+                  "plea": {
+                    "date": null,
+                    "value": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null,
+                    "application_id": null,
+                    "delegated_powers": null
+                  },
+                  "verdict": {
+                    "date": null,
+                    "type": null,
+                    "originating_hearing_id": null,
+                    "offence_id": null
+                  },
+                  "judicial_results": [
+                    {
+                      "id": "f31550e0-a6b1-4a1d-94e9-46293dba09a7",
+                      "label": "Absolute discharge",
+                      "is_adjournment_result": false,
+                      "is_financial_result": false,
+                      "is_convicted_result": true,
+                      "is_available_for_court_extract": true,
+                      "qualifier": null,
+                      "text": "Absolute discharge\n",
+                      "cjs_code": "1017",
+                      "ordered_date": "2021-03-29",
+                      "prompts": [],
+                      "post_hearing_custody_status": null,
+                      "wording": null
+                    }
+                  ],
+                  "laa_application": {
+                    "reference": "6011162",
+                    "id": "31a80a9a-fb91-3043-a08b-d738abc86ef5",
+                    "status_code": "AP",
+                    "description": "Application Pending",
+                    "status_date": "2021-03-29",
+                    "effective_start_date": null,
+                    "effective_end_date": null,
+                    "laa_contract_number": null
+                  },
+                  "proceedings_concluded": null
+                }
+              ],
+              "defence_organisation": {
+                "organisation": {
+                  "name": null,
+                  "incorporation_number": null,
+                  "registered_charity_number": null,
+                  "address": {
+                    "address_1": null,
+                    "address_2": null,
+                    "address_3": null,
+                    "address_4": null,
+                    "address_5": null,
+                    "postcode": null
+                  },
+                  "contact": {
+                    "home": null,
+                    "work": null,
+                    "mobile": null,
+                    "email_primary": null,
+                    "email_secondary": null,
+                    "fax": null
+                  }
+                },
+                "laa_contract_number": null
+              },
+              "defendant_details": {
+                "person_details": {
+                  "title": "Mr",
+                  "first_name": "David",
+                  "middle_name": null,
+                  "last_name": "Blaine",
+                  "date_of_birth": "1990-01-01",
+                  "gender": "MALE",
+                  "documentation_language_needs": "ENGLISH",
+                  "nino": null,
+                  "occupation": null,
+                  "occupation_code": null
+                },
+                "arrest_summons_number": "TFL",
+                "bail_conditions": "",
+                "bail_status": {
+                  "code": "A",
+                  "description": "Not applicable"
+                }
+              },
+              "judicial_results": [],
+              "legal_aid_status": "Pending",
+              "proceedings_concluded": null,
+              "isYouth": null
+            }
+          ]
+        }
+      ],
+      "defendant_judicial_results": [],
+      "defendant_attendance": [
+        {
+          "defendant_id": "b39400d5-046f-4588-9268-bfc47c40cafb",
+          "attendance_days": [
+            {
+              "day": "2021-03-29",
+              "attendance_type": null
+            }
+          ]
+        },
+        {
+          "defendant_id": "fc449b85-35e5-47a5-9670-3d1d30891108",
+          "attendance_days": [
+            {
+              "day": "2021-03-29",
+              "attendance_type": null
+            }
+          ]
+        }
+      ]
+    },
+    "shared_time": "2021-03-29T10:29:48.253Z[UTC]"
+  }

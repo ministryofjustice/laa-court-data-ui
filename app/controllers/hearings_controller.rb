@@ -38,7 +38,9 @@ class HearingsController < ApplicationController
   end
 
   def set_hearing
-    @hearing ||= decorate_hearing(CdApi::Hearing.find(hearing_id, params: hearing_params))
+    hearing = Cda::Hearing.find(hearing_id)
+
+    @hearing ||= decorate_hearing(hearing)
     @hearing&.current_sitting_day = paginator.current_item.hearing_date.strftime('%F')
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page
