@@ -11,7 +11,7 @@
 RSpec/IndexedLet:
   Exclude:
     - 'spec/decorators/cda/case_summary_decorator_spec.rb'
-    - 'spec/decorators/cd_api/hearing_decorator_spec.rb'
+    - 'spec/decorators/cda/hearing_decorator_spec.rb'
     - 'spec/decorators/cda/hearing_summary_decorator_spec.rb'
     - 'spec/decorators/court_application_decorator_spec.rb'
     - 'spec/decorators/hearing_decorator_spec.rb'

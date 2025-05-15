@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-module CdApi
+module Cda
   class HearingDecorator < BaseDecorator
     attr_accessor :current_sitting_day, :skip_mapping_counsels_to_defendants
 
