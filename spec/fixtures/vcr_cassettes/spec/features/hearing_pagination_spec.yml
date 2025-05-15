@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-23
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -68,7 +68,7 @@ http_interactions:
   recorded_at: Thu, 10 Apr 2025 13:58:32 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-26
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -296,7 +296,7 @@ http_interactions:
   recorded_at: Thu, 10 Apr 2025 13:58:33 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-31
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -519,7 +519,7 @@ http_interactions:
   recorded_at: Thu, 10 Apr 2025 13:58:33 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-28
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -569,7 +569,7 @@ http_interactions:
   recorded_at: Thu, 10 Apr 2025 13:58:34 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-11-01
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -619,7 +619,7 @@ http_interactions:
   recorded_at: Thu, 10 Apr 2025 14:08:27 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-11-02
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -669,7 +669,7 @@ http_interactions:
   recorded_at: Thu, 10 Apr 2025 14:08:28 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-27
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -1083,7 +1083,7 @@ http_interactions:
   recorded_at: Fri, 09 May 2025 10:36:37 GMT
 - request:
     method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=IGWTRAXVHK
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
     body:
       encoding: US-ASCII
       string: ''
@@ -1131,7 +1131,7 @@ http_interactions:
       - '0'
     body:
       encoding: UTF-8
-      string: '{"total_results": 1, "results": [{"prosecution_case_reference":"IGWTRAXVHK","case_status":"INACTIVE","defendant_summaries":[{"id":"3797ee37-cd75-4250-a3bf-b0bfbca4a3f3","first_name":"Jorge","middle_name":"Pacocha","last_name":"McClure","arrest_summons_number":"ZFRTWZ8DE3F9","date_of_birth":"2004-09-11","national_insurance_number":"BK351556C","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+      string: '{"total_results": 1, "results": [{"prosecution_case_reference":"TEST12345","case_status":"INACTIVE","defendant_summaries":[{"id":"3797ee37-cd75-4250-a3bf-b0bfbca4a3f3","first_name":"Jorge","middle_name":"Pacocha","last_name":"McClure","arrest_summons_number":"ZFRTWZ8DE3F9","date_of_birth":"2004-09-11","national_insurance_number":"BK351556C","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
         only","start_date":"2019-10-17","title":"Causing or inciting prostitution
         for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Criminal
         Law Act 1967 s.5","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"bcbd13a4-6a83-4123-b4a6-062caba2b311","status_code":"AP","status_date":"2025-03-10","description":"FAKE
@@ -1214,7 +1214,7 @@ http_interactions:
       - '0'
     body:
       encoding: UTF-8
-      string: '{"total_results": 1, "results": [{"prosecution_case_reference":"IGWTRAXVHK","case_status":"INACTIVE","defendant_summaries":[{"id":"3797ee37-cd75-4250-a3bf-b0bfbca4a3f3","first_name":"Jorge","middle_name":"Pacocha","last_name":"McClure","arrest_summons_number":"ZFRTWZ8DE3F9","date_of_birth":"2004-09-11","national_insurance_number":"BK351556C","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
+      string: '{"total_results": 1, "results": [{"prosecution_case_reference":"TEST12345","case_status":"INACTIVE","defendant_summaries":[{"id":"3797ee37-cd75-4250-a3bf-b0bfbca4a3f3","first_name":"Jorge","middle_name":"Pacocha","last_name":"McClure","arrest_summons_number":"ZFRTWZ8DE3F9","date_of_birth":"2004-09-11","national_insurance_number":"BK351556C","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"1e533b87-2828-4cc8-9c68-9e5007957ae5","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
         only","start_date":"2019-10-17","title":"Causing or inciting prostitution
         for gain","wording":"Random string","proceedings_concluded":false,"legislation":"Criminal
         Law Act 1967 s.5","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"bcbd13a4-6a83-4123-b4a6-062caba2b311","status_code":"AP","status_date":"2025-03-10","description":"FAKE

@@ -64,7 +64,7 @@ RSpec.describe 'hearings_v2', type: :request do
   end
 
   context 'when server error occurs on hearing summary', :stub_v2_hearing_summary_error,
-          :stub_case_search do
+          :stub_case_search, :stub_internal_v2_hearing_results do
     before do
       sign_in user
       get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
