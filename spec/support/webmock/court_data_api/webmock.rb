@@ -54,31 +54,31 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_defendants_case_search) do
     stub_request(
-      :get, %r{http.*/v2/defendants\?urn=.*}
+      :get, %r{http.*/v2/prosecution_cases\?filter.*}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
-      body: load_json_stub('cd_api/defendants_body.json')
+      body: load_json_stub('cda/internal_v2_prosecution_cases_response.json')
     )
   end
 
   config.before(:each, :stub_defendants_ref_search) do
     stub_request(
-      :get, %r{http.*/v2/defendants\?(asn|nino)=.*}
+      :get, %r{http.*/v2/prosecution_cases\?filter.*}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
-      body: load_json_stub('cd_api/defendants_body.json')
+      body: load_json_stub('cda/internal_v2_prosecution_cases_response.json')
     )
   end
 
   config.before(:each, :stub_defendants_name_search) do
     stub_request(
-      :get, %r{http.*/v2/defendants\?dob=.*&name=.*}
+      :get, %r{http.*/v2/prosecution_cases\?filter.*}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
-      body: load_json_stub('cd_api/defendants_body.json')
+      body: load_json_stub('cda/internal_v2_prosecution_cases_response.json')
     )
   end
 
@@ -91,6 +91,16 @@ RSpec.configure do |config|
       )
   end
 
+  config.before(:each, :stub_no_v2_case_results) do
+    stub_request(
+      :get, %r{http.*/v2/prosecution_cases\?filter.*}
+    ).to_return(
+      status: 200,
+      body: '{ "total_results": 0, "results": [] }',
+      headers: { 'Content-Type' => 'application/json' }
+    )
+  end
+
   config.before(:each, :stub_defendants_failed_search) do
     stub_request(:get, %r{http.*/v2/defendants})
       .to_return(
@@ -100,10 +110,20 @@ RSpec.configure do |config|
       )
   end
 
+  config.before(:each, :stub_defendants_failed_case_search) do
+    stub_request(
+      :get, %r{http.*/v2/prosecution_cases\?filter.*}
+    ).to_return(
+      status: 400,
+      headers: { 'Content-Type' => 'application/json' },
+      body: ''
+    )
+  end
+
   config.before(:each, :stub_defendants_cda_failed) do
-    stub_request(:get, %r{http.*/v2/defendants})
+    stub_request(:get, %r{http.*/v2/prosecution_cases\?filter.*})
       .to_return(
-        status: 424,
+        status: 500,
         body: '',
         headers: { 'Content-Type' => 'application/json' }
       )
@@ -169,9 +189,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_hearing_events) do
     stub_request(
-      :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
-    ).with(
-      query: { date: '2019-10-23' }
+      :get, %r{/v2/hearings/#{hearing_id}/event_log/2019-10-23}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -181,9 +199,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_hearing_events_empty) do
     stub_request(
-      :get,  %r{/v2/hearings/#{hearing_id}/hearing_events}
-    ).with(
-      query: { date: '2019-10-23' }
+      :get, %r{/v2/hearings/#{hearing_id}/event_log/2019-10-23}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -193,9 +209,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_hearing_events_not_found) do
     stub_request(
-      :get,  %r{/v2/hearings/#{hearing_id}/hearing_events}
-    ).with(
-      query: { date: '2019-10-23' }
+      :get, %r{/v2/hearings/#{hearing_id}/event_log/2019-10-23}
     ).to_return(
       status: 404
     )
@@ -203,9 +217,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_hearing_events_error) do
     stub_request(
-      :get, %r{/v2/hearings/#{hearing_id}/hearing_events}
-    ).with(
-      query: { date: '2019-10-23' }
+      :get, %r{/v2/hearings/#{hearing_id}/event_log/2019-10-23}
     ).to_return(
       status: 500
     )

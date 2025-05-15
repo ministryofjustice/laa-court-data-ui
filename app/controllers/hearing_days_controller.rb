@@ -49,7 +49,8 @@ class HearingDaysController < ApplicationController
   end
 
   def load_hearing_events
-    @hearing_events = CdApi::HearingEvents.find(@hearing_day.hearing.id, { date: @hearing_day.date })
+    @hearing_events = Cda::HearingEventLog.find_from_hearing_and_date(params[:hearing_id],
+                                                                      @hearing_day.date)
   rescue ActiveResource::ResourceNotFound
     logger.warn "No hearing events found for hearing #{params[:hearing_id]}"
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e

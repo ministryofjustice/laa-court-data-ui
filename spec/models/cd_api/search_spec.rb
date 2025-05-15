@@ -33,10 +33,10 @@ RSpec.describe Search, type: :model do
   end
 
   describe '#execute' do
-    let(:cdapi_search_service) { CdApi::SearchService }
+    let(:cda_search_service) { CourtDataAdaptor::DefendantSearchService }
 
     before do
-      allow(cdapi_search_service).to receive(:call).with(any_args).and_return([])
+      allow(cda_search_service).to receive(:call).with(any_args).and_return([])
     end
 
     context 'when filter is defendant_reference' do
@@ -50,7 +50,7 @@ RSpec.describe Search, type: :model do
 
       it 'calls defendant query object' do
         search_instance.execute
-        expect(cdapi_search_service).to have_received(:call).with({ filter:, term:, dob: nil })
+        expect(cda_search_service).to have_received(:call).with({ filter:, term:, dob: nil })
       end
 
       it 'returns result' do
@@ -68,12 +68,12 @@ RSpec.describe Search, type: :model do
 
       before do
         allow(Rails.configuration.x.court_data_api_config).to receive(:uri).and_return('http://localhost:8000/v2')
-        allow(cdapi_search_service).to receive(:call).with(any_args).and_return([cd_api_defendant])
+        allow(cda_search_service).to receive(:call).with(any_args).and_return([cd_api_defendant])
       end
 
       it 'calls defendant query object' do
         search_instance.execute
-        expect(cdapi_search_service).to have_received(:call).with({ filter:, term:, dob: nil })
+        expect(cda_search_service).to have_received(:call).with({ filter:, term:, dob: nil })
       end
 
       it 'returns result' do
@@ -94,7 +94,7 @@ RSpec.describe Search, type: :model do
 
       it 'calls defendant query object' do
         search_instance.execute
-        expect(cdapi_search_service).to have_received(:call).with({ filter:, term:, dob: })
+        expect(cda_search_service).to have_received(:call).with({ filter:, term:, dob: })
       end
 
       it 'returns result' do
@@ -108,10 +108,10 @@ RSpec.describe Search, type: :model do
       let(:filter) { 'case_reference' }
       let(:term) { 'TEST12345' }
       let(:dob) { Date.parse('30-06-1973') }
-      let(:cdapi_search_service) { CdApi::SearchService }
+      let(:cda_search_service) { CourtDataAdaptor::DefendantSearchService }
 
       before do
-        allow(cdapi_search_service).to receive(:call).with(any_args).and_raise(
+        allow(cda_search_service).to receive(:call).with(any_args).and_raise(
           ActiveResource::BadRequest, ''
         )
       end
@@ -127,10 +127,10 @@ RSpec.describe Search, type: :model do
       let(:filter) { 'case_reference' }
       let(:term) { 'TEST12345' }
       let(:dob) { Date.parse('30-06-1973') }
-      let(:cdapi_search_service) { CdApi::SearchService }
+      let(:cda_search_service) { CourtDataAdaptor::DefendantSearchService }
 
       before do
-        allow(cdapi_search_service).to receive(:call).with(any_args).and_raise(
+        allow(cda_search_service).to receive(:call).with(any_args).and_raise(
           ActiveResource::ServerError, 'Failed.'
         )
       end

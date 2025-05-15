@@ -12,6 +12,7 @@ module CourtDataAdaptor
       property :pleas, type: :plea_collection, default: []
       property :mode_of_trial, type: :string
       property :mode_of_trial_reasons, type: :mode_of_trial_reason_collection, default: []
+      property :start_date, type: :string
     end
   end
 end
