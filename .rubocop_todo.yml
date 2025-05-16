@@ -24,4 +24,4 @@ RSpec/IndexedLet:
     - 'spec/views/hearings/_hearing_events.html.haml_spec.rb'
     - 'spec/views/prosecution_cases/_cracked_ineffective_trial.html.haml_spec.rb'
     - 'spec/views/prosecution_cases/_hearing_summaries.html.haml_spec.rb'
-    - 'spec/views/prosecution_cases/cd_api/_hearing_summaries.html.haml_spec.rb'
+    - 'spec/views/prosecution_cases/_hearing_summaries.html.haml_spec.rb'

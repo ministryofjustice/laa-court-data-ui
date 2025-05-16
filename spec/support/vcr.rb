@@ -28,13 +28,12 @@ VCR.configure do |config|
   config.ignore_request do |request|
     uri = URI(request.uri)
     cda = '/api/'
-    cdapi = '/v2/'
     [
       uri.path == '/oauth/token',
       uri.path == '/session',
       uri.path == '/__identify__',
       [
-        !uri.path.start_with?(cda, cdapi)
+        !uri.path.start_with?(cda)
       ].all?,
       [
         uri.host.eql?('127.0.0.1'),

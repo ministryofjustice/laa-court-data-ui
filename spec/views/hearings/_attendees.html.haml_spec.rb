@@ -10,7 +10,7 @@ RSpec.describe 'hearings/_attendees', type: :view do
   let(:decorated_hearing) { view.decorate(hearing, Cda::HearingDecorator) }
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
-  let(:hearing) { CdApi::Hearing.find(hearing_id, params: { date: hearing_day.strftime('%F') }) }
+  let(:hearing) { Cda::Hearing.find(hearing_id) }
 
   not_available_text = /Not available/
   not_available_test = 'displays not available'

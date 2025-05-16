@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe 'prosecution_cases/cd_api/_hearing_summaries.html.haml', type: :view do
+RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
   subject(:render_partial) do
-    render partial: 'prosecution_cases/cd_api/hearing_summaries',
+    render partial: 'prosecution_cases/hearing_summaries',
            locals: { case_summary: decorated_case_summary, column: 'date',
                      direction: 'asc' }
   end

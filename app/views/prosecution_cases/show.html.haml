@@ -2,10 +2,10 @@
 
 .govuk-grid-row
   .govuk-grid-column-full
-    = render partial: 'prosecution_cases/cd_api/overall_defendants', locals: { case_summary: prosecution_case }
+    = render partial: 'prosecution_cases/overall_defendants', locals: { case_summary: prosecution_case }
 
-    = render partial: 'prosecution_cases/cd_api/hearing_summaries', locals: { case_summary: prosecution_case }
+    = render partial: 'prosecution_cases/hearing_summaries', locals: { case_summary: prosecution_case }
 
     - if Rails.configuration.x.display_raw_responses
-      = render partial: 'prosecution_cases/cd_api/raw_response',
+      = render partial: 'prosecution_cases/raw_response',
                locals: { case_summary: prosecution_case }

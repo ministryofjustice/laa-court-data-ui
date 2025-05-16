@@ -46,11 +46,6 @@ module LaaCourtDataUi
     config.x.display_raw_responses = %w[enabled true].include?(ENV.fetch("DISPLAY_RAW_RESPONSES", nil))
     config.action_mailer.deliver_later_queue_name = :mailers
 
-    # CDAPI
-    config.x.court_data_api_config.uri = ENV.fetch("COURT_DATA_API_URL", nil)
-    config.x.court_data_api_config.user = ENV.fetch("COURT_DATA_API_USERNAME", nil)
-    config.x.court_data_api_config.secret = ENV.fetch("COURT_DATA_API_SECRET", nil)
-
     config.active_support.to_time_preserves_timezone = :zone
   end
 end

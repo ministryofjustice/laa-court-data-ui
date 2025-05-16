@@ -3,7 +3,4 @@ en:
   prosecution_case:
     breadcrumb: Case %{prosecution_case_reference}
     show:
-      cracked_ineffective_trial:
-        caption: Case results
-        heading: Case results
       failure: There was a problem getting the information you requested. If this problem persists, please contact the IT Helpdesk on 0800 9175148.

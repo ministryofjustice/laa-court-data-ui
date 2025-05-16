@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
-  factory :hearing, class: 'CdApi::Hearing' do
+  factory :hearing, class: 'Cda::Hearing' do
     hearing { {} }
     shared_time { '2022-07-22T15:31:42.832Z[UTC]' }
 
@@ -11,7 +11,7 @@ FactoryBot.define do
     end
   end
 
-  factory :hearing_details, class: 'CdApi::Hearing' do
+  factory :hearing_details, class: 'Cda::Hearing' do
     id { '79b9aced-83ec-4189-ae40-4db5b522cd67' }
     jurisdiction_type { 'MAGISTRATES' }
     court_centre { {} }
