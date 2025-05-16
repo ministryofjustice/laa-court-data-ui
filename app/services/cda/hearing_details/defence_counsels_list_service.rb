@@ -50,7 +50,7 @@ module Cda
         name(**person_details) || I18n.t('generic.not_available')
       end
 
-      def name(first_name:, middle_name:, last_name:, **)
+      def name(first_name:, last_name:, middle_name: nil, **)
         return nil unless first_name || middle_name || last_name
 
         [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
