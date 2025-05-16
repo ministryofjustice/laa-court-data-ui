@@ -14,3 +14,4 @@ identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-uat-green
 cert: laa-court-data-ui-uat-cert
 featureFlags:
   showAppeals: false
+  maintenanceMode: false
