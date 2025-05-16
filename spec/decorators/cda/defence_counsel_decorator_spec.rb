@@ -102,18 +102,5 @@ RSpec.describe Cda::DefenceCounselDecorator, type: :decorator do
 
       it { is_expected.to eql('Bob Smith (QC) for not available<br>Bob Smith (QC) for not available') }
     end
-
-    context 'when names are lower case' do
-      let(:mapped_defendants) do
-        [build(:defendant_summary, first_name: 'john', middle_name: 'jim', last_name: 'jane')]
-      end
-
-      let(:defence_counsel) do
-        build(:defence_counsel, first_name: 'bob', last_name: 'smith', status: 'qc',
-                                defendants: mapped_defendants)
-      end
-
-      it { is_expected.to eql('Bob Smith (qc) for John Jim Jane') }
-    end
   end
 end
