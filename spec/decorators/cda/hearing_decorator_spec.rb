@@ -20,7 +20,7 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
   describe '#cracked_ineffective_trial' do
     let(:hearing_details) { build(:hearing_details, cracked_ineffective_trial:) }
     let(:hearing) { build(:hearing, hearing: hearing_details) }
-    let(:cracked_ineffective_trial) { instance_double(CdApi::CrackedIneffectiveTrial) }
+    let(:cracked_ineffective_trial) { build(:cracked_ineffective_trial) }
 
     before do
       allow(hearing).to receive(:hearing).and_return(hearing_details)

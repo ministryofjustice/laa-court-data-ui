@@ -6,7 +6,7 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
 
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
-  let(:hearing) { CdApi::Hearing.find(hearing_id, params: { date: hearing_day.strftime('%F') }) }
+  let(:hearing) { Cda::Hearing.find(hearing_id) }
 
   context 'with court_applications present', :stub_v2_hearing_data do
     it 'displays the section' do

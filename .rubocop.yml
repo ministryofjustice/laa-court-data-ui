@@ -120,7 +120,6 @@ Rails/FilePath:
 
 Rails/HasManyOrHasOneDependent:
   Exclude:
-    - app/models/cd_api/*
     - app/models/cda/*
 
 Rails/HelperInstanceVariable:
@@ -217,10 +216,6 @@ Rails/I18nLocaleTexts:
 
 RSpec/VerifiedDoubleReference:
   Enabled: false
-
-Style/RedundantStringEscape:
-  Exclude:
-    - app/services/cd_api/reference_parser_service.rb
 
 # Rails updates enforce double quotes, to avoid conflicts with the existing codebase
 # we are enforcing double quotes only on the files listed below
