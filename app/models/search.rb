@@ -43,7 +43,19 @@ class Search
             presence: true,
             if: proc { |search| search.filter.eql?('defendant_name') }
 
+  validate :dob_in_reasonable_time_range
+
   def execute
     CourtDataAdaptor::DefendantSearchService.call(filter:, term:, dob:)
+  end
+
+  private
+
+  def dob_in_reasonable_time_range
+    return unless filter == 'defendant_name'
+
+    return if dob && (150.years.ago.to_date..Date.current).cover?(dob)
+
+    errors.add(:dob, :invalid)
   end
 end
