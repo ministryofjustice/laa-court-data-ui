@@ -31,10 +31,10 @@ RSpec.shared_context 'with multiple hearings and hearing days' do
 
   let(:fake_hearings) do
     [
-      build(:hearing_summary, id: 'hearing-uuid-3').tap { _1.day = hearing3_days.first.to_datetime },
-      build(:hearing_summary, id: 'hearing-uuid-1').tap { _1.day = hearing1_days.first.to_datetime },
-      build(:hearing_summary, id: 'hearing-uuid-1').tap { _1.day = hearing1_days.last.to_datetime },
-      build(:hearing_summary, id: 'hearing-uuid-2').tap { _1.day = hearing2_days.first.to_datetime }
+      build(:hearing_summary, id: 'hearing-uuid-3', day: hearing3_days.first.to_datetime),
+      build(:hearing_summary, id: 'hearing-uuid-1', day: hearing1_days.first.to_datetime),
+      build(:hearing_summary, id: 'hearing-uuid-1', day: hearing1_days.last.to_datetime),
+      build(:hearing_summary, id: 'hearing-uuid-2', day: hearing2_days.first.to_datetime)
     ]
   end
 end
