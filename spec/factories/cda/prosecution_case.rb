@@ -21,4 +21,15 @@ FactoryBot.define do
       end
     end
   end
+
+  factory :hearing_prosecution_case, class: 'Cda::ProsecutionCase' do
+    hearing_details
+
+    id { SecureRandom.uuid }
+    prosecution_case_identifier { {} }
+    status { 'INACTIVE' }
+    statement_of_facts { 'Fuga laudantium tenetur next level et.' }
+    statement_of_facts_welsh { 'Meh pug error et non' }
+    defendants { [] }
+  end
 end

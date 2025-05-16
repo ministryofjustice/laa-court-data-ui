@@ -62,13 +62,12 @@ RSpec.describe Search, type: :model do
       subject(:search_instance) { described_class.new(filter:, term:) }
 
       let(:filter) { 'case_reference' }
-      let(:cd_api_defendant) { instance_double(Cda::Defendant, id: 100) }
+      let(:defendant) { instance_double(Cda::Defendant, id: 100) }
       let(:term) { 'TEST12345' }
       let(:dob) { Date.parse('30-06-1973') }
 
       before do
-        allow(Rails.configuration.x.court_data_api_config).to receive(:uri).and_return('http://localhost:8000/v2')
-        allow(cda_search_service).to receive(:call).with(any_args).and_return([cd_api_defendant])
+        allow(cda_search_service).to receive(:call).with(any_args).and_return([defendant])
       end
 
       it 'calls defendant query object' do
@@ -77,7 +76,7 @@ RSpec.describe Search, type: :model do
       end
 
       it 'returns result' do
-        expect(search_instance.execute.first).to eq(cd_api_defendant)
+        expect(search_instance.execute.first).to eq(defendant)
       end
     end
 
@@ -87,10 +86,6 @@ RSpec.describe Search, type: :model do
       let(:filter) { 'defendant_name' }
       let(:term) { 'Maxie Turcotte Raynor' }
       let(:dob) { Date.parse('30-06-1973') }
-
-      before do
-        allow(Rails.configuration.x.court_data_api_config).to receive(:uri).and_return('http://localhost:8000/v2')
-      end
 
       it 'calls defendant query object' do
         search_instance.execute

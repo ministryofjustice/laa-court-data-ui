@@ -89,7 +89,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
               params:
       end
 
-      it 'sends an unlink request to CDAPI Client' do
+      it 'sends an unlink request to CDA' do
         expect(a_request(:patch, api_request_path)
           .with(body: api_request_payload))
           .to have_been_made.once
@@ -151,7 +151,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
         patch "/defendants/#{defendant_id}", params:
       end
 
-      it 'sends an unlink request to CDAPI Client' do
+      it 'sends an unlink request to CDA' do
         expect(a_request(:patch, api_request_path)
           .with(body: api_request_payload.to_json))
           .to have_been_made.once
@@ -269,7 +269,6 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
 
   context 'when not authenticated' do
     before do
-      allow(Rails.configuration.x.court_data_api_config).to receive(:method_missing).with(:uri).and_return('http://localhost:8000/v2')
       patch "/defendants/#{defendant_id}", params:
     end
 
