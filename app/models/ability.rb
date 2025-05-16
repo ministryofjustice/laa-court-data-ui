@@ -46,14 +46,14 @@ class Ability
 
   def caseworker_abilities
     can_search
-    can_query_cdapi
+    can_query_cda
     can_manage_links
     can_manage_self
   end
 
   def manager_abilities
     can_search
-    can_query_cdapi
+    can_query_cda
     can_manage_links
     can :manage, User
   end
@@ -75,7 +75,7 @@ class Ability
     can :create, :link_maat_reference
   end
 
-  def can_query_cdapi
+  def can_query_cda
     can %i[read], Cda::ProsecutionCase
   end
 

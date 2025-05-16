@@ -112,7 +112,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 16:01:48 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/e36d5c82-a0c7-43af-9a6c-9f52f9659aa0?date=2025-04-10
+    uri: http://localhost:9292/api/internal/v2/hearing_results/e36d5c82-a0c7-43af-9a6c-9f52f9659aa0
     body:
       encoding: US-ASCII
       string: ''
@@ -420,7 +420,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"[\"The property ''#/applicationId'' value \\\"erroring-court-application-id\\\"
         did not match the regex ''[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$''
-        in schema http://justice.gov.uk/core/courts/external/courtsDefinitions.json#\"]"}'
+        in schema http://justice.gov.uk/core/courts/external/courtsDefinitions#\"]"}'
   recorded_at: Fri, 11 Apr 2025 09:52:23 GMT
 - request:
     method: get
@@ -494,7 +494,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/erroring-hearing-id?date=2019-10-23
+    uri: http://localhost:9292/api/internal/v2/hearing_results/erroring-hearing-id
     body:
       encoding: US-ASCII
       string: ''
@@ -573,7 +573,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/unresulted-hearing-id?date=2019-10-23
+    uri: http://localhost:9292/api/internal/v2/hearing_results/unresulted-hearing-id
     body:
       encoding: US-ASCII
       string: ''
@@ -625,7 +625,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/problematic-hearing-id?date=2025-04-10
+    uri: http://localhost:9292/api/internal/v2/hearing_results/problematic-hearing-id
     body:
       encoding: US-ASCII
       string: ''
@@ -704,7 +704,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/problematic-hearing-id?date=2025-04-11
+    uri: http://localhost:9292/api/internal/v2/hearing_results/problematic-hearing-id
     body:
       encoding: US-ASCII
       string: ''
@@ -1094,7 +1094,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 15:46:00 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-23
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -1154,12 +1154,12 @@ http_interactions:
         [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
         true, "notification_required": true}], "judicial_results": [], "plea": null,
         "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
-        "String", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
-        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
-        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
-        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
-        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
-        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        "String", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string",
+        "category_code": "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES",
+        "appeal_flag": true, "summons_template_type": "GENERIC_APPLICATION", "valid_from":
+        "2021-04-01", "valid_to": "2021-04-30", "applicant_appellant_flag": true,
+        "plea_applicable_flag": true, "offence_active_order": "OFFENCE", "commr_of_oath_flag":
+        true, "breach_type": "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
         true, "listing_notif_template": "String", "boxwork_notif_template": "String",
         "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
         true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":
@@ -1180,7 +1180,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 15:58:47 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-23
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -1240,12 +1240,12 @@ http_interactions:
         [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
         true, "notification_required": true}], "judicial_results": [], "plea": null,
         "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
-        "String", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
-        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
-        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
-        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
-        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
-        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        "String", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string",
+        "category_code": "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES",
+        "appeal_flag": true, "summons_template_type": "GENERIC_APPLICATION", "valid_from":
+        "2021-04-01", "valid_to": "2021-04-30", "applicant_appellant_flag": true,
+        "plea_applicable_flag": true, "offence_active_order": "OFFENCE", "commr_of_oath_flag":
+        true, "breach_type": "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
         true, "listing_notif_template": "String", "boxwork_notif_template": "String",
         "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
         true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":

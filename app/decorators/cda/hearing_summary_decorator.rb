@@ -11,7 +11,7 @@ module Cda
     end
 
     def hearing_days
-      @hearing_days ||= decorate_all(object.hearing_days, CdApi::HearingDayDecorator)
+      @hearing_days ||= decorate_all(object.hearing_days, Cda::HearingDayDecorator)
     end
 
     def formatted_estimated_duration
@@ -30,7 +30,7 @@ module Cda
     end
 
     def decorate_defence_counsels
-      decorate_all(mapped_defence_counsels, CdApi::DefenceCounselDecorator) || []
+      decorate_all(mapped_defence_counsels, Cda::DefenceCounselDecorator) || []
     end
 
     def mapped_defence_counsels

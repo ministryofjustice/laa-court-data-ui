@@ -7,7 +7,7 @@ RSpec.describe 'hearings/_attendees', type: :view do
            locals: { hearing: decorated_hearing, hearing_details: decorated_hearing.hearing }
   end
 
-  let(:decorated_hearing) { view.decorate(hearing, CdApi::HearingDecorator) }
+  let(:decorated_hearing) { view.decorate(hearing, Cda::HearingDecorator) }
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
   let(:hearing) { CdApi::Hearing.find(hearing_id, params: { date: hearing_day.strftime('%F') }) }

@@ -24,17 +24,17 @@ RSpec.shared_context 'with multiple hearings to sort' do
   end
 
   let(:hearing1_day1) do
-    CdApi::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-19T10:45:00.000Z'))
+    Cda::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-19T10:45:00.000Z'))
   end
   let(:hearing1_day2) do
-    CdApi::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-20T10:45:00.0s00Z'))
+    Cda::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-20T10:45:00.0s00Z'))
   end
 
   let(:hearing2_day1) do
-    CdApi::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-20T10:00:00.000Z'))
+    Cda::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-20T10:00:00.000Z'))
   end
   let(:hearing3_day1) do
-    CdApi::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-18T11:00:00.000Z'))
+    Cda::HearingDayDecorator.new(build(:hearing_day, sitting_day: '2021-01-18T11:00:00.000Z'))
   end
 
   let(:hearing1_defence_counsel_list) { 'Jammy Dodger (Junior)' }
