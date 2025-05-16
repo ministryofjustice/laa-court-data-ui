@@ -98,4 +98,26 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
 
     expect(page).to be_accessible.within '#main-content'
   end
+
+  scenario 'with invalid date of birth', :vcr do
+    visit '/'
+
+    choose 'A defendant by name and date of birth'
+    click_link_or_button 'Continue'
+    fill_in 'search-term-field', with: 'Mickey Mouse'
+    fill_in 'search_dob_3i', with: '28'
+    fill_in 'search_dob_2i', with: '11'
+    fill_in 'search_dob_1i', with: '28'
+    click_link_or_button 'Search'
+
+    expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
+    expect(page).to have_css('.govuk-error-summary')
+    within '.govuk-error-summary' do
+      expect(page).to have_content('Enter a valid defendant date of birth')
+    end
+
+    expect(page).to have_css('#search-dob-error', text: 'Enter a valid defendant date of birth')
+
+    expect(page).to be_accessible.within '#main-content'
+  end
 end

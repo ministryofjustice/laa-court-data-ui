@@ -72,9 +72,9 @@ RSpec.describe 'Searches', type: :request do
           {
             filter: 'defendant_name',
             term: 'Jammy Dodger',
-            'dob(1i)' => '21',
+            'dob(1i)' => '1987',
             'dob(2i)' => '05',
-            'dob(3i)' => '1987'
+            'dob(3i)' => '21'
           }
         }
       end
