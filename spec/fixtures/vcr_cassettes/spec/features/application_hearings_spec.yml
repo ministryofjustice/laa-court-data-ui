@@ -112,7 +112,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 16:01:48 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/e36d5c82-a0c7-43af-9a6c-9f52f9659aa0?date=2025-04-10
+    uri: http://localhost:9292/api/internal/v2/hearing_results/e36d5c82-a0c7-43af-9a6c-9f52f9659aa0
     body:
       encoding: US-ASCII
       string: ''
@@ -420,7 +420,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"error":"[\"The property ''#/applicationId'' value \\\"erroring-court-application-id\\\"
         did not match the regex ''[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$''
-        in schema http://justice.gov.uk/core/courts/external/courtsDefinitions.json#\"]"}'
+        in schema http://justice.gov.uk/core/courts/external/courtsDefinitions#\"]"}'
   recorded_at: Fri, 11 Apr 2025 09:52:23 GMT
 - request:
     method: get
@@ -494,7 +494,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/erroring-hearing-id?date=2019-10-23
+    uri: http://localhost:9292/api/internal/v2/hearing_results/erroring-hearing-id
     body:
       encoding: US-ASCII
       string: ''
@@ -573,7 +573,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/unresulted-hearing-id?date=2019-10-23
+    uri: http://localhost:9292/api/internal/v2/hearing_results/unresulted-hearing-id
     body:
       encoding: US-ASCII
       string: ''
@@ -625,7 +625,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/problematic-hearing-id?date=2025-04-10
+    uri: http://localhost:9292/api/internal/v2/hearing_results/problematic-hearing-id
     body:
       encoding: US-ASCII
       string: ''
@@ -704,7 +704,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 11:06:05 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/problematic-hearing-id?date=2025-04-11
+    uri: http://localhost:9292/api/internal/v2/hearing_results/problematic-hearing-id
     body:
       encoding: US-ASCII
       string: ''
@@ -1094,7 +1094,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 15:46:00 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-23
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -1154,12 +1154,12 @@ http_interactions:
         [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
         true, "notification_required": true}], "judicial_results": [], "plea": null,
         "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
-        "String", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
-        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
-        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
-        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
-        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
-        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        "String", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string",
+        "category_code": "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES",
+        "appeal_flag": true, "summons_template_type": "GENERIC_APPLICATION", "valid_from":
+        "2021-04-01", "valid_to": "2021-04-30", "applicant_appellant_flag": true,
+        "plea_applicable_flag": true, "offence_active_order": "OFFENCE", "commr_of_oath_flag":
+        true, "breach_type": "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
         true, "listing_notif_template": "String", "boxwork_notif_template": "String",
         "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
         true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":
@@ -1180,7 +1180,7 @@ http_interactions:
   recorded_at: Mon, 14 Apr 2025 15:58:47 GMT
 - request:
     method: get
-    uri: http://localhost:8000/v2/hearings/0304d126-d773-41fd-af01-83e017cecd80?date=2019-10-23
+    uri: http://localhost:9292/api/internal/v2/hearing_results/0304d126-d773-41fd-af01-83e017cecd80
     body:
       encoding: US-ASCII
       string: ''
@@ -1240,12 +1240,12 @@ http_interactions:
         [{"id": "4a327962-9cb9-425a-bb04-48b59274a07b", "synonym": "suspect", "summons_required":
         true, "notification_required": true}], "judicial_results": [], "plea": null,
         "verdict": null, "type": {"id": "c5621357-706e-48e2-bbd9-3fa9068f76ef", "code":
-        "String", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string", "category_code":
-        "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES", "appeal_flag":
-        true, "summons_template_type": "GENERIC_APPLICATION", "valid_from": "2021-04-01",
-        "valid_to": "2021-04-30", "applicant_appellant_flag": true, "plea_applicable_flag":
-        true, "offence_active_order": "OFFENCE", "commr_of_oath_flag": true, "breach_type":
-        "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
+        "String", "description": "COURT APPLICATION DESCRIPTION", "legislation": "string",
+        "category_code": "String", "link_type": "LINKED", "jurisdiction": "MAGISTRATES",
+        "appeal_flag": true, "summons_template_type": "GENERIC_APPLICATION", "valid_from":
+        "2021-04-01", "valid_to": "2021-04-30", "applicant_appellant_flag": true,
+        "plea_applicable_flag": true, "offence_active_order": "OFFENCE", "commr_of_oath_flag":
+        true, "breach_type": "GENERIC_BREACH", "court_of_appeal_flag": true, "court_extract_avl_flag":
         true, "listing_notif_template": "String", "boxwork_notif_template": "String",
         "type_welsh": null, "legislation_welsh": null, "prosecutor_third_party_flag":
         true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":
@@ -1317,63 +1317,6 @@ http_interactions:
       encoding: UTF-8
       string: '{"hearing_id":"0304d126-d773-41fd-af01-83e017cecd80","has_active_hearing":true,"events":[{"id":"4c523134-3e18-407a-94e5-6e9ad5cb507c","definition_id":"641d53b9-8ae9-40ac-be90-c884bcfd47f8","defence_counsel_id":null,"recorded_label":"Est
         ut cum placeat.","event_time":"2019-10-23T11:20:46.344+00:00","last_modified_time":"2025-03-21T11:20:46.344+00:00","alterable":false,"note":"Praesentium
-        animi hic dolore."}]}'
-  recorded_at: Mon, 14 Apr 2025 16:01:48 GMT
-- request:
-    method: get
-    uri: http://localhost:8000/v2/hearings/unresulted-hearing-id/hearing_events?date=2019-10-23
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic <Basic>
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Laa-Transaction-Id:
-      - b451944d-e2a3-4cd5-bae7-4fbaca496116
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Mon, 14 Apr 2025 16:01:47 GMT
-      Server:
-      - uvicorn
-      Content-Length:
-      - '437'
-      Content-Type:
-      - application/json; charset=utf-8
-      Laa-Transaction-Id:
-      - b451944d-e2a3-4cd5-bae7-4fbaca496116
-      Access-Control-Expose-Headers:
-      - Laa-Transaction-Id
-      Cache-Control:
-      - no-store
-      Content-Security-Policy:
-      - default-src 'self'; base-uri 'self'; img-src 'self' fastapi.tiangolo.com data:;
-        style-src 'self' cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' cdn.jsdelivr.net
-        'unsafe-inline'
-      Strict-Transport-Security:
-      - includeSubDomains; preload; max-age=2592000
-      Referrer-Policy:
-      - no-referrer
-      X-Frame-Options:
-      - SAMEORIGIN
-    body:
-      encoding: UTF-8
-      string: '{"hearing_id": "0304d126-d773-41fd-af01-83e017cecd80", "has_active_hearing":
-        true, "events": [{"id": "4c523134-3e18-407a-94e5-6e9ad5cb507c", "definition_id":
-        "641d53b9-8ae9-40ac-be90-c884bcfd47f8", "defence_counsel_id": null, "recorded_label":
-        "Est ut cum placeat.", "event_time": "2019-10-23T11:20:46.344000+00:00", "last_modified_time":
-        "2025-03-21T11:20:46.344000+00:00", "alterable": false, "note": "Praesentium
         animi hic dolore."}]}'
   recorded_at: Mon, 14 Apr 2025 16:01:48 GMT
 recorded_with: VCR 6.3.1

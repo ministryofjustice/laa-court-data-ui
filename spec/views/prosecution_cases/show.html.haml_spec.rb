@@ -5,9 +5,9 @@ RSpec.describe 'prosecution_cases/show.html.haml', type: :view do
     render locals: { prosecution_case: decorated_case_summary }
   end
 
-  let(:decorated_case_summary) { view.decorate(case_summary, CdApi::CaseSummaryDecorator) }
+  let(:decorated_case_summary) { view.decorate(case_summary, Cda::CaseSummaryDecorator) }
   let(:case_summary) do
-    build(:case_summary, prosecution_case_reference: '')
+    build(:prosecution_case, prosecution_case_reference: '')
   end
 
   let(:case_summary_details) do

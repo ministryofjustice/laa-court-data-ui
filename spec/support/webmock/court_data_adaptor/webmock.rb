@@ -25,12 +25,11 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_case_search) do
     stub_request(
-      :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=.*&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
+      :get, %r{http.*/v2/prosecution_cases\?filter.*}
     ).to_return(
       status: 200,
-      body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cda/internal_v2_prosecution_cases_response.json')
     )
   end
 
@@ -69,12 +68,11 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_unlinked) do
     stub_request(
-      :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=#{case_urn}&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
+      :get, %r{http.*/v2/prosecution_cases\?filter.*}
     ).to_return(
       status: 200,
-      body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
+      headers: { 'Content-Type' => 'application/json' },
+      body: load_json_stub('cda/internal_v2_prosecution_cases_response.json')
     )
 
     stub_request(

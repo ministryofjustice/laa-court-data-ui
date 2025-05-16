@@ -5,10 +5,10 @@ RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary,
 
   let(:case_reference) { 'TEST12345' }
   let(:prosecution_case) do
-    build(:case_summary, :with_hearing_summaries,
+    build(:prosecution_case, :with_hearing_summaries,
           prosecution_case_reference: case_reference)
   end
-  let(:decorated_prosecution_case) { view.decorate(prosecution_case, CdApi::CaseSummaryDecorator) }
+  let(:decorated_prosecution_case) { view.decorate(prosecution_case, Cda::CaseSummaryDecorator) }
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
   let(:hearing_events) do
@@ -16,7 +16,7 @@ RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary,
   end
   let(:hearing) do
     view.decorate(CdApi::Hearing.find(hearing_id,
-                                      params: { date: hearing_day.strftime('%F') }), CdApi::HearingDecorator)
+                                      params: { date: hearing_day.strftime('%F') }), Cda::HearingDecorator)
   end
   let(:paginator) do
     HearingPaginator.new(decorated_prosecution_case, column: 'date', direction: 'asc', page: '0')

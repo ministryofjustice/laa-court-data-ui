@@ -16,7 +16,7 @@ class ProsecutionCasesController < ApplicationController
   private
 
   def load_and_authorize_search
-    authorize! :read, CdApi::CaseSummary
+    authorize! :read, Cda::ProsecutionCase
   end
 
   def set_prosecution_case
@@ -31,7 +31,7 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def build_prosecution_case
-    @prosecution_case ||= helpers.decorate(search_results, CdApi::CaseSummaryDecorator)
+    @prosecution_case ||= helpers.decorate(search_results, Cda::CaseSummaryDecorator)
     update_prosecution_case
   end
 
@@ -41,7 +41,7 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def search_results
-    @search_results ||= CdApi::CaseSummary.find(urn)
+    @search_results ||= CourtDataAdaptor::CaseSummaryService.call(urn)
   end
 
   def urn

@@ -11,8 +11,8 @@ RSpec.shared_examples 'perform search' do
   it { is_expected.to be_able_to(%i[new create], Search) }
 end
 
-RSpec.shared_examples 'query v2 CDAPI' do
-  it { is_expected.to be_able_to(%i[read], CdApi::CaseSummary) }
+RSpec.shared_examples 'query v2 CDA' do
+  it { is_expected.to be_able_to(%i[read], Cda::ProsecutionCase) }
 end
 
 RSpec.shared_examples 'perform hearing search' do
@@ -51,7 +51,7 @@ RSpec.describe Ability, type: :model do
     it { is_expected.not_to be_able_to(%i[new create], SearchFilter) }
     it { is_expected.not_to be_able_to(%i[new create], Search) }
     it { is_expected.not_to be_able_to(%i[show], CourtDataAdaptor::Query::Hearing) }
-    it { is_expected.not_to be_able_to(%i[read], CdApi::CaseSummary) }
+    it { is_expected.not_to be_able_to(%i[read], Cda::ProsecutionCase) }
     it { is_expected.not_to be_able_to(:create, :link_maat_reference) }
   end
 
@@ -63,7 +63,7 @@ RSpec.describe Ability, type: :model do
     is_able_to 'perform search'
     is_able_to 'perform hearing search'
     is_able_to 'link maat reference'
-    is_able_to 'query v2 CDAPI'
+    is_able_to 'query v2 CDA'
   end
 
   context 'when a manager' do
@@ -75,7 +75,7 @@ RSpec.describe Ability, type: :model do
     is_able_to 'perform search'
     is_able_to 'perform hearing search'
     is_able_to 'link maat reference'
-    is_able_to 'query v2 CDAPI'
+    is_able_to 'query v2 CDA'
   end
 
   context 'when an admin' do
@@ -86,7 +86,7 @@ RSpec.describe Ability, type: :model do
     is_able_to 'perform search'
     is_able_to 'perform hearing search'
     is_able_to 'link maat reference'
-    is_able_to 'query v2 CDAPI'
+    is_able_to 'query v2 CDA'
   end
 end
 # rubocop:enable RSpec/EmptyExampleGroup

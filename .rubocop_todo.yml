@@ -10,14 +10,14 @@
 # Configuration parameters: Max, AllowedIdentifiers, AllowedPatterns.
 RSpec/IndexedLet:
   Exclude:
-    - 'spec/decorators/cd_api/case_summary_decorator_spec.rb'
-    - 'spec/decorators/cd_api/hearing_decorator_spec.rb'
-    - 'spec/decorators/cd_api/hearing_summary_decorator_spec.rb'
+    - 'spec/decorators/cda/case_summary_decorator_spec.rb'
+    - 'spec/decorators/cda/hearing_decorator_spec.rb'
+    - 'spec/decorators/cda/hearing_summary_decorator_spec.rb'
     - 'spec/decorators/court_application_decorator_spec.rb'
     - 'spec/decorators/hearing_decorator_spec.rb'
     - 'spec/decorators/prosecution_case_decorator_spec.rb'
     - 'spec/helpers/hearing_paginator_spec.rb'
-    - 'spec/services/cd_api/hearing_details/defence_counsels_list_service_spec.rb'
+    - 'spec/services/cda/hearing_details/defence_counsels_list_service_spec.rb'
     - 'spec/support/shared_examples_for_hearings_sorters.rb'
     - 'spec/support/shared_examples_for_hearings_sorters_v2.rb'
     - 'spec/views/hearings/_court_applications.html.haml_spec.rb'

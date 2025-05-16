@@ -5,7 +5,8 @@ require 'court_data_adaptor'
 RSpec.shared_context 'with single hearing and hearing day' do
   let(:hearings) { [hearing] }
   let(:hearing) do
-    CdApi::HearingSummary.new(id: 'hearing-uuid-1', hearing_days: ['2021-01-20T10:00:00.000Z'])
+    build(:hearing_summary, id: 'hearing-uuid-1',
+                            hearing_days: [build(:hearing_day, sitting_day: '2021-01-20T10:00:00.000Z')])
   end
 end
 
@@ -13,15 +14,15 @@ RSpec.shared_context 'with multiple hearings and hearing days' do
   let(:hearings) { [hearing1, hearing2, hearing3] }
 
   let(:hearing1) do
-    CdApi::HearingSummary.new(id: 'hearing-uuid-1', hearing_days: hearing1_days)
+    build(:hearing_summary, id: 'hearing-uuid-1', hearing_days: hearing1_days)
   end
 
   let(:hearing2) do
-    CdApi::HearingSummary.new(id: 'hearing-uuid-2', hearing_days: hearing2_days)
+    build(:hearing_summary, id: 'hearing-uuid-2', hearing_days: hearing2_days)
   end
 
   let(:hearing3) do
-    CdApi::HearingSummary.new(id: 'hearing-uuid-3', hearing_days: hearing3_days)
+    build(:hearing_summary, id: 'hearing-uuid-3', hearing_days: hearing3_days)
   end
 
   let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
@@ -30,10 +31,10 @@ RSpec.shared_context 'with multiple hearings and hearing days' do
 
   let(:fake_hearings) do
     [
-      CdApi::HearingSummary.new(id: 'hearing-uuid-3').tap { _1.day = hearing3_days.first.to_datetime },
-      CdApi::HearingSummary.new(id: 'hearing-uuid-1').tap { _1.day = hearing1_days.first.to_datetime },
-      CdApi::HearingSummary.new(id: 'hearing-uuid-1').tap { _1.day = hearing1_days.last.to_datetime },
-      CdApi::HearingSummary.new(id: 'hearing-uuid-2').tap { _1.day = hearing2_days.first.to_datetime }
+      build(:hearing_summary, id: 'hearing-uuid-3', day: hearing3_days.first.to_datetime),
+      build(:hearing_summary, id: 'hearing-uuid-1', day: hearing1_days.first.to_datetime),
+      build(:hearing_summary, id: 'hearing-uuid-1', day: hearing1_days.last.to_datetime),
+      build(:hearing_summary, id: 'hearing-uuid-2', day: hearing2_days.first.to_datetime)
     ]
   end
 end
@@ -41,10 +42,10 @@ end
 RSpec.describe HearingPaginator, type: :helper do
   subject(:instance) { described_class.new(prosecution_case_decorator) }
 
-  let(:prosecution_case_decorator) { CdApi::CaseSummaryDecorator.new(prosecution_case, view_object) }
+  let(:prosecution_case_decorator) { Cda::CaseSummaryDecorator.new(prosecution_case, view_object) }
 
   let(:prosecution_case) do
-    CdApi::CaseSummary.new(hearings:, prosecution_case_reference: 'ACASEURN')
+    Cda::ProsecutionCase.new(hearing_summaries: hearings, prosecution_case_reference: 'ACASEURN')
   end
 
   let(:hearings) { [] }

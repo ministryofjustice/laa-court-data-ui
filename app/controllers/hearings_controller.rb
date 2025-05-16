@@ -33,7 +33,7 @@ class HearingsController < ApplicationController
   private
 
   def load_and_authorize_search
-    @prosecution_case_search = CdApi::CaseSummaryService.new(urn: prosecution_case_reference)
+    @prosecution_case_search = CourtDataAdaptor::CaseSummaryService.new(prosecution_case_reference)
     authorize! :create, @prosecution_case_search
   end
 
@@ -44,7 +44,7 @@ class HearingsController < ApplicationController
     @hearing&.current_sitting_day = paginator.current_item.hearing_date.strftime('%F')
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page
-    @hearing ||= helpers.decorate(CdApi::Hearing.new, CdApi::HearingDecorator)
+    @hearing ||= helpers.decorate(Cda::Hearing.new, Cda::HearingDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
@@ -77,7 +77,7 @@ class HearingsController < ApplicationController
   end
 
   def decorate_hearing(undecorated_hearing)
-    helpers.decorate(undecorated_hearing, CdApi::HearingDecorator)
+    helpers.decorate(undecorated_hearing, Cda::HearingDecorator)
   end
 
   def hearing_day
@@ -90,7 +90,7 @@ class HearingsController < ApplicationController
 
   def set_prosecution_case
     logger.info 'USING_V2_ENDPOINT_CASE_SUMMARIES'
-    @prosecution_case = helpers.decorate(@prosecution_case_search.call, CdApi::CaseSummaryDecorator)
+    @prosecution_case = helpers.decorate(@prosecution_case_search.call, Cda::CaseSummaryDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))

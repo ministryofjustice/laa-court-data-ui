@@ -1,7 +1,7 @@
 require 'active_resource/base'
 require 'active_resource/log_subscriber'
 
-# This monkey-patch exists because CdApi uses ActiveResource which, by default, logs
+# This monkey-patch exists because we use ActiveResource which, by default, logs
 # all query params of outgoing GET requests. However, our requests include PII that we
 # don't want ending up in the logs (e.g. defendant date of birth). So we need to intercept
 # the log commands and scrub out sensitive query params
