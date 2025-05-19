@@ -25,7 +25,7 @@ RSpec.shared_examples 'invalid unlink_attempt request for CD API' do
   end
 end
 
-RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :request do
+RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request do
   include RSpecHtmlMatchers
 
   before do

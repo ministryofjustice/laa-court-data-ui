@@ -317,7 +317,7 @@ RSpec.configure do |config|
       )
   end
 
-  config.before(:each, :stub_unlink_v2) do
+  config.before(:each, :stub_unlink) do
     stub_request(
       :get,
       %r{http.*/api/internal/v1/defendants/#{defendant_id}\?include=offences}
