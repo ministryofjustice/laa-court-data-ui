@@ -23,4 +23,3 @@ make open
 * [Testing](docs/testing.md)
 * [Monitoring](docs/monitoring.md)
 
-Upload to appeals
