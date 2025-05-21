@@ -1,5 +1,7 @@
 name: Pre Commit Checks
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   precommit:
     runs-on: ubuntu-latest
