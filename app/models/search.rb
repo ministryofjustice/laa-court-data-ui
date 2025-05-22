@@ -39,11 +39,7 @@ class Search
             format: { with: /\A[A-Za-z0-9\s']+\z/ },
             char_length: { minimum: 2 }
 
-  validates :dob,
-            presence: true,
-            if: proc { |search| search.filter.eql?('defendant_name') }
-
-  validate :dob_in_reasonable_time_range
+  validate :dob_validity
 
   def execute
     CourtDataAdaptor::DefendantSearchService.call(filter:, term:, dob:)
@@ -51,11 +47,13 @@ class Search
 
   private
 
-  def dob_in_reasonable_time_range
-    return unless filter == 'defendant_name'
+  def dob_validity
+    return unless filter == 'defendant_name' && !dob&.valid?
 
-    return if dob && (150.years.ago.to_date..Date.current).cover?(dob)
-
-    errors.add(:dob, :invalid)
+    if dob.blank?
+      errors.add(:dob, :blank)
+    else
+      errors.add(:dob, :invalid)
+    end
   end
 end

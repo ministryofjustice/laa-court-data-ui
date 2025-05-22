@@ -44,13 +44,7 @@ class SearchesController < ApplicationController
   end
 
   def dob
-    return @dob if @dob
-    year = search_params['dob(1i)']
-    month = search_params['dob(2i)']
-    day = search_params['dob(3i)']
-    @dob = Date.new(year.to_i, month.to_i, day.to_i) if day.present? && month.present? && year.present?
-  rescue Date::Error
-    nil
+    @dob ||= DateFieldCollection.new(search_params, :dob)
   end
 
   def set_search_options
