@@ -131,21 +131,6 @@ spec:
                 secretKeyRef:
                   name: aws-secrets
                   key: SLACK_ALERTS_WEBHOOK
-            - name: COURT_DATA_API_URL
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: COURT_DATA_API_URL
-            - name: COURT_DATA_API_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: COURT_DATA_API_USERNAME
-            - name: COURT_DATA_API_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: COURT_DATA_API_SECRET
         - name: laa-court-data-ui-metrics
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: Always

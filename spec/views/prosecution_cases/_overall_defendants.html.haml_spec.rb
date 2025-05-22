@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe 'prosecution_cases/cd_api/_overall_defendants.html.haml', type: :view do
+RSpec.describe 'prosecution_cases/_overall_defendants.html.haml', type: :view do
   subject(:render_partial) do
-    render partial: 'prosecution_cases/cd_api/overall_defendants', locals: { results:, case_summary: }
+    render partial: 'prosecution_cases/overall_defendants', locals: { results:, case_summary: }
   end
 
   let(:results) { [case_summary] }
