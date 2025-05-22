@@ -43,6 +43,20 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
+      expect(page).to have_content('Create link to court data')
+    end
+
+    context 'when linking is disabled' do
+      before do
+        allow(FeatureFlag).to receive(:enabled?).with(:maintenance_mode).and_return(false)
+        allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(true)
+      end
+
+      scenario 'page shows without linking options' do
+        visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
+        expect(page).to have_title('Jammy Dodger')
+        expect(page).to have_no_content('Create link to court data')
+      end
     end
 
     scenario 'laa_references page returns to previous page' do
@@ -69,6 +83,20 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
+      expect(page).to have_content('Remove link to court data')
+    end
+
+    context 'when linking is disabled' do
+      before do
+        allow(FeatureFlag).to receive(:enabled?).with(:maintenance_mode).and_return(false)
+        allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(true)
+      end
+
+      scenario 'page shows without linking options' do
+        visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
+        expect(page).to have_title('Jammy Dodger')
+        expect(page).to have_no_content('Remove link to court data')
+      end
     end
   end
 end

@@ -36,6 +36,19 @@ RSpec.feature 'Link court applications' do
       click_on "Create link to court data"
       expect(page).to have_content "Enter a MAAT ID in the correct format"
     end
+
+    context 'when linking is disabled' do
+      before do
+        allow(FeatureFlag).to receive(:enabled?).with(:maintenance_mode).and_return(false)
+        allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(true)
+      end
+
+      scenario 'page shows without linking options' do
+        visit court_application_subject_path(unlinked_court_application_id)
+        expect(page).to have_content "MAAT number"
+        expect(page).to have_no_content "Enter the MAAT ID"
+      end
+    end
   end
 
   context "when there are problems upstream" do
