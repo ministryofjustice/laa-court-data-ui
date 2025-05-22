@@ -2,7 +2,7 @@
   .govuk-heading-l
     - if FeatureFlag.enabled?(:show_appeals)
       = t('search.result.appeals_heading', term: results.size)
-    - elsif dob
-      = t('search.result.heading_with_dob', term: term, dob: l(dob, format: :long))
+    - elsif dob.valid?
+      = t('search.result.heading_with_dob', term: term, dob: l(dob.to_date, format: :long))
     - else
       = t('search.result.heading', term: term)
