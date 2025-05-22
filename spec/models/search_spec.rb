@@ -264,6 +264,20 @@ RSpec.describe Search, type: :model do
         it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:dob, 'Defendant date of birth required') }
       end
+
+      context 'with date in future' do
+        let(:dob) { 1.year.from_now.to_date }
+
+        it { is_expected.not_to be_valid }
+        it { is_expected.to have_activemodel_error_message(:dob, 'Enter a valid defendant date of birth') }
+      end
+
+      context 'with too far in the past' do
+        let(:dob) { 200.years.ago.to_date }
+
+        it { is_expected.not_to be_valid }
+        it { is_expected.to have_activemodel_error_message(:dob, 'Enter a valid defendant date of birth') }
+      end
     end
 
     context 'with defendant reference search' do
