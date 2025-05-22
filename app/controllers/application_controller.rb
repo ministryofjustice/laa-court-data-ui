@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
   protect_from_forgery prepend: true, with: :exception
+  before_action :detect_maintenance_mode
   before_action :authenticate_user!, :set_transaction_id, :set_default_cookies
   check_authorization
 
@@ -64,5 +65,9 @@ class ApplicationController < ActionController::Base
       scope&.set_extra('error_message', errors)
       Sentry.capture_exception(exception)
     end
+  end
+
+  def detect_maintenance_mode
+    render "maintenance_mode/show", layout: false if FeatureFlag.enabled?(:maintenance_mode)
   end
 end

@@ -270,7 +270,6 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink_v2, type: :reques
   context 'when not authenticated' do
     before do
       allow(Rails.configuration.x.court_data_api_config).to receive(:method_missing).with(:uri).and_return('http://localhost:8000/v2')
-      allow(ENV).to receive(:fetch).with('LAA_REFERENCES', false).and_return('true')
       patch "/defendants/#{defendant_id}", params:
     end
 

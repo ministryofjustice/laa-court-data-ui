@@ -16,6 +16,13 @@ make run
 make open
 ```
 
+## Pre-commit hooks
+We have gitleaks set up on this repo. To make it harder to accidentally leak a secret, have it run as a pre-commit hook:
+```
+pip install pre-commit
+pre-commit install
+```
+
 ## Documentation
 
 * [Installation and running](docs/installation.md)
