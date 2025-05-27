@@ -44,7 +44,7 @@ class SearchesController < ApplicationController
   end
 
   def dob
-    @dob ||= DateFieldCollection.new(search_params, :dob)
+    @dob ||= DobFieldCollection.new(search_params)
   end
 
   def set_search_options
