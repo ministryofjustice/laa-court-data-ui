@@ -1,10 +1,7 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-
+/* global Turbo */
 import '../stylesheets/application.scss'
 import '@hotwired/turbo'
+
 import Rails from '@rails/ujs'
 
 // Prevent turbo from intercepting form submissions in ways that don't play nicely
@@ -13,7 +10,7 @@ import Rails from '@rails/ujs'
 //    individual forms
 // 2) This doesn't disable turbo as a whole, so it will still do link-prefetching,
 //    and the turbo-frame system used for the cookie banner will still work.
-Turbo.config.forms.mode = "off"
+Turbo.config.forms.mode = 'off'
 
 Rails.start()
 
