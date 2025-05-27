@@ -328,10 +328,10 @@ jobs:
           account_id: "754256621582"
           dockerfile: "docker/Dockerfile"
           extra_build_args: >-
-            --build-arg APP_BUILD_DATE=${APP_BUILD_DATE}
-            --build-arg APP_BUILD_TAG=${CIRCLE_SHA1}
-            --build-arg APP_GIT_COMMIT=${CIRCLE_SHA1}
-            --build-arg APP_BRANCH_NAME=${CIRCLE_BRANCH}
+            --build-arg BUILD_DATE=${APP_BUILD_DATE}
+            --build-arg BUILD_TAG=${CIRCLE_SHA1}
+            --build-arg COMMIT_ID=${CIRCLE_SHA1}
+            --build-arg APP_BRANCH=${CIRCLE_BRANCH}
 
   deploy-dev:
     executor: cloud-platform-executor
