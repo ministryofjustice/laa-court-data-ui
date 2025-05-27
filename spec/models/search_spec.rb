@@ -7,7 +7,7 @@ RSpec.describe Search, type: :model do
     is_expected.to \
       respond_to(:filters, :filter,
                  :term, :term=,
-                 :dob, :dob=,
+                 :dob=,
                  :execute, :errors, :valid?)
   }
 
@@ -44,7 +44,9 @@ RSpec.describe Search, type: :model do
 
       let(:filter) { 'defendant_reference' }
       let(:term) { [nino, asn].sample }
-      let(:dob) { Date.parse('30-06-1973') }
+      let(:dob) do
+        DobFieldCollection.new({ 'dob(3i)' => '30', 'dob(2i)' => '6', 'dob(1i)' => '1973' })
+      end
       let(:nino) { 'GG121222B' }
       let(:asn) { 'OC22ZJATX15T' }
 
@@ -64,7 +66,9 @@ RSpec.describe Search, type: :model do
       let(:filter) { 'case_reference' }
       let(:defendant) { instance_double(Cda::Defendant, id: 100) }
       let(:term) { 'TEST12345' }
-      let(:dob) { Date.parse('30-06-1973') }
+      let(:dob) do
+        DobFieldCollection.new({ 'dob(3i)' => '30', 'dob(2i)' => '6', 'dob(1i)' => '1973' })
+      end
 
       before do
         allow(cda_search_service).to receive(:call).with(any_args).and_return([defendant])
@@ -85,7 +89,9 @@ RSpec.describe Search, type: :model do
 
       let(:filter) { 'defendant_name' }
       let(:term) { 'Maxie Turcotte Raynor' }
-      let(:dob) { Date.parse('30-06-1973') }
+      let(:dob) do
+        DobFieldCollection.new({ 'dob(3i)' => '30', 'dob(2i)' => '6', 'dob(1i)' => '1973' })
+      end
 
       it 'calls defendant query object' do
         search_instance.execute
@@ -102,7 +108,9 @@ RSpec.describe Search, type: :model do
 
       let(:filter) { 'case_reference' }
       let(:term) { 'TEST12345' }
-      let(:dob) { Date.parse('30-06-1973') }
+      let(:dob) do
+        DobFieldCollection.new({ 'dob(3i)' => '30', 'dob(2i)' => '6', 'dob(1i)' => '1973' })
+      end
       let(:cda_search_service) { CourtDataAdaptor::DefendantSearchService }
 
       before do
@@ -121,7 +129,9 @@ RSpec.describe Search, type: :model do
 
       let(:filter) { 'case_reference' }
       let(:term) { 'TEST12345' }
-      let(:dob) { Date.parse('30-06-1973') }
+      let(:dob) do
+        DobFieldCollection.new({ 'dob(3i)' => '30', 'dob(2i)' => '6', 'dob(1i)' => '1973' })
+      end
       let(:cda_search_service) { CourtDataAdaptor::DefendantSearchService }
 
       before do
@@ -179,7 +189,9 @@ RSpec.describe Search, type: :model do
     context 'with defendant name search' do
       let(:filter) { 'defendant_name' }
       let(:term) { 'Mickey Mouse' }
-      let(:dob) { Date.current }
+      let(:dob) do
+        DobFieldCollection.new({ 'dob(3i)' => '30', 'dob(2i)' => '6', 'dob(1i)' => '1973' })
+      end
 
       context 'with blank filter' do
         let(:filter) { nil }
@@ -266,14 +278,24 @@ RSpec.describe Search, type: :model do
       end
 
       context 'with date in future' do
-        let(:dob) { 1.year.from_now.to_date }
+        let(:date) { 1.year.from_now }
+        let(:dob) do
+          DobFieldCollection.new(
+            { 'dob(3i)' => date.day.to_s, 'dob(2i)' => date.month.to_s, 'dob(1i)' => date.year.to_s }
+          )
+        end
 
         it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:dob, 'Enter a valid defendant date of birth') }
       end
 
       context 'with too far in the past' do
-        let(:dob) { 200.years.ago.to_date }
+        let(:date) { 200.years.ago }
+        let(:dob) do
+          DobFieldCollection.new(
+            { 'dob(3i)' => date.day.to_s, 'dob(2i)' => date.month.to_s, 'dob(1i)' => date.year.to_s }
+          )
+        end
 
         it { is_expected.not_to be_valid }
         it { is_expected.to have_activemodel_error_message(:dob, 'Enter a valid defendant date of birth') }

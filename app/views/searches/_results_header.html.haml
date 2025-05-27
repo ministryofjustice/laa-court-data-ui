@@ -1,8 +1,8 @@
 .govuk-grid-column-two-thirds
   .govuk-heading-l
     - if FeatureFlag.enabled?(:show_appeals)
-      = t('search.result.appeals_heading', term: results.size)
-    - elsif dob
-      = t('search.result.heading_with_dob', term: term, dob: l(dob, format: :long))
+      = t('search.result.appeals_heading', term: results.size, result: t('search.result.result').pluralize(results.length))
+    - elsif dob.valid?
+      = t('search.result.heading_with_dob', term: term, dob: l(dob.to_date, format: :long))
     - else
       = t('search.result.heading', term: term)
