@@ -13,25 +13,26 @@
 
       = hidden_field_tag(:urn, params[:urn])
 
-      = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do
-        = f.govuk_collection_select :reason_code,
-                                    unlink_reasons,
-                                    :code,
-                                    :description,
-                                    options: { include_blank: t('generic.form.select.blank_option') },
-                                    label: { text: t('defendants.form.reason_code.label') }
+      - unless FeatureFlag.enabled?(:no_linking)
+        = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do
+          = f.govuk_collection_select :reason_code,
+                                      unlink_reasons,
+                                      :code,
+                                      :description,
+                                      options: { include_blank: t('generic.form.select.blank_option') },
+                                      label: { text: t('defendants.form.reason_code.label') }
 
-        = f.govuk_text_area :other_reason_text,
-                            label: { text: t('defendants.form.other_reason_text.label') },
-                            hint: { text: t('defendants.form.other_reason_text.hint') },
-                            rows: 5,
-                            max_chars: 500
+          = f.govuk_text_area :other_reason_text,
+                              label: { text: t('defendants.form.other_reason_text.label') },
+                              hint: { text: t('defendants.form.other_reason_text.hint') },
+                              rows: 5,
+                              max_chars: 500
 
-        = f.govuk_submit(t('defendants.form.submit'))
+          = f.govuk_submit(t('defendants.form.submit'))
 
-      .govuk-warning-text
-        %span.govuk-warning-text__icon{ "aria-hidden" => "true" } !
-        %strong.govuk-warning-text__text
-          %span.govuk-warning-text__assistive
-            = t('generic.warning')
-          = t('defendants.unlink.warning')
+        .govuk-warning-text
+          %span.govuk-warning-text__icon{ "aria-hidden" => "true" } !
+          %strong.govuk-warning-text__text
+            %span.govuk-warning-text__assistive
+              = t('generic.warning')
+            = t('defendants.unlink.warning')

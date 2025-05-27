@@ -15,3 +15,4 @@ cert: laa-court-data-ui-dev-cert
 featureFlags:
   showAppeals: true
   maintenanceMode: false
+  noLinking: false

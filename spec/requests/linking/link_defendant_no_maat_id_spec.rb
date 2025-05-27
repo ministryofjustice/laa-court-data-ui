@@ -16,7 +16,7 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
       link_attempt: { defendant_id: } }
   end
 
-  let(:cd_api_request_path) { %r{.*/laa_references} }
+  let(:cda_request_path) { %r{.*/laa_references} }
 
   let(:expected_request_payload) do
     {
@@ -46,7 +46,7 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
 
     context 'with valid params', :stub_v2_link_success do
       it 'sends a link request to the adapter' do
-        expect(a_request(:post, cd_api_request_path)
+        expect(a_request(:post, cda_request_path)
           .with(body: expected_request_payload.to_json))
           .to have_been_made.once
       end

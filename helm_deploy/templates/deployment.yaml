@@ -71,6 +71,8 @@ spec:
               value: "{{ .Values.featureFlags.showAppeals }}"
             - name: MAINTENANCE_MODE
               value: "{{ .Values.featureFlags.maintenanceMode }}"
+            - name: NO_LINKING
+              value: "{{ .Values.featureFlags.noLinking }}"
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
@@ -131,21 +133,6 @@ spec:
                 secretKeyRef:
                   name: aws-secrets
                   key: SLACK_ALERTS_WEBHOOK
-            - name: COURT_DATA_API_URL
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: COURT_DATA_API_URL
-            - name: COURT_DATA_API_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: COURT_DATA_API_USERNAME
-            - name: COURT_DATA_API_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: COURT_DATA_API_SECRET
         - name: laa-court-data-ui-metrics
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: Always

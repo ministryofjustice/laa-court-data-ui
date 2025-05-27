@@ -70,25 +70,26 @@
 
     .govuk-grid-row
       .govuk-grid-column-two-thirds
-        - if @link_status.maat_linked?
-          = govuk_detail(t('defendants.unlink.detail'), open: @form_model.errors.present?) do
-            = f.govuk_collection_select :reason_code,
-                                        UnlinkReason.all,
-                                        :code,
-                                        :description,
-                                        options: { include_blank: t('generic.form.select.blank_option') },
-                                        label: { text: t('defendants.form.reason_code.label') }
+        - unless FeatureFlag.enabled?(:no_linking)
+          - if @link_status.maat_linked?
+            = govuk_detail(t('defendants.unlink.detail'), open: @form_model.errors.present?) do
+              = f.govuk_collection_select :reason_code,
+                                          UnlinkReason.all,
+                                          :code,
+                                          :description,
+                                          options: { include_blank: t('generic.form.select.blank_option') },
+                                          label: { text: t('defendants.form.reason_code.label') }
 
-            = f.govuk_text_area :other_reason_text,
-                                label: { text: t('defendants.form.other_reason_text.label') },
-                                hint: { text: t('defendants.form.other_reason_text.hint') },
-                                rows: 5,
-                                max_chars: 500
+              = f.govuk_text_area :other_reason_text,
+                                  label: { text: t('defendants.form.other_reason_text.label') },
+                                  hint: { text: t('defendants.form.other_reason_text.hint') },
+                                  rows: 5,
+                                  max_chars: 500
 
-            = f.govuk_submit t('defendants.form.submit'), data: { disable_with: 'Unlinking...' }
-        - else
-          = f.govuk_text_field :maat_reference,
-                               label: { text: t('laa_reference.link.form.maat_reference.label') },
-                               hint: { text: t('laa_reference.link.form.maat_reference.hint') }
+              = f.govuk_submit t('defendants.form.submit'), data: { disable_with: 'Unlinking...' }
+          - else
+            = f.govuk_text_field :maat_reference,
+                                 label: { text: t('laa_reference.link.form.maat_reference.label') },
+                                 hint: { text: t('laa_reference.link.form.maat_reference.hint') }
 
-          = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }
+            = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }
