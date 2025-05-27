@@ -6,7 +6,7 @@ en:
         accept_cookies: Accept analytics cookies
         analytics_cookies: We'd also like to use analytics cookies so we can understand how you use the service and make improvements.
         confirmation_accept: You've accepted additional cookies.
-        confirmation_link_to_settings_html: You can <a class="govuk-link" href="%{href}" data-turbo="false">change your cookie settings</a> at any time.
+        confirmation_link_to_settings_html: You can <a class="govuk-link" href="%{href}">change your cookie settings</a> at any time.
         confirmation_reject: You've rejected additional cookies.
         cookie_settings: Cookie settings
         essential_cookies: We use some essential cookies to make this service work.
