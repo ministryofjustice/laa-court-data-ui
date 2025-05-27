@@ -17,7 +17,7 @@ en:
       body_guide_two: double-checking your spelling
     page_title: Search
     result:
-      appeals_heading: "%{term} search results"
+      appeals_heading: "%{term} search %{result}"
       caption: Search results
       defendant:
         arrest_summons_number: ASN
@@ -52,6 +52,7 @@ en:
         heading: Representation orders
         maat_number: MAAT number
         provider: Provider
+      result: result
     term:
       case_reference_label: Unique reference number
       defendant_name_label: Defendant name
