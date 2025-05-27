@@ -25,6 +25,6 @@
                                            legend: { text: 'Remember me', size: 's' },
                                            hint: { text: 'Do you want to be remembered on this computer?' }
 
-        = f.govuk_submit(t('devise.sessions.user.form.submit'), "data-cy": 'login-submit', "data-turbo": 'false')
+        = f.govuk_submit(t('devise.sessions.user.form.submit'), "data-cy": 'login-submit')
 
     = render "devise/shared/links"
