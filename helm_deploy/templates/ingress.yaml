@@ -31,7 +31,7 @@ metadata:
 
       if ($http_spider_name ~* "crawlergo") {
          return 403;
-       }
+      }
 spec:
   ingressClassName: modsec
   rules:
