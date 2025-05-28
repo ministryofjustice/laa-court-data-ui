@@ -79,3 +79,11 @@ Function to return the internal host name of the current service
 {{- define "helm_deploy.internalHostName" -}}
   {{- printf "%s.%s.svc.cluster.local" .Values.nameOverride .Release.Namespace -}}
 {{- end -}}
+
+{{/*
+Create ingress configuration
+*/}}
+{{- define "laa-court-data-ui.ingress" -}}
+  nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.allowIpList }}
+  external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.identifier}}
+{{- end }}
