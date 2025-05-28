@@ -80,14 +80,10 @@ Function to return the internal host name of the current service
   {{- printf "%s.%s.svc.cluster.local" .Values.nameOverride .Release.Namespace -}}
 {{- end -}}
 
-
 {{/*
-Generate the server-snippet for IP allow list and deny all other traffic.
+Create ingress configuration
 */}}
-{{- define "laa-court-data-ui.serverSnippet" -}}
-{{- $allowList := list "51.149.249.0/27" "51.149.249.32/27" "51.149.250.0/24" "51.149.249.0/29" "194.33.249.0/29" "51.149.249.32/29" "194.33.248.0/29" "20.49.214.199/32" "20.49.214.228/32" "35.176.93.186/32" "18.130.148.126/32" "35.176.148.126/32" "18.169.147.172/32" "128.77.75.64/26" "51.149.251.0/24" "51.149.249.64/29" "194.33.192.0/18" -}}
-{{- range $ip := $allowList }}
-allow {{ $ip }};
-{{- end }}
-deny all;
+{{- define "laa-court-data-ui.ingress" -}}
+  nginx.ingress.kubernetes.io/whitelist-source-range: {{ .Values.allowIpList }}
+  external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.identifier}}
 {{- end }}
