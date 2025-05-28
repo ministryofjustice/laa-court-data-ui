@@ -10,7 +10,6 @@ host: dev.view-court-data.service.justice.gov.uk
 cdaHost: https://dev.court-data-adaptor.service.justice.gov.uk/api/internal/v1
 googleAnalyticsId: 'UA-131160087-14'
 displayRawResponses: enabled
-allowIpList: 51.149.249.0/27,51.149.249.32/27,51.149.250.0/24,51.149.249.0/29,194.33.249.0/29,51.149.249.32/29,194.33.248.0/29,20.49.214.199/32,20.49.214.228/32,35.176.93.186/32,18.130.148.126/32,35.176.148.126/32,18.169.147.172/32,128.77.75.64/26,51.149.251.0/24,51.149.249.64/29,194.33.192.0/18
 identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-dev-green
 cert: laa-court-data-ui-dev-cert
 featureFlags:
