@@ -13,6 +13,7 @@ metadata:
     external-dns.alpha.kubernetes.io/set-identifier: {{ .Values.identifier }}
     external-dns.alpha.kubernetes.io/aws-weight: "100"
     nginx.ingress.kubernetes.io/server-snippet: |
+        deny all;
         deny 223.178.211.9;
         deny 143.244.161.10;
         deny 206.72.194.213;
