@@ -24,7 +24,7 @@ gem 'haml-rails', '~> 2.1.0'
 gem 'json_api_client', '~> 1.23'
 gem 'json-schema', '~> 5.1'
 gem 'logstasher'
-gem 'oauth2', '~> 2.0.10'
+gem 'oauth2', '~> 2.0.11'
 gem 'pg', '>= 1.5.9', '< 2.0'
 gem 'prometheus_exporter', '2.2.0'
 gem 'puma', '>= 5.6.4'
@@ -55,7 +55,7 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
-  gem 'selenium-webdriver', '~> 4.32'
+  gem 'selenium-webdriver', '~> 4.33'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
