@@ -10,7 +10,7 @@ import Rails from '@rails/ujs'
 //    individual forms
 // 2) This doesn't disable turbo as a whole, so it will still do link-prefetching,
 //    and the turbo-frame system used for the cookie banner will still work.
-Turbo.config.forms.mode = 'off'
+Turbo.config.forms.mode = 'optin'
 
 Rails.start()
 
