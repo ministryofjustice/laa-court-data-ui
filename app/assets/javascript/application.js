@@ -5,11 +5,13 @@ import '@hotwired/turbo'
 import Rails from '@rails/ujs'
 
 // Prevent turbo from intercepting form submissions in ways that don't play nicely
-// with things like the Rails flash system. Note:
+// with things like the Rails flash system, unless it's explicitly asked for. Note:
 // 1) This avoids the need for having to a add a `data-turbo=false` annotation to
 //    individual forms
 // 2) This doesn't disable turbo as a whole, so it will still do link-prefetching,
 //    and the turbo-frame system used for the cookie banner will still work.
+// 3) the `data-turbo-method="delete" annotation on anchors is controlled by this setting,
+//    so switching this to "off" would disable those.
 Turbo.config.forms.mode = 'optin'
 
 Rails.start()
