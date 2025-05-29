@@ -84,5 +84,5 @@ Function to return the internal host name of the current service
 Function to return a list of whitelisted IPs allowed to access the service.
 */}}
 {{- define "laa-court-data-ui.whitelist" -}}
-{{- .Values.pingdomIps }},{{- .Values.sharedIps }}
+{{- .Values.pingdomIps }},{{- .Values.vpnIps }}
 {{- end -}}
