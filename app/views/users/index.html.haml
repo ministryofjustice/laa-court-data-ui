@@ -1,7 +1,7 @@
 = govuk_page_title(t('users.index.page_title'))
 
 .govuk-grid-row
-  .govuk-grid-column-two-thirds
+  .govuk-grid-column-full
     = link_to t('users.index.new_link'),
               new_user_path,
               class: 'govuk-button',
@@ -38,14 +38,25 @@
                 = user.email
                 %span.govuk-visually-hidden= t('generic.new_window')
             %td.govuk-table__cell
-              = user.last_sign_in_at.try(:to_formatted_s, :short)
+              - if user.last_sign_in_at
+                - if user.last_sign_in_at < 3.months.ago
+                  %span.warning-text &#x25CF;
+                = user.last_sign_in_at.to_formatted_s(:date_only)
+              - else
+                %span
+                  = t('users.generic.never_signed_in')
             %td.govuk-table__cell
               = link_to edit_user_path(user), class: 'govuk-link' do
                 = t('users.index.edit')
                 %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
-              |
+              %br
               = link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
                 = t('users.index.delete')
                 %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
 
-    = link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary'
+    %p.govuk-body.warning-text
+      &#x25CF;
+      %span.govuk-body
+        means that the user has not signed in for more than 3 months.
+
+    = link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary govuk-!-margin-top-5'
