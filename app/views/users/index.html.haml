@@ -44,7 +44,7 @@
                 = user.last_sign_in_at.to_formatted_s(:date_only)
               - else
                 %span
-                  Never signed-in
+                  = t('users.generic.never_signed_in')
             %td.govuk-table__cell
               = link_to edit_user_path(user), class: 'govuk-link' do
                 = t('users.index.edit')
