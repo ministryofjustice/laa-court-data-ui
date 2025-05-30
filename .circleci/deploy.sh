@@ -1,6 +1,8 @@
 #!/bin/sh
 
 ENVIRONMENT=$1
+PINGDOM_IPS=$(curl -s https://my.pingdom.com/probes/ipv4 | tr -d ' ' | tr '\n' ',' | sed 's/,/\\,/g' | sed 's/\\,$//')
+VPN_IPS=$(curl -s https://raw.githubusercontent.com/ministryofjustice/laa-ip-allowlist/main/cidrs.txt | tr -d ' ' | tr '\n' ',' | sed 's/,/\\,/g' | sed 's/\\,$//')
 
 # Convert the branch name into a string that can be turned into a valid URL
 BRANCH_RELEASE_NAME=$(echo $CIRCLE_BRANCH | tr '[:upper:]' '[:lower:]' | sed 's:^\w*\/::' | tr -s ' _/[]().' '-' | cut -c1-18 | sed 's/-$//')
@@ -21,6 +23,8 @@ deploy_branch() {
     --set host="$RELEASE_HOST" \
     --set nameOverride="$BRANCH_RELEASE_NAME"\
     --set fullnameOverride="$BRANCH_RELEASE_NAME"\
+    --set-string pingdomIps="$PINGDOM_IPS" \
+    --set-string vpnIps="$VPN_IPS" \
     --set replicas.web=1\
     --set branch=true
 
@@ -32,6 +36,8 @@ deploy_main() {
     --install --wait \
     --namespace=${K8S_NAMESPACE} \
     --values ./helm_deploy/values/$ENVIRONMENT.yaml \
+    --set-string pingdomIps="$PINGDOM_IPS" \
+    --set-string vpnIps="$VPN_IPS" \
     --set image.repository="754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-assess-a-claim/laa-court-data-ui" \
     --set image.tag="$TAG"
 }

@@ -7,7 +7,7 @@ image:
   repository: "nginx"
 env: staging
 host: staging.view-court-data.service.justice.gov.uk
-cdaHost: https://test.court-data-adaptor.service.justice.gov.uk/api/internal/v1
+cdaHost: https://laa-court-data-adaptor-test.apps.live.cloud-platform.service.justice.gov.uk/api/internal/v1
 googleAnalyticsId: 'UA-131160087-16'
 displayRawResponses: enabled
 identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-staging-green
