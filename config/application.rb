@@ -47,5 +47,7 @@ module LaaCourtDataUi
     config.action_mailer.deliver_later_queue_name = :mailers
 
     config.active_support.to_time_preserves_timezone = :zone
+
+    Time::DATE_FORMATS[:date_only] = "%b %d, %Y"
   end
 end
