@@ -49,20 +49,25 @@ class SubjectsController < ApplicationController
   end
 
   def load_link
-    @form_model = if @link_status.maat_linked?
-                    UnlinkAttempt.new(
-                      defendant_id: @subject.subject_id,
-                      username: current_user.username,
-                      reason_code: params.dig(:unlink_attempt, :reason_code).to_i,
-                      other_reason_text: params.dig(:unlink_attempt, :other_reason_text)
-                    )
-                  else
-                    LinkAttempt.new(
-                      defendant_id: @subject.subject_id,
-                      username: current_user.username,
-                      maat_reference: params.dig(:link_attempt, :maat_reference)
-                    )
-                  end
+    @form_model = @link_status.maat_linked? ? load_unlink_attempt : load_link_attempt
+  end
+
+  def load_unlink_attempt
+    UnlinkAttempt.new(
+      defendant_id: @subject.subject_id,
+      username: current_user.username,
+      reason_code: params.dig(:unlink_attempt, :reason_code).to_i,
+      other_reason_text: params.dig(:unlink_attempt, :other_reason_text),
+      maat_reference: @subject.maat_reference
+    )
+  end
+
+  def load_link_attempt
+    LinkAttempt.new(
+      defendant_id: @subject.subject_id,
+      username: current_user.username,
+      maat_reference: params.dig(:link_attempt, :maat_reference)
+    )
   end
 
   def handle_link_failure(message)

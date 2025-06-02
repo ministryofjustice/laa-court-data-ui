@@ -1,5 +1,5 @@
 RSpec.feature 'Unlink court applications' do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, username: "kova-a81") }
   let(:unlinked_court_application_id) { 'c07d4116-0d06-4150-b6a4-e412f556d931' }
   let(:linked_court_application_with_problems_id) { "22a301d1-8e5c-444e-a629-ac33b8e75f8c" }
   let(:linked_court_application_id) { 'd174af7f-75da-428b-9875-c823eb182a23' }
@@ -13,7 +13,7 @@ RSpec.feature 'Unlink court applications' do
   context "when there are no problems upstream" do
     around do |example|
       VCR.use_cassette('spec/features/unlink_court_applications_successfully_spec',
-                       match_requests_on: %i[method path query]) do
+                       match_requests_on: %i[method path query body]) do
         example.run
       end
     end
