@@ -195,7 +195,7 @@ http_interactions:
     uri: http://localhost:9292/api/internal/v2/court_application_laa_references/6c3eded6-a6d6-4156-940d-e3b5f02deb96
     body:
       encoding: UTF-8
-      string: '{"laa_reference":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","user_name":"roha-t4","unlink_reason_code":4,"unlink_other_reason_text":""}}'
+      string: '{"laa_reference":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","user_name":"kova-a81","unlink_reason_code":4,"unlink_other_reason_text":null,"maat_reference":"1234568"}}'
     headers:
       User-Agent:
       - Faraday v1.10.4

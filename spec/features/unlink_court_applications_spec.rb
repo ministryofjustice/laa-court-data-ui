@@ -13,7 +13,7 @@ RSpec.feature 'Unlink court applications' do
   context "when there are no problems upstream" do
     around do |example|
       VCR.use_cassette('spec/features/unlink_court_applications_successfully_spec',
-                       match_requests_on: %i[method path query]) do
+                       match_requests_on: %i[method path query body]) do
         example.run
       end
     end
@@ -34,26 +34,6 @@ RSpec.feature 'Unlink court applications' do
       expect(page).to have_content "You have successfully unlinked from the court data source"
       expect(page).to have_no_content "MAAT number 1234568"
       expect(page).to have_content "Enter the MAAT ID"
-    end
-
-    scenario 'I send correct params to CDA' do
-      unlink_stub = stub_request(:patch, /.*court_application_laa_references.*/).with(
-        body: {
-          laa_reference: {
-            subject_id: "6c3eded6-a6d6-4156-940d-e3b5f02deb96",
-            user_name: "kova-a81",
-            unlink_reason_code: 4,
-            unlink_other_reason_text: nil,
-            maat_reference: "1234568"
-          }
-        }.to_json
-      ).to_return(status: 202)
-      visit court_application_subject_path(linked_court_application_id)
-      find("summary", text: "Remove link to court data").click
-      select "Initially processed on Libra", from: "Reason for unlinking"
-      click_on "Remove link to court data"
-      expect(page).to have_content "You have successfully unlinked from the court data source"
-      expect(unlink_stub).to have_been_requested
     end
 
     scenario 'I try to unlink without selecting a reason' do
