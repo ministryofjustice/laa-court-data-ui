@@ -1,5 +1,5 @@
 RSpec.feature 'Unlink court applications' do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, username: "kova-a81") }
   let(:unlinked_court_application_id) { 'c07d4116-0d06-4150-b6a4-e412f556d931' }
   let(:linked_court_application_with_problems_id) { "22a301d1-8e5c-444e-a629-ac33b8e75f8c" }
   let(:linked_court_application_id) { 'd174af7f-75da-428b-9875-c823eb182a23' }
@@ -34,6 +34,26 @@ RSpec.feature 'Unlink court applications' do
       expect(page).to have_content "You have successfully unlinked from the court data source"
       expect(page).to have_no_content "MAAT number 1234568"
       expect(page).to have_content "Enter the MAAT ID"
+    end
+
+    scenario 'I send correct params to CDA' do
+      unlink_stub = stub_request(:patch, /.*court_application_laa_references.*/).with(
+        body: {
+          laa_reference: {
+            subject_id: "6c3eded6-a6d6-4156-940d-e3b5f02deb96",
+            user_name: "kova-a81",
+            unlink_reason_code: 4,
+            unlink_other_reason_text: nil,
+            maat_reference: "1234568"
+          }
+        }.to_json
+      ).to_return(status: 202)
+      visit court_application_subject_path(linked_court_application_id)
+      find("summary", text: "Remove link to court data").click
+      select "Initially processed on Libra", from: "Reason for unlinking"
+      click_on "Remove link to court data"
+      expect(page).to have_content "You have successfully unlinked from the court data source"
+      expect(unlink_stub).to have_been_requested
     end
 
     scenario 'I try to unlink without selecting a reason' do
