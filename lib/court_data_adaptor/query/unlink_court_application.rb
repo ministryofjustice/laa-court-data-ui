@@ -24,7 +24,8 @@ module CourtDataAdaptor
             subject_id: unlink_object.defendant_id,
             user_name: unlink_object.username,
             unlink_reason_code: unlink_object.reason_code,
-            unlink_other_reason_text: (unlink_object.other_reason_text if unlink_object.text_required?)
+            unlink_other_reason_text: (unlink_object.other_reason_text if unlink_object.text_required?),
+            maat_reference: unlink_object.maat_reference
           }
         }
       end
