@@ -47,25 +47,5 @@ if [[ "$CIRCLE_BRANCH" == "main" ]]; then
   deploy_main
 else
   TAG="branch-$CIRCLE_SHA1"
-  if [[ "$K8S_NAMESPACE" == "laa-court-data-ui-dev" ]]; then
-    deploy_branch
-    if [ $? -eq 0 ]; then
-      echo "Deploy succeeded"
-    else
-      # If a previous `helm upgrade` was cancelled this could have got the release stuck in
-      # a "pending-upgrade" state (c.f. https://stackoverflow.com/a/65135726). If so, this
-      # can generally be fixed with a `helm rollback`, so we try that here.
-      echo "Deploy failed. Attempting rollback"
-      helm rollback $BRANCH_RELEASE_NAME
-      if [ $? -eq 0 ]; then
-        echo "Rollback succeeded. Retrying deploy"
-        deploy_branch
-      else
-        echo "Rollback failed. Consider manually running 'helm delete $BRANCH_RELEASE_NAME'"
-        exit 1
-      fi
-    fi
-  else
-    deploy_main
-  fi
+  deploy_main
 fi
