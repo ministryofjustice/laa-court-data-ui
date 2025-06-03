@@ -91,12 +91,11 @@ RSpec.feature 'Cookies', type: :feature do
 
     scenario 'notification banner links back to previous page' do
       visit unauthenticated_root_path
-      click_link_or_button 'Contact'
       click_link_or_button 'Cookies'
       page.choose 'On'
       click_link_or_button 'Save changes'
       click_link_or_button 'Go back to the page you were looking at'
-      expect(page).to have_current_path contact_us_path, ignore_query: true
+      expect(page).to have_current_path unauthenticated_root_path, ignore_query: true
     end
   end
 
@@ -117,12 +116,11 @@ RSpec.feature 'Cookies', type: :feature do
 
     scenario 'notification banner links back to previous page' do
       visit unauthenticated_root_path
-      click_link_or_button 'Contact'
       click_link_or_button 'Cookies'
       page.choose 'Off'
       click_link_or_button 'Save changes'
       click_link_or_button 'Go back to the page you were looking at'
-      expect(page).to have_current_path contact_us_path, ignore_query: true
+      expect(page).to have_current_path unauthenticated_root_path, ignore_query: true
     end
   end
 
