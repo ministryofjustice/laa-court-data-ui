@@ -1,8 +1,10 @@
 class SubjectsController < ApplicationController
-  before_action :load_and_authorize_application, :load_link
-
+  # Note that as a breadcrumb is added in the `before_action`, the relative
+  # positioning of the `add_breadcrumb` and `before_action` calls here
+  # do matter, and changing them will affect the breadcrumb order in the UI.
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :application_search_breadcrumb_name, :search_breadcrumb_path
+  before_action :load_and_authorize_application, :load_link
 
   def show; end
 
