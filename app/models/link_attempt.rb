@@ -16,4 +16,8 @@ class LinkAttempt
       attrs.merge!(maat_reference:) unless no_maat_id?
     end
   end
+
+  def validate!
+    raise ActiveModel::ValidationError, self unless valid?
+  end
 end
