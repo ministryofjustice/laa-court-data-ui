@@ -28,4 +28,8 @@ class UnlinkAttempt
     attrs.merge!(other_reason) if text_required?
     attrs
   end
+
+  def validate!
+    raise ActiveModel::ValidationError, self unless valid?
+  end
 end
