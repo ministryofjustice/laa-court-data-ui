@@ -1,5 +1,7 @@
 module Cda
   class Defendant < BaseModel
+    has_many :offence_summaries, class_name: 'Cda::OffenceSummary'
+
     def name
       [first_name, try(:middle_name), last_name].filter_map(&:presence).join(" ")
     end
@@ -17,6 +19,14 @@ module Cda
 
     def arrest_summons_number
       attributes["arrest_summons_number"]
+    end
+
+    def linked?
+      maat_reference.present? && maat_reference.first != 'Z'
+    end
+
+    def maat_reference
+      offence_summaries.filter_map { |os| os.laa_application.try(:reference) }.uniq.join(', ')
     end
   end
 end
