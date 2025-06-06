@@ -9,7 +9,7 @@ class SubjectsController < ApplicationController
   def show; end
 
   def link
-    return render :show unless @form_model.valid?
+    raise ActiveModel::ValidationError unless @form_model.valid?
 
     if CourtDataAdaptor::Query::LinkCourtApplication.call(@form_model)
       redirect_to court_application_subject_path(@application.application_id,
@@ -20,6 +20,10 @@ class SubjectsController < ApplicationController
     end
   rescue CourtDataAdaptor::Errors::BadRequest, CourtDataAdaptor::Errors::UnprocessableEntity => e
     handle_link_failure(e.message)
+  rescue StandardError => e # rescue and log all the other exceptions
+    logger.warn "LINK FAILURE (params: #{@form_model.as_json}): #{e.message}"
+  ensure
+    render :show unless performed?
   end
 
   def unlink
@@ -75,7 +79,6 @@ class SubjectsController < ApplicationController
   def handle_link_failure(message)
     logger.warn "LINK FAILURE (params: #{@form_model.as_json}): #{message}"
     @form_model.errors.add(:maat_reference, t('subjects.link.failure'))
-    render :show
   end
 
   def handle_unlink_failure(message)
