@@ -1,10 +1,9 @@
 = render partial: 'results_header', locals: { term: term, dob: dob, results: results }
 - if results.empty?
   = render 'results/none'
-
--# TODO: is there ever a situation where this happens? Can we clear out
--# this elsif statement and the associated partial/specs?
 - elsif results.first.is_a? CourtDataAdaptor::Resource::ProsecutionCase
+  -# TODO: is there ever a situation where this happens? Can we clear out
+     this elsif statement and the associated partial/specs?
   = render partial: 'results/prosecution_case', locals: { results: results }
 - elsif FeatureFlag.enabled?(:show_appeals)
   = render partial: 'results/defendant_appeals',
