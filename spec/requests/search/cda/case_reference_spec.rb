@@ -32,7 +32,7 @@ RSpec.describe 'case reference search', :stub_defendants_case_search, type: :req
     context 'when results returned' do
       it 'assigns array of results' do
         expect(assigns(:results))
-          .to include(an_instance_of(Cda::Defendant))
+          .to include(an_instance_of(Cda::DefendantSummaryDecorator))
       end
 
       it 'renders searches/_results' do

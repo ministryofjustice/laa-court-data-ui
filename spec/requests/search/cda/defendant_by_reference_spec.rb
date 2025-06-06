@@ -38,7 +38,7 @@ RSpec.describe 'Defendant by reference search', type: :request do
 
       it 'assigns array of results' do
         expect(assigns(:results))
-          .to include(an_instance_of(Cda::Defendant))
+          .to include(an_instance_of(Cda::DefendantSummaryDecorator))
       end
 
       it 'renders searches/_results' do
