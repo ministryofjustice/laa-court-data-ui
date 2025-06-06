@@ -47,12 +47,17 @@ class ApplicationController < ActionController::Base
     when JsonApiClient::Errors::ConnectionError, Net::ReadTimeout, ActiveResource::ForbiddenAccess,
       ActiveResource::ServerError, ActiveResource::TimeoutError
       Sentry.capture_exception(exception)
-      flash[:alert] = I18n.t('error.connection_error_message', it_helpdesk: I18n.t('error.it_helpdesk'))
+      flash[:alert] = build_error_message(exception)
       redirect_to authenticated_root_path
     else
       Sentry.capture_exception(exception)
       redirect_to controller: :errors, action: :internal_error
     end
+  end
+
+  def build_error_message(exception)
+    I18n.t('error.connection_error_message',
+           details: cda_error_string(exception) || I18n.t('error.it_helpdesk'))
   end
 
   def set_transaction_id
@@ -69,5 +74,9 @@ class ApplicationController < ActionController::Base
 
   def detect_maintenance_mode
     render "maintenance_mode/show", layout: false if FeatureFlag.enabled?(:maintenance_mode)
+  end
+
+  def cda_error_string(exception)
+    CourtDataAdaptor::Errors::ErrorCodeParser.call(exception.try(:response))
   end
 end

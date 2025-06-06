@@ -98,7 +98,7 @@ class DefendantsController < ApplicationController
   def handle_error(exception, title, details)
     logger.error 'SERVER_ERROR_OCCURRED'
     log_sentry_error(exception, exception.errors)
-    render_edit(title, details)
+    render_edit(title, cda_error_string(exception) || details)
   end
 
   def set_unlink_reasons

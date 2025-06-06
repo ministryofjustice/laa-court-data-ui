@@ -10,7 +10,7 @@ en:
     422_title: The change you wanted was rejected
     500_message: Try again later.
     500_title: Sorry, something went wrong
-    connection_error_message: There was a problem getting the information you requested. %{it_helpdesk}
+    connection_error_message: There was a problem getting the information you requested. %{details}
     description_html: You can also <a class="govuk-link" href="/">browse from the homepage</a> to find the information you need.
     it_helpdesk: If this problem persists, please contact the IT Helpdesk on 0800 9175148.
     refresh: Please refresh the page.
