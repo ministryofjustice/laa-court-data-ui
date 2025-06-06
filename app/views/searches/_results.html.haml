@@ -2,8 +2,10 @@
 - if results.empty?
   = render 'results/none'
 - elsif results.first.is_a? CourtDataAdaptor::Resource::ProsecutionCase
-  = render partial: 'results/prosecution_case', locals: { results: results }
+  = render partial: 'results/prosecution_case',
+           locals: { results: decorate_all(results, Cda::DefendantSummaryDecorator) }
 - elsif FeatureFlag.enabled?(:show_appeals)
-  = render partial: 'results/defendant_appeals', locals: { results: results }
+  = render partial: 'results/defendant_appeals',
+           locals: { results: decorate_all(results, Cda::DefendantSummaryDecorator) }
 - else
   = render partial: 'results/defendant', locals: { results: results }
