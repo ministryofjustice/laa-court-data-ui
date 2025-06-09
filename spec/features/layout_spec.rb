@@ -10,11 +10,9 @@ RSpec.feature 'Gov UK Layout', type: :feature do
       with_env('production') { example.run }
     end
 
-    scenario 'GDS styled home page' do
-      within '.govuk-header' do
-        within '.govuk-header__content' do
-          expect(page).to have_link('View court data')
-        end
+    scenario 'MOJ styled home page' do
+      within '.moj-header' do
+        expect(page).to have_link('View court data')
       end
 
       within '.govuk-phase-banner' do

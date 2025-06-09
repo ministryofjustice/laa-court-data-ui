@@ -26,13 +26,13 @@
     %a.govuk-skip-link{ href: "#main-content", "data-module": "govuk-skip-link" }
       = t('layouts.application.skip_content')
 
-    %header.govuk-header{ "data-module" => "govuk-header", role: "banner" }
-      .govuk-header__container.govuk-width-container
-        .govuk-header__logo
-          = render 'layouts/govuk_logo'
-
-        .govuk-header__content
-          %a.govuk-header__link.govuk-header__service-name{ href: '/' }
+    %header.moj-header{ role: "banner" }
+      .moj-header__container
+        .moj-header__logo
+          = render 'layouts/moj_logo'
+          %a.moj-header__link.moj-header__link--organisation-name{ href: "https://www.gov.uk/government/organisations/legal-aid-agency" }
+            = t('layouts.application.header.legal_aid_agency')
+          %a.moj-header__link.moj-header__link--service-name{ href: "/" }
             = service_name
 
     .govuk-width-container
