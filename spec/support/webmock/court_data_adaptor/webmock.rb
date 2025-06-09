@@ -217,7 +217,8 @@ RSpec.configure do |config|
       status: 422,
       headers: { 'Content-Type' => 'application/json' },
       body: { 'errors' => { 'maat_reference' =>
-                             ['1234567 has no common platform data created against Maat application.'] } }
+                             ['1234567 has no common platform data created against Maat application.'] },
+              'error_codes' => ['maat_reference_contract_failure'] }
               .to_json
     )
   end
@@ -312,7 +313,7 @@ RSpec.configure do |config|
     stub_request(:get, %r{http.*/v2/prosecution_cases\?filter.*})
       .to_return(
         status: 500,
-        body: '',
+        body: '{ "error_codes": ["commmon_platform_connection_failed"] }',
         headers: { 'Content-Type' => 'application/json' }
       )
   end

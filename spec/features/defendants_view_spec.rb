@@ -22,7 +22,8 @@ RSpec.feature 'defendants view', type: :feature do
 
     stub_request(:get, %r{#{api_url}/defendants/500})
       .to_return(
-        status: 422
+        status: 422,
+        body: '{ "error_codes": ["multiple_maats"] }'
       )
   end
 
@@ -59,9 +60,14 @@ RSpec.feature 'defendants view', type: :feature do
       end
     end
 
-    scenario 'laa_references page returns to previous page' do
-      visit "laa_references/new?id=500&urn=#{case_urn}"
-      expect(page).to have_current_path '/'
+    context "when defendant is unavailable" do
+      let(:defendant_id) { "500" }
+
+      scenario 'laa_references page returns to previous page' do
+        visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
+        expect(page).to have_current_path '/'
+        expect(page).to have_content "The HMCTS Common Platform record for this defendant is corrupted"
+      end
     end
   end
 
