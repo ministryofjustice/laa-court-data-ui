@@ -5,3 +5,4 @@ en:
     defendant_id_contract_failure: The defendant you are trying to link is not in a valid state to be linked.
     maat_reference_contract_failure: The MAAT reference you provided is not available to be associated with this defendant.
     multiple_maats: The HMCTS Common Platform record for this defendant is corrupted and cannot be displayed. HMCTS is aware of this issue.
+    subject_id_contract_failure: The appellant you are trying to link is not in a valid state to be linked.

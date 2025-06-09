@@ -21,7 +21,7 @@ class SubjectsController < ApplicationController
   rescue ActiveModel::ValidationError,
          CourtDataAdaptor::Errors::BadRequest,
          CourtDataAdaptor::Errors::UnprocessableEntity => e
-    handle_link_failure(e.message)
+    handle_link_failure(e.message, e)
   ensure
     render :show unless performed?
   end
@@ -38,7 +38,7 @@ class SubjectsController < ApplicationController
   rescue ActiveModel::ValidationError,
          CourtDataAdaptor::Errors::BadRequest,
          CourtDataAdaptor::Errors::UnprocessableEntity => e
-    handle_unlink_failure(e.message)
+    handle_unlink_failure(e.message, e)
   ensure
     render :show unless performed?
   end
@@ -80,13 +80,13 @@ class SubjectsController < ApplicationController
     )
   end
 
-  def handle_link_failure(message)
+  def handle_link_failure(message, exception = nil)
     logger.warn "LINK FAILURE (params: #{@form_model.as_json}): #{message}"
-    @form_model.errors.add(:maat_reference, t('subjects.link.failure'))
+    @form_model.errors.add(:maat_reference, cda_error_string(exception) || t('subjects.link.failure'))
   end
 
-  def handle_unlink_failure(message)
+  def handle_unlink_failure(message, exception = nil)
     logger.warn "UNLINK FAILURE (params: #{@form_model.as_json}): #{message}"
-    @form_model.errors.add(:reason_code, t('subjects.unlink.failure'))
+    @form_model.errors.add(:reason_code, cda_error_string(exception) || t('subjects.unlink.failure'))
   end
 end
