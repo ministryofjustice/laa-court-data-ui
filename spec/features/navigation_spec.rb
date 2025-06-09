@@ -9,14 +9,12 @@ RSpec.feature 'Navigation', type: :feature do
     scenario 'caseworker navigation options available' do
       visit '/'
 
-      within '.govuk-header' do
-        within '.govuk-header__content' do
-          expect(page).to have_link('View court data')
-          expect(page).to have_link(user.name)
-          expect(page).to have_no_link('Manage users')
-          expect(page).to have_no_link('Sidekiq')
-          expect(page).to have_link('Sign out')
-        end
+      within '.moj-header' do
+        expect(page).to have_link('View court data')
+        expect(page).to have_link(user.name)
+        expect(page).to have_no_link('Manage users')
+        expect(page).to have_no_link('Sidekiq')
+        expect(page).to have_link('Sign out')
       end
     end
 
@@ -34,14 +32,12 @@ RSpec.feature 'Navigation', type: :feature do
     scenario 'manager navigation options available' do
       visit '/'
 
-      within '.govuk-header' do
-        within '.govuk-header__content' do
-          expect(page).to have_link('View court data')
-          expect(page).to have_link(user.name)
-          expect(page).to have_link('Manage users')
-          expect(page).to have_no_link('Sidekiq')
-          expect(page).to have_link('Sign out')
-        end
+      within '.moj-header' do
+        expect(page).to have_link('View court data')
+        expect(page).to have_link(user.name)
+        expect(page).to have_link('Manage users')
+        expect(page).to have_no_link('Sidekiq')
+        expect(page).to have_link('Sign out')
       end
     end
 
@@ -59,14 +55,12 @@ RSpec.feature 'Navigation', type: :feature do
     scenario 'admin navigation options available' do
       visit '/'
 
-      within '.govuk-header' do
-        within '.govuk-header__content' do
-          expect(page).to have_link('View court data')
-          expect(page).to have_link(user.name)
-          expect(page).to have_no_link('Manage users')
-          expect(page).to have_link('Sidekiq')
-          expect(page).to have_link('Sign out')
-        end
+      within '.moj-header' do
+        expect(page).to have_link('View court data')
+        expect(page).to have_link(user.name)
+        expect(page).to have_no_link('Manage users')
+        expect(page).to have_link('Sidekiq')
+        expect(page).to have_link('Sign out')
       end
     end
   end

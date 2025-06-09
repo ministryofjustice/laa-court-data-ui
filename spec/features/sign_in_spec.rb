@@ -37,7 +37,7 @@ RSpec.feature 'Sign in', :js, type: :feature do
       end
 
       it 'navigation bar is displayed' do
-        expect(page).to have_css('nav.govuk-header__navigation')
+        expect(page).to have_css('nav.moj-header__navigation')
       end
 
       describe 'navigation bar' do
