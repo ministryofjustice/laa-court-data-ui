@@ -15,7 +15,7 @@ class SearchesController < ApplicationController
     @search = Search.new(filter:, term:, dob:)
     authorize! :create, @search
 
-    @results = @search.execute if @search.valid?
+    @results = helpers.decorate_all(@search.execute, Cda::DefendantSummaryDecorator) if @search.valid?
     render 'new'
   rescue ActiveResource::BadRequest => e
     Rails.logger.info 'CLIENT_ERROR_OCCURRED'

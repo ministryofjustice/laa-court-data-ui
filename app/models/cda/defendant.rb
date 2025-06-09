@@ -1,5 +1,7 @@
 module Cda
   class Defendant < BaseModel
+    has_many :offence_summaries, class_name: 'Cda::OffenceSummary'
+
     def name
       [first_name, try(:middle_name), last_name].filter_map(&:presence).join(" ")
     end
