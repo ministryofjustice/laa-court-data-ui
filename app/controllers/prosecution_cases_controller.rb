@@ -21,16 +21,17 @@ class ProsecutionCasesController < ApplicationController
 
   def set_prosecution_case
     build_prosecution_case
-  rescue ActiveResource::BadRequest
+  rescue ActiveResource::BadRequest => e
     logger.info 'CLIENT_ERROR_OCCURRED'
-    redirect_to_search_path
+    redirect_to_search_path(e)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     logger.error 'SERVER_ERROR_OCCURRED'
     Sentry.capture_exception(e)
-    redirect_to_search_path
+    redirect_to_search_path(e)
   end
 
   def build_prosecution_case
+    raise(ActiveResource::BadRequest, "URN '#{urn}' not found") unless search_results
     @prosecution_case ||= helpers.decorate(search_results, Cda::CaseSummaryDecorator)
     update_prosecution_case
   end
@@ -48,8 +49,8 @@ class ProsecutionCasesController < ApplicationController
     params[:id]
   end
 
-  def redirect_to_search_path
+  def redirect_to_search_path(exception)
     redirect_to searches_path(search: { filter: 'case_reference', term: urn })
-    flash[:notice] = I18n.t('prosecution_case.show.failure')
+    flash[:notice] = cda_error_string(exception) || I18n.t('prosecution_case.show.failure')
   end
 end

@@ -66,6 +66,9 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
       expect(page).to have_content('Unable to complete the search. Please try again in a moment.')
+
+      # It shows a situation-specific error message
+      expect(page).to have_content('HMCTS Common Platform could not be reached')
     end
 
     expect(page).to be_accessible.within '#main-content'

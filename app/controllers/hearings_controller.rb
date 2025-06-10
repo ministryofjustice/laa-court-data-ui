@@ -47,7 +47,7 @@ class HearingsController < ApplicationController
     @hearing ||= helpers.decorate(Cda::Hearing.new, Cda::HearingDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
-    redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
+    redirect_to_prosecution_case(alert: server_error_message(e))
   end
 
   def set_hearing_day
@@ -93,11 +93,15 @@ class HearingsController < ApplicationController
     @prosecution_case = helpers.decorate(@prosecution_case_search.call, Cda::CaseSummaryDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
-    redirect_to_prosecution_case(alert: I18n.t('hearings.show.flash.notice.server_error'))
+    redirect_to_prosecution_case(alert: server_error_message(e))
   end
 
   def show_alert(title, message)
     flash.now[:alert] = { title:, message: }
+  end
+
+  def server_error_message(exception)
+    cda_error_string(exception) || I18n.t('hearings.show.flash.notice.server_error')
   end
 
   def hearing_id

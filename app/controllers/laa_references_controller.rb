@@ -32,9 +32,10 @@ class LaaReferencesController < ApplicationController
 
   def defendant
     @defendant ||= @defendant_search.call
-  rescue CourtDataAdaptor::Errors::UnprocessableEntity
+  rescue CourtDataAdaptor::Errors::UnprocessableEntity => e
     logger.info 'CDA_GETDEFENDANT_RETURNED_UNPROCESSABLE'
-    flash[:alert] = I18n.t('error.connection_error_message', it_helpdesk: I18n.t('error.it_helpdesk'))
+    flash[:alert] =
+      I18n.t('error.connection_error_message', details: cda_error_string(e) || I18n.t('error.it_helpdesk'))
     redirect_back(fallback_location: authenticated_root_path)
   end
 
@@ -95,7 +96,7 @@ class LaaReferencesController < ApplicationController
   def handle_error(exception, title, details)
     logger.error 'SERVER_ERROR_OCCURRED'
     log_sentry_error(exception, exception.errors)
-    render_new(title, details)
+    render_new(title, cda_error_string(exception) || details)
   end
 
   def no_maat_id?

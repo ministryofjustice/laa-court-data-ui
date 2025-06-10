@@ -80,7 +80,7 @@ class SearchesController < ApplicationController
     logger.error 'SERVER_ERROR_OCCURRED'
 
     log_sentry_error(exception, exception.response.body)
-    render_error(I18n.t('search.error.failure'), I18n.t('error.it_helpdesk'))
+    render_error(I18n.t('search.error.failure'), cda_error_string(exception) || I18n.t('error.it_helpdesk'))
   end
 
   def render_error(title, message)

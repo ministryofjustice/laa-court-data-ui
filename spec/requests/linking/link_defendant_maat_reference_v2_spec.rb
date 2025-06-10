@@ -37,7 +37,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
     let(:maat_invalid_reference) do
       {
         title: 'Unable to link the defendant using the MAAT ID.',
-        message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
+        message: 'The MAAT reference you provided is not available to be associated with this defendant.'
       }
     end
     let(:maat_error_message) do
