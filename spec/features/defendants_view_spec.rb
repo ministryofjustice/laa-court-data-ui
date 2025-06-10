@@ -66,7 +66,9 @@ RSpec.feature 'defendants view', type: :feature do
       scenario 'laa_references page returns to previous page' do
         visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
         expect(page).to have_current_path '/'
-        expect(page).to have_content "The HMCTS Common Platform record for this defendant is corrupted"
+        expect(page).to have_content(
+          "The HMCTS record for this defendant cannot be displayed."
+        )
       end
     end
   end
