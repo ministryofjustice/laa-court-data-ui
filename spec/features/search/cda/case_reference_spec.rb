@@ -18,6 +18,10 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
 
     within 'tbody.govuk-table__body' do
       expect(page).to have_content('TEST12345', count: 4)
+      # Depending on whether there is a MAAT reference, we either link to the new reference
+      # screen (to allow linking) or the defendant edit screen (to allow unlinking)
+      expect(find('a', text: 'Wendie Bogisiche Lowe')['href']).to match(%r{laa_references/new})
+      expect(find('a', text: 'Marlin Schaefer Leuschke')['href']).to match(%r{defendants/.*/edit})
     end
 
     expect(page).to be_accessible.within '#main-content'
