@@ -43,7 +43,8 @@ module CourtDataAdaptor
         return unless error_response['error_codes']
 
         error_response['error_codes'].filter_map { |code| build_message(code) }.join(" ").presence
-      rescue StandardError
+      rescue StandardError => e
+        Rails.logger.error "CourtDataAdaptor::Errors::ErrorCodeParser error: #{e.message}"
         nil
       end
 
