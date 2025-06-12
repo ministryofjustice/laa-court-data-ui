@@ -4,16 +4,18 @@ class SubjectsController < ApplicationController
   # do matter, and changing them will affect the breadcrumb order in the UI.
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :application_search_breadcrumb_name, :search_breadcrumb_path
-  before_action :load_and_authorize_application, :load_link
+  before_action :load_and_authorize_application
 
-  def show; end
+  def show
+    @form_model = @link_status.maat_linked? ? load_unlink_attempt : load_link_attempt
+  end
 
   def link
+    @form_model = load_link_attempt
     @form_model.validate!
 
     if CourtDataAdaptor::Query::LinkCourtApplication.call(@form_model)
-      redirect_to court_application_subject_path(@application.application_id,
-                                                 linked: @form_model.maat_reference),
+      redirect_to court_application_subject_path(@application.application_id),
                   flash: { notice: t('.success') }
     else
       handle_link_failure("Query failed without raising an exception")
@@ -27,10 +29,11 @@ class SubjectsController < ApplicationController
   end
 
   def unlink
+    @form_model = load_unlink_attempt
     @form_model.validate!
 
     if CourtDataAdaptor::Query::UnlinkCourtApplication.call(@form_model)
-      redirect_to court_application_subject_path(@application.application_id, unlinked: true),
+      redirect_to court_application_subject_path(@application.application_id),
                   flash: { notice: t('.success') }
     else
       handle_unlink_failure("Query failed without raising an exception")
@@ -48,7 +51,7 @@ class SubjectsController < ApplicationController
   def load_and_authorize_application
     @application = CourtDataAdaptor::Query::CourtApplication.new(params[:court_application_id]).call
     @subject = @application.subject_summary
-    @link_status = CourtApplicationLinkStatus.new(@subject, params)
+    @link_status = CourtApplicationLinkStatus.new(@subject)
     add_breadcrumb @subject.name
     authorize! :show, @application
   rescue JsonApiClient::Errors::ServiceUnavailable => e
@@ -56,10 +59,6 @@ class SubjectsController < ApplicationController
     redirect_to controller: :errors, action: :internal_error
   rescue JsonApiClient::Errors::NotFound
     redirect_to controller: :errors, action: :not_found
-  end
-
-  def load_link
-    @form_model = @link_status.maat_linked? ? load_unlink_attempt : load_link_attempt
   end
 
   def load_unlink_attempt
