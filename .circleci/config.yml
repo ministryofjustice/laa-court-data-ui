@@ -69,7 +69,7 @@ executors:
   test-executor:
     working_directory: ~/repo
     docker:
-      - image: cimg/ruby:3.3.6-browsers
+      - image: cimg/ruby:3.4.4-browsers
         environment:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:circleci@127.0.0.1:5432/laa_court_data_ui_test
