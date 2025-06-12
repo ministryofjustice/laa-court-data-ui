@@ -1,5 +1,5 @@
 FROM node:20.19-alpine AS node
-FROM ruby:3.3.6-alpine3.20
+FROM ruby:3.4.4-alpine3.20
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Access Court Data"
 LABEL Contact="<access-court-data-team@digital.justice.gov.uk>"
@@ -40,7 +40,8 @@ RUN apk --update-cache upgrade \
                   libxslt-dev \
                   postgresql-dev \
                   tzdata \
-                  runit
+                  runit \
+                  yaml-dev
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \
