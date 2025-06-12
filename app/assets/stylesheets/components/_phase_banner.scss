@@ -1,5 +1,5 @@
 $app-uat-colour: govuk-colour("orange");
-$app-staging-colour: govuk-colour("turquoise");
+$app-test-colour: govuk-colour("turquoise");
 $app-dev-colour: govuk-colour("pink");
 $app-local-colour: govuk-colour("bright-purple");
 
@@ -13,13 +13,13 @@ $app-local-colour: govuk-colour("bright-purple");
   }
 }
 
-.app-environment-staging {
+.app-environment-test {
   .govuk-header__container {
-    border-bottom-color: $app-staging-colour;
+    border-bottom-color: $app-test-colour;
   }
 
   .govuk-tag.govuk-phase-banner__content__tag {
-    background-color: $app-staging-colour;
+    background-color: $app-test-colour;
   }
 }
 
