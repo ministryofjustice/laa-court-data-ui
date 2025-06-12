@@ -1,8 +1,9 @@
 ## Monitoring
 
-- [Prometheus](#prometheus)
-- [Grafana](#grafana)
-- [Alerting](#alerting)
+- [Monitoring](#monitoring)
+  - [Prometheus](#prometheus)
+  - [Grafana](#grafana)
+  - [Alerting](#alerting)
 
 ### Prometheus
 
@@ -13,7 +14,7 @@ Currently the exporter runs in a separate container (laa-court-data-ui-metrics) 
 Metrics are scraped by [Cloud Platform's Prometheus instance](https://prometheus.cloud-platform.service.justice.gov.uk/graph), and can be queried by executing a suitable promql query, e.g.
 
 ```
-ruby_http_duration_seconds_sum{namespace="laa-court-data-ui-staging"}
+ruby_http_duration_seconds_sum{namespace="laa-court-data-ui-test"}
 ```
 
 ### Grafana
