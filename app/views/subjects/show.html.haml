@@ -7,7 +7,7 @@
 
 .govuk-width-container
   :ruby
-    link_url = if @link_status.maat_linked?
+    link_url = if @subject.maat_linked?
       unlink_court_application_subject_path(@application.application_id)
     else
       link_court_application_subject_path(@application.application_id)
@@ -35,7 +35,7 @@
               %th.govuk-table__header{ scope: "row" }
                 = t(".maat_number")
               %td.govuk-table__cell
-                = @link_status.maat_reference
+                = @subject.maat_reference
 
     = link_to t(".view_summary"),
               court_application_path(@application.application_id),
@@ -71,7 +71,7 @@
     .govuk-grid-row
       .govuk-grid-column-two-thirds
         - unless FeatureFlag.enabled?(:no_linking)
-          - if @link_status.maat_linked?
+          - if @subject.maat_linked?
             = govuk_detail(t('defendants.unlink.detail'), open: @form_model.errors.present?) do
               = f.govuk_collection_select :reason_code,
                                           UnlinkReason.all,

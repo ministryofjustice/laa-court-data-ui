@@ -7,7 +7,7 @@ class SubjectsController < ApplicationController
   before_action :load_and_authorize_application
 
   def show
-    @form_model = @link_status.maat_linked? ? load_unlink_attempt : load_link_attempt
+    @form_model = @subject.maat_linked? ? load_unlink_attempt : load_link_attempt
   end
 
   def link
@@ -51,7 +51,6 @@ class SubjectsController < ApplicationController
   def load_and_authorize_application
     @application = CourtDataAdaptor::Query::CourtApplication.new(params[:court_application_id]).call
     @subject = @application.subject_summary
-    @link_status = CourtApplicationLinkStatus.new(@subject)
     add_breadcrumb @subject.name
     authorize! :show, @application
   rescue JsonApiClient::Errors::ServiceUnavailable => e
