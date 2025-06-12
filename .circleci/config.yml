@@ -339,11 +339,11 @@ jobs:
       - deploy-to-environment:
           environment: dev
 
-  deploy-staging:
+  deploy-test:
     executor: cloud-platform-executor
     steps:
       - deploy-to-environment:
-          environment: staging
+          environment: test
 
   deploy-uat:
     executor: cloud-platform-executor
@@ -370,14 +370,14 @@ workflows:
           context: laa-court-data-ui-live-dev
           requires:
             - build-app-container
-      - hold-staging:
+      - hold-test:
           type: approval
           requires:
             - build-app-container
-      - deploy-staging:
-          context: laa-court-data-ui-live-staging
+      - deploy-test:
+          context: laa-court-data-ui-live-test
           requires:
-            - hold-staging
+            - hold-test
       - hold-uat:
           type: approval
           requires:
@@ -434,14 +434,14 @@ workflows:
           context: laa-court-data-ui-live-dev
           requires:
             - hold-dev
-      - hold-staging:
+      - hold-test:
           type: approval
           requires:
             - build-app-container
-      - deploy-staging:
-          context: laa-court-data-ui-live-staging
+      - deploy-test:
+          context: laa-court-data-ui-live-test
           requires:
-            - hold-staging
+            - hold-test
       - hold-uat:
           type: approval
           requires:

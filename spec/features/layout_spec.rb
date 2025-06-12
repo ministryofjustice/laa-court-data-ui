@@ -36,14 +36,14 @@ RSpec.feature 'Gov UK Layout', type: :feature do
     end
   end
 
-  context 'when environment is staging' do
+  context 'when environment is test' do
     around do |example|
-      with_env('staging') { example.run }
+      with_env('test') { example.run }
     end
 
     scenario 'GDS styled home page' do
       within '.govuk-phase-banner' do
-        expect(page).to have_css('.govuk-phase-banner__content', text: 'staging')
+        expect(page).to have_css('.govuk-phase-banner__content', text: 'test')
       end
     end
   end

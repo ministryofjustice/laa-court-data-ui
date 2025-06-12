@@ -1,17 +1,17 @@
-namespace: laa-court-data-ui-staging
+namespace: laa-court-data-ui-test
 replicas:
   worker: 2
   web: 4
 image:
   tag: ""
   repository: "nginx"
-env: staging
-host: staging.view-court-data.service.justice.gov.uk
+env: test
+host: test.view-court-data.service.justice.gov.uk
 cdaHost: https://laa-court-data-adaptor-test.apps.live.cloud-platform.service.justice.gov.uk/api/internal/v1
 googleAnalyticsId: 'UA-131160087-16'
 displayRawResponses: enabled
-identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-staging-green
-cert: laa-court-data-ui-staging-cert
+identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-test-green
+cert: laa-court-data-ui-test-cert
 featureFlags:
   showAppeals: true
   maintenanceMode: false
