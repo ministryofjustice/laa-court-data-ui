@@ -37,9 +37,9 @@ RSpec.describe CourtDataAdaptor::Query::Base do
     end
   end
 
-  describe '#call' do
-    subject(:call) { described_class.new('whatever').call }
+  describe '#make_request' do
+    subject(:make_request) { described_class.new('whatever').make_request }
 
-    it { expect { call }.to raise_error StandardError, /Implement in subclass/ }
+    it { expect { make_request }.to raise_error StandardError, /Implement in subclass/ }
   end
 end

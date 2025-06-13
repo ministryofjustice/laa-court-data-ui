@@ -15,10 +15,6 @@ RSpec.shared_examples 'query v2 CDA' do
   it { is_expected.to be_able_to(%i[read], Cda::ProsecutionCase) }
 end
 
-RSpec.shared_examples 'perform hearing search' do
-  it { is_expected.to be_able_to(%i[show], CourtDataAdaptor::Query::Hearing) }
-end
-
 RSpec.shared_examples 'link maat reference' do
   it { is_expected.to be_able_to(:create, :link_maat_reference) }
 end
@@ -50,7 +46,6 @@ RSpec.describe Ability, type: :model do
     it { is_expected.not_to be_able_to(:manage, User) }
     it { is_expected.not_to be_able_to(%i[new create], SearchFilter) }
     it { is_expected.not_to be_able_to(%i[new create], Search) }
-    it { is_expected.not_to be_able_to(%i[show], CourtDataAdaptor::Query::Hearing) }
     it { is_expected.not_to be_able_to(%i[read], Cda::ProsecutionCase) }
     it { is_expected.not_to be_able_to(:create, :link_maat_reference) }
   end
@@ -61,7 +56,6 @@ RSpec.describe Ability, type: :model do
     is_able_to 'manage themselves only'
     is_able_to 'not manage others'
     is_able_to 'perform search'
-    is_able_to 'perform hearing search'
     is_able_to 'link maat reference'
     is_able_to 'query v2 CDA'
   end
@@ -73,7 +67,6 @@ RSpec.describe Ability, type: :model do
     it { is_expected.to be_able_to(:manage, other_user) }
 
     is_able_to 'perform search'
-    is_able_to 'perform hearing search'
     is_able_to 'link maat reference'
     is_able_to 'query v2 CDA'
   end
@@ -84,7 +77,6 @@ RSpec.describe Ability, type: :model do
     is_able_to 'manage themselves only'
     is_able_to 'not manage others'
     is_able_to 'perform search'
-    is_able_to 'perform hearing search'
     is_able_to 'link maat reference'
     is_able_to 'query v2 CDA'
   end

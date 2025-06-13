@@ -67,7 +67,6 @@ class Ability
     can %i[new create], Search
     can %i[new create], CourtDataAdaptor::CaseSummaryService
     can %i[show], CourtDataAdaptor::Query::Defendant::ByUuid
-    can %i[show], CourtDataAdaptor::Query::Hearing
     can %i[show], CourtDataAdaptor::Resource::ApplicationSummary
   end
 

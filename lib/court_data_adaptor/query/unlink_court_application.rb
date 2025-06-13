@@ -5,7 +5,7 @@ module CourtDataAdaptor
 
       alias unlink_object term
 
-      def call
+      def make_request
         refresh_token_if_required!
 
         response = resource.connection.faraday.patch(
