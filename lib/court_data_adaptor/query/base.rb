@@ -17,6 +17,12 @@ module CourtDataAdaptor
       end
 
       def call
+        resource.with_headers("X-Request-ID": Current.request_id) do
+          make_request
+        end
+      end
+
+      def make_request
         raise 'Implement in subclass, e.g. resource.where(attribute: term).all'
       end
     end

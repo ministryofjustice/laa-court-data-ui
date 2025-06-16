@@ -6,7 +6,8 @@ module Cda
     def self.headers
       {
         'Content-Type' => 'application/json',
-        'Authorization' => "Bearer #{CourtDataAdaptor::Client.new.bearer_token}"
+        'Authorization' => "Bearer #{CourtDataAdaptor::Client.new.bearer_token}",
+        'X-Request-ID' => Current.request_id
       }
     end
   end

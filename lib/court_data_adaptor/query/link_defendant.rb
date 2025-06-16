@@ -5,7 +5,7 @@ module CourtDataAdaptor
 
       alias params term
 
-      def call
+      def make_request
         refresh_token_if_required!
         resource.connection.faraday.post "laa_references", laa_reference: params
       end
