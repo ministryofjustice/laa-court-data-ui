@@ -123,14 +123,14 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
       end
     end
 
-    context 'when user unlinks defendant with failure', :stub_v2_unlink_bad_response do
+    context 'when user unlinks defendant with failure' do
       before do
         click_govuk_detail_summary 'Remove link to court data'
         select 'Linked to wrong case ID (correct defendant)', from: 'Reason for unlinking'
         click_link_or_button 'Remove link to court data'
       end
 
-      it 'flashes alert' do
+      it 'flashes alert for bad response', :stub_v2_unlink_bad_response do
         expect(page).to \
           have_govuk_flash(
             :alert,
@@ -141,6 +141,14 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
           have_govuk_flash(
             :alert,
             text: 'User name must not exceed 10 characters'
+          )
+      end
+
+      it 'flashes alert if there is a CDA failure', :stub_v2_unlink_cda_failure do
+        expect(page).to \
+          have_govuk_flash(
+            :alert,
+            text: 'The link to the court data source could not be removed'
           )
       end
     end

@@ -2,7 +2,7 @@
 en:
   laa_reference:
     link:
-      failure: A Court Data Source link could not be established due to an invalid MAAT Reference Number. Please check the MAAT Reference Number.
+      failure: A Court Data Source link could not be established.
       form:
         maat_reference:
           hint: Enter the MAAT ID so this case can be linked to the court data source
