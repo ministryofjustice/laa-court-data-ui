@@ -26,7 +26,8 @@ en:
         legal_aid_agency: Legal Aid Agency
         navigation:
           manage_users: Manage users
-          sidekiq_console: Sidekiq
+          menu: Menu
+          search: Search
           sign_out: Sign out
         phase_banner_html: This is a new service – your <a class="govuk-link" href="%{feedback}" target="_blank" rel="noopener noreferrer nofollow">feedback (opens in new tab)</a> will help us to improve it.
       skip_content: Skip to main content

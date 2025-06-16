@@ -42,13 +42,13 @@ RSpec.feature 'Sign in', :js, type: :feature do
 
       describe 'navigation bar' do
         it 'displays user profile link' do
-          within('nav') do
+          within('nav.moj-header__navigation') do
             expect(page).to have_link(user.name)
           end
         end
 
         it 'displays sign out link' do
-          within('nav') do
+          within('nav.moj-header__navigation') do
             expect(page).to have_link('Sign out')
           end
         end

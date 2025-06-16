@@ -12,6 +12,9 @@ RSpec.feature 'Gov UK Layout', type: :feature do
 
     scenario 'MOJ styled home page' do
       within '.moj-header' do
+        expect(page).to have_link('Legal Aid Agency')
+      end
+      within '.govuk-service-navigation' do
         expect(page).to have_link('View court data')
       end
 

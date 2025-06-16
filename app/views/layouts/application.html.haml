@@ -1,5 +1,5 @@
 !!!
-%html.govuk-template{ lang: 'en' }
+%html.govuk-template.govuk-template--rebranded{ lang: 'en' }
   %head
     %title
       = content_for?(:page_title) ? yield(:page_title) : service_name
@@ -35,14 +35,13 @@
           = render 'layouts/moj_logo'
           %a.moj-header__link.moj-header__link--organisation-name{ href: "https://intranet.justice.gov.uk/?agency=laa" }
             = t('layouts.application.header.legal_aid_agency')
-          %a.moj-header__link.moj-header__link--service-name{ href: signed_in? ? authenticated_root_path : unauthenticated_root_path }
-            = service_name
-        = render 'layouts/navigation' if signed_in?
+        = render 'layouts/top_navigation' if signed_in?
+
+    = render 'layouts/lower_navigation'
 
     .govuk-width-container
       = render 'layouts/phase_banner'
       = render_breadcrumbs(builder: govuk_breadcrumb_builder)
-
       %main.govuk-main-wrapper#main-content{ role: "main" }
         = render partial: 'layouts/flashes' unless flash.empty?
         = content_for :pre_heading

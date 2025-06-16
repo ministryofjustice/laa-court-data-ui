@@ -5,16 +5,6 @@
         = link_to current_user.name,
                   user_path(current_user),
                   class: 'moj-header__navigation-link'
-      - if can?(:index, User)
-        %li.moj-header__navigation-item
-          = link_to t('layouts.application.header.navigation.manage_users'),
-                    users_path,
-                    class: 'moj-header__navigation-link'
-      - if current_user.admin?
-        %li.moj-header__navigation-item
-          = link_to t('layouts.application.header.navigation.sidekiq_console'),
-                    sidekiq_web_path,
-                    class: 'moj-header__navigation-link'
       %li.moj-header__navigation-item
         = link_to t('layouts.application.header.navigation.sign_out'),
                   destroy_user_session_path,
