@@ -33,7 +33,7 @@
       .moj-header__container
         .moj-header__logo
           = render 'layouts/moj_logo'
-          %a.moj-header__link.moj-header__link--organisation-name{ href: "https://www.gov.uk/government/organisations/legal-aid-agency" }
+          %a.moj-header__link.moj-header__link--organisation-name{ href: "https://intranet.justice.gov.uk/?agency=laa" }
             = t('layouts.application.header.legal_aid_agency')
           %a.moj-header__link.moj-header__link--service-name{ href: signed_in? ? authenticated_root_path : unauthenticated_root_path }
             = service_name

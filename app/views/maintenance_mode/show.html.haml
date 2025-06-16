@@ -30,10 +30,8 @@
       .moj-header__container
         .moj-header__logo
           = render 'layouts/moj_logo'
-          %a.moj-header__link.moj-header__link--organisation-name{ href: "https://www.gov.uk/government/organisations/legal-aid-agency" }
-            = t('layouts.application.header.legal_aid_agency')
-          %a.moj-header__link.moj-header__link--service-name{ href: "/" }
-            = service_name
+          %a.moj-header__link.moj-header__link--organisation-name{ href: "https://intranet.justice.gov.uk/?agency=laa" } Legal Aid Agency
+          %a.moj-header__link.moj-header__link--service-name{ href: "/" } View court data
 
     .govuk-width-container
       = render 'layouts/phase_banner'
