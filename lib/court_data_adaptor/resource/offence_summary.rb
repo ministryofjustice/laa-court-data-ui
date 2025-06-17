@@ -2,7 +2,7 @@ module CourtDataAdaptor
   module Resource
     class OffenceSummary < V2
       def maat_reference
-        laa_application["reference"]
+        laa_application&.dig("reference")
       end
 
       def pleas
