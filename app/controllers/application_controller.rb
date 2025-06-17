@@ -48,18 +48,23 @@ class ApplicationController < ActionController::Base
   def unexpected_exception_handler(exception)
     raise if Rails.env.development?
 
+    logger.error(exception)
+    process_error_based_on_type(exception)
+  end
+
+  def process_error_based_on_type
     case exception
     when ActiveRecord::RecordNotFound, ActionController::RoutingError
-      redirect_to controller: :errors, action: :not_found
+      redirect_to not_found_error_path
     when JsonApiClient::Errors::NotAuthorized
-      redirect_to controller: :errors, action: :unauthorized
+      redirect_to unauthorized_error_path
     when *EXPECTED_ERROR_TYPES
       Sentry.capture_exception(exception)
-      flash[:alert] = build_error_message(exception)
+      set_generic_error_flash
       redirect_to authenticated_root_path
     else
       Sentry.capture_exception(exception)
-      redirect_to controller: :errors, action: :internal_error
+      redirect_to internal_error_path
     end
   end
 
@@ -86,5 +91,9 @@ class ApplicationController < ActionController::Base
 
   def cda_error_string(exception)
     CourtDataAdaptor::Errors::ErrorCodeParser.call(exception.try(:response))
+  end
+
+  def set_generic_error_flash
+    flash[:alert] = I18n.t('error.connection_error_message', it_helpdesk: I18n.t('error.it_helpdesk'))
   end
 end
