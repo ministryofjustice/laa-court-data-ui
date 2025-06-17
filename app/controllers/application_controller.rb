@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
     process_error_based_on_type(exception)
   end
 
-  def process_error_based_on_type
+  def process_error_based_on_type(exception)
     case exception
     when ActiveRecord::RecordNotFound, ActionController::RoutingError
       redirect_to not_found_error_path
@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
       redirect_to unauthorized_error_path
     when *EXPECTED_ERROR_TYPES
       Sentry.capture_exception(exception)
-      set_generic_error_flash
+      assign_error_flash(exception)
       redirect_to authenticated_root_path
     else
       Sentry.capture_exception(exception)
@@ -68,9 +68,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def build_error_message(exception)
-    I18n.t('error.connection_error_message',
-           details: cda_error_string(exception) || I18n.t('error.it_helpdesk'))
+  def assign_error_flash(exception)
+    flash[:alert] = I18n.t('error.connection_error_message',
+                           details: cda_error_string(exception) || I18n.t('error.it_helpdesk'))
   end
 
   def set_transaction_id
@@ -91,9 +91,5 @@ class ApplicationController < ActionController::Base
 
   def cda_error_string(exception)
     CourtDataAdaptor::Errors::ErrorCodeParser.call(exception.try(:response))
-  end
-
-  def set_generic_error_flash
-    flash[:alert] = I18n.t('error.connection_error_message', it_helpdesk: I18n.t('error.it_helpdesk'))
   end
 end
