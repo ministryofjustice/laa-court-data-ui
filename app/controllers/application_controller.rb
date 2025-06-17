@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   ].freeze
 
   def unexpected_exception_handler(exception)
-    raise unless Rails.env.production?
+    raise if Rails.env.development?
 
     case exception
     when ActiveRecord::RecordNotFound, ActionController::RoutingError
