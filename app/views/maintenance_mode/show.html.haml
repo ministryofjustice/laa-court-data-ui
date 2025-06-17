@@ -14,12 +14,12 @@
     %meta{ content: "blue", name: "theme-color" }/
     %meta{ content: "IE=edge", "http-equiv" => "X-UA-Compatible" }/
     %meta{ content: "noindex", name: "robots" }/
-    %link{ href: asset_path("favicon.ico"), rel: "shortcut icon", sizes: "16x16 32x32 48x48", type: "image/x-icon" }/
-    %link{ color: "blue", href: "govuk-mask-icon.svg", rel: "mask-icon" }/
-    %link{ href: asset_path("govuk-icon-180.png"), rel: "apple-touch-icon", sizes: "180x180" }/
-    %link{ href: asset_path("govuk-icon-192.png"), rel: "apple-touch-icon", sizes: "192x192" }/
-    %link{ href: asset_path("govuk-icon-512.png"), rel: "apple-touch-icon", sizes: "512x512" }/
-    = tag.meta(property: 'og:image', content: asset_path('govuk-opengraph-image.png'))
+    %link{ href: "/favicon.ico", rel: "shortcut icon", sizes: "16x16 32x32 48x48", type: "image/x-icon" }/
+    %link{ color: "blue", href: "/govuk-mask-icon.svg", rel: "mask-icon" }/
+    %link{ href: "/govuk-icon-180.png", rel: "apple-touch-icon", sizes: "180x180" }/
+    %link{ href: "/govuk-icon-192.png", rel: "apple-touch-icon", sizes: "192x192" }/
+    %link{ href: "/govuk-icon-512.png", rel: "apple-touch-icon", sizes: "512x512" }/
+    = tag.meta(property: 'og:image', content: '/govuk-opengraph-image.png')
   %body.govuk-template__body{ class: app_environment }
     :javascript
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
