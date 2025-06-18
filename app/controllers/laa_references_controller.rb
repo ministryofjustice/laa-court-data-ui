@@ -32,11 +32,6 @@ class LaaReferencesController < ApplicationController
 
   def defendant
     @defendant ||= @defendant_search.call
-  rescue CourtDataAdaptor::Errors::UnprocessableEntity => e
-    logger.info 'CDA_GETDEFENDANT_RETURNED_UNPROCESSABLE'
-    flash[:alert] =
-      I18n.t('error.connection_error_message', details: cda_error_string(e) || I18n.t('error.it_helpdesk'))
-    redirect_back(fallback_location: authenticated_root_path)
   end
 
   def prosecution_case_reference
