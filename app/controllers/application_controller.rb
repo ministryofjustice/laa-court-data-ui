@@ -36,16 +36,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  EXPECTED_ERROR_TYPES = [
+    JsonApiClient::Errors::ConnectionError,
+    Net::ReadTimeout,
+    ActiveResource::ForbiddenAccess,
+    ActiveResource::ServerError,
+    ActiveResource::TimeoutError,
+    CourtDataAdaptor::Errors::Error
+  ].freeze
+
   def unexpected_exception_handler(exception)
-    raise unless Rails.env.production?
+    raise if Rails.env.development?
 
     case exception
     when ActiveRecord::RecordNotFound, ActionController::RoutingError
       redirect_to controller: :errors, action: :not_found
     when JsonApiClient::Errors::NotAuthorized
       redirect_to controller: :errors, action: :unauthorized
-    when JsonApiClient::Errors::ConnectionError, Net::ReadTimeout, ActiveResource::ForbiddenAccess,
-      ActiveResource::ServerError, ActiveResource::TimeoutError
+    when *EXPECTED_ERROR_TYPES
       Sentry.capture_exception(exception)
       flash[:alert] = build_error_message(exception)
       redirect_to authenticated_root_path
