@@ -25,7 +25,7 @@ RSpec.feature 'Sign in', :js, type: :feature do
       before do
         fill_in 'Username or email', with: user.email
         fill_in 'Password', with: user.password
-        click_link_or_button 'Sign in'
+        click_button 'Sign in'
       end
 
       it 'successful sign in message displayed' do
@@ -59,7 +59,7 @@ RSpec.feature 'Sign in', :js, type: :feature do
       before do
         fill_in 'Username or email', with: user.username
         fill_in 'Password', with: user.password
-        click_link_or_button 'Sign in'
+        click_button 'Sign in'
       end
 
       it 'successful sign in message displayed' do
@@ -72,7 +72,7 @@ RSpec.feature 'Sign in', :js, type: :feature do
     it 'invalid username, email or password displayed' do
       fill_in 'Username or email', with: 'billy bob'
       fill_in 'Password', with: user.password
-      click_link_or_button 'Sign in'
+      click_button 'Sign in'
       expect(page).to have_govuk_page_title(text: 'Sign in')
       expect(page).to have_govuk_flash(:alert, text: 'Invalid username or password')
     end

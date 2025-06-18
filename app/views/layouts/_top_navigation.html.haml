@@ -1,13 +1,19 @@
 .moj-header__content
   %nav.moj-header__navigation{ "aria-label" => "Account navigation" }
     %ul.moj-header__navigation-list
-      %li.moj-header__navigation-item
-        = link_to current_user.name,
-                  user_path(current_user),
-                  class: 'moj-header__navigation-link'
-      %li.moj-header__navigation-item
-        = link_to t('layouts.application.header.navigation.sign_out'),
-                  destroy_user_session_path,
-                  method: :delete,
-                  data: { turbo_method: :delete },
-                  class: 'moj-header__navigation-link'
+      - if signed_in?
+        %li.moj-header__navigation-item
+          = link_to current_user.name,
+                    user_path(current_user),
+                    class: 'moj-header__navigation-link'
+        %li.moj-header__navigation-item
+          = link_to t('layouts.application.header.navigation.sign_out'),
+                    destroy_user_session_path,
+                    method: :delete,
+                    data: { turbo_method: :delete },
+                    class: 'moj-header__navigation-link'
+      - else
+        %li.moj-header__navigation-item
+          = link_to t('layouts.application.header.navigation.sign_in'),
+                    unauthenticated_root_path,
+                    class: 'moj-header__navigation-link'
