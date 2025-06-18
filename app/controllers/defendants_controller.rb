@@ -24,7 +24,11 @@ class DefendantsController < ApplicationController
   def edit; end
 
   def update
-    unlink_laa_reference_and_redirect && return if @unlink_attempt.valid?
+    if @unlink_attempt.valid?
+      unlink_laa_reference_and_redirect
+      return
+    end
+
     render 'edit'
   end
 
@@ -91,6 +95,11 @@ class DefendantsController < ApplicationController
   rescue CourtDataAdaptor::Errors::InternalServerError,
          CourtDataAdaptor::Errors::ClientError => e
     handle_error(e, I18n.t('defendants.unlink.failure'), I18n.t('error.it_helpdesk'))
+  rescue StandardError => e
+    logger.error "MAAT_UNLINK_ERROR: #{e.message}"
+    Sentry.capture_exception(e)
+
+    render_edit(I18n.t('defendants.unlink.unknown_error'), I18n.t('error.it_helpdesk'))
   else
     redirect_to_new_laa_reference
   end
