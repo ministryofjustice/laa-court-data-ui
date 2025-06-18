@@ -2,6 +2,7 @@
 
 module CourtDataAdaptor
   class Client
+    include Singleton
     include Configurable
 
     def initialize
@@ -18,7 +19,7 @@ module CourtDataAdaptor
     end
 
     def access_token
-      @access_token = new_access_token if @access_token.nil? || @access_token.expired?
+      @access_token = new_access_token if @access_token.nil? || token_expires_soon?
       @access_token
     end
 
@@ -34,6 +35,10 @@ module CourtDataAdaptor
 
     def fake_bearer_token
       'fake-court-data-adaptor-bearer-token'
+    end
+
+    def token_expires_soon?
+      @access_token.expired? || Time.zone.at(@access_token.expires_at) < 1.minute.from_now
     end
   end
 end

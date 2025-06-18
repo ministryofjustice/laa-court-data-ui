@@ -6,8 +6,6 @@ module CourtDataAdaptor
       alias unlink_object term
 
       def make_request
-        refresh_token_if_required!
-
         response = resource.connection.faraday.patch(
           "court_application_laa_references/#{unlink_object.defendant_id}",
           unlink_params
