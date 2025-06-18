@@ -1,11 +1,11 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bdate_of_birth%5D=2000-12-27&filter%5Bname%5D=wendie%20bogisiche%20lowe
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"name":"wendie bogisiche lowe","date_of_birth":"2000-12-27"}}'
     headers:
       Accept:
       - application/json
@@ -50,7 +50,8 @@ http_interactions:
       - '0'
     body:
       encoding: UTF-8
-      string: '{"total_results": 1, "results": [{ "prosecution_case_reference": "TEST12345", "defendant_summaries":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","national_insurance_number":"HX685369B","arrest_summons_number":"FPV3XYUJNPIB","name":"Wendie
+      string: '{"total_results": 1, "results": [{ "prosecution_case_reference": "TEST12345",
+        "defendant_summaries":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","national_insurance_number":"HX685369B","arrest_summons_number":"FPV3XYUJNPIB","name":"Wendie
         Bogisiche Lowe","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","date_of_birth":"2000-12-27","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"6fc6b4a7-131c-464b-a9fe-7440e49311b9","code":"PT00011","order_index":1,"title":"Possessing
         anything with intent to destroy or damage property","legislation":"Sexual
         Offences Act 2003 s. 14","wording":"Random string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Indictable
@@ -72,11 +73,11 @@ http_interactions:
         NEWS","status_date":"2022-04-08","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"}]}]}'
   recorded_at: Fri, 09 May 2025 14:56:50 GMT
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bdate_of_birth%5D=2000-12-27&filter%5Bname%5D=Wendie
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"name":"Wendie","date_of_birth":"2000-12-27"}}'
     headers:
       Accept:
       - application/json
@@ -121,7 +122,8 @@ http_interactions:
       - '0'
     body:
       encoding: UTF-8
-      string: '{"total_results": 1, "results": [{ "prosecution_case_reference": "TEST12345", "defendant_summaries":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","national_insurance_number":"HX685369B","arrest_summons_number":"FPV3XYUJNPIB","name":"Wendie
+      string: '{"total_results": 1, "results": [{ "prosecution_case_reference": "TEST12345",
+        "defendant_summaries":[{"id":"a23d0911-4806-42eb-b910-e2bdcf3018d9","national_insurance_number":"HX685369B","arrest_summons_number":"FPV3XYUJNPIB","name":"Wendie
         Bogisiche Lowe","first_name":"Wendie","middle_name":"Bogisiche","last_name":"Lowe","date_of_birth":"2000-12-27","proceedings_concluded":false,"representation_order":{"laa_application_reference":null,"effective_start_date":null,"effective_end_date":null,"laa_contract_number":null},"offence_summaries":[{"id":"6fc6b4a7-131c-464b-a9fe-7440e49311b9","code":"PT00011","order_index":1,"title":"Possessing
         anything with intent to destroy or damage property","legislation":"Sexual
         Offences Act 2003 s. 14","wording":"Random string","arrest_date":"2019-10-17","charge_date":"2019-10-17","mode_of_trial":"Indictable
@@ -143,11 +145,11 @@ http_interactions:
         NEWS","status_date":"2022-04-08","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"}]}]}'
   recorded_at: Fri, 09 May 2025 14:56:52 GMT
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bdate_of_birth%5D=1928-11-28&filter%5Bname%5D=Fred%20Bloggs
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"name":"Fred Bloggs","date_of_birth":"1928-11-28"}}'
     headers:
       Accept:
       - application/json

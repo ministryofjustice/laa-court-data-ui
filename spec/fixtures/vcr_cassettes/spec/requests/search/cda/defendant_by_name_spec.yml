@@ -1,11 +1,11 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bdate_of_birth%5D=1990-01-01&filter%5Bname%5D=trever%20glover
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"date_of_birth":"1990-01-01","name":"trever glover"}}'
     headers:
       Accept:
       - application/json

@@ -7,7 +7,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
   let(:api_events_path) { "#{api_url_v2}hearings/#{hearing_id}/event_log/2019-10-23" }
   let(:api_data_path) { "#{api_url_v2}hearing_results/#{hearing_id}" }
   let(:case_reference) { 'TEST12345' }
-  let(:api_summary_path) { "#{api_url_v2}prosecution_cases" }
+  let(:api_summary_path) { "#{api_url_v2}prosecution_cases//" }
   let(:hearing_id) { '345be88a-31cf-4a30-9de3-da98e973367e' }
 
   before do
@@ -34,9 +34,9 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
 
     context 'with hearing events', :stub_v2_hearing_events do
       it 'requests data for hearing summary' do
-        expect(a_request(:get,
+        expect(a_request(:post,
                          api_summary_path)
-            .with(query: { filter: { prosecution_case_reference: case_reference } }))
+            .with(body: { filter: { prosecution_case_reference: case_reference } }.to_json))
           .to have_been_made.once
       end
 
@@ -68,9 +68,9 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
 
     context 'with no hearing events', :stub_v2_hearing_events_not_found do
       it 'requests data for hearing summary' do
-        expect(a_request(:get,
+        expect(a_request(:post,
                          api_summary_path)
-            .with(query: { filter: { prosecution_case_reference: case_reference } }))
+            .with(body: { filter: { prosecution_case_reference: case_reference } }.to_json))
           .to have_been_made.once
       end
 
@@ -112,9 +112,9 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
 
     context 'with error fetching hearing events', :stub_v2_hearing_events_error do
       it 'requests data for hearing summary' do
-        expect(a_request(:get,
+        expect(a_request(:post,
                          api_summary_path)
-                .with(query: { filter: { prosecution_case_reference: case_reference } }))
+                .with(body: { filter: { prosecution_case_reference: case_reference } }.to_json))
           .to have_been_made.once
       end
 
