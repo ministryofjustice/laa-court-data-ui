@@ -282,7 +282,7 @@ RSpec.configure do |config|
     stub_request(:post, %r{http.*/v2/prosecution_cases})
       .to_return(
         status: 500,
-        body: '{ "error_codes": ["commmon_platform_connection_failed"] }',
+        body: '{ "error_codes": ["common_platform_connection_failed"] }',
         headers: { 'Content-Type' => 'application/json' }
       )
   end
