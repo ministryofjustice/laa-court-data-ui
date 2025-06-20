@@ -28,6 +28,7 @@ class SubjectsController < ApplicationController
     render :show unless performed?
   end
 
+  # rubocop:disable Metrics/MethodLength
   def unlink
     @form_model = load_unlink_attempt
     @form_model.validate!
@@ -42,9 +43,13 @@ class SubjectsController < ApplicationController
          CourtDataAdaptor::Errors::BadRequest,
          CourtDataAdaptor::Errors::UnprocessableEntity => e
     handle_unlink_failure(e.message, e)
+  rescue StandardError => e
+    logger.error "Error: SubjectsController#unlink: #{e.message}"
+    Sentry.capture_exception(e)
   ensure
     render :show unless performed?
   end
+  # rubocop:enable Metrics/MethodLength
 
   private
 

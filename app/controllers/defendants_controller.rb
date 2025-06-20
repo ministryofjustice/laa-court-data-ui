@@ -96,7 +96,7 @@ class DefendantsController < ApplicationController
          CourtDataAdaptor::Errors::ClientError => e
     handle_error(e, I18n.t('defendants.unlink.failure'), I18n.t('error.it_helpdesk'))
   rescue StandardError => e
-    logger.error "MAAT_UNLINK_ERROR: #{e.message}"
+    logger.error "Error: DefendantsController#unlink_laa_reference_and_redirect: #{e.message}"
     Sentry.capture_exception(e)
 
     render_edit(I18n.t('defendants.unlink.unknown_error'), I18n.t('error.it_helpdesk'))
