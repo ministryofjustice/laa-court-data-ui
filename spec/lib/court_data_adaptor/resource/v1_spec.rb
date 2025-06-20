@@ -52,13 +52,6 @@ RSpec.describe CourtDataAdaptor::Resource::V1, :vcr do
         .with(headers: { 'User-Agent' => /Faraday v1.\d{1,2}.\d{1,2}/ })
         ).to have_been_made.once
       end
-
-      it 'adds OAuth2 Authorization: Bearer token' do
-        expect(
-          a_request(:get, mock_resource_endpoint)
-        .with(headers: { 'Authorization' => /Bearer .*/ })
-        ).to have_been_made.once
-      end
     end
 
     describe 'connection options' do

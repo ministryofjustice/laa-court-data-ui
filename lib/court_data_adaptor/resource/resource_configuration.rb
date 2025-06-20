@@ -12,7 +12,7 @@ module CourtDataAdaptor
 
         self.site = api_url
         cattr_accessor :client
-        self.client = Client.new
+        self.client = Client.instance
 
         connection_options[:status_handlers] = {
           400 => ApiRequestHandler,
@@ -24,7 +24,6 @@ module CourtDataAdaptor
         connection do |conn|
           conn.use(
             FaradayMiddleware::OAuth2,
-            client.bearer_token,
             token_type: :bearer
           )
         end

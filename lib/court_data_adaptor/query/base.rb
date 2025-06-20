@@ -18,6 +18,7 @@ module CourtDataAdaptor
 
       def call
         resource.with_headers("X-Request-ID": Current.request_id) do
+          refresh_token_if_required!
           make_request
         end
       end
