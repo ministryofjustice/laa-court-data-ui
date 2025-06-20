@@ -14,26 +14,23 @@
     %meta{ content: "blue", name: "theme-color" }/
     %meta{ content: "IE=edge", "http-equiv" => "X-UA-Compatible" }/
     %meta{ content: "noindex", name: "robots" }/
-    %link{ href: asset_path("favicon.ico"), rel: "shortcut icon", sizes: "16x16 32x32 48x48", type: "image/x-icon" }/
-    %link{ color: "blue", href: "govuk-mask-icon.svg", rel: "mask-icon" }/
-    %link{ href: asset_path("govuk-icon-180.png"), rel: "apple-touch-icon", sizes: "180x180" }/
-    %link{ href: asset_path("govuk-icon-192.png"), rel: "apple-touch-icon", sizes: "192x192" }/
-    %link{ href: asset_path("govuk-icon-512.png"), rel: "apple-touch-icon", sizes: "512x512" }/
-    = tag.meta(property: 'og:image', content: asset_path('govuk-opengraph-image.png'))
+    %link{ href: "/favicon.ico", rel: "shortcut icon", sizes: "16x16 32x32 48x48", type: "image/x-icon" }/
+    %link{ color: "blue", href: "/govuk-mask-icon.svg", rel: "mask-icon" }/
+    %link{ href: "/govuk-icon-180.png", rel: "apple-touch-icon", sizes: "180x180" }/
+    %link{ href: "/govuk-icon-192.png", rel: "apple-touch-icon", sizes: "192x192" }/
+    %link{ href: "/govuk-icon-512.png", rel: "apple-touch-icon", sizes: "512x512" }/
+    = tag.meta(property: 'og:image', content: '/govuk-opengraph-image.png')
   %body.govuk-template__body{ class: app_environment }
     :javascript
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     %a.govuk-skip-link{ href: "#main-content", "data-module": "govuk-skip-link" }
       = t('layouts.application.skip_content')
 
-    %header.govuk-header{ "data-module" => "govuk-header", role: "banner" }
-      .govuk-header__container.govuk-width-container
-        .govuk-header__logo
-          = render 'layouts/govuk_logo'
-
-        .govuk-header__content
-          %a.govuk-header__link.govuk-header__service-name{ href: '/' }
-            = service_name
+    %header.moj-header{ role: "banner" }
+      .moj-header__container
+        .moj-header__logo
+          = render 'layouts/moj_logo'
+          %a.moj-header__link.moj-header__link--organisation-name{ href: "https://intranet.justice.gov.uk/?agency=laa" } Legal Aid Agency
 
     .govuk-width-container
       = render 'layouts/phase_banner'

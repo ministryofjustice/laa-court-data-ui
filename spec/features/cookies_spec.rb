@@ -137,7 +137,7 @@ RSpec.feature 'Cookies', type: :feature do
       choose 'A case by URN'
       click_link_or_button 'Continue'
       fill_in 'search-term-field', with: 'TEST12345'
-      click_link_or_button 'Search'
+      click_button 'Search'
       click_link_or_button 'Cookies'
       page.choose 'Off'
       click_link_or_button 'Save changes'

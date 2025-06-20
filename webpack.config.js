@@ -13,8 +13,7 @@ const config = {
       path.resolve(__dirname, 'app', 'assets', 'javascript', 'application.js'),
       path.resolve(__dirname, 'app', 'assets', 'stylesheets', 'application.scss')
     ],
-    unlink: path.resolve(__dirname, 'app', 'assets', 'javascript', 'unlink.js'),
-    govuk_frontend: path.resolve(__dirname, 'app', 'assets', 'javascript', 'govuk-frontend.js')
+    unlink: path.resolve(__dirname, 'app', 'assets', 'javascript', 'unlink.js')
   },
   module: {
     rules: [

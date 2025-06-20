@@ -143,7 +143,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
 
   def when_i_search_for(term)
     fill_in 'search-term-field', with: term
-    click_link_or_button 'Search'
+    click_button 'Search'
   end
 
   def click_breadcrumb(crumb)

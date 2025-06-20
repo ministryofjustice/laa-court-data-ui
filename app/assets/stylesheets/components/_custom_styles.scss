@@ -20,3 +20,16 @@ body:not(.js-enabled) .app-js-only {
   display: block;
   margin-bottom: 0.5rem;
 }
+
+@media (min-width: 40.0625em) {
+  // The below CSS allows us to right-align
+  // nav links such as 'Manage users'
+  .govuk-service-navigation__wrapper {
+    flex-grow: 1;
+
+    .pull-right {
+      margin-left: auto;
+      font-size: 1rem;
+    }
+  }
+}

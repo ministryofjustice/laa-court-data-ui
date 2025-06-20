@@ -9,7 +9,7 @@ BRANCH_RELEASE_NAME=$(echo $CIRCLE_BRANCH | tr '[:upper:]' '[:lower:]' | sed 's:
 
 deploy_branch() {
   # Set the deployment host, this will add the prefix of the branch name
-  RELEASE_HOST="$BRANCH_RELEASE_NAME.apps.live.cloud-platform.service.justice.gov.uk"
+  RELEASE_HOST="$BRANCH_RELEASE_NAME-vcd.apps.live.cloud-platform.service.justice.gov.uk"
   # The identifier is of format <ingress name>-<namespace>-green
   IDENTIFIER="$BRANCH_RELEASE_NAME-app-ingress-laa-court-data-ui-dev-green"
 

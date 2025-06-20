@@ -1,0 +1,19 @@
+%section.govuk-service-navigation{ "aria-label" => "Service information", "data-govuk-service-navigation-init" => "", "data-module" => "govuk-service-navigation" }
+  .govuk-width-container
+    .govuk-service-navigation__container
+      %span.govuk-service-navigation__service-name
+        %a.govuk-service-navigation__link{ href: signed_in? ? authenticated_root_path : unauthenticated_root_path }
+          = service_name
+
+      - if signed_in?
+        %nav.govuk-service-navigation__wrapper{ "aria-label" => t('layouts.application.header.navigation.menu') }
+          %button.govuk-service-navigation__toggle.govuk-js-service-navigation-toggle{ "aria-controls" => "navigation", hidden: "", type: "button" }
+            = t('layouts.application.header.navigation.menu')
+          %ul.govuk-service-navigation__list#navigation
+            %li.govuk-service-navigation__item
+              %a.govuk-service-navigation__link{ href: new_search_filter_path }
+                = t('layouts.application.header.navigation.search')
+            - if can?(:index, User)
+              %li.govuk-service-navigation__item.pull-right
+                %a.govuk-link--no-visited-state{ href: users_path }
+                  = t('layouts.application.header.navigation.manage_users')

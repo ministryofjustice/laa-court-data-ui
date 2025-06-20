@@ -17,9 +17,9 @@ RSpec.feature 'Sign out', type: :feature do
     expect(page).to have_govuk_page_title(text: 'Sign in')
   end
 
-  it 'does not display navigation bar' do
-    expect(page).to have_no_css('nav')
-    expect(page).to have_no_link(user.name)
-    expect(page).to have_no_link('Sign out')
+  it 'displays sign in link' do
+    within('nav.moj-header__navigation') do
+      expect(page).to have_link('Sign in')
+    end
   end
 end

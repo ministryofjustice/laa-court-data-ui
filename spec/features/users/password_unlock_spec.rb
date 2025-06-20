@@ -24,10 +24,10 @@ RSpec.feature 'Password unlock', type: :feature do
       fill_in 'Password', with: 'wrong-password'
       if i + 1 == max_attempts
         expect do
-          click_link_or_button 'Sign in'
+          click_button 'Sign in'
         end.to have_enqueued_job.on_queue('mailers')
       else
-        click_link_or_button 'Sign in'
+        click_button 'Sign in'
       end
     end
   end
@@ -37,7 +37,7 @@ RSpec.feature 'Password unlock', type: :feature do
       Devise.maximum_attempts.times do
         fill_in 'Username or email', with: user.email
         fill_in 'Password', with: 'wrong-password'
-        click_link_or_button 'Sign in'
+        click_button 'Sign in'
       end
     end
 
