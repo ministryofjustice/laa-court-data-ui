@@ -11,7 +11,7 @@ module CourtDataAdaptor
     end
 
     def call
-      response = Cda::ProsecutionCaseSearch.execute(filter_params)
+      response = Cda::ProsecutionCaseSearch.create(filter_params)
 
       response.results.flat_map do |prosecution_case|
         prosecution_case.defendant_summaries.each do |defendant|
