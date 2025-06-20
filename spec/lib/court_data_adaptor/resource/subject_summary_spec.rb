@@ -52,5 +52,31 @@ RSpec.describe CourtDataAdaptor::Resource::SubjectSummary do
         expect(maat_reference).to eq "1234567"
       end
     end
+
+    context "with multiple non-matching offences" do
+      let(:data) do
+        {
+          offence_summary: [{ laa_application: { reference: "7654322" } },
+                            { laa_application: { reference: "1234567" } }]
+        }
+      end
+
+      it "returns a not available message" do
+        expect(maat_reference).to eq "Not available"
+      end
+    end
+
+    context "with offences but only one MAAT" do
+      let(:data) do
+        {
+          offence_summary: [{ laa_application: nil },
+                            { laa_application: { reference: "1234567" } }]
+        }
+      end
+
+      it "returns a not available message" do
+        expect(maat_reference).to eq "Not available"
+      end
+    end
   end
 end

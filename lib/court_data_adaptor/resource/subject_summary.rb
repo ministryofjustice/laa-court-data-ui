@@ -16,7 +16,13 @@ module CourtDataAdaptor
       end
 
       def maat_reference
-        offence_summary.map(&:maat_reference).uniq.reject { _1&.starts_with?(DUMMY_MAAT_PREFIX) }.compact.join
+        different_maats = offence_summary.map(&:maat_reference).uniq
+        if different_maats.count > 1
+          Rails.logger.warn("Court application subject has multiple MAAT IDs - #{different_maats.to_sentence}")
+          "Not available"
+        else
+          different_maats.reject { _1&.starts_with?(DUMMY_MAAT_PREFIX) }.first
+        end
       end
     end
   end

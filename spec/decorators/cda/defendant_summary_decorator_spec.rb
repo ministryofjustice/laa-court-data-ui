@@ -73,4 +73,73 @@ RSpec.describe Cda::DefendantSummaryDecorator, type: :decorator do
       end
     end
   end
+
+  describe '#maat_reference' do
+    subject(:maat_reference) { decorator.maat_reference }
+
+    let(:overall_defendant) { build(:defendant_summary, offence_summaries:) }
+
+    context 'when there are multiple matching MAATs' do
+      let(:offence_summaries) do
+        [
+          build(:offence_summary, laa_application: build(:laa_application, reference: '1234567')),
+          build(:offence_summary, laa_application: build(:laa_application, reference: '1234567'))
+        ]
+      end
+
+      it 'returns the MAAT' do
+        expect(maat_reference).to eq '1234567'
+      end
+    end
+
+    context 'when there are multiple non-matching MAATs' do
+      let(:offence_summaries) do
+        [
+          build(:offence_summary, laa_application: build(:laa_application, reference: '1234567')),
+          build(:offence_summary, laa_application: build(:laa_application, reference: '7654322'))
+        ]
+      end
+
+      it 'returns a not available message' do
+        expect(maat_reference).to eq 'Not available'
+      end
+    end
+
+    context 'when there is one MAAT' do
+      let(:offence_summaries) do
+        [
+          build(:offence_summary, laa_application: build(:laa_application, reference: '1234567'))
+        ]
+      end
+
+      it 'returns the MAAT' do
+        expect(maat_reference).to eq '1234567'
+      end
+    end
+
+    context 'when there is no MAAT' do
+      let(:offence_summaries) do
+        [
+          build(:offence_summary, laa_application: nil)
+        ]
+      end
+
+      it 'returns nil' do
+        expect(maat_reference).to be_nil
+      end
+    end
+
+    context 'when there is an offence with a MAAT and an offence without' do
+      let(:offence_summaries) do
+        [
+          build(:offence_summary, laa_application: nil),
+          build(:offence_summary, laa_application: build(:laa_application, reference: '7654322'))
+        ]
+      end
+
+      it 'returns a not available message' do
+        expect(maat_reference).to eq 'Not available'
+      end
+    end
+  end
 end
