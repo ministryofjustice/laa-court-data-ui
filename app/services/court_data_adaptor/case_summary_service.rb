@@ -13,13 +13,9 @@ module CourtDataAdaptor
     def call
       Rails.logger.info 'V2_SEARCH_CASE_SUMMARIES'
 
-      response = Cda::ProsecutionCaseSearchResponse.find(
-        :one,
-        params: { filter: { prosecution_case_reference: @urn } },
-        from: '/api/internal/v2/prosecution_cases'
-      )
+      search = Cda::ProsecutionCaseSearch.create(prosecution_case_reference: @urn)
 
-      response.results.first
+      search.results.first
     end
   end
 end

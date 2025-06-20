@@ -25,7 +25,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_case_search) do
     stub_request(
-      :get, %r{http.*/v2/prosecution_cases\?filter.*}
+      :post, %r{http.*/v2/prosecution_cases}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -33,32 +33,10 @@ RSpec.configure do |config|
     )
   end
 
-  config.before(:each, :stub_case_search_test12345) do
-    stub_request(
-      :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter\[prosecution_case_reference\]=TEST12345&include=defendants,defendants.offences,hearing_summaries,hearings,hearings.hearing_events,hearings.providers}
-    ).to_return(
-      status: 200,
-      body: load_json_stub('unlinked/prosecution_case_by_reference_body.json'),
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
-    )
-  end
-
-  config.before(:each, :stub_defendant_ref_search) do
-    stub_request(
-      :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter\[(arrest_summons_number|national_insurance_number)\]=.*&include=defendants.*}
-    ).to_return(
-      status: 200,
-      body: load_json_stub('linked/defendant_by_reference_body.json'),
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
-    )
-  end
-
   config.before(:each, :stub_defendant_name_search) do
     stub_request(
-      :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter\[date_of_birth\]=.*&filter\[name\]=.*&include=defendants.*}
+      :post,
+      %r{http.*/api/internal/v1/prosecution_cases}
     ).to_return(
       status: 200,
       body: load_json_stub('linked/defendant_by_reference_body.json'),
@@ -68,7 +46,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_unlinked) do
     stub_request(
-      :get, %r{http.*/v2/prosecution_cases\?filter.*}
+      :post, %r{http.*/v2/prosecution_cases}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -126,17 +104,8 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_linked) do
     stub_request(
-      :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter.*arrest_summons_number.*#{defendant_asn}&include=defendants,defendants.offences}
-    ).to_return(
-      status: 200,
-      body: load_json_stub('linked/defendant_by_reference_body.json'),
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
-    )
-
-    stub_request(
-      :get,
-      %r{http.*/api/internal/v1/prosecution_cases\?filter.*national_insurance_number.*#{defendant_nino}&include=defendants,defendants.offences}
+      :post,
+      %r{http.*/api/internal/v1/prosecution_cases}
     ).to_return(
       status: 200,
       body: load_json_stub('linked/defendant_by_reference_body.json'),
@@ -243,7 +212,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_defendants_case_search) do
     stub_request(
-      :get, %r{http.*/v2/prosecution_cases\?filter.*}
+      :post, %r{http.*/v2/prosecution_cases}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -253,7 +222,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_defendants_ref_search) do
     stub_request(
-      :get, %r{http.*/v2/prosecution_cases\?filter.*}
+      :post, %r{http.*/v2/prosecution_cases}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -263,7 +232,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_defendants_name_search) do
     stub_request(
-      :get, %r{http.*/v2/prosecution_cases\?filter.*}
+      :post, %r{http.*/v2/prosecution_cases}
     ).to_return(
       status: 200,
       headers: { 'Content-Type' => 'application/json' },
@@ -282,7 +251,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_no_v2_case_results) do
     stub_request(
-      :get, %r{http.*/v2/prosecution_cases\?filter.*}
+      :post, %r{http.*/v2/prosecution_cases}
     ).to_return(
       status: 200,
       body: '{ "total_results": 0, "results": [] }',
@@ -301,7 +270,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_defendants_failed_case_search) do
     stub_request(
-      :get, %r{http.*/v2/prosecution_cases\?filter.*}
+      :post, %r{http.*/v2/prosecution_cases}
     ).to_return(
       status: 400,
       headers: { 'Content-Type' => 'application/json' },
@@ -310,10 +279,10 @@ RSpec.configure do |config|
   end
 
   config.before(:each, :stub_defendants_cda_failed) do
-    stub_request(:get, %r{http.*/v2/prosecution_cases\?filter.*})
+    stub_request(:post, %r{http.*/v2/prosecution_cases})
       .to_return(
         status: 500,
-        body: '{ "error_codes": ["commmon_platform_connection_failed"] }',
+        body: '{ "error_codes": ["common_platform_connection_failed"] }',
         headers: { 'Content-Type' => 'application/json' }
       )
   end

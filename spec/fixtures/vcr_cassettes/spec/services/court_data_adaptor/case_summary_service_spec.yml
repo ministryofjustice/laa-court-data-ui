@@ -1,11 +1,11 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"prosecution_case_reference":"TEST12345"}}'
     headers:
       Accept:
       - application/json

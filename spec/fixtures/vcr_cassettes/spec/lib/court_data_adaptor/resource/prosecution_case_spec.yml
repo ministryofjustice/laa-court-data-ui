@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Faraday v1.10.0
+      - Faraday v1.10.4
       Content-Type:
       - application/vnd.api+json
       Accept:
@@ -19,189 +19,37 @@ http_interactions:
       - gzip,deflate
   response:
     status:
-      code: 200
-      message: OK
+      code: 401
+      message: Unauthorized
     headers:
       X-Frame-Options:
       - SAMEORIGIN
       X-Xss-Protection:
-      - 1; mode=block
+      - '0'
       X-Content-Type-Options:
       - nosniff
-      X-Download-Options:
-      - noopen
       X-Permitted-Cross-Domain-Policies:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"ba5f3ea40e95f49bce11942f375ebd38"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
       X-Request-Id:
-      - c006588d-d4a5-4931-8c83-2a34e13667f8
+      - aeeb7505-dcf5-4f94-8723-f74e6db1c5b9
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
       X-Runtime:
-      - '0.049142'
+      - '0.047765'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=0.64, halted_callback.action_controller;dur=0.00,
+        process_action.action_controller;dur=2.61
       Content-Length:
-      - '13'
+      - '0'
     body:
       encoding: UTF-8
-      string: '{"data":null}'
-    http_version: null
-  recorded_at: Tue, 31 Mar 2020 11:17:05 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ
-    body:
-      encoding: US-ASCII
       string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.10.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"d725e0745fec01859c8a2859a605c710"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 230ae2d2-cd1f-4a62-919a-25bef4d1eddf
-      X-Runtime:
-      - '0.105443'
-      Content-Length:
-      - '446'
-    body:
-      encoding: UTF-8
-      string: '{"data":[{"id":"2dc8dd46-d930-4878-a0a6-68ae8642cd9e","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants"},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants"},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants"},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants"}]}}}]}'
-    http_version: null
-  recorded_at: Tue, 31 Mar 2020 11:17:05 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=non-existent-urn&include=defendants
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.10.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"ba5f3ea40e95f49bce11942f375ebd38"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - b404df4e-8053-46b8-9b70-87e7c0b817b6
-      X-Runtime:
-      - '0.048090'
-      Content-Length:
-      - '13'
-    body:
-      encoding: UTF-8
-      string: '{"data":null}'
-    http_version: null
-  recorded_at: Tue, 31 Mar 2020 11:17:05 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/api/internal/v1/prosecution_cases?filter%5Bprosecution_case_reference%5D=MOGUERBXIZ&include=defendants
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.10.0
-      Content-Type:
-      - application/vnd.api+json
-      Accept:
-      - application/vnd.api+json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      Accept-Encoding:
-      - gzip,deflate
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"25a340600b2976ce154324d12e08047f"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 7d15bc5c-d4ae-426c-b96d-35d060c8e4e1
-      X-Runtime:
-      - '0.117429'
-      Content-Length:
-      - '1894'
-    body:
-      encoding: UTF-8
-      string: '{"data":[{"id":"2dc8dd46-d930-4878-a0a6-68ae8642cd9e","type":"prosecution_cases","attributes":{"prosecution_case_reference":"MOGUERBXIZ"},"relationships":{"defendants":{"data":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants"},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants"},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants"},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants"}]}}}],"included":[{"id":"9eb614c4-3c3c-42ee-aa2e-80971dfbc4f9","type":"defendants","attributes":{"first_name":"Andy","last_name":"Sawayn","date_of_birth":"1987-10-19","national_insurance_number":"EA382617F","arrest_summons_number":"KX5SWEFJQ3DL","maat_reference":null},"relationships":{"offences":{"data":[{"id":"5aff5a05-8f43-40e0-82e6-08c658ffca00","type":"offences"}]}}},{"id":"121cba19-de86-470d-8903-946423684587","type":"defendants","attributes":{"first_name":"Aracely","last_name":"Zulauf","date_of_birth":"1955-09-27","national_insurance_number":"HH481835D","arrest_summons_number":"F79K0TDDZK40","maat_reference":null},"relationships":{"offences":{"data":[{"id":"0fcb44b6-1ca7-4360-b6ed-1d57ff9423e0","type":"offences"}]}}},{"id":"e695c7d3-64b4-4acf-a55e-5dac7c91ec13","type":"defendants","attributes":{"first_name":"Florene","last_name":"DuBuque","date_of_birth":"1983-10-17","national_insurance_number":"XE675428D","arrest_summons_number":"C2ZXXPBNGVR0","maat_reference":null},"relationships":{"offences":{"data":[{"id":"45d5e934-72d0-4a14-b43c-cad750d4ff3c","type":"offences"}]}}},{"id":"107ba90b-f3ff-4727-ab7d-dea446ad4713","type":"defendants","attributes":{"first_name":"Josefa","last_name":"Franecki","date_of_birth":"1961-06-15","national_insurance_number":"HR669639D","arrest_summons_number":"Y1NDQNW9NCN6","maat_reference":null},"relationships":{"offences":{"data":[{"id":"6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc","type":"offences"}]}}}]}'
-    http_version: null
-  recorded_at: Tue, 31 Mar 2020 11:17:06 GMT
-recorded_with: VCR 5.1.0
+  recorded_at: Wed, 18 Jun 2025 15:59:08 GMT
+recorded_with: VCR 6.3.1

@@ -1,11 +1,11 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bnational_insurance_number%5D=HX685369B
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"national_insurance_number":"HX685369B"}}'
     headers:
       Accept:
       - application/json
@@ -72,11 +72,11 @@ http_interactions:
         NEWS","status_date":"2022-04-08","effective_start_date":null,"effective_end_date":null,"contract_number":null}}],"prosecution_case_reference":"TEST12345"}]}]}'
   recorded_at: Fri, 09 May 2025 14:56:56 GMT
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bnational_insurance_number%5D=GP999999B
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"national_insurance_number":"GP999999B"}}'
     headers:
       Accept:
       - application/json

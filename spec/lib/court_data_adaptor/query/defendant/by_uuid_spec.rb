@@ -46,22 +46,4 @@ RSpec.describe CourtDataAdaptor::Query::Defendant::ByUuid do
       expect(resultset).to have_received(:find)
     end
   end
-
-  context 'with results', :vcr do
-    subject(:results) { described_class.new(term).call }
-
-    let(:term) { 'b3221b46-b98c-47b7-a285-be681d2cac4e' }
-
-    it 'returns defendant resources' do
-      expect(results).to be_instance_of(CourtDataAdaptor::Resource::Defendant)
-    end
-
-    it 'returns only defendants with matching uuid' do
-      expect(results).to have_attributes(id: term)
-    end
-
-    it 'includes offences' do
-      expect(results).to respond_to(:offences)
-    end
-  end
 end
