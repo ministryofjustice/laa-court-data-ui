@@ -28,7 +28,7 @@
                               rows: 5,
                               max_chars: 500
 
-          = f.govuk_submit(t('defendants.form.submit'))
+          = f.govuk_submit(t('defendants.form.submit'), data: { disable_with: t('defendants.form.unlinking') })
 
         .govuk-warning-text
           %span.govuk-warning-text__icon{ "aria-hidden" => "true" } !
