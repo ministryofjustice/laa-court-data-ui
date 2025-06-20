@@ -28,7 +28,6 @@ en:
       flash:
         notice:
           events_error: There was an error retrieving the hearing events from the server
-          no_hearing_details: No hearing details available
           server_error: Error retrieving data from server
       hearing_type: Hearing type
       pagination:

@@ -1,4 +1,4 @@
-RSpec.feature 'Unlink court applications' do
+RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
   let(:user) { create(:user, username: "kova-a81") }
   let(:unlinked_court_application_id) { 'c07d4116-0d06-4150-b6a4-e412f556d931' }
   let(:linked_court_application_with_problems_id) { "22a301d1-8e5c-444e-a629-ac33b8e75f8c" }
