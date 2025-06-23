@@ -16,8 +16,6 @@ class HearingsController < ApplicationController
 
   def show
     add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.strftime('%d/%m/%Y')}", ''
-    return if @hearing
-    redirect_to_prosecution_case(notice: I18n.t('hearings.show.flash.notice.no_hearing_details'))
   end
 
   def redirect_to_prosecution_case(**flash)
@@ -39,12 +37,11 @@ class HearingsController < ApplicationController
 
   def set_hearing
     hearing = Cda::Hearing.find(hearing_id)
-
-    @hearing ||= decorate_hearing(hearing)
-    @hearing&.current_sitting_day = paginator.current_item.hearing_date.strftime('%F')
+    @hearing = helpers.decorate(hearing, Cda::HearingDecorator)
+    @hearing.current_sitting_day = paginator.current_item.hearing_date.strftime('%F')
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page
-    @hearing ||= helpers.decorate(Cda::Hearing.new, Cda::HearingDecorator)
+    @hearing = helpers.decorate(Cda::Hearing.new, Cda::HearingDecorator)
   rescue ActiveResource::ServerError, ActiveResource::ClientError => e
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: server_error_message(e))
@@ -74,10 +71,6 @@ class HearingsController < ApplicationController
   def log_and_capture_error(exception, log_messsage)
     logger.error log_messsage
     Sentry.capture_exception(exception)
-  end
-
-  def decorate_hearing(undecorated_hearing)
-    helpers.decorate(undecorated_hearing, Cda::HearingDecorator)
   end
 
   def hearing_day

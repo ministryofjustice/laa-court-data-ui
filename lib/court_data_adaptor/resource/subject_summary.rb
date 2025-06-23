@@ -18,6 +18,10 @@ module CourtDataAdaptor
       def maat_reference
         offence_summary.map(&:maat_reference).uniq.reject { _1&.starts_with?(DUMMY_MAAT_PREFIX) }.compact.join
       end
+
+      def maat_linked?
+        maat_reference.present?
+      end
     end
   end
 end
