@@ -1082,11 +1082,11 @@ http_interactions:
       string: ''
   recorded_at: Fri, 09 May 2025 10:36:37 GMT
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"prosecution_case_reference":"TEST12345"}}'
     headers:
       Accept:
       - application/json
@@ -1165,11 +1165,11 @@ http_interactions:
         counsel","attendance_days":["2025-04-21"],"defendants":["77650dbf-dfa7-4652-9016-45510e86be83"]}]}]}]}'
   recorded_at: Mon, 12 May 2025 15:49:23 GMT
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"prosecution_case_reference":"TEST12345"}}'
     headers:
       Accept:
       - application/json
@@ -1248,11 +1248,11 @@ http_interactions:
         counsel","attendance_days":["2025-04-21"],"defendants":["77650dbf-dfa7-4652-9016-45510e86be83"]}]}]}]}'
   recorded_at: Mon, 12 May 2025 15:49:23 GMT
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"prosecution_case_reference":"TEST12345"}}'
     headers:
       Accept:
       - application/json
@@ -1331,11 +1331,11 @@ http_interactions:
         counsel","attendance_days":["2025-04-21"],"defendants":["77650dbf-dfa7-4652-9016-45510e86be83"]}]}]}]}'
   recorded_at: Mon, 12 May 2025 15:49:23 GMT
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"prosecution_case_reference":"TEST12345"}}'
     headers:
       Accept:
       - application/json
@@ -1414,11 +1414,11 @@ http_interactions:
         counsel","attendance_days":["2025-04-21"],"defendants":["77650dbf-dfa7-4652-9016-45510e86be83"]}]}]}]}'
   recorded_at: Mon, 12 May 2025 15:49:23 GMT
 - request:
-    method: get
-    uri: http://localhost:9292/api/internal/v2/prosecution_cases?filter%5Bprosecution_case_reference%5D=TEST12345
+    method: post
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases//
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"filter":{"prosecution_case_reference":"TEST12345"}}'
     headers:
       Accept:
       - application/json

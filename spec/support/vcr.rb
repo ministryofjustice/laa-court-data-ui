@@ -70,7 +70,7 @@ RSpec.configure do |config|
   config.around(:each, :vcr) do |example|
     if VCR.turned_on?
       cassette = cassette_name(example)
-      VCR.use_cassette(cassette, record: :new_episodes, match_requests_on: %i[method path query]) do
+      VCR.use_cassette(cassette, record: :new_episodes, match_requests_on: %i[method path query body]) do
         example.run
       end
     else

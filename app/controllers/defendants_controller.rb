@@ -93,7 +93,8 @@ class DefendantsController < ApplicationController
          CourtDataAdaptor::Errors::BadRequest => e
     handle_error(e, I18n.t('defendants.unlink.unprocessable'), e.error_string)
   rescue CourtDataAdaptor::Errors::InternalServerError,
-         CourtDataAdaptor::Errors::ClientError => e
+         CourtDataAdaptor::Errors::ClientError,
+         JsonApiClient::Errors::NotFound => e
     handle_error(e, I18n.t('defendants.unlink.failure'), I18n.t('error.it_helpdesk'))
   rescue StandardError => e
     logger.error "Error: DefendantsController#unlink_laa_reference_and_redirect: #{e.message}"
