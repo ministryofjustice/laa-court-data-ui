@@ -426,14 +426,10 @@ workflows:
       - build-app-container:
           requires:
             - branch-build-approval
-      - hold-dev:
-          type: approval
-          requires:
-            - build-app-container
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
-            - hold-dev
+            - build-app-container
       - hold-test:
           type: approval
           requires:

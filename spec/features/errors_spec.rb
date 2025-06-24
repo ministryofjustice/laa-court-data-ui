@@ -63,7 +63,7 @@ RSpec.feature 'Error page', type: :feature do
       choose 'A case by URN'
       click_link_or_button 'Continue'
       fill_in 'search-term-field', with: 'TEST12345'
-      click_link_or_button 'Search'
+      click_button 'Search'
 
       expect(page).to have_css('.govuk-error-summary')
       within '.govuk-error-summary' do
@@ -91,7 +91,7 @@ RSpec.feature 'Error page', type: :feature do
       choose 'A case by URN'
       click_link_or_button 'Continue'
       fill_in 'search-term-field', with: 'TEST12345'
-      click_link_or_button 'Search'
+      click_button 'Search'
 
       expect(page).to have_css('.govuk-error-summary')
       within '.govuk-error-summary' do
