@@ -2,7 +2,9 @@ require "rails_helper"
 
 RSpec.describe CourtDataAdaptor::Resource::SubjectSummary do
   describe "maat_reference" do
-    subject(:maat_reference) { described_class.new(data).maat_reference }
+    subject(:maat_reference) { subject_summary.maat_reference }
+
+    let(:subject_summary) { described_class.new(data) }
 
     context "with no offences" do
       let(:data) do
@@ -26,6 +28,10 @@ RSpec.describe CourtDataAdaptor::Resource::SubjectSummary do
       it "provides no maat reference" do
         expect(maat_reference).to be_blank
       end
+
+      describe "#maat_linked?" do
+        it { expect(subject_summary.maat_linked?).to be false }
+      end
     end
 
     context "with an linked offence" do
@@ -37,6 +43,10 @@ RSpec.describe CourtDataAdaptor::Resource::SubjectSummary do
 
       it "provides the maat reference" do
         expect(maat_reference).to eq "1234567"
+      end
+
+      describe "#maat_linked?" do
+        it { expect(subject_summary.maat_linked?).to be true }
       end
     end
 
