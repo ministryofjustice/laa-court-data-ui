@@ -3,3 +3,4 @@ linters:
     max: 180
     exclude:
       - app/views/layouts/_moj_logo.html.haml
+      - app/views/layouts/_footer_crown.html.haml
