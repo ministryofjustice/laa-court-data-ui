@@ -48,24 +48,29 @@ class ApplicationController < ActionController::Base
   def unexpected_exception_handler(exception)
     raise if Rails.env.development?
 
+    logger.error("Unexpected #{exception.class} error: #{exception}")
+    process_error_based_on_type(exception)
+  end
+
+  def process_error_based_on_type(exception)
     case exception
     when ActiveRecord::RecordNotFound, ActionController::RoutingError
-      redirect_to controller: :errors, action: :not_found
+      redirect_to not_found_error_path
     when JsonApiClient::Errors::NotAuthorized
-      redirect_to controller: :errors, action: :unauthorized
+      redirect_to unauthorized_error_path
     when *EXPECTED_ERROR_TYPES
       Sentry.capture_exception(exception)
-      flash[:alert] = build_error_message(exception)
+      assign_error_flash(exception)
       redirect_to authenticated_root_path
     else
       Sentry.capture_exception(exception)
-      redirect_to controller: :errors, action: :internal_error
+      redirect_to internal_error_path
     end
   end
 
-  def build_error_message(exception)
-    I18n.t('error.connection_error_message',
-           details: cda_error_string(exception) || I18n.t('error.it_helpdesk'))
+  def assign_error_flash(exception)
+    flash[:alert] = I18n.t('error.connection_error_message',
+                           details: cda_error_string(exception) || I18n.t('error.it_helpdesk'))
   end
 
   def set_transaction_id

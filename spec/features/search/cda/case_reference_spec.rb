@@ -13,7 +13,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     choose 'A case by URN'
     click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'TEST12345'
-    click_link_or_button 'Search'
+    click_button 'Search'
     expect(page).to have_text 'Search results for "TEST12345"'
 
     within 'tbody.govuk-table__body' do
@@ -33,7 +33,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     choose 'A case by URN'
     click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'nonexistentcaseURN'
-    click_link_or_button 'Search'
+    click_button 'Search'
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
 
     expect(page).to be_accessible.within '#main-content'
@@ -45,7 +45,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     choose 'A case by URN'
     click_link_or_button 'Continue'
     fill_in 'search-term-field', with: ''
-    click_link_or_button 'Search'
+    click_button 'Search'
 
     expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
@@ -64,7 +64,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     choose 'A case by URN'
     click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'error'
-    click_link_or_button 'Search'
+    click_button 'Search'
 
     expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
@@ -84,7 +84,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     choose 'A case by URN'
     click_link_or_button 'Continue'
     fill_in 'search-term-field', with: 'error'
-    click_link_or_button 'Search'
+    click_button 'Search'
 
     expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
@@ -107,13 +107,13 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
 
     scenario 'there are multiple results' do
       fill_in 'search-term-field', with: 'TEST12345'
-      click_link_or_button 'Search'
+      click_button 'Search'
       expect(page).to have_text '4 search results'
     end
 
     scenario 'there is just one result' do
       fill_in 'search-term-field', with: 'TEST54321'
-      click_link_or_button 'Search'
+      click_button 'Search'
       expect(page).to have_text '1 search result'
     end
   end

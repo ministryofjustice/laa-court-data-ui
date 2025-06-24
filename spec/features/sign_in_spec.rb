@@ -25,7 +25,7 @@ RSpec.feature 'Sign in', :js, type: :feature do
       before do
         fill_in 'Username or email', with: user.email
         fill_in 'Password', with: user.password
-        click_link_or_button 'Sign in'
+        click_button 'Sign in'
       end
 
       it 'successful sign in message displayed' do
@@ -37,18 +37,18 @@ RSpec.feature 'Sign in', :js, type: :feature do
       end
 
       it 'navigation bar is displayed' do
-        expect(page).to have_css('nav.govuk-header__navigation')
+        expect(page).to have_css('nav.moj-header__navigation')
       end
 
       describe 'navigation bar' do
         it 'displays user profile link' do
-          within('nav') do
+          within('nav.moj-header__navigation') do
             expect(page).to have_link(user.name)
           end
         end
 
         it 'displays sign out link' do
-          within('nav') do
+          within('nav.moj-header__navigation') do
             expect(page).to have_link('Sign out')
           end
         end
@@ -59,7 +59,7 @@ RSpec.feature 'Sign in', :js, type: :feature do
       before do
         fill_in 'Username or email', with: user.username
         fill_in 'Password', with: user.password
-        click_link_or_button 'Sign in'
+        click_button 'Sign in'
       end
 
       it 'successful sign in message displayed' do
@@ -72,7 +72,7 @@ RSpec.feature 'Sign in', :js, type: :feature do
     it 'invalid username, email or password displayed' do
       fill_in 'Username or email', with: 'billy bob'
       fill_in 'Password', with: user.password
-      click_link_or_button 'Sign in'
+      click_button 'Sign in'
       expect(page).to have_govuk_page_title(text: 'Sign in')
       expect(page).to have_govuk_flash(:alert, text: 'Invalid username or password')
     end

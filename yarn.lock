@@ -1004,13 +1004,10 @@
   dependencies:
     buffer "^6.0.3"
 
-"@ministryofjustice/frontend@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@ministryofjustice/frontend/-/frontend-2.1.3.tgz#5aa4187096d4d0f7db46e762547b711472c073f0"
-  integrity sha512-kFStfY6Ckbx9OGUEf2xXAjG8oUGXpARpbogk569MTH5LnI1txVT0NieskA4Vthic+2yQ++bePtKX46U1f30rLA==
-  dependencies:
-    govuk-frontend "^5.0.0"
-    moment "^2.27.0"
+"@ministryofjustice/frontend@^5.1.3":
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@ministryofjustice/frontend/-/frontend-5.1.3.tgz#b85a7978d4f3bd7bf1423be88077ef1578fdd6df"
+  integrity sha512-h6/riC6zDo5scevzZz1RByRo3AnX4k2ywFMTX47Irq9y7keyhalyfO5D0+VAJMpX0ADuNLg3f2tJh+cumH/PBA==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -2670,10 +2667,10 @@ gopd@^1.0.1, gopd@^1.2.0:
   resolved "https://registry.yarnpkg.com/gopd/-/gopd-1.2.0.tgz#89f56b8217bdbc8802bd299df6d7f1081d7e51a1"
   integrity sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==
 
-govuk-frontend@^5.0.0, govuk-frontend@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.4.0.tgz#8f2e0b55ef7c7552a1efe68c7b40ff1b4a393e72"
-  integrity sha512-F3YwQYrYQqIPfNxsoph6O78Ey1unCB6cy6omx8KeWY9G504lWZFBSIaiUCma1jNLw9bOUU7Ui+tXG09jjqy0Mw==
+govuk-frontend@^5.10.0:
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.10.2.tgz#616465463a4aa333b01714f90aed5926ad066e6d"
+  integrity sha512-eVYB2rfUCihehZFHQyylt12/OuXq2JLs+70igcrB1FmbepcDqs1XwKiq96hsPbPF9Vn2f6QXO1OatyD3bq5c9Q==
 
 graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.2.11, graceful-fs@^4.2.4:
   version "4.2.11"
@@ -3343,11 +3340,6 @@ minimist@^1.2.0, minimist@^1.2.6, minimist@^1.2.8:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.8.tgz#c1a464e7693302e082a075cee0c057741ac4772c"
   integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
-
-moment@^2.27.0:
-  version "2.30.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.30.1.tgz#f8c91c07b7a786e30c59926df530b4eac96974ae"
-  integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
 
 ms@^2.1.1, ms@^2.1.3:
   version "2.1.3"
