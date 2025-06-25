@@ -14,12 +14,7 @@
               "last_name": "Raynor",
               "date_of_birth": "1973-06-30",
               "proceedings_concluded": false,
-              "representation_order": {
-                  "laa_application_reference": null,
-                  "effective_start_date": null,
-                  "effective_end_date": null,
-                  "laa_contract_number": null
-              },
+              "representation_order": null,
               "offence_summaries": [
                   {
                       "id": "f1f2db72-7bbb-4350-be1a-de00d47539e2",
@@ -57,62 +52,10 @@
                           "effective_end_date": null,
                           "contract_number": null
                       }
-                  },
-                {
-                  "id": "f1f2db72-7bbb-4350-be1a-de00d47539e3",
-                  "code": "PT00012",
-                  "order_index": 2,
-                  "title": "Abuse of trust: sexual activity with a child",
-                  "legislation": "Customs and Excise Management Act 1979 s.50",
-                  "wording": "Random string",
-                  "arrest_date": "2019-10-17",
-                  "charge_date": "2019-10-17",
-                  "mode_of_trial": "Either way",
-                  "start_date": "2019-10-17",
-                  "proceedings_concluded": false,
-                  "pleas": [{
-                    "date": "2019-10-17",
-                    "value": "Not guilty",
-                    "originating_hearing_id": null,
-                    "offence_id": null,
-                    "application_id": null,
-                    "delegated_powers": null
-                  }],
-                  "verdict": {
-                    "date": null,
-                    "type": null,
-                    "originating_hearing_id": null,
-                    "offence_id": null
-                  },
-                  "laa_application": {
-                    "reference": null,
-                    "id": null,
-                    "status_code": null,
-                    "description": null,
-                    "status_date": null,
-                    "effective_start_date": null,
-                    "effective_end_date": null,
-                    "contract_number": null
                   }
-                }
               ],
               "prosecution_case_reference": "TEST12345",
-              "application_summaries": [
-                  {
-                      "id": "f38d0030-0b4a-4fa5-9484-bb37b1e6ab39",
-                      "short_id": "A25ULRHLVC7S",
-                      "reference": "Random_string",
-                      "title": "Appeal for conviction",
-                      "received_date": "2025-04-11"
-                  },
-                  {
-                      "id": "a3f937c8-f098-49db-b9be-941c0deb1390",
-                      "short_id": "A25P5N2QPDLU",
-                      "reference": "Random_string",
-                      "title": "Appeal for conviction",
-                      "received_date": "2025-04-11"
-                  }
-              ]
+              "application_summaries": []
           }
       ],
       "hearing_summaries": []
@@ -130,12 +73,7 @@
               "last_name": "Raynor",
               "date_of_birth": "1973-06-30",
               "proceedings_concluded": false,
-              "representation_order": {
-                  "laa_application_reference": null,
-                  "effective_start_date": null,
-                  "effective_end_date": null,
-                  "laa_contract_number": null
-              },
+              "representation_order": null,
               "offence_summaries": [
                   {
                       "id": "f1f2db72-7bbb-4350-be1a-de00d47539e2",
@@ -173,62 +111,10 @@
                           "effective_end_date": null,
                           "contract_number": null
                       }
-                  },
-                {
-                  "id": "f1f2db72-7bbb-4350-be1a-de00d47539e3",
-                  "code": "PT00012",
-                  "order_index": 2,
-                  "title": "Abuse of trust: sexual activity with a child",
-                  "legislation": "Customs and Excise Management Act 1979 s.50",
-                  "wording": "Random string",
-                  "arrest_date": "2019-10-17",
-                  "charge_date": "2019-10-17",
-                  "mode_of_trial": "Either way",
-                  "start_date": "2019-10-17",
-                  "proceedings_concluded": false,
-                  "pleas": [{
-                    "date": "2019-10-17",
-                    "value": "Not guilty",
-                    "originating_hearing_id": null,
-                    "offence_id": null,
-                    "application_id": null,
-                    "delegated_powers": null
-                  }],
-                  "verdict": {
-                    "date": null,
-                    "type": null,
-                    "originating_hearing_id": null,
-                    "offence_id": null
-                  },
-                  "laa_application": {
-                    "reference": null,
-                    "id": null,
-                    "status_code": null,
-                    "description": null,
-                    "status_date": null,
-                    "effective_start_date": null,
-                    "effective_end_date": null,
-                    "contract_number": null
                   }
-                }
               ],
               "prosecution_case_reference": "TEST12345",
-              "application_summaries": [
-                  {
-                      "id": "f38d0030-0b4a-4fa5-9484-bb37b1e6ab39",
-                      "short_id": "A25ULRHLVC7S",
-                      "reference": "Random_string",
-                      "title": "Appeal for conviction",
-                      "received_date": "2025-04-11"
-                  },
-                  {
-                      "id": "a3f937c8-f098-49db-b9be-941c0deb1390",
-                      "short_id": "A25P5N2QPDLU",
-                      "reference": "Random_string",
-                      "title": "Appeal for conviction",
-                      "received_date": "2025-04-11"
-                  }
-              ]
+              "application_summaries": []
           }
       ],
       "hearing_summaries": []
