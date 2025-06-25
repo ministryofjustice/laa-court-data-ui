@@ -36,6 +36,9 @@ Layout/EmptyLineAfterGuardClause:
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
 
+Lint/ItWithoutArgumentsInBlock:
+  Enabled: false
+
 Layout/LineLength:
   Max: 110
   AllowedPatterns: ['(\A|\s)#', '.*\s+ # .*', 'body: ''{".*":', "%r{http.*"]
