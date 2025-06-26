@@ -56,6 +56,7 @@ class Ability
     can_query_cda
     can_manage_links
     can :manage, User
+    can :manage, Cda::HearingRepullBatch
   end
 
   def admin_abilities
