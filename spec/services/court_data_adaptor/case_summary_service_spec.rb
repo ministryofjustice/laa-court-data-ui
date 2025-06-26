@@ -3,10 +3,9 @@
 RSpec.describe CourtDataAdaptor::CaseSummaryService do
   describe '#call' do
     context 'when filter is case_reference' do
-      subject(:case_service) { described_class.call(params:) }
+      subject(:case_service) { described_class.call(case_reference) }
 
       let(:case_reference) { 'TEST12345' }
-      let(:params) { { urn: case_reference } }
 
       context 'when successful response', :stub_case_search do
         it 'returns response with prosecution case reference' do
@@ -23,6 +22,20 @@ RSpec.describe CourtDataAdaptor::CaseSummaryService do
 
         it 'returns response mapped to Cda::ProsecutionCase' do
           expect(case_service).to be_instance_of(Cda::ProsecutionCase)
+        end
+      end
+
+      context 'when multiple results' do
+        before do
+          stub_request(
+            :post, %r{http.*/v2/prosecution_cases}
+          ).to_return(status: 200,
+                      headers: { 'Content-Type' => 'application/json' },
+                      body: load_json_stub('cda/double_case_response.json'))
+        end
+
+        it 'returns the one with the right URN' do
+          expect(case_service.prosecution_case_reference).to eq case_reference
         end
       end
     end
