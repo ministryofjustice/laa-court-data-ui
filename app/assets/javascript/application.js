@@ -3,6 +3,7 @@ import '../stylesheets/application.scss'
 import '@hotwired/turbo'
 
 import Rails from '@rails/ujs'
+import { initAll } from 'govuk-frontend'
 
 // Prevent turbo from intercepting form submissions in ways that don't play nicely
 // with things like the Rails flash system, unless it's explicitly asked for. Note:
@@ -22,3 +23,5 @@ Rails.start()
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+initAll()
