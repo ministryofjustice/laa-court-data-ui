@@ -1,8 +1,9 @@
 = form_with(model: link_attempt, url: '/laa_references', data: { turbo: false }) do |f|
+  - content_for :error_summary do
+    = f.govuk_error_summary
+
   .govuk-grid-row
     .govuk-grid-column-two-thirds
-      = f.govuk_error_summary
-
       = render partial: 'defendants/defendant', locals: { defendant: defendant,
                                                           prosecution_case_reference: prosecution_case_reference }
 

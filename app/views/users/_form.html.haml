@@ -1,5 +1,6 @@
 = form_with model: user do |f|
-  = f.govuk_error_summary
+  - content_for :error_summary do
+    = f.govuk_error_summary
 
   = f.govuk_text_field(:first_name,
                        label: { text: t('users.form.fields.first_name_label') })

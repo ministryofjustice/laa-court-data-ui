@@ -1,7 +1,9 @@
 = form_with model: search do |f|
+  - content_for :error_summary do
+    = f.govuk_error_summary
+
   .govuk-grid-row
     .govuk-grid-column-two-thirds
-      = f.govuk_error_summary
       = f.hidden_field(:filter, value: filter)
       = f.govuk_text_field(:term, value: term, label: { text: label })
 
