@@ -14,8 +14,7 @@ module CourtDataAdaptor
       Rails.logger.info 'V2_SEARCH_CASE_SUMMARIES'
 
       search = Cda::ProsecutionCaseSearch.create(prosecution_case_reference: @urn)
-
-      search.results.first
+      search.results.find { it.prosecution_case_reference == @urn }
     end
   end
 end
