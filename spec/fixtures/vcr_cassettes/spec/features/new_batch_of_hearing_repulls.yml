@@ -1,0 +1,118 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v2/hearing_repull_batches
+    body:
+      encoding: UTF-8
+      string: '{"maat_ids":"4444432"}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      X-Request-Id:
+      - 9739a83f-46d8-42cd-b507-302f158b5d18
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 9739a83f-46d8-42cd-b507-302f158b5d18
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"4efb704268a51fcb257f37f990928cb6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.272569'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=16.08,
+        instantiation.active_record;dur=0.28, start_transaction.active_record;dur=0.02,
+        transaction.active_record;dur=7.85, process_action.action_controller;dur=262.98
+      Content-Length:
+      - '135'
+    body:
+      encoding: UTF-8
+      string: '{"id":"e64501ca-40de-4f63-b2ad-0df757e7f275","repulls":[{"status":"complete","urn":"ONSWLFMHCQ","maat_ids":"4444432"}],"complete":true}'
+  recorded_at: Thu, 26 Jun 2025 11:56:13 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/hearing_repull_batches/e64501ca-40de-4f63-b2ad-0df757e7f275
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      X-Request-Id:
+      - c006cedb-6eca-4147-b76c-46490ad0a1d9
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - c006cedb-6eca-4147-b76c-46490ad0a1d9
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"4efb704268a51fcb257f37f990928cb6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.015827'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=1.07, instantiation.active_record;dur=0.13,
+        process_action.action_controller;dur=5.35
+      Content-Length:
+      - '135'
+    body:
+      encoding: UTF-8
+      string: '{"id":"e64501ca-40de-4f63-b2ad-0df757e7f275","repulls":[{"status":"pending","urn":"ONSWLFMHCQ","maat_ids":"4444432"}],"complete":false}'
+  recorded_at: Thu, 26 Jun 2025 11:56:13 GMT
+recorded_with: VCR 6.3.1
