@@ -17,11 +17,11 @@
             = @batch.complete ? t(".yes") : t(".no")
 - if @batch.complete
   = link_to t(".new"),
-            new_repull_batch_path,
+            new_hearing_repull_batch_path,
             class: "govuk-button govuk-button--secondary"
 - else
   = link_to t(".reload"),
-            repull_batch_path(@batch),
+            hearing_repull_batch_path(@batch),
             class: "govuk-button govuk-button--secondary"
 .govuk-grid-row
   .govuk-grid-column-full

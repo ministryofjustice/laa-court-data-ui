@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     patch 'update_password', on: :member
   end
 
-  resources :repull_batches, only: %i[new create show]
+  resources :hearing_repull_batches, only: %i[new create show]
 
   post '/cookies/settings', to: 'cookies#create'
   get '/cookies/settings', to: 'cookies#new'

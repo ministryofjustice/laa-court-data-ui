@@ -1,8 +1,9 @@
 = govuk_page_title(t('.title'))
 
-= form_with url: repull_batches_path do |f|
+= form_with model: @batch, url: hearing_repull_batches_path do |f|
   .govuk-grid-row
     .govuk-grid-column-full
+      = f.govuk_error_summary
       = f.govuk_text_area :maat_ids,
                           label: { text: t('.label') },
                           hint: { text: t('.hint') },
