@@ -1,5 +1,6 @@
 = form_with model: search_filter do |f|
-  = f.govuk_error_summary
+  - content_for :error_summary do
+    = f.govuk_error_summary
 
   = f.govuk_collection_radio_buttons :id,
                                      Search.filters,
