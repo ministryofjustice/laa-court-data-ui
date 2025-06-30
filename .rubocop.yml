@@ -66,6 +66,7 @@ Metrics/AbcSize:
   Exclude:
     - app/models/ability.rb
     - spec/features/**/*.rb
+  Max: 20
 
 Metrics/BlockLength:
   Exclude:

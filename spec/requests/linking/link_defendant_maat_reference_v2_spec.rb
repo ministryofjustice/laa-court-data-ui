@@ -73,30 +73,20 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
       end
     end
 
-    context 'with invalid defendant_id' do
-      context 'when not a uuid', :stub_v2_link_failure_with_invalid_defendant_uuid do
-        let(:defendant_id) { 'not-a-uuid' }
+    context 'when defendant_id is not a valid uuid', :stub_v2_link_failure_with_invalid_defendant_uuid do
+      let(:defendant_id) { 'not-a-uuid' }
 
-        it 'flashes alert' do
-          expect(flash.now[:alert]).to match(maat_invalid_uuid)
-        end
+      it { expect(response.body).to include 'Unable to link the defendant using the MAAT ID.' }
 
-        it 'renders laa_reference_path' do
-          expect(response).to render_template('new')
-        end
-      end
+      it { expect(response).to render_template('new') }
     end
 
     context 'with invalid maat_reference' do
       context 'when MAAT API does not know maat reference',
               :stub_v2_link_failure_with_unknown_maat_reference do
-        it 'flashes alert' do
-          expect(flash.now[:alert]).to match(maat_invalid_reference)
-        end
+        it { expect(response.body).to include 'Unable to link the defendant using the MAAT ID.' }
 
-        it 'renders laa_reference_path' do
-          expect(response).to render_template('new')
-        end
+        it { expect(response).to render_template('new') }
       end
 
       context 'when invalid format' do
@@ -113,23 +103,15 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
     end
 
     context 'when server returns error', :stub_v2_link_server_failure do
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(maat_error_message)
-      end
+      it { expect(response.body).to include 'A Court Data Source link could not be established.' }
 
-      it 'renders laa_referencer/new' do
-        expect(response).to render_template 'laa_references/new'
-      end
+      it { expect(response).to render_template 'laa_references/new' }
     end
 
     context 'when cda returns error', :stub_v2_link_cda_failure do
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(maat_error_message)
-      end
+      it { expect(response.body).to include 'A Court Data Source link could not be established.' }
 
-      it 'renders laa_referencer/new' do
-        expect(response).to render_template 'laa_references/new'
-      end
+      it { expect(response).to render_template 'laa_references/new' }
     end
   end
 
