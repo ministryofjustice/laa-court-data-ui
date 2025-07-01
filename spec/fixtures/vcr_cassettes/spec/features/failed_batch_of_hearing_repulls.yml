@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:9292/api/internal/v2/hearing_repull_batches
+    body:
+      encoding: UTF-8
+      string: '{"maat_ids":"4444432"}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      X-Request-Id:
+      - 9739a83f-46d8-42cd-b507-302f158b5d18
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 500
+      message: Internal error
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 9739a83f-46d8-42cd-b507-302f158b5d18
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"4efb704268a51fcb257f37f990928cb6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.272569'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=16.08,
+        instantiation.active_record;dur=0.28, start_transaction.active_record;dur=0.02,
+        transaction.active_record;dur=7.85, process_action.action_controller;dur=262.98
+      Content-Length:
+      - '135'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 26 Jun 2025 11:56:13 GMT
+recorded_with: VCR 6.3.1
