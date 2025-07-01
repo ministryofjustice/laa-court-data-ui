@@ -13,7 +13,8 @@
       link_court_application_subject_path(@application.application_id)
     end
   = form_with(model: @form_model, url: link_url, data: { turbo: false }) do |f|
-    = f.govuk_error_summary
+    - content_for :error_summary do
+      = f.govuk_error_summary
 
     .govuk-grid-row
       .govuk-grid-column-two-thirds
