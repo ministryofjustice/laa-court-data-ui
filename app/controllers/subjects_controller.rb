@@ -45,8 +45,7 @@ class SubjectsController < ApplicationController
   rescue StandardError => e
     logger.error "Error: SubjectsController#unlink: #{e.message}"
     Sentry.capture_exception(e)
-  rescue ActiveModel::ValidationError
-    # No action needed: the form already contains validation errors
+  rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
     nil
   ensure
     render :show unless performed?

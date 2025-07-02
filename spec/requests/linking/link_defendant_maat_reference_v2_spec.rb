@@ -76,7 +76,10 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
     context 'when defendant_id is not a valid uuid', :stub_v2_link_failure_with_invalid_defendant_uuid do
       let(:defendant_id) { 'not-a-uuid' }
 
-      it { expect(response.body).to include 'Unable to link the defendant using the MAAT ID.' }
+      it {
+        expect(response.body).to include 'The MAAT reference you provided is not available to ' \
+                                         'be associated with this defendant.'
+      }
 
       it { expect(response).to render_template('new') }
     end
@@ -84,7 +87,10 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
     context 'with invalid maat_reference' do
       context 'when MAAT API does not know maat reference',
               :stub_v2_link_failure_with_unknown_maat_reference do
-        it { expect(response.body).to include 'Unable to link the defendant using the MAAT ID.' }
+        it {
+          expect(response.body).to include 'The MAAT reference you provided is not available to ' \
+                                           'be associated with this defendant.'
+        }
 
         it { expect(response).to render_template('new') }
       end
@@ -102,14 +108,14 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
       end
     end
 
-    context 'when server returns error', :stub_v2_link_server_failure do
-      it { expect(response.body).to include 'A Court Data Source link could not be established.' }
+    context 'when server returns 500 error', :stub_v2_link_server_failure do
+      it { expect(response.body).to include 'Court Data Adaptor could not be reached.' }
 
       it { expect(response).to render_template 'laa_references/new' }
     end
 
-    context 'when cda returns error', :stub_v2_link_cda_failure do
-      it { expect(response.body).to include 'A Court Data Source link could not be established.' }
+    context 'when cda returns 424 error', :stub_v2_link_cda_failure do
+      it { expect(response.body).to include 'HMCTS Common Platform could not be reached.' }
 
       it { expect(response).to render_template 'laa_references/new' }
     end

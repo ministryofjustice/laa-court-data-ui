@@ -28,14 +28,12 @@ class LaaReferencesController < ApplicationController
 
     redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference),
                 notice: I18n.t('laa_reference.link.success')
-  rescue CourtDataAdaptor::Errors::UnprocessableEntity => e
-    handle_link_failure(t('laa_reference.link.unprocessable'), e)
-  rescue CourtDataAdaptor::Errors::BadRequest,
+  rescue CourtDataAdaptor::Errors::UnprocessableEntity,
+         CourtDataAdaptor::Errors::BadRequest,
          CourtDataAdaptor::Errors::InternalServerError,
          CourtDataAdaptor::Errors::ClientError => e
-    handle_link_failure(t('laa_reference.link.failure'), e)
-  rescue ActiveModel::ValidationError
-    # No action needed: the form already contains validation errors
+    handle_link_failure(e.message, e)
+  rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
     nil
   ensure
     render 'new' unless performed?
@@ -55,9 +53,10 @@ class LaaReferencesController < ApplicationController
 
   private
 
-  def handle_link_failure(message, exception)
-    logger.warn "LINK DEFENDANT FAILURE (params: #{@link_attempt.as_json}): #{exception.message}"
-    @link_attempt.errors.add(:base, message)
+  def handle_link_failure(message, exception = nil)
+    logger.warn "LINK DEFENDANT FAILURE (params: #{@link_attempt.as_json}): #{message}"
+    @link_attempt.errors.add(:maat_reference,
+                             cda_error_string(exception) || t('cda_errors.internal_server_error'))
   end
 
   def set_defendant_uuid_if_required

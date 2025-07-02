@@ -68,7 +68,10 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
       context 'when not a uuid', :stub_v2_link_failure_with_invalid_defendant_uuid do
         let(:defendant_id) { 'not-a-uuid' }
 
-        it { expect(response.body).to include('Unable to link the defendant using the MAAT ID.') }
+        it {
+          expect(response.body).to include('The MAAT reference you provided is not available ' \
+                                           'to be associated with this defendant.')
+        }
 
         it { expect(response).to render_template('new') }
       end

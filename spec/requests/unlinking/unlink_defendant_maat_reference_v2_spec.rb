@@ -117,9 +117,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
               params:
       end
 
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(maat_invalid_username)
-      end
+      it { expect(response.body).to include('The request to unlink the Defendant/Appellant was malformed.') }
 
       it 'renders edit_defendant_path' do
         expect(response).to render_template('edit')
@@ -134,13 +132,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
               params:
       end
 
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(maat_invalid_username)
-      end
-
-      it 'renders edit_defendant_path' do
-        expect(response).to render_template('edit')
-      end
+      it { expect(response.body).to include 'The request to unlink the Defendant/Appellant was malformed.' }
     end
 
     context 'with valid reason_code' do
@@ -199,7 +191,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       end
     end
 
-    context 'with Downstream error', :stub_v2_unlink_cda_failure do
+    context 'with Downstream 424 error', :stub_v2_unlink_cda_failure do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -207,16 +199,14 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
               params:
       end
 
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(maat_invalid_request)
-      end
+      it { expect(response.body).to include('HMCTS Common Platform could not be reached.') }
 
       it 'renders edit_defendant_path' do
         expect(response).to render_template('edit')
       end
     end
 
-    context 'with Server error', :stub_v2_unlink_server_failure do
+    context 'with Server error 500', :stub_v2_unlink_server_failure do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -224,9 +214,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
               params:
       end
 
-      it 'flashes alert' do
-        expect(flash.now[:alert]).to match(maat_invalid_request)
-      end
+      it { expect(response.body).to include 'Court Data Adaptor could not be reached.' }
 
       it 'renders edit_defendant_path' do
         expect(response).to render_template('edit')

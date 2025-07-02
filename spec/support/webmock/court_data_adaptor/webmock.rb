@@ -172,10 +172,11 @@ RSpec.configure do |config|
     ).to_return(
       status: 422,
       headers: { 'Content-Type' => 'application/json' },
-      body: {
-        'errors' => { 'defendant_id' => ['is not a valid uuid'],
-                      'maat_reference' => ['1234567 has no data created against Maat application.'] }
-      }.to_json
+      body: { 'errors' => {
+                'defendant_id' => ['is not a valid uuid'],
+                'maat_reference' => ['1234567 has no data created against Maat application.']
+              },
+              'error_codes' => ['maat_reference_contract_failure'] }.to_json
     )
   end
 
@@ -206,7 +207,7 @@ RSpec.configure do |config|
       :post, %r{/v2/laa_references}
     ).to_return(
       status: 424,
-      body: ''
+      body: '{ "error_codes": ["common_platform_connection_failed"] }'
     )
   end
 
@@ -313,7 +314,10 @@ RSpec.configure do |config|
     ).to_return(
       status: 400,
       headers: { 'Content-Type' => 'application/json' },
-      body: { 'error' => "Contract error: {:user_name=>[\"must not exceed 10 characters\"]}" }.to_json
+      body: {
+        'error' => 'Contract error: {:user_name=>[\"must not exceed 10 characters\"]}',
+        error_codes: ['unlink_contract_failure']
+      }.to_json
     )
   end
 
@@ -323,7 +327,8 @@ RSpec.configure do |config|
     ).to_return(
       status: 422,
       headers: { 'Content-Type' => 'application/json' },
-      body: { 'error' => "Contract error: {:user_name=>[\"must not exceed 10 characters\"]}" }.to_json
+      body: { 'error' => "Contract error: {:user_name=>[\"must not exceed 10 characters\"]}",
+              error_codes: ['unlink_contract_failure'] }.to_json
     )
   end
 
@@ -341,7 +346,7 @@ RSpec.configure do |config|
       :patch, %r{/v2/laa_references/#{defendant_id}}
     ).to_return(
       status: 424,
-      body: ''
+      body: '{ "error_codes": ["common_platform_connection_failed"] }'
     )
   end
 

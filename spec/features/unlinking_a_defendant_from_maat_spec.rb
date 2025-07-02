@@ -134,13 +134,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
         expect(page).to \
           have_govuk_flash(
             :alert,
-            text: 'Unable to unlink this defendant'
-          )
-
-        expect(page).to \
-          have_govuk_flash(
-            :alert,
-            text: 'User name must not exceed 10 characters'
+            text: 'The request to unlink the Defendant/Appellant was malformed.'
           )
       end
 
@@ -148,7 +142,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
         expect(page).to \
           have_govuk_flash(
             :alert,
-            text: 'The link to the court data source could not be removed'
+            text: 'HMCTS Common Platform could not be reached.'
           )
       end
     end

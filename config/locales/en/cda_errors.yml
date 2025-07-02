@@ -3,7 +3,9 @@ en:
   cda_errors:
     common_platform_connection_failed: HMCTS Common Platform could not be reached. This may be a temporary error. If this problem persists, please contact the IT Helpdesk on 0800 9175148.
     defendant_id_contract_failure: The defendant you are trying to link is not in a valid state to be linked.
+    internal_server_error: Court Data Adaptor could not be reached. This may be a temporary error. If this problem persists, please contact the IT Helpdesk on 0800 9175148.
     maat_reference_contract_failure: The MAAT reference you provided is not available to be associated with this defendant.
     multiple_maats: The HMCTS record for this defendant cannot be displayed. HMCTS is aware of this issue. The record will be available once this issue has been resolved.
     spaces_in_urn: The HMCTS record for this defendant cannot be displayed. HMCTS is aware of this issue. The record will be available once this issue has been resolved.
     subject_id_contract_failure: The appellant you are trying to link is not in a valid state to be linked.
+    unlink_contract_failure: The request to unlink the Defendant/Appellant was malformed.
