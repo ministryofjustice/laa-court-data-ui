@@ -19,13 +19,17 @@ module Users
 
     def retrieve_user
       User.find_by(entra_id: entra_details.uid) ||
-        User.where(entra_id: nil).find_by(email: entra_details.info.email)
+        User.where(entra_id: nil).find_by(email: entra_email)
     end
 
     def update_user(user)
       user.update!(entra_id: entra_details.uid,
-                   email: entra_details.info.email,
-                   email_confirmation: entra_details.info.email)
+                   email: entra_email,
+                   email_confirmation: entra_email)
+    end
+
+    def entra_email
+      entra_details.info.email.downcase
     end
 
     def entra_details

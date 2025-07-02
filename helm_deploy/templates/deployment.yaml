@@ -79,6 +79,8 @@ spec:
               value: "{{ .Values.featureFlags.maintenanceMode }}"
             - name: NO_LINKING
               value: "{{ .Values.featureFlags.noLinking }}"
+            - name: FAKE_AUTH
+              value: "{{ .Values.featureFlags.fakeAuth }}"
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
