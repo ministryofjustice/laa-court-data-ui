@@ -27,7 +27,7 @@ RSpec.feature 'Sign in', type: :feature do
         OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({ provider: :entra,
                                                                      uid: '19846',
                                                                      info: {
-                                                                       'email' => 'bob.smith@example.com'
+                                                                       'email' => 'Bob.Smith@example.com'
                                                                      } })
         click_button 'Sign in with your Justice Digital account'
       end
