@@ -32,11 +32,6 @@ RSpec.describe 'managers', type: :request do
   end
 
   describe 'Create user', type: :request do
-    before do
-      allow(Devise::Mailer).to receive(:reset_password_instructions).and_return(message_delivery)
-      allow(message_delivery).to receive(:deliver_later)
-    end
-
     let(:user_params) do
       {
         user:
@@ -56,11 +51,6 @@ RSpec.describe 'managers', type: :request do
     it 'redirects to user_path' do
       request
       expect(response).to redirect_to user_path(new_user)
-    end
-
-    it 'sends password reset email' do
-      request
-      expect(Devise::Mailer).to have_received(:reset_password_instructions)
     end
 
     it 'flashes notice' do
@@ -135,70 +125,6 @@ RSpec.describe 'managers', type: :request do
 
       it 'sends email changed email' do
         expect(Devise::Mailer).to have_received(:email_changed)
-      end
-    end
-  end
-
-  describe 'Edit user password', type: :request do
-    it 'can render /users/:id/change_password' do
-      get "/users/#{user.id}/change_password"
-      expect(response).to render_template('users/change_password')
-    end
-
-    it 'can render other /users/:id/change_password' do
-      get "/users/#{other_user.id}/change_password"
-      expect(response).to render_template('users/change_password')
-    end
-  end
-
-  describe 'Update user password', type: :request do
-    let(:password_params) do
-      {
-        user: {
-          current_password: user.password,
-          password: 'testing1234',
-          password_confirmation: 'testing1234'
-        }
-      }
-    end
-
-    context 'when themself' do
-      before do
-        allow(Devise::Mailer).to receive(:password_change).and_return(message_delivery)
-        allow(message_delivery).to receive(:deliver_later)
-        patch "/users/#{user.id}/update_password", params: password_params
-      end
-
-      it 'can update their password' do
-        expect(response).to redirect_to user_path(user)
-      end
-
-      it 'flashes notice' do
-        expect(flash.now[:notice]).to match(/success/)
-      end
-
-      it 'sends password change email' do
-        expect(Devise::Mailer).to have_received(:password_change)
-      end
-    end
-
-    context 'when other user' do
-      before do
-        allow(Devise::Mailer).to receive(:password_change).and_return(message_delivery)
-        allow(message_delivery).to receive(:deliver_later)
-        patch "/users/#{other_user.id}/update_password", params: password_params
-      end
-
-      it 'can update other users password' do
-        expect(response).to redirect_to user_path(other_user)
-      end
-
-      it 'flashes notice' do
-        expect(flash.now[:notice]).to match(/success/)
-      end
-
-      it 'sends password change email' do
-        expect(Devise::Mailer).to have_received(:password_change)
       end
     end
   end

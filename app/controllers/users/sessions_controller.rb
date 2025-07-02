@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  skip_authorization_check only: %i[new create destroy update_cookies]
+  skip_authorization_check only: %i[new create destroy update_cookies fake]
 
   def destroy
     super do
       # Turbo requires redirects be :see_other (303); so override Devise default (302)
       return redirect_to after_sign_out_path_for(resource_name), status: :see_other
     end
+  end
+
+  def fake
+    redirect_to unauthenticated_root_path unless FeatureFlag.enabled?(:fake_auth)
+    sign_in User.find(params[:user_id])
+    redirect_to authenticated_root_path
   end
 
   # before_action :configure_sign_in_params, only: [:create]

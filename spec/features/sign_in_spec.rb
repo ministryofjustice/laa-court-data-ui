@@ -4,13 +4,14 @@ RSpec.feature 'Sign in', type: :feature do
   let(:user) do
     create(:user,
            email: 'bob.smith@example.com',
-           password: 'a-password',
-           password_confirmation: 'a-password',
            first_name: 'Bob',
            last_name: 'Smith')
   end
 
-  before { visit 'users/sign_in' }
+  before do
+    user
+    visit 'users/sign_in'
+  end
 
   it 'page header is displayed' do
     expect(page).to have_govuk_page_heading(text: 'Sign in')
@@ -23,13 +24,20 @@ RSpec.feature 'Sign in', type: :feature do
   context 'with success' do
     context 'with email address' do
       before do
-        fill_in 'Username or email', with: user.email
-        fill_in 'Password', with: user.password
-        click_button 'Sign in'
+        OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({ provider: :entra,
+                                                                     uid: '19846',
+                                                                     info: {
+                                                                       'email' => 'Bob.Smith@example.com'
+                                                                     } })
+        click_button 'Sign in with your Ministry of Justice account'
       end
 
       it 'successful sign in message displayed' do
         expect(page).to have_govuk_flash(:notice, text: 'Signed in successfully')
+      end
+
+      it 'updates UID' do
+        expect(user.reload.entra_id).to eq '19846'
       end
 
       it 'search filters page is displayed' do
@@ -55,26 +63,67 @@ RSpec.feature 'Sign in', type: :feature do
       end
     end
 
-    context 'with username' do
+    context 'with uid' do
       before do
-        fill_in 'Username or email', with: user.username
-        fill_in 'Password', with: user.password
-        click_button 'Sign in'
+        user.update(entra_id: '19846')
+        OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({
+                                                                     uid: '19846',
+                                                                     info: {
+                                                                       'email' => 'bob.smith.new@example.com'
+                                                                     }
+                                                                   })
+        click_button 'Sign in with your Ministry of Justice account'
       end
 
       it 'successful sign in message displayed' do
         expect(page).to have_govuk_flash(:notice, text: 'Signed in successfully')
       end
+
+      it 'updates email' do
+        expect(user.reload.email).to eq 'bob.smith.new@example.com'
+      end
     end
   end
 
-  context 'with failure' do
+  context 'when user has no matching account' do
+    before do
+      OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({
+                                                                   uid: '19846',
+                                                                   info: {
+                                                                     'email' => 'bob.smith.new@example.com'
+                                                                   }
+                                                                 })
+      click_button 'Sign in with your Ministry of Justice account'
+    end
+
     it 'invalid username, email or password displayed' do
-      fill_in 'Username or email', with: 'billy bob'
-      fill_in 'Password', with: user.password
-      click_button 'Sign in'
       expect(page).to have_govuk_page_heading(text: 'Sign in')
-      expect(page).to have_govuk_flash(:alert, text: 'Invalid username or password')
+      expect(page).to have_govuk_flash(:alert, text: 'You do not have permission to access this service')
+    end
+  end
+
+  context 'with an unsuccessful omniauth flow' do
+    before do
+      OmniAuth.config.mock_auth[:entra] = :invalid_credentials
+      click_button 'Sign in with your Ministry of Justice account'
+    end
+
+    it 'invalid username, email or password displayed' do
+      expect(page).to have_govuk_page_heading(text: 'Sign in')
+      expect(page).to have_govuk_flash(:alert, text: 'Could not authenticate you')
+    end
+  end
+
+  describe 'fake auth' do
+    before { user }
+
+    it 'lets me log in as a user' do
+      visit unauthenticated_root_path
+      select 'bob.smith@example.com', from: :user_id
+      click_button 'Sign in'
+      within('nav.moj-header__navigation') do
+        expect(page).to have_link(user.name)
+      end
     end
   end
 end
