@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get '/update_cookies', to: 'users/sessions#update_cookies'
+    delete '/session', to: 'users/sessions#destroy', as: :destroy_user_session
 
     unauthenticated :user do
       root to: 'users/sessions#new', as: :unauthenticated_root
@@ -42,14 +43,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: {
-    passwords: 'users/passwords',
-    sessions: 'users/sessions',
-    unlocks: 'users/unlocks'
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    sessions: 'users/sessions'
   }
 
   resources :users, only: %i[index show new create edit update destroy] do
-    get 'change_password', on: :member
-    patch 'update_password', on: :member
     post 'search', on: :collection
     get 'search', on: :collection
   end

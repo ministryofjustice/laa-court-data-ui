@@ -16,8 +16,6 @@ gem 'csv', require: false
 gem 'devise', '~> 4.9'
 gem 'govuk_notify_rails', '~> 3.0.0'
 
-# Faraday middleware gem is required until Faraday is upgraded to version 2
-gem 'faraday_middleware', '~> 1.2.1'
 gem 'govuk-components'
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 5.11'
@@ -26,6 +24,8 @@ gem 'json_api_client', '~> 1.23'
 gem 'json-schema', '~> 5.2'
 gem 'logstasher'
 gem 'oauth2', '~> 2.0.12'
+gem 'omniauth_openid_connect', '0.8.0'
+gem 'omniauth-rails_csrf_protection', '>= 1.0.2'
 gem 'pagy'
 gem 'pg', '>= 1.5.9', '< 2.0'
 gem 'prometheus_exporter', '2.2.0'

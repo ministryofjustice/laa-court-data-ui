@@ -20,13 +20,6 @@ module CourtDataAdaptor
           424 => ApiRequestHandler,
           500 => ApiRequestHandler
         }
-
-        connection do |conn|
-          conn.use(
-            FaradayMiddleware::OAuth2,
-            token_type: :bearer
-          )
-        end
       end
     end
   end
