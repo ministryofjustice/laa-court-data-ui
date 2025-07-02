@@ -35,8 +35,6 @@ class Ability
     @user = init_user
     return if user.blank?
 
-    alias_action :change_password, :update_password, to: :manage_password
-
     caseworker_abilities if user.caseworker?
     manager_abilities if user.manager?
     admin_abilities if user.admin?
@@ -85,6 +83,6 @@ class Ability
   end
 
   def can_manage_self
-    can %i[show manage_password], User, id: user.id
+    can %i[show], User, id: user.id
   end
 end

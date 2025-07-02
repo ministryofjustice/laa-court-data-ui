@@ -9,29 +9,15 @@
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = f.govuk_error_summary
+    = button_to user_entra_omniauth_authorize_path, class: 'govuk-button govuk-button--start' do
+      = t('devise.sessions.user.form.submit')
+      %svg.govuk-button__start-icon{ focusable: "false", height: "19", viewbox: "0 0 33 40", width: "17.5", xmlns: "http://www.w3.org/2000/svg" }
+        %path{ d: "M0 0h13l20 20-20 20H0l20-20z", fill: "currentColor" }
 
-      = f.govuk_text_field(:login,
-                           label: { text: t('users.form.fields.login_label') },
-                           autofocus: true,
-                           autocomplete: 'email',
-                           "data-cy": 'login-username')
 
-      = f.govuk_password_field(:password,
-                               label: { text: 'Password' },
-                               autocomplete: 'current-password',
-                               "data-cy": 'login-password')
-
-      - if devise_mapping.rememberable?
-        = f.govuk_collection_radio_buttons :remember_me,
-                                           [%w[1 Yes], %w[0 No]],
-                                           :first,
-                                           :last,
-                                           inline: true,
-                                           legend: { text: 'Remember me', size: 's' },
-                                           hint: { text: 'Do you want to be remembered on this computer?' }
-
-        = f.govuk_submit(t('devise.sessions.user.form.submit'), "data-cy": 'login-submit')
-
-    = render "devise/shared/links"
+- if FeatureFlag.enabled?(:fake_auth)
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      = form_with(url: fake_user_session_path) do |f|
+        = f.govuk_select :user_id, User.where("email ILIKE '%example.com'").pluck(:email, :id), label: { text: t('devise.shared.fake_auth') }
+        = f.govuk_submit t('devise.shared.links.sign_in')

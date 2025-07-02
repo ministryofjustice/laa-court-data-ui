@@ -61,7 +61,7 @@ RSpec.describe 'prosecution cases', :stub_case_search,
     end
 
     it 'redirects to sign in page' do
-      expect(response).to redirect_to new_user_session_path
+      expect(response).to redirect_to unauthenticated_root_path
     end
   end
 end

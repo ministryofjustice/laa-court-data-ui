@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   subject(:user) do
     build(:user,
           email: 'john.smith@example.com',
+          email_confirmation: 'john.smith@example.com',
           first_name: 'John',
           last_name: 'Smith',
           username: 'smit-j1')
@@ -21,7 +22,10 @@ RSpec.describe User, type: :model do
 
     # see config/initializers/devise.rb
     context 'with upper case chars' do
-      before { user.email = 'John.Smith@example.com' }
+      before do
+        user.email = 'John.Smith@example.com'
+        user.email_confirmation = 'John.Smith@example.com'
+      end
 
       it 'downcases username during validation' do
         expect { user.valid? }.to \
@@ -207,38 +211,6 @@ RSpec.describe User, type: :model do
 
     it 'uses `deliver_later`' do
       expect(mailer).to have_received(:deliver_later)
-    end
-  end
-
-  describe '.find_for_database_authentication' do
-    subject { described_class.find_for_database_authentication(warden_conditions) }
-
-    before { user.save! }
-
-    context 'when passing login condition' do
-      context 'with email' do
-        let(:warden_conditions) { { login: user.email } }
-
-        it { is_expected.to eql user }
-      end
-
-      context 'with username' do
-        let(:warden_conditions) { { login: user.username } }
-
-        it { is_expected.to eql user }
-      end
-    end
-
-    context 'when passing email condition' do
-      let(:warden_conditions) { { email: user.email } }
-
-      it { is_expected.to eql user }
-    end
-
-    context 'when passing username condition' do
-      let(:warden_conditions) { { username: user.username } }
-
-      it { is_expected.to eql user }
     end
   end
 end

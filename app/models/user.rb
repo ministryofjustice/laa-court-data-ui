@@ -9,13 +9,11 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :registerable and :omniauthable
-  devise  :database_authenticatable,
-          :recoverable,
-          :rememberable,
+  devise  :omniauthable,
           :timeoutable,
           :trackable,
-          :validatable,
-          :lockable
+          :lockable,
+          :validatable
 
   accepts_roles :caseworker, :manager, :admin, :data_analyst
 
@@ -51,17 +49,12 @@ class User < ApplicationRecord
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
-  # overide devise method to enable login via email OR username
-  # see https://github.com/heartcombo/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address#overwrite-devises-find_for_database_authentication-method-in-user-model
-  # for details
-  #
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-    if (login = conditions.delete(:login))
-      where(conditions.to_h)
-        .find_by('lower(username) = :login OR lower(email) = :login', login: login.downcase)
-    elsif conditions.key?(:username) || conditions.key?(:email)
-      find_by(conditions.to_h)
-    end
+  def password_required?
+    false
+  end
+
+  # Devise::Validatable expects a password attribute, but with SSO we don't have one.
+  def password
+    nil
   end
 end

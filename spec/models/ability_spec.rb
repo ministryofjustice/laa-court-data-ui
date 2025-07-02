@@ -20,7 +20,7 @@ RSpec.shared_examples 'link maat reference' do
 end
 
 RSpec.shared_examples 'manage themselves only' do
-  it { is_expected.to be_able_to(%i[show manage_password], themself) }
+  it { is_expected.to be_able_to(%i[show], themself) }
   it { is_expected.not_to be_able_to(%i[edit update destroy], themself) }
 end
 
@@ -28,7 +28,7 @@ RSpec.shared_examples 'not manage others' do
   it {
     is_expected.not_to \
       be_able_to(
-        %i[show new create edit update manage_password destroy],
+        %i[show new create edit update destroy],
         other_user
       )
   }

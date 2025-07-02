@@ -259,7 +259,23 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth(
+    :openid_connect,
+    {
+      name: :entra,
+      scope: %i[openid email],
+      response_type: :code,
+      client_options: {
+        identifier: ENV.fetch('OMNIAUTH_CLIENT_ID', nil),
+        secret: ENV.fetch('OMNIAUTH_CLIENT_SECRET', nil),
+        redirect_uri: ENV.fetch('OMNIAUTH_REDIRECT_URI', nil)
+      },
+      discovery: true,
+      pkce: true,
+      issuer: "https://login.microsoftonline.com/#{ENV.fetch('OMNIAUTH_TENANT_ID', nil)}/v2.0",
+      strategy_class: OmniAuth::Strategies::OpenIDConnect
+    }
+  )
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

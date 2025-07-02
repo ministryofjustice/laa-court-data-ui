@@ -45,6 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_08_123153) do
     t.string "roles", default: ["caseworker"], array: true
     t.string "username", null: false
     t.string "feature_flags", default: [], array: true
+    t.string "entra_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
