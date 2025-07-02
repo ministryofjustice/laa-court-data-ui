@@ -9,6 +9,6 @@ module.exports = defineConfig({
     video: false
   },
   env: {
-    environment: 'local',
+    environment: 'local'
   }
 })

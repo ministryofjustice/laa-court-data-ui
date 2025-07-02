@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     get '/update_cookies', to: 'users/sessions#update_cookies'
     delete '/session', to: 'users/sessions#destroy', as: :destroy_user_session
 
+    constraints ->(_req) { FeatureFlag.enabled?(:fake_auth) } do
+      post '/fake', to: 'users/sessions#fake', as: :fake_user_session
+    end
+
     unauthenticated :user do
       root to: 'users/sessions#new', as: :unauthenticated_root
     end
