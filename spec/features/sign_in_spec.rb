@@ -1,35 +1,43 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Sign in', :js, type: :feature do
+RSpec.feature 'Sign in', type: :feature do
   let(:user) do
     create(:user,
            email: 'bob.smith@example.com',
-           password: 'a-password',
-           password_confirmation: 'a-password',
            first_name: 'Bob',
            last_name: 'Smith')
   end
 
-  before { visit 'users/sign_in' }
+  before do
+    user
+    visit 'users/sign_in'
+  end
 
   it 'page header is displayed' do
     expect(page).to have_govuk_page_title(text: 'Sign in')
   end
 
-  it 'page should be accessible' do
+  it 'page should be accessible', :js do
     expect(page).to be_accessible.within '#main-content'
   end
 
   context 'with success' do
     context 'with email address' do
       before do
-        fill_in 'Username or email', with: user.email
-        fill_in 'Password', with: user.password
-        click_button 'Sign in'
+        OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({ provider: :entra,
+                                                                     uid: '19846',
+                                                                     info: {
+                                                                       'email' => 'bob.smith@example.com'
+                                                                     } })
+        click_button 'Sign in with your Justice Digital account'
       end
 
       it 'successful sign in message displayed' do
         expect(page).to have_govuk_flash(:notice, text: 'Signed in successfully')
+      end
+
+      it 'updates UID' do
+        expect(user.reload.entra_id).to eq '19846'
       end
 
       it 'search filters page is displayed' do
@@ -55,26 +63,54 @@ RSpec.feature 'Sign in', :js, type: :feature do
       end
     end
 
-    context 'with username' do
+    context 'with uid' do
       before do
-        fill_in 'Username or email', with: user.username
-        fill_in 'Password', with: user.password
-        click_button 'Sign in'
+        user.update(entra_id: '19846')
+        OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({
+                                                                     uid: '19846',
+                                                                     info: {
+                                                                       'email' => 'bob.smith.new@example.com'
+                                                                     }
+                                                                   })
+        click_button 'Sign in with your Justice Digital account'
       end
 
       it 'successful sign in message displayed' do
         expect(page).to have_govuk_flash(:notice, text: 'Signed in successfully')
       end
+
+      it 'updates email' do
+        expect(user.reload.email).to eq 'bob.smith.new@example.com'
+      end
     end
   end
 
-  context 'with failure' do
+  context 'when user has no matching account' do
+    before do
+      OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({
+                                                                   uid: '19846',
+                                                                   info: {
+                                                                     'email' => 'bob.smith.new@example.com'
+                                                                   }
+                                                                 })
+      click_button 'Sign in with your Justice Digital account'
+    end
+
     it 'invalid username, email or password displayed' do
-      fill_in 'Username or email', with: 'billy bob'
-      fill_in 'Password', with: user.password
-      click_button 'Sign in'
       expect(page).to have_govuk_page_title(text: 'Sign in')
-      expect(page).to have_govuk_flash(:alert, text: 'Invalid username or password')
+      expect(page).to have_govuk_flash(:alert, text: 'You do not have permission to access this service')
+    end
+  end
+
+  context 'with an unsuccessful omniauth flow' do
+    before do
+      OmniAuth.config.mock_auth[:entra] = :invalid_credentials
+      click_button 'Sign in with your Justice Digital account'
+    end
+
+    it 'invalid username, email or password displayed' do
+      expect(page).to have_govuk_page_title(text: 'Sign in')
+      expect(page).to have_govuk_flash(:alert, text: 'Could not authenticate you')
     end
   end
 end

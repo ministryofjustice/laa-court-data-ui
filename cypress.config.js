@@ -10,8 +10,5 @@ module.exports = defineConfig({
   },
   env: {
     environment: 'local',
-    caseworker_password: '',
-    manager_password: '',
-    admin_password: ''
   }
 })
