@@ -139,6 +139,23 @@ spec:
                 secretKeyRef:
                   name: aws-secrets
                   key: SLACK_ALERTS_WEBHOOK
+            - name: OMNIAUTH_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: OMNIAUTH_CLIENT_ID
+            - name: OMNIAUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: OMNIAUTH_CLIENT_SECRET
+            - name: OMNIAUTH_TENANT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: OMNIAUTH_TENANT_ID
+            - name: OMNIAUTH_REDIRECT_URI
+              value: '{{ .Values.omniauthRedirectUri }}'
         - name: laa-court-data-ui-metrics
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: Always
