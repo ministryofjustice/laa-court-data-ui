@@ -16,3 +16,4 @@ featureFlags:
   showAppeals: false
   maintenanceMode: false
   noLinking: false
+  fakeAuth: false

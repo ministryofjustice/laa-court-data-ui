@@ -113,4 +113,17 @@ RSpec.feature 'Sign in', type: :feature do
       expect(page).to have_govuk_flash(:alert, text: 'Could not authenticate you')
     end
   end
+
+  describe 'fake auth' do
+    before { user }
+
+    it 'lets me log in as a user' do
+      visit unauthenticated_root_path
+      select 'bob.smith@example.com', from: :user_id
+      click_button 'Sign in'
+      within('nav.moj-header__navigation') do
+        expect(page).to have_link(user.name)
+      end
+    end
+  end
 end
