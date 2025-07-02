@@ -27,7 +27,6 @@ class UsersController < ApplicationController
     authorize!(:create, @user)
 
     if @user.save
-      @user.send_reset_password_instructions
       redirect_to @user, notice: I18n.t('users.create.flash.success')
     else
       render :new
@@ -35,21 +34,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    @user.assign_attributes(user_params)
+    email_changed = @user.email_changed?
+    if @user.save
+      Devise::Mailer.email_changed(@user).deliver_later if email_changed
       redirect_to @user, notice: I18n.t('users.update.flash.success')
     else
       render :edit
-    end
-  end
-
-  def change_password; end
-
-  def update_password
-    if @user.update_with_password(user_params)
-      bypass_sign_in(@user)
-      redirect_to @user, notice: I18n.t('users.update_password.flash.success')
-    else
-      render :change_password
     end
   end
 
@@ -77,22 +68,13 @@ class UsersController < ApplicationController
       :username,
       :email,
       :email_confirmation,
-      :current_password,
-      :password,
-      :password_confirmation,
       roles: [],
       feature_flags: []
     ).tap { it[:feature_flags]&.reject!(&:blank?) }
   end
 
   def build_user
-    tmp_password = SecureRandom.uuid
-    User.new(
-      user_params.merge!(
-        password: tmp_password,
-        password_confirmation: tmp_password
-      )
-    )
+    User.new(user_params)
   end
 
   def search_params
