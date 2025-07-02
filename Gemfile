@@ -30,9 +30,9 @@ gem 'prometheus_exporter', '2.2.0'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 8.0'
 gem 'redis', '~> 5.4.0'
-gem 'sentry-rails', '~> 5.25.0'
-gem 'sentry-sidekiq', '~> 5.25.0'
-gem 'sidekiq', '~> 8.0.4'
+gem 'sentry-rails', '~> 5.26.0'
+gem 'sentry-sidekiq', '~> 5.26.0'
+gem 'sidekiq', '~> 8.0.5'
 gem 'sidekiq_alive'
 gem 'turbo-rails', '~> 2.0.16'
 
@@ -55,7 +55,7 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
-  gem 'selenium-webdriver', '~> 4.33'
+  gem 'selenium-webdriver', '~> 4.34'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
