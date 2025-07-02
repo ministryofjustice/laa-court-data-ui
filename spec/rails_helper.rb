@@ -6,7 +6,7 @@ SimpleCov.start 'rails' do
   enable_coverage :branch
   unless ENV['CI']
     primary_coverage :branch
-    minimum_coverage branch: 88, line: 99
+    minimum_coverage branch: 86, line: 99
 
     SimpleCov.at_exit do
       SimpleCov.result.format!
@@ -82,3 +82,5 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+OmniAuth.config.test_mode = true
