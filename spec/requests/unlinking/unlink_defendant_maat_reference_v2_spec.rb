@@ -117,7 +117,10 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
               params:
       end
 
-      it { expect(response.body).to include('The request to unlink the Defendant/Appellant was malformed.') }
+      it {
+        expect(response.body)
+          .to include('The request to link/unlink the Defendant or Appellant was malformed.')
+      }
 
       it 'renders edit_defendant_path' do
         expect(response).to render_template('edit')
@@ -132,7 +135,10 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
               params:
       end
 
-      it { expect(response.body).to include 'The request to unlink the Defendant/Appellant was malformed.' }
+      it {
+        expect(response.body)
+          .to include('The request to link/unlink the Defendant or Appellant was malformed.')
+      }
     end
 
     context 'with valid reason_code' do

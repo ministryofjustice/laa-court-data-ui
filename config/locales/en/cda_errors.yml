@@ -8,4 +8,6 @@ en:
     multiple_maats: The HMCTS record for this defendant cannot be displayed. HMCTS is aware of this issue. The record will be available once this issue has been resolved.
     spaces_in_urn: The HMCTS record for this defendant cannot be displayed. HMCTS is aware of this issue. The record will be available once this issue has been resolved.
     subject_id_contract_failure: The appellant you are trying to link is not in a valid state to be linked.
-    unlink_contract_failure: The request to unlink the Defendant/Appellant was malformed.
+    unlink_other_reason_text_contract_failure: The request to unlink the Defendant or Appellant was malformed.
+    unlink_reason_code_contract_failure: The request to unlink the Defendant or Appellant was malformed.
+    user_name_contract_failure: The request to link/unlink the Defendant or Appellant was malformed.

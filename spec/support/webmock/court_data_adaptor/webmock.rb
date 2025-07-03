@@ -316,7 +316,7 @@ RSpec.configure do |config|
       headers: { 'Content-Type' => 'application/json' },
       body: {
         'error' => 'Contract error: {:user_name=>[\"must not exceed 10 characters\"]}',
-        error_codes: ['unlink_contract_failure']
+        error_codes: ['user_name_contract_failure']
       }.to_json
     )
   end
@@ -328,7 +328,7 @@ RSpec.configure do |config|
       status: 422,
       headers: { 'Content-Type' => 'application/json' },
       body: { 'error' => "Contract error: {:user_name=>[\"must not exceed 10 characters\"]}",
-              error_codes: ['unlink_contract_failure'] }.to_json
+              error_codes: ['user_name_contract_failure'] }.to_json
     )
   end
 

@@ -33,8 +33,7 @@ class DefendantsController < ApplicationController
          CourtDataAdaptor::Errors::BadRequest,
          CourtDataAdaptor::Errors::InternalServerError,
          CourtDataAdaptor::Errors::ClientError => e
-
-    handle_link_failure(e.message, e)
+    handle_unlink_failure(e.message, e)
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
     nil
   ensure
@@ -56,9 +55,9 @@ class DefendantsController < ApplicationController
 
   private
 
-  def handle_link_failure(message, exception = nil)
-    logger.warn "LINK DEFENDANT FAILURE (params: #{@unlink_attempt.as_json}): #{message}"
-    @unlink_attempt.errors.add(:maat_reference,
+  def handle_unlink_failure(message, exception = nil)
+    logger.warn "UNLINK DEFENDANT FAILURE (params: #{@unlink_attempt.as_json}): #{message}"
+    @unlink_attempt.errors.add(:base,
                                cda_error_string(exception) || t('cda_errors.internal_server_error'))
   end
 

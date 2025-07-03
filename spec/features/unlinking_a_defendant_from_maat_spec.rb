@@ -130,11 +130,11 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
         click_link_or_button 'Remove link to court data'
       end
 
-      it 'flashes alert for bad response', :stub_v2_unlink_bad_response do
+      it 'flashes alert for 422 Unprocessable Content response', :stub_v2_unlink_bad_response do
         expect(page).to \
           have_govuk_flash(
             :alert,
-            text: 'The request to unlink the Defendant/Appellant was malformed.'
+            text: 'The request to link/unlink the Defendant or Appellant was malformed.'
           )
       end
 
