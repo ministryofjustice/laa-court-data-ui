@@ -66,7 +66,7 @@ en:
         already_signed_out: Signed out successfully.
         form:
           page_title: Sign in
-          submit: Sign in with your Justice Digital account
+          submit: Sign in with your Ministry of Justice account
         signed_in: Signed in successfully.
         signed_out: Signed out successfully.
     shared:
