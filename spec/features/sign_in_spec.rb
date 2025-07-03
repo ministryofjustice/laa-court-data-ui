@@ -29,7 +29,7 @@ RSpec.feature 'Sign in', type: :feature do
                                                                      info: {
                                                                        'email' => 'Bob.Smith@example.com'
                                                                      } })
-        click_button 'Sign in with your Justice Digital account'
+        click_button 'Sign in with your Ministry of Justice account'
       end
 
       it 'successful sign in message displayed' do
@@ -72,7 +72,7 @@ RSpec.feature 'Sign in', type: :feature do
                                                                        'email' => 'bob.smith.new@example.com'
                                                                      }
                                                                    })
-        click_button 'Sign in with your Justice Digital account'
+        click_button 'Sign in with your Ministry of Justice account'
       end
 
       it 'successful sign in message displayed' do
@@ -93,7 +93,7 @@ RSpec.feature 'Sign in', type: :feature do
                                                                      'email' => 'bob.smith.new@example.com'
                                                                    }
                                                                  })
-      click_button 'Sign in with your Justice Digital account'
+      click_button 'Sign in with your Ministry of Justice account'
     end
 
     it 'invalid username, email or password displayed' do
@@ -105,7 +105,7 @@ RSpec.feature 'Sign in', type: :feature do
   context 'with an unsuccessful omniauth flow' do
     before do
       OmniAuth.config.mock_auth[:entra] = :invalid_credentials
-      click_button 'Sign in with your Justice Digital account'
+      click_button 'Sign in with your Ministry of Justice account'
     end
 
     it 'invalid username, email or password displayed' do
