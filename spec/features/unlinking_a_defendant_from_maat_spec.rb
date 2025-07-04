@@ -45,7 +45,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
   context 'when user views linked defendant' do
     let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
     let(:url) { "defendants/#{defendant_id}/edit?urn=#{case_urn}" }
-    let(:maat_reference) { 2_123_456 }
+    let(:maat_reference) { 2_123_456.to_s }
 
     it 'does not display the MAAT ID field' do
       expect(page).to have_no_field('MAAT ID')
