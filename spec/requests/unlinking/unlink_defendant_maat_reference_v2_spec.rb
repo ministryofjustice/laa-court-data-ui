@@ -43,7 +43,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
   let(:prosecution_case_reference_from_fixture) { 'TEST12345' }
   let(:api_url_v2) { CourtDataAdaptor::Resource::V2.api_url }
-  let(:maat_reference) { 2_123_456 }
+  let(:maat_reference) { 2_123_456.to_s }
 
   let(:params) do
     {
