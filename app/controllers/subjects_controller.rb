@@ -20,10 +20,10 @@ class SubjectsController < ApplicationController
     else
       handle_link_failure("Query failed without raising an exception")
     end
-  rescue ActiveModel::ValidationError,
-         CourtDataAdaptor::Errors::BadRequest,
-         CourtDataAdaptor::Errors::UnprocessableEntity => e
+  rescue CourtDataAdaptor::Errors::Error => e
     handle_link_failure(e.message, e)
+  rescue ActiveModel::ValidationError
+    nil
   ensure
     render :show unless performed?
   end
@@ -39,13 +39,14 @@ class SubjectsController < ApplicationController
     else
       handle_unlink_failure("Query failed without raising an exception")
     end
-  rescue ActiveModel::ValidationError,
-         CourtDataAdaptor::Errors::BadRequest,
+  rescue CourtDataAdaptor::Errors::BadRequest,
          CourtDataAdaptor::Errors::UnprocessableEntity => e
     handle_unlink_failure(e.message, e)
   rescue StandardError => e
     logger.error "Error: SubjectsController#unlink: #{e.message}"
     Sentry.capture_exception(e)
+  rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
+    nil
   ensure
     render :show unless performed?
   end

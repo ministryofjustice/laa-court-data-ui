@@ -47,6 +47,6 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
     click_link_or_button('Jammy Dodger')
     fill_in "MAAT ID", with: "1234567"
     click_link_or_button 'Create link to court data'
-    expect(page).to have_govuk_flash(:alert, text: 'A Court Data Source link could not be established.')
+    expect(page).to have_govuk_flash(:alert, text: 'HMCTS Common Platform could not be reached.')
   end
 end

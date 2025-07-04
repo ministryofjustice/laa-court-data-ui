@@ -42,7 +42,10 @@ module CourtDataAdaptor
         error_response = body.is_a?(String) ? JSON.parse(body) : body
         return unless error_response['error_codes']
 
-        error_response['error_codes'].filter_map { |code| build_message(code) }.join(" ").presence
+        error_response['error_codes']
+          .filter_map { |code| build_message(code) }
+          .join(" ")
+          .presence
       rescue StandardError => e
         Rails.logger.error "CourtDataAdaptor::Errors::ErrorCodeParser error: #{e.message}"
         nil

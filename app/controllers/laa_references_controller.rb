@@ -22,8 +22,18 @@ class LaaReferencesController < ApplicationController
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
 
-    link_laa_reference_and_redirect && return if @link_attempt.valid?
-    render 'new'
+    @link_attempt.validate!
+
+    CourtDataAdaptor::Query::LinkDefendant.call(resource_params)
+
+    redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference),
+                notice: I18n.t('laa_reference.link.success')
+  rescue CourtDataAdaptor::Errors::Error => e
+    handle_link_failure(e.message, e)
+  rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
+    nil
+  ensure
+    render 'new' unless performed?
   end
 
   def defendant_uuid
@@ -39,6 +49,12 @@ class LaaReferencesController < ApplicationController
   end
 
   private
+
+  def handle_link_failure(message, exception = nil)
+    logger.warn "LINK DEFENDANT FAILURE (params: #{@link_attempt.as_json}): #{message}"
+    @link_attempt.errors.add(:maat_reference,
+                             cda_error_string(exception) || t('cda_errors.internal_server_error'))
+  end
 
   def set_defendant_uuid_if_required
     defendant_uuid
@@ -75,25 +91,6 @@ class LaaReferencesController < ApplicationController
     @resource_params ||= @link_attempt.to_link_attributes
   end
 
-  def link_laa_reference_and_redirect
-    logger.info 'CALLING_V2_MAAT_LINK'
-    CourtDataAdaptor::Query::LinkDefendant.call(resource_params)
-  rescue CourtDataAdaptor::Errors::UnprocessableEntity => e
-    handle_error(e, I18n.t('laa_reference.link.unprocessable'), e.error_string)
-  rescue CourtDataAdaptor::Errors::BadRequest,
-         CourtDataAdaptor::Errors::InternalServerError,
-         CourtDataAdaptor::Errors::ClientError => e
-    handle_error(e, I18n.t('laa_reference.link.failure'), I18n.t('error.it_helpdesk'))
-  else
-    redirect_to_edit_defendants
-  end
-
-  def handle_error(exception, title, details)
-    logger.error 'SERVER_ERROR_OCCURRED'
-    log_sentry_error(exception, exception.errors)
-    render_new(title, cda_error_string(exception) || details)
-  end
-
   def no_maat_id?
     params[:commit] == 'Create link without MAAT ID'
   end
@@ -104,15 +101,5 @@ class LaaReferencesController < ApplicationController
                     else
                       LinkAttempt.new
                     end
-  end
-
-  def render_new(title, message)
-    flash.now[:alert] = { title:, message: }
-    render 'new', status: :unprocessable_entity
-  end
-
-  def redirect_to_edit_defendants
-    redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference)
-    flash[:notice] = I18n.t('laa_reference.link.success')
   end
 end

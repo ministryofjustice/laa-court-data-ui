@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics
-
 require_dependency 'court_data_adaptor'
 require_dependency 'feature_flag'
 
@@ -24,12 +22,19 @@ class DefendantsController < ApplicationController
   def edit; end
 
   def update
-    if @unlink_attempt.valid?
-      unlink_laa_reference_and_redirect
-      return
-    end
+    @unlink_attempt.validate!
 
-    render 'edit'
+    logger.info 'CALLING_V2_MAAT_UNLINK'
+    CourtDataAdaptor::Query::UnlinkDefendant.call(resource_params)
+
+    flash[:notice] = I18n.t('defendants.unlink.success')
+    redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
+  rescue CourtDataAdaptor::Errors::Error => e
+    handle_unlink_failure(e.message, e)
+  rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
+    nil
+  ensure
+    render 'edit' unless performed?
   end
 
   def redirect_to_new_laa_reference
@@ -46,6 +51,12 @@ class DefendantsController < ApplicationController
   end
 
   private
+
+  def handle_unlink_failure(message, exception = nil)
+    logger.warn "UNLINK DEFENDANT FAILURE (params: #{@unlink_attempt.as_json}): #{message}"
+    @unlink_attempt.errors.add(:base,
+                               cda_error_string(exception) || t('cda_errors.internal_server_error'))
+  end
 
   def set_defendant_if_required
     defendant
@@ -86,30 +97,6 @@ class DefendantsController < ApplicationController
     @errors.map { |k, v| "#{k.to_s.humanize} #{v.join(', ')}" }.join("\n")
   end
 
-  def unlink_laa_reference_and_redirect
-    logger.info 'CALLING_V2_MAAT_UNLINK'
-    CourtDataAdaptor::Query::UnlinkDefendant.call(resource_params)
-  rescue CourtDataAdaptor::Errors::UnprocessableEntity,
-         CourtDataAdaptor::Errors::BadRequest => e
-    handle_error(e, I18n.t('defendants.unlink.unprocessable'), e.error_string)
-  rescue CourtDataAdaptor::Errors::InternalServerError,
-         CourtDataAdaptor::Errors::ClientError => e
-    handle_error(e, I18n.t('defendants.unlink.failure'), I18n.t('error.it_helpdesk'))
-  rescue StandardError => e
-    logger.error "Error: DefendantsController#unlink_laa_reference_and_redirect: #{e.message}"
-    Sentry.capture_exception(e)
-
-    render_edit(I18n.t('defendants.unlink.unknown_error'), I18n.t('error.it_helpdesk'))
-  else
-    redirect_to_new_laa_reference
-  end
-
-  def handle_error(exception, title, details)
-    logger.error 'SERVER_ERROR_OCCURRED'
-    log_sentry_error(exception, exception.errors)
-    render_edit(title, cda_error_string(exception) || details)
-  end
-
   def set_unlink_reasons
     @unlink_reasons = UnlinkReason.all
   end
@@ -131,11 +118,4 @@ class DefendantsController < ApplicationController
     flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages:)
     render 'edit'
   end
-
-  def render_edit(title, message)
-    flash.now[:alert] = { title:, message: }
-    render 'edit'
-  end
 end
-
-# rubocop:enable Metrics
