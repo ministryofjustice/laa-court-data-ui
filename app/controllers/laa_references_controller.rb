@@ -28,10 +28,7 @@ class LaaReferencesController < ApplicationController
 
     redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference),
                 notice: I18n.t('laa_reference.link.success')
-  rescue CourtDataAdaptor::Errors::UnprocessableEntity,
-         CourtDataAdaptor::Errors::BadRequest,
-         CourtDataAdaptor::Errors::InternalServerError,
-         CourtDataAdaptor::Errors::ClientError => e
+  rescue CourtDataAdaptor::Errors::Error => e
     handle_link_failure(e.message, e)
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
     nil

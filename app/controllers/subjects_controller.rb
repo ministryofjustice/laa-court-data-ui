@@ -20,10 +20,10 @@ class SubjectsController < ApplicationController
     else
       handle_link_failure("Query failed without raising an exception")
     end
-  rescue ActiveModel::ValidationError,
-         CourtDataAdaptor::Errors::BadRequest,
-         CourtDataAdaptor::Errors::UnprocessableEntity => e
+  rescue CourtDataAdaptor::Errors::Error => e
     handle_link_failure(e.message, e)
+  rescue ActiveModel::ValidationError
+    nil
   ensure
     render :show unless performed?
   end
