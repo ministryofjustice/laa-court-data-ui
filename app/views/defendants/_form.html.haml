@@ -10,7 +10,11 @@
 
   .govuk-grid-row
     .govuk-grid-column-full
-      = render partial: 'defendants/offences', locals: { defendant: defendant }
+      %turbo-frame#offence-table{ src: offences_defendant_path(defendant.id, urn: params[:urn]) }
+        = render partial: 'defendants/offences', locals: { defendant: defendant }
+        - if @offence_history_collection.nil?
+          %p.govuk-text
+            = link_to 'Reload page with full offence history', edit_defendant_path(defendant.id, urn: params[:urn], load_offence_history: true), class: 'moj-js-hidden govuk-link'
 
       = hidden_field_tag(:urn, params[:urn])
 

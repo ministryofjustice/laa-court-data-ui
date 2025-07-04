@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class OffenceDecorator < BaseDecorator
+  attr_accessor :offence_histories
+
   def plea_list
+    return "Loading..." if relevant_offence_history.blank?
     return t('generic.not_available') if pleas.blank?
     return pleas unless pleas.is_a?(Enumerable)
 
@@ -9,6 +12,7 @@ class OffenceDecorator < BaseDecorator
   end
 
   def mode_of_trial_reason_list
+    return "Loading..." if relevant_offence_history.blank?
     return t('generic.not_available') if mode_of_trial_reasons.blank?
     return mode_of_trial_reasons unless mode_of_trial_reasons.is_a?(Enumerable)
     safe_join(mode_of_trial_reason_descriptions.compact, tag.br)
@@ -21,6 +25,8 @@ class OffenceDecorator < BaseDecorator
   end
 
   private
+
+  delegate :pleas, :mode_of_trial_reasons, to: :relevant_offence_history
 
   def plea_sentences
     sorted_pleas.map { |plea| plea_sentence(plea) }
@@ -44,5 +50,9 @@ class OffenceDecorator < BaseDecorator
 
   def mode_of_trial_reason_description(reason)
     reason&.description || t('generic.not_available')
+  end
+
+  def relevant_offence_history
+    @relevant_offence_history ||= offence_histories&.offence_histories&.find { it.id == id }
   end
 end

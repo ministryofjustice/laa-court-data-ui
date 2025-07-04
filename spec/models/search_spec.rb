@@ -64,7 +64,7 @@ RSpec.describe Search, type: :model do
       subject(:search_instance) { described_class.new(filter:, term:) }
 
       let(:filter) { 'case_reference' }
-      let(:defendant) { instance_double(Cda::Defendant, id: 100) }
+      let(:defendant) { instance_double(Cda::DefendantSummary, id: 100) }
       let(:term) { 'TEST12345' }
       let(:dob) do
         DobFieldCollection.new({ 'dob(3i)' => '30', 'dob(2i)' => '6', 'dob(1i)' => '1973' })
