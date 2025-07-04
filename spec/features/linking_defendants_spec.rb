@@ -10,7 +10,7 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
   let(:linked_defendant_stub) do
     stub_request(
       :get,
-      %r{http.*/api/internal/v1/defendants/#{defendant_id}}
+      %r{http.*/api/internal/v2/prosecution_cases/.*/defendants/#{defendant_id}}
     ).to_return(
       status: 200,
       body: load_json_stub('unlinked_defendant.json'),
@@ -26,8 +26,8 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
     visit "prosecution_cases/#{case_urn}"
     click_link_or_button('Jammy Dodger')
     fill_in "MAAT ID", with: "1234567"
-    click_link_or_button 'Create link to court data'
     linked_defendant_stub
+    click_link_or_button 'Create link to court data'
     expect(page).to have_govuk_flash(:notice, text: 'You have successfully linked to the court data source')
   end
 

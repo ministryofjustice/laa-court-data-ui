@@ -1,0 +1,13 @@
+{ 
+  "id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
+  "offence_histories": [
+    {
+      "id": "6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc",
+      "pleas": [{
+                  "pleaded_at": "2023-01-01",
+                  "code": "GUILTY"
+               }],
+      "mode_of_trial_reasons": [ { "description": "Court directs trial by jury"}]
+    }
+  ]
+}

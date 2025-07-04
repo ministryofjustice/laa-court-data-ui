@@ -1,18 +1,26 @@
 # frozen_string_literal: true
 
 RSpec.describe 'defendants/_offences.html.haml', type: :view do
-  subject(:render_partial) { render partial: 'defendants/offences', locals: { defendant: } }
+  subject(:render_partial) do
+    render partial: 'defendants/offences', locals: { defendant:, offence_history_collection: }
+  end
 
-  let(:defendant) { object_double(CourtDataAdaptor::Resource::Defendant.new, offences: [offence]) }
-  let(:offence) { CourtDataAdaptor::Resource::Offence.new }
+  let(:defendant) { Cda::Defendant.new(offence_summaries: [offence]) }
+  let(:offence) do
+    CourtDataAdaptor::Resource::Offence.new(id: '123', start_date:, mode_of_trial:, title:, legislation:)
+  end
+  let(:offence_history_collection) { Cda::OffenceHistoryCollection.new(offence_histories: [offence_history]) }
+  let(:offence_history) { Cda::OffenceHistory.new(id: '123', pleas:, mode_of_trial_reasons:) }
+  let(:start_date) { nil }
+  let(:mode_of_trial_reasons) { nil }
+  let(:title) { nil }
+  let(:pleas) { [] }
+  let(:mode_of_trial) { 'Indictable only' }
+  let(:legislation) { nil }
 
   context 'when the defendant has an offence' do
-    before do
-      assign(:defendant, defendant)
-    end
-
     context 'when offence has a start date' do
-      before { allow(offence).to receive(:start_date).and_return('2023-01-01') }
+      let(:start_date) { '2023-01-01' }
 
       it 'displays offence start date' do
         is_expected.to have_css('.govuk-table__cell',
@@ -21,8 +29,6 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     end
 
     context 'when offence has no start date' do
-      before { allow(offence).to receive(:start_date).and_return(nil) }
-
       it 'displays no offence start date' do
         is_expected.to have_css('.govuk-table__cell',
                                 text: /Not available/)
@@ -30,19 +36,13 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     end
 
     context 'when the offence has a mode of trial' do
-      before { allow(offence).to receive(:mode_of_trial).and_return('Indictable only') }
-
       context 'with reason' do
-        let(:mot_reason_collection) do
+        let(:mode_of_trial_reasons) do
           mot_reasons_array.map { |el| CourtDataAdaptor::Resource::ModeOfTrialReason.new(el) }
         end
 
         let(:mot_reasons_array) do
           [{ code: '4', description: 'Defendant elects trial by jury' }]
-        end
-
-        before do
-          allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
         end
 
         it 'displays mode of trial with reason' do
@@ -52,8 +52,6 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       end
 
       context 'without reason' do
-        before { allow(offence).to receive(:mode_of_trial_reasons).and_return(nil) }
-
         it 'displays mode of trial without reason' do
           is_expected.to have_css('.govuk-table__cell', text: /Indictable only:\n*Not available/)
         end
@@ -61,7 +59,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     end
 
     context 'when the offence has a title' do
-      before { allow(offence).to receive(:title).and_return('Murder') }
+      let(:title) { 'Murder' }
 
       it 'displays offence title' do
         is_expected.to have_css('.govuk-table__cell', text: 'Murder')
@@ -69,15 +67,13 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     end
 
     context 'when the offence has no title' do
-      before { allow(offence).to receive(:title).and_return(nil) }
-
       it 'displays not available' do
         is_expected.to have_css('.govuk-table__cell:nth-of-type(1)', text: 'Not available')
       end
     end
 
     context 'when the offence has legislation' do
-      before { allow(offence).to receive(:legislation).and_return('Proceeds of Crime Act 2002 s.331') }
+      let(:legislation) { 'Proceeds of Crime Act 2002 s.331' }
 
       it 'displays offence legislation' do
         is_expected.to have_css('.app-body-secondary', text: 'Proceeds of Crime Act 2002 s.331')
@@ -85,15 +81,13 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     end
 
     context 'when the offence has no legislation' do
-      before { allow(offence).to receive(:legislation).and_return(nil) }
-
       it 'displays not available' do
         is_expected.to have_css('.app-body-secondary', text: 'Not available')
       end
     end
 
     context 'when the offence has pleas' do
-      let(:plea_collection) do
+      let(:pleas) do
         plea_array.map { |el| CourtDataAdaptor::Resource::Plea.new(el) }
       end
 
@@ -106,10 +100,6 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
            pleaded_at: '2020-03-12' }]
       end
 
-      before do
-        allow(offence).to receive(:pleas).and_return(plea_collection)
-      end
-
       it 'displays list of pleas with plea dates' do
         is_expected
           .to have_css('.govuk-table__cell',
@@ -118,10 +108,6 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     end
 
     context 'when the offence has no pleas' do
-      before do
-        allow(offence).to receive(:pleas).and_return([])
-      end
-
       it 'displays Not available for plea and plea date' do
         is_expected.to have_css('.govuk-table__cell:nth-of-type(2)', text: 'Not available')
       end

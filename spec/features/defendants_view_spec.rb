@@ -4,23 +4,23 @@ RSpec.feature 'defendants view', type: :feature do
   let(:user) { create(:user) }
   let(:case_urn) { 'TEST12345' }
   let(:defendant_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
+  let(:api_url) { "http://localhost:9292/api/internal/v2" }
 
   before do
     sign_in user
 
-    stub_request(:get, %r{#{api_url}/prosecution_cases.*})
-      .to_return(
-        body: defendant_fixture,
-        headers: { 'Content-Type' => 'application/vnd.api+json' }
-      )
-
-    stub_request(:get, %r{#{api_url}/defendants/#{defendant_id}})
+    stub_request(:get, %r{#{api_url}/prosecution_cases/.*/defendants/#{defendant_id}})
       .to_return(
         body: defendant_by_id_fixture,
         headers: { 'Content-Type' => 'application/vnd.api+json' }
       )
+    stub_request(:get, %r{#{api_url}/prosecution_cases/.*/defendants/#{defendant_id}/offence_history})
+      .to_return(
+        body: load_json_stub('offence_history.json'),
+        headers: { 'Content-Type' => 'application/vnd.api+json' }
+      )
 
-    stub_request(:get, %r{#{api_url}/defendants/500})
+    stub_request(:get, %r{#{api_url}/prosecution_cases/.*/defendants/500})
       .to_return(
         status: 422,
         body: '{ "error_codes": ["multiple_maats"] }'
@@ -28,7 +28,6 @@ RSpec.feature 'defendants view', type: :feature do
   end
 
   context 'when visting laa_references page' do
-    let(:defendant_fixture) { load_json_stub('unlinked/defendant_by_reference_body.json') }
     let(:defendant_by_id_fixture) { load_json_stub('unlinked_defendant.json') }
 
     scenario 'laa_references page shows data' do
@@ -45,6 +44,12 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
       expect(page).to have_content('Create link to court data')
+    end
+
+    scenario 'show full plea history' do
+      visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
+      click_on 'Reload page with full offence history'
+      expect(page).to have_content 'Guilty'
     end
 
     context 'when linking is disabled' do
@@ -92,6 +97,12 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
       expect(page).to have_content('Remove link to court data')
+    end
+
+    scenario 'show full plea history manually' do
+      visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
+      click_on 'Reload page with full offence history'
+      expect(page).to have_content 'Guilty'
     end
 
     context 'when linking is disabled' do
