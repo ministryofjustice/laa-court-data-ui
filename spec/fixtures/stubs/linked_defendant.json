@@ -1,32 +1,21 @@
-{
-  "data": [
+{ 
+  "id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
+  "name": "Jammy Dodger",
+  "date_of_birth": "1961-06-15",
+  "national_insurance_number":"JC123456A",
+  "arrest_summons_number":"0TSQT1LMI7CR",
+  "maat_reference": "2123456",
+  "representation_order_date": null,
+  "prosecution_case_id": "c37c2ca9-d5f9-4758-a224-52ba918a3d64",
+  "offence_summaries": [
     {
-      "id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
-      "type": "defendants",
-      "attributes": {
-        "name": "Jammy Dodger",
-        "date_of_birth": "1961-06-15",
-        "national_insurance_number":"JC123456A",
-        "arrest_summons_number":"0TSQT1LMI7CR",
-        "maat_reference":"2123456",
-        "gender": null,
-        "address_1": null,
-        "address_2": null,
-        "address_3": null,
-        "address_4": null,
-        "address_5": null,
-        "postcode": null
-      },
-      "relationships": {
-        "offences": {
-          "data": [
-            {
-              "id": "6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc",
-              "type": "offences"
-            }
-          ]
-        }
-      }
+      "id": "6de5bcf7-c3bd-47cd-9c74-a79d06aaf3dc",
+      "code": "PT00011",
+      "start_date": "2023-12-11",
+      "order_index": 1,
+      "title": "Copying false instrument with intent",
+      "legislation": "Proceeds of Crime Act 2002 s.331",
+      "mode_of_trial": "Indictable only"
     }
   ]
 }

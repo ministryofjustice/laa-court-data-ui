@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
-  factory :defendant_summary, class: 'Cda::Defendant' do
+  factory :defendant_summary, class: 'Cda::DefendantSummary' do
     prosecution_case
 
     id { '29d1db1c-1467-4304-aa5b-904044a1afe3' }

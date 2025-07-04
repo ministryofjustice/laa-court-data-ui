@@ -1,4 +1,4 @@
-RSpec.describe Cda::Defendant, type: :model do
+RSpec.describe Cda::DefendantSummary, type: :model do
   describe 'name' do
     subject(:name) { described_class.new(data).name }
 

@@ -4,7 +4,7 @@ require_dependency 'court_data_adaptor'
 require_dependency 'feature_flag'
 
 class LaaReferencesController < ApplicationController
-  before_action :load_and_authorize_defendant_search,
+  before_action :load_and_authorize_defendant,
                 :set_defendant_uuid_if_required,
                 :set_defendant_if_required,
                 :set_prosecution_case_reference_if_required,
@@ -17,7 +17,14 @@ class LaaReferencesController < ApplicationController
   add_breadcrumb proc { |v| v.controller.defendant.name },
                  proc { |v| v.defendant_path(v.controller.defendant.id) }
 
-  def new; end
+  def new
+    return unless params[:load_offence_history]
+
+    @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(
+      laa_reference_params[:id],
+      laa_reference_params[:urn]
+    )
+  end
 
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
@@ -40,9 +47,7 @@ class LaaReferencesController < ApplicationController
     @defendant_uuid ||= laa_reference_params[:id] || link_attempt_params[:defendant_id]
   end
 
-  def defendant
-    @defendant ||= @defendant_search.call
-  end
+  attr_reader :defendant
 
   def prosecution_case_reference
     @prosecution_case_reference ||= laa_reference_params[:urn]
@@ -68,10 +73,11 @@ class LaaReferencesController < ApplicationController
     prosecution_case_reference
   end
 
-  def load_and_authorize_defendant_search
-    @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_uuid)
+  def load_and_authorize_defendant
+    @defendant = Cda::Defendant.find_from_id_and_urn(defendant_id,
+                                                     laa_reference_params[:urn])
 
-    authorize! :show, @defendant_search
+    authorize! :show, @defendant
   end
 
   def laa_reference_params
@@ -101,5 +107,9 @@ class LaaReferencesController < ApplicationController
                     else
                       LinkAttempt.new
                     end
+  end
+
+  def defendant_id
+    laa_reference_params[:id] || laa_reference_params.dig(:link_attempt, :defendant_id)
   end
 end
