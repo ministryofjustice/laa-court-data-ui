@@ -76,6 +76,7 @@ class Ability
 
   def can_query_cda
     can %i[read], Cda::ProsecutionCase
+    can %i[read], Cda::Defendant
   end
 
   def can_manage_self

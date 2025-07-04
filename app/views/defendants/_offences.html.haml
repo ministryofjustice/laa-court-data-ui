@@ -11,7 +11,8 @@
       %th.govuk-table__header{ scope: 'col' }= t('search.result.offence.plea')
       %th.govuk-table__header{ scope: 'col' }= t('search.result.offence.mode_of_trial')
   %tbody.govuk-table__body
-    - decorate_each(defendant.offences) do |offence|
+    - decorate_each(defendant.offence_summaries, OffenceDecorator) do |offence|
+      - offence.offence_histories = @offence_history_collection
       %tr.govuk-table__row
         %td.govuk-table__cell
           = offence.start_date || t('generic.not_available')
