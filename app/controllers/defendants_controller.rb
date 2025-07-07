@@ -22,13 +22,11 @@ class DefendantsController < ApplicationController
   def edit
     return unless params[:load_offence_history]
 
-    @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(defendant_params[:id],
-                                                                                     defendant_params[:urn])
+    load_offence_histories
   end
 
   def offences
-    @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(defendant_params[:id],
-                                                                                     defendant_params[:urn])
+    load_offence_histories
     render :offences, layout: false
   end
 
@@ -126,5 +124,10 @@ class DefendantsController < ApplicationController
     @errors = exception.errors
     flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages:)
     render 'edit'
+  end
+
+  def load_offence_histories
+    @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(defendant_params[:id],
+                                                                                     defendant_params[:urn])
   end
 end
