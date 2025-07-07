@@ -10,10 +10,10 @@
   .govuk-grid-row
     .govuk-grid-column-full
       %turbo-frame#offence-table{ src: offences_defendant_path(defendant.id, urn: params[:urn]) }
-        - if offence_history_collection.nil?
-          %p.govuk-text.moj-js-hidden
-            = link_to t('defendants.reload'), new_laa_reference_path(id: params[:id], urn: params[:urn], load_offence_history: true), class: 'govuk-link'
         = render partial: 'defendants/offences', locals: { defendant:, offence_history_collection: }
+        - if offence_history_collection.nil?
+          .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
+            = link_to t('defendants.reload'), new_laa_reference_path(id: params[:id], urn: params[:urn], load_offence_history: true), class: 'govuk-link'
 
       - unless FeatureFlag.enabled?(:no_linking)
         = hidden_field_tag(:urn, params[:urn])
