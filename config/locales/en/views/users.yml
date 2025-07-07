@@ -32,6 +32,7 @@ en:
       last_sign_in: Last Sign In
       name: Name
       never_signed_in: Never signed-in
+      user: user
       username: Username
     index:
       action_aria: "%{name}'s account"
