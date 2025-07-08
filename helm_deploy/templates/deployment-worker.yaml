@@ -51,6 +51,8 @@ spec:
               value: enabled
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
+            - name: EXPORT_TO_PROMETHEUS
+              value: disabled
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
@@ -91,22 +93,4 @@ spec:
                 secretKeyRef:
                   name: aws-secrets
                   key: SENTRY_DSN
-        - name: laa-court-data-ui-worker-metrics
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: Always
-          command: ['sh', '-c', "bundle exec prometheus_exporter --bind 0.0.0.0"]
-          ports:
-          - containerPort: 9394
-          livenessProbe:
-            httpGet:
-              path: /metrics
-              port: 9394
-            initialDelaySeconds: 10
-            periodSeconds: 60
-          readinessProbe:
-            httpGet:
-              path: /metrics
-              port: 9394
-            initialDelaySeconds: 10
-            periodSeconds: 60
 {{ end }}
