@@ -39,9 +39,13 @@ en:
       delete: Delete
       delete_confirmation: Are you sure you want to delete %{name}'s account?
       edit: Edit
+      find: Find a user
+      find_hint: Enter a name, email address or username
       inactive_user: indicates that the user has not signed in for more than 3 months.
       new_link: Create a new user
+      none: No users matched your search
       page_title: List of users
+      search: Search
     new:
       page_title: New user
     show:

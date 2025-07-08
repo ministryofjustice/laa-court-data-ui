@@ -25,3 +25,24 @@ Rails.start()
 // const imagePath = (name) => images(name, true)
 
 initAll()
+
+document.querySelectorAll('.search-form-toggle').forEach((toggle) => {
+  toggle.addEventListener('click', () => {
+    document.querySelectorAll('.search-form').forEach((element) => {
+      element.classList.remove('moj-js-hidden');
+    });
+    document.querySelectorAll('.search-form-toggle').forEach((element) => {
+      element.classList.add('moj-js-hidden');
+    });
+  })
+})
+document.querySelectorAll('.hide-search-form-toggle').forEach((toggle) => {
+  toggle.addEventListener('click', () => {
+    document.querySelectorAll('.search-form').forEach((element) => {
+      element.classList.add('moj-js-hidden');
+    });
+    document.querySelectorAll('.search-form-toggle').forEach((element) => {
+      element.classList.remove('moj-js-hidden');
+    });
+  })
+})

@@ -8,6 +8,12 @@ class UsersController < ApplicationController
     @pagy, @users = pagy(@users)
   end
 
+  def search
+    redirect to user_path if params[:query].blank?
+    @pagy, @users = pagy(UserSearchService.call(params[:query]))
+    render :index
+  end
+
   def show; end
 
   def new; end
