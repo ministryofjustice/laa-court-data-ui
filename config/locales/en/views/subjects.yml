@@ -1,6 +1,7 @@
 ---
 en:
   subjects:
+    appeal: Appeal
     link:
       failure: Unable to link the defendant to that MAAT ID
       success: You have successfully linked to the court data source

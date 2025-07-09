@@ -27,7 +27,7 @@ RSpec.feature 'Court Application subjects', :vcr do
     sign_in user
     visit court_application_subject_path(found_court_application_id)
     expect(page).to have_content(
-      ["Home", "Search for a case", "Mauricio Rath"].join # Breadcrumb
+      ["Home", "Search", "Case EPAYAQECKM", "Appeal", "Mauricio Rath"].join # Breadcrumb
     ).and have_content(
       "Appeal"
     ).and have_content(
