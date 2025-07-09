@@ -73,5 +73,11 @@
       = render 'shared/pagination', pagy: @pagy, item_name: t('users.generic.user')
       = link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary govuk-!-margin-top-5'
     - else
-      .govuk-text
-        = t('users.index.none')
+      %p.govuk-body
+        %strong
+          = t('users.index.none')
+      %p.govuk-body
+        = t('users.index.improve_search')
+      %ul.govuk-list.govuk-list--bullet
+        - t('users.index.search_suggestions').each do |suggestion|
+          %li= suggestion

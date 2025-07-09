@@ -40,10 +40,16 @@ en:
       delete_confirmation: Are you sure you want to delete %{name}'s account?
       edit: Edit
       hide_filter: Hide filters
+      improve_search: 'Improve your search results by:'
       inactive_user: indicates that the user has not signed in for more than 3 months.
       new_link: Create a new user
-      none: No users matched your search
+      none: There are no matching results.
       page_title: List of users
+      search_suggestions:
+      - removing filters
+      - double-checking your spelling
+      - using fewer keywords
+      - searching for something less specific.
       show_filter: Show filters
     new:
       page_title: New user
