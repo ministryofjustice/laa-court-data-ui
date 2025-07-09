@@ -5,12 +5,13 @@ class UsersController < ApplicationController
   load_and_authorize_resource except: :create
 
   def index
+    @user_search = UserSearch.new
     @pagy, @users = pagy(@users)
   end
 
   def search
-    redirect to user_path if params[:query].blank?
-    @pagy, @users = pagy(UserSearchService.call(params[:query]))
+    @user_search = UserSearch.new(search_params)
+    @pagy, @users = pagy(UserSearchService.call(@user_search, @users))
     render :index
   end
 
@@ -90,5 +91,17 @@ class UsersController < ApplicationController
         password_confirmation: tmp_password
       )
     )
+  end
+
+  def search_params
+    if params[:user_search]
+      params.require(:user_search).permit(
+        :search_string,
+        recent_sign_ins: [],
+        old_sign_ins: [],
+      ).tap { session[:user_search] = it }
+    else
+      session[:user_search]
+    end
   end
 end

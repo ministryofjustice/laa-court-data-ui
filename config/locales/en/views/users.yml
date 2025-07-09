@@ -41,13 +41,26 @@ en:
       edit: Edit
       find: Find a user
       find_hint: Enter a name, email address or username
+      hide_filter: Hide filter
       inactive_user: indicates that the user has not signed in for more than 3 months.
       new_link: Create a new user
       none: No users matched your search
       page_title: List of users
-      search: Search
+      show_filter: Show filter
     new:
       page_title: New user
+    search:
+      apply_filters: Apply filters
+      clear: Clear filters
+      filter: Filter
+      last_sign_in: Last sign-in
+      keywords: Name, username or email
+      old: Over three months ago
+      old_label: Over three months ago (%{count})
+      recent: Within last three months
+      recent_label: Within last three months (%{count})
+      remove: Remove this filter
+      selected_filters: Selected filters
     show:
       caption: User details
       change_password_link: Change password

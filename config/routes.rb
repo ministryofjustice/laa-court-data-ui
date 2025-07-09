@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     get 'change_password', on: :member
     patch 'update_password', on: :member
     post 'search', on: :collection
+    get 'search', on: :collection
   end
 
   post '/cookies/settings', to: 'cookies#create'

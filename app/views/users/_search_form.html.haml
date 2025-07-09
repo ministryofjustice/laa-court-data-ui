@@ -1,0 +1,56 @@
+
+= form_with(model: user_search, url: search_users_path) do |f|
+  .moj-filter{ "data-module" => "moj-filter" }
+    .moj-filter__header
+      .moj-filter__header-title
+        %h2.govuk-heading-m
+          = t('users.search.filter')
+      .moj-filter__header-action
+    .moj-filter__content
+      - if user_search.filters_applied?
+        .moj-filter__selected
+          .moj-filter__selected-heading
+            .moj-filter__heading-title
+              %h2.govuk-heading-m
+                = t('users.search.selected_filters')
+            .moj-filter__heading-action
+              %p
+                %a.govuk-link.govuk-link--no-visited-state{ href: search_users_path(user_search: { reset: true }) }
+                  = t('users.search.clear')
+          - if user_search.search_string.present?
+            %h3.govuk-heading-s{ class: "govuk-!-margin-bottom-0" }
+              = t('users.search.keywords')
+              %ul.moj-filter-tags
+                %li
+                  %a.moj-filter__tag{ href: search_users_path(user_search: user_search.attributes.merge('search_string' => '')) }
+                    %span.govuk-visually-hidden
+                      = t('users.search.remove')
+                    = user_search.search_string
+          - if user_search.recent_sign_ins || user_search.old_sign_ins
+            %h3.govuk-heading-s{ class: "govuk-!-margin-bottom-0" }
+              = t('users.search.last_sign_in')
+              %ul.moj-filter-tags
+                %li
+                  - if user_search.recent_sign_ins
+                    %a.moj-filter__tag{ href: search_users_path(user_search: user_search.attributes.merge(recent_sign_ins: false)) }
+                      %span.govuk-visually-hidden
+                        = t('users.search.remove')
+                      = t('users.search.recent')
+                  - if user_search.old_sign_ins
+                    %a.moj-filter__tag{ href: search_users_path(user_search: user_search.attributes.merge(old_sign_ins: false)) }
+                      %span.govuk-visually-hidden
+                        = t('users.search.remove')
+                      = t('users.search.old')
+      .moj-filter__options
+        = f.govuk_submit t('users.search.apply_filters')
+        .govuk-form-group
+          = f.govuk_text_field(:search_string, label: { text: t('users.search.keywords') })
+        .govuk-form-group
+          %fieldset.govuk-fieldset
+            %legend.govuk-fieldset__legend.govuk-fieldset__legend--m
+              = t('users.search.last_sign_in')
+            .govuk-checkboxes.govuk-checkboxes--small.app-no-wrap{ "data-module" => "govuk-checkboxes" }
+              .govuk-checkboxes__item
+                = f.govuk_check_box :recent_sign_ins, 1, nil, label: { text: t('users.search.recent_label', count: user_search.recent_count) }
+              .govuk-checkboxes__item
+                = f.govuk_check_box :old_sign_ins, 1, nil, label: { text: t('users.search.old_label', count: user_search.old_count) }

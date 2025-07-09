@@ -9,18 +9,14 @@
               draggable: 'false',
               role: 'button'
 .govuk-grid-row
-  - toggle_class = params[:query].present? ? 'moj-js-hidden' : ''
-  - form_class = params[:query].present? ? '' : 'moj-js-hidden'
   .govuk-grid-column-one-half
-    %button.search-form-toggle.govuk-button.govuk-button--secondary{ type: "button", class: toggle_class }
-      Show filter
-    %button.search-form.hide-search-form-toggle.govuk-button.govuk-button--secondary{ type: "button", class: form_class }
-      Hide filter
-  .govuk-grid-column-full.search-form{ class: form_class }
-    = form_with(url: search_users_path) do |f|
-      = f.govuk_text_field(:query, value: params[:query], label: { text: t('users.index.find') }, hint: { text: t('users.index.find_hint') })
-      = f.govuk_submit t('users.index.search')
-  .govuk-grid-column-one-half.search-form{ class: form_class }
+    %button.search-form-toggle.govuk-button.govuk-button--secondary{ type: "button", class: @user_search.toggle_class }
+      = t('users.index.show_filter')
+    %button.search-form.hide-search-form-toggle.govuk-button.govuk-button--secondary{ type: "button", class: @user_search.form_class }
+      = t('users.index.hide_filter')
+  .govuk-grid-column-full.search-form{ class: @user_search.form_class }
+    = render 'users/search_form', user_search: @user_search
+  .govuk-grid-column-one-half.search-form{ class: @user_search.form_class }
     &nbsp;
   .govuk-grid-column-one-half
     %p{ class: "govuk-body warning-text govuk-!-text-align-right" }
