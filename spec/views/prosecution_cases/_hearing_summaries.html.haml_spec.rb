@@ -71,19 +71,19 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
       end
 
       it 'renders link to hearing with urn' do
-        expect(rendered).to have_link('17/01/2021', href: %r{hearings/.*\?.*urn=THECASEURN})
+        expect(rendered).to have_link('17 January 2021', href: %r{hearings/.*\?.*urn=THECASEURN})
       end
 
       it 'renders link to hearing with page' do
-        expect(rendered).to have_link('17/01/2021',
+        expect(rendered).to have_link('17 January 2021',
                                       href: %r{hearings/.*\?.*page=\d})
       end
 
       it 'sorts hearings by hearing day' do
         expect(rendered)
-          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: '17/01/2021')
-          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: '18/01/2021')
-          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: '19/01/2021')
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: '17 January 2021')
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: '18 January 2021')
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: '19 January 2021')
       end
 
       it 'renders provider list per row' do
@@ -107,10 +107,10 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
 
       it 'sorts hearings by hearing_days collection then by hearing day datetime' do
         expect(rendered)
-          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: %r{17/01/2021.*First hearing}m)
-          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: %r{19/01/2021.*Trial}m)
-          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: %r{20/01/2021.*Trial}m)
-          .and have_css('tbody.govuk-table__body tr:nth-child(4)', text: %r{20/01/2021.*Sentence}m)
+          .to have_css('tbody.govuk-table__body tr:nth-child(1)', text: /17 January 2021.*First hearing/m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: /19 January 2021.*Trial/m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(3)', text: /20 January 2021.*Trial/m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(4)', text: /20 January 2021.*Sentence/m)
       end
     end
 
@@ -126,8 +126,8 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
       it 'renders formated estimated duration on the first hearing day' do
         expect(rendered)
           .to have_css('tbody.govuk-table__body tr:nth-child(1)',
-                       text: %r{19/01/2021.*Trial\n\n\nEstimated duration 20 days}m)
-          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: %r{20/01/2021.*Trial}m)
+                       text: /19 January 2021.*Trial\n\n\nEstimated duration 20 days/m)
+          .and have_css('tbody.govuk-table__body tr:nth-child(2)', text: /20 January 2021.*Trial/m)
       end
 
       it 'does not render duplicated estmated duration' do

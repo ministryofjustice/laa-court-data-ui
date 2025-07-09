@@ -48,17 +48,17 @@ RSpec.feature 'Court Applications', :vcr do
   scenario 'I view and sort an application with hearings' do
     sign_in user
     visit court_application_path(id_with_hearings)
-    expect(page).to have_content "23/10/2019 Mention - Defendant to Attend (MDA) Not available"
-    expect(page).to have_content "10/04/2025 Pre-Trial Review (PTR) Mr Leone Spinka (Direct counsel)"
+    expect(page).to have_content "23 October 2019 Mention - Defendant to Attend (MDA) Not available"
+    expect(page).to have_content "10 April 2025 Pre-Trial Review (PTR) Mr Leone Spinka (Direct counsel)"
 
-    node = find("a", text: "23/10/2019")
+    node = find("a", text: "23 October 2019")
     expect(node["href"]).to eq court_application_hearing_hearing_day_path(id_with_hearings,
                                                                           hearing_id_from_vcr, "2019-10-23")
 
-    expect(page.body.index("23/10/2019")).to be < page.body.index("10/04/2025")
+    expect(page.body.index("23 October 2019")).to be < page.body.index("10 April 2025")
     click_on "Date"
-    expect(page.body.index("23/10/2019")).to be > page.body.index("10/04/2025")
+    expect(page.body.index("23 October 2019")).to be > page.body.index("10 April 2025")
     click_on "Date"
-    expect(page.body.index("23/10/2019")).to be < page.body.index("10/04/2025")
+    expect(page.body.index("23 October 2019")).to be < page.body.index("10 April 2025")
   end
 end

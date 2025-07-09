@@ -17,7 +17,7 @@ class OffenceDecorator < BaseDecorator
   def start_date
     return unless super
 
-    Date.parse(super).strftime("%d/%m/%Y")
+    Date.parse(super).to_fs(:date_only)
   end
 
   private
@@ -35,7 +35,7 @@ class OffenceDecorator < BaseDecorator
 
     t('offence.plea.sentence',
       plea: plea&.code&.humanize || t('generic.not_available'),
-      pleaded_at: plea_date&.strftime('%d/%m/%Y') || t('generic.not_available'))
+      pleaded_at: plea_date&.to_fs(:date_only) || t('generic.not_available'))
   end
 
   def mode_of_trial_reason_descriptions

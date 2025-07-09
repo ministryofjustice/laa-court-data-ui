@@ -51,7 +51,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
         allow(offence).to receive(:pleas).and_return(plea_collection)
       end
 
-      it { is_expected.to eql('Not guilty on 01/01/2020<br>Guilty on 20/01/2020') }
+      it { is_expected.to eql('Not guilty on 1 January 2020<br>Guilty on 20 January 2020') }
     end
 
     context 'when pleas are not in pleaded_at order' do
@@ -66,7 +66,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
         allow(offence).to receive(:pleas).and_return(plea_collection)
       end
 
-      it { is_expected.to eql 'Not guilty on 01/01/2020<br>Guilty on 01/02/2020' }
+      it { is_expected.to eql 'Not guilty on 1 January 2020<br>Guilty on 1 February 2020' }
     end
 
     context 'when plea does not contain an expected key' do
@@ -78,8 +78,8 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
       let(:html_content) do
         ['Not guilty on Not available',
-         'Not available on 20/01/2020',
-         'Not available on 21/01/2020'].join('<br>')
+         'Not available on 20 January 2020',
+         'Not available on 21 January 2020'].join('<br>')
       end
 
       before do
@@ -120,7 +120,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
       before { allow(offence).to receive(:start_date).and_return("2023-01-05") }
 
       it "formats it" do
-        expect(decorator.start_date).to eq "05/01/2023"
+        expect(decorator.start_date).to eq "5 January 2023"
       end
     end
 

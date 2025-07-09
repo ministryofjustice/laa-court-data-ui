@@ -16,7 +16,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
 
       it 'displays offence start date' do
         is_expected.to have_css('.govuk-table__cell',
-                                text: %r{01/01/2023})
+                                text: /1 January 2023/)
       end
     end
 
@@ -113,7 +113,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
       it 'displays list of pleas with plea dates' do
         is_expected
           .to have_css('.govuk-table__cell',
-                       text: %r{No plea on 12/03/2020.*Not guilty on 12/04/2020.*Guilty on 12/05/2020})
+                       text: /No plea on 12 March 2020.*Not guilty on 12 April 2020.*Guilty on 12 May 2020/)
       end
     end
 

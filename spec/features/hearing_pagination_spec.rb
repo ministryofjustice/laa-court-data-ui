@@ -18,21 +18,21 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
   context 'when viewing case details' do
     scenario 'user can see links to hearing pages' do
       within :table, 'Hearings' do
-        expect(page).to have_link('23/10/2019', href: hearing_page_url(0), class: 'govuk-link')
-        expect(page).to have_link('26/10/2019', href: hearing_page_url(1), class: 'govuk-link')
-        expect(page).to have_link('31/10/2019', href: hearing_page_url(4), class: 'govuk-link')
+        expect(page).to have_link('23 October 2019', href: hearing_page_url(0), class: 'govuk-link')
+        expect(page).to have_link('26 October 2019', href: hearing_page_url(1), class: 'govuk-link')
+        expect(page).to have_link('31 October 2019', href: hearing_page_url(4), class: 'govuk-link')
       end
     end
 
     scenario 'user can navigate to a paginated hearing page' do
-      click_link_or_button('23/10/2019')
+      click_link_or_button('23 October 2019')
       expect(page).to have_current_path(hearing_page_url(0), url: true)
     end
   end
 
   context 'when on hearing page' do
     context 'with first hearing\'s day displayed' do
-      before { click_link_or_button('23/10/2019') }
+      before { click_link_or_button('23 October 2019') }
 
       scenario 'user can see Next page navigation only' do
         expect(page).to have_no_link('Previous')
@@ -41,7 +41,7 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
     end
 
     context 'with a "middle" hearing\'s day displayed' do
-      before { click_link_or_button('26/10/2019') }
+      before { click_link_or_button('26 October 2019') }
 
       scenario 'user can see Next page and Previous navigation' do
         expect(page).to have_link('Previous')
@@ -51,7 +51,7 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
 
     context 'with a last hearing\'s day displayed' do
       before do
-        click_link_or_button('31/10/2019')
+        click_link_or_button('31 October 2019')
         # There are 3 sitting days for this hearing
         click_link_or_button('Next')
         click_link_or_button('Next')
@@ -66,34 +66,34 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
 
   context 'when navigating between hearing days' do
     context 'when on first page' do
-      before { click_link_or_button('23/10/2019') }
+      before { click_link_or_button('23 October 2019') }
 
       scenario 'user can navigate to next hearing day' do
         click_link_or_button 'Next'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '26/10/2019')
+          .and have_css('h1', text: '26 October 2019')
 
         click_link_or_button 'Next'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '27/10/2019')
+          .and have_css('h1', text: '27 October 2019')
       end
     end
 
     context 'when on last page' do
-      before { click_link_or_button('31/10/2019') }
+      before { click_link_or_button('31 October 2019') }
 
       scenario 'user can navigate to previous hearing days' do
         click_link_or_button 'Previous'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '28/10/2019')
+          .and have_css('h1', text: '28 October 2019')
 
         click_link_or_button 'Previous'
         expect(page)
           .to have_css('h1', text: 'Hearing day')
-          .and have_css('h1', text: '27/10/2019')
+          .and have_css('h1', text: '27 October 2019')
       end
     end
   end

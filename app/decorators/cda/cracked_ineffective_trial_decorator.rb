@@ -15,7 +15,7 @@ module Cda
     private
 
     def cracked_at(hearing)
-      hearing.hearing_days.first.sitting_day.to_date.strftime('%d/%m/%Y')
+      hearing.hearing_days.first.sitting_day.to_fs(:date_only)
     end
   end
 end

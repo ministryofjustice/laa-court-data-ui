@@ -34,7 +34,7 @@ RSpec.feature 'Court Application Hearings', :vcr do
   scenario 'I view a hearing details page' do
     sign_in user
     visit court_application_path(court_application_id)
-    click_on "23/10/2019"
+    click_on "23 October 2019"
     expect(page).to have_current_path court_application_hearing_hearing_day_path(court_application_id,
                                                                                  first_hearing_id,
                                                                                  first_hearing_day)
@@ -71,17 +71,17 @@ RSpec.feature 'Court Application Hearings', :vcr do
     sign_in user
     visit court_application_hearing_hearing_day_path(court_application_id, first_hearing_id,
                                                      first_hearing_day)
-    expect(page).to have_content "23/10/2019"
+    expect(page).to have_content "23 October 2019"
     expect(page).to have_content "Next"
     expect(page).to have_no_content "Previous"
 
     click_on "Next"
-    expect(page).to have_content "10/04/2025"
+    expect(page).to have_content "10 April 2025"
     expect(page).to have_no_content "Next"
     expect(page).to have_content "Previous"
 
     click_on "Previous"
-    expect(page).to have_content "23/10/2019"
+    expect(page).to have_content "23 October 2019"
   end
 
   scenario 'Hearing details are not available' do
@@ -115,7 +115,7 @@ RSpec.feature 'Court Application Hearings', :vcr do
     visit court_application_hearing_hearing_day_path(problematic_application_id,
                                                      problematic_hearing_id,
                                                      missing_hearing_day)
-    expect(page).to have_content "11/04/2025"
+    expect(page).to have_content "11 April 2025"
     expect(page).to have_content "No events are associated with this hearing"
     expect(page).to have_no_content "Something went wrong"
   end
