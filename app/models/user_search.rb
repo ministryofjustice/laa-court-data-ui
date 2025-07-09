@@ -19,7 +19,7 @@ class UserSearch
   end
 
   def recent_count
-    User.where('last_sign_in_at >= ?', 3.months.ago).count
+    User.where(last_sign_in_at: 3.months.ago..).count
   end
 
   def old_count

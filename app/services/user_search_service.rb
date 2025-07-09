@@ -24,7 +24,7 @@ class UserSearchService
 
   def filter_by_sign_in(scope)
     if search_model.recent_sign_ins && !search_model.old_sign_ins
-      scope = scope.where('last_sign_in_at >= ?', 3.months.ago)
+      scope = scope.where(last_sign_in_at: 3.months.ago..)
     elsif search_model.old_sign_ins && !search_model.recent_sign_ins
       scope = scope.where('last_sign_in_at IS NULL OR last_sign_in_at < ?', 3.months.ago)
     end

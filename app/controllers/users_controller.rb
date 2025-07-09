@@ -98,7 +98,7 @@ class UsersController < ApplicationController
       params.require(:user_search).permit(
         :search_string,
         recent_sign_ins: [],
-        old_sign_ins: [],
+        old_sign_ins: []
       ).tap { session[:user_search] = it }
     else
       session[:user_search]
