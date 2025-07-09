@@ -20,13 +20,13 @@ class DefendantsController < ApplicationController
   rescue_from CourtDataAdaptor::Errors::BadRequest, with: :adaptor_error_handler
 
   def edit
-    return unless params[:load_offence_history]
+    return unless params.fetch(:include_offence_history, 'false') == 'true'
 
-    load_offence_histories
+    @offence_history_collection = load_offence_histories
   end
 
   def offences
-    load_offence_histories
+    @offence_history_collection = load_offence_histories
     render :offences, layout: false
   end
 
@@ -127,7 +127,6 @@ class DefendantsController < ApplicationController
   end
 
   def load_offence_histories
-    @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(defendant_params[:id],
-                                                                                     defendant_params[:urn])
+    Cda::OffenceHistoryCollection.find_from_id_and_urn(defendant_params[:id], defendant_params[:urn])
   end
 end

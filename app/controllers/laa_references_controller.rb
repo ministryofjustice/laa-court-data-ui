@@ -18,7 +18,7 @@ class LaaReferencesController < ApplicationController
                  proc { |v| v.defendant_path(v.controller.defendant.id) }
 
   def new
-    return unless params[:load_offence_history]
+    return unless params.fetch(:include_offence_history, 'false') == 'true'
 
     @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(
       laa_reference_params[:id],
