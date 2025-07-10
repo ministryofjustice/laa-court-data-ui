@@ -46,7 +46,7 @@
               - if user.last_sign_in_at
                 - if user.last_sign_in_at < 3.months.ago
                   %span.warning-text &#x25CF;
-                = user.last_sign_in_at.to_formatted_s(:date_only)
+                = user.last_sign_in_at.to_formatted_s(:day_month_year)
               - else
                 %span
                   = t('users.generic.never_signed_in')

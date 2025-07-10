@@ -15,7 +15,7 @@ class HearingsController < ApplicationController
                  proc { |v| v.prosecution_case_path(v.controller.prosecution_case_reference) }
 
   def show
-    add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.to_fs(:date_only)}", ''
+    add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.to_fs(:day_month_year)}", ''
   end
 
   def redirect_to_prosecution_case(**flash)

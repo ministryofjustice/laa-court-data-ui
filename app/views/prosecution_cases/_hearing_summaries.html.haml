@@ -15,9 +15,9 @@
     - case_summary.sorted_hearing_summaries_with_day.each_with_index do |hearing_summary, idx|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = link_to hearing_summary.day.to_fs(:date_only), hearing_path(id: hearing_summary.id,
-                                                                        urn: case_summary.prosecution_case_reference, column: case_summary.hearings_sort_column,
-                                                                        direction: case_summary.hearings_sort_direction, page: idx), class: 'govuk-link'
+          = link_to hearing_summary.day.to_fs(:day_month_year), hearing_path(id: hearing_summary.id,
+                                                                             urn: case_summary.prosecution_case_reference, column: case_summary.hearings_sort_column,
+                                                                             direction: case_summary.hearings_sort_direction, page: idx), class: 'govuk-link'
         %td.govuk-table__cell
           = hearing_summary.hearing_type
           - if hearing_summary.estimated_duration
