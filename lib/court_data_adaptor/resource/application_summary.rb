@@ -26,6 +26,10 @@ module CourtDataAdaptor
       def result_string
         CourtApplicationResultStringService.call(self)
       end
+
+      def judicial_results
+        @judicial_results ||= super.map { JudicialResult.new(it) }
+      end
     end
   end
 end
