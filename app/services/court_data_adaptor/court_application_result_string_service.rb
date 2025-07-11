@@ -15,7 +15,7 @@ module CourtDataAdaptor
     end
 
     def judicial_results
-      application_summary.judicial_results.map(&:label)&.to_sentence
+      application_summary.judicial_results.map(&:label)&.join(' & ')
     end
 
     private

@@ -36,7 +36,7 @@ RSpec.describe CourtDataAdaptor::CourtApplicationResultStringService do
     end
 
     it {
-      expect(result_string).to eq "Appeal against conviction withdrawn and Appeal against sentence allowed"
+      expect(result_string).to eq "Appeal against conviction withdrawn & Appeal against sentence allowed"
     }
   end
 end
