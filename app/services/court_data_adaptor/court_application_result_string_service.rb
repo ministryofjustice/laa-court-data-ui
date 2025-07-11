@@ -17,9 +17,16 @@ module CourtDataAdaptor
 
     def call
       return not_available unless application_summary.subject_summary.proceedings_concluded
+
+      unless code_key
+        Rails.logger.warn "Error on CourtApplicationResultStringService: 'application_result' = NIL " \
+                          "on application_summary! (application_id: #{application_summary.application_id})"
+        return not_available
+      end
+
       return not_available unless known_string?
 
-      load_translation(combined_key)
+      translation_for(".#{title_key}.#{code_key}")
     end
 
     private
@@ -28,11 +35,7 @@ module CourtDataAdaptor
 
     def known_string?
       I18n.t("court_applications.results").with_indifferent_access.key?(title_key) &&
-        load_translation(".#{title_key}").with_indifferent_access.key?(code_key)
-    end
-
-    def combined_key
-      ".#{title_key}.#{code_key}"
+        translation_for(".#{title_key}").with_indifferent_access.key?(code_key)
     end
 
     def code_key
@@ -44,10 +47,10 @@ module CourtDataAdaptor
     end
 
     def not_available
-      load_translation(".not_available")
+      translation_for(".not_available")
     end
 
-    def load_translation(key)
+    def translation_for(key)
       I18n.t("court_applications.results#{key}")
     end
   end
