@@ -5,18 +5,14 @@ RSpec.describe CourtDataAdaptor::CourtApplicationResultStringService do
 
   let(:data) do
     {
-      application_title:,
-      application_result:,
       subject_summary: {
         proceedings_concluded:
-      }
+      },
+      judicial_results:
     }
   end
   let(:proceedings_concluded) { true }
-  let(:application_title) do
-    "Appeal against conviction and sentence by a Magistrates' Court to the Crown Court"
-  end
-  let(:application_result) { "AW" }
+  let(:judicial_results) { [] }
 
   context "when proceedings are not concluded" do
     let(:proceedings_concluded) { false }
@@ -24,25 +20,23 @@ RSpec.describe CourtDataAdaptor::CourtApplicationResultStringService do
     it { expect(result_string).to eq "Not available" }
   end
 
-  context "when title is not recognised" do
-    let(:application_title) { "Application to amend the requirements of a youth rehabilitation order" }
-
+  context "when there are no judicial results" do
     it { expect(result_string).to eq "Not available" }
   end
 
-  context "when code is not recognised" do
-    let(:application_result) { "ABCD" }
+  context "when there is a judicial result" do
+    let(:judicial_results) { [{ label: "Appeal against conviction withdrawn" }] }
 
-    it { expect(result_string).to eq "Not available" }
+    it { expect(result_string).to eq "Appeal against conviction withdrawn" }
   end
 
-  context "when title/code combo is not recognised" do
-    let(:application_result) { "AASD" }
+  context "when there are multiple judicial results" do
+    let(:judicial_results) do
+      [{ label: "Appeal against conviction withdrawn" }, { label: "Appeal against sentence allowed" }]
+    end
 
-    it { expect(result_string).to eq "Not available" }
-  end
-
-  it "returns an appropriate string" do
-    expect(result_string).to eq "Appeal Withdrawn"
+    it {
+      expect(result_string).to eq "Appeal against conviction withdrawn and Appeal against sentence allowed"
+    }
   end
 end
