@@ -7,7 +7,7 @@ module Cda
     end
 
     def name
-      [first_name, middle_name, last_name].filter_map(&:presence).join(" ")
+      attributes['name'].presence || [first_name, middle_name, last_name].filter_map(&:presence).join(" ")
     end
   end
 end
