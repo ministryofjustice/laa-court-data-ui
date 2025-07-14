@@ -122,6 +122,7 @@ ignore_unused:
 - activerecord.errors.models.*
 - court_applications.results.*
 - cda_errors.*
+- pagy.*
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:

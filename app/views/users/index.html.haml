@@ -58,5 +58,6 @@
               = link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
                 = t('users.index.delete')
                 %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
+    = render 'shared/pagination', pagy: @pagy, item_name: t('users.generic.user')
 
     = link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary govuk-!-margin-top-5'

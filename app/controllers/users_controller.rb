@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   require 'csv'
   load_and_authorize_resource except: :create
 
-  def index; end
+  def index
+    @pagy, @users = pagy(@users)
+  end
 
   def show; end
 
