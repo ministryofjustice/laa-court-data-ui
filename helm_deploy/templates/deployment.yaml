@@ -69,6 +69,8 @@ spec:
               value: {{ .Values.googleAnalyticsId }}
             - name: RAILS_LOG_TO_STDOUT
               value: enabled
+            - name: EXPORT_TO_PROMETHEUS
+              value: enabled
             - name: DISPLAY_RAW_RESPONSES
               value: "{{ .Values.displayRawResponses }}"
             - name: SHOW_APPEALS
