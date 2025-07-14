@@ -299,6 +299,25 @@ jobs:
           severity-threshold: "critical"
           fail-on-issues: true
           no-output-timeout: 20m
+          monitor-on-build: false
+
+  scan-and-monitor-docker-image:
+    executor: test-executor
+    parallelism: 1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - build-temp-image
+      - snyk/scan:
+          token-variable: SNYK_TOKEN
+          docker-image-name: vcd:scan
+          target-file: ./docker/Dockerfile
+          organization: "legal-aid-agency"
+          severity-threshold: "critical"
+          fail-on-issues: true
+          no-output-timeout: 20m
+          monitor-on-build: true
 
   build-app-container:
     executor: aws-ecr/default
@@ -366,6 +385,9 @@ workflows:
     jobs:
       - build-app-container:
           <<: *main-only
+      - scan-and-monitor-docker-image:
+          requires:
+            - build-app-container
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
