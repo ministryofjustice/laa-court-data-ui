@@ -22,8 +22,8 @@ RSpec.feature 'Index users', :js, type: :feature do
   end
 
   context 'when manager' do
-    let(:user) { create(:user, :with_manager_role) }
-    let!(:other_user) { create(:user, :with_caseworker_role) }
+    let(:user) { create(:user, :with_manager_role, first_name: 'Amy', last_name: 'Aardvark') }
+    let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Bertie', last_name: 'Bear') }
 
     scenario 'can index users' do
       expect(page).to have_current_path(authenticated_root_path)
@@ -47,6 +47,9 @@ RSpec.feature 'Index users', :js, type: :feature do
       expect(row).to have_link('Delete', href: user_path(other_user)) { |link|
                        link['data-turbo-method'] == 'delete'
                      }
+
+      # Verify sorting by name
+      expect(page.text.index(user.email)).to be < page.text.index(other_user.email)
 
       expect(page).to be_accessible.within '#main-content'
     end

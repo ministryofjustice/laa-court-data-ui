@@ -24,6 +24,8 @@ class User < ApplicationRecord
   validates :email, confirmation: true
   validates :email_confirmation, presence: true, if: :email_changed?
 
+  scope :by_name, -> { order(:last_name, :first_name) }
+
   attr_writer :login
 
   def login
