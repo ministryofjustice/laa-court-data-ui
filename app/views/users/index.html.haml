@@ -8,56 +8,76 @@
               "data-module": 'govuk-button',
               draggable: 'false',
               role: 'button'
-
+.govuk-grid-row
+  .govuk-grid-column-one-half
+    %button.search-form-toggle.govuk-button.govuk-button--secondary{ type: "button", class: @user_search.toggle_class }
+      = t('users.index.show_filter')
+    %button.search-form-element.hide-search-form-toggle.govuk-button.govuk-button--secondary{ type: "button", class: @user_search.form_class }
+      = t('users.index.hide_filter')
+  .govuk-grid-column-full.search-form-element{ class: @user_search.form_class }
+    = render 'users/search_form', user_search: @user_search
+  .govuk-grid-column-one-half.search-form-element{ class: @user_search.form_class }
+    &nbsp;
+  .govuk-grid-column-one-half
     %p{ class: "govuk-body warning-text govuk-!-text-align-right" }
       &#x25CF;
       %span.govuk-body
         = t('users.index.inactive_user')
+.govuk-grid-row
+  .govuk-grid-column-full
+    - if @users.any?
+      %table.govuk-table
+        %caption.govuk-table__caption.govuk-visually-hidden
+          = t('users.show.caption')
 
-    %table.govuk-table
-      %caption.govuk-table__caption.govuk-visually-hidden
-        = t('users.show.caption')
+        %thead.govuk-table__head
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: 'col' }
+              = t('users.generic.name')
+            %th.govuk-table__header{ scope: 'col' }
+              = t('users.generic.username')
+            %th.govuk-table__header{ scope: 'col' }
+              = t('users.generic.email')
+            %th.govuk-table__header{ scope: 'col' }
+              = t('users.generic.last_sign_in')
+            %th.govuk-table__header{ scope: 'col' }
+              = t('users.generic.action')
 
-      %thead.govuk-table__head
-        %tr.govuk-table__row
-          %th.govuk-table__header{ scope: 'col' }
-            = t('users.generic.name')
-          %th.govuk-table__header{ scope: 'col' }
-            = t('users.generic.username')
-          %th.govuk-table__header{ scope: 'col' }
-            = t('users.generic.email')
-          %th.govuk-table__header{ scope: 'col' }
-            = t('users.generic.last_sign_in')
-          %th.govuk-table__header{ scope: 'col' }
-            = t('users.generic.action')
-
-      %tbody.govuk-table__body
-        - @users.each do |user|
-          %tr.govuk-table__row{ "data-user-id": user.id.to_s }
-            %td.govuk-table__cell
-              = link_to user.name, user_path(user), class: 'govuk-link'
-            %td.govuk-table__cell
-              = link_to user.username.to_s, user_path(user), class: 'govuk-link'
-            %td.govuk-table__cell
-              = mail_to user.email, class: 'govuk-link', target: '_blank' do
-                = user.email
-                %span.govuk-visually-hidden= t('generic.new_window')
-            %td.govuk-table__cell
-              - if user.last_sign_in_at
-                - if user.last_sign_in_at < 3.months.ago
-                  %span.warning-text &#x25CF;
-                = user.last_sign_in_at.to_formatted_s(:date_only)
-              - else
-                %span
-                  = t('users.generic.never_signed_in')
-            %td.govuk-table__cell
-              = link_to edit_user_path(user), class: 'govuk-link' do
-                = t('users.index.edit')
-                %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
-              %br
-              = link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
-                = t('users.index.delete')
-                %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
-    = render 'shared/pagination', pagy: @pagy, item_name: t('users.generic.user')
-
-    = link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary govuk-!-margin-top-5'
+        %tbody.govuk-table__body
+          - @users.each do |user|
+            %tr.govuk-table__row{ "data-user-id": user.id.to_s }
+              %td.govuk-table__cell
+                = link_to user.name, user_path(user), class: 'govuk-link'
+              %td.govuk-table__cell
+                = link_to user.username.to_s, user_path(user), class: 'govuk-link'
+              %td.govuk-table__cell
+                = mail_to user.email, class: 'govuk-link', target: '_blank' do
+                  = user.email
+                  %span.govuk-visually-hidden= t('generic.new_window')
+              %td.govuk-table__cell
+                - if user.last_sign_in_at
+                  - if user.last_sign_in_at < 3.months.ago
+                    %span.warning-text &#x25CF;
+                  = user.last_sign_in_at.to_formatted_s(:date_only)
+                - else
+                  %span
+                    = t('users.generic.never_signed_in')
+              %td.govuk-table__cell
+                = link_to edit_user_path(user), class: 'govuk-link' do
+                  = t('users.index.edit')
+                  %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
+                %br
+                = link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
+                  = t('users.index.delete')
+                  %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
+      = render 'shared/pagination', pagy: @pagy, item_name: t('users.generic.user')
+      = link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary govuk-!-margin-top-5'
+    - else
+      %p.govuk-body
+        %strong
+          = t('users.index.none')
+      %p.govuk-body
+        = t('users.index.improve_search')
+      %ul.govuk-list.govuk-list--bullet
+        - t('users.index.search_suggestions').each do |suggestion|
+          %li= suggestion

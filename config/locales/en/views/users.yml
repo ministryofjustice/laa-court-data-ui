@@ -39,11 +39,32 @@ en:
       delete: Delete
       delete_confirmation: Are you sure you want to delete %{name}'s account?
       edit: Edit
+      hide_filter: Hide filters
+      improve_search: 'Improve your search results by:'
       inactive_user: indicates that the user has not signed in for more than 3 months.
       new_link: Create a new user
+      none: There are no matching results.
       page_title: List of users
+      search_suggestions:
+      - removing filters
+      - double-checking your spelling
+      - using fewer keywords
+      - searching for something less specific.
+      show_filter: Show filters
     new:
       page_title: New user
+    search:
+      apply_filters: Apply filters
+      clear: Clear filters
+      filter: Filter
+      keywords: Name, username or email
+      last_sign_in: Last sign-in
+      old: Over three months ago
+      old_label: Over three months ago (%{count})
+      recent: Within last three months
+      recent_label: Within last three months (%{count})
+      remove: Remove this filter
+      selected_filters: Selected filters
     show:
       caption: User details
       change_password_link: Change password
