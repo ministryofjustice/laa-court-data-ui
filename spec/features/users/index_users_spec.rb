@@ -60,9 +60,12 @@ RSpec.feature 'Index users', :js, type: :feature do
         click_button 'Show filters'
         fill_in 'Name, username or email', with: user.first_name
         click_on 'Apply filters'
+
         expect(page).to have_content(user.email)
         expect(page).to have_no_content(other_user.email)
+
         click_on 'Clear filters'
+
         expect(page).to have_content(user.email)
         expect(page).to have_content(other_user.email)
       end

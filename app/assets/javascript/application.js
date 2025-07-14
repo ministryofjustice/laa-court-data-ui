@@ -26,33 +26,20 @@ Rails.start()
 
 initAll()
 
-document.addEventListener('DOMContentLoaded', function () {
-  setUpEventListeners()
-})
-
-document.addEventListener('turbo:render', function () {
-  setUpEventListeners()
-})
-
 const setUpEventListeners = () => {
-  document.querySelectorAll('.search-form-toggle').forEach((toggle) => {
-    toggle.addEventListener('click', () => {
-      document.querySelectorAll('.search-form').forEach((element) => {
-        element.classList.remove('moj-js-hidden')
-      })
-      document.querySelectorAll('.search-form-toggle').forEach((element) => {
-        element.classList.add('moj-js-hidden')
-      })
+  document.querySelector('.search-form-toggle').addEventListener('click', () => {
+    document.querySelectorAll('.search-form-element').forEach((element) => {
+      element.classList.remove('moj-js-hidden')
     })
+    document.querySelector('.search-form-toggle').classList.add('moj-js-hidden')
   })
-  document.querySelectorAll('.hide-search-form-toggle').forEach((toggle) => {
-    toggle.addEventListener('click', () => {
-      document.querySelectorAll('.search-form').forEach((element) => {
-        element.classList.add('moj-js-hidden')
-      })
-      document.querySelectorAll('.search-form-toggle').forEach((element) => {
-        element.classList.remove('moj-js-hidden')
-      })
+  document.querySelector('.hide-search-form-toggle').addEventListener('click', () => {
+    document.querySelectorAll('.search-form-element').forEach((element) => {
+      element.classList.add('moj-js-hidden')
     })
+    document.querySelector('.search-form-toggle').classList.remove('moj-js-hidden')
   })
 }
+
+document.addEventListener('DOMContentLoaded', setUpEventListeners)
+document.addEventListener('turbo:render', setUpEventListeners)

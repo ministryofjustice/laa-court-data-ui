@@ -14,8 +14,8 @@ class UserSearchService
     scope = default_scope
 
     if search_model.search_string.present?
-      scope = search_model.search_string.split.reduce(scope) do |scope, token|
-        add_filter(token, scope)
+      scope = search_model.search_string.split.reduce(scope) do |sub_scope, token|
+        add_filter(token, sub_scope)
       end
     end
 
@@ -24,12 +24,12 @@ class UserSearchService
 
   def filter_by_sign_in(scope)
     if search_model.recent_sign_ins && !search_model.old_sign_ins
-      scope = scope.where(last_sign_in_at: 3.months.ago..)
+      scope.where(last_sign_in_at: 3.months.ago..)
     elsif search_model.old_sign_ins && !search_model.recent_sign_ins
-      scope = scope.where('last_sign_in_at IS NULL OR last_sign_in_at < ?', 3.months.ago)
+      scope.where('last_sign_in_at IS NULL OR last_sign_in_at < ?', 3.months.ago)
+    else
+      scope
     end
-
-    scope
   end
 
   private

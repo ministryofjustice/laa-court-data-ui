@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource except: :create
 
   def index
+    session.delete(:user_search)
     @user_search = UserSearch.new
     @pagy, @users = pagy(@users)
   end
@@ -97,8 +98,8 @@ class UsersController < ApplicationController
     if params[:user_search]
       params.require(:user_search).permit(
         :search_string,
-        recent_sign_ins: [],
-        old_sign_ins: []
+        :recent_sign_ins,
+        :old_sign_ins
       ).tap { session[:user_search] = it }
     else
       session[:user_search]
