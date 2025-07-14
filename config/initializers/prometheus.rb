@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.env.production?
+if ENV.fetch('EXPORT_TO_PROMETHEUS', 'disabled') == 'enabled'
   require 'prometheus_exporter/instrumentation'
   require 'prometheus_exporter/middleware'
 
