@@ -4,11 +4,17 @@ class CourtApplicationsController < ApplicationController
   before_action :load_and_authorize_application
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
-  add_breadcrumb :application_search_breadcrumb_name, :search_breadcrumb_path
+  add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+  add_breadcrumb proc { |v| v.prosecution_case_name(v.controller.prosecution_case_reference) },
+                 proc { |v| v.prosecution_case_path(v.controller.prosecution_case_reference) }
 
   def show
-    add_breadcrumb @application.application_title
+    add_breadcrumb t('subjects.appeal')
     @date_sort_direction = params.fetch(:date_sort_direction, DEFAULT_SORT_DIRECTION)
+  end
+
+  def prosecution_case_reference
+    @application.case_summary.prosecution_case_reference
   end
 
   private

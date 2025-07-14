@@ -14,11 +14,6 @@ module Breadcrumbs
     end
     helper_method :search_breadcrumb_name
 
-    def application_search_breadcrumb_name
-      I18n.t('search.application_breadcrumb')
-    end
-    helper_method :application_search_breadcrumb_name
-
     def search_breadcrumb_path
       searches_path(search: current_search_params)
     end
