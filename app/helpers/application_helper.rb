@@ -4,6 +4,7 @@ require 'feature_flag'
 
 module ApplicationHelper
   include GovukDesignSystemHelper
+  include Pagy::Frontend
 
   def service_name
     'View court data'
@@ -39,6 +40,14 @@ module ApplicationHelper
 
   def app_environment
     "app-environment-#{ENV.fetch('ENV', 'local')}"
+  end
+
+  def pagination_info(pagy, item_name)
+    # Pagy's output is not marked as html_safe even though it _is_ safe, so
+    # we explicitly mark it as such here
+    # rubocop:disable Rails/OutputSafety
+    pagy_info(pagy, item_name: item_name.downcase.pluralize(pagy.count)).html_safe
+    # rubocop:enable Rails/OutputSafety
   end
 
   private

@@ -1,0 +1,6 @@
+.app-pagination__container.govuk-grid-row{ class: "govuk-!-display-none-print" }
+  .govuk-grid-column-one-half
+    = govuk_pagination(pagy:).presence || "&nbsp;".html_safe
+  .govuk-grid-column-one-half{ class: "govuk-!-text-align-right" }
+    %div{ class: "govuk-body govuk-!-margin-top-2" }
+      = pagination_info(pagy, item_name)

@@ -9,6 +9,7 @@ module CourtDataAdaptor
 
       property :text, type: :string
       property :cjs_code, type: :string
+      property :label, type: :string
     end
   end
 end

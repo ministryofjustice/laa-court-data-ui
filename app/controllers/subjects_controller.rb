@@ -1,10 +1,8 @@
 class SubjectsController < ApplicationController
-  # Note that as a breadcrumb is added in the `before_action`, the relative
-  # positioning of the `add_breadcrumb` and `before_action` calls here
-  # do matter, and changing them will affect the breadcrumb order in the UI.
-  add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
-  add_breadcrumb :application_search_breadcrumb_name, :search_breadcrumb_path
   before_action :load_and_authorize_application
+  add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
+  add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+  before_action :add_extra_breadcrumbs
 
   def show
     @form_model = @subject.maat_linked? ? load_unlink_attempt : load_link_attempt
@@ -20,10 +18,10 @@ class SubjectsController < ApplicationController
     else
       handle_link_failure("Query failed without raising an exception")
     end
-  rescue ActiveModel::ValidationError,
-         CourtDataAdaptor::Errors::BadRequest,
-         CourtDataAdaptor::Errors::UnprocessableEntity => e
+  rescue CourtDataAdaptor::Errors::Error => e
     handle_link_failure(e.message, e)
+  rescue ActiveModel::ValidationError
+    nil
   ensure
     render :show unless performed?
   end
@@ -39,13 +37,14 @@ class SubjectsController < ApplicationController
     else
       handle_unlink_failure("Query failed without raising an exception")
     end
-  rescue ActiveModel::ValidationError,
-         CourtDataAdaptor::Errors::BadRequest,
+  rescue CourtDataAdaptor::Errors::BadRequest,
          CourtDataAdaptor::Errors::UnprocessableEntity => e
     handle_unlink_failure(e.message, e)
   rescue StandardError => e
     logger.error "Error: SubjectsController#unlink: #{e.message}"
     Sentry.capture_exception(e)
+  rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
+    nil
   ensure
     render :show unless performed?
   end
@@ -56,13 +55,19 @@ class SubjectsController < ApplicationController
   def load_and_authorize_application
     @application = CourtDataAdaptor::Query::CourtApplication.new(params[:court_application_id]).call
     @subject = @application.subject_summary
-    add_breadcrumb @subject.name
     authorize! :show, @application
   rescue JsonApiClient::Errors::ServiceUnavailable => e
     Sentry.capture_exception(e)
     redirect_to controller: :errors, action: :internal_error
   rescue JsonApiClient::Errors::NotFound
     redirect_to controller: :errors, action: :not_found
+  end
+
+  def add_extra_breadcrumbs
+    reference = @application.case_summary.prosecution_case_reference
+    add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
+    add_breadcrumb t('subjects.appeal'), court_application_path(@application.application_id)
+    add_breadcrumb @subject.name
   end
 
   def load_unlink_attempt

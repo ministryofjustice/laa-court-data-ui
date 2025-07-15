@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   include Breadcrumbs
   include CookieConcern # Needs to be here for cookie_settings page
+  include Pagy::Backend
 
   default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
   protect_from_forgery prepend: true, with: :exception

@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   resources :users, only: %i[index show new create edit update destroy] do
     get 'change_password', on: :member
     patch 'update_password', on: :member
+    post 'search', on: :collection
+    get 'search', on: :collection
   end
 
   resources :hearing_repull_batches, only: %i[new create show]
