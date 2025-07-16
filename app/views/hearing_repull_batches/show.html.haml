@@ -1,0 +1,44 @@
+= govuk_page_title(t('.title'))
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
+    %table.govuk-table
+      %caption.govuk-table__caption.govuk-visually-hidden
+        = t(".title")
+      %tbody.govuk-table__body
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".id")
+          %td.govuk-table__cell
+            = @batch.id
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".complete")
+          %td.govuk-table__cell
+            = @batch.complete ? t(".yes") : t(".no")
+- if @batch.complete
+  = link_to t(".new"),
+            new_hearing_repull_batch_path,
+            class: "govuk-button govuk-button--secondary"
+- else
+  = link_to t(".reload"),
+            hearing_repull_batch_path(@batch),
+            class: "govuk-button govuk-button--secondary"
+.govuk-grid-row
+  .govuk-grid-column-full
+    %table.govuk-table{ class: "govuk-!-margin-bottom-9" }
+      %caption.govuk-table__caption.govuk-visually-hidden
+        = t('.caption')
+      %thead.govuk-table__head
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'col' }= t('.urn')
+          %th.govuk-table__header{ scope: 'col' }= t('.ids')
+          %th.govuk-table__header{ scope: 'col' }= t('.status')
+      %tbody.govuk-table__body
+        - @batch.repulls.each do |repull|
+          %tr.govuk-table__row
+            %td.govuk-table__cell
+              = repull.urn
+            %td.govuk-table__cell
+              = repull.maat_ids
+            %td.govuk-table__cell
+              = t(".statuses.#{repull.status}")
