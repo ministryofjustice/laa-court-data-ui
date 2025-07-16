@@ -7,12 +7,12 @@ class UsersController < ApplicationController
   def index
     session.delete(:user_search)
     @user_search = UserSearch.new
-    @pagy, @users = pagy(@users)
+    @pagy, @users = pagy(@users.by_name)
   end
 
   def search
     @user_search = UserSearch.new(search_params)
-    @pagy, @users = pagy(UserSearchService.call(@user_search, @users))
+    @pagy, @users = pagy(UserSearchService.call(@user_search, @users.by_name))
     render :index
   end
 
