@@ -284,6 +284,10 @@ jobs:
           destination: coverage
 
   scan-docker-image:
+    parameters:
+      monitor:
+        type: boolean
+        default: false
     executor: test-executor
     parallelism: 1
     steps:
@@ -299,25 +303,7 @@ jobs:
           severity-threshold: "critical"
           fail-on-issues: true
           no-output-timeout: 20m
-          monitor-on-build: false
-
-  scan-and-monitor-docker-image:
-    executor: test-executor
-    parallelism: 1
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - build-temp-image
-      - snyk/scan:
-          token-variable: SNYK_TOKEN
-          docker-image-name: vcd:scan
-          target-file: ./docker/Dockerfile
-          organization: "legal-aid-agency"
-          severity-threshold: "critical"
-          fail-on-issues: true
-          no-output-timeout: 20m
-          monitor-on-build: true
+          monitor-on-build: << parameters.monitor >>
 
   build-app-container:
     executor: aws-ecr/default
@@ -385,7 +371,8 @@ workflows:
     jobs:
       - build-app-container:
           <<: *main-only
-      - scan-and-monitor-docker-image:
+      - scan-docker-image:
+          monitor: true
           requires:
             - build-app-container
       - deploy-dev:
@@ -434,6 +421,7 @@ workflows:
           requires:
             - rspec-tests
       - scan-docker-image:
+          monitor: false
           requires:
             - build-test-container
 
