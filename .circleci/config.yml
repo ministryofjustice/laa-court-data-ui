@@ -372,6 +372,7 @@ workflows:
       - build-app-container:
           <<: *main-only
       - scan-docker-image:
+          name: scan-and-monitor-docker-image
           monitor: true
           requires:
             - build-app-container
@@ -421,6 +422,7 @@ workflows:
           requires:
             - rspec-tests
       - scan-docker-image:
+          name: scan-docker-image
           monitor: false
           requires:
             - build-test-container
