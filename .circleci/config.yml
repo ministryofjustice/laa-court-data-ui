@@ -83,7 +83,7 @@ executors:
   cloud-platform-executor:
     resource_class: small
     docker:
-      - image: ministryofjustice/cloud-platform-tools
+      - image: ministryofjustice/cloud-platform-tools:2.10.1
         environment:
           GITHUB_TEAM_NAME_SLUG: laa-assess-a-claim
           REPO_NAME: laa-court-data-ui
