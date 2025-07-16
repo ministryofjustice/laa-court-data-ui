@@ -179,9 +179,6 @@ GEM
       zlib (~> 3.0)
     faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
-    faraday-oauth (0.1.1)
-      faraday (~> 2.0)
-      simple_oauth (~> 0.3)
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
@@ -545,7 +542,6 @@ GEM
     sidekiq_alive (2.5.0)
       gserver (~> 0.0.1)
       sidekiq (>= 5, < 9)
-    simple_oauth (0.3.1)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -656,7 +652,6 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
-  faraday-oauth
   foreman
   govuk-components
   govuk_design_system_formbuilder (~> 5.11)
