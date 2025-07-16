@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe OffenceDecorator, type: :decorator do
-  subject(:decorator) { described_class.new(offence, view_object) }
+  subject(:decorator) do
+    described_class.new(offence, view_object).tap { it.offence_histories = offence_histories }
+  end
 
   let(:offence) { instance_double(CourtDataAdaptor::Resource::Offence) }
+  let(:offence_histories) { instance_double(Cda::OffenceHistoryCollection) }
+  let(:offence_history) { Cda::OffenceHistory.new(pleas: nil, mode_of_trial_reasons: nil) }
   let(:view_object) { view_class.new }
 
   let(:plea_collection) { plea_array.map { |plea| CourtDataAdaptor::Resource::Plea.new(plea) } }
@@ -19,6 +23,12 @@ RSpec.describe OffenceDecorator, type: :decorator do
     end
   end
 
+  before do
+    allow(offence_histories).to receive(:offence_histories).and_return([offence_history])
+    allow(offence_history).to receive(:id).and_return('123')
+    allow(offence).to receive(:id).and_return('123')
+  end
+
   it_behaves_like 'a base decorator' do
     let(:object) { offence }
   end
@@ -28,8 +38,9 @@ RSpec.describe OffenceDecorator, type: :decorator do
       allow(offence)
         .to receive_messages(title: '',
                              legislation: '',
-                             pleas: [],
-                             mode_of_trial: '',
+                             mode_of_trial: '')
+      allow(offence_history)
+        .to receive_messages(pleas: [],
                              mode_of_trial_reasons: [])
     end
 
@@ -48,7 +59,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
       end
 
       before do
-        allow(offence).to receive(:pleas).and_return(plea_collection)
+        allow(offence_history).to receive(:pleas).and_return(plea_collection)
       end
 
       it { is_expected.to eql('Not guilty on 01/01/2020<br>Guilty on 20/01/2020') }
@@ -63,7 +74,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
       end
 
       before do
-        allow(offence).to receive(:pleas).and_return(plea_collection)
+        allow(offence_history).to receive(:pleas).and_return(plea_collection)
       end
 
       it { is_expected.to eql 'Not guilty on 01/01/2020<br>Guilty on 01/02/2020' }
@@ -83,7 +94,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
       end
 
       before do
-        allow(offence).to receive(:pleas).and_return(plea_collection)
+        allow(offence_history).to receive(:pleas).and_return(plea_collection)
       end
 
       it { is_expected.to eql html_content }
@@ -91,7 +102,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when pleas are nil' do
       before do
-        allow(offence).to receive(:pleas).and_return(nil)
+        allow(offence_history).to receive(:pleas).and_return(nil)
       end
 
       it { is_expected.to eql 'Not available' }
@@ -99,7 +110,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when pleas are empty' do
       before do
-        allow(offence).to receive(:pleas).and_return([])
+        allow(offence_history).to receive(:pleas).and_return([])
       end
 
       it { is_expected.to eql 'Not available' }
@@ -107,7 +118,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when pleas are not enumerable' do
       before do
-        allow(offence).to receive(:pleas).and_return('plea is a string')
+        allow(offence_history).to receive(:pleas).and_return('plea is a string')
       end
 
       it { expect { call }.not_to raise_error }
@@ -138,7 +149,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when reasons exist' do
       before do
-        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
+        allow(offence_history).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
       end
 
       context 'when exactly one reason exists' do
@@ -168,7 +179,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when mode_of_trial_reasons does not contain an expected key' do
       before do
-        allow(offence).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
+        allow(offence_history).to receive(:mode_of_trial_reasons).and_return(mot_reason_collection)
       end
 
       context 'when it does not contain a code' do
@@ -190,7 +201,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when mode of trial reasons are nil' do
       before do
-        allow(offence).to receive(:mode_of_trial_reasons).and_return(nil)
+        allow(offence_history).to receive(:mode_of_trial_reasons).and_return(nil)
       end
 
       it { is_expected.to eql 'Not available' }
@@ -198,7 +209,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when mode of trial reasons are empty' do
       before do
-        allow(offence).to receive(:mode_of_trial_reasons).and_return([])
+        allow(offence_history).to receive(:mode_of_trial_reasons).and_return([])
       end
 
       it { is_expected.to eql 'Not available' }
@@ -206,7 +217,9 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
     context 'when mode of trial reasons are not enumerable' do
       before do
-        allow(offence).to receive(:mode_of_trial_reasons).and_return('mode of trial reason is a string')
+        allow(offence_history).to receive(:mode_of_trial_reasons).and_return(
+          'mode of trial reason is a string'
+        )
       end
 
       it { expect { call }.not_to raise_error }

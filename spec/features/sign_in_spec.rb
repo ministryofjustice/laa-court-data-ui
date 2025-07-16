@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Sign in', :js, type: :feature do
+RSpec.feature 'Sign in', type: :feature do
   let(:user) do
     create(:user,
            email: 'bob.smith@example.com',
@@ -16,7 +16,7 @@ RSpec.feature 'Sign in', :js, type: :feature do
     expect(page).to have_govuk_page_title(text: 'Sign in')
   end
 
-  it 'page should be accessible' do
+  it 'page should be accessible', :js do
     expect(page).to be_accessible.within '#main-content'
   end
 

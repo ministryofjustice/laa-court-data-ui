@@ -7,6 +7,7 @@ module CourtDataAdaptor
 
       belongs_to :defendant
 
+      property :id, type: :string
       property :title, type: :string
       property :legislation, type: :string
       property :pleas, type: :plea_collection, default: []

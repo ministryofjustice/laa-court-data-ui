@@ -43,12 +43,12 @@ class ApplicationController < ActionController::Base
     ActiveResource::ForbiddenAccess,
     ActiveResource::ServerError,
     ActiveResource::TimeoutError,
+    ActiveResource::ResourceInvalid,
     CourtDataAdaptor::Errors::Error
   ].freeze
 
   def unexpected_exception_handler(exception)
     raise if Rails.env.development?
-
     logger.error("Unexpected #{exception.class} error: #{exception}")
     process_error_based_on_type(exception)
   end
