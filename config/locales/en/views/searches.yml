@@ -38,6 +38,7 @@ en:
         hearing_day: Date
         hearing_type: Hearing type
         providers: Providers attending
+      loading: Loading...
       offence:
         caption: Offence list
         date: Date

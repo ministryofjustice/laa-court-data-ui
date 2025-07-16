@@ -4,7 +4,7 @@ require_dependency 'court_data_adaptor'
 require_dependency 'feature_flag'
 
 class DefendantsController < ApplicationController
-  before_action :load_and_authorize_defendant_search
+  before_action :load_and_authorize_defendant
   before_action :set_unlink_reasons,
                 :set_unlink_attempt,
                 :set_defendant_if_required,
@@ -19,7 +19,16 @@ class DefendantsController < ApplicationController
 
   rescue_from CourtDataAdaptor::Errors::BadRequest, with: :adaptor_error_handler
 
-  def edit; end
+  def edit
+    return unless params.fetch(:include_offence_history, 'false') == 'true'
+
+    @offence_history_collection = load_offence_histories
+  end
+
+  def offences
+    @offence_history_collection = load_offence_histories
+    render :offences, layout: false
+  end
 
   def update
     @unlink_attempt.validate!
@@ -42,13 +51,11 @@ class DefendantsController < ApplicationController
     flash[:notice] = I18n.t('defendants.unlink.success')
   end
 
-  def defendant
-    @defendant ||= @defendant_search.call
-  end
-
   def prosecution_case_reference
     @prosecution_case_reference ||= defendant_params[:urn]
   end
+
+  attr_reader :defendant
 
   private
 
@@ -66,9 +73,9 @@ class DefendantsController < ApplicationController
     prosecution_case_reference
   end
 
-  def load_and_authorize_defendant_search
-    @defendant_search = CourtDataAdaptor::Query::Defendant::ByUuid.new(defendant_params[:id])
-    authorize! :show, @defendant_search
+  def load_and_authorize_defendant
+    @defendant = Cda::Defendant.find_from_id_and_urn(defendant_params[:id], defendant_params[:urn])
+    authorize! :show, @defendant
   end
 
   def defendant_params
@@ -117,5 +124,9 @@ class DefendantsController < ApplicationController
     @errors = exception.errors
     flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages:)
     render 'edit'
+  end
+
+  def load_offence_histories
+    Cda::OffenceHistoryCollection.find_from_id_and_urn(defendant_params[:id], defendant_params[:urn])
   end
 end
