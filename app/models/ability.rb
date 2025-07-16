@@ -56,6 +56,7 @@ class Ability
     can_query_cda
     can_manage_links
     can :manage, User
+    can :manage, Cda::HearingRepullBatch
   end
 
   def admin_abilities
@@ -66,7 +67,6 @@ class Ability
     can %i[new create], SearchFilter
     can %i[new create], Search
     can %i[new create], CourtDataAdaptor::CaseSummaryService
-    can %i[show], CourtDataAdaptor::Query::Defendant::ByUuid
     can %i[show], CourtDataAdaptor::Resource::ApplicationSummary
   end
 
@@ -76,6 +76,7 @@ class Ability
 
   def can_query_cda
     can %i[read], Cda::ProsecutionCase
+    can %i[read], Cda::Defendant
   end
 
   def can_manage_self

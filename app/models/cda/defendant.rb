@@ -1,24 +1,13 @@
+# frozen_string_literal: true
+
 module Cda
   class Defendant < BaseModel
-    has_many :offence_summaries, class_name: 'Cda::OffenceSummary'
+    def self.find_from_id_and_urn(defendant_id, urn)
+      find(:one, from: "/api/internal/v2/prosecution_cases/#{urn}/defendants/#{defendant_id}")
+    end
 
     def name
-      [first_name, try(:middle_name), last_name].filter_map(&:presence).join(" ")
-    end
-
-    # Just occasionally these are nil in the HMCTS data and
-    # omitted from the CDA payload entirely, in which case ActiveResource will throw
-    # a NoMethodError if we try to access them the normal way
-    def national_insurance_number
-      attributes["national_insurance_number"]
-    end
-
-    def date_of_birth
-      attributes["date_of_birth"]
-    end
-
-    def arrest_summons_number
-      attributes["arrest_summons_number"]
+      attributes['name'].presence || [first_name, middle_name, last_name].filter_map(&:presence).join(" ")
     end
   end
 end
