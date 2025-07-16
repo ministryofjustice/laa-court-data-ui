@@ -1,4 +1,4 @@
-= govuk_page_title(@defendant.name, t('generic.defendant'))
+= govuk_page_title(@defendant.name, t('generic.defendant'), title: t('defendants.title'))
 
 - content_for :custom_packs do
   = javascript_include_tag 'unlink', defer: true

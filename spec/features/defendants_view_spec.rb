@@ -32,7 +32,7 @@ RSpec.feature 'defendants view', type: :feature do
 
     scenario 'laa_references page shows data' do
       visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
-      expect(page).to have_title('Jammy Dodger')
+      expect(page).to have_title('Defendant details')
       expect(page).to have_css('th.govuk-table__header', text: 'Date of birth')
       expect(page).to have_css('th.govuk-table__header', text: 'Case URN')
       expect(page).to have_css('th.govuk-table__header', text: 'NI number')
@@ -60,7 +60,7 @@ RSpec.feature 'defendants view', type: :feature do
 
       scenario 'page shows without linking options' do
         visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
-        expect(page).to have_title('Jammy Dodger')
+        expect(page).to have_title('Defendant details')
         expect(page).to have_no_content('Create link to court data')
       end
     end
@@ -84,7 +84,7 @@ RSpec.feature 'defendants view', type: :feature do
 
     scenario 'defendants page shows data' do
       visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
-      expect(page).to have_title('Jammy Dodger')
+      expect(page).to have_title('Defendant details')
       expect(page).to have_css('th.govuk-table__header', text: 'Date of birth')
       expect(page).to have_css('th.govuk-table__header', text: 'Case URN')
       expect(page).to have_css('th.govuk-table__header', text: 'NI number')
@@ -113,7 +113,7 @@ RSpec.feature 'defendants view', type: :feature do
 
       scenario 'page shows without linking options' do
         visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
-        expect(page).to have_title('Jammy Dodger')
+        expect(page).to have_title('Defendant details')
         expect(page).to have_no_content('Remove link to court data')
       end
     end

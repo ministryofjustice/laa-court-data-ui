@@ -3,7 +3,7 @@
     = t(".appeal")
 - content_for :custom_packs do
   = javascript_include_tag 'unlink', defer: true
-= govuk_page_title(@subject.name, t(".defendant"))
+= govuk_page_title(@subject.name, t(".defendant"), title: t(".title"))
 
 .govuk-width-container
   :ruby
