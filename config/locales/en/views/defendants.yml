@@ -9,6 +9,7 @@ en:
         label: Reason for unlinking
       submit: Remove link to court data
       unlinking: Unlinking...
+    reload: Reload page with full offence history
     unlink:
       detail: Remove link to court data
       failure: The link to the court data source could not be removed.
