@@ -83,7 +83,7 @@ executors:
   cloud-platform-executor:
     resource_class: small
     docker:
-      - image: ministryofjustice/cloud-platform-tools
+      - image: ministryofjustice/cloud-platform-tools:2.10.1
         environment:
           GITHUB_TEAM_NAME_SLUG: laa-assess-a-claim
           REPO_NAME: laa-court-data-ui
@@ -284,6 +284,10 @@ jobs:
           destination: coverage
 
   scan-docker-image:
+    parameters:
+      monitor:
+        type: boolean
+        default: false
     executor: test-executor
     parallelism: 1
     steps:
@@ -299,6 +303,7 @@ jobs:
           severity-threshold: "critical"
           fail-on-issues: true
           no-output-timeout: 20m
+          monitor-on-build: << parameters.monitor >>
 
   build-app-container:
     executor: aws-ecr/default
@@ -366,6 +371,11 @@ workflows:
     jobs:
       - build-app-container:
           <<: *main-only
+      - scan-docker-image:
+          name: scan-and-monitor-docker-image
+          monitor: true
+          requires:
+            - build-app-container
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
@@ -412,6 +422,8 @@ workflows:
           requires:
             - rspec-tests
       - scan-docker-image:
+          name: scan-docker-image
+          monitor: false
           requires:
             - build-test-container
 
