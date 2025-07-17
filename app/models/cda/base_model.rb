@@ -10,5 +10,9 @@ module Cda
         'X-Request-ID' => Current.request_id
       }
     end
+
+    def self.make_safe_for_path(variable)
+      CGI.escapeURIComponent(variable.to_s)
+    end
   end
 end
