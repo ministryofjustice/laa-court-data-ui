@@ -19,7 +19,7 @@ RSpec.describe 'prosecution_cases/show.html.haml', type: :view do
   end
 
   before do
-    allow(view).to receive(:govuk_page_title).and_return 'A Gov uk page title'
+    allow(view).to receive(:govuk_page_heading).and_return 'A Gov uk page title'
     allow(decorated_case_summary).to receive_messages(case_summary_details)
   end
 

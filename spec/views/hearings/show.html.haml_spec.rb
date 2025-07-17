@@ -22,7 +22,7 @@ RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary,
   end
 
   before do
-    allow(view).to receive(:govuk_page_title).and_return 'Hearings Page'
+    allow(view).to receive(:govuk_page_heading).and_return 'Hearings Page'
 
     assign(:hearing, hearing)
     assign(:hearing_day, hearing_day)

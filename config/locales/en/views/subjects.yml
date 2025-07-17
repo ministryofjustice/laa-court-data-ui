@@ -17,6 +17,7 @@ en:
         plea: Plea
       offences: Offences
       plea_summary: "%{value} on %{date}"
+      title: Appellant details
       view_summary: View appeal application summary
     unlink:
       failure: Unable to unlink the defendant

@@ -14,7 +14,7 @@ RSpec.feature 'Sign out', type: :feature do
   end
 
   it 'displays sign in page' do
-    expect(page).to have_govuk_page_title(text: 'Sign in')
+    expect(page).to have_govuk_page_heading(text: 'Sign in')
   end
 
   it 'displays sign in link' do

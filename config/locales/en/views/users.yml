@@ -73,7 +73,8 @@ en:
       edit_link_aria: Edit %{name}'s account
       email_label: Email
       name_label: Name
-      page_title: "%{name}'s account"
+      page_heading: "%{name}'s account"
+      page_title: User account
       roles_label: Roles
       username_label: Username
     update:

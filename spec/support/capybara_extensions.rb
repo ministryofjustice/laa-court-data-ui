@@ -9,11 +9,11 @@
 #
 module CapybaraExtensions
   module Matchers
-    def has_govuk_page_title?(options = {})
+    def has_govuk_page_heading?(options = {})
       has_selector?('h1.govuk-heading-xl', **options)
     end
 
-    def has_no_govuk_page_title?(options = {})
+    def has_no_govuk_page_heading?(options = {})
       has_no_selector?('h1.govuk-heading-xl', **options)
     end
 

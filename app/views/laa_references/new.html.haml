@@ -1,4 +1,4 @@
-= govuk_page_title(@defendant.name, t('generic.defendant'))
+= govuk_page_heading(@defendant.name, caption_text: t('generic.defendant'), title: t('defendants.title'))
 
 = render partial: 'form', locals: { link_attempt: @link_attempt,
                                     defendant: @defendant,
