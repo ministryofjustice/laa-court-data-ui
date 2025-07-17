@@ -27,13 +27,13 @@ Rails.start()
 initAll()
 
 const setUpEventListeners = () => {
-  document.querySelector('.search-form-toggle').addEventListener('click', () => {
+  document.querySelector('.search-form-toggle')?.addEventListener('click', () => {
     document.querySelectorAll('.search-form-element').forEach((element) => {
       element.classList.remove('moj-js-hidden')
     })
     document.querySelector('.search-form-toggle').classList.add('moj-js-hidden')
   })
-  document.querySelector('.hide-search-form-toggle').addEventListener('click', () => {
+  document.querySelector('.hide-search-form-toggle')?.addEventListener('click', () => {
     document.querySelectorAll('.search-form-element').forEach((element) => {
       element.classList.add('moj-js-hidden')
     })
