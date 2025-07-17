@@ -7,14 +7,14 @@
 require 'gds_design_system_breadcrumb_builder'
 
 module GovukDesignSystemHelper
-  def govuk_page_title(heading = nil, caption = nil, options = {})
-    title = options.delete(:title)
-    content_for :page_title, (title ? page_title(title) : page_title(heading, caption))
+  def govuk_page_heading(heading_text = nil, caption_text: nil, title: nil, tag_options: {})
+    title_content = title ? page_title(title) : page_title(heading_text, caption_text)
+    content_for :page_title, title_content
 
     content_for :page_heading do
-      options = prepend_classes('govuk-heading-xl', options)
-      tag.h1(**options) do
-        page_heading(heading, caption)
+      tag_options = prepend_classes('govuk-heading-xl', tag_options)
+      tag.h1(**tag_options) do
+        page_heading(heading_text, caption_text)
       end
     end
   end

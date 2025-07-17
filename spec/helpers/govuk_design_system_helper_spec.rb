@@ -3,10 +3,10 @@
 RSpec.describe GovukDesignSystemHelper, type: :helper do
   include RSpecHtmlMatchers
 
-  describe '#govuk_page_title' do
-    context 'when page title provided' do
+  describe '#govuk_page_heading' do
+    context 'when heading text provided' do
       before do
-        helper.govuk_page_title('My page title')
+        helper.govuk_page_heading('My page title')
       end
 
       it 'stores :page_title' do
@@ -29,9 +29,34 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
       end
     end
 
+    context 'when title provided' do
+      before do
+        helper.govuk_page_heading('My page heading', title: 'Other title')
+      end
+
+      it 'stores :page_title' do
+        expect(helper.content_for(:page_title)).to include 'Other title'
+      end
+
+      it 'stores :page_heading' do
+        expect(helper.content_for(:page_heading)).to include 'My page heading'
+      end
+
+      it ':page_title contains plain text' do
+        expect(helper.content_for(:page_title)).to eql 'Other title - View court data - GOV.UK'
+      end
+
+      it ':page_heading contains GDS styled heading' do
+        markup = helper.content_for(:page_heading)
+        expect(markup).to have_tag(:h1, with: { class: 'govuk-heading-xl' }) do
+          with_text 'My page heading'
+        end
+      end
+    end
+
     context 'when caption provided' do
       before do
-        helper.govuk_page_title('My page title', 'My page caption')
+        helper.govuk_page_heading('My page title', caption_text: 'My page caption')
       end
 
       it 'stores :page_title' do
@@ -59,7 +84,7 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
     context 'when no page title provided' do
       before do
         allow(controller).to receive_messages(controller_name: 'Widgets', action_name: 'show')
-        helper.govuk_page_title
+        helper.govuk_page_heading
       end
 
       it ':page_title contains title based on controller action' do
@@ -76,7 +101,8 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
 
     context 'with custom classes' do
       before do
-        helper.govuk_page_title('A page title', 'A page caption', class: 'my-custom-class1 my-custom-class2')
+        helper.govuk_page_heading('A page title', caption_text: 'A page caption',
+                                                  tag_options: { class: 'my-custom-class1 my-custom-class2' })
       end
 
       it ':page_heading contains custom classes, prepended by govuk class' do

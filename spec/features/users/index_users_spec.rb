@@ -30,7 +30,7 @@ RSpec.feature 'Index users', :js, type: :feature do
 
       click_link_or_button 'Manage users'
 
-      expect(page).to have_govuk_page_title(text: 'List of users')
+      expect(page).to have_govuk_page_heading(text: 'List of users')
 
       within '.govuk-table__head' do
         expect(page).to have_css('.govuk-table__header', text: 'Name')

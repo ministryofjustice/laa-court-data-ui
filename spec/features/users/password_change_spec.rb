@@ -10,7 +10,7 @@ RSpec.feature 'Password change', :js, type: :feature do
   scenario 'caseworker amends their own password' do
     visit user_path(user)
 
-    expect(page).to have_govuk_page_title(text: "#{user.name}'s account")
+    expect(page).to have_govuk_page_heading(text: "#{user.name}'s account")
     expect(page).to have_text(user.name)
     expect(page).to have_text(user.email)
     expect(page).to have_no_link('Edit')
@@ -18,7 +18,7 @@ RSpec.feature 'Password change', :js, type: :feature do
 
     click_link_or_button 'Change password'
 
-    expect(page).to have_govuk_page_title(text: 'Change password')
+    expect(page).to have_govuk_page_heading(text: 'Change password')
     expect(page).to be_accessible.within '#main-content'
 
     fill_in 'Current password', with: user.password

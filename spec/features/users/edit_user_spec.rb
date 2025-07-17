@@ -11,7 +11,7 @@ RSpec.feature 'Edit user', :js, type: :feature do
     scenario 'cannot navigate to edit themselves' do
       visit user_path(user)
 
-      expect(page).to have_govuk_page_title(text: "#{user.name}'s account")
+      expect(page).to have_govuk_page_heading(text: "#{user.name}'s account")
       expect(page).to have_no_link('Edit', href: 'edit')
     end
 
@@ -36,7 +36,7 @@ RSpec.feature 'Edit user', :js, type: :feature do
         click_link_or_button 'Edit'
       end
 
-      expect(page).to have_govuk_page_title(text: 'Edit user')
+      expect(page).to have_govuk_page_heading(text: 'Edit user')
       expect(page).to have_field('First name', type: 'text')
       expect(page).to have_field('Last name', type: 'text')
       expect(page).to have_field('Username', type: 'text')

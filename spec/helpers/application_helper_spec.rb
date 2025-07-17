@@ -3,7 +3,7 @@
 RSpec.describe ApplicationHelper, type: :helper do
   subject { helper }
 
-  it { is_expected.to respond_to :govuk_page_title }
+  it { is_expected.to respond_to :govuk_page_heading }
   it { is_expected.to respond_to :govuk_breadcrumb_builder }
   it { is_expected.to respond_to :service_name }
   it { is_expected.to respond_to :l }

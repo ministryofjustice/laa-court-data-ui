@@ -28,13 +28,13 @@ RSpec.feature 'New user', type: :feature do
 
     scenario 'can new and create users' do
       visit users_path
-      expect(page).to have_govuk_page_title(text: 'List of users')
+      expect(page).to have_govuk_page_heading(text: 'List of users')
 
       expect(page).to have_link(text: 'Create a new user')
       click_link_or_button 'Create a new user'
       expect(page).to have_current_path(new_user_path)
 
-      expect(page).to have_govuk_page_title(text: 'New user')
+      expect(page).to have_govuk_page_heading(text: 'New user')
       expect(page).to have_field('First name', type: 'text')
       expect(page).to have_field('Last name', type: 'text')
       expect(page).to have_field('Username', type: 'text')
@@ -67,7 +67,7 @@ RSpec.feature 'New user', type: :feature do
       expect(page).to have_current_path(user_path(new_user))
       expect(page).to have_govuk_flash(:notice, text: 'User successfully added')
 
-      expect(page).to have_govuk_page_title(text: 'Jim Bob\'s account')
+      expect(page).to have_govuk_page_heading(text: 'Jim Bob\'s account')
       expect(page).to have_css('.govuk-table__cell', text: 'Jim Bob')
       expect(page).to have_css('.govuk-table__cell', text: 'jim.bob@example.com')
       expect(page).to have_css('.govuk-table__cell', text: 'bob-j')

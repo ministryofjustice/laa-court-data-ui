@@ -13,7 +13,7 @@ RSpec.feature 'Sign in', type: :feature do
   before { visit 'users/sign_in' }
 
   it 'page header is displayed' do
-    expect(page).to have_govuk_page_title(text: 'Sign in')
+    expect(page).to have_govuk_page_heading(text: 'Sign in')
   end
 
   it 'page should be accessible', :js do
@@ -73,7 +73,7 @@ RSpec.feature 'Sign in', type: :feature do
       fill_in 'Username or email', with: 'billy bob'
       fill_in 'Password', with: user.password
       click_button 'Sign in'
-      expect(page).to have_govuk_page_title(text: 'Sign in')
+      expect(page).to have_govuk_page_heading(text: 'Sign in')
       expect(page).to have_govuk_flash(:alert, text: 'Invalid username or password')
     end
   end
