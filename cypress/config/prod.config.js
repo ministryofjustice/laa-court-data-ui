@@ -9,10 +9,7 @@ module.exports = defineConfig({
     video: false
   },
   env: {
-    environment: 'alpha',
-    caseworker_password: '',
-    manager_password: '',
-    admin_password: ''
+    environment: 'alpha'
   },
   setupNodeEvents (on, _config) {
     on('task', {
