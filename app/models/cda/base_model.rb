@@ -11,7 +11,7 @@ module Cda
       }
     end
 
-    def self.make_safe_for_path(variable)
+    def self.safe_path(variable)
       CGI.escapeURIComponent(variable.to_s)
     end
   end
