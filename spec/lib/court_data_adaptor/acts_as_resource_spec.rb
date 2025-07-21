@@ -35,12 +35,14 @@ RSpec.describe CourtDataAdaptor::ActsAsResource, :concern do
 
     let(:resource) { class_double('MyResource') }
     let(:client) { instance_double(CourtDataAdaptor::Client) }
+    let(:connection) { instance_double(Faraday::Connection) }
 
     before do
       conn = instance_double(JsonApiClient::Connection)
       allow(test_class).to receive(:resource).and_return(resource)
       allow(resource).to receive(:connection).and_yield(conn)
-      allow(conn).to receive(:use)
+      allow(conn).to receive(:faraday).and_return(connection)
+      allow(connection).to receive(:headers).and_return({})
       allow(resource).to receive(:client).and_return(client)
       allow(client).to receive(:bearer_token).and_return('test-token')
       refresh

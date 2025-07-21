@@ -9,9 +9,6 @@ module.exports = defineConfig({
     video: false
   },
   env: {
-    environment: 'local',
-    caseworker_password: '',
-    manager_password: '',
-    admin_password: ''
+    environment: 'local'
   }
 })
