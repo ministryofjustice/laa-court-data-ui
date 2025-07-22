@@ -115,7 +115,7 @@ http_interactions:
   recorded_at: Wed, 16 Apr 2025 14:52:30 GMT
 - request:
     method: post
-    uri: http://localhost:9292/api/internal/v2/court_application_laa_references
+    uri: http://localhost:9292/api/internal/v2/court_application_laa_references/
     body:
       encoding: UTF-8
       string: '{"laa_reference":{"maat_reference":"7654321","subject_id":"285d08ec-0cdd-4008-aa0c-baa57fb5b8ff","user_name":"dick-i28"}}'

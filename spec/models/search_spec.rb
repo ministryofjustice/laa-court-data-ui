@@ -33,7 +33,7 @@ RSpec.describe Search, type: :model do
   end
 
   describe '#execute' do
-    let(:cda_search_service) { CourtDataAdaptor::DefendantSearchService }
+    let(:cda_search_service) { Cda::DefendantSearchService }
 
     before do
       allow(cda_search_service).to receive(:call).with(any_args).and_return([])
@@ -111,7 +111,7 @@ RSpec.describe Search, type: :model do
       let(:dob) do
         DobFieldCollection.new({ 'dob(3i)' => '30', 'dob(2i)' => '6', 'dob(1i)' => '1973' })
       end
-      let(:cda_search_service) { CourtDataAdaptor::DefendantSearchService }
+      let(:cda_search_service) { Cda::DefendantSearchService }
 
       before do
         allow(cda_search_service).to receive(:call).with(any_args).and_raise(
@@ -132,7 +132,7 @@ RSpec.describe Search, type: :model do
       let(:dob) do
         DobFieldCollection.new({ 'dob(3i)' => '30', 'dob(2i)' => '6', 'dob(1i)' => '1973' })
       end
-      let(:cda_search_service) { CourtDataAdaptor::DefendantSearchService }
+      let(:cda_search_service) { Cda::DefendantSearchService }
 
       before do
         allow(cda_search_service).to receive(:call).with(any_args).and_raise(

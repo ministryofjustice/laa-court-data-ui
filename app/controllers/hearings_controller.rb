@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_dependency 'court_data_adaptor'
-
 class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
                 :set_prosecution_case,
@@ -31,7 +29,7 @@ class HearingsController < ApplicationController
   private
 
   def load_and_authorize_search
-    @prosecution_case_search = CourtDataAdaptor::CaseSummaryService.new(prosecution_case_reference)
+    @prosecution_case_search = Cda::CaseSummaryService.new(prosecution_case_reference)
     authorize! :create, @prosecution_case_search
   end
 

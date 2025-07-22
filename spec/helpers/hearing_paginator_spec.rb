@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.shared_context 'with single hearing and hearing day' do
   let(:hearings) { [hearing] }
   let(:hearing) do

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe TableSorters::HearingsDateSorter do
   subject(:instance) { described_class.new(hearing_summaries, column, direction) }
 

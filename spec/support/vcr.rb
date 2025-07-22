@@ -14,7 +14,7 @@ VCR.configure do |config|
       !http_message.body.valid_encoding?
   end
 
-  # NOTE: CourtDataAdaptor.configuration.test_mode should be set
+  # NOTE: Cda.configuration.test_mode should be set
   # set to false when recording new stubs, true otherwise
   #
   # Ignore requests to:
@@ -23,7 +23,7 @@ VCR.configure do |config|
   # - chrome browser requests to localhost port on which it runs
   #
   # Do not ignore requests to:
-  # - CourtDataAdaptor API endpoints
+  # - Cda API endpoints
 
   config.ignore_request do |request|
     uri = URI(request.uri)

@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe DefendantHelper, type: :helper do
   describe '#defendant_link_path' do
     let(:prosecution_case_reference) { 'TEST12345' }
-    let(:defendant_class) { CourtDataAdaptor::Resource::Defendant }
+    let(:defendant_class) { Cda::DefendantSummary }
     # rubocop:disable RSpec/VerifiedDoubles
     let(:defendant) { double(defendant_class) }
     # rubocop:enable RSpec/VerifiedDoubles
