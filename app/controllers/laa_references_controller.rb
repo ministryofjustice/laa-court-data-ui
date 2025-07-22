@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_dependency 'court_data_adaptor'
 require_dependency 'feature_flag'
 
 class LaaReferencesController < ApplicationController
@@ -31,11 +30,11 @@ class LaaReferencesController < ApplicationController
 
     @link_attempt.validate!
 
-    CourtDataAdaptor::Query::LinkDefendant.call(resource_params)
+    Cda::ProsecutionCaseLaaReference.create(resource_params)
 
     redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference),
                 notice: I18n.t('laa_reference.link.success')
-  rescue CourtDataAdaptor::Errors::Error => e
+  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_link_failure(e.message, e)
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
     nil

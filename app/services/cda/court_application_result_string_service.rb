@@ -1,4 +1,4 @@
-module CourtDataAdaptor
+module Cda
   class CourtApplicationResultStringService
     def self.call(application_summary)
       new(application_summary).call

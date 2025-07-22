@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
-RSpec.describe CourtDataAdaptor::Client do
+RSpec.describe Cda::Client do
   subject(:client) { described_class.instance }
 
   it { is_expected.to respond_to :oauth_client, :access_token, :bearer_token }

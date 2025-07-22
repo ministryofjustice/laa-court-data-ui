@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CourtDataAdaptor::CourtApplicationResultStringService do
+RSpec.describe Cda::CourtApplicationResultStringService do
   subject(:result_string) { described_class.call(Cda::CourtApplication.new(data)) }
 
   let(:data) do

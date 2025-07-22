@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.describe DefendantHelper, type: :helper do
   describe '#defendant_link_path' do
     let(:prosecution_case_reference) { 'TEST12345' }

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
-RSpec.describe CourtDataAdaptor::ReferenceParser do
+RSpec.describe Cda::ReferenceParser do
   subject { described_class.new(term) }
 
   describe '#original_value' do

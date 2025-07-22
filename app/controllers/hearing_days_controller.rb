@@ -15,11 +15,6 @@ class HearingDaysController < ApplicationController
   def load_and_authorize_application
     @application = Cda::CourtApplication.find(params[:court_application_id])
     authorize! :show, @application
-  rescue JsonApiClient::Errors::ServiceUnavailable => e
-    Sentry.capture_exception(e)
-    redirect_to controller: :errors, action: :internal_error
-  rescue JsonApiClient::Errors::NotFound
-    redirect_to controller: :errors, action: :not_found
   end
 
   def load_hearing_days
