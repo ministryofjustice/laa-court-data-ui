@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_dependency 'court_data_adaptor'
 require_dependency 'feature_flag'
 
 class Search
@@ -42,7 +41,7 @@ class Search
   validate :dob_validity
 
   def execute
-    CourtDataAdaptor::DefendantSearchService.call(filter:, term:, dob:)
+    Cda::DefendantSearchService.call(filter:, term:, dob:)
   end
 
   private

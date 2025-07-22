@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CourtDataAdaptor::CaseSummaryService do
+RSpec.describe Cda::CaseSummaryService do
   describe '#call' do
     context 'when filter is case_reference' do
       subject(:case_service) { described_class.call(case_reference) }

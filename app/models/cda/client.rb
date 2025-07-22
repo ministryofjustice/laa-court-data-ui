@@ -1,19 +1,23 @@
 # frozen_string_literal: true
 
-module CourtDataAdaptor
+module Cda
   class Client
     include Singleton
-    include Configurable
 
     def initialize
+      @api_url = ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil)
+      @api_uid = ENV.fetch('COURT_DATA_ADAPTOR_API_UID', nil)
+      @api_secret = ENV.fetch('COURT_DATA_ADAPTOR_API_SECRET', nil)
+      @api_test_mode = ENV.fetch('COURT_DATA_ADAPTOR_API_TEST_MODE', false).eql?('true')
+
       oauth_client
     end
 
     def oauth_client
-      uri = URI(config.api_url)
+      uri = URI(@api_url)
       @oauth_client ||= OAuth2::Client.new(
-        config.api_uid,
-        config.api_secret,
+        @api_uid,
+        @api_secret,
         site: "#{uri.scheme}://#{uri.host}:#{uri.port}"
       )
     end
@@ -24,7 +28,7 @@ module CourtDataAdaptor
     end
 
     def bearer_token
-      config.test_mode? ? fake_bearer_token : access_token.token
+      @api_test_mode ? fake_bearer_token : access_token.token
     end
 
     private

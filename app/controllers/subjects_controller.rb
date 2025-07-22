@@ -25,7 +25,7 @@ class SubjectsController < ApplicationController
     else
       handle_link_failure("Query failed without raising an exception")
     end
-  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError => e
+  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_link_failure(e.message, e)
   rescue ActiveModel::ValidationError
     nil
@@ -43,7 +43,7 @@ class SubjectsController < ApplicationController
     else
       handle_unlink_failure("Query failed without raising an exception")
     end
-  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError => e
+  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_unlink_failure(e.message, e)
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
     nil
@@ -61,11 +61,6 @@ class SubjectsController < ApplicationController
     @application = Cda::CourtApplication.find(params[:court_application_id])
     @subject = @application.subject_summary
     authorize! :show, @application
-  rescue JsonApiClient::Errors::ServiceUnavailable => e
-    Sentry.capture_exception(e)
-    redirect_to controller: :errors, action: :internal_error
-  rescue JsonApiClient::Errors::NotFound
-    redirect_to controller: :errors, action: :not_found
   end
 
   def add_extra_breadcrumbs

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_dependency 'court_data_adaptor'
 require_dependency 'feature_flag'
 
 class DefendantsController < ApplicationController
@@ -17,7 +16,7 @@ class DefendantsController < ApplicationController
   add_breadcrumb proc { |v| v.controller.defendant.name },
                  proc { |v| v.defendant_path(v.controller.defendant.id) }
 
-  rescue_from CourtDataAdaptor::Errors::BadRequest, with: :adaptor_error_handler
+  rescue_from ActiveResource::BadRequest, with: :adaptor_error_handler
 
   def edit
     return unless params.fetch(:include_offence_history, 'false') == 'true'
@@ -35,11 +34,11 @@ class DefendantsController < ApplicationController
     @unlink_attempt.validate!
 
     logger.info 'CALLING_V2_MAAT_UNLINK'
-    CourtDataAdaptor::Query::UnlinkDefendant.call(resource_params)
+    Cda::ProsecutionCaseLaaReference.update(resource_params)
 
     flash[:notice] = I18n.t('defendants.unlink.success')
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
-  rescue CourtDataAdaptor::Errors::Error => e
+  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_unlink_failure(e.message, e)
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
     nil
@@ -99,10 +98,6 @@ class DefendantsController < ApplicationController
       attrs[:reason_code] = attrs[:reason_code].to_i
       attrs[:reason_code] = nil if attrs[:reason_code].zero?
     end
-  end
-
-  def error_messages
-    @errors.map { |k, v| "#{k.to_s.humanize} #{v.join(', ')}" }.join("\n")
   end
 
   def set_unlink_reasons

@@ -38,14 +38,12 @@ class ApplicationController < ActionController::Base
   end
 
   EXPECTED_ERROR_TYPES = [
-    JsonApiClient::Errors::ConnectionError,
     Net::ReadTimeout,
     ActiveResource::ForbiddenAccess,
     ActiveResource::ServerError,
     ActiveResource::TimeoutError,
     ActiveResource::ResourceInvalid,
-    ActiveResource::ResourceNotFound,
-    CourtDataAdaptor::Errors::Error
+    ActiveResource::ResourceNotFound
   ].freeze
 
   def unexpected_exception_handler(exception)
@@ -59,8 +57,6 @@ class ApplicationController < ActionController::Base
     case exception
     when ActiveRecord::RecordNotFound, ActionController::RoutingError
       redirect_to not_found_error_path
-    when JsonApiClient::Errors::NotAuthorized
-      redirect_to unauthorized_error_path
     when *EXPECTED_ERROR_TYPES
       Sentry.capture_exception(exception)
       assign_error_flash(exception)
@@ -93,6 +89,6 @@ class ApplicationController < ActionController::Base
   end
 
   def cda_error_string(exception)
-    CourtDataAdaptor::Errors::ErrorCodeParser.call(exception.try(:response))
+    Cda::ErrorCodeParser.call(exception.try(:response))
   end
 end

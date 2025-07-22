@@ -50,7 +50,7 @@ RSpec.shared_examples 'court_data_adaptor resource object' do |options|
     subject { options[:test_class].client }
 
     it 'returns instance of client' do
-      is_expected.to be_an_instance_of(CourtDataAdaptor::Client)
+      is_expected.to be_an_instance_of(Cda::Client)
     end
   end
 end

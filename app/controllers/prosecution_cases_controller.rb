@@ -42,7 +42,7 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def search_results
-    @search_results ||= CourtDataAdaptor::CaseSummaryService.call(urn)
+    @search_results ||= Cda::CaseSummaryService.call(urn)
   end
 
   def urn

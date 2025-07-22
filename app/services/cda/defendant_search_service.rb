@@ -1,4 +1,4 @@
-module CourtDataAdaptor
+module Cda
   class DefendantSearchService
     def self.call(filter:, term:, dob:)
       new(filter, term, dob).call
@@ -37,7 +37,7 @@ module CourtDataAdaptor
     end
 
     def reference
-      @reference ||= CourtDataAdaptor::ReferenceParser.new(@term)
+      @reference ||= Cda::ReferenceParser.new(@term)
     end
   end
 end

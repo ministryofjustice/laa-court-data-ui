@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CourtDataAdaptor
+module Cda
   class CaseSummaryService
     def self.call(urn)
       new(urn).call

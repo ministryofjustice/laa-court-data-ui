@@ -14,7 +14,7 @@ module Cda
     end
 
     def result_string
-      CourtDataAdaptor::CourtApplicationResultStringService.call(self)
+      Cda::CourtApplicationResultStringService.call(self)
     end
 
     def defendant
