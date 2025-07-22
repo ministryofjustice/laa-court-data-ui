@@ -19,13 +19,13 @@ class SubjectsController < ApplicationController
     @form_model = load_link_attempt
     @form_model.validate!
 
-    if CourtDataAdaptor::Query::LinkCourtApplication.call(@form_model)
+    if Cda::CourtApplicationLaaReference.create(@form_model)
       redirect_to court_application_subject_path(@application.application_id),
                   flash: { notice: t('.success') }
     else
       handle_link_failure("Query failed without raising an exception")
     end
-  rescue CourtDataAdaptor::Errors::Error => e
+  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError => e
     handle_link_failure(e.message, e)
   rescue ActiveModel::ValidationError
     nil
@@ -37,21 +37,19 @@ class SubjectsController < ApplicationController
   def unlink
     @form_model = load_unlink_attempt
     @form_model.validate!
-
-    if CourtDataAdaptor::Query::UnlinkCourtApplication.call(@form_model)
+    if Cda::CourtApplicationLaaReference.update(@form_model)
       redirect_to court_application_subject_path(@application.application_id),
                   flash: { notice: t('.success') }
     else
       handle_unlink_failure("Query failed without raising an exception")
     end
-  rescue CourtDataAdaptor::Errors::BadRequest,
-         CourtDataAdaptor::Errors::UnprocessableEntity => e
+  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError => e
     handle_unlink_failure(e.message, e)
+  rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
+    nil
   rescue StandardError => e
     logger.error "Error: SubjectsController#unlink: #{e.message}"
     Sentry.capture_exception(e)
-  rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    nil
   ensure
     render :show unless performed?
   end

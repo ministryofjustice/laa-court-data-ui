@@ -84,6 +84,8 @@ Naming/VariableNumber:
 Naming/PredicateMethod:
   AllowedPatterns:
     - '\Amake_request\z'
+    - '\Acreate\z'
+    - '\Aupdate\z'
 
 Performance/AncestorsInclude:
   Enabled: true
