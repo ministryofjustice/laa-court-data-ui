@@ -36,10 +36,9 @@ class LaaReferencesController < ApplicationController
                 notice: I18n.t('laa_reference.link.success')
   rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_link_failure(e.message, e)
+    render 'new'
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    nil
-  ensure
-    render 'new' unless performed?
+    render 'new'
   end
 
   def defendant_uuid
