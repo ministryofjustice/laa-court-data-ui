@@ -22,8 +22,6 @@ gem 'govuk-components'
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 5.11'
 gem 'haml-rails', '~> 2.1.0'
-gem 'json_api_client', '~> 1.23'
-gem 'json-schema', '~> 5.2'
 gem 'logstasher'
 gem 'oauth2', '~> 2.0.12'
 gem 'pagy'
