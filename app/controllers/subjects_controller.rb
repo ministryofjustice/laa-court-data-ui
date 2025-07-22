@@ -11,7 +11,7 @@ class SubjectsController < ApplicationController
 
     @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(
       @application.defendant.id,
-      @application.case_summary.prosecution_case_reference
+      @application.prosecution_case_reference
     )
   end
 
@@ -60,7 +60,7 @@ class SubjectsController < ApplicationController
   private
 
   def load_and_authorize_application
-    @application = CourtDataAdaptor::Query::CourtApplication.new(params[:court_application_id]).call
+    @application = Cda::CourtApplication.find(params[:court_application_id])
     @subject = @application.subject_summary
     authorize! :show, @application
   rescue JsonApiClient::Errors::ServiceUnavailable => e
@@ -71,7 +71,7 @@ class SubjectsController < ApplicationController
   end
 
   def add_extra_breadcrumbs
-    reference = @application.case_summary.prosecution_case_reference
+    reference = @application.prosecution_case_reference
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
     add_breadcrumb t('subjects.appeal'), court_application_path(@application.application_id)
     add_breadcrumb @subject.name

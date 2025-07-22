@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
     ActiveResource::ServerError,
     ActiveResource::TimeoutError,
     ActiveResource::ResourceInvalid,
+    ActiveResource::ResourceNotFound,
     CourtDataAdaptor::Errors::Error
   ].freeze
 

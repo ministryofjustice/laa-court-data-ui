@@ -17,13 +17,13 @@ RSpec.feature 'Court Applications', :vcr do
   scenario 'The application cannot be found' do
     sign_in user
     visit court_application_path(missing_court_application_id)
-    expect(page).to have_content "Page not found"
+    expect(page).to have_content "There was a problem getting the information you requeste"
   end
 
   scenario 'There is a server error' do
     sign_in user
     visit court_application_path(erroring_court_application_id)
-    expect(page).to have_content "Sorry, something went wrong"
+    expect(page).to have_content "There was a problem getting the information you requeste"
   end
 
   context 'when I view an application successfully' do

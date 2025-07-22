@@ -42,7 +42,7 @@
               court_application_path(@application.application_id),
               class: "govuk-button govuk-button--secondary"
     %turbo-frame#offence-table{
-      src: offences_defendant_path(@application.defendant.id, urn: @application.case_summary.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
+      src: offences_defendant_path(@application.defendant.id, urn: @application.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
     }
       = render partial: 'defendants/offences',
                locals: { defendant: @application.defendant, offence_history_collection: @offence_history_collection, offence_ids: @subject.offence_summary.map(&:id) }
