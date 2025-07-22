@@ -1,7 +1,7 @@
 module CourtDataAdaptor
   module Query
     class LinkCourtApplication < Base
-      acts_as_resource CourtDataAdaptor::Resource::ApplicationSummary
+      acts_as_resource CourtDataAdaptor::Resource::LaaReference
 
       alias link_params term
 

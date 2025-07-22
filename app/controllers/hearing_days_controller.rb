@@ -13,7 +13,7 @@ class HearingDaysController < ApplicationController
   private
 
   def load_and_authorize_application
-    @application = CourtDataAdaptor::Query::CourtApplication.new(params[:court_application_id]).call
+    @application = Cda::CourtApplication.find(params[:court_application_id])
     authorize! :show, @application
   rescue JsonApiClient::Errors::ServiceUnavailable => e
     Sentry.capture_exception(e)
@@ -75,7 +75,7 @@ class HearingDaysController < ApplicationController
   end
 
   def add_extra_breadcrumbs
-    reference = @application.case_summary.prosecution_case_reference
+    reference = @application.prosecution_case_reference
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
     add_breadcrumb t('subjects.appeal'), court_application_path(@application.application_id)
     add_breadcrumb t('hearing_days.show.breadcrumb', day: @hearing_day.day_string)

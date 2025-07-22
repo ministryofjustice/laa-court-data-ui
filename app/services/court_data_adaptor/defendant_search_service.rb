@@ -37,7 +37,7 @@ module CourtDataAdaptor
     end
 
     def reference
-      @reference ||= CourtDataAdaptor::Query::Defendant::ReferenceParser.new(@term)
+      @reference ||= CourtDataAdaptor::ReferenceParser.new(@term)
     end
   end
 end
