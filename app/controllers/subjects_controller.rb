@@ -24,16 +24,15 @@ class SubjectsController < ApplicationController
                   flash: { notice: t('.success') }
     else
       handle_link_failure("Query failed without raising an exception")
+      render :show
     end
   rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_link_failure(e.message, e)
+    render :show
   rescue ActiveModel::ValidationError
-    nil
-  ensure
-    render :show unless performed?
+    render :show
   end
 
-  # rubocop:disable Metrics/MethodLength
   def unlink
     @form_model = load_unlink_attempt
     @form_model.validate!
@@ -42,18 +41,14 @@ class SubjectsController < ApplicationController
                   flash: { notice: t('.success') }
     else
       handle_unlink_failure("Query failed without raising an exception")
+      render :show
     end
   rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_unlink_failure(e.message, e)
+    render :show
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    nil
-  rescue StandardError => e
-    logger.error "Error: SubjectsController#unlink: #{e.message}"
-    Sentry.capture_exception(e)
-  ensure
-    render :show unless performed?
+    render :show
   end
-  # rubocop:enable Metrics/MethodLength
 
   private
 

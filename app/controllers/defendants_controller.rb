@@ -40,10 +40,9 @@ class DefendantsController < ApplicationController
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
   rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_unlink_failure(e.message, e)
+    render 'edit'
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    nil
-  ensure
-    render 'edit' unless performed?
+    render 'edit'
   end
 
   def redirect_to_new_laa_reference
