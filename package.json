@@ -5,8 +5,6 @@
   "scripts": {
     "validate:js": "standard",
     "validate:scss": "stylelint **/*.scss",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
     "start:server": "bundle exec puma & wait-on http://localhost:3000/",
     "start:testserver": "bundle exec puma & wait-on http://localhost:9292/",
     "build": "webpack --config webpack.config.js"
@@ -48,9 +46,7 @@
   "standard": {
     "globals": [
       "dataLayer",
-      "googleTrackingID",
-      "Cypress",
-      "cy"
+      "googleTrackingID"
     ],
     "env": [
       "mocha"
