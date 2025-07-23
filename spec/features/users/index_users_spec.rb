@@ -51,7 +51,7 @@ RSpec.feature 'Index users', :js, type: :feature do
       # Verify sorting by name
       expect(page.text.index(user.email)).to be < page.text.index(other_user.email)
 
-      expect(page).to be_accessible.within '#main-content'
+      expect(page).to be_accessible
     end
 
     context 'when searching' do

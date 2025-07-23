@@ -2,6 +2,7 @@ $app-uat-colour: govuk-colour("orange");
 $app-test-colour: govuk-colour("turquoise");
 $app-dev-colour: govuk-colour("pink");
 $app-local-colour: govuk-colour("bright-purple");
+$app-local-text-colour: govuk-colour("white");
 
 .app-environment-uat {
   .govuk-header__container {
@@ -39,6 +40,7 @@ $app-local-colour: govuk-colour("bright-purple");
   }
 
   .govuk-tag.govuk-phase-banner__content__tag {
+    color: $app-local-text-colour;
     background-color: $app-local-colour;
   }
 }

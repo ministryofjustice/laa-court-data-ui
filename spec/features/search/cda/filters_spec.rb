@@ -18,7 +18,7 @@ RSpec.feature 'Search filters', :js, type: :feature do
     expect(page).to have_css('.govuk-radios__item',
                              text: 'A defendant by name and date of birth')
 
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 
   scenario 'user chooses defendant ASN or NI filter' do
@@ -28,7 +28,7 @@ RSpec.feature 'Search filters', :js, type: :feature do
     click_link_or_button 'Continue'
     expect(page).to have_text('Defendant ASN or National insurance number')
 
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 
   scenario 'user chooses defendant name filter' do
@@ -38,7 +38,7 @@ RSpec.feature 'Search filters', :js, type: :feature do
     click_link_or_button 'Continue'
     expect(page).to have_text('Defendant name')
 
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 
   scenario 'user chooses case number filter' do
@@ -48,6 +48,6 @@ RSpec.feature 'Search filters', :js, type: :feature do
     click_link_or_button 'Continue'
     expect(page).to have_text('Unique reference number')
 
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 end

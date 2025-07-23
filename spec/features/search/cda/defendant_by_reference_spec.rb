@@ -25,7 +25,7 @@ RSpec.feature 'Defendant by reference search', :vcr, :js, type: :feature do
         expect(page).to have_content('HX685369B').once
       end
 
-      expect(page).to be_accessible.within '#main-content'
+      expect(page).to be_accessible
     end
 
     scenario 'with no results' do
@@ -38,7 +38,7 @@ RSpec.feature 'Defendant by reference search', :vcr, :js, type: :feature do
 
       expect(page).to have_css('.govuk-body', text: 'There are no matching results')
 
-      expect(page).to be_accessible.within '#main-content'
+      expect(page).to be_accessible
     end
 
     scenario 'with no defendant reference specified' do
@@ -57,7 +57,7 @@ RSpec.feature 'Defendant by reference search', :vcr, :js, type: :feature do
 
       expect(page).to have_css('#search-term-error', text: 'Search term required')
 
-      expect(page).to be_accessible.within '#main-content'
+      expect(page).to be_accessible
     end
   end
 end
