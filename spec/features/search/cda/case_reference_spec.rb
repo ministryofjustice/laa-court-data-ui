@@ -24,7 +24,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
       expect(find('a', text: 'Marlin Schaefer Leuschke')['href']).to match(%r{defendants/.*/edit})
     end
 
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 
   scenario 'with non existent case URN' do
@@ -36,7 +36,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     click_button 'Search'
     expect(page).to have_css('.govuk-body', text: 'There are no matching results')
 
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 
   scenario 'with no case reference provided' do
@@ -55,7 +55,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
 
     expect(page).to have_css('#search-term-error', text: 'Search term required')
 
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 
   scenario 'with error from common_platform', :stub_defendants_cda_failed do
@@ -75,7 +75,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
       expect(page).to have_content('HMCTS Common Platform could not be reached')
     end
 
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 
   scenario 'with error from CDA', :stub_defendants_failed_case_search do
@@ -93,7 +93,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
         .to have_content('Unable to complete the search. Please adjust the search terms and try again.')
     end
 
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 
   context 'when appeals flag is set' do

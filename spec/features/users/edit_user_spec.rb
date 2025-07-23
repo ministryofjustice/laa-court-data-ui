@@ -56,7 +56,7 @@ RSpec.feature 'Edit user', :js, type: :feature do
       fill_in 'Email', with: 'changed@example.com'
       fill_in 'Confirm email', with: 'changed@example.com'
 
-      expect(page).to be_accessible.within '#main-content'
+      expect(page).to be_accessible
 
       expect do
         click_link_or_button 'Save'

@@ -17,7 +17,7 @@ RSpec.feature 'Sign in', type: :feature do
   end
 
   it 'page should be accessible', :js do
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
   end
 
   context 'with success' do

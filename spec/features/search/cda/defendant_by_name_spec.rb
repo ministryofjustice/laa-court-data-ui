@@ -39,7 +39,7 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
     end
 
     scenario 'it is axe-accessible', :js do
-      expect(page).to be_accessible.within '#main-content'
+      expect(page).to be_accessible
     end
   end
 

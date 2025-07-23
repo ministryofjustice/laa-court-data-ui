@@ -45,7 +45,7 @@ RSpec.feature 'Password unlock', type: :feature do
       expect(page).to have_link('Didn\'t receive unlock instructions?')
       click_link_or_button 'Didn\'t receive unlock instructions?'
       expect(page).to have_govuk_page_heading(text: 'Resend unlock instructions')
-      expect(page).to be_accessible.within '#main-content'
+      expect(page).to be_accessible
     end
 
     scenario 'caseworker requests unlock email to be resent' do

@@ -23,7 +23,7 @@ RSpec.feature 'Password reset', :js, type: :feature do
     click_link_or_button 'Forgot your password?'
 
     expect(page).to have_govuk_page_heading(text: 'Forgot your password?')
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
     fill_in 'Email', with: user.email
     expect do
       click_link_or_button 'Send me reset password instructions'

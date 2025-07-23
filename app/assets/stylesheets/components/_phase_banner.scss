@@ -40,5 +40,6 @@ $app-local-colour: govuk-colour("bright-purple");
 
   .govuk-tag.govuk-phase-banner__content__tag {
     background-color: $app-local-colour;
+    color: white;
   }
 }
