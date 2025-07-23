@@ -19,7 +19,7 @@ RSpec.feature 'Password change', :js, type: :feature do
     click_link_or_button 'Change password'
 
     expect(page).to have_govuk_page_heading(text: 'Change password')
-    expect(page).to be_accessible.within '#main-content'
+    expect(page).to be_accessible
 
     fill_in 'Current password', with: user.password
     fill_in 'New password', with: 'my-new-password'
