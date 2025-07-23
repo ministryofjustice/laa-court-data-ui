@@ -44,7 +44,6 @@ Brewfile.lock.json
 .dccache
 .DS_Store
 .vscode
-cypress.env.json
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
