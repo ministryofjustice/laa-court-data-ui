@@ -23,11 +23,11 @@ RSpec.feature 'Court Application subjects', :vcr do
     expect(page).to have_content "Sorry, something went wrong"
   end
 
-  scenario 'I view the application details' do
+  scenario 'I view the application details', :js do
     sign_in user
     visit court_application_subject_path(found_court_application_id)
     expect(page).to have_content(
-      ["Home", "Search", "Case EPAYAQECKM", "Appeal", "Mauricio Rath"].join # Breadcrumb
+      ["Home", "Search", "Case EPAYAQECKM", "Appeal", "Mauricio Rath"].join("\n") # Breadcrumb
     ).and have_content(
       "Appeal"
     ).and have_content(
@@ -37,6 +37,7 @@ RSpec.feature 'Court Application subjects', :vcr do
     ).and have_content(
       "KQJXI10ZJXCI"
     )
+    expect(page).to be_accessible
 
     click_on "View appeal application summary"
 

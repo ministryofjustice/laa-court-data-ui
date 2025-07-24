@@ -30,8 +30,11 @@ RSpec.feature 'defendants view', type: :feature do
   context 'when visting laa_references page' do
     let(:defendant_by_id_fixture) { load_json_stub('unlinked_defendant.json') }
 
-    scenario 'laa_references page shows data' do
+    before do
       visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
+    end
+
+    scenario 'laa_references page shows data' do
       expect(page).to have_title('Defendant details')
       expect(page).to have_css('th.govuk-table__header', text: 'Date of birth')
       expect(page).to have_css('th.govuk-table__header', text: 'Case URN')
@@ -44,6 +47,10 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
       expect(page).to have_content('Create link to court data')
+    end
+
+    scenario 'it is accessible', :js do
+      expect(page).to be_accessible
     end
 
     scenario 'show full plea history' do
@@ -82,8 +89,11 @@ RSpec.feature 'defendants view', type: :feature do
     let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
     let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
 
-    scenario 'defendants page shows data' do
+    before do
       visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
+    end
+
+    scenario 'defendants page shows data' do
       expect(page).to have_title('Defendant details')
       expect(page).to have_css('th.govuk-table__header', text: 'Date of birth')
       expect(page).to have_css('th.govuk-table__header', text: 'Case URN')
@@ -97,6 +107,10 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
       expect(page).to have_content('Remove link to court data')
+    end
+
+    scenario 'it is accessible', :js do
+      expect(page).to be_accessible
     end
 
     scenario 'show full plea history manually' do

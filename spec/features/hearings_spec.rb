@@ -64,6 +64,10 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
       it 'displays court applications section' do
         expect(page).to have_css('.govuk-heading-l', text: 'Court Applications')
       end
+
+      it 'is accessible', :js do
+        expect(page).to be_accessible
+      end
     end
 
     context 'with no hearing events', :stub_v2_hearing_events_not_found do

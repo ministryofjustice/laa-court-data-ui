@@ -109,6 +109,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
       fill_in 'search-term-field', with: 'TEST12345'
       click_button 'Search'
       expect(page).to have_text '4 search results'
+      expect(page).to be_accessible
     end
 
     scenario 'there is just one result' do
