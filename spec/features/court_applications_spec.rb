@@ -26,7 +26,7 @@ RSpec.feature 'Court Applications', :vcr do
     expect(page).to have_content "Sorry, something went wrong"
   end
 
-  scenario 'I view the application details' do
+  scenario 'I view the application details', :js do
     sign_in user
     visit court_application_path(found_court_application_id)
     expect(page).to have_content "Appeal against a conviction"
@@ -35,6 +35,8 @@ RSpec.feature 'Court Applications', :vcr do
     expect(page).to have_content "Mauricio Rath"
     expect(page).to have_content "06/05/1994"
     expect(page).to have_content "Not linked"
+    expect(page).to be_accessible
+
     click_on "Mauricio Rath"
     expect(page).to have_current_path court_application_subject_path(found_court_application_id)
   end
