@@ -1,3 +1,4 @@
+- offence_ids ||= nil
 .govuk-heading-l{ class: "govuk-!-margin-bottom-4" }
   = t('search.result.offence.heading')
 
@@ -12,6 +13,7 @@
       %th.govuk-table__header{ scope: 'col', class: 'govuk-!-width-one-quarter' }= t('search.result.offence.mode_of_trial')
   %tbody.govuk-table__body
     - decorate_each(defendant.offence_summaries, OffenceDecorator) do |offence|
+      - next if offence_ids&.exclude?(offence.id)
       - offence.offence_histories = offence_history_collection
       %tr.govuk-table__row
         %td.govuk-table__cell
