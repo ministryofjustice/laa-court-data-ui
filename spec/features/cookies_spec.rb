@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.feature 'Cookies', type: :feature do
-  scenario 'viewing cookie settings' do
+  scenario 'viewing cookie settings', :js do
     visit cookies_path
     click_link_or_button 'Cookie settings'
 
@@ -9,6 +9,8 @@ RSpec.feature 'Cookies', type: :feature do
     within '.govuk-main-wrapper' do
       expect(page).to have_css('.govuk-heading-xl', text: 'Change your cookie settings')
     end
+
+    expect(page).to be_accessible
   end
 
   context 'when on the cookies page' do

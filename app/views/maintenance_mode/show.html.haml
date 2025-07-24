@@ -2,7 +2,7 @@
 %html.govuk-template{ lang: 'en' }
   %head
     %title
-      = content_for?(:page_title) ? yield(:page_title) : service_name
+      = service_name
 
     %meta{ charset: "utf-8" }/
     = stylesheet_link_tag 'application', media: 'all'
@@ -40,5 +40,3 @@
           = t('maintenance_mode.text')
 
     = render 'layouts/footer'
-
-  = content_for?(:custom_packs) ? yield(:custom_packs) : ''
