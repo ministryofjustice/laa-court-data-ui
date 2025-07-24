@@ -1,11 +1,19 @@
 class SubjectsController < ApplicationController
   before_action :load_and_authorize_application
+  before_action :load_defendant
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
   before_action :add_extra_breadcrumbs
 
   def show
     @form_model = @subject.maat_linked? ? load_unlink_attempt : load_link_attempt
+
+    return unless params.fetch(:include_offence_history, 'false') == 'true'
+
+    @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(
+      @defendant.id,
+      @application.case_summary.prosecution_case_reference
+    )
   end
 
   def link
@@ -86,6 +94,15 @@ class SubjectsController < ApplicationController
       username: current_user.username,
       maat_reference: params.dig(:link_attempt, :maat_reference)
     )
+  end
+
+  def load_defendant
+    prosecution_case = CourtDataAdaptor::CaseSummaryService.call(@application.case_summary.prosecution_case_reference)
+    @defendant = prosecution_case.defendant_summaries.find do |defendant|
+      defendant.application_summaries.any? do |as|
+        as.id == @application.application_id
+      end
+    end
   end
 
   def handle_link_failure(message, exception = nil)

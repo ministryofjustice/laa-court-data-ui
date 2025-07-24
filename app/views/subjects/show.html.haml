@@ -42,32 +42,11 @@
               court_application_path(@application.application_id),
               class: "govuk-button govuk-button--secondary"
 
-    %h2.govuk-heading-l
-      = t('.offences')
-    %table.govuk-table.app-sortable-table
-      %caption.govuk-table__caption.govuk-visually-hidden
-        = t('.offences')
-      %thead.govuk-table__head
-        %tr.govuk-table__row
-          %th.govuk-table__header{ scope: 'col' }
-            = t('.offence.offence_and_legislation')
-          %th.govuk-table__header{ scope: 'col' }
-            = t('.offence.plea')
-          %th.govuk-table__header{ scope: 'col' }
-            = t('.offence.mode_of_trial')
-      %tbody.govuk-table__body
-        - @subject.offence_summary.each do |offence|
-          %tr.govuk-table__row
-            %td.govuk-table__cell
-              = offence.title
-              .govuk-hint
-                = offence.legislation
-            %td.govuk-table__cell
-              - offence.pleas.each do |plea|
-                %div
-                  = t(".plea_summary", date: l(plea.date), value: plea.user_facing_value)
-            %td.govuk-table__cell
-              = offence.mode_of_trial
+    %turbo-frame#offence-table{ src: offences_defendant_path(@defendant.id, urn: @application.case_summary.prosecution_case_reference) }
+      = render partial: 'defendants/offences', locals: { defendant: @defendant, offence_history_collection: @offence_history_collection }
+      - if @offence_history_collection.nil?
+        .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
+          = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'
 
     .govuk-grid-row
       .govuk-grid-column-two-thirds
