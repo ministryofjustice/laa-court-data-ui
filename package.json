@@ -38,10 +38,10 @@
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "axe-core": "^4.10.3",
     "standard": "^17.1.2",
-    "stylelint": "^16.21.1",
+    "stylelint": "^16.22.0",
     "stylelint-config-gds": "^2.0.0",
     "stylelint-order": "^7.0.0",
-    "wait-on": "^8.0.3"
+    "wait-on": "^8.0.4"
   },
   "standard": {
     "globals": [
