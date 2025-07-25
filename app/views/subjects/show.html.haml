@@ -42,10 +42,10 @@
               court_application_path(@application.application_id),
               class: "govuk-button govuk-button--secondary"
     %turbo-frame#offence-table{
-      src: offences_defendant_path(@defendant.id, urn: @application.case_summary.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
+      src: offences_defendant_path(@application.defendant.id, urn: @application.case_summary.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
     }
       = render partial: 'defendants/offences',
-               locals: { defendant: @defendant, offence_history_collection: @offence_history_collection, offence_ids: @subject.offence_summary.map(&:id) }
+               locals: { defendant: @application.defendant, offence_history_collection: @offence_history_collection, offence_ids: @subject.offence_summary.map(&:id) }
       - if @offence_history_collection.nil?
         .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
           = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'

@@ -30,6 +30,18 @@ module CourtDataAdaptor
       def judicial_results
         @judicial_results ||= super.map { JudicialResult.new(it) }
       end
+
+      def defendant
+        @defendant ||= prosecution_case.defendant_summaries.find do |defendant|
+          defendant.application_summaries.any? { it.id == application_id }
+        end
+      end
+
+      private
+
+      def prosecution_case
+        @prosecution_case ||= CourtDataAdaptor::CaseSummaryService.call(case_summary.prosecution_case_reference)
+      end
     end
   end
 end
