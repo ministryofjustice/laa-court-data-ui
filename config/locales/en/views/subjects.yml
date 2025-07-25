@@ -11,12 +11,6 @@ en:
       date_of_birth: Date of birth
       defendant: Appellant
       maat_number: MAAT number
-      offence:
-        mode_of_trial: Mode of trial
-        offence_and_legislation: Offence and legislation
-        plea: Plea
-      offences: Offences
-      plea_summary: "%{value} on %{date}"
       title: Appellant details
       view_summary: View appeal application summary
     unlink:

@@ -7,5 +7,9 @@ module Cda
     def maat_reference
       offence_summaries.filter_map { |os| os.laa_application.try(:reference) }.uniq.join(', ')
     end
+
+    def filtered_offence_summaries(offence_ids)
+      offence_summaries.reject { offence_ids&.exclude?(it.id) }
+    end
   end
 end

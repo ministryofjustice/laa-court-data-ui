@@ -27,6 +27,7 @@ class DefendantsController < ApplicationController
 
   def offences
     @offence_history_collection = load_offence_histories
+    @offence_ids = params[:offence_ids]&.split(',')
     render :offences, layout: false
   end
 

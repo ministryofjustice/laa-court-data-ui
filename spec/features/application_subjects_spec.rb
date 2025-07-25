@@ -53,9 +53,16 @@ RSpec.feature 'Court Application subjects', :vcr do
   scenario 'I view the offence details' do
     sign_in user
     visit court_application_subject_path(found_court_application_id)
-    expect(page).to have_content "Trafficking into UK"
-    expect(page).to have_content "Theft Act 1978 s.2"
-    expect(page).to have_content "Autrefois convict on 21/05/2024"
-    expect(page).to have_content "Indictable only"
+    expect(page).to have_content "Making, custody or control of counterfeiting materials etc"
+    expect(page).to have_content "Proceeds of Crime Act 2002 s.339(1A)"
+    expect(page).to have_content "Loading"
+  end
+
+  scenario 'I view the full offence details' do
+    sign_in user
+    visit court_application_subject_path(found_court_application_id, include_offence_history: true)
+    expect(page).to have_content "Making, custody or control of counterfeiting materials etc"
+    expect(page).to have_content "Proceeds of Crime Act 2002 s.339(1A)"
+    expect(page).to have_content "Guilty"
   end
 end
