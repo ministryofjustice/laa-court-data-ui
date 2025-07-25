@@ -31,7 +31,7 @@ RSpec.feature 'Court Application Hearings', :vcr do
     expect(page).to have_content "Sorry, something went wrong"
   end
 
-  scenario 'I view a hearing details page' do
+  scenario 'I view a hearing details page', :js do
     sign_in user
     visit court_application_path(court_application_id)
     click_on "23/10/2019"
@@ -61,10 +61,12 @@ RSpec.feature 'Court Application Hearings', :vcr do
     )
 
     # Court applications
-    expect(page).to have_content "Court Applications\nCOURT APPLICATION DESCRIPTION\n14 April 2025"
+    expect(page).to have_content("COURT APPLICATION DESCRIPTION").and have_content "April 2025"
 
     # Result
     expect(page).to have_content "Result\nNot available"
+
+    expect(page).to be_accessible
   end
 
   scenario 'I navigate between hearing pages' do

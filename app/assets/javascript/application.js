@@ -24,9 +24,9 @@ Rails.start()
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-initAll()
-
 const setUpEventListeners = () => {
+  initAll()
+
   document.querySelector('.search-form-toggle')?.addEventListener('click', () => {
     document.querySelectorAll('.search-form-element').forEach((element) => {
       element.classList.remove('moj-js-hidden')
