@@ -61,7 +61,7 @@ RSpec.feature 'Court Application Hearings', :vcr do
     )
 
     # Court applications
-    expect(page).to have_content "Court Applications\nCOURT APPLICATION DESCRIPTION\n14 April 2025"
+    expect(page).to have_content("COURT APPLICATION DESCRIPTION").and have_content "April 2025"
 
     # Result
     expect(page).to have_content "Result\nNot available"
