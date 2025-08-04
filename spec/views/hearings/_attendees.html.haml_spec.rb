@@ -2,6 +2,7 @@
 
 RSpec.describe 'hearings/_attendees', type: :view do
   include RSpecHtmlMatchers
+
   subject(:render_partial) do
     render partial: 'hearings/attendees',
            locals: { hearing: decorated_hearing, hearing_details: decorated_hearing.hearing }

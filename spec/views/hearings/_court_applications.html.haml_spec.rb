@@ -2,6 +2,7 @@
 
 RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
   include RSpecHtmlMatchers
+
   subject(:render_partial) { render partial: 'court_applications', locals: { hearing: hearing.hearing } }
 
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
