@@ -26,7 +26,7 @@ module Cda
     private
 
     def prosecution_case
-      @prosecution_case ||= CourtDataAdaptor::CaseSummaryService.call(prosecution_case_reference)
+      @prosecution_case ||= Cda::CaseSummaryService.call(prosecution_case_reference)
     end
   end
 end
