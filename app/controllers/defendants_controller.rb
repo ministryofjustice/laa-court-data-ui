@@ -16,8 +16,6 @@ class DefendantsController < ApplicationController
   add_breadcrumb proc { |v| v.controller.defendant.name },
                  proc { |v| v.defendant_path(v.controller.defendant.id) }
 
-  rescue_from ActiveResource::BadRequest, with: :adaptor_error_handler
-
   def edit
     return unless params.fetch(:include_offence_history, 'false') == 'true'
 
@@ -38,16 +36,12 @@ class DefendantsController < ApplicationController
 
     flash[:notice] = I18n.t('defendants.unlink.success')
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
-  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError,
+         ActiveResource::BadRequest => e
     handle_unlink_failure(e.message, e)
     render 'edit'
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
     render 'edit'
-  end
-
-  def redirect_to_new_laa_reference
-    redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
-    flash[:notice] = I18n.t('defendants.unlink.success')
   end
 
   def prosecution_case_reference
@@ -113,12 +107,6 @@ class DefendantsController < ApplicationController
 
   def resource_params
     @resource_params ||= @unlink_attempt.to_unlink_attributes
-  end
-
-  def adaptor_error_handler(exception)
-    @errors = exception.errors
-    flash.now[:alert] = I18n.t('defendants.unlink.failure', error_messages:)
-    render 'edit'
   end
 
   def load_offence_histories

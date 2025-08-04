@@ -5,9 +5,9 @@ module Cda
     include Singleton
 
     def initialize
-      @api_url = ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil)
-      @api_uid = ENV.fetch('COURT_DATA_ADAPTOR_API_UID', nil)
-      @api_secret = ENV.fetch('COURT_DATA_ADAPTOR_API_SECRET', nil)
+      @api_url = ENV.fetch('COURT_DATA_ADAPTOR_API_URL')
+      @api_uid = ENV.fetch('COURT_DATA_ADAPTOR_API_UID')
+      @api_secret = ENV.fetch('COURT_DATA_ADAPTOR_API_SECRET')
       @api_test_mode = ENV.fetch('COURT_DATA_ADAPTOR_API_TEST_MODE', false).eql?('true')
 
       oauth_client

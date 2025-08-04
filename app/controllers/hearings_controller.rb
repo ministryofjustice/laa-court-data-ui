@@ -62,10 +62,6 @@ class HearingsController < ApplicationController
                "#{I18n.t('error.refresh')} #{I18n.t('error.it_helpdesk')}")
   end
 
-  def hearing_params
-    { date: paginator.current_item.hearing_date.strftime('%F') }
-  end
-
   def log_and_capture_error(exception, log_messsage)
     logger.error log_messsage
     Sentry.capture_exception(exception)
