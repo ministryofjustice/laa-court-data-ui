@@ -4,10 +4,6 @@ module CourtDataAdaptor
       def maat_reference
         laa_application["reference"]
       end
-
-      def pleas
-        @pleas ||= super.map { PleaSummary.new(_1) }
-      end
     end
   end
 end

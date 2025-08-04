@@ -6,6 +6,13 @@ class SubjectsController < ApplicationController
 
   def show
     @form_model = @subject.maat_linked? ? load_unlink_attempt : load_link_attempt
+
+    return unless params.fetch(:include_offence_history, 'false') == 'true'
+
+    @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(
+      @application.defendant.id,
+      @application.case_summary.prosecution_case_reference
+    )
   end
 
   def link
