@@ -6,6 +6,7 @@ RSpec.describe CourtDataAdaptor::ActsAsResource, :concern do
   let(:test_class) do
     Class.new do
       include CourtDataAdaptor::ActsAsResource
+
       acts_as_resource :my_resource_class
     end
   end

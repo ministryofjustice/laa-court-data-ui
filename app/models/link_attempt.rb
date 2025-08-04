@@ -2,6 +2,7 @@
 
 class LinkAttempt
   include ActiveModel::Model
+
   attr_accessor :maat_reference, :defendant_id, :no_maat_id, :username
 
   alias no_maat_id? no_maat_id

@@ -51,7 +51,7 @@ group :test do
   gem 'rspec_junit_formatter', require: false
   gem 'rspec-rails', '~> 8.0'
   gem 'rspec-retry'
-  gem 'rubocop', '~> 1.78', require: false
+  gem 'rubocop', '~> 1.79', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false

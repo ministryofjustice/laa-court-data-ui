@@ -4,6 +4,7 @@ module CourtDataAdaptor
     # AFTER defining an API_VERSION constant.
     module ResourceConfiguration
       extend ActiveSupport::Concern
+
       included do
         def self.api_url
           unversioned = config.api_url.gsub(%r{/v\d+\z}, '')
