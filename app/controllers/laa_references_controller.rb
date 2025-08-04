@@ -30,7 +30,7 @@ class LaaReferencesController < ApplicationController
 
     @link_attempt.validate!
 
-    Cda::ProsecutionCaseLaaReference.create(resource_params)
+    Cda::ProsecutionCaseLaaReference.create!(resource_params)
 
     redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference),
                 notice: I18n.t('laa_reference.link.success')

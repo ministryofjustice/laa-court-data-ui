@@ -34,7 +34,7 @@ class DefendantsController < ApplicationController
     @unlink_attempt.validate!
 
     logger.info 'CALLING_V2_MAAT_UNLINK'
-    Cda::ProsecutionCaseLaaReference.update(resource_params)
+    Cda::ProsecutionCaseLaaReference.update!(resource_params)
 
     flash[:notice] = I18n.t('defendants.unlink.success')
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)

@@ -19,13 +19,9 @@ class SubjectsController < ApplicationController
     @form_model = load_link_attempt
     @form_model.validate!
 
-    if Cda::CourtApplicationLaaReference.create(@form_model)
-      redirect_to court_application_subject_path(@application.application_id),
-                  flash: { notice: t('.success') }
-    else
-      handle_link_failure("Query failed without raising an exception")
-      render :show
-    end
+    Cda::CourtApplicationLaaReference.create!(@form_model)
+    redirect_to court_application_subject_path(@application.application_id),
+                flash: { notice: t('.success') }
   rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_link_failure(e.message, e)
     render :show
@@ -36,13 +32,9 @@ class SubjectsController < ApplicationController
   def unlink
     @form_model = load_unlink_attempt
     @form_model.validate!
-    if Cda::CourtApplicationLaaReference.update(@form_model)
-      redirect_to court_application_subject_path(@application.application_id),
-                  flash: { notice: t('.success') }
-    else
-      handle_unlink_failure("Query failed without raising an exception")
-      render :show
-    end
+    Cda::CourtApplicationLaaReference.update!(@form_model)
+    redirect_to court_application_subject_path(@application.application_id),
+                flash: { notice: t('.success') }
   rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
     handle_unlink_failure(e.message, e)
     render :show

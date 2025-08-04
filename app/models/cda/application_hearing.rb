@@ -10,7 +10,7 @@ module Cda
     end
 
     def defence_counsels_on(date)
-      defence_counsels.select { _1.attended_on?(date) }
+      defence_counsels.select { it.attended_on?(date) }
     end
   end
 end

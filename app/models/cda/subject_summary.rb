@@ -13,7 +13,7 @@ module Cda
     end
 
     def maat_reference
-      offence_summary.map(&:maat_reference).uniq.reject { _1&.starts_with?(DUMMY_MAAT_PREFIX) }.compact.join
+      offence_summary.map(&:maat_reference).uniq.reject { it&.starts_with?(DUMMY_MAAT_PREFIX) }.compact.join
     end
 
     def maat_linked?

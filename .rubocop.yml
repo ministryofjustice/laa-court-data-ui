@@ -81,11 +81,6 @@ Metrics/MethodLength:
 Naming/VariableNumber:
   Enabled: false
 
-Naming/PredicateMethod:
-  AllowedPatterns:
-    - '\Acreate\z'
-    - '\Aupdate\z'
-
 Performance/AncestorsInclude:
   Enabled: true
 
