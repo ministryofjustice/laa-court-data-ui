@@ -17,10 +17,10 @@ class SearchesController < ApplicationController
 
     @results = helpers.decorate_all(@search.execute, Cda::DefendantSummaryDecorator) if @search.valid?
     render 'new'
-  rescue ActiveResource::BadRequest => e
+  rescue ActiveResource::ClientError => e
     Rails.logger.info 'CLIENT_ERROR_OCCURRED'
     handle_client_error e
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ServerError => e
     Rails.logger.error 'SERVER_ERROR_OCCURRED'
     handle_server_error e
   end
@@ -71,15 +71,15 @@ class SearchesController < ApplicationController
   end
 
   def handle_client_error(exception)
-    logger.info 'CLIENT_ERROR_OCCURRED'
-
-    render_error(I18n.t('search.error.unprocessable'), exception.response.body)
+    logger.error 'CLIENT_ERROR_OCCURRED'
+    log_sentry_error(exception, exception.response.try(:body))
+    render_error(I18n.t('search.error.unprocessable'),
+                 cda_error_string(exception) || I18n.t('error.it_helpdesk'))
   end
 
   def handle_server_error(exception)
     logger.error 'SERVER_ERROR_OCCURRED'
-
-    log_sentry_error(exception, exception.response.body)
+    log_sentry_error(exception, exception.response.try(:body))
     render_error(I18n.t('search.error.failure'), cda_error_string(exception) || I18n.t('error.it_helpdesk'))
   end
 

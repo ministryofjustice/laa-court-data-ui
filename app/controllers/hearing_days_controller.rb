@@ -13,13 +13,8 @@ class HearingDaysController < ApplicationController
   private
 
   def load_and_authorize_application
-    @application = CourtDataAdaptor::Query::CourtApplication.new(params[:court_application_id]).call
+    @application = Cda::CourtApplication.find(params[:court_application_id])
     authorize! :show, @application
-  rescue JsonApiClient::Errors::ServiceUnavailable => e
-    Sentry.capture_exception(e)
-    redirect_to controller: :errors, action: :internal_error
-  rescue JsonApiClient::Errors::NotFound
-    redirect_to controller: :errors, action: :not_found
   end
 
   def load_hearing_days
@@ -32,7 +27,7 @@ class HearingDaysController < ApplicationController
     @hearing_details = helpers.decorate(details, Cda::HearingDecorator)
     @hearing_details.current_sitting_day = @hearing_day.sitting_day
     @hearing_details.skip_mapping_counsels_to_defendants = true
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     logger.error e
     Sentry.capture_exception(e)
     redirect_to controller: :errors, action: :internal_error
@@ -51,7 +46,7 @@ class HearingDaysController < ApplicationController
                                                                       @hearing_day.date)
   rescue ActiveResource::ResourceNotFound
     logger.warn "No hearing events found for hearing #{params[:hearing_id]}"
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     logger.error e
     Sentry.capture_exception(e)
     redirect_to controller: :errors, action: :internal_error
@@ -75,7 +70,7 @@ class HearingDaysController < ApplicationController
   end
 
   def add_extra_breadcrumbs
-    reference = @application.case_summary.prosecution_case_reference
+    reference = @application.prosecution_case_reference
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
     add_breadcrumb t('subjects.appeal'), court_application_path(@application.application_id)
     add_breadcrumb t('hearing_days.show.breadcrumb', day: @hearing_day.day_string)

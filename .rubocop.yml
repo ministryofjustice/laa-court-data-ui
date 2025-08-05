@@ -81,10 +81,6 @@ Metrics/MethodLength:
 Naming/VariableNumber:
   Enabled: false
 
-Naming/PredicateMethod:
-  AllowedPatterns:
-    - '\Amake_request\z'
-
 Performance/AncestorsInclude:
   Enabled: true
 

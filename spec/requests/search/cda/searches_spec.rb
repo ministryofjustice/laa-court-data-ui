@@ -158,14 +158,13 @@ RSpec.describe 'Searches', type: :request do
       allow(Rails.env).to receive(:production?).and_return true
       allow_any_instance_of(Search)
         .to receive(:execute)
-        .and_raise JsonApiClient::Errors::ConnectionError.new('connection error test')
+        .and_raise ActiveResource::ServerError.new('connection error test')
       get '/searches', params:
     end
 
     let(:params) { { search: { filter: 'case_reference', term: 'test12345' } } }
 
-    it { expect(flash[:alert]).to match(/There was a problem/) }
-    it { expect(response).to redirect_to(authenticated_root_path) }
+    it { expect(flash[:alert][:title]).to match(/.*Unable to complete the search.*/) }
   end
 
   context 'when there is a net read timeout error' do

@@ -7,7 +7,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
 
   let(:defendant) { Cda::Defendant.new(offence_summaries: [offence]) }
   let(:offence) do
-    CourtDataAdaptor::Resource::Offence.new(id: '123', start_date:, mode_of_trial:, title:, legislation:)
+    Cda::OffenceSummary.new(id: '123', start_date:, mode_of_trial:, title:, legislation:)
   end
   let(:offence_history_collection) { Cda::OffenceHistoryCollection.new(offence_histories: [offence_history]) }
   let(:offence_history) { Cda::OffenceHistory.new(id: '123', pleas:, mode_of_trial_reasons:) }
@@ -38,7 +38,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
     context 'when the offence has a mode of trial' do
       context 'with reason' do
         let(:mode_of_trial_reasons) do
-          mot_reasons_array.map { |el| CourtDataAdaptor::Resource::ModeOfTrialReason.new(el) }
+          mot_reasons_array.map { |el| Cda::BaseModel.new(el) }
         end
 
         let(:mot_reasons_array) do
@@ -88,7 +88,7 @@ RSpec.describe 'defendants/_offences.html.haml', type: :view do
 
     context 'when the offence has pleas' do
       let(:pleas) do
-        plea_array.map { |el| CourtDataAdaptor::Resource::Plea.new(el) }
+        plea_array.map { |el| Cda::Plea.new(el) }
       end
 
       let(:plea_array) do

@@ -13,6 +13,5 @@ en:
     title: Defendant details
     unlink:
       detail: Remove link to court data
-      failure: The link to the court data source could not be removed.
       success: You have successfully unlinked from the court data source
       warning: Removing the link will stop hearing updates being received

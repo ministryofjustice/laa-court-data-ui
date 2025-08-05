@@ -572,4 +572,60 @@ http_interactions:
       encoding: UTF-8
       string: '{  "id": "41fcb1cd-516e-438e-887a-5987d92ef90f",  "offence_histories": [    {      "id": "d6aba7f2-51b3-483c-a5f9-35f49a36a4bb",      "pleas": [{                  "pleaded_at": "2023-01-01",                  "code": "GUILTY"               }],      "mode_of_trial_reasons": [ { "description": "Court directs trial by jury"}]    }  ]}'
   recorded_at: Thu, 24 Jul 2025 11:02:37 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/prosecution_cases/EPAYAQECKM/defendants/a5084e6c-6c51-43ec-89e1-482f0135f186
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      X-Request-Id:
+      - d45155e4-4024-423a-ac5b-e3c90133aab1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - d45155e4-4024-423a-ac5b-e3c90133aab1
+      Cache-Control:
+      - no-store
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Type:
+      - text/html
+      X-Runtime:
+      - '0.228879'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.10, sql.active_record;dur=46.82,
+        halted_callback.action_controller;dur=0.01, process_action.action_controller;dur=127.97
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: '{ "id": "41fcb1cd-516e-438e-887a-5987d92ef90f","name": "Jammy Dodger","date_of_birth": "1961-06-15","national_insurance_number":"JC123456A","arrest_summons_number":"0TSQT1LMI7CR","maat_reference": "2123456","representation_order_date": null,"prosecution_case_id": "c37c2ca9-d5f9-4758-a224-52ba918a3d64","offence_summaries": [{"id": "d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","code": "PT00011","start_date": "2023-12-11","order_index": 1,"title": "Copying false instrument with intent","legislation": "Proceeds of Crime Act 2002 s.331","mode_of_trial": "Indictable only"}]}'
+  recorded_at: Thu, 24 Jul 2025 11:02:37 GMT
 recorded_with: VCR 6.3.1

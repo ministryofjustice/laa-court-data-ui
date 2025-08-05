@@ -28,7 +28,7 @@ class HearingRepullBatchesController < ApplicationController
 
   def save_batch
     @batch.save
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     Sentry.capture_exception(e)
     @batch.errors.add(:maat_id, cda_error_string(e) || t('hearing_repull_batches.create.failure'))
     false

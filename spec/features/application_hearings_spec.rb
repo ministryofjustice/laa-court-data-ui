@@ -22,13 +22,13 @@ RSpec.feature 'Court Application Hearings', :vcr do
     sign_in user
     visit court_application_hearing_hearing_day_path(missing_court_application_id, first_hearing_id,
                                                      first_hearing_day)
-    expect(page).to have_content "Page not found"
+    expect(page).to have_content "There was a problem getting the information you requested"
   end
 
   scenario 'There is a server error' do
     sign_in user
     visit court_application_path(erroring_court_application_id)
-    expect(page).to have_content "Sorry, something went wrong"
+    expect(page).to have_content "There was a problem getting the information you requested"
   end
 
   scenario 'I view a hearing details page', :js do

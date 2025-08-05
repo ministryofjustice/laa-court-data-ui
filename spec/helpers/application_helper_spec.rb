@@ -180,9 +180,9 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe '#hearings_sorter_link' do
     subject(:hearings_sorter_link) { helper.hearings_sorter_link(decorated_prosecution_case, column) }
 
-    let(:decorated_prosecution_case) { helper.decorate(prosecution_case) }
+    let(:decorated_prosecution_case) { helper.decorate(prosecution_case, Cda::CaseSummaryDecorator) }
     let(:prosecution_case) do
-      CourtDataAdaptor::Resource::ProsecutionCase.new(prosecution_case_reference: 'TEST12345')
+      Cda::ProsecutionCase.new(prosecution_case_reference: 'TEST12345')
     end
 
     before do

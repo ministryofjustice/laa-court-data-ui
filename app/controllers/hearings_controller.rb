@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_dependency 'court_data_adaptor'
-
 class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
                 :set_prosecution_case,
@@ -31,7 +29,7 @@ class HearingsController < ApplicationController
   private
 
   def load_and_authorize_search
-    @prosecution_case_search = CourtDataAdaptor::CaseSummaryService.new(prosecution_case_reference)
+    @prosecution_case_search = Cda::CaseSummaryService.new(prosecution_case_reference)
     authorize! :create, @prosecution_case_search
   end
 
@@ -42,7 +40,7 @@ class HearingsController < ApplicationController
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page
     @hearing = helpers.decorate(Cda::Hearing.new, Cda::HearingDecorator)
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: server_error_message(e))
   end
@@ -58,14 +56,10 @@ class HearingsController < ApplicationController
     )
   rescue ActiveResource::ResourceNotFound
     logger.info 'EVENTS_NOT_AVAILABLE'
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     log_and_capture_error(e, 'ERROR_CALLING_EVENTS')
     show_alert(I18n.t('hearings.show.flash.notice.events_error'),
                "#{I18n.t('error.refresh')} #{I18n.t('error.it_helpdesk')}")
-  end
-
-  def hearing_params
-    { date: paginator.current_item.hearing_date.strftime('%F') }
   end
 
   def log_and_capture_error(exception, log_messsage)
@@ -84,7 +78,7 @@ class HearingsController < ApplicationController
   def set_prosecution_case
     logger.info 'USING_V2_ENDPOINT_CASE_SUMMARIES'
     @prosecution_case = helpers.decorate(@prosecution_case_search.call, Cda::CaseSummaryDecorator)
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
     redirect_to_prosecution_case(alert: server_error_message(e))
   end

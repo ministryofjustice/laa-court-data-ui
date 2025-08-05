@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'court_data_adaptor'
-
 RSpec.shared_context 'with multiple hearings to sort' do
   let(:hearing_summaries) { [hearing1, hearing2, hearing3] }
   let(:hearing1) do

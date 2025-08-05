@@ -14,19 +14,13 @@ class CourtApplicationsController < ApplicationController
   end
 
   def prosecution_case_reference
-    @application.case_summary.prosecution_case_reference
+    @application.prosecution_case_reference
   end
 
   private
 
   def load_and_authorize_application
-    @application = CourtDataAdaptor::Query::CourtApplication.new(params[:id]).call
+    @application = Cda::CourtApplication.find(params[:id])
     authorize! :show, @application
-  rescue JsonApiClient::Errors::ServiceUnavailable => e
-    logger.error "COURT APPLICATION COULD NOT BE RETRIEVED: #{e.message}"
-    Sentry.capture_exception(e)
-    redirect_to controller: :errors, action: :internal_error
-  rescue JsonApiClient::Errors::NotFound
-    redirect_to controller: :errors, action: :not_found
   end
 end
