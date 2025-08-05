@@ -3,12 +3,12 @@ module Cda
     self.element_name = "court_application_laa_reference"
 
     def self.create!(link_attempt)
-      court_application_laa_reference = {
+      laa_reference = {
         maat_reference: link_attempt.maat_reference,
         subject_id: link_attempt.defendant_id,
         user_name: link_attempt.username
       }
-      post('', nil, { court_application_laa_reference: }.to_json)
+      post('', nil, { laa_reference: }.to_json)
     end
 
     def self.update!(unlink_attempt)
