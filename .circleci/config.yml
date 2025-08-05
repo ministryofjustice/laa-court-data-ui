@@ -379,7 +379,7 @@ jobs:
           command: |
             cd test-scripts
             BRANCH_RELEASE_NAME=$(echo $CIRCLE_BRANCH | tr '[:upper:]' '[:lower:]' | sed 's:^\w*\/::' | tr -s ' _/[]().' '-' | cut -c1-18 | sed 's/-$//')
-            RELEASE_HOST="$BRANCH_RELEASE_NAME-vcd.apps.live.cloud-platform.service.justice.gov.uk"
+            RELEASE_HOST="https://$BRANCH_RELEASE_NAME-vcd.apps.live.cloud-platform.service.justice.gov.uk"
             VCD_URL=$RELEASE_HOST EMAIL=$E2E_EMAIL PASSWORD=$E2E_PASSWORD npx playwright test --reporter line -j 1
 
 # ------------------
