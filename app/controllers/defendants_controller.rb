@@ -36,8 +36,7 @@ class DefendantsController < ApplicationController
 
     flash[:notice] = I18n.t('defendants.unlink.success')
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
-  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError,
-         ActiveResource::BadRequest => e
+  rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
     render 'edit'
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors

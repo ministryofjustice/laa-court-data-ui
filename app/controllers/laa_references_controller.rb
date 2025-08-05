@@ -34,7 +34,7 @@ class LaaReferencesController < ApplicationController
 
     redirect_to edit_defendant_path(defendant.id, urn: prosecution_case_reference),
                 notice: I18n.t('laa_reference.link.success')
-  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render 'new'
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors

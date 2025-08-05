@@ -22,7 +22,7 @@ class SubjectsController < ApplicationController
     Cda::CourtApplicationLaaReference.create!(@form_model)
     redirect_to court_application_subject_path(@application.application_id),
                 flash: { notice: t('.success') }
-  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render :show
   rescue ActiveModel::ValidationError
@@ -35,7 +35,7 @@ class SubjectsController < ApplicationController
     Cda::CourtApplicationLaaReference.update!(@form_model)
     redirect_to court_application_subject_path(@application.application_id),
                 flash: { notice: t('.success') }
-  rescue ActiveResource::ResourceInvalid, ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
     render :show
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors

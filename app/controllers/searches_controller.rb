@@ -17,10 +17,10 @@ class SearchesController < ApplicationController
 
     @results = helpers.decorate_all(@search.execute, Cda::DefendantSummaryDecorator) if @search.valid?
     render 'new'
-  rescue ActiveResource::BadRequest => e
+  rescue ActiveResource::ClientError => e
     Rails.logger.info 'CLIENT_ERROR_OCCURRED'
     handle_client_error e
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ServerError => e
     Rails.logger.error 'SERVER_ERROR_OCCURRED'
     handle_server_error e
   end

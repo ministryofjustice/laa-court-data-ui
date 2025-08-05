@@ -39,11 +39,7 @@ class ApplicationController < ActionController::Base
 
   EXPECTED_ERROR_TYPES = [
     Net::ReadTimeout,
-    ActiveResource::ForbiddenAccess,
-    ActiveResource::ServerError,
-    ActiveResource::TimeoutError,
-    ActiveResource::ResourceInvalid,
-    ActiveResource::ResourceNotFound
+    ActiveResource::ConnectionError
   ].freeze
 
   def unexpected_exception_handler(exception)
@@ -54,15 +50,12 @@ class ApplicationController < ActionController::Base
   end
 
   def process_error_based_on_type(exception)
+    Sentry.capture_exception(exception)
     case exception
-    when ActiveRecord::RecordNotFound, ActionController::RoutingError
-      redirect_to not_found_error_path
     when *EXPECTED_ERROR_TYPES
-      Sentry.capture_exception(exception)
       assign_error_flash(exception)
       redirect_to authenticated_root_path
     else
-      Sentry.capture_exception(exception)
       redirect_to internal_error_path
     end
   end

@@ -27,7 +27,7 @@ class HearingDaysController < ApplicationController
     @hearing_details = helpers.decorate(details, Cda::HearingDecorator)
     @hearing_details.current_sitting_day = @hearing_day.sitting_day
     @hearing_details.skip_mapping_counsels_to_defendants = true
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     logger.error e
     Sentry.capture_exception(e)
     redirect_to controller: :errors, action: :internal_error
@@ -46,7 +46,7 @@ class HearingDaysController < ApplicationController
                                                                       @hearing_day.date)
   rescue ActiveResource::ResourceNotFound
     logger.warn "No hearing events found for hearing #{params[:hearing_id]}"
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     logger.error e
     Sentry.capture_exception(e)
     redirect_to controller: :errors, action: :internal_error

@@ -21,10 +21,7 @@ class ProsecutionCasesController < ApplicationController
 
   def set_prosecution_case
     build_prosecution_case
-  rescue ActiveResource::BadRequest => e
-    logger.info 'CLIENT_ERROR_OCCURRED'
-    redirect_to_search_path(e)
-  rescue ActiveResource::ServerError, ActiveResource::ClientError => e
+  rescue ActiveResource::ConnectionError => e
     logger.error 'SERVER_ERROR_OCCURRED'
     Sentry.capture_exception(e)
     redirect_to_search_path(e)
