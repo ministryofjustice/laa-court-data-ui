@@ -362,6 +362,26 @@ jobs:
       - deploy-to-environment:
           environment: production
 
+  e2e-tests:
+    executor: test-executor
+    steps:
+      - run:
+          name: check out test scripts
+          command: 'git clone git@github.com:ministryofjustice/laa-court-data-ui-e2e-tests.git test-scripts'
+      - run:
+          name: install dependencies
+          command: |
+            cd test-scripts
+            npm install
+            npx playwright install
+      - run:
+          name: run scripts
+          command: |
+            cd test-scripts
+            BRANCH_RELEASE_NAME=$(echo $CIRCLE_BRANCH | tr '[:upper:]' '[:lower:]' | sed 's:^\w*\/::' | tr -s ' _/[]().' '-' | cut -c1-18 | sed 's/-$//')
+            RELEASE_HOST="$BRANCH_RELEASE_NAME-vcd.apps.live.cloud-platform.service.justice.gov.uk"
+            VCD_URL=$RELEASE_HOST EMAIL=$E2E_EMAIL PASSWORD=$E2E_PASSWORD npx playwright test --reporter line -j 1
+
 # ------------------
 # WORKFLOWS
 # ------------------
@@ -442,6 +462,9 @@ workflows:
           context: laa-court-data-ui-live-dev
           requires:
             - build-app-container
+      - e2e-tests:
+          requires:
+            - deploy-dev
       - hold-test:
           type: approval
           requires:
