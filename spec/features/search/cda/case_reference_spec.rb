@@ -98,8 +98,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
 
   context 'when appeals flag is set' do
     before do
-      allow(FeatureFlag).to receive(:enabled?).with(:maintenance_mode).and_return(false)
-      allow(FeatureFlag).to receive(:enabled?).with(:show_appeals).and_return(true)
+      user.update!(feature_flags: ['view_appeals'])
       visit '/'
       choose 'A case by URN'
       click_link_or_button 'Continue'

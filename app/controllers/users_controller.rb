@@ -80,7 +80,8 @@ class UsersController < ApplicationController
       :current_password,
       :password,
       :password_confirmation,
-      roles: []
+      roles: [],
+      feature_flags: []
     )
   end
 
