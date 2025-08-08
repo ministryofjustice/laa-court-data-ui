@@ -45,6 +45,7 @@ RSpec.feature 'Edit user', :js, type: :feature do
       expect(page).to have_field('Caseworker', type: 'checkbox', visible: :hidden)
       expect(page).to have_field('Manager', type: 'checkbox', visible: :hidden)
       expect(page).to have_field('Admin', type: 'checkbox', visible: :hidden)
+      expect(page).to have_field('View appeals', type: 'checkbox', visible: :hidden)
 
       fill_in 'Confirm email', with: ''
 

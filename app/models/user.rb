@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   include Roles
+  include FeatureFlagAssignable
 
   # Include default devise modules. Others available are:
   # :confirmable, :registerable and :omniauthable
