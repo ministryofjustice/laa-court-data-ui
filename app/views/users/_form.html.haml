@@ -27,7 +27,7 @@
                                    legend: { text: t('users.form.fields.roles_legend') }
 
   = f.govuk_collection_check_boxes :feature_flags,
-                                   User.feature_flags,
+                                   User.feature_flags.keys,
                                    :to_s,
                                    :humanize,
                                    legend: { text: t('users.form.fields.feature_flags_legend') }
