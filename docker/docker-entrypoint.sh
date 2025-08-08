@@ -7,7 +7,9 @@ printf '\e[33mINFO: DB migrate\e[0m\n'
 RUBYOPT=-W:no-deprecated bundle exec rails db:create db:migrate
 
 # if REDIS_URL is not set then we start redis-server locally
-if [ -z ${REDIS_HOST+x} ]; then
+if [ "$RAILS_ENV" == "development" ]; then
+  printf '\e[33mINFO: Skipping redis setup\e[0m\n'
+elif [ -z ${REDIS_HOST+x} ]; then
   printf '\e[33mINFO: Fallback to using local redis-server daemon\e[0m\n'
   redis-server --daemonize yes
 else
