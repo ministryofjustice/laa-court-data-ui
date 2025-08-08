@@ -2,6 +2,10 @@
 
 class User < ApplicationRecord
   include Roles
+  extend ArrayEnum
+
+  FEATURE_FLAGS = ["view_appeals"].freeze
+  array_enum feature_flags: FEATURE_FLAGS.to_h { [it, it] }
 
   # Include default devise modules. Others available are:
   # :confirmable, :registerable and :omniauthable
@@ -34,6 +38,10 @@ class User < ApplicationRecord
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def feature_flag_enabled?(flag)
+    feature_flags.include?(flag.to_s)
   end
 
   # To enable Devise emails to be delivered in the background.

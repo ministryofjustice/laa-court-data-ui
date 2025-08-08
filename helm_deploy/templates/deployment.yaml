@@ -73,8 +73,6 @@ spec:
               value: enabled
             - name: DISPLAY_RAW_RESPONSES
               value: "{{ .Values.displayRawResponses }}"
-            - name: SHOW_APPEALS
-              value: "{{ .Values.featureFlags.showAppeals }}"
             - name: MAINTENANCE_MODE
               value: "{{ .Values.featureFlags.maintenanceMode }}"
             - name: NO_LINKING
