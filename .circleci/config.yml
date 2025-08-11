@@ -7,7 +7,7 @@ orbs:
   slack: circleci/slack@3.4.2
   snyk: snyk/snyk@2.2.0
   node: circleci/node@7.1.0
-  court-data-end-to-end-tests: ministryofjustice/court-data-end-to-end-tests@dev:alpha #TODO: replace tag with 'volatile'
+  court-data-end-to-end-tests: ministryofjustice/court-data-end-to-end-tests@volatile
 
 references:
   _restore-bundle: &restore-bundle
@@ -369,8 +369,7 @@ jobs:
       - court-data-end-to-end-tests/run-e2e-tests:
           e2e_current_image_var: VCD_IMAGE
           e2e_current_image: 754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-assess-a-claim/laa-court-data-ui:branch-${CIRCLE_SHA1}
-          e2e_branch: ACD-905-docker-compose # TODO: Revert once that branch is merged
-          # e2e_branch: main # Change this to work against a fixed e2e test repo branch if needed (e.g. a deliberate UI change)
+          e2e_branch: main # Change this to work against a fixed e2e test repo branch if needed (e.g. a deliberate UI change)
 
   e2e-test-main:
     executor: court-data-end-to-end-tests/e2e-test-executor
