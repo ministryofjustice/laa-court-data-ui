@@ -28,7 +28,7 @@ module Cda
           name_in_parts = defence_counsel.attributes.symbolize_keys
           sentence = "#{formatted_name(name_in_parts)} (#{formatted_status(status)})"
 
-          next (@result << sentence) if defence_counsel.defendants.empty? || !@map_counsels_to_defendants
+          next (@result << sentence) if !@map_counsels_to_defendants || defence_counsel.defendants.empty?
           build_defence_counsel_sentences_with_defendants(defence_counsel, sentence)
         end
       end

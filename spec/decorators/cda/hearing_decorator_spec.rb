@@ -58,7 +58,7 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
     before do
       allow(hearing).to receive(:hearing).and_return(hearing_details)
       allow(Cda::HearingDetails::DefenceCounselsListService).to receive(:call)
-        .with(mapped_defence_counsels, map_counsels_to_defendants: true).and_return([])
+        .with(mapped_defence_counsels).and_return([])
       allow_any_instance_of(described_class).to receive(:current_sitting_day).and_return(day)
     end
 
@@ -72,8 +72,7 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
     it 'calls Cda::Hearing::DefenceCounselsListService' do
       decorator.defence_counsels_list
       service = Cda::HearingDetails::DefenceCounselsListService
-      expect(service).to have_received(:call).with(hearing_details.defence_counsels,
-                                                   map_counsels_to_defendants: true)
+      expect(service).to have_received(:call).with(hearing_details.defence_counsels)
     end
 
     context 'when defence counsels are empty' do
@@ -142,13 +141,13 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
 
       before do
         allow(Cda::HearingDetails::DefenceCounselsListService).to receive(:call)
-          .with([defence_counsel1], map_counsels_to_defendants: true).and_return([])
+          .with([defence_counsel1]).and_return([])
         decorator.defence_counsels_list
       end
 
       it 'does not add the defence counsel to the list' do
         service = Cda::HearingDetails::DefenceCounselsListService
-        expect(service).to have_received(:call).with([defence_counsel1], map_counsels_to_defendants: true)
+        expect(service).to have_received(:call).with([defence_counsel1])
       end
     end
 
@@ -160,7 +159,7 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
 
       before do
         allow(Cda::HearingDetails::DefenceCounselsListService).to receive(:call)
-          .with([], map_counsels_to_defendants: true).and_return([])
+          .with([]).and_return([])
       end
 
       it 'returns not available' do
@@ -175,7 +174,69 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
       it 'does not add the defence counsel to the list' do
         decorator.defence_counsels_list
         service = Cda::HearingDetails::DefenceCounselsListService
-        expect(service).to have_received(:call).with([], map_counsels_to_defendants: true)
+        expect(service).to have_received(:call).with([])
+      end
+    end
+  end
+
+  describe '#applicant_counsels_list' do
+    let(:hearing) { build(:hearing, hearing: hearing_details) }
+    let(:hearing_details) do
+      build(:hearing_details, applicant_counsels:, hearing_days: [hearing_day1])
+    end
+    let(:hearing_day1) { build(:hearing_day) }
+    let(:applicant_counsels) { [applicant_counsel_1, applicant_counsel_2] }
+    let(:applicant_counsel_1) do
+      build(:applicant_counsel, first_name: 'Jane', last_name: 'Doe', attendance_days: [day])
+    end
+    let(:applicant_counsel_2) do
+      build(:defence_counsel, first_name: 'John', last_name: 'Smith', attendance_days: [day])
+    end
+
+    let(:day) { hearing_day1.sitting_day.strftime('%Y-%m-%d') }
+
+    let(:mapped_defence_counsels) { hearing_details.defence_counsels }
+
+    before do
+      decorator.current_sitting_day = day
+    end
+
+    it 'returns the names of counsels' do
+      expect(decorator.applicant_counsels_list).to eq 'Jane Doe (Junior)<br>John Smith (Junior)'
+    end
+
+    context 'when defence counsels are empty' do
+      let(:hearing_details) do
+        build(:hearing_details, defence_counsels: [])
+      end
+
+      it 'returns not available' do
+        expect(decorator.applicant_counsels_list).to eq 'Not available'
+      end
+    end
+
+    context 'when the defence counsel did not attend the hearing day' do
+      let(:applicant_counsel1) do
+        build(:applicant_counsel, first_name: 'Jane', last_name: 'Doe', attendance_days: [day])
+      end
+      let(:applicant_counsel_2) do
+        build(:applicant_counsel, first_name: 'John', last_name: 'Smith',
+                                  attendance_days: [1.day.ago.strftime('%Y-%m-%d')])
+      end
+
+      it 'returns the names of counsels' do
+        expect(decorator.applicant_counsels_list).to eq 'Jane Doe (Junior)'
+      end
+    end
+
+    context 'when no applicant counsels attending the hearing day' do
+      let(:applicant_counsels) { [applicant_counsel1] }
+      let(:applicant_counsel1) do
+        build(:applicant_counsel, first_name: 'Jane', last_name: 'Doe', attendance_days: [])
+      end
+
+      it 'returns not available' do
+        expect(decorator.applicant_counsels_list).to eq 'Not available'
       end
     end
   end
@@ -258,6 +319,79 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
 
       it 'returns empty string with space' do
         expect(decorator.prosecution_counsels_list).to eq ' '
+      end
+    end
+  end
+
+  describe '#respondent_counsels_list' do
+    let(:hearing_details) do
+      build(:hearing_details, respondent_counsels:, hearing_days: [hearing_day1])
+    end
+    let(:hearing_day1) { build(:hearing_day) }
+
+    let(:respondent_counsels) { [respondent_counsel1, respondent_counsel2] }
+    let(:respondent_counsel1) do
+      build(:respondent_counsel, first_name: 'Jane', last_name: 'Doe', attendance_days: [day])
+    end
+    let(:respondent_counsel2) do
+      build(:respondent_counsel, attendance_days: [day])
+    end
+
+    let(:day) { hearing_day1.sitting_day.strftime('%Y-%m-%d') }
+
+    before do
+      allow(hearing).to receive(:hearing).and_return(hearing_details)
+      allow_any_instance_of(described_class).to receive(:current_sitting_day).and_return(day)
+    end
+
+    it 'filters respondent_counsels by attendance_days' do
+      expect(decorator.respondent_counsels_list).to eq('Jane Doe<br>John Smith')
+    end
+
+    context 'when the respondent counsel did not attend the hearing day' do
+      let(:hearing_details) do
+        build(:hearing_details, respondent_counsels:, hearing_days: [hearing_day1])
+      end
+
+      let(:respondent_counsel1) do
+        build(:respondent_counsel, first_name: 'Jane', last_name: 'Doe', attendance_days: [])
+      end
+      let(:respondent_counsel2) do
+        build(:respondent_counsel, attendance_days: [day])
+      end
+
+      it 'does not add the respondent counsel to the list' do
+        expect(decorator.respondent_counsels_list).to eq('John Smith')
+      end
+    end
+
+    context 'when no respondent counsels attending the hearing day' do
+      let(:respondent_counsels) { [respondent_counsel1] }
+      let(:respondent_counsel1) do
+        build(:respondent_counsel, first_name: 'Jane', last_name: 'Doe', attendance_days: [])
+      end
+
+      it 'returns not available' do
+        expect(decorator.respondent_counsels_list).to eq 'Not available'
+      end
+    end
+
+    context 'when there is no current_sitting_day' do
+      let(:day) { nil }
+
+      it 'does not add the defence counsel to the list' do
+        expect(decorator.respondent_counsels_list).to eq 'Not available'
+      end
+    end
+
+    context 'when the name is missing' do
+      let(:respondent_counsels) { [respondent_counsel1] }
+      let(:respondent_counsel1) do
+        build(:respondent_counsel, first_name: '', last_name: '', attendance_days: [day])
+      end
+
+      it 'returns empty string with space' do
+        expect(decorator.respondent_counsels_list).to eq ' '
       end
     end
   end

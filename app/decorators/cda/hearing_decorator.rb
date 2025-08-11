@@ -1,6 +1,6 @@
 module Cda
   class HearingDecorator < BaseDecorator
-    attr_accessor :current_sitting_day, :skip_mapping_counsels_to_defendants
+    attr_accessor :current_sitting_day
 
     def loaded?
       object.attributes.any?
@@ -17,14 +17,31 @@ module Cda
       safe_join(defence_counsel_sentences, tag.br)
     end
 
+    def applicant_counsels_list
+      return t('generic.not_available') unless loaded?
+      return t('generic.not_available') if applicant_counsel_sentences.empty?
+
+      safe_join(applicant_counsel_sentences, tag.br)
+    end
+
     def prosecution_counsels_list
+      formatted_counsels_list(hearing.prosecution_counsels)
+    end
+
+    def respondent_counsels_list
       return t('generic.not_available') unless loaded?
 
-      formatted_prosecution_counsels = filter_prosecution_counsels.map { |pc| "#{pc.first_name&.capitalize} #{pc.last_name&.capitalize}" }
+      formatted_counsels_list(hearing.respondent_counsels)
+    end
 
-      return t('generic.not_available') if formatted_prosecution_counsels.blank?
+    def formatted_counsels_list(counsels)
+      return t('generic.not_available') unless loaded?
 
-      safe_join(formatted_prosecution_counsels, tag.br)
+      formatted_counsels = filter_counsels(counsels).map { |pc| "#{pc.first_name&.capitalize} #{pc.last_name&.capitalize}" }
+
+      return t('generic.not_available') if formatted_counsels.blank?
+
+      safe_join(formatted_counsels, tag.br)
     end
 
     def judiciary_list
@@ -36,31 +53,30 @@ module Cda
     private
 
     def defence_counsel_sentences
-      return [t('generic.not_available')] if decorated_defence_counsels.empty?
-
-      decorated_defence_counsels
+      @defence_counsel_sentences ||= Cda::HearingDetails::DefenceCounselsListService.call(
+        mapped_defence_counsels
+      ).presence || [t('generic.not_available')]
     end
 
-    def decorated_defence_counsels
-      service = Cda::HearingDetails::DefenceCounselsListService
-      @decorated_defence_counsels ||= service.call(
-        mapped_defence_counsels, map_counsels_to_defendants: !skip_mapping_counsels_to_defendants
-      )
+    def applicant_counsel_sentences
+      @applicant_counsel_sentences ||= Cda::HearingDetails::DefenceCounselsListService.call(
+        filter_counsels(hearing.applicant_counsels), map_counsels_to_defendants: false
+      ).presence || [t('generic.not_available')]
     end
 
     def mapped_defence_counsels
       @mapped_defence_counsels ||= map_defence_counsels
     end
 
-    def filter_prosecution_counsels
-      hearing.prosecution_counsels.select { |prosecution_counsel| attended_hearing_day?(prosecution_counsel) }
+    def filter_counsels(counsels)
+      counsels.select { |counsel| attended_hearing_day?(counsel) }
     end
 
     def map_defence_counsels
       hearing.prosecution_cases.each do |pc|
         map_defence_counsels_defendants_to_case(pc)
       end
-      hearing.defence_counsels.select { |defence_counsel| attended_hearing_day?(defence_counsel) }
+      filter_counsels(hearing.defence_counsels)
     end
 
     def map_defence_counsels_defendants_to_case(prosecution_case)
@@ -76,10 +92,10 @@ module Cda
       end
     end
 
-    def attended_hearing_day?(counsels)
+    def attended_hearing_day?(counsel)
       return false unless current_sitting_day
 
-      counsels.attendance_days.include?(DateTime.parse(current_sitting_day).strftime('%Y-%m-%d'))
+      counsel.attendance_days.include?(DateTime.parse(current_sitting_day).strftime('%Y-%m-%d'))
     end
   end
 end
