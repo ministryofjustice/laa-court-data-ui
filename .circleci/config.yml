@@ -7,7 +7,7 @@ orbs:
   slack: circleci/slack@3.4.2
   snyk: snyk/snyk@2.2.0
   node: circleci/node@7.1.0
-  court-data-end-to-end-tests: ministryofjustice/court-data-end-to-end-tests@volatile
+  court-data-end-to-end-tests: ministryofjustice/court-data-end-to-end-tests@dev:alpha
 
 references:
   _restore-bundle: &restore-bundle
