@@ -27,6 +27,12 @@
         = t('users.show.roles_label')
       %td.govuk-table__cell
         = @user.roles.map(&:titlecase).join(', ')
+    - if FeatureFlag.enabled?(:per_user_feature_flags)
+      %tr.govuk-table__row
+        %th.govuk-table__header{ scope: 'row' }
+          = t('users.show.feature_flags_label')
+        %td.govuk-table__cell
+          = @user.feature_flags.map(&:humanize).join(', ')
 
 - if can? :edit, @user
   = link_to t('users.show.edit_link'),

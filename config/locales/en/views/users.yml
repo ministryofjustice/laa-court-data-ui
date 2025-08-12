@@ -19,6 +19,7 @@ en:
       fields:
         email_confirmation_label: Confirm email
         email_label: Email
+        feature_flags_legend: What features does the user have access to?
         first_name_label: First name
         last_name_label: Last name
         login_label: Username or email
@@ -72,6 +73,7 @@ en:
       edit_link: Edit
       edit_link_aria: Edit %{name}'s account
       email_label: Email
+      feature_flags_label: Feature access
       name_label: Name
       page_heading: "%{name}'s account"
       page_title: User account

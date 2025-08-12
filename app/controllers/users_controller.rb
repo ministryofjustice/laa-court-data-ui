@@ -80,8 +80,9 @@ class UsersController < ApplicationController
       :current_password,
       :password,
       :password_confirmation,
-      roles: []
-    )
+      roles: [],
+      feature_flags: []
+    ).tap { it[:feature_flags]&.reject!(&:blank?) }
   end
 
   def build_user

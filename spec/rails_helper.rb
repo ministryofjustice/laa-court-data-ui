@@ -6,7 +6,7 @@ SimpleCov.start 'rails' do
   enable_coverage :branch
   unless ENV['CI']
     primary_coverage :branch
-    minimum_coverage branch: 84, line: 99
+    minimum_coverage branch: 88, line: 99
 
     SimpleCov.at_exit do
       SimpleCov.result.format!

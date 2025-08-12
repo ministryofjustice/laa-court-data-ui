@@ -82,6 +82,8 @@ GEM
       uri (>= 0.13.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    array_enum (1.6.0)
+      activemodel
     ast (2.4.3)
     awesome_print (1.9.2)
     axe-core-api (4.10.3)
@@ -584,6 +586,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeresource (~> 6.1.4)
+  array_enum
   awesome_print
   axe-core-rspec (~> 4.10.3)
   bootsnap (>= 1.7.0)
