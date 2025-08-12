@@ -10,7 +10,8 @@ SeedHelper.find_or_create_user(
     username: 'work-c',
     password: ENV.fetch('CASEWORKER_PASSWORD', nil),
     password_confirmation: ENV.fetch('CASEWORKER_PASSWORD', nil),
-    roles: %w[caseworker]
+    roles: %w[caseworker],
+    feature_flags: %w[view_appeals]
   }
 )
 
@@ -22,7 +23,8 @@ SeedHelper.find_or_create_user(
     username: 'work-m',
     password: ENV.fetch('MANAGER_PASSWORD', nil),
     password_confirmation: ENV.fetch('MANAGER_PASSWORD', nil),
-    roles: %w[caseworker manager]
+    roles: %w[caseworker manager],
+    feature_flags: %w[view_appeals]
   }
 )
 
@@ -34,6 +36,7 @@ SeedHelper.find_or_create_user(
     username: 'work-a',
     password: ENV.fetch('ADMIN_PASSWORD', nil),
     password_confirmation: ENV.fetch('ADMIN_PASSWORD', nil),
-    roles: %w[admin]
+    roles: %w[admin],
+    feature_flags: %w[view_appeals]
   }
 )
