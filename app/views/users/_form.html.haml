@@ -25,11 +25,11 @@
                                    :to_s,
                                    :titlecase,
                                    legend: { text: t('users.form.fields.roles_legend') }
-
-  = f.govuk_collection_check_boxes :feature_flags,
-                                   User.feature_flags.keys,
-                                   :to_s,
-                                   :humanize,
-                                   legend: { text: t('users.form.fields.feature_flags_legend') }
+  - if FeatureFlag.enabled?(:per_user_feature_flags)
+    = f.govuk_collection_check_boxes :feature_flags,
+                                     User.feature_flags.keys,
+                                     :to_s,
+                                     :humanize,
+                                     legend: { text: t('users.form.fields.feature_flags_legend') }
 
   = f.govuk_submit(t('users.form.fields.save_button'))

@@ -13,5 +13,6 @@ displayRawResponses: enabled
 identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-dev-green
 cert: laa-court-data-ui-dev-cert
 featureFlags:
+  perUserFeatureFlags: true
   maintenanceMode: false
   noLinking: false
