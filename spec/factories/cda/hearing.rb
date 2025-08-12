@@ -23,6 +23,8 @@ FactoryBot.define do
     judiciary { [] }
     prosecution_counsels { [] }
     defence_counsels { [] }
+    respondent_counsels { [] }
+    applicant_counsels { [] }
     cracked_ineffective_trial { {} }
     prosecution_cases { [] }
     defendant_judicial_results { [] }
@@ -36,7 +38,7 @@ FactoryBot.define do
     end
 
     trait :with_defence_counsels do
-      defence_counsels { [build(:defence_counsels)] }
+      defence_counsels { [build(:defence_counsel)] }
     end
   end
 end

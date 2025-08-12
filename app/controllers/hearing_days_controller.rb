@@ -26,7 +26,6 @@ class HearingDaysController < ApplicationController
     details = load_hearing
     @hearing_details = helpers.decorate(details, Cda::HearingDecorator)
     @hearing_details.current_sitting_day = @hearing_day.sitting_day
-    @hearing_details.skip_mapping_counsels_to_defendants = true
   rescue ActiveResource::ConnectionError => e
     logger.error e
     Sentry.capture_exception(e)

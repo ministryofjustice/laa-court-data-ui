@@ -183,8 +183,8 @@ http_interactions:
         true, "spi_out_applicable_flag": true, "hearing_code": "String"}}], "hearing_type":
         {"id": "06fa3c79-3176-4dcf-8178-0aaddb14248d", "description": "Pre-Trial Review
         (PTR)", "welsh_description": null}, "hearing_days": [{"sitting_day": "2025-04-10T00:00:00.000Z",
-        "has_shared_results": false}], "judiciary": [], "prosecution_counsels": [],
-        "defence_counsels": [{"title": "MR", "first_name": "Leone", "middle_name":
+        "has_shared_results": false}], "judiciary": [], "prosecution_counsels": [], "respondent_counsels": [],
+        "defence_counsels": [], "applicant_counsels": [{"title": "MR", "first_name": "Leone", "middle_name":
         "McCullough", "last_name": "Spinka", "status": "Direct counsel", "attendance_days":
         ["2025-04-10"], "defendants": ["b1c388d1-b669-4eb6-a797-4170eb291726"]}],
         "cracked_ineffective_trial": {"id": null, "code": null, "description": null,
@@ -478,15 +478,15 @@ http_interactions:
         - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
-        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[]},{"id":"unresulted-hearing-id","hearing_type":"Mention
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels": [], "applicant_counsels": []},{"id":"unresulted-hearing-id","hearing_type":"Mention
         - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
-        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[]},{"id":"problematic-hearing-id","hearing_type":"Pre-Trial
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels": [], "applicant_counsels": []},{"id":"problematic-hearing-id","hearing_type":"Pre-Trial
         Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
         Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
         Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
-        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false},{"sitting_day":"2025-04-11T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels":[{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
+        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false},{"sitting_day":"2025-04-11T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels":[],"applicant_counsels":[{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
         counsel","attendance_days":["2025-04-10"],"defendants":["b1c388d1-b669-4eb6-a797-4170eb291726"]}]}],"judicial_results":[],"subject_summary":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","date_of_next_hearing":null,"defendant_asn":"KQJXI10ZJXCI","defendant_dob":"1994-05-06","defendant_first_name":"Mauricio","defendant_last_name":"Rath","master_defendant_id":null,"offence_summary":[{"id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
         only","start_date":"2019-10-17","title":"Trafficking into UK for sexual exploitation","wording":"Random
         string","proceedings_concluded":false,"legislation":"Theft Act 1978 s.2","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"a51cd8ab-cec1-447f-ba99-c1c599d3d4ee","status_code":"AP","status_date":"2025-04-11","description":"FAKE
@@ -566,7 +566,7 @@ http_interactions:
         {"id": "bad5d912-2418-4052-83d6-096f251faff2", "description": "Mention - Defendant
         to Attend (MDA)", "welsh_description": null}, "hearing_days": [{"sitting_day":
         "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [],
-        "prosecution_counsels": [], "defence_counsels": [], "cracked_ineffective_trial":
+        "prosecution_counsels": [], "respondent_counsels": [], "defence_counsels": [], "applicant_counsels": [], "cracked_ineffective_trial":
         {"id": null, "code": null, "description": null, "type": null, "date": null},
         "prosecution_cases": [], "defendant_judicial_results": [], "defendant_attendance":
         []}, "shared_time": "2025-03-06T12:10:56.016+00:00"}'
@@ -697,7 +697,7 @@ http_interactions:
         {"id": "bad5d912-2418-4052-83d6-096f251faff2", "description": "Mention - Defendant
         to Attend (MDA)", "welsh_description": null}, "hearing_days": [{"sitting_day":
         "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [],
-        "prosecution_counsels": [], "defence_counsels": [], "cracked_ineffective_trial":
+        "prosecution_counsels": [], "respondent_counsels": [], "defence_counsels": [], "applicant_counsels": [], "cracked_ineffective_trial":
         {"id": null, "code": null, "description": null, "type": null, "date": null},
         "prosecution_cases": [], "defendant_judicial_results": [], "defendant_attendance":
         []}, "shared_time": "2025-03-06T12:10:56.016+00:00"}'
@@ -776,7 +776,7 @@ http_interactions:
         {"id": "bad5d912-2418-4052-83d6-096f251faff2", "description": "Mention - Defendant
         to Attend (MDA)", "welsh_description": null}, "hearing_days": [{"sitting_day":
         "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [],
-        "prosecution_counsels": [], "defence_counsels": [], "cracked_ineffective_trial":
+        "prosecution_counsels": [], "respondent_counsels": [], "defence_counsels": [], "applicant_counsels": [], "cracked_ineffective_trial":
         {"id": null, "code": null, "description": null, "type": null, "date": null},
         "prosecution_cases": [], "defendant_judicial_results": [], "defendant_attendance":
         []}, "shared_time": "2025-03-06T12:10:56.016+00:00"}'
@@ -947,12 +947,12 @@ http_interactions:
         - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
-        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels": [], "applicant_counsels": [{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
         counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"e36d5c82-a0c7-43af-9a6c-9f52f9659aa0","hearing_type":"Pre-Trial
         Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
         Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
         Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
-        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels":[{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
+        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels": [], "applicant_counsels": [{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
         counsel","attendance_days":["2025-04-10"],"defendants":["b1c388d1-b669-4eb6-a797-4170eb291726"]}]}],"judicial_results":[],"subject_summary":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","date_of_next_hearing":null,"defendant_asn":"KQJXI10ZJXCI","defendant_dob":"1994-05-06","defendant_first_name":"Mauricio","defendant_last_name":"Rath","master_defendant_id":null,"offence_summary":[{"id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
         only","start_date":"2019-10-17","title":"Trafficking into UK for sexual exploitation","wording":"Random
         string","proceedings_concluded":true,"legislation":"Theft Act 1978 s.2","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"a51cd8ab-cec1-447f-ba99-c1c599d3d4ee","status_code":"AP","status_date":"2025-04-11","description":"FAKE
@@ -1014,12 +1014,12 @@ http_interactions:
         - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
-        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels": [], "applicant_counsels": [{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
         counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"e36d5c82-a0c7-43af-9a6c-9f52f9659aa0","hearing_type":"Pre-Trial
         Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
         Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
         Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
-        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels":[{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
+        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels": [], "applicant_counsels": [{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
         counsel","attendance_days":["2025-04-10"],"defendants":["b1c388d1-b669-4eb6-a797-4170eb291726"]}]}],"judicial_results":[],"subject_summary":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","date_of_next_hearing":null,"defendant_asn":"KQJXI10ZJXCI","defendant_dob":"1994-05-06","defendant_first_name":"Mauricio","defendant_last_name":"Rath","master_defendant_id":null,"offence_summary":[{"id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
         only","start_date":"2019-10-17","title":"Trafficking into UK for sexual exploitation","wording":"Random
         string","proceedings_concluded":true,"legislation":"Theft Act 1978 s.2","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"a51cd8ab-cec1-447f-ba99-c1c599d3d4ee","status_code":"AP","status_date":"2025-04-11","description":"FAKE
@@ -1081,12 +1081,12 @@ http_interactions:
         - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"6131bd34-33d9-3d1e-8152-8b5a2084f1bd","name":"Derby
         Crown Court","welsh_name":"Llys Y Goron Derby","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C30DE","oucode_l2_code":"30","code":"C30DE00","address":{"address_1":"Derby
         Combined Court Centre","address_2":"Morledge","address_3":"Derby","address_4":"","address_5":"","postcode":"DE1
-        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels":[{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
+        2XE"}},"hearing_days":[{"sitting_day":"2019-10-23T16:19:15.000Z","listing_sequence":1,"listed_duration_minutes":120,"has_shared_results":false}],"defence_counsels": [], "applicant_counsels": [{"id":"9914f56e-5544-4463-89a4-0ef8cbef547f","title":"MISS","first_name":"Glenn","middle_name":"Walsh","last_name":"MacGyver","status":"Customer
         counsel","attendance_days":["2019-10-23"],"defendants":["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}]},{"id":"e36d5c82-a0c7-43af-9a6c-9f52f9659aa0","hearing_type":"Pre-Trial
         Review (PTR)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"68c7e9af-2db7-3fc3-b6e8-e51653120790","name":"Maidstone
         Magistrates'' Court","welsh_name":"Llys Ynadon Maidstone","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B46IR","oucode_l2_code":"46","code":"B46IR00","address":{"address_1":"The
         Court House","address_2":"Palace Avenue","address_3":"Maidstone","address_4":"Kent","address_5":"","postcode":"ME15
-        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels":[{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
+        6LL"}},"hearing_days":[{"sitting_day":"2025-04-10T00:00:00.000Z","listing_sequence":6,"listed_duration_minutes":190,"has_shared_results":false}],"defence_counsels": [], "applicant_counsels": [{"id":"82ab9ad9-73bc-49f2-8b9e-de68f5ed54ba","title":"MR","first_name":"Leone","middle_name":"McCullough","last_name":"Spinka","status":"Direct
         counsel","attendance_days":["2025-04-10"],"defendants":["b1c388d1-b669-4eb6-a797-4170eb291726"]}]}],"judicial_results":[],"subject_summary":{"subject_id":"6c3eded6-a6d6-4156-940d-e3b5f02deb96","date_of_next_hearing":null,"defendant_asn":"KQJXI10ZJXCI","defendant_dob":"1994-05-06","defendant_first_name":"Mauricio","defendant_last_name":"Rath","master_defendant_id":null,"offence_summary":[{"id":"d6aba7f2-51b3-483c-a5f9-35f49a36a4bb","code":"PT00011","order_index":1,"mode_of_trial":"Indictable
         only","start_date":"2019-10-17","title":"Trafficking into UK for sexual exploitation","wording":"Random
         string","proceedings_concluded":true,"legislation":"Theft Act 1978 s.2","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":"1234567","id":"a51cd8ab-cec1-447f-ba99-c1c599d3d4ee","status_code":"AP","status_date":"2025-04-11","description":"FAKE
@@ -1168,10 +1168,10 @@ http_interactions:
         "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [{"title":
         "MyString", "first_name": "MyString", "middle_name": "MyString", "last_name":
         "MyString", "type": "High Court Judge", "is_deputy": "False", "is_bench_chairman":
-        "False"}], "prosecution_counsels": [{"title": "Fr.", "first_name": "Arden",
+        "False"}], "prosecution_counsels": [], "respondent_counsels": [{"title": "Fr.", "first_name": "Arden",
         "middle_name": "Darryl", "last_name": "Macejkovic", "status": "Prosecution
         counsel status", "prosecution_cases": ["15796332-e610-45bb-b3b2-48ff630b00e2"],
-        "attendance_days": ["2019-10-23"]}], "defence_counsels": [{"title": "MISS",
+        "attendance_days": ["2019-10-23"]}], "defence_counsels":  [], "applicant_counsels": [{"title": "MISS",
         "first_name": "Glenn", "middle_name": "Walsh", "last_name": "MacGyver", "status":
         "Customer counsel", "attendance_days": ["2019-10-23"], "defendants": ["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}],
         "cracked_ineffective_trial": {"id": null, "code": null, "description": null,
@@ -1254,10 +1254,10 @@ http_interactions:
         "2019-10-23T16:19:15.000Z", "has_shared_results": false}], "judiciary": [{"title":
         "MyString", "first_name": "MyString", "middle_name": "MyString", "last_name":
         "MyString", "type": "High Court Judge", "is_deputy": "False", "is_bench_chairman":
-        "False"}], "prosecution_counsels": [{"title": "Fr.", "first_name": "Arden",
+        "False"}], "prosecution_counsels": [], "respondent_counsels": [{"title": "Fr.", "first_name": "Arden",
         "middle_name": "Darryl", "last_name": "Macejkovic", "status": "Prosecution
         counsel status", "prosecution_cases": ["15796332-e610-45bb-b3b2-48ff630b00e2"],
-        "attendance_days": ["2019-10-23"]}], "defence_counsels": [{"title": "MISS",
+        "attendance_days": ["2019-10-23"]}], "defence_counsels":  [], "applicant_counsels": [{"title": "MISS",
         "first_name": "Glenn", "middle_name": "Walsh", "last_name": "MacGyver", "status":
         "Customer counsel", "attendance_days": ["2019-10-23"], "defendants": ["bdb65b5a-cb09-4eed-b6ee-2c879a2bf3e4"]}],
         "cracked_ineffective_trial": {"id": null, "code": null, "description": null,
