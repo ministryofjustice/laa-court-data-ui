@@ -1,7 +1,7 @@
 = render partial: 'results_header', locals: { term: term, dob: dob, results: results }
 - if results.empty?
   = render 'results/none'
-- elsif FeatureFlag.enabled?(:show_appeals)
+- elsif current_user.feature_flag_enabled?(:view_appeals)
   = render partial: 'results/defendant_appeals', locals: { results: results }
 - else
   = render partial: 'results/defendant', locals: { results: results }
