@@ -15,7 +15,9 @@ class UnlinkAttempt
   delegate :text_required?, to: :reason, allow_nil: true
 
   def reason
-    @reason ||= UnlinkReason.find_by(code: reason_code)
+    return @reason if defined?(@reason)
+
+    @reason = UnlinkReason.find_by(code: reason_code)
   end
 
   def valid_reason_codes
