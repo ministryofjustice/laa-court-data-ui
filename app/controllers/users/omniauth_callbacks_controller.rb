@@ -3,9 +3,11 @@ module Users
     skip_authorization_check
 
     def entra
-      user = retrieve_user
+      user = User.find_by(entra_id: entra_details.uid) || User.find_by(entra_id: nil, email: entra_email)
       if user
-        update_user(user)
+        user.update!(entra_id: entra_details.uid,
+                     email: entra_email,
+                     email_confirmation: entra_email)
         sign_in user
         redirect_to authenticated_root_path, flash: { notice: t('devise.sessions.user.signed_in') }
       else
@@ -13,19 +15,10 @@ module Users
       end
     end
 
+    private
+
     def after_omniauth_failure_path_for(_scope)
       unauthenticated_root_path
-    end
-
-    def retrieve_user
-      User.find_by(entra_id: entra_details.uid) ||
-        User.where(entra_id: nil).find_by(email: entra_email)
-    end
-
-    def update_user(user)
-      user.update!(entra_id: entra_details.uid,
-                   email: entra_email,
-                   email_confirmation: entra_email)
     end
 
     def entra_email
