@@ -13,15 +13,15 @@ RSpec.feature 'Sign in', type: :feature do
     visit 'users/sign_in'
   end
 
-  it 'page header is displayed' do
+  it 'displays the page header' do
     expect(page).to have_govuk_page_heading(text: 'Sign in')
   end
 
-  it 'page should be accessible', :js do
+  it 'is accessible', :js do
     expect(page).to be_accessible
   end
 
-  context 'with success' do
+  context 'when successful' do
     context 'with email address' do
       before do
         OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({ provider: :entra,
@@ -40,11 +40,11 @@ RSpec.feature 'Sign in', type: :feature do
         expect(user.reload.entra_id).to eq '19846'
       end
 
-      it 'search filters page is displayed' do
+      it 'displays search filters page' do
         expect(page).to have_css('legend', text: 'Search for')
       end
 
-      it 'navigation bar is displayed' do
+      it 'displays navigation bar' do
         expect(page).to have_css('nav.moj-header__navigation')
       end
 
@@ -75,7 +75,7 @@ RSpec.feature 'Sign in', type: :feature do
         click_button 'Sign in with your Ministry of Justice account'
       end
 
-      it 'successful sign in message displayed' do
+      it 'displays successful sign in message' do
         expect(page).to have_govuk_flash(:notice, text: 'Signed in successfully')
       end
 
@@ -96,7 +96,7 @@ RSpec.feature 'Sign in', type: :feature do
       click_button 'Sign in with your Ministry of Justice account'
     end
 
-    it 'invalid username, email or password displayed' do
+    it 'displays error message' do
       expect(page).to have_govuk_page_heading(text: 'Sign in')
       expect(page).to have_govuk_flash(:alert, text: 'You do not have permission to access this service')
     end
@@ -108,7 +108,7 @@ RSpec.feature 'Sign in', type: :feature do
       click_button 'Sign in with your Ministry of Justice account'
     end
 
-    it 'invalid username, email or password displayed' do
+    it 'displays error message' do
       expect(page).to have_govuk_page_heading(text: 'Sign in')
       expect(page).to have_govuk_flash(:alert, text: 'Could not authenticate you')
     end
