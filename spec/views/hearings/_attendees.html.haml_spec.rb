@@ -5,10 +5,15 @@ RSpec.describe 'hearings/_attendees', type: :view do
 
   subject(:render_partial) do
     render partial: 'hearings/attendees',
-           locals: { hearing: decorated_hearing, hearing_details: decorated_hearing.hearing }
+           locals: { hearing: decorated_hearing,
+                     hearing_details: decorated_hearing.hearing,
+                     prosecution_case: decorated_case_summary }
   end
 
   let(:decorated_hearing) { view.decorate(hearing, Cda::HearingDecorator) }
+  let(:decorated_case_summary) { view.decorate(case_summary, Cda::CaseSummaryDecorator) }
+  let(:case_summary) { build(:prosecution_case, :with_defendant_summaries) }
+
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
   let(:hearing) { Cda::Hearing.find(hearing_id) }
@@ -44,8 +49,8 @@ RSpec.describe 'hearings/_attendees', type: :view do
 
     context 'with defendant_names' do
       it 'displays defendant names with line breaks' do
-        is_expected.to have_tag('p.govuk-body#defendants', text: /Leon Goodwin.*David Blaine/) do
-          with_tag(:br)
+        is_expected.to have_tag('p.govuk-body#defendants', text: /John Apple Smith\s*John Apple Smith/) do
+          with_tag('br', count: 1)
         end
       end
     end
@@ -95,6 +100,8 @@ RSpec.describe 'hearings/_attendees', type: :view do
 
   context 'when no hearing data is present', :stub_v2_empty_hearing_data do
     context 'with no defendant_names' do
+      let(:case_summary) { build(:prosecution_case) }
+
       it not_available_test do
         is_expected.to have_tag('p.govuk-body#defendants', text: not_available_text)
       end
