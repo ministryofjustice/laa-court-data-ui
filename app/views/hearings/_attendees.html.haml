@@ -6,7 +6,7 @@
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defendants" }
     -# TODO: get the name from the prosecution case summary payload
     - if prosecution_case.defendant_summaries.any?
-      = safe_join(prosecution_case.defendant_summaries.map{ |d| [d.first_name, d.middle_name, d.last_name].reject(&:blank?).join(' ') }, tag.br )
+      = safe_join(prosecution_case.defendant_summaries.map { |d| [d.first_name, d.middle_name, d.last_name].reject(&:blank?).join(' ') }, tag.br)
     - else
       = t('generic.not_available')
 
