@@ -6,3 +6,7 @@
     @include govuk-link-style-error;
   }
 }
+
+.govuk-notification-banner__heading {
+  white-space: nowrap;
+}
