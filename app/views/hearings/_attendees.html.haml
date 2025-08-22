@@ -3,7 +3,7 @@
     = t('hearings.show.attendees.heading')
 
   -# TODO: refactor: add method is_an_appeal? in the decorator
-  - is_an_appeal = hearing_details.hearing_type.description.include?('Appeal')
+  - is_an_appeal = hearing_details && hearing_details.hearing_type.description.include?('Appeal')
 
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     - if is_an_appeal
