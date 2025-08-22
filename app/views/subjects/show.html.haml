@@ -1,7 +1,11 @@
+- content_for :pre_heading do
+  = render '/feedback_on_appeals_to_crown_court'
+
 - unless FeatureFlag.enabled?(:appeals_v2)
-  - content_for :pre_heading do
+  - content_for :pre_heading, flush: false do
     %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
       = t(".appeal")
+
 - content_for :custom_packs do
   = javascript_include_tag 'unlink', defer: true
 - if FeatureFlag.enabled?(:appeals_v2)
