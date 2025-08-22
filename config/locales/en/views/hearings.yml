@@ -3,8 +3,8 @@ en:
   hearings:
     show:
       attendees:
-        appellants: Appellants
         appellant_advocates: Appellant advocates
+        appellants: Appellants
         defence: Defence advocates
         defendants: Defendants
         heading: Attendees
