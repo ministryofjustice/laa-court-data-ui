@@ -7,7 +7,9 @@ en:
         defendants: Defendants
         heading: Attendees
         judges: Judges
-        prosecution: Prosecution advocates
+        prosecution_advocates: Prosecution advocates
+        appellant_advocates: Appellant advocates
+        respondent_advocates: Respondent advocates
       court: Court
       court_applications:
         applicant_synonym: Applicant synonym
