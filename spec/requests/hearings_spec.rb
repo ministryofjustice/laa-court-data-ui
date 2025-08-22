@@ -42,10 +42,9 @@ RSpec.describe 'hearings_v2', type: :request do
       expect(response).to render_template('hearings/show')
     end
 
-    # TODO: temporary comment out this test
-    # it 'shows v2 hearing table' do
-    #   expect(response).to render_template(:_hearing_events)
-    # end
+    it 'shows v2 hearing table' do
+      expect(response).to render_template(:_hearing_events)
+    end
   end
 
   context 'when server error occurs on hearing results', :stub_v2_hearing_summary,
