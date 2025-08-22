@@ -11,7 +11,7 @@
     - else
       = t('hearings.show.attendees.defendants')
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defendants" }
-    -# TODO: refactor: put the full_name in a helper.
+    -# TODO: refactor: put the full_name in a helper/decorator.
     - if prosecution_case.defendant_summaries.any?
       = safe_join(prosecution_case.defendant_summaries.map { |d| [d.first_name, d.middle_name, d.last_name].reject(&:blank?).join(' ') }, tag.br)
     - else
