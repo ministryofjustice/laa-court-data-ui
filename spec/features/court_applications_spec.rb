@@ -26,6 +26,16 @@ RSpec.feature 'Court Applications', :vcr do
     expect(page).to have_content "There was a problem getting the information you requeste"
   end
 
+  scenario 'There is a row on the related applications page' do
+    sign_in user
+    visit prosecution_case_path(prosecution_case_urn_from_vcr)
+    click_link 'Related court applications'
+    expect(page).to have_content "Appeal against a conviction"
+    expect(page).to have_content "Mauricio Rath"
+    expect(page).to have_content "Not available"
+    expect(page).to have_content "Not linked"
+  end
+
   context 'when I view an application successfully' do
     before do
       sign_in user

@@ -5,12 +5,17 @@ class ProsecutionCasesController < ApplicationController
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
   add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+  before_action :add_final_breadcrumb
 
   def show
-    add_breadcrumb prosecution_case_name(@prosecution_case.prosecution_case_reference),
-                   prosecution_case_path(@prosecution_case.prosecution_case_reference)
-
     render :show, locals: { prosecution_case: @prosecution_case }
+  end
+
+  def related_court_applications
+    all_applications = Cda::CourtApplication.load_from_urn(@prosecution_case.prosecution_case_reference)
+    pagy, court_applications = pagy_array(all_applications)
+    render :related_court_applications,
+           locals: { prosecution_case: @prosecution_case, court_applications:, pagy: }
   end
 
   private
@@ -49,5 +54,10 @@ class ProsecutionCasesController < ApplicationController
   def redirect_to_search_path(exception)
     redirect_to searches_path(search: { filter: 'case_reference', term: urn })
     flash[:notice] = cda_error_string(exception) || I18n.t('prosecution_case.show.failure')
+  end
+
+  def add_final_breadcrumb
+    add_breadcrumb prosecution_case_name(@prosecution_case.prosecution_case_reference),
+                   prosecution_case_path(@prosecution_case.prosecution_case_reference)
   end
 end

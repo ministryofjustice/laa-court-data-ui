@@ -23,7 +23,9 @@ Rails.application.routes.draw do
     get :create, on: :collection
   end
 
-  resources :prosecution_cases, only: %i[show]
+  resources :prosecution_cases, only: %i[show] do
+    member { get :related_court_applications }
+  end
   resources :defendants, only: %i[edit update] do
     member { get :offences }
   end
