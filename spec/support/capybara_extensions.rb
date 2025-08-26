@@ -50,7 +50,7 @@ module CapybaraExtensions
       [
         has_selector?('.govuk-warning-text strong.govuk-warning-text__text', text:),
         has_selector?('.govuk-warning-text span.govuk-warning-text__icon', text: '!'),
-        has_selector?('.govuk-warning-text span.govuk-warning-text__assistive', text: 'Warning')
+        has_selector?('.govuk-warning-text span.govuk-visually-hidden', text: 'Warning')
       ].all?
     end
 
