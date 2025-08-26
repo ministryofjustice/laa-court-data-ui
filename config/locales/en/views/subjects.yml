@@ -8,6 +8,7 @@ en:
     show:
       appeal: Appeal
       arrest_summons_number: ASN
+      case_urn: Case URN
       date_of_birth: Date of birth
       defendant: Appellant
       maat_number: MAAT number
