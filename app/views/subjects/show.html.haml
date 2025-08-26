@@ -39,6 +39,12 @@
                 = t(".date_of_birth")
               %td.govuk-table__cell
                 = l(@subject.date_of_birth)
+            - if FeatureFlag.enabled?(:appeals_v2)
+              %tr.govuk-table__row
+                %th.govuk-table__header{ scope: "row" }
+                  = t(".case_urn")
+                %td.govuk-table__cell
+                  = @application.prosecution_case_reference
             %tr.govuk-table__row
               %th.govuk-table__header{ scope: "row" }
                 = t(".arrest_summons_number")
