@@ -3,6 +3,12 @@ module Cda
     has_one :subject_summary, class_name: 'Cda::SubjectSummary'
     has_many :hearing_summary, class_name: 'Cda::ApplicationHearing'
 
+    def self.load_from_urn(urn)
+      find(:all,
+           from: "/api/internal/v2/prosecution_cases/#{safe_path(urn)}/" \
+                 "court_applications")
+    end
+
     def prosecution_case_reference
       case_summary.first.prosecution_case_reference
     end
