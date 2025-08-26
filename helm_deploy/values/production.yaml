@@ -16,3 +16,4 @@ featureFlags:
   perUserFeatureFlags: false
   maintenanceMode: false
   noLinking: false
+  appealsV2: false

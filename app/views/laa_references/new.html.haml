@@ -1,4 +1,7 @@
 = govuk_page_heading(@defendant.name, caption_text: t('generic.defendant'), title: t('defendants.title'))
+- if FeatureFlag.enabled?(:appeals_v2)
+  %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
+    = t("generic.case")
 
 = render partial: 'form', locals: { link_attempt: @link_attempt,
                                     defendant: @defendant,

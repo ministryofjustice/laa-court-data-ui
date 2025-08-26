@@ -40,6 +40,7 @@ RSpec.feature 'Link court applications' do
     context 'when linking is disabled' do
       before do
         allow(FeatureFlag).to receive(:enabled?).with(:maintenance_mode).and_return(false)
+        allow(FeatureFlag).to receive(:enabled?).with(:appeals_v2).and_return(true)
         allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(true)
       end
 
