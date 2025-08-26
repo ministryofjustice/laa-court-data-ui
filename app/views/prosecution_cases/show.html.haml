@@ -2,15 +2,16 @@
 
 .govuk-grid-row
   .govuk-grid-column-full
-    %nav.moj-sub-navigation
-      %ul.moj-sub-navigation__list
-        %li.moj-sub-navigation__item
-          %a.moj-sub-navigation__link{ "aria-current": "page" }
-            = t('prosecution_case.sub_navigation.overview')
-        %li.moj-sub-navigation__item
-          = link_to t('prosecution_case.sub_navigation.related_court_applications'),
-                    related_court_applications_prosecution_case_path(prosecution_case.prosecution_case_reference),
-                    class: 'moj-sub-navigation__link'
+    - if FeatureFlag.enabled?(:appeals_v2)
+      %nav.moj-sub-navigation
+        %ul.moj-sub-navigation__list
+          %li.moj-sub-navigation__item
+            %a.moj-sub-navigation__link{ "aria-current": "page" }
+              = t('prosecution_case.sub_navigation.overview')
+          %li.moj-sub-navigation__item
+            = link_to t('prosecution_case.sub_navigation.related_court_applications'),
+                      related_court_applications_prosecution_case_path(prosecution_case.prosecution_case_reference),
+                      class: 'moj-sub-navigation__link'
 
     = render partial: 'prosecution_cases/overall_defendants', locals: { case_summary: prosecution_case }
 
