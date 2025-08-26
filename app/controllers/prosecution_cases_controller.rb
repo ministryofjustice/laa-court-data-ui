@@ -12,7 +12,7 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def related_court_applications
-    all_applications = Cda::CourtApplication.load_from_urn(@prosecution_case.prosecution_case_reference)
+    all_applications = Cda::CourtApplication.from_urn(@prosecution_case.prosecution_case_reference)
     pagy, court_applications = pagy_array(all_applications)
     render :related_court_applications,
            locals: { prosecution_case: @prosecution_case, court_applications:, pagy: }
