@@ -1,0 +1,7 @@
+- classes ||= ''
+.govuk-warning-text{ class: classes }
+  %span.govuk-warning-text__icon{ "aria-hidden" => "true" } !
+  %strong.govuk-warning-text__text
+    %span.govuk-visually-hidden
+      = t('generic.warning')
+    = t('defendants.unlink.warning')
