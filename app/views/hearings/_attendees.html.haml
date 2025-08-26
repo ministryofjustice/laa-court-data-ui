@@ -2,11 +2,8 @@
   %h2.govuk-heading-l
     = t('hearings.show.attendees.heading')
 
-  -# TODO: refactor: add method is_an_appeal? in the decorator
-  - is_an_appeal = hearing_details && hearing_details.hearing_type.description.include?('Appeal')
-
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-    - if is_an_appeal
+    - if hearing_details&.appeal?
       = t('hearings.show.attendees.appellants')
     - else
       = t('hearings.show.attendees.defendants')
@@ -17,7 +14,7 @@
     - else
       = t('generic.not_available')
 
-  - if is_an_appeal
+  - if hearing_details&.appeal?
     - if hearing_details.respond_to?(:applicant_counsels)
       .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
         = t('hearings.show.attendees.appellant_advocates')
