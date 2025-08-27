@@ -13,7 +13,7 @@ displayRawResponses: "false"
 identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-production-green
 cert: laa-court-data-ui-production-cert
 featureFlags:
-  perUserFeatureFlags: false
+  perUserFeatureFlags: true
   maintenanceMode: false
   noLinking: false
   appealsV2: false
