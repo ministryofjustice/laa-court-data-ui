@@ -4,6 +4,7 @@ en:
     results:
       not_available: Not available
     show:
+      alert: Information on the appellant screen relates to the person at appeal, and may differ from the defendant screen.
       defendant:
         date_of_birth: Date of birth
         maat_number: MAAT number
