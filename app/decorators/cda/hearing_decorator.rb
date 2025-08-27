@@ -50,10 +50,6 @@ module Cda
       safe_join(hearing.judiciary.map { |jd| "#{jd.title} #{jd.first_name} #{jd.last_name}" }, tag.br)
     end
 
-    def appeal?
-      hearing.hearing_type.description.downcase.include?('appeal') if loaded? && hearing.hearing_type.present?
-    end
-
     private
 
     def defence_counsel_sentences
