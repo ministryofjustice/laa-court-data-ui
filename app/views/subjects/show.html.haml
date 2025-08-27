@@ -1,10 +1,18 @@
-- content_for :pre_heading do
-  %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
-    = t(".appeal")
+- unless FeatureFlag.enabled?(:appeals_v2)
+  - content_for :pre_heading do
+    %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
+      = t(".appeal")
 - content_for :custom_packs do
   = javascript_include_tag 'unlink', defer: true
-= govuk_page_heading(@subject.name, caption_text: t(".defendant"), title: t(".title"))
-
+- if FeatureFlag.enabled?(:appeals_v2)
+  = govuk_page_heading(@subject.name,
+                       caption_text: t(".defendant"),
+                       title: t(".title"),
+                       tag_options: { class: "govuk-!-margin-bottom-5" })
+  %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
+    = t(".appeal")
+- else
+  = govuk_page_heading(@subject.name, caption_text: t(".defendant"), title: t(".title"))
 .govuk-width-container
   :ruby
     link_url = if @subject.maat_linked?
