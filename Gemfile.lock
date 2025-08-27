@@ -407,7 +407,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.4.1)
+    rexml (3.4.2)
     rspec (3.13.1)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -436,7 +436,7 @@ GEM
     rspec-support (3.13.5)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.79.2)
+    rubocop (1.80.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -475,7 +475,7 @@ GEM
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    rubyzip (3.0.1)
+    rubyzip (3.0.2)
     securerandom (0.4.1)
     selenium-webdriver (4.35.0)
       base64 (~> 0.2)
@@ -631,7 +631,7 @@ DEPENDENCIES
   rspec-rails (~> 8.0)
   rspec-retry
   rspec_junit_formatter
-  rubocop (~> 1.79)
+  rubocop (~> 1.80)
   rubocop-capybara
   rubocop-factory_bot
   rubocop-performance
