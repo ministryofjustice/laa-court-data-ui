@@ -3,8 +3,13 @@ RSpec.feature 'Link court applications' do
   let(:unlinked_court_application_id) { "22a301d1-8e5c-444e-a629-ac33b8e75f8c" }
   let(:unlinked_court_application_with_problems_id) { 'c07d4116-0d06-4150-b6a4-e412f556d931' }
   let(:linked_court_application_id) { 'd174af7f-75da-428b-9875-c823eb182a23' }
+  let(:linking_disabled) { false }
 
-  before { sign_in user }
+  before do
+    allow(FeatureFlag).to receive(:enabled?).and_call_original
+    allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(linking_disabled)
+    sign_in user
+  end
 
   context "when there are no problems upstream" do
     around do |example|
@@ -17,36 +22,33 @@ RSpec.feature 'Link court applications' do
     scenario 'I view a linked court application subject' do
       visit court_application_subject_path(linked_court_application_id)
       expect(page).to have_content "MAAT number 1234567"
-      expect(page).to have_no_content "Enter the MAAT ID"
+      expect(page).to have_no_content "Link MAAT ID"
     end
 
     scenario 'I successfully link a court application' do
-      visit court_application_subject_path(unlinked_court_application_id)
+      visit link_form_court_application_subject_path(unlinked_court_application_id)
       expect(page).to have_content "Enter the MAAT ID"
       fill_in "MAAT ID", with: '7654321'
       click_on "Create link to court data"
-      expect(page).to have_content "You have successfully linked to the court data source"
+      expect(page).to have_content "You added a link"
       expect(page).to have_content "MAAT number 7654321"
-      expect(page).to have_no_content "Enter the MAAT ID"
+      expect(page).to have_no_content "Link MAAT ID"
     end
 
     scenario 'I try to link with an invalid MAAT' do
-      visit court_application_subject_path(unlinked_court_application_id)
+      visit link_form_court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: '123'
       click_on "Create link to court data"
       expect(page).to have_content "Enter a MAAT ID in the correct format"
     end
 
     context 'when linking is disabled' do
-      before do
-        allow(FeatureFlag).to receive(:enabled?).and_call_original
-        allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(true)
-      end
+      let(:linking_disabled) { true }
 
       scenario 'page shows without linking options' do
         visit court_application_subject_path(unlinked_court_application_id)
         expect(page).to have_content "MAAT number"
-        expect(page).to have_no_content "Enter the MAAT ID"
+        expect(page).to have_no_content "Link MAAT ID"
       end
     end
   end
@@ -60,7 +62,7 @@ RSpec.feature 'Link court applications' do
     end
 
     scenario 'I try to link but there are problems upstream' do
-      visit court_application_subject_path(unlinked_court_application_with_problems_id)
+      visit link_form_court_application_subject_path(unlinked_court_application_with_problems_id)
       fill_in "MAAT ID", with: '7654321'
       click_on "Create link to court data"
       expect(page).to have_content "Unable to link the defendant to that MAAT ID"

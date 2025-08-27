@@ -15,18 +15,26 @@ class SubjectsController < ApplicationController
     )
   end
 
+  def link_form
+    @form_model = load_link_attempt
+  end
+
+  def unlink_form
+    @form_model = load_unlink_attempt
+  end
+
   def link
     @form_model = load_link_attempt
     @form_model.validate!
 
     Cda::CourtApplicationLaaReference.create!(@form_model)
     redirect_to court_application_subject_path(@application.application_id),
-                flash: { notice: t('.success') }
+                flash: { success: t('.success') }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
-    render :show
+    render :link_form
   rescue ActiveModel::ValidationError
-    render :show
+    render :link_form
   end
 
   def unlink
@@ -34,12 +42,12 @@ class SubjectsController < ApplicationController
     @form_model.validate!
     Cda::CourtApplicationLaaReference.update!(@form_model)
     redirect_to court_application_subject_path(@application.application_id),
-                flash: { notice: t('.success') }
+                flash: { success: t('.success', maat_id: @form_model.maat_reference) }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
-    render :show
+    render :unlink_form
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    render :show
+    render :unlink_form
   end
 
   private

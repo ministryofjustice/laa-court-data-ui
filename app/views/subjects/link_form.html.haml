@@ -1,0 +1,17 @@
+- content_for :page_title do
+  = page_title(t(".title"))
+.govuk-width-container
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      %h1.govuk-heading-xl
+        = t(".title")
+  = form_with(model: @form_model, url: link_court_application_subject_path(@application.application_id), data: { turbo: false }) do |f|
+    - content_for :error_summary do
+      = f.govuk_error_summary
+
+    .govuk-grid-row
+      .govuk-grid-column-two-thirds
+        = f.govuk_text_field :maat_reference,
+                             label: { text: t('laa_reference.link.form.maat_reference.hint') }
+
+        = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }
