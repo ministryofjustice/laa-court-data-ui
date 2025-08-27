@@ -1,7 +1,12 @@
-= govuk_page_heading(@defendant.name, caption_text: t('generic.defendant'), title: t('defendants.title'))
 - if FeatureFlag.enabled?(:appeals_v2)
+  = govuk_page_heading(@defendant.name,
+                       caption_text: t('generic.defendant'),
+                       title: t('defendants.title'),
+                       tag_options: { class: "govuk-!-margin-bottom-5" })
   %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
     = t("generic.case")
+- else
+  = govuk_page_heading(@defendant.name, caption_text: t('generic.defendant'), title: t('defendants.title'))
 
 - content_for :custom_packs do
   = javascript_include_tag 'unlink', defer: true
