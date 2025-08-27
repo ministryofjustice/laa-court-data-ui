@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   resources :court_applications, only: %i[show] do
     resource :subject, only: %i[show] do
       member do
+        get :link_form
+        get :unlink_form
         post :link
         post :unlink
       end
