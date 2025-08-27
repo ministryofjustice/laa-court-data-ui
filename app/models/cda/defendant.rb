@@ -11,5 +11,11 @@ module Cda
     def name
       attributes['name'].presence || [first_name, middle_name, last_name].filter_map(&:presence).join(" ")
     end
+
+    def full_name
+      # NOTE: middle_name is not present inside defendant_details.person_details
+      [defendant_details.person_details.first_name,
+       defendant_details.person_details.last_name].filter_map(&:presence).join(" ")
+    end
   end
 end
