@@ -39,6 +39,7 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
     end
 
     scenario 'it is axe-accessible', :js do
+      visit searches_path
       expect(page).to be_accessible
     end
   end
