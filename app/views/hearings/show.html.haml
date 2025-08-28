@@ -12,8 +12,7 @@
     - is_prosecution_case = @hearing.try(:hearing)&.prosecution_cases&.any?
     - if is_prosecution_case
       = render partial: 'attendees_on_prosecution_cases', locals: { hearing: @hearing,
-                                                                    hearing_details: @hearing.try(:hearing),
-                                                                    prosecution_case: @prosecution_case }
+                                                                    hearing_details: @hearing.try(:hearing) }
     - else
       = render partial: 'attendees_on_court_applications', locals: { hearing: @hearing,
                                                                      hearing_details: @hearing.try(:hearing),

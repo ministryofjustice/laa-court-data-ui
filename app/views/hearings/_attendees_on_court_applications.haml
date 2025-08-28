@@ -10,23 +10,21 @@
     - else
       = t('generic.not_available')
 
-  - if hearing_details.respond_to?(:applicant_counsels)
-    .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-      = t('hearings.show.attendees.appellant_advocates')
-    %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "appellant" }
-      - if hearing_details.applicant_counsels.any?
-        = hearing.applicant_counsels_list
-      - else
-        = t('generic.not_available')
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
+    = t('hearings.show.attendees.appellant_advocates')
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "appellant" }
+    - if hearing_details.try(:applicant_counsels)&.any?
+      = hearing.applicant_counsels_list
+    - else
+      = t('generic.not_available')
 
-  - if hearing_details.respond_to?(:respondent_counsels)
-    .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-      = t('hearings.show.attendees.respondent_advocates')
-    %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "respondent" }
-      - if hearing_details.respondent_counsels.any?
-        = hearing.respondent_counsels_list
-      - else
-        = t('generic.not_available')
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
+    = t('hearings.show.attendees.respondent_advocates')
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "respondent" }
+    - if hearing_details.try(:respondent_counsels)&.any?
+      = hearing.respondent_counsels_list
+    - else
+      = t('generic.not_available')
 
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     = t('hearings.show.attendees.judges')
