@@ -18,7 +18,7 @@
 
       = hidden_field_tag(:urn, params[:urn])
 
-      - unless FeatureFlag.enabled?(:no_linking)
+      - unless FeatureFlag.enabled?(:no_linking) || FeatureFlag.enabled?(:appeals_v2)
         = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do
           = f.govuk_collection_select :reason_code,
                                       unlink_reasons,
