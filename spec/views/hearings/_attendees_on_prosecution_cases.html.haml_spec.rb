@@ -49,7 +49,7 @@ RSpec.describe 'hearings/_attendees_on_prosecution_cases', type: :view do
 
     context 'with defendant_names' do
       it 'displays defendant names with line breaks' do
-        is_expected.to have_tag('p.govuk-body#defendants', text: /John Apple Smith\s*John Apple Smith/) do
+        is_expected.to have_tag('p.govuk-body#defendants', text: /Leon Goodwin\s*David Blaine/) do
           with_tag('br', count: 1)
         end
       end

@@ -5,9 +5,9 @@
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     = t('hearings.show.attendees.defendants')
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defendants" }
-    - cases = hearing_details.prosecution_cases
+    - cases = hearing_details&.prosecution_cases
     - if cases&.any?
-      = safe_join(cases.map { |cs| cs.defendants.map(&:full_name) }, tag.br)
+      = safe_join(cases.map { |cs| cs.defendants.map { |df| "#{df.defendant_details.person_details.first_name} #{df.defendant_details.person_details.last_name}" } }, tag.br)
     - else
       = t('generic.not_available')
 

@@ -15,9 +15,9 @@
                                                                     hearing_details: @hearing.try(:hearing),
                                                                     prosecution_case: @prosecution_case }
     - else
-      = render partial: 'attendees', locals: { hearing: @hearing,
-                                               hearing_details: @hearing.try(:hearing),
-                                               prosecution_case: @prosecution_case }
+      = render partial: 'attendees_on_court_applications', locals: { hearing: @hearing,
+                                                                     hearing_details: @hearing.try(:hearing),
+                                                                     prosecution_case: @prosecution_case }
 
   .govuk-grid-column-two-thirds
     = render(partial: 'hearing_events', locals: { hearing_events: @hearing_events, hearing_day: @hearing_day }) if @hearing_events
