@@ -192,6 +192,38 @@
         ]
       }
     ],
+    "applicant_counsels": [
+      {
+        "title": "",
+        "first_name": "Alex-applicant-counsels",
+        "middle_name": "",
+        "last_name": "Smith",
+        "status": "junior",
+        "attendance_days": [
+          "2021-03-29",
+          "2019-10-23"
+        ],
+        "defendants": [
+          "b39400d5-046f-4588-9268-bfc47c40cafb"
+        ]
+      }
+    ],
+    "respondent_counsels": [
+      {
+        "title": "",
+        "first_name": "Jane-respondent-counsels",
+        "middle_name": "",
+        "last_name": "Doe",
+        "status": "junior",
+        "attendance_days": [
+          "2021-03-29",
+          "2019-10-23"
+        ],
+        "defendants": [
+          "fc449b85-35e5-47a5-9670-3d1d30891108"
+        ]
+      }
+    ],
     "cracked_ineffective_trial": {
       "id": null,
       "code": null,

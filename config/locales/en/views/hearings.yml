@@ -3,11 +3,14 @@ en:
   hearings:
     show:
       attendees:
+        appellant_advocates: Appellant advocates
+        appellants: Appellants
         defence: Defence advocates
         defendants: Defendants
         heading: Attendees
         judges: Judges
-        prosecution: Prosecution advocates
+        prosecution_advocates: Prosecution advocates
+        respondent_advocates: Respondent advocates
       court: Court
       court_applications:
         applicant_synonym: Applicant synonym
