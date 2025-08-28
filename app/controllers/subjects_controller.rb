@@ -32,9 +32,9 @@ class SubjectsController < ApplicationController
                 flash: { success: t('.success') }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
-    render :link_form
+    render FeatureFlag.enabled?(:appeals_v2) ? :link_form : :show
   rescue ActiveModel::ValidationError
-    render :link_form
+    render FeatureFlag.enabled?(:appeals_v2) ? :link_form : :show
   end
 
   def unlink
@@ -45,9 +45,9 @@ class SubjectsController < ApplicationController
                 flash: { success: t('.success', maat_id: @form_model.maat_reference) }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
-    render :unlink_form
+    render FeatureFlag.enabled?(:appeals_v2) ? :unlink_form : :show
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    render :unlink_form
+    render FeatureFlag.enabled?(:appeals_v2) ? :unlink_form : :show
   end
 
   private
