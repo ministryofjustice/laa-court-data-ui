@@ -69,7 +69,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
       end
 
       it 'flashes alert' do
-        expect(flash.now[:notice]).to match(/You have successfully linked to the court data source/)
+        expect(flash.now[:success]).to match(/You added a link/)
       end
     end
 

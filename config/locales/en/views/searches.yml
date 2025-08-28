@@ -23,10 +23,12 @@ en:
         caption: Defendants
         date_of_birth: Date of birth
         heading: Defendants
+        link: Link MAAT ID
         maat_number: MAAT number
         name: Name
         national_insurance_number: NI number
         prosecution_case_reference: Case URN
+        unlink: Unlink MAAT ID
         unlinked: Not linked
       hearing:
         caption: Hearings

@@ -28,7 +28,7 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
     fill_in "MAAT ID", with: "1234567"
     linked_defendant_stub
     click_link_or_button 'Create link to court data'
-    expect(page).to have_govuk_flash(:notice, text: 'You have successfully linked to the court data source')
+    expect(page).to have_govuk_flash(:success, text: 'You added a link')
   end
 
   scenario 'user links defendant details with no maat id', :stub_v2_link_success do
@@ -39,7 +39,7 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
     expect(page).to have_button('Create link without MAAT ID')
     click_link_or_button 'Create link without MAAT ID'
     linked_defendant_stub
-    expect(page).to have_govuk_flash(:notice, text: 'You have successfully linked to the court data source')
+    expect(page).to have_govuk_flash(:success, text: 'You added a link')
   end
 
   scenario 'CDA errors out', :stub_v2_link_cda_failure do

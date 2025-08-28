@@ -1,40 +1,19 @@
 - content_for :pre_heading do
-<<<<<<< HEAD
   = render '/feedback_on_appeals_to_crown_court', application: @application
 
-- content_for :custom_packs do
-  = javascript_include_tag 'unlink', defer: true
 = govuk_page_heading(@subject.name,
                      caption_text: @application.appeal? ? t(".appellant") : t(".respondent"),
                      title: @application.appeal? ? t(".appeal_title") : t(".title"),
                      tag_options: { class: "govuk-!-margin-bottom-5" })
 - if @application.appeal?
-=======
-  = render '/feedback_on_appeals_to_crown_court'
-
-- if FeatureFlag.enabled?(:appeals_v2)
-  = govuk_page_heading(@subject.name,
-                       caption_text: t(".defendant"),
-                       title: t(".title"),
-                       tag_options: { class: "govuk-!-margin-bottom-5" })
->>>>>>> cf3b91a4 (V2 link/unlink UI)
   %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
     = t("subjects.appeal")
 - else
-<<<<<<< HEAD
   %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
     = t("subjects.#{@application.application_category}")
 
   .govuk-body
     = t("subjects.show.alert")
-=======
-  - content_for :custom_packs do
-    = javascript_include_tag 'unlink', defer: true
-  - content_for :pre_heading, flush: false do
-    %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
-      = t(".appeal")
-  = govuk_page_heading(@subject.name, caption_text: t(".defendant"), title: t(".title"))
->>>>>>> cf3b91a4 (V2 link/unlink UI)
 
 :ruby
   link_url = if @application.maat_linked?

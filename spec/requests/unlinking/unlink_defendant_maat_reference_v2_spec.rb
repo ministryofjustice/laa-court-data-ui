@@ -105,7 +105,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       end
 
       it 'flashes notice' do
-        expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
+        expect(flash.now[:success]).to match(/You removed the link to MAAT ID 2123456/)
       end
     end
 
@@ -156,7 +156,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       end
 
       it 'flashes notice' do
-        expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
+        expect(flash.now[:success]).to match(/You removed the link to MAAT ID 2123456/)
       end
 
       it 'redirects to defendant path' do
@@ -189,7 +189,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       end
 
       it 'flashes notice' do
-        expect(flash.now[:notice]).to match(/You have successfully unlinked from the court data source/)
+        expect(flash.now[:success]).to match(/You removed the link to MAAT ID 2123456/)
       end
 
       it 'redirects to defendant path' do

@@ -13,5 +13,10 @@ en:
     title: Defendant details
     unlink:
       detail: Remove link to court data
-      success: You have successfully unlinked from the court data source
+      success: You removed the link to MAAT ID %{maat_id}
       warning: Removing the link will stop hearing updates being received
+    unlink_form:
+      back: Back to appellant
+      maat_id: MAAT ID
+      name: Name
+      title: Confirm you want to remove MAAT ID link
