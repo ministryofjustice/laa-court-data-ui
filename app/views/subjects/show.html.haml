@@ -63,17 +63,17 @@
                   - else
                     = link_to t(".link"), link_form_court_application_subject_path(@application.application_id), class: 'govuk-link'
 
-  = link_to t(".view_summary"),
-            court_application_path(@application.application_id),
-            class: "govuk-button govuk-button--secondary"
-  %turbo-frame#offence-table{
-    src: offences_defendant_path(@application.defendant.id, urn: @application.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
-  }
-    = render partial: 'defendants/offences',
-             locals: { defendant: @application.defendant, offence_history_collection: @offence_history_collection, offence_ids: @subject.offence_summary.map(&:id) }
-    - if @offence_history_collection.nil?
-      .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
-        = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'
+    = link_to t(".view_summary"),
+              court_application_path(@application.application_id),
+              class: "govuk-button govuk-button--secondary"
+    %turbo-frame#offence-table{
+      src: offences_defendant_path(@application.defendant.id, urn: @application.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
+    }
+      = render partial: 'defendants/offences',
+               locals: { defendant: @application.defendant, offence_history_collection: @offence_history_collection, offence_ids: @subject.offence_summary.map(&:id) }
+      - if @offence_history_collection.nil?
+        .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
+          = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'
 
     - unless FeatureFlag.enabled?(:appeals_v2)
       .govuk-grid-row
@@ -97,7 +97,7 @@
                 = f.govuk_submit t('defendants.form.submit'), data: { disable_with: 'Unlinking...' }
             - else
               = f.govuk_text_field :maat_reference,
-                                  label: { text: t('laa_reference.link.form.maat_reference.label') },
-                                  hint: { text: t('laa_reference.link.form.maat_reference.hint') }
+                                   label: { text: t('laa_reference.link.form.maat_reference.label') },
+                                   hint: { text: t('laa_reference.link.form.maat_reference.hint') }
 
               = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }

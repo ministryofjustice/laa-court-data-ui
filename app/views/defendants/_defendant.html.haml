@@ -1,3 +1,4 @@
+- link_attempt ||= nil
 %table.govuk-table{ class: "govuk-!-margin-bottom-4" }
   %caption.govuk-table__caption.govuk-visually-hidden
     = t('search.result.defendant.caption')
@@ -7,25 +8,35 @@
         = t('search.result.defendant.date_of_birth')
       %td.govuk-table__cell
         = l(defendant.date_of_birth&.to_date)
+      %td.govuk-table__cell
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.prosecution_case_reference')
       %td.govuk-table__cell
         = prosecution_case_reference
+      %td.govuk-table__cell
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.national_insurance_number')
       %td.govuk-table__cell
         = defendant.national_insurance_number
+      %td.govuk-table__cell
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.arrest_summons_number')
       %td.govuk-table__cell
         = defendant.arrest_summons_number
+      %td.govuk-table__cell
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.maat_number')
       %td.govuk-table__cell
         = defendant.maat_reference
+      %td.govuk-table__cell.govuk-table__cell--numeric
+        - if FeatureFlag.enabled?(:appeals_v2) && !FeatureFlag.enabled?(:no_linking)
+          - if link_attempt.present?
+            = link_to t("search.result.defendant.link"), link_form_laa_reference_path(params[:id], urn: params[:urn]), class: 'govuk-link'
+          - else
+            = link_to t("search.result.defendant.unlink"), unlink_form_defendant_path(params[:id], urn: params[:urn]), class: 'govuk-link'
 
 = link_to 'View case', prosecution_case_path(prosecution_case_reference), class: 'govuk-button govuk-button--secondary govuk-!-margin-bottom-9'
