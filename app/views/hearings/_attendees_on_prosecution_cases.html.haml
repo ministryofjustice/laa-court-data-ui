@@ -1,0 +1,36 @@
+%div{ class: "govuk-!-margin-bottom-9" }
+  %h2.govuk-heading-l
+    = t('hearings.show.attendees.heading')
+
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
+    = t('hearings.show.attendees.defendants')
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defendants" }
+    - cases = hearing_details&.prosecution_cases
+    - if cases&.any?
+      = safe_join(cases.map { |cs| cs.defendants.map { |df| "#{df.defendant_details.person_details.first_name} #{df.defendant_details.person_details.last_name}" } }, tag.br)
+    - else
+      = t('generic.not_available')
+
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
+    = t('hearings.show.attendees.defence')
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defence" }
+    - if hearing_details&.defence_counsels&.any?
+      = safe_join([hearing.defence_counsels_list], tag.br)
+    - else
+      = t('generic.not_available')
+
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
+    = t('hearings.show.attendees.prosecution_advocates')
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "prosecution" }
+    - if hearing_details&.prosecution_counsels&.any?
+      = hearing.prosecution_counsels_list
+    - else
+      = t('generic.not_available')
+
+  .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
+    = t('hearings.show.attendees.judges')
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "judges" }
+    - if hearing_details&.judiciary&.any?
+      = hearing.judiciary_list
+    - else
+      = t('generic.not_available')
