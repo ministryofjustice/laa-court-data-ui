@@ -33,7 +33,7 @@
               %td.govuk-table__cell
                 = court_application.subject_summary.name
               %td.govuk-table__cell
-                = court_application.maat_id.presence || t('prosecution_case.related_court_applications.not_linked')
+                = court_application.linked_maat_id.presence || t('prosecution_case.related_court_applications.not_linked')
               %td.govuk-table__cell
                 = court_application.result_string
       = render 'shared/pagination', pagy:, item_name: t('prosecution_case.related_court_applications.item')

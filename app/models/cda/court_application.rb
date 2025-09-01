@@ -3,7 +3,7 @@ module Cda
     has_one :subject_summary, class_name: 'Cda::SubjectSummary'
     has_many :hearing_summary, class_name: 'Cda::ApplicationHearing'
 
-    def self.from_urn(urn)
+    def self.find_from_urn(urn)
       find(:all,
            from: "/api/internal/v2/prosecution_cases/#{safe_path(urn)}/" \
                  "court_applications")

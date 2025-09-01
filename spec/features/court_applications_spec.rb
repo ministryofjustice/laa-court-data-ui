@@ -28,7 +28,7 @@ RSpec.feature 'Court Applications', :vcr do
 
   context 'when the FF is enabled' do
     before do
-      allow(FeatureFlag).to receive(:enabled?).with(:maintenance_mode).and_return(false)
+      allow(FeatureFlag).to receive(:enabled?).and_call_original
       allow(FeatureFlag).to receive(:enabled?).with(:appeals_v2).and_return(true)
     end
 
