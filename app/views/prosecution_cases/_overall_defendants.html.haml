@@ -12,7 +12,10 @@
     - case_summary.defendants.each do |overall_defendant|
       %tr.govuk-table__row
         %td.govuk-table__cell
-          = link_to overall_defendant.name, defendant_link_path(overall_defendant, case_summary.prosecution_case_reference), class: 'govuk-link'
+          = link_to overall_defendant.name,
+                    defendant_link_path(overall_defendant, case_summary.prosecution_case_reference),
+                    class: 'govuk-link',
+                    data: { turbo: false }
         %td.govuk-table__cell
           = l(overall_defendant.date_of_birth&.to_date)
         %td.govuk-table__cell
