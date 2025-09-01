@@ -22,7 +22,7 @@
         - if FeatureFlag.enabled?(:appeals_v2)
           %h4.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
             = t('defendants.unlink.detail')
-          = render 'defendants/unlink_warning', classes: "govuk-!-margin-bottom-2"
+          = render 'defendants/unlink_warning'
           = render 'defendants/unlinking_fields', { f: }
         - else
           = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do

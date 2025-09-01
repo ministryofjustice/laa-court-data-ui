@@ -68,15 +68,18 @@
       .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
         = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'
 
-  .govuk-grid-row
-    .govuk-grid-column-two-thirds
-      - unless FeatureFlag.enabled?(:no_linking)
-        - if @subject.maat_linked?
-          - if FeatureFlag.enabled?(:appeals_v2)
-            %h4.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
-              = t('defendants.unlink.detail')
-            = render 'defendants/unlink_warning', classes: "govuk-!-margin-bottom-2"
-            = render 'defendants/unlinking_fields', { f: }
+    .govuk-grid-row
+      .govuk-grid-column-two-thirds
+        - unless FeatureFlag.enabled?(:no_linking)
+          - if @subject.maat_linked?
+            - if FeatureFlag.enabled?(:appeals_v2)
+              %h4.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
+                = t('defendants.unlink.detail')
+              = render 'defendants/unlink_warning'
+              = render 'defendants/unlinking_fields', { f: }
+            - else
+              = govuk_detail(t('defendants.unlink.detail'), open: @form_model.errors.present?) do
+                = render 'defendants/unlinking_fields', { f: }
           - else
             = govuk_detail(t('defendants.unlink.detail'), open: @form_model.errors.present?) do
               = render 'defendants/unlinking_fields', { f: }
