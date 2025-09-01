@@ -16,7 +16,7 @@
           .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
             = link_to t('defendants.reload'), new_laa_reference_path(id: params[:id], urn: params[:urn], include_offence_history: 'true'), class: 'govuk-link'
 
-      - unless FeatureFlag.enabled?(:no_linking) || FeatureFlag.enabled?(:appeals_v2)
+      - if !FeatureFlag.enabled?(:no_linking) && !FeatureFlag.enabled?(:appeals_v2)
         = hidden_field_tag(:urn, params[:urn])
 
         = f.hidden_field(:defendant_id, value: params[:id] || defendant_uuid)
