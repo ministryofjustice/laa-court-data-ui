@@ -4,16 +4,25 @@ en:
     appeal: Appeal
     link:
       failure: Unable to link the defendant to that MAAT ID
-      success: You have successfully linked to the court data source
+      success: You added a link
+    link_form:
+      title: Create a link to court data
     show:
       appeal: Appeal
       arrest_summons_number: ASN
       case_urn: Case URN
       date_of_birth: Date of birth
       defendant: Appellant
+      link: Link MAAT ID
       maat_number: MAAT number
       title: Appellant details
+      unlink: Unlink MAAT ID
       view_summary: View appeal application summary
     unlink:
       failure: Unable to unlink the defendant
-      success: You have successfully unlinked from the court data source
+      success: You removed the link to MAAT ID %{maat_id}
+    unlink_form:
+      back: Back to appellant
+      maat_id: MAAT ID
+      name: Name
+      title: Confirm you want to remove MAAT ID link
