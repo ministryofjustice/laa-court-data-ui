@@ -1,6 +1,13 @@
 - content_for :pre_heading do
-  %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
-    = t(".appeal")
+  = render '/feedback_on_appeals_to_crown_court'
+
+  - if FeatureFlag.enabled?(:appeals_v2)
+    %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
+      = t(".appeal")
+  - else
+    %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
+      = t(".appeal")
+
 = govuk_page_heading(@hearing_day.day_string, caption_text: t('generic.hearing_day'), tag_options: { class: 'govuk-!-margin-bottom-3' })
 
 .govuk-grid-row

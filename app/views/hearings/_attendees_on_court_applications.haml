@@ -1,28 +1,31 @@
 %div{ class: "govuk-!-margin-bottom-9" }
   %h2.govuk-heading-l
     = t('hearings.show.attendees.heading')
+
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-    = t('hearings.show.attendees.defendants')
+    = t('hearings.show.attendees.appellants')
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defendants" }
-    - if hearing_details&.prosecution_cases&.any?
-      - cases = hearing_details.prosecution_cases
-      = safe_join(cases.map { |cs| cs.defendants.map { |df| "#{df.defendant_details.person_details.first_name} #{df.defendant_details.person_details.last_name}" } }, tag.br)
+    - if prosecution_case.defendant_summaries.any?
+      = safe_join(prosecution_case.defendant_summaries.map(&:name), tag.br)
     - else
       = t('generic.not_available')
+
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-    = t('hearings.show.attendees.defence')
-  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defence" }
-    - if hearing_details&.defence_counsels&.any?
-      = safe_join([hearing.defence_counsels_list], tag.br)
+    = t('hearings.show.attendees.appellant_advocates')
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "appellant" }
+    - if hearing_details.try(:applicant_counsels)&.any?
+      = hearing.applicant_counsels_list
     - else
       = t('generic.not_available')
+
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-    = t('hearings.show.attendees.prosecution')
-  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "prosecution" }
-    - if hearing_details&.prosecution_counsels&.any?
-      = hearing.prosecution_counsels_list
+    = t('hearings.show.attendees.respondent_advocates')
+  %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "respondent" }
+    - if hearing_details.try(:respondent_counsels)&.any?
+      = hearing.respondent_counsels_list
     - else
       = t('generic.not_available')
+
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     = t('hearings.show.attendees.judges')
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "judges" }

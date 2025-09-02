@@ -1,3 +1,6 @@
+- content_for :pre_heading do
+  = render '/feedback_on_appeals_to_crown_court'
+
 = govuk_page_heading(@application.prosecution_case_reference, caption_text: @application.application_title)
 
 .govuk-body
@@ -6,6 +9,7 @@
   = @application.result_string
 %h2.govuk-heading-l
   = t('.defendants')
+= render 'alert'
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden
     = t('.defendants')

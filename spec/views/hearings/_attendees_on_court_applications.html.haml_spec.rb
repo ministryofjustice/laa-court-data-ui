@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
-RSpec.describe 'hearings/_attendees', type: :view do
+RSpec.describe 'hearings/_attendees_court_applications', type: :view do
   include RSpecHtmlMatchers
 
   subject(:render_partial) do
-    render partial: 'hearings/attendees',
-           locals: { hearing: decorated_hearing, hearing_details: decorated_hearing.hearing }
+    render partial: 'hearings/attendees_on_court_applications',
+           locals: { hearing: decorated_hearing,
+                     hearing_details: decorated_hearing.hearing,
+                     prosecution_case: decorated_case_summary }
   end
 
   let(:decorated_hearing) { view.decorate(hearing, Cda::HearingDecorator) }
+  let(:decorated_case_summary) { view.decorate(case_summary, Cda::CaseSummaryDecorator) }
+  let(:case_summary) { build(:prosecution_case, :with_defendant_summaries) }
+
   let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
   let(:hearing) { Cda::Hearing.find(hearing_id) }
@@ -22,16 +27,16 @@ RSpec.describe 'hearings/_attendees', type: :view do
       is_expected.to have_tag('h2.govuk-heading-l', text: /Attendees/)
     end
 
-    it 'displays the defendants section' do
-      is_expected.to have_tag(small_gov_heading, text: /Defendants/)
+    it 'displays the Appellants section' do
+      is_expected.to have_tag(small_gov_heading, text: /Appellants/)
     end
 
-    it 'displays the defence section' do
-      is_expected.to have_tag(small_gov_heading, text: /Defence advocates/)
+    it 'displays the Appellant advocates section' do
+      is_expected.to have_tag(small_gov_heading, text: /Appellant advocates/)
     end
 
-    it 'displays the prosecution section' do
-      is_expected.to have_tag(small_gov_heading, text: /Prosecution advocates/)
+    it 'displays the Respondent advocates section' do
+      is_expected.to have_tag(small_gov_heading, text: /Respondent advocates/)
     end
 
     it 'displays the judges section' do
@@ -44,34 +49,21 @@ RSpec.describe 'hearings/_attendees', type: :view do
 
     context 'with defendant_names' do
       it 'displays defendant names with line breaks' do
-        is_expected.to have_tag('p.govuk-body#defendants', text: /Leon Goodwin.*David Blaine/) do
-          with_tag(:br)
+        is_expected.to have_tag('p.govuk-body#defendants', text: /John Apple Smith\s*John Apple Smith/) do
+          with_tag('br', count: 1)
         end
       end
     end
 
-    context 'with defence_counsel' do
+    # appellant_advocates
+    context 'with appellant_advocates' do # Advocates representing the appellant
       before do
         allow(decorated_hearing).to receive(:current_sitting_day).and_return('2019-10-23')
       end
 
-      it 'displays list of defence council' do
-        text_match = /Mark Jones \(junior\) for Leon Goodwin.*David Williams \(junior\) for not available/
-        is_expected.to have_tag('p.govuk-body#defence',
-                                text: text_match)
-      end
-    end
-
-    context 'when defence counsel did not attend' do
-      let(:unattended_day) { '2099-10-23' }
-
-      before do
-        allow(decorated_hearing).to receive(:current_sitting_day).and_return(unattended_day)
-      end
-
-      it 'displays list of defence council' do
-        text_match = /Mark Jones \(junior\) for Leon Goodwin.*David Williams \(junior\) for not available/
-        is_expected.not_to have_tag('p.govuk-body#defence', text: text_match)
+      it 'displays list of applicant counsels' do
+        is_expected.to have_tag('p.govuk-body#appellant',
+                                text: /Alex-applicant-counsels Smith \(junior\)/)
       end
     end
 
@@ -80,8 +72,8 @@ RSpec.describe 'hearings/_attendees', type: :view do
         allow(decorated_hearing).to receive(:current_sitting_day).and_return('2019-10-23')
       end
 
-      it 'displays list of prosecution counsel' do
-        is_expected.to have_tag('p.govuk-body#prosecution', text: /John Smith/)
+      it 'displays list of respondent counsel' do
+        is_expected.to have_tag('p.govuk-body#respondent', text: /Jane-respondent-counsels Doe/)
       end
     end
 
@@ -95,20 +87,22 @@ RSpec.describe 'hearings/_attendees', type: :view do
 
   context 'when no hearing data is present', :stub_v2_empty_hearing_data do
     context 'with no defendant_names' do
+      let(:case_summary) { build(:prosecution_case) }
+
       it not_available_test do
         is_expected.to have_tag('p.govuk-body#defendants', text: not_available_text)
       end
     end
 
-    context 'with no defence_counsel' do
+    context 'with no applicant_counsels' do
       it not_available_test do
-        is_expected.to have_tag('p.govuk-body#defence', text: not_available_text)
+        is_expected.to have_tag('p.govuk-body#appellant', text: not_available_text)
       end
     end
 
-    context 'with no prosecution_counsel' do
+    context 'with no respondent_counsels' do
       it not_available_test do
-        is_expected.to have_tag('p.govuk-body#prosecution', text: not_available_text)
+        is_expected.to have_tag('p.govuk-body#respondent', text: not_available_text)
       end
     end
 
