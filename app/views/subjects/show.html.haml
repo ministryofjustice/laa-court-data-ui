@@ -10,16 +10,23 @@
   = javascript_include_tag 'unlink', defer: true
 - if FeatureFlag.enabled?(:appeals_v2)
   = govuk_page_heading(@subject.name,
-                       caption_text: t(".defendant"),
+                       caption_text: @application.appeal? ? t(".appellant") : t(".respondent"),
                        title: t(".title"),
                        tag_options: { class: "govuk-!-margin-bottom-5" })
-  %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
-    = t(".appeal")
+  - if @application.appeal?
+    %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
+      = t("subjects.appeal")
+  - else
+    %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
+      = t("subjects.#{@application.application_category}")
+
+    = render "shared/alert" do
+      = t("subjects.show.alert")
 - else
-  = govuk_page_heading(@subject.name, caption_text: t(".defendant"), title: t(".title"))
+  = govuk_page_heading(@subject.name, caption_text: t(".appellant"), title: t(".title"))
 
 :ruby
-  link_url = if @subject.maat_linked?
+  link_url = if @application.maat_linked?
     unlink_court_application_subject_path(@application.application_id)
   else
     link_court_application_subject_path(@application.application_id)
@@ -32,7 +39,7 @@
     .govuk-grid-column-two-thirds
       %table.govuk-table
         %caption.govuk-table__caption.govuk-visually-hidden
-          = t(".defendant")
+          = t(".respondent")
         %tbody.govuk-table__body
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
@@ -45,33 +52,48 @@
                 = t(".case_urn")
               %td.govuk-table__cell
                 = @application.prosecution_case_reference
-          %tr.govuk-table__row
-            %th.govuk-table__header{ scope: "row" }
-              = t(".arrest_summons_number")
-            %td.govuk-table__cell
-              = @subject.defendant_asn
+          - if @application.appeal?
+            %tr.govuk-table__row
+              %th.govuk-table__header{ scope: "row" }
+                = t(".arrest_summons_number")
+              %td.govuk-table__cell
+                = @subject.defendant_asn
+          - else
+            %tr.govuk-table__row
+              %th.govuk-table__header{ scope: "row" }
+                = t(".respondent_arrest_summons_number")
+              %td.govuk-table__cell
+                = @subject.defendant_asn
+            - if @application.breach?
+              %tr.govuk-table__row
+                %th.govuk-table__header{ scope: "row" }
+                  = t(".plea")
+                %td.govuk-table__cell
+                  TODO: (ACD-966) Populate this when we know where to get the data from
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
               = t(".maat_number")
             %td.govuk-table__cell
-              = @subject.maat_reference
+              = @application.maat_reference
 
   = link_to t(".view_summary"),
             court_application_path(@application.application_id),
             class: "govuk-button govuk-button--secondary"
-  %turbo-frame#offence-table{
-    src: offences_defendant_path(@application.defendant.id, urn: @application.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
-  }
-    = render partial: 'defendants/offences',
-             locals: { defendant: @application.defendant, offence_history_collection: @offence_history_collection, offence_ids: @subject.offence_summary.map(&:id) }
-    - if @offence_history_collection.nil?
-      .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
-        = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'
+
+  - if @application.appeal?
+    %turbo-frame#offence-table{
+      src: offences_defendant_path(@application.defendant.id, urn: @application.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
+    }
+      = render partial: 'defendants/offences',
+               locals: { defendant: @application.defendant, offence_history_collection: @offence_history_collection, offence_ids: @subject.offence_summary.map(&:id) }
+      - if @offence_history_collection.nil?
+        .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
+          = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'
 
   .govuk-grid-row
     .govuk-grid-column-two-thirds
       - unless FeatureFlag.enabled?(:no_linking)
-        - if @subject.maat_linked?
+        - if @application.maat_linked?
           - if FeatureFlag.enabled?(:appeals_v2)
             %h4.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
               = t('defendants.unlink.detail')

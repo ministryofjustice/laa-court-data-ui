@@ -3,11 +3,11 @@ en:
   hearing_days:
     show:
       appeal: Appeal
+      appellant_advocates: Appellant advocates
+      appellants: Appellants
       attendees: Attendees
       breadcrumb: Hearing day %{day}
       court: Court
-      defence_advocates: Appellant advocates
-      defendants: Appellants
       details: Details
       event:
         event: Event
@@ -19,6 +19,7 @@ en:
       next: Next
       pagination_navigation: Pagination navigation
       previous: Previous
-      prosecution_advocates: Respondent advocates
+      respondent_advocates: Respondent advocates
+      respondents: Respondents
       result: Result
       time_listed: Time listed
