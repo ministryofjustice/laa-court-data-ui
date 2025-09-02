@@ -1,0 +1,39 @@
+= govuk_page_heading(prosecution_case.prosecution_case_reference, caption_text: t('generic.case'))
+
+.govuk-grid-row
+  .govuk-grid-column-full
+    %nav.moj-sub-navigation
+      %ul.moj-sub-navigation__list
+        %li.moj-sub-navigation__item
+          = link_to t('prosecution_case.sub_navigation.overview'),
+                    prosecution_case_path(prosecution_case.prosecution_case_reference),
+                    class: 'moj-sub-navigation__link'
+        %li.moj-sub-navigation__item
+          %a.moj-sub-navigation__link{ "aria-current": "page" }
+            = t('prosecution_case.sub_navigation.related_court_applications')
+
+    - if court_applications.none?
+      .govuk-body
+        = t('prosecution_case.related_court_applications.no_related_applications')
+    - else
+      %table.govuk-table
+        %caption.govuk-table__caption.govuk-visually-hidden
+          = t('prosecution_case.related_court_applications.caption')
+        %thead.govuk-table__head
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: 'col', class: 'govuk-!-width-one-third' }= t('prosecution_case.related_court_applications.application_type')
+            %th.govuk-table__header{ scope: 'col' }= t('prosecution_case.related_court_applications.appellant')
+            %th.govuk-table__header{ scope: 'col' }= t('prosecution_case.related_court_applications.maat_id')
+            %th.govuk-table__header{ scope: 'col' }= t('prosecution_case.related_court_applications.result')
+        %tbody.govuk-table__body
+          - court_applications.each do |court_application|
+            %tr.govuk-table__row
+              %td.govuk-table__cell
+                = link_to court_application.application_title, court_application_path(court_application.application_id), class: 'govuk-link'
+              %td.govuk-table__cell
+                = court_application.subject_summary.name
+              %td.govuk-table__cell
+                = court_application.linked_maat_id.presence || t('prosecution_case.related_court_applications.not_linked')
+              %td.govuk-table__cell
+                = court_application.result_string
+      = render 'shared/pagination', pagy:, item_name: t('prosecution_case.related_court_applications.item')
