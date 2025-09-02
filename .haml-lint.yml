@@ -5,3 +5,5 @@ linters:
       - app/views/layouts/_moj_logo.html.haml
       - app/views/layouts/_footer_crown.html.haml
       - app/views/court_applications/_alert.html.haml
+  ViewLength:
+    max: 200
