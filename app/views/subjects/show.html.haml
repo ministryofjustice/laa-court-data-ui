@@ -70,11 +70,11 @@
             %td.govuk-table__cell
               = @application.maat_reference
             %td.govuk-table__cell.govuk-table__cell--numeric
-                - unless FeatureFlag.enabled?(:no_linking)
-                  - if @application.maat_linked?
-                    = link_to t(".unlink"), unlink_form_court_application_subject_path(@application.application_id), class: 'govuk-link'
-                  - else
-                    = link_to t(".link"), link_form_court_application_subject_path(@application.application_id), class: 'govuk-link'
+              - unless FeatureFlag.enabled?(:no_linking)
+                - if @application.maat_linked?
+                  = link_to t(".unlink"), unlink_form_court_application_subject_path(@application.application_id), class: 'govuk-link'
+                - else
+                  = link_to t(".link"), link_form_court_application_subject_path(@application.application_id), class: 'govuk-link'
 
   = link_to t(".view.#{@application.application_category}"),
             court_application_path(@application.application_id),
