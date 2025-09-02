@@ -12,5 +12,9 @@ module Cda
     def defence_counsels_on(date)
       defence_counsels.select { it.attended_on?(date) }
     end
+
+    def location
+      court_centre.name
+    end
   end
 end

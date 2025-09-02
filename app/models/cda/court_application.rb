@@ -23,6 +23,10 @@ module Cda
       Cda::CourtApplicationResultStringService.call(self)
     end
 
+    def location
+      hearing_summary.map(&:location).uniq.to_sentence
+    end
+
     def defendant
       @defendant ||= prosecution_case.defendant_summaries.find do |defendant|
         defendant.application_summaries.any? { it.id == application_id }
