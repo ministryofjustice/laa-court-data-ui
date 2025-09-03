@@ -22,7 +22,7 @@ module Cda
     end
 
     def result_string
-      Cda::CourtApplicationResultStringService.call(self)
+      Cda::CourtApplicationResultStringService.call(self, proceedings_must_be_concluded: appeal?)
     end
 
     def defendant

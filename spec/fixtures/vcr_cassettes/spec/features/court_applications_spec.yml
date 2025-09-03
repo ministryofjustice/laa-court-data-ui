@@ -691,7 +691,7 @@ http_interactions:
       - '3253'
     body:
       encoding: UTF-8
-      string: '[{"application_id":"a7b3db3d-3a3f-4781-88b4-858bf568ca76","short_id":"A250CEEA54G2","application_reference":"MyString","application_status":"LISTED","application_title":"Appeal
+      string: '[{"application_category":"appeal","application_id":"a7b3db3d-3a3f-4781-88b4-858bf568ca76","short_id":"A250CEEA54G2","application_reference":"MyString","application_status":"LISTED","application_title":"Appeal
         against a conviction by a Magistrates'' Court to the Crown Court","application_type":"String","application_result":"APA","received_date":"2025-06-18","case_summary":[{"case_status":"ACTIVE","prosecution_case_id":"9ff16858-3aef-438e-b7fc-2ca35eb97d8e","prosecution_case_reference":"ONSWLFMHCQ"}],"hearing_summary":[{"id":"7d5d890e-1f73-4bae-9aa9-09379737781b","hearing_type":"Mention
         - Defendant to Attend (MDA)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"1868f485-d814-36d1-ad92-6ed6330693bc","name":"Cambridge
         Crown Court","welsh_name":"Llys Y Goron Caergrawnt","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C35CM","oucode_l2_code":"35","code":"C35CM00","address":{"address_1":"83
