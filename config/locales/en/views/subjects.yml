@@ -19,7 +19,10 @@ en:
       respondent: Respondent
       respondent_arrest_summons_number: RespondentASN
       title: Appellant details
-      view_summary: View appeal application summary
+      view:
+        appeal: View appeal
+        breach: View breach
+        view: View POCA
     unlink:
       failure: Unable to unlink the defendant
       success: You have successfully unlinked from the court data source

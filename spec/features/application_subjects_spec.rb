@@ -39,7 +39,7 @@ RSpec.feature 'Court Application subjects', :vcr do
     )
     expect(page).to be_accessible
 
-    click_on "View appeal application summary"
+    click_on "View appeal"
 
     expect(page).to have_current_path court_application_path(found_court_application_id)
   end

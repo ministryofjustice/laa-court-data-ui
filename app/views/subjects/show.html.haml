@@ -76,7 +76,7 @@
             %td.govuk-table__cell
               = @application.maat_reference
 
-  = link_to t(".view_summary"),
+  = link_to t(".view.#{@application.application_category}"),
             court_application_path(@application.application_id),
             class: "govuk-button govuk-button--secondary"
 
