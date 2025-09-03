@@ -68,21 +68,21 @@
       .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
         = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'
 
-    .govuk-grid-row
-      .govuk-grid-column-two-thirds
-        - unless FeatureFlag.enabled?(:no_linking)
-          - if @subject.maat_linked?
-            - if FeatureFlag.enabled?(:appeals_v2)
-              %h4.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
-                = t('defendants.unlink.detail')
-              = render 'defendants/unlink_warning'
-              = render 'defendants/unlinking_fields', { f: }
-            - else
-              = govuk_detail(t('defendants.unlink.detail'), open: @form_model.errors.present?) do
-                = render 'defendants/unlinking_fields', { f: }
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      - unless FeatureFlag.enabled?(:no_linking)
+        - if @subject.maat_linked?
+          - if FeatureFlag.enabled?(:appeals_v2)
+            %h4.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
+              = t('defendants.unlink.detail')
+            = render 'defendants/unlink_warning'
+            = render 'defendants/unlinking_fields', { f: }
           - else
-            = f.govuk_text_field :maat_reference,
-                                 label: { text: t('laa_reference.link.form.maat_reference.label') },
-                                 hint: { text: t('laa_reference.link.form.maat_reference.hint') }
+            = govuk_detail(t('defendants.unlink.detail'), open: @form_model.errors.present?) do
+              = render 'defendants/unlinking_fields', { f: }
+        - else
+          = f.govuk_text_field :maat_reference,
+                                label: { text: t('laa_reference.link.form.maat_reference.label') },
+                                hint: { text: t('laa_reference.link.form.maat_reference.hint') }
 
-            = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }
+          = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }
