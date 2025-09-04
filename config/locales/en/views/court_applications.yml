@@ -1,6 +1,10 @@
 ---
 en:
   court_applications:
+    jurisdictions:
+      crown: Crown Court
+      magistrates: Magistrates' Court
+      not_available: Not available
     results:
       not_available: Not available
     show:

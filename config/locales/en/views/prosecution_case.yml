@@ -5,8 +5,8 @@ en:
     related_court_applications:
       application_type: Application type
       caption: Related court applications
+      first_hearing_jurisdiction: First hearing court type
       item: result
-      location: Location/Court
       maat_id: MAAT ID
       no_related_applications: No related applications
       not_linked: Not linked

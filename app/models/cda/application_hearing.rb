@@ -13,8 +13,12 @@ module Cda
       defence_counsels.select { it.attended_on?(date) }
     end
 
-    def location
-      court_centre.name
+    def jurisdiction
+      unless jurisdiction_type.in?(%w[MAGISTRATES CROWN])
+        return I18n.t("court_applications.jurisdictions.not_available")
+      end
+
+      I18n.t("court_applications.jurisdictions.#{jurisdiction_type.downcase}")
     end
   end
 end
