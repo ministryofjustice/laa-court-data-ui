@@ -19,25 +19,13 @@
       = hidden_field_tag(:urn, params[:urn])
 
       - unless FeatureFlag.enabled?(:no_linking)
-        = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do
-          = f.govuk_collection_select :reason_code,
-                                      unlink_reasons,
-                                      :code,
-                                      :description,
-                                      options: { include_blank: t('generic.form.select.blank_option') },
-                                      label: { text: t('defendants.form.reason_code.label') }
+        - if FeatureFlag.enabled?(:appeals_v2)
+          %h4.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
+            = t('defendants.unlink.detail')
+          = render 'defendants/unlink_warning'
+          = render 'defendants/unlinking_fields', { f: }
+        - else
+          = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do
+            = render 'defendants/unlinking_fields', { f: }
 
-          = f.govuk_text_area :other_reason_text,
-                              label: { text: t('defendants.form.other_reason_text.label') },
-                              hint: { text: t('defendants.form.other_reason_text.hint') },
-                              rows: 5,
-                              max_chars: 500
-
-          = f.govuk_submit(t('defendants.form.submit'), data: { disable_with: t('defendants.form.unlinking') })
-
-        .govuk-warning-text
-          %span.govuk-warning-text__icon{ "aria-hidden" => "true" } !
-          %strong.govuk-warning-text__text
-            %span.govuk-warning-text__assistive
-              = t('generic.warning')
-            = t('defendants.unlink.warning')
+          = render 'defendants/unlink_warning'
