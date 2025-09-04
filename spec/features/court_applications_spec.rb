@@ -3,6 +3,7 @@ RSpec.feature 'Court Applications', :vcr do
   let(:missing_court_application_id) { 'not-found-uuid' }
   let(:erroring_court_application_id) { 'erroring-court-application-id' }
   let(:found_court_application_id) { 'e174af7f-75da-428b-9875-c823eb182a23' }
+  let(:breach_court_application_id) { '501bac3e-47c3-4066-ab34-4c960447d493' }
   let(:linked_court_application_id) { 'af7fc823e-428b-75da-9875-b182a23d174' }
   let(:id_with_hearings) { 'd174af7f-75da-428b-9875-c823eb182a23' }
   let(:prosecution_case_urn_from_vcr) { 'EPAYAQECKM' }
@@ -59,6 +60,28 @@ RSpec.feature 'Court Applications', :vcr do
 
       click_on "Mauricio Rath"
       expect(page).to have_current_path court_application_subject_path(found_court_application_id)
+    end
+
+    scenario 'the page is accessible', :js do
+      expect(page).to be_accessible
+    end
+  end
+
+  context 'when I view a breach application successfully' do
+    before do
+      sign_in user
+      visit court_application_path(breach_court_application_id)
+    end
+
+    scenario 'I view the application details' do
+      expect(page).to have_content("Breach")
+      expect(page).to have_content(
+        "Type of application: Failing to comply with the requirements of a youth rehabilitation order " \
+        "with intensive supervision and surveillance"
+      )
+      expect(page).to have_content(
+        "Information on the 'Application without offence' screen relates to the person as a respondent"
+      )
     end
 
     scenario 'the page is accessible', :js do

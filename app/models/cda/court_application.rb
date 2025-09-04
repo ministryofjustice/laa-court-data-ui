@@ -40,7 +40,9 @@ module Cda
     end
 
     def maat_reference
-      linked_maat_id unless linked_maat_id&.starts_with?(DUMMY_MAAT_PREFIX)
+      return if !linked_maat_id || linked_maat_id.starts_with?(DUMMY_MAAT_PREFIX)
+
+      linked_maat_id
     end
 
     def maat_linked?
