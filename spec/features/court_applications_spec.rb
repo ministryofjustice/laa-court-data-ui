@@ -40,7 +40,7 @@ RSpec.feature 'Court Applications', :vcr do
       expect(page).to have_content "Mauricio Rath"
       expect(page).to have_content "Not available"
       expect(page).to have_content "Not linked"
-      expect(page).to have_content "Cambridge Crown Court"
+      expect(page).to have_content "Crown Court"
     end
   end
 

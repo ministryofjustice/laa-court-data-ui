@@ -23,8 +23,8 @@ module Cda
       Cda::CourtApplicationResultStringService.call(self)
     end
 
-    def location
-      hearing_summary.map(&:location).uniq.to_sentence
+    def first_hearing
+      hearing_days_sorted_by("asc").first&.hearing
     end
 
     def defendant
