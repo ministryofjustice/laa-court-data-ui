@@ -6,11 +6,20 @@ RSpec.shared_context 'with single hearing and hearing day' do
     build(:hearing_summary, id: 'hearing-uuid-1',
                             hearing_days: [build(:hearing_day, sitting_day: '2021-01-20T10:00:00.000Z')])
   end
+
+  let(:fake_hearings) do
+    [build(:hearing_summary, id: 'hearing-uuid-1', day: '2021-01-20T10:00:00.000Z'.to_datetime)]
+  end
+
+  before do
+    allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
+      fake_hearings
+    )
+  end
 end
 
 RSpec.shared_context 'with multiple hearings and hearing days' do
   let(:hearings) { [hearing1, hearing2, hearing3] }
-
   let(:hearing1) do
     build(:hearing_summary, id: 'hearing-uuid-1', hearing_days: hearing1_days)
   end
@@ -24,7 +33,7 @@ RSpec.shared_context 'with multiple hearings and hearing days' do
   end
 
   let(:hearing1_days) { ['2021-01-19T10:45:00.000Z', '2021-01-20T10:45:00.000Z'] }
-  let(:hearing2_days) { ['2021-01-20T10:00:00.000Z'] }
+  let(:hearing2_days) { ['2021-01-21T10:00:00.000Z'] }
   let(:hearing3_days) { ['2021-01-18T11:00:00.000Z'] }
 
   let(:fake_hearings) do
@@ -35,10 +44,20 @@ RSpec.shared_context 'with multiple hearings and hearing days' do
       build(:hearing_summary, id: 'hearing-uuid-2', day: hearing2_days.first.to_datetime)
     ]
   end
+
+  before do
+    allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
+      fake_hearings
+    )
+  end
 end
 
 RSpec.describe HearingPaginator, type: :helper do
-  subject(:instance) { described_class.new(prosecution_case_decorator) }
+  subject(:instance) do
+    described_class.new(prosecution_case_decorator,
+                        hearing_id: 'hearing-uuid-1',
+                        hearing_day: Date.new(2021, 1, 20))
+  end
 
   let(:prosecution_case_decorator) { Cda::CaseSummaryDecorator.new(prosecution_case, view_object) }
 
@@ -59,22 +78,16 @@ RSpec.describe HearingPaginator, type: :helper do
   end
 
   describe described_class::PageItem do
-    it { is_expected.to respond_to(:id, :hearing_date) }
+    it { is_expected.to respond_to(:id, :day) }
   end
 
   describe '#current_page' do
     subject(:current_page) { instance.current_page }
 
-    context 'when current page is set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+    include_context 'with multiple hearings and hearing days'
 
-      it { is_expected.to be 3 }
-    end
-
-    context 'when current page is not set' do
-      let(:instance) { described_class.new(prosecution_case_decorator) }
-
-      it { is_expected.to be 0 }
+    it 'is inferred from the hearing day' do
+      expect(current_page).to eq 2
     end
   end
 
@@ -85,16 +98,10 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with multiple hearings and hearing days'
 
       let(:expected_result) do
-        [described_class::PageItem.new('hearing-uuid-3', '2021-01-18T11:00:00.000Z'.to_datetime),
-         described_class::PageItem.new('hearing-uuid-1', '2021-01-19T10:45:00.000Z'.to_datetime),
-         described_class::PageItem.new('hearing-uuid-1', '2021-01-20T10:45:00.000Z'.to_datetime),
-         described_class::PageItem.new('hearing-uuid-2', '2021-01-20T10:00:00.000Z'.to_datetime)]
-      end
-
-      before do
-        allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
-          fake_hearings
-        )
+        [described_class::PageItem.new('hearing-uuid-3', '2021-01-18T11:00:00.000Z'.to_date),
+         described_class::PageItem.new('hearing-uuid-1', '2021-01-19T10:45:00.000Z'.to_date),
+         described_class::PageItem.new('hearing-uuid-1', '2021-01-20T10:45:00.000Z'.to_date),
+         described_class::PageItem.new('hearing-uuid-2', '2021-01-21T10:00:00.000Z'.to_date)]
       end
 
       it { is_expected.to be_an(Array).and all(be_an(described_class::PageItem)) }
@@ -104,9 +111,9 @@ RSpec.describe HearingPaginator, type: :helper do
         expect(ids).to match_array(%w[hearing-uuid-1 hearing-uuid-1 hearing-uuid-2 hearing-uuid-3])
       end
 
-      it 'each item has a hearing datetime' do
-        dates = items.map(&:hearing_date)
-        expect(dates).to all(be_a(DateTime))
+      it 'each item has a hearing date' do
+        dates = items.map(&:day)
+        expect(dates).to all(be_a(Date))
       end
 
       it 'array of items is sorted by hearing and then datetime' do
@@ -120,25 +127,8 @@ RSpec.describe HearingPaginator, type: :helper do
 
     include_context 'with multiple hearings and hearing days'
 
-    before do
-      allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
-        fake_hearings
-      )
-    end
-
-    context 'when current_page set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
-
-      it { is_expected.to be_instance_of(described_class::PageItem) }
-      it { is_expected.to have_attributes(id: hearing2.id) }
-    end
-
-    context 'when current_page not set' do
-      let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
-
-      it { is_expected.to be_instance_of(described_class::PageItem) }
-      it { is_expected.to have_attributes(id: hearing3.id) }
-    end
+    it { is_expected.to be_instance_of(described_class::PageItem) }
+    it { is_expected.to have_attributes(id: hearing1.id) }
   end
 
   describe '#first_page' do
@@ -154,21 +144,13 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with single hearing and hearing day'
 
       context 'when current page is first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
+        let(:instance) do
+          described_class.new(prosecution_case_decorator,
+                              hearing_id: 'hearing-uuid-1',
+                              hearing_day: Date.new(2021, 1, 20))
+        end
 
         it { is_expected.to be_truthy }
-      end
-
-      context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
-
-        it { is_expected.to be_truthy }
-      end
-
-      context 'when current page is not first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 1) }
-
-        it { is_expected.to be_falsey }
       end
     end
 
@@ -176,19 +158,21 @@ RSpec.describe HearingPaginator, type: :helper do
       include_context 'with multiple hearings and hearing days'
 
       context 'when current page is first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
-
-        it { is_expected.to be_truthy }
-      end
-
-      context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
+        let(:instance) do
+          described_class.new(prosecution_case_decorator,
+                              hearing_id: 'hearing-uuid-3',
+                              hearing_day: Date.new(2021, 1, 18))
+        end
 
         it { is_expected.to be_truthy }
       end
 
       context 'when current page is last page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+        let(:instance) do
+          described_class.new(prosecution_case_decorator,
+                              hearing_id: 'hearing-uuid-2',
+                              hearing_day: Date.new(2021, 1, 21))
+        end
 
         it { is_expected.to be_falsey }
       end
@@ -213,12 +197,6 @@ RSpec.describe HearingPaginator, type: :helper do
     context 'with multiple hearings and hearing days' do
       include_context 'with multiple hearings and hearing days'
 
-      before do
-        allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
-          fake_hearings
-        )
-      end
-
       it { is_expected.to be(3) }
     end
   end
@@ -229,42 +207,28 @@ RSpec.describe HearingPaginator, type: :helper do
     context 'with single hearing and hearing day' do
       include_context 'with single hearing and hearing day'
 
-      context 'when current page is last page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
-
-        it { is_expected.to be_truthy }
-      end
-
-      context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
-
-        it { is_expected.to be_truthy }
-      end
+      it { is_expected.to be_truthy }
     end
 
     context 'with multiple hearings and hearing days' do
       include_context 'with multiple hearings and hearing days'
 
-      before do
-        allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
-          fake_hearings
-        )
-      end
-
       context 'when current page is first page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
-
-        it { is_expected.to be_falsey }
-      end
-
-      context 'when current page is nil' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: nil) }
+        let(:instance) do
+          described_class.new(prosecution_case_decorator,
+                              hearing_id: 'hearing-uuid-3',
+                              hearing_day: Date.new(2021, 1, 18))
+        end
 
         it { is_expected.to be_falsey }
       end
 
       context 'when current page is last page' do
-        let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
+        let(:instance) do
+          described_class.new(prosecution_case_decorator,
+                              hearing_id: 'hearing-uuid-2',
+                              hearing_day: Date.new(2021, 1, 21))
+        end
 
         it { is_expected.to be_truthy }
       end
@@ -276,24 +240,10 @@ RSpec.describe HearingPaginator, type: :helper do
 
     include_context 'with multiple hearings and hearing days'
 
-    let(:instance) { described_class.new(prosecution_case_decorator, page: 0) }
-
-    before do
-      allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
-        fake_hearings
-      )
-    end
-
-    it { is_expected.to have_link('Next') }
-
     it {
       is_expected.to have_link('Next',
-                               href: %r{/hearings/#{hearing1.id}\?
-                               column=date&direction=asc&page=1&urn=ACASEURN}x)
-    }
-
-    it {
-      is_expected.to have_link('Next',
+                               href: %r{/hearings/#{hearing2.id}\?
+                               day=2021-01-21&urn=ACASEURN}x,
                                class: 'moj-pagination__link')
     }
   end
@@ -303,24 +253,16 @@ RSpec.describe HearingPaginator, type: :helper do
 
     include_context 'with multiple hearings and hearing days'
 
-    let(:instance) { described_class.new(prosecution_case_decorator, page: 3) }
-
-    before do
-      allow(prosecution_case_decorator).to receive(:sorted_hearing_summaries_with_day).and_return(
-        fake_hearings
-      )
+    let(:instance) do
+      described_class.new(prosecution_case_decorator,
+                          hearing_id: 'hearing-uuid-2',
+                          hearing_day: Date.new(2021, 1, 21))
     end
-
-    it { is_expected.to have_link('Previous') }
 
     it {
       is_expected.to have_link('Previous',
                                href: %r{/hearings/#{hearing1.id}\?
-                               column=date&direction=asc&page=2&urn=ACASEURN}x)
-    }
-
-    it {
-      is_expected.to have_link('Previous',
+                               day=2021-01-20&urn=ACASEURN}x,
                                class: 'moj-pagination__link')
     }
   end

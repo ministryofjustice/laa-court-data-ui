@@ -9,6 +9,7 @@ FactoryBot.define do
     defendants { [] }
     defence_counsels { [] }
     estimated_duration { '20 DAYS' }
+    id { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
 
     trait :with_hearing_days do
       hearing_day1 = FactoryBot.build(:hearing_day)

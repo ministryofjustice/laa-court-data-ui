@@ -9,7 +9,7 @@ RSpec.describe 'hearings_v2', type: :request do
           :stub_case_search, :stub_internal_v2_hearing_results do
     before do
       sign_in user
-      get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
+      get "/hearings/#{hearing_id}?day=2019-10-23&urn=#{case_reference}"
     end
 
     it 'shows renders the hearing page' do
@@ -23,7 +23,7 @@ RSpec.describe 'hearings_v2', type: :request do
 
   context 'when not authenticated' do
     before do
-      get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
+      get "/hearings/#{hearing_id}?day=2019-10-23&urn=#{case_reference}"
     end
 
     it 'redirects to sign in page' do
@@ -35,7 +35,7 @@ RSpec.describe 'hearings_v2', type: :request do
           :stub_v2_hearing_events, :stub_case_search do
     before do
       sign_in user
-      get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
+      get "/hearings/#{hearing_id}?day=2019-10-23&urn=#{case_reference}"
     end
 
     it 'shows renders the hearing page' do
@@ -51,7 +51,7 @@ RSpec.describe 'hearings_v2', type: :request do
           :stub_internal_v2_hearing_error, :stub_case_search do
     before do
       sign_in user
-      get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
+      get "/hearings/#{hearing_id}?day=2019-10-23&urn=#{case_reference}"
     end
 
     it 'redirects back to prosecution case page' do
@@ -67,7 +67,7 @@ RSpec.describe 'hearings_v2', type: :request do
           :stub_case_search, :stub_internal_v2_hearing_results do
     before do
       sign_in user
-      get "/hearings/#{hearing_id}?page=0&urn=#{case_reference}"
+      get "/hearings/#{hearing_id}?day=2019-10-23&urn=#{case_reference}"
     end
 
     it 'redirects back to prosecution case page' do

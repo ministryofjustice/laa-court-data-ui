@@ -7,7 +7,7 @@
 .govuk-grid-row
   .govuk-grid-column-one-third
     = render partial: 'details', locals: { hearing_summary: @prosecution_case.hearing_summaries.find { |each| each.id == @hearing_id },
-                                           hearing_day: @hearing_day }
+                                           hearing_datetime: @hearing_datetime }
 
     - is_prosecution_case = @hearing.try(:hearing)&.prosecution_cases&.any?
     - if is_prosecution_case || !@hearing.loaded?
