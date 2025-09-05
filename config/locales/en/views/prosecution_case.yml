@@ -3,13 +3,14 @@ en:
   prosecution_case:
     breadcrumb: Case %{prosecution_case_reference}
     related_court_applications:
-      appellant: Appellant
       application_type: Application type
       caption: Related court applications
+      first_hearing_jurisdiction: First hearing court type
       item: result
       maat_id: MAAT ID
       no_related_applications: No related applications
       not_linked: Not linked
+      respondent: Appellant/Respondent
       result: Result
     show:
       failure: There was a problem getting the information you requested. If this problem persists, please contact the IT Helpdesk on 0800 9175148.
