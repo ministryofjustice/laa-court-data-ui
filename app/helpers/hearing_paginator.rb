@@ -19,7 +19,7 @@ class HearingPaginator
   end
 
   def current_page
-    @current_page ||= sorted_hearing_items.index(current_item)
+    @current_page ||= items.index(current_item)
   end
 
   def current_item

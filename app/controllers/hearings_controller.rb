@@ -16,6 +16,7 @@ class HearingsController < ApplicationController
     add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.strftime('%d/%m/%Y')}", ''
     @paginator = helpers.paginator(@prosecution_case, hearing_id:, hearing_day:)
     @hearing.current_sitting_day = hearing_day.strftime('%F')
+    @hearing_datetime = extract_hearing_datetime
   end
 
   def redirect_to_prosecution_case(**flash)
@@ -86,5 +87,11 @@ class HearingsController < ApplicationController
 
   def hearing_day
     @hearing_day ||= params[:day]&.to_date || helpers.earliest_day_for(@hearing)
+  end
+
+  def extract_hearing_datetime
+    @prosecution_case.sorted_hearing_summaries_with_day
+                     .find { it.day.to_date == hearing_day }
+                     .day
   end
 end

@@ -11,22 +11,22 @@ RSpec.feature 'Hearing pagination', :vcr, type: :feature do
     visit "prosecution_cases/#{case_urn}"
   end
 
-  def hearing_page_url(page_param)
-    %r{hearings/.*\?column=date&direction=asc&page=#{page_param}&urn=TEST12345}
+  def hearing_page_url(day)
+    %r{hearings/.*\?day=#{day}&urn=TEST12345}
   end
 
   context 'when viewing case details' do
     scenario 'user can see links to hearing pages' do
       within :table, 'Hearings' do
-        expect(page).to have_link('23/10/2019', href: hearing_page_url(0), class: 'govuk-link')
-        expect(page).to have_link('26/10/2019', href: hearing_page_url(1), class: 'govuk-link')
-        expect(page).to have_link('31/10/2019', href: hearing_page_url(4), class: 'govuk-link')
+        expect(page).to have_link('23/10/2019', href: hearing_page_url('2019-10-23'), class: 'govuk-link')
+        expect(page).to have_link('26/10/2019', href: hearing_page_url('2019-10-26'), class: 'govuk-link')
+        expect(page).to have_link('31/10/2019', href: hearing_page_url('2019-10-31'), class: 'govuk-link')
       end
     end
 
     scenario 'user can navigate to a paginated hearing page' do
       click_link_or_button('23/10/2019')
-      expect(page).to have_current_path(hearing_page_url(0), url: true)
+      expect(page).to have_current_path(hearing_page_url('2019-10-23'), url: true)
     end
   end
 

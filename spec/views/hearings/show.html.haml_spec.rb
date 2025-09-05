@@ -18,7 +18,7 @@ RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary,
     view.decorate(Cda::Hearing.find(hearing_id), Cda::HearingDecorator)
   end
   let(:paginator) do
-    HearingPaginator.new(decorated_prosecution_case, column: 'date', direction: 'asc', page: '0')
+    HearingPaginator.new(decorated_prosecution_case, hearing_id:, hearing_day: Date.new(2021, 1, 19))
   end
 
   before do

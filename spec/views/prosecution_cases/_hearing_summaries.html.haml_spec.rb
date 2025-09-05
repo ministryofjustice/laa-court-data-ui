@@ -74,9 +74,9 @@ RSpec.describe 'prosecution_cases/_hearing_summaries.html.haml', type: :view do
         expect(rendered).to have_link('17/01/2021', href: %r{hearings/.*\?.*urn=THECASEURN})
       end
 
-      it 'renders link to hearing with page' do
+      it 'renders link to hearing with day' do
         expect(rendered).to have_link('17/01/2021',
-                                      href: %r{hearings/.*\?.*page=\d})
+                                      href: %r{hearings/.*\?.*day=\d})
       end
 
       it 'sorts hearings by hearing day' do
