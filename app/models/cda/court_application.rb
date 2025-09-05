@@ -3,6 +3,8 @@ module Cda
     has_one :subject_summary, class_name: 'Cda::SubjectSummary'
     has_many :hearing_summary, class_name: 'Cda::ApplicationHearing'
 
+    DUMMY_MAAT_PREFIX = "Z".freeze
+
     def self.find_from_urn(urn)
       find(:all,
            from: "/api/internal/v2/prosecution_cases/#{safe_path(urn)}/" \
@@ -20,7 +22,7 @@ module Cda
     end
 
     def result_string
-      Cda::CourtApplicationResultStringService.call(self)
+      Cda::CourtApplicationResultStringService.call(self, proceedings_must_be_concluded: appeal?)
     end
 
     def first_hearing
@@ -31,6 +33,24 @@ module Cda
       @defendant ||= prosecution_case.defendant_summaries.find do |defendant|
         defendant.application_summaries.any? { it.id == application_id }
       end
+    end
+
+    def appeal?
+      application_category == "appeal"
+    end
+
+    def breach?
+      application_category == "breach"
+    end
+
+    def maat_reference
+      return if !linked_maat_id || linked_maat_id.starts_with?(DUMMY_MAAT_PREFIX)
+
+      linked_maat_id
+    end
+
+    def maat_linked?
+      maat_reference.present?
     end
 
     private

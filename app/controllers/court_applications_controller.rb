@@ -9,7 +9,7 @@ class CourtApplicationsController < ApplicationController
                  proc { |v| v.prosecution_case_path(v.controller.prosecution_case_reference) }
 
   def show
-    add_breadcrumb t('subjects.appeal')
+    add_breadcrumb t("subjects.#{@application.application_category}")
     @date_sort_direction = params.fetch(:date_sort_direction, DEFAULT_SORT_DIRECTION)
   end
 
