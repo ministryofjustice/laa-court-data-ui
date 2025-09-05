@@ -2,7 +2,7 @@
 
 RSpec.describe HearingHelper, type: :helper do
   describe '#paginator' do
-    subject(:call) { helper.paginator('prosecution_case', { page: '1' }) }
+    subject(:call) { helper.paginator('prosecution_case', { hearing_id: '123', hearing_day: '456' }) }
 
     let(:paginator_class) { class_double(HearingPaginator) }
     let(:paginator_instance) { instance_double(HearingPaginator) }
@@ -16,7 +16,8 @@ RSpec.describe HearingHelper, type: :helper do
 
     it {
       call
-      expect(paginator_class).to have_received(:new).with('prosecution_case', { page: '1' })
+      expect(paginator_class).to have_received(:new).with('prosecution_case',
+                                                          { hearing_id: '123', hearing_day: '456' })
     }
   end
 
