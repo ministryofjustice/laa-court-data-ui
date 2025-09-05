@@ -4,7 +4,7 @@ class HearingsController < ApplicationController
   before_action :load_and_authorize_search,
                 :set_prosecution_case,
                 :set_hearing,
-                :set_hearing_day,
+                :hearing_day,
                 :set_hearing_events
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
@@ -14,6 +14,8 @@ class HearingsController < ApplicationController
 
   def show
     add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.strftime('%d/%m/%Y')}", ''
+    @paginator = helpers.paginator(@prosecution_case, hearing_id:, hearing_day:)
+    @hearing.current_sitting_day = hearing_day.strftime('%F')
   end
 
   def redirect_to_prosecution_case(**flash)
@@ -36,7 +38,6 @@ class HearingsController < ApplicationController
   def set_hearing
     hearing = Cda::Hearing.find(hearing_id)
     @hearing = helpers.decorate(hearing, Cda::HearingDecorator)
-    @hearing.current_sitting_day = paginator.current_item.hearing_date.strftime('%F')
   rescue ActiveResource::ResourceNotFound
     # Return empty hearing so we can still display the page
     @hearing = helpers.decorate(Cda::Hearing.new, Cda::HearingDecorator)
@@ -45,14 +46,10 @@ class HearingsController < ApplicationController
     redirect_to_prosecution_case(alert: server_error_message(e))
   end
 
-  def set_hearing_day
-    hearing_day
-  end
-
   def set_hearing_events
     @hearing_events ||= Cda::HearingEventLog.find_from_hearing_and_date(
       hearing_id,
-      paginator.current_item.hearing_date.strftime('%F')
+      hearing_day.strftime('%F')
     )
   rescue ActiveResource::ResourceNotFound
     logger.info 'EVENTS_NOT_AVAILABLE'
@@ -65,14 +62,6 @@ class HearingsController < ApplicationController
   def log_and_capture_error(exception, log_messsage)
     logger.error log_messsage
     Sentry.capture_exception(exception)
-  end
-
-  def hearing_day
-    @hearing_day ||= paginator.current_item.hearing_date || helpers.earliest_day_for(@hearing)
-  end
-
-  def paginator
-    @paginator ||= helpers.paginator(@prosecution_case, column:, direction:, page:)
   end
 
   def set_prosecution_case
@@ -95,15 +84,7 @@ class HearingsController < ApplicationController
     @hearing_id ||= params[:id]
   end
 
-  def page
-    @page ||= params[:page]
-  end
-
-  def column
-    @column ||= params[:column]
-  end
-
-  def direction
-    @direction ||= params[:direction]
+  def hearing_day
+    @hearing_day ||= params[:day]&.to_date || helpers.earliest_day_for(@hearing)
   end
 end

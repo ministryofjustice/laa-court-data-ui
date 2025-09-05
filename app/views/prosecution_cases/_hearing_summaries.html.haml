@@ -12,12 +12,12 @@
       %th.govuk-table__header{ scope: 'col' }
         = hearings_sorter_link(case_summary, 'provider')
   %tbody.govuk-table__body
-    - case_summary.sorted_hearing_summaries_with_day.each_with_index do |hearing_summary, idx|
+    - case_summary.sorted_hearing_summaries_with_day.each do |hearing_summary|
       %tr.govuk-table__row
         %td.govuk-table__cell
           = link_to hearing_summary.day.strftime('%d/%m/%Y'), hearing_path(id: hearing_summary.id,
-                                                                           urn: case_summary.prosecution_case_reference, column: case_summary.hearings_sort_column,
-                                                                           direction: case_summary.hearings_sort_direction, page: idx), class: 'govuk-link'
+                                                                           urn: case_summary.prosecution_case_reference,
+                                                                           day: hearing_summary.day.to_date), class: 'govuk-link'
         %td.govuk-table__cell
           = hearing_summary.hearing_type
           - if hearing_summary.estimated_duration
