@@ -2,8 +2,12 @@
   = render '/feedback_on_appeals_to_crown_court'
 
   - if FeatureFlag.enabled?(:appeals_v2)
-    %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
-      = t(".appeal")
+    - if @application.appeal?
+      %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
+        = t("subjects.appeal")
+    - else
+      %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
+        = t("subjects.#{@application.application_category}")
   - else
     %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
       = t(".appeal")
@@ -48,15 +52,15 @@
     %h2.govuk-heading-l
       = t('.attendees')
     .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-      = t('.defendants')
+      = @application.appeal? ? t('.appellants') : t('.respondents')
     %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
       = @application.subject_summary.name
     .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-      = t('.defence_advocates')
+      = @application.appeal? ? t('.appellant_advocates') : t(".respondent_advocates")
     %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
       = @hearing_details.applicant_counsels_list
     .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-      = t('.prosecution_advocates')
+      = @application.appeal? ? t('.respondent_advocates') : t(".applicant_advocates")
     %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
       = @hearing_details.respondent_counsels_list
     .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
