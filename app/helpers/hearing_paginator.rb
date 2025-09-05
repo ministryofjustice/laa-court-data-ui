@@ -10,21 +10,20 @@ class HearingPaginator
   include ActionView::Helpers
   include Rails.application.routes.url_helpers
 
-  PageItem = Struct.new(:id, :hearing_date)
+  PageItem = Struct.new(:id, :day)
 
-  def initialize(prosecution_case, column: 'date', direction: 'asc', page: 0)
+  def initialize(prosecution_case, hearing_day:, hearing_id:)
     @prosecution_case = prosecution_case
-    @current_page = page.to_i
-    @column = column
-    @direction = direction
+    @hearing_day = hearing_day
+    @hearing_id = hearing_id
   end
 
   def current_page
-    @current_page ||= 0
+    @current_page ||= sorted_hearing_items.index(current_item)
   end
 
   def current_item
-    items[current_page || first_page]
+    @current_item ||= items.find { it.id == @hearing_id && it.day == @hearing_day }
   end
 
   def items
@@ -52,9 +51,7 @@ class HearingPaginator
     link_to(t('hearings.show.pagination.next_page'),
             hearing_path(id: next_item.id,
                          urn: @prosecution_case.prosecution_case_reference,
-                         page: next_page,
-                         column: @column,
-                         direction: @direction),
+                         day: next_item.day),
             class: 'moj-pagination__link')
   end
 
@@ -63,9 +60,7 @@ class HearingPaginator
     link_to(t('hearings.show.pagination.previous_page'),
             hearing_path(id: previous_item.id,
                          urn: @prosecution_case.prosecution_case_reference,
-                         page: previous_page,
-                         column: @column,
-                         direction: @direction),
+                         day: previous_item.day),
             class: 'moj-pagination__link')
   end
 
@@ -88,10 +83,8 @@ class HearingPaginator
   end
 
   def sorted_hearing_items
-    @prosecution_case.hearings_sort_column = @column
-    @prosecution_case.hearings_sort_direction = @direction
     @prosecution_case.sorted_hearing_summaries_with_day.map do |hearing|
-      PageItem.new(hearing.id, hearing.day)
+      PageItem.new(hearing.id, hearing.day.to_date)
     end
   end
 end
