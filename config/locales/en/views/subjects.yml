@@ -23,7 +23,7 @@ en:
       view:
         appeal: View appeal
         breach: View breach
-        view: View POCA
+        poca: View POCA
     unlink:
       failure: Unable to unlink the defendant
       success: You have successfully unlinked from the court data source
