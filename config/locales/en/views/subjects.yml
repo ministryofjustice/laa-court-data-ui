@@ -10,6 +10,7 @@ en:
     show:
       alert: Information on this screen relates to the person as a respondent, and may differ from the defendant or appeal screens.
       appeal: Appeal
+      appeal_title: Appellant details
       appellant: Appellant
       arrest_summons_number: ASN
       case_urn: Case URN
@@ -18,7 +19,7 @@ en:
       plea: Plea for the breach
       respondent: Respondent
       respondent_arrest_summons_number: Respondent ASN
-      title: Appellant details
+      title: Respondent details
       view:
         appeal: View appeal
         breach: View breach

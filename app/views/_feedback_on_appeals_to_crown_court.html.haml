@@ -1,10 +1,11 @@
-.govuk-notification-banner{ role: "region", aria: { labelledby: "govuk-notification-banner-title" }, data: { module: "govuk-notification-banner" } }
-  .govuk-notification-banner__header
-    %h2.govuk-notification-banner__title#govuk-notification-banner-title
-      Important
-  .govuk-notification-banner__content
-    %p.govuk-notification-banner__heading
-      Give
-      %a.govuk-notification-banner__link{ href: "https://www.smartsurvey.co.uk/s/appeals-to-crown-court/", target: "_blank", rel: "noreferrer noopener" }
-        feedback (opens in new tab)
-      on appeals to Crown Court.
+- if application.appeal?
+  .govuk-notification-banner{ role: "region", aria: { labelledby: "govuk-notification-banner-title" }, data: { module: "govuk-notification-banner" } }
+    .govuk-notification-banner__header
+      %h2.govuk-notification-banner__title#govuk-notification-banner-title
+        Important
+    .govuk-notification-banner__content
+      %p.govuk-notification-banner__heading
+        Give
+        %a.govuk-notification-banner__link{ href: "https://www.smartsurvey.co.uk/s/appeals-to-crown-court/", target: "_blank", rel: "noreferrer noopener" }
+          feedback (opens in new tab)
+        on appeals to Crown Court.

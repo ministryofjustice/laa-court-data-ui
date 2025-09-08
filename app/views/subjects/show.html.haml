@@ -1,5 +1,5 @@
 - content_for :pre_heading do
-  = render '/feedback_on_appeals_to_crown_court'
+  = render '/feedback_on_appeals_to_crown_court', application: @application
 
 - unless FeatureFlag.enabled?(:appeals_v2)
   - content_for :pre_heading, flush: false do
@@ -11,7 +11,7 @@
 - if FeatureFlag.enabled?(:appeals_v2)
   = govuk_page_heading(@subject.name,
                        caption_text: @application.appeal? ? t(".appellant") : t(".respondent"),
-                       title: t(".title"),
+                       title: @application.appeal? ? t(".appeal_title") : t(".title"),
                        tag_options: { class: "govuk-!-margin-bottom-5" })
   - if @application.appeal?
     %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
@@ -20,7 +20,7 @@
     %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
       = t("subjects.#{@application.application_category}")
 
-    = render "shared/alert" do
+    .govuk-body
       = t("subjects.show.alert")
 - else
   = govuk_page_heading(@subject.name, caption_text: t(".appellant"), title: t(".title"))

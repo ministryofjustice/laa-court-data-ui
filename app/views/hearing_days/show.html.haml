@@ -1,5 +1,5 @@
 - content_for :pre_heading do
-  = render '/feedback_on_appeals_to_crown_court'
+  = render '/feedback_on_appeals_to_crown_court', application: @application
 
   - if FeatureFlag.enabled?(:appeals_v2)
     - if @application.appeal?
