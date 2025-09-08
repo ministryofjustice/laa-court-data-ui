@@ -24,7 +24,7 @@ gem 'govuk-components'
 gem 'govuk_design_system_formbuilder', '~> 5.11'
 gem 'haml-rails', '~> 2.1.0'
 gem 'logstasher'
-gem 'oauth2', '~> 2.0.12'
+gem 'oauth2', '~> 2.0.14'
 gem 'pagy'
 gem 'pg', '>= 1.5.9', '< 2.0'
 gem 'prometheus_exporter', '2.3.0'
@@ -89,7 +89,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'net-imap', '~> 0.5.9'
+gem 'net-imap', '~> 0.5.10'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.5.0'
 
