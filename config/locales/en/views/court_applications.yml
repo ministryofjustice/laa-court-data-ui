@@ -12,6 +12,7 @@ en:
       appeal_alert: Information on the appellant screen relates to the person at appeal, and may differ from the defendant screen.
       appellant: Appellant
       defendant:
+        breach_date: Breach date
         date_of_birth: Date of birth
         maat_number: MAAT number
         name: Name

@@ -35,6 +35,8 @@
       %th.govuk-table__header{ scope: 'col' }= t('.defendant.name')
       %th.govuk-table__header{ scope: 'col' }= t('.defendant.date_of_birth')
       %th.govuk-table__header{ scope: 'col' }= t('.defendant.maat_number')
+      - if @application.breach?
+        %th.govuk-table__header{ scope: 'col' }= t('.defendant.breach_date')
   %tbody.govuk-table__body
     %tr.govuk-table__row
       %td.govuk-table__cell
@@ -43,6 +45,9 @@
         = l(@application.subject_summary.date_of_birth)
       %td.govuk-table__cell
         = @application.maat_reference.presence || t('search.result.defendant.unlinked')
+      - if @application.breach?
+        %td.govuk-table__cell
+          = l(@application.received_date&.to_date)
 
 %h2.govuk-heading-l
   = t('.hearings')
