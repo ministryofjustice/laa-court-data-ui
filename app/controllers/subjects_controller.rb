@@ -85,4 +85,8 @@ class SubjectsController < ApplicationController
     logger.warn "UNLINK FAILURE (params: #{@form_model.as_json}): #{message}"
     @form_model.errors.add(:reason_code, cda_error_string(exception) || t('subjects.unlink.failure'))
   end
+
+  def cda_error_string_context
+    @application&.application_category
+  end
 end
