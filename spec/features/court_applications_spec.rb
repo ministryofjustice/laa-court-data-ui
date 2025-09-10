@@ -1,5 +1,5 @@
 RSpec.feature 'Court Applications', :vcr do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, feature_flags: ['view_appeals']) }
   let(:missing_court_application_id) { 'not-found-uuid' }
   let(:erroring_court_application_id) { 'erroring-court-application-id' }
   let(:found_court_application_id) { 'e174af7f-75da-428b-9875-c823eb182a23' }
