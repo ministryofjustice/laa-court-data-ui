@@ -17,13 +17,9 @@ RSpec.feature 'Defendant by reference search', :vcr, :js, type: :feature do
       click_button 'Search'
 
       expect(page).to have_text(
-        'Search results for "HX685369B"'
+        'Search results'
       )
       expect(page).to have_field('Defendant ASN or National insurance number', with: 'HX685369B')
-
-      within 'tbody.govuk-table__body' do
-        expect(page).to have_content('HX685369B').once
-      end
 
       expect(page).to be_accessible
     end

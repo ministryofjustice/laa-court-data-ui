@@ -1,29 +1,21 @@
 - content_for :pre_heading do
   = render '/feedback_on_appeals_to_crown_court', application: @application
 
-- unless FeatureFlag.enabled?(:appeals_v2)
-  - content_for :pre_heading, flush: false do
-    %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
-      = t(".appeal")
-
 - content_for :custom_packs do
   = javascript_include_tag 'unlink', defer: true
-- if FeatureFlag.enabled?(:appeals_v2)
-  = govuk_page_heading(@subject.name,
-                       caption_text: @application.appeal? ? t(".appellant") : t(".respondent"),
-                       title: @application.appeal? ? t(".appeal_title") : t(".title"),
-                       tag_options: { class: "govuk-!-margin-bottom-5" })
-  - if @application.appeal?
-    %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
-      = t("subjects.appeal")
-  - else
-    %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
-      = t("subjects.#{@application.application_category}")
-
-    .govuk-body
-      = t("subjects.show.alert")
+= govuk_page_heading(@subject.name,
+                     caption_text: @application.appeal? ? t(".appellant") : t(".respondent"),
+                     title: @application.appeal? ? t(".appeal_title") : t(".title"),
+                     tag_options: { class: "govuk-!-margin-bottom-5" })
+- if @application.appeal?
+  %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
+    = t("subjects.appeal")
 - else
-  = govuk_page_heading(@subject.name, caption_text: t(".appellant"), title: t(".title"))
+  %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
+    = t("subjects.#{@application.application_category}")
+
+  .govuk-body
+    = t("subjects.show.alert")
 
 :ruby
   link_url = if @application.maat_linked?
@@ -46,12 +38,11 @@
               = t(".date_of_birth")
             %td.govuk-table__cell
               = l(@subject.date_of_birth)
-          - if FeatureFlag.enabled?(:appeals_v2)
-            %tr.govuk-table__row
-              %th.govuk-table__header{ scope: "row" }
-                = t(".case_urn")
-              %td.govuk-table__cell
-                = @application.prosecution_case_reference
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: "row" }
+              = t(".case_urn")
+            %td.govuk-table__cell
+              = @application.prosecution_case_reference
           - if @application.appeal?
             %tr.govuk-table__row
               %th.govuk-table__header{ scope: "row" }
@@ -94,14 +85,10 @@
     .govuk-grid-column-two-thirds
       - unless FeatureFlag.enabled?(:no_linking)
         - if @application.maat_linked?
-          - if FeatureFlag.enabled?(:appeals_v2)
-            %h4.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
-              = t('defendants.unlink.detail')
-            = render 'defendants/unlink_warning'
-            = render 'defendants/unlinking_fields', { f: }
-          - else
-            = govuk_detail(t('defendants.unlink.detail'), open: @form_model.errors.present?) do
-              = render 'defendants/unlinking_fields', { f: }
+          %h2.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
+            = t('defendants.unlink.detail')
+          = render 'defendants/unlink_warning'
+          = render 'defendants/unlinking_fields', { f: }
         - else
           = f.govuk_text_field :maat_reference,
                                label: { text: t('laa_reference.link.form.maat_reference.label') },

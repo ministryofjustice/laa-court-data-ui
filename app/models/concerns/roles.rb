@@ -12,10 +12,8 @@ module Roles
 
   included do |klass|
     klass.before_validation :reject_blank_role! if klass.respond_to?(:before_validation)
-    if klass.respond_to?(:validate)
-      klass.validate :validate_role_presence
-      klass.validate :validate_role_inclusion
-    end
+    klass.validate :validate_role_presence
+    klass.validate :validate_role_inclusion
   end
 
   private

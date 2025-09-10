@@ -242,4 +242,22 @@ RSpec.describe ApplicationHelper, type: :helper do
       it { is_expected.to eql 'app-environment-local' }
     end
   end
+
+  describe '#l' do
+    subject(:output) { helper.l(input) }
+
+    context "when a date is passed in" do
+      let(:input) { Date.new(2025, 3, 4) }
+
+      it "formats it" do
+        expect(output).to eq "04/03/2025"
+      end
+    end
+
+    context "when nil is passed in" do
+      let(:input) { nil }
+
+      it { is_expected.to be_nil }
+    end
+  end
 end

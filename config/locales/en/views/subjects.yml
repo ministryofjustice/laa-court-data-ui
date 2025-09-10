@@ -9,7 +9,6 @@ en:
     poca: POCA
     show:
       alert: Information on this screen relates to the person as a respondent, and may differ from the defendant or appeal screens.
-      appeal: Appeal
       appeal_title: Appellant details
       appellant: Appellant
       arrest_summons_number: ASN

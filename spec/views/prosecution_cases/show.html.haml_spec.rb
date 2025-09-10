@@ -2,13 +2,14 @@
 
 RSpec.describe 'prosecution_cases/show.html.haml', type: :view do
   subject(:render_partial) do
-    render locals: { prosecution_case: decorated_case_summary }
+    render locals: { prosecution_case: decorated_case_summary, current_user: user }
   end
 
   let(:decorated_case_summary) { view.decorate(case_summary, Cda::CaseSummaryDecorator) }
   let(:case_summary) do
     build(:prosecution_case, prosecution_case_reference: '')
   end
+  let(:user) { build(:user) }
 
   let(:case_summary_details) do
     {

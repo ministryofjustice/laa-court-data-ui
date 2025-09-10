@@ -1,16 +1,12 @@
 - content_for :pre_heading do
   = render '/feedback_on_appeals_to_crown_court', application: @application
 
-  - if FeatureFlag.enabled?(:appeals_v2)
-    - if @application.appeal?
-      %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
-        = t("subjects.appeal")
-    - else
-      %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
-        = t("subjects.#{@application.application_category}")
+  - if @application.appeal?
+    %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
+      = t("subjects.appeal")
   - else
-    %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
-      = t(".appeal")
+    %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
+      = t("subjects.#{@application.application_category}")
 
 = govuk_page_heading(@hearing_day.day_string, caption_text: t('generic.hearing_day'), tag_options: { class: 'govuk-!-margin-bottom-3' })
 

@@ -21,17 +21,13 @@ en:
       defendant:
         arrest_summons_number: ASN
         caption: Defendants
-        court_application_title: Related applications
         date_of_birth: Date of birth
         heading: Defendants
         maat_number: MAAT number
         name: Name
         national_insurance_number: NI number
-        no_court_application_title: No related application
         prosecution_case_reference: Case URN
         unlinked: Not linked
-      heading: Search results for "%{term}"
-      heading_with_dob: Search results for "%{term}, %{dob}"
       hearing:
         caption: Hearings
         heading: Hearings
