@@ -32,7 +32,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
     end
 
     it 'does not display the Remove link' do
-      expect(page).not_to have_govuk_detail_summary('Remove link to court data')
+      expect(page).to have_no_text('Remove link to court data')
     end
 
     it 'does not display the remove MAAT ID warning' do
@@ -54,7 +54,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
     end
 
     it 'displays the remove link detail' do
-      expect(page).to have_govuk_detail_summary('Remove link to court data')
+      expect(page).to have_text('Remove link to court data')
     end
 
     it 'displays the remove link warning' do
@@ -73,7 +73,6 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
 
       context 'with standard reason' do
         before do
-          click_govuk_detail_summary 'Remove link to court data'
           select 'Linked to wrong case ID (correct defendant)', from: 'Reason for unlinking'
           click_link_or_button 'Remove link to court data'
         end
@@ -102,7 +101,6 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
         end
 
         before do
-          click_govuk_detail_summary 'Remove link to court data'
           select 'Other', from: 'Reason for unlinking'
           fill_in 'Other reason', with: 'Case already concluded'
           click_link_or_button 'Remove link to court data'
@@ -123,7 +121,6 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
 
     context 'when user unlinks defendant with failure' do
       before do
-        click_govuk_detail_summary 'Remove link to court data'
         select 'Linked to wrong case ID (correct defendant)', from: 'Reason for unlinking'
         click_link_or_button 'Remove link to court data'
       end

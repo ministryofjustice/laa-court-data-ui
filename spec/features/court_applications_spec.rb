@@ -27,22 +27,15 @@ RSpec.feature 'Court Applications', :vcr do
     expect(page).to have_content "There was a problem getting the information you requeste"
   end
 
-  context 'when the FF is enabled' do
-    before do
-      allow(FeatureFlag).to receive(:enabled?).and_call_original
-      allow(FeatureFlag).to receive(:enabled?).with(:appeals_v2).and_return(true)
-    end
-
-    scenario 'There is a row on the related applications page' do
-      sign_in user
-      visit prosecution_case_path(prosecution_case_urn_from_vcr)
-      click_link 'Related court applications'
-      expect(page).to have_content "Appeal against a conviction"
-      expect(page).to have_content "Mauricio Rath"
-      expect(page).to have_content "Not available"
-      expect(page).to have_content "Not linked"
-      expect(page).to have_content "Crown Court"
-    end
+  scenario 'There is a row on the related applications page' do
+    sign_in user
+    visit prosecution_case_path(prosecution_case_urn_from_vcr)
+    click_link 'Related court applications'
+    expect(page).to have_content "Appeal against a conviction"
+    expect(page).to have_content "Mauricio Rath"
+    expect(page).to have_content "Not available"
+    expect(page).to have_content "Not linked"
+    expect(page).to have_content "Crown Court"
   end
 
   context 'when I view an application successfully' do

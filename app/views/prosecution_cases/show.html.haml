@@ -2,7 +2,7 @@
 
 .govuk-grid-row
   .govuk-grid-column-full
-    - if FeatureFlag.enabled?(:appeals_v2) && current_user.feature_flag_enabled?(:view_appeals)
+    - if current_user.feature_flag_enabled?(:view_appeals)
       %nav.moj-sub-navigation
         %ul.moj-sub-navigation__list
           %li.moj-sub-navigation__item

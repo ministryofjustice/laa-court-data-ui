@@ -7,7 +7,7 @@ class SearchFiltersController < ApplicationController
   def new; end
 
   def create
-    if @search_filter&.valid?
+    if @search_filter.valid?
       redirect_to new_search_path(params: { search: { filter: @search_filter.id } })
     else
       render :new

@@ -28,7 +28,7 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
       visit court_application_subject_path(linked_court_application_id)
       expect(page).to have_content "MAAT number 1234568"
       expect(page).to have_content "Remove link to court data"
-      find("summary", text: "Remove link to court data").click
+
       select "Initially processed on Libra", from: "Reason for unlinking"
       click_on "Remove link to court data"
       expect(page).to have_content "You have successfully unlinked from the court data source"
@@ -38,14 +38,14 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
 
     scenario 'I try to unlink without selecting a reason' do
       visit court_application_subject_path(linked_court_application_id)
-      find("summary", text: "Remove link to court data").click
+
       click_on "Remove link to court data"
       expect(page).to have_content "Choose a reason for unlinking"
     end
 
     scenario 'I try to unlink without explaining my choice of "other"' do
       visit court_application_subject_path(linked_court_application_id)
-      find("summary", text: "Remove link to court data").click
+
       select "Other", from: "Reason for unlinking"
       click_on "Remove link to court data"
       expect(page).to have_content "Enter the reason for unlinking"
@@ -62,7 +62,7 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
 
     scenario 'I try to unlink but there are problems upstream' do
       visit court_application_subject_path(linked_court_application_with_problems_id)
-      find("summary", text: "Remove link to court data").click
+
       select "Initially processed on Libra", from: "Reason for unlinking"
       click_on "Remove link to court data"
       expect(page).to have_content "Unable to unlink the defendant"

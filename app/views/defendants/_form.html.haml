@@ -19,13 +19,7 @@
       = hidden_field_tag(:urn, params[:urn])
 
       - unless FeatureFlag.enabled?(:no_linking)
-        - if FeatureFlag.enabled?(:appeals_v2)
-          %h4.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
-            = t('defendants.unlink.detail')
-          = render 'defendants/unlink_warning'
-          = render 'defendants/unlinking_fields', { f: }
-        - else
-          = govuk_detail(t('defendants.unlink.detail'), open: unlink_attempt.errors.present?) do
-            = render 'defendants/unlinking_fields', { f: }
-
-          = render 'defendants/unlink_warning'
+        %h2.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
+          = t('defendants.unlink.detail')
+        = render 'defendants/unlink_warning'
+        = render 'defendants/unlinking_fields', { f: }
