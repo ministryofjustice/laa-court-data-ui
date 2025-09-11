@@ -1,4 +1,5 @@
-- if application.appeal?
+- application ||= nil
+- if !application || application.appeal?
   .govuk-notification-banner{ role: "region", aria: { labelledby: "govuk-notification-banner-title" }, data: { module: "govuk-notification-banner" } }
     .govuk-notification-banner__header
       %h2.govuk-notification-banner__title#govuk-notification-banner-title
