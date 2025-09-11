@@ -36,9 +36,9 @@ class LaaReferencesController < ApplicationController
                 flash: { success: I18n.t('laa_reference.link.success') }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
-    render FeatureFlag.enabled?(:appeals_v2) ? 'link_form' : 'new'
+    render 'link_form'
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    render FeatureFlag.enabled?(:appeals_v2) ? 'link_form' : 'new'
+    render 'link_form'
   end
 
   def defendant_uuid

@@ -22,7 +22,7 @@
           = t(".maat_id")
     .govuk-grid-column-three-quarters
       .govuk-body
-        = @subject.maat_reference
+        = @application.maat_reference
   = form_with(model: @form_model, url: unlink_court_application_subject_path(@application.application_id), data: { turbo: false }) do |f|
     - content_for :error_summary do
       = f.govuk_error_summary

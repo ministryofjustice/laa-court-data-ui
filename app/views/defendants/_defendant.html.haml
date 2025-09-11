@@ -33,7 +33,7 @@
       %td.govuk-table__cell
         = defendant.maat_reference
       %td.govuk-table__cell.govuk-table__cell--numeric
-        - if FeatureFlag.enabled?(:appeals_v2) && !FeatureFlag.enabled?(:no_linking)
+        - unless FeatureFlag.enabled?(:no_linking)
           - if link_attempt.present?
             = link_to t("search.result.defendant.link"), link_form_laa_reference_path(params[:id], urn: params[:urn]), class: 'govuk-link'
           - else

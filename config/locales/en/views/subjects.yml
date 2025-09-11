@@ -16,7 +16,6 @@ en:
       arrest_summons_number: ASN
       case_urn: Case URN
       date_of_birth: Date of birth
-      defendant: Appellant
       link: Link MAAT ID
       maat_number: MAAT number
       plea: Plea for the breach
