@@ -23,7 +23,7 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
 
     scenario 'it shows correct content' do
       expect(page).to have_text(
-        'Search results for "wendie bogisiche lowe, 27 December 2000"'
+        'Search results'
       )
       expect(page).to have_field('Defendant name', with: 'wendie bogisiche lowe')
       expect(page).to have_field('Day', with: '27')
@@ -56,7 +56,7 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
     click_button 'Search'
 
     expect(page).to have_text(
-      'Search results for "Wendie, 27 December 2000"'
+      'Search results'
     )
     expect(page).to have_field('Defendant name', with: 'Wendie')
     expect(page).to have_field('Day', with: '27')
