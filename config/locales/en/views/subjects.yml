@@ -2,18 +2,28 @@
 en:
   subjects:
     appeal: Appeal
+    breach: Breach
     link:
       failure: Unable to link the defendant to that MAAT ID
       success: You have successfully linked to the court data source
+    poca: POCA
     show:
+      alert: Information on this screen relates to the person as a respondent, and may differ from the defendant or appeal screens.
       appeal: Appeal
+      appeal_title: Appellant details
+      appellant: Appellant
       arrest_summons_number: ASN
       case_urn: Case URN
       date_of_birth: Date of birth
-      defendant: Appellant
       maat_number: MAAT number
-      title: Appellant details
-      view_summary: View appeal application summary
+      plea: Plea for the breach
+      respondent: Respondent
+      respondent_arrest_summons_number: Respondent ASN
+      title: Respondent details
+      view:
+        appeal: View appeal
+        breach: View breach
+        poca: View POCA
     unlink:
       failure: Unable to unlink the defendant
       success: You have successfully unlinked from the court data source

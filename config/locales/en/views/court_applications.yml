@@ -1,18 +1,27 @@
 ---
 en:
   court_applications:
+    jurisdictions:
+      crown: Crown Court
+      magistrates: Magistrates' Court
+      not_available: Not available
     results:
       not_available: Not available
     show:
-      alert: Information on the appellant screen relates to the person at appeal, and may differ from the defendant screen.
+      alert: Information on the 'Application without offence' screen relates to the person as a respondent, and may differ from the defendant or appeal screens.
+      appeal_alert: Information on the appellant screen relates to the person at appeal, and may differ from the defendant screen.
+      appellant: Appellant
       defendant:
+        breach_date: Breach date
         date_of_birth: Date of birth
         maat_number: MAAT number
         name: Name
-      defendants: Appellant
       hearing:
         date: Date
         providers: Providers attending
         type: Hearing type
       hearings: Hearings
+      respondent: Respondent
       result: 'Result:'
+      type_of_appeal: 'Type of appeal:'
+      type_of_application: 'Type of application:'
