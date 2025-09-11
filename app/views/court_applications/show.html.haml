@@ -1,25 +1,42 @@
 - content_for :pre_heading do
-  = render '/feedback_on_appeals_to_crown_court'
+  = render '/feedback_on_appeals_to_crown_court', application: @application
 
-= govuk_page_heading(@application.prosecution_case_reference, caption_text: @application.application_title)
+= govuk_page_heading(@application.prosecution_case_reference,
+                     caption_text: t("subjects.#{@application.application_category}"),
+                     tag_options: { class: 'govuk-!-margin-bottom-4' })
 
-.govuk-body
-  %strong
-    = t('.result')
-  = @application.result_string
-%h2.govuk-heading-l
-  = t('.defendants')
-- if FeatureFlag.enabled?(:appeals_v2)
+- if @application.appeal?
+  .govuk-body
+    %strong
+      = t('.type_of_appeal')
+    = @application.application_title
+  .govuk-body
+    %strong
+      = t('.result')
+    = @application.result_string
+  %h2.govuk-heading-l
+    = t('.appellant')
+  .govuk-body
+    = t('court_applications.show.appeal_alert')
+- else
+  .govuk-body
+    %strong
+      = t('.type_of_application')
+    = @application.application_title
+  %h2.govuk-heading-l
+    = t('.respondent')
   .govuk-body
     = t('court_applications.show.alert')
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden
-    = t('.defendants')
+    = t('.respondent')
   %thead.govuk-table__head
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'col' }= t('.defendant.name')
       %th.govuk-table__header{ scope: 'col' }= t('.defendant.date_of_birth')
       %th.govuk-table__header{ scope: 'col' }= t('.defendant.maat_number')
+      - if @application.breach?
+        %th.govuk-table__header{ scope: 'col' }= t('.defendant.breach_date')
   %tbody.govuk-table__body
     %tr.govuk-table__row
       %td.govuk-table__cell
@@ -27,7 +44,10 @@
       %td.govuk-table__cell
         = l(@application.subject_summary.date_of_birth)
       %td.govuk-table__cell
-        = @application.subject_summary.maat_reference.presence || t('search.result.defendant.unlinked')
+        = @application.maat_reference.presence || t('search.result.defendant.unlinked')
+      - if @application.breach?
+        %td.govuk-table__cell
+          = l(@application.received_date&.to_date)
 
 %h2.govuk-heading-l
   = t('.hearings')

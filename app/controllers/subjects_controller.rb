@@ -5,7 +5,7 @@ class SubjectsController < ApplicationController
   before_action :add_extra_breadcrumbs
 
   def show
-    @form_model = @subject.maat_linked? ? load_unlink_attempt : load_link_attempt
+    @form_model = @application.maat_linked? ? load_unlink_attempt : load_link_attempt
 
     return unless params.fetch(:include_offence_history, 'false') == 'true'
 
@@ -53,7 +53,8 @@ class SubjectsController < ApplicationController
   def add_extra_breadcrumbs
     reference = @application.prosecution_case_reference
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
-    add_breadcrumb t('subjects.appeal'), court_application_path(@application.application_id)
+    add_breadcrumb t("subjects.#{@application.application_category}"),
+                   court_application_path(@application.application_id)
     add_breadcrumb @subject.name
   end
 
@@ -63,7 +64,7 @@ class SubjectsController < ApplicationController
       username: current_user.username,
       reason_code: params.dig(:unlink_attempt, :reason_code).to_i,
       other_reason_text: params.dig(:unlink_attempt, :other_reason_text),
-      maat_reference: @subject.maat_reference
+      maat_reference: @application.maat_reference
     )
   end
 
@@ -83,5 +84,9 @@ class SubjectsController < ApplicationController
   def handle_unlink_failure(message, exception = nil)
     logger.warn "UNLINK FAILURE (params: #{@form_model.as_json}): #{message}"
     @form_model.errors.add(:reason_code, cda_error_string(exception) || t('subjects.unlink.failure'))
+  end
+
+  def cda_error_string_context
+    @application&.application_category
   end
 end

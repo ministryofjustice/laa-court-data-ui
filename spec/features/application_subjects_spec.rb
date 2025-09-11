@@ -3,6 +3,7 @@ RSpec.feature 'Court Application subjects', :vcr do
   let(:missing_court_application_id) { 'not-found-uuid' }
   let(:erroring_court_application_id) { 'erroring-court-application-id' }
   let(:found_court_application_id) { 'd174af7f-75da-428b-9875-c823eb182a23' }
+  let(:breach_court_application_id) { '501bac3e-47c3-4066-ab34-4c960447d493' }
   let(:linked_court_application_id) { 'af7fc823e-428b-75da-9875-b182a23d174' }
   let(:maat_id_from_vcr) { '1234567' }
 
@@ -39,9 +40,25 @@ RSpec.feature 'Court Application subjects', :vcr do
     )
     expect(page).to be_accessible
 
-    click_on "View appeal application summary"
+    click_on "View appeal"
 
     expect(page).to have_current_path court_application_path(found_court_application_id)
+  end
+
+  scenario 'I view breach application subject details' do
+    sign_in user
+    visit court_application_subject_path(breach_court_application_id)
+    expect(page).to have_content(
+      ["Home", "Search", "Case EPAYAQECKM", "Breach", "Mauricio Rath"].join # Breadcrumb
+    ).and have_content(
+      "Mauricio Rath"
+    ).and have_content(
+      "Respondent ASN KQJXI10ZJXCI"
+    ).and have_content(
+      "Plea for the breach Not available"
+    ).and have_content(
+      "View breach"
+    )
   end
 
   scenario 'I view a linked application' do

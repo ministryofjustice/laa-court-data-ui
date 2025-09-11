@@ -1,6 +1,7 @@
 RSpec.feature 'Court Application Hearings', :vcr do
   let(:user) { create(:user) }
   let(:court_application_id) { 'd174af7f-75da-428b-9875-c823eb182a23' }
+  let(:breach_court_application_id) { '501bac3e-47c3-4066-ab34-4c960447d493' }
   let(:missing_court_application_id) { 'not-found-application-id' }
   let(:erroring_court_application_id) { 'erroring-application-id' }
   let(:first_hearing_id) { '0304d126-d773-41fd-af01-83e017cecd80' }
@@ -67,6 +68,39 @@ RSpec.feature 'Court Application Hearings', :vcr do
     expect(page).to have_content "Result\nNot available"
 
     expect(page).to be_accessible
+  end
+
+  scenario 'I view a breach hearing details page' do
+    sign_in user
+    visit court_application_hearing_hearing_day_path(breach_court_application_id, first_hearing_id,
+                                                     first_hearing_day)
+
+    # Details
+    expect(page).to have_content(
+      "Details\nHearing type\nMention - Defendant to Attend (MDA)"
+    ).and have_content(
+      "Court\nDerby Crown Court"
+    ).and have_content("Time listed\n16:19")
+
+    # Attendees
+    expect(page).to have_content(
+      "Attendees\nRespondents\nMauricio Rath"
+    ).and have_content(
+      "Respondent advocates\nGlenn Walsh Macgyver (Customer counsel)"
+    ).and have_content(
+      "Applicant advocates\nArden Macejkovic"
+    ).and have_content("Judges\nMyString MyString MyString")
+
+    # Events
+    expect(page).to have_content("11:20").and have_content("Est ut cum placeat.").and have_content(
+      "Praesentium animi hic dolore."
+    )
+
+    # Court applications
+    expect(page).to have_content("COURT APPLICATION DESCRIPTION").and have_content "April 2025"
+
+    # Result
+    expect(page).to have_content "Result\nNot available"
   end
 
   scenario 'I navigate between hearing pages' do
