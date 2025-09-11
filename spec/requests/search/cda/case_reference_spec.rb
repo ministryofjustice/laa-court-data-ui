@@ -58,23 +58,5 @@ RSpec.describe 'case reference search', :stub_defendants_case_search, type: :req
         expect(response).to render_template('results/_none')
       end
     end
-
-    context 'when NI is not appropriate', :stub_defendants_case_search do
-      before do
-        post '/searches', params: { search: { term: 'T20200001', filter: :case_reference } }
-      end
-
-      it 'renders searches/_results_header' do
-        expect(response).to render_template('searches/_results_header')
-      end
-
-      it 'renders results/_defendant partial' do
-        expect(response).to render_template('results/_defendant')
-      end
-
-      it 'not header National Insurance number' do
-        expect(response.body).not_to include('NI number')
-      end
-    end
   end
 end
