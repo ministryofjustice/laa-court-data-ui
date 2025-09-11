@@ -4,10 +4,6 @@ linters:
     exclude:
       - app/views/layouts/_moj_logo.html.haml
       - app/views/layouts/_footer_crown.html.haml
-<<<<<<< HEAD
       - app/views/shared/_alert.html.haml
-=======
-      - app/views/court_applications/_alert.html.haml
->>>>>>> f2b319fe (Fixes)
   ViewLength:
     max: 200

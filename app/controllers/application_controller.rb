@@ -91,10 +91,6 @@ class ApplicationController < ActionController::Base
   end
 
   def cda_error_string(exception)
-    Cda::ErrorCodeParser.call(exception.try(:response), cda_error_string_context)
-  end
-
-  def cda_error_string_context
-    nil
+    Cda::ErrorCodeParser.call(exception.try(:response))
   end
 end

@@ -12,7 +12,6 @@ en:
     reload: Reload page with full offence history
     title: Defendant details
     unlink:
-      detail: Remove link to court data
       success: You removed the link to MAAT ID %{maat_id}
       warning: Removing the link will stop hearing updates being received
     unlink_form:

@@ -5,8 +5,7 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
   let(:linked_court_application_id) { 'd174af7f-75da-428b-9875-c823eb182a23' }
 
   before do
-    allow(FeatureFlag).to receive(:enabled?).with(:maintenance_mode).and_return(false)
-    allow(FeatureFlag).to receive(:enabled?).with(:appeals_v2).and_return(true)
+    allow(FeatureFlag).to receive(:enabled?).and_call_original
     allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(false)
     create(:unlink_reason, code: 4, description: "Initially processed on Libra", text_required: false)
     create(:unlink_reason, code: 7, description: "Other", text_required: true)

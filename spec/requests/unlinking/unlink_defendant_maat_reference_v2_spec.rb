@@ -14,8 +14,8 @@ RSpec.shared_examples 'invalid unlink_attempt request for CD API' do
       .not_to have_been_made
   end
 
-  it 'renders edit' do
-    expect(response).to render_template(:edit)
+  it 'renders form' do
+    expect(response).to render_template('unlink_form')
   end
 
   it 'displays error summary with other_reason_text presence error' do
@@ -123,7 +123,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       }
 
       it 'renders edit_defendant_path' do
-        expect(response).to render_template('edit')
+        expect(response).to render_template('unlink_form')
       end
     end
 
@@ -208,7 +208,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       it { expect(response.body).to include('HMCTS Common Platform could not be reached.') }
 
       it 'renders edit_defendant_path' do
-        expect(response).to render_template('edit')
+        expect(response).to render_template('unlink_form')
       end
     end
 
@@ -223,7 +223,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       it { expect(response.body).to include 'Court Data Adaptor could not be reached.' }
 
       it 'renders edit_defendant_path' do
-        expect(response).to render_template('edit')
+        expect(response).to render_template('unlink_form')
       end
     end
 
