@@ -80,7 +80,7 @@ class ApplicationController < ActionController::Base
   end
 
   def detect_out_of_hours
-    return unless FeatureFlag.enabled?(:out_of_hours)
+    return unless FeatureFlag.enabled?(:time_based_access_restriction)
 
     render "errors/out_of_hours" unless Time.now.in_time_zone("London").hour.in?(HOURS_OF_OPERATION)
   end

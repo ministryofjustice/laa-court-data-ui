@@ -4,7 +4,7 @@ RSpec.describe 'Maintenance mode', type: :feature do
   context 'when enabled' do
     before do
       allow(FeatureFlag).to receive(:enabled?).and_call_original
-      allow(FeatureFlag).to receive(:enabled?).with(:out_of_hours).and_return(true)
+      allow(FeatureFlag).to receive(:enabled?).with(:time_based_access_restriction).and_return(true)
       travel_to specified_time
       visit authenticated_root_path
     end

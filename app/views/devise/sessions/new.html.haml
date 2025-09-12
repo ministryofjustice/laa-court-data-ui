@@ -1,6 +1,6 @@
 = govuk_page_heading(t('devise.sessions.user.form.page_title'))
 
-- if FeatureFlag.enabled?(:out_of_hours)
+- if FeatureFlag.enabled?(:time_based_access_restriction)
   - content_for :pre_heading do
     = render "shared/alert" do
       %h2.moj-alert__heading
