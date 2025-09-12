@@ -1,5 +1,12 @@
 = govuk_page_heading(t('devise.sessions.user.form.page_title'))
 
+- if FeatureFlag.enabled?(:out_of_hours)
+  - content_for :pre_heading do
+    = render "shared/alert" do
+      %h2.moj-alert__heading
+        = t('generic.out_of_hours.alert_title')
+      = t('generic.out_of_hours.alert_content')
+
 .govuk-grid-row
   .govuk-grid-column-two-thirds
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

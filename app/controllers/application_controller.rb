@@ -5,9 +5,11 @@ class ApplicationController < ActionController::Base
   include CookieConcern # Needs to be here for cookie_settings page
   include Pagy::Backend
 
+  HOURS_OF_OPERATION = 7...22
+
   default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
   protect_from_forgery prepend: true, with: :exception
-  before_action :detect_maintenance_mode
+  before_action :detect_out_of_hours, :detect_maintenance_mode
   before_action :authenticate_user!, :set_transaction_id, :set_default_cookies
   check_authorization
 
@@ -75,6 +77,12 @@ class ApplicationController < ActionController::Base
       scope&.set_extra('error_message', errors)
       Sentry.capture_exception(exception)
     end
+  end
+
+  def detect_out_of_hours
+    return unless FeatureFlag.enabled?(:out_of_hours)
+
+    render "errors/out_of_hours" unless Time.now.in_time_zone("London").hour.in?(HOURS_OF_OPERATION)
   end
 
   def detect_maintenance_mode
