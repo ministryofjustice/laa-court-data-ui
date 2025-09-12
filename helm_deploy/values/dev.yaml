@@ -16,3 +16,4 @@ featureFlags:
   perUserFeatureFlags: true
   maintenanceMode: false
   noLinking: false
+  timeBasedAccessRestriction: true
