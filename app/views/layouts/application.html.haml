@@ -19,7 +19,7 @@
     %link{ href: "/govuk-icon-192.png", rel: "apple-touch-icon", sizes: "192x192" }/
     %link{ href: "/govuk-icon-512.png", rel: "apple-touch-icon", sizes: "512x512" }/
     = tag.meta(property: 'og:image', content: '/govuk-opengraph-image.png')
-    = render partial: 'layouts/google_analytics', locals: { analytics_cookies_accepted: @analytics_cookis_accepted }
+    = render partial: 'layouts/google_analytics', locals: { analytics_cookies_accepted: @analytics_cookies_accepted }
   %body.govuk-template__body{ class: app_environment }
     :javascript
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
