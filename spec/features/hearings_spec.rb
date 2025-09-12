@@ -16,7 +16,7 @@ RSpec.feature 'Viewing the hearings page', :stub_case_search, :stub_v2_hearing_s
   end
 
   context 'when user views hearing page', :stub_v2_hearing_data do
-    let(:url) { "hearings/#{hearing_id}?column=date&direction=asc&page=0&urn=#{case_reference}" }
+    let(:url) { "hearings/#{hearing_id}?day=2019-10-23&urn=#{case_reference}" }
 
     context 'with multiple defence counsels', :stub_v2_hearing_events do
       it 'displays details section' do

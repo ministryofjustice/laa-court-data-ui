@@ -11,8 +11,8 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
     visit "prosecution_cases/#{case_urn}"
   end
 
-  def hearing_page_url(page_param, column, direction)
-    %r{hearings/.*\?column=#{column}&direction=#{direction}&page=#{page_param}&urn=TEST12345}
+  def hearing_page_url(day)
+    %r{hearings/.*\?day=#{day}&urn=TEST12345}
   end
 
   def prosecution_cases_page_url(column, direction)
@@ -29,11 +29,11 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
         expect(page).to have_link('Providers attending',
                                   href: prosecution_cases_page_url('provider', 'desc'), class: 'govuk-link')
         rows = find_all('tbody/tr')
-        expect(rows[0]).to have_link('23/10/2019', href: hearing_page_url(0, 'date', 'asc'),
+        expect(rows[0]).to have_link('23/10/2019', href: hearing_page_url('2019-10-23'),
                                                    class: 'govuk-link')
-        expect(rows[1]).to have_link('26/10/2019', href: hearing_page_url(1, 'date', 'asc'),
+        expect(rows[1]).to have_link('26/10/2019', href: hearing_page_url('2019-10-26'),
                                                    class: 'govuk-link')
-        expect(rows[2]).to have_link('27/10/2019', href: hearing_page_url(2, 'date', 'asc'),
+        expect(rows[2]).to have_link('27/10/2019', href: hearing_page_url('2019-10-27'),
                                                    class: 'govuk-link')
       end
     end
@@ -48,12 +48,9 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
         expect(page).to have_link('Providers attending',
                                   href: prosecution_cases_page_url('provider', 'asc'), class: 'govuk-link')
         rows = find_all('tbody/tr')
-        expect(rows[0]).to have_link('02/11/2019', href: hearing_page_url(0, 'date', 'desc'),
-                                                   class: 'govuk-link')
-        expect(rows[5]).to have_link('26/10/2019', href: hearing_page_url(5, 'date', 'desc'),
-                                                   class: 'govuk-link')
-        expect(rows[6]).to have_link('23/10/2019', href: hearing_page_url(6, 'date', 'desc'),
-                                                   class: 'govuk-link')
+        expect(rows[0]).to have_link('02/11/2019', class: 'govuk-link')
+        expect(rows[5]).to have_link('26/10/2019', class: 'govuk-link')
+        expect(rows[6]).to have_link('23/10/2019', class: 'govuk-link')
       end
     end
 
@@ -67,14 +64,11 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
         expect(page).to have_link('Providers attending',
                                   href: prosecution_cases_page_url('provider', 'asc'), class: 'govuk-link')
         rows = find_all('tbody/tr')
-        expect(rows[0]).to have_link('26/10/2019', href: hearing_page_url(0, 'type', 'desc'),
-                                                   class: 'govuk-link')
+        expect(rows[0]).to have_link('26/10/2019', class: 'govuk-link')
         expect(rows[0]).to have_text('Pre-Trial Review (PTR)')
-        expect(rows[5]).to have_link('01/11/2019', href: hearing_page_url(5, 'type', 'desc'),
-                                                   class: 'govuk-link')
+        expect(rows[5]).to have_link('01/11/2019', class: 'govuk-link')
         expect(rows[5]).to have_text('Application to Break Fixture (BFA)')
-        expect(rows[6]).to have_link('02/11/2019', href: hearing_page_url(6, 'type', 'desc'),
-                                                   class: 'govuk-link')
+        expect(rows[6]).to have_link('02/11/2019', class: 'govuk-link')
         expect(rows[6]).to have_text('Application to Break Fixture (BFA)')
       end
     end
@@ -91,14 +85,11 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
         expect(page).to have_link('Providers attending',
                                   href: prosecution_cases_page_url('provider', 'desc'), class: 'govuk-link')
         rows = find_all('tbody/tr')
-        expect(rows[0]).to have_link('31/10/2019', href: hearing_page_url(0, 'type', 'asc'),
-                                                   class: 'govuk-link')
+        expect(rows[0]).to have_link('31/10/2019', class: 'govuk-link')
         expect(rows[0]).to have_text('Application to Break Fixture (BFA)')
-        expect(rows[5]).to have_link('27/10/2019', href: hearing_page_url(5, 'type', 'asc'),
-                                                   class: 'govuk-link')
+        expect(rows[5]).to have_link('27/10/2019', class: 'govuk-link')
         expect(rows[5]).to have_text('Pre-Trial Review (PTR)')
-        expect(rows[6]).to have_link('28/10/2019', href: hearing_page_url(6, 'type', 'asc'),
-                                                   class: 'govuk-link')
+        expect(rows[6]).to have_link('28/10/2019', class: 'govuk-link')
         expect(rows[6]).to have_text('Pre-Trial Review (PTR)')
       end
     end
@@ -113,14 +104,11 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
         expect(page).to have_link("Providers attending \u25BC",
                                   href: prosecution_cases_page_url('provider', 'asc'), class: 'govuk-link')
         rows = find_all('tbody/tr')
-        expect(rows[2]).to have_link('28/10/2019', href: hearing_page_url(2, 'provider', 'desc'),
-                                                   class: 'govuk-link')
+        expect(rows[2]).to have_link('28/10/2019', class: 'govuk-link')
         expect(rows[2]).to have_text('Pre-Trial Review (PTR)')
-        expect(rows[3]).to have_link('31/10/2019', href: hearing_page_url(3, 'provider', 'desc'),
-                                                   class: 'govuk-link')
+        expect(rows[3]).to have_link('31/10/2019', class: 'govuk-link')
         expect(rows[3]).to have_text('Application to Break Fixture (BFA)')
-        expect(rows[6]).to have_link('23/10/2019', href: hearing_page_url(6, 'provider', 'desc'),
-                                                   class: 'govuk-link')
+        expect(rows[6]).to have_link('23/10/2019', class: 'govuk-link')
         expect(rows[6]).to have_text('Mention - Defendant to Attend (MDA)')
       end
     end
@@ -136,14 +124,11 @@ RSpec.feature 'Hearing sorting', :vcr, type: :feature do
         expect(page).to have_link("Providers attending \u25B2",
                                   href: prosecution_cases_page_url('provider', 'desc'), class: 'govuk-link')
         rows = find_all('tbody/tr')
-        expect(rows[0]).to have_link('23/10/2019', href: hearing_page_url(0, 'provider', 'asc'),
-                                                   class: 'govuk-link')
+        expect(rows[0]).to have_link('23/10/2019', class: 'govuk-link')
         expect(rows[0]).to have_text('Mention - Defendant to Attend (MDA)')
-        expect(rows[3]).to have_link('02/11/2019', href: hearing_page_url(3, 'provider', 'asc'),
-                                                   class: 'govuk-link')
+        expect(rows[3]).to have_link('02/11/2019', class: 'govuk-link')
         expect(rows[3]).to have_text('Application to Break Fixture (BFA)')
-        expect(rows[6]).to have_link('28/10/2019', href: hearing_page_url(6, 'provider', 'asc'),
-                                                   class: 'govuk-link')
+        expect(rows[6]).to have_link('28/10/2019', class: 'govuk-link')
         expect(rows[6]).to have_text('Pre-Trial Review (PTR)')
       end
     end
