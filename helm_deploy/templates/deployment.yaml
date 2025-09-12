@@ -79,6 +79,8 @@ spec:
               value: "{{ .Values.featureFlags.noLinking }}"
             - name: PER_USER_FEATURE_FLAGS
               value: "{{ .Values.featureFlags.perUserFeatureFlags }}"
+            - name: TIME_BASED_ACCESS_RESTRICTION
+              value: "{{ .Values.featureFlags.timeBasedAccessRestriction }}"
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
