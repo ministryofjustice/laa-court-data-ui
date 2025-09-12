@@ -35,7 +35,7 @@ module Cda
 
     def mapped_defence_counsels
       attended_defence_counsels.each do |defence_counsel|
-        defence_counsel.defendants.map! do |defendant_id|
+        defence_counsel.defendants&.map! do |defendant_id|
           details = defendants.find { |defendant| (defendant.id == defendant_id) }
 
           details || defendant_id
