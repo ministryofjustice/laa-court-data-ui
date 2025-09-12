@@ -14,9 +14,9 @@ en:
     new_window: opens in a new window
     not_available: Not available
     out_of_hours:
-      alert_content: This service is only available between 7am and 10pm each day.
+      alert_content: This service is available between 7am and 10pm each day.
       alert_title: Availability of this service has changed
-      content: This service is only available between 7am and 10pm each day.
+      content: This service is available between 7am and 10pm each day.
       title: Sorry, this service is unavailable
     prosecution_case: Prosecution case
     search: Search

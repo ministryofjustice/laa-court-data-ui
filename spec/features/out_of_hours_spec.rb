@@ -14,7 +14,7 @@ RSpec.describe 'Maintenance mode', type: :feature do
 
       it 'shows a relevant error' do
         expect(page).to have_content 'Sorry, this service is unavailable'
-        expect(page).to have_content 'This service is only available between 7am and 10pm each day.'
+        expect(page).to have_content 'This service is available between 7am and 10pm each day.'
       end
     end
 
