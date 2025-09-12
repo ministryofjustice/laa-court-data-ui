@@ -58,7 +58,7 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
       end
 
       it 'flashes alert' do
-        expect(flash.now[:notice]).to match(/You have successfully linked to the court data source/)
+        expect(flash.now[:success]).to match(/You added a link/)
       end
     end
 
@@ -71,7 +71,7 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
                                            'to be associated with this defendant.')
         }
 
-        it { expect(response).to render_template('new') }
+        it { expect(response).to render_template('link_form') }
       end
     end
   end

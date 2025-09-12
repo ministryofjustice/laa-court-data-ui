@@ -28,19 +28,22 @@ class DefendantsController < ApplicationController
     render :offences, layout: false
   end
 
+  # This method is temporarily bloated because of the FeatureFlag.enabled? checks.
+  # Once the FF is removed, either after it's switched on or it's abandoned, this
+  # check can be re-enabled
   def update
     @unlink_attempt.validate!
 
     logger.info 'CALLING_V2_MAAT_UNLINK'
     Cda::ProsecutionCaseLaaReference.update!(resource_params)
 
-    flash[:notice] = I18n.t('defendants.unlink.success')
+    flash[:success] = I18n.t('defendants.unlink.success', maat_id: @unlink_attempt.maat_reference)
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
-    render 'edit'
+    render 'unlink_form'
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    render 'edit'
+    render 'unlink_form'
   end
 
   def prosecution_case_reference

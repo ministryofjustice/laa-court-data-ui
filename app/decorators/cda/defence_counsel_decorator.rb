@@ -5,7 +5,7 @@ module Cda
     def name_status_and_defendants
       return t('generic.not_available') if name_and_status_blank?
 
-      return "#{formatted_name} (#{formatted_status})" if defendants.empty?
+      return "#{formatted_name} (#{formatted_status})" if defendants.blank?
 
       defence_counsel_list = formatted_defendant_names.map do |defendant_name|
         "#{formatted_name} (#{formatted_status}) for #{defendant_name}"
