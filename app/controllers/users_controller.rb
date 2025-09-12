@@ -101,7 +101,7 @@ class UsersController < ApplicationController
         :search_string,
         :recent_sign_ins,
         :old_sign_ins
-      ).tap { session[:user_search] = it }
+      ).tap { session[:user_search] = session_safe(it) }
     else
       session[:user_search]
     end
