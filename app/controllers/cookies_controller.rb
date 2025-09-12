@@ -36,7 +36,7 @@ class CookiesController < ApplicationController
   end
 
   def store_previous_page_url
-    session[:return_to] = request.referrer
+    session[:return_to] = session_safe(request.referrer, max_string_length: 200)
   end
 
   def cookie_params
