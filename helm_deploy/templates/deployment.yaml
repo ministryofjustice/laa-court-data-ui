@@ -115,21 +115,6 @@ spec:
                 secretKeyRef:
                   name: lcdui-elasticache
                   key: auth_token
-            - name: ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: ADMIN_PASSWORD
-            - name: CASEWORKER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: CASEWORKER_PASSWORD
-            - name: MANAGER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: MANAGER_PASSWORD
             - name: GOVUK_NOTIFY_API_KEY
               valueFrom:
                 secretKeyRef:
