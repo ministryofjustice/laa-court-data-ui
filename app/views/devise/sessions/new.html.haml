@@ -20,4 +20,4 @@
     .govuk-grid-column-two-thirds
       = form_with(url: fake_user_session_path) do |f|
         = f.govuk_select :user_id, User.where("email ILIKE '%example.com'").pluck(:email, :id), label: { text: t('devise.shared.fake_auth') }
-        = f.govuk_submit t('devise.shared.links.sign_in')
+        = f.govuk_submit t('devise.shared.links.sign_in_without_sso')
