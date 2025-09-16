@@ -74,7 +74,7 @@ en:
       links:
         confirmation_receipt: Didn't receive confirmation instructions?
         forgot_password: Forgot your password?
-        sign_in: Sign in
+        sign_in_without_sso: Sign in without SSO
         unlock_receipt: Didn't receive unlock instructions?
     unlocks:
       user:

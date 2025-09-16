@@ -120,7 +120,7 @@ RSpec.feature 'Sign in', type: :feature do
     it 'lets me log in as a user' do
       visit unauthenticated_root_path
       select 'bob.smith@example.com', from: :user_id
-      click_button 'Sign in'
+      click_button 'Sign in without SSO'
       within('nav.moj-header__navigation') do
         expect(page).to have_link(user.name)
       end
