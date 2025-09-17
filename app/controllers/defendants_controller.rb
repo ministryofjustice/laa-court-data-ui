@@ -28,9 +28,6 @@ class DefendantsController < ApplicationController
     render :offences, layout: false
   end
 
-  # This method is temporarily bloated because of the FeatureFlag.enabled? checks.
-  # Once the FF is removed, either after it's switched on or it's abandoned, this
-  # check can be re-enabled
   def update
     @unlink_attempt.validate!
 
