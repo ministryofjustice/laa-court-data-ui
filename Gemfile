@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'activeresource', '~> 6.1.4'
+gem 'activeresource', '~> 6.2.0'
 gem 'array_enum'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.0', require: false
@@ -24,7 +24,7 @@ gem 'govuk-components'
 gem 'govuk_design_system_formbuilder', '~> 5.11'
 gem 'haml-rails', '~> 2.1.0'
 gem 'logstasher'
-gem 'oauth2', '~> 2.0.15'
+gem 'oauth2', '~> 2.0.17'
 gem 'pagy'
 gem 'pg', '>= 1.5.9', '< 2.0'
 gem 'prometheus_exporter', '2.3.0'
