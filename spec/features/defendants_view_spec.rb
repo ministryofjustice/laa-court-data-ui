@@ -46,7 +46,7 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
-      expect(page).to have_content('Create link to court data')
+      expect(page).to have_content('Link MAAT ID')
     end
 
     scenario 'it is accessible', :js do
@@ -106,7 +106,7 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
-      expect(page).to have_content('Remove link to court data')
+      expect(page).to have_content('Unlink MAAT ID')
     end
 
     scenario 'it is accessible', :js do
@@ -128,7 +128,7 @@ RSpec.feature 'defendants view', type: :feature do
       scenario 'page shows without linking options' do
         visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
         expect(page).to have_title('Defendant details')
-        expect(page).to have_no_content('Remove link to court data')
+        expect(page).to have_no_content('Unlink MAAT ID')
       end
     end
   end

@@ -34,13 +34,13 @@ class DefendantsController < ApplicationController
     logger.info 'CALLING_V2_MAAT_UNLINK'
     Cda::ProsecutionCaseLaaReference.update!(resource_params)
 
-    flash[:notice] = I18n.t('defendants.unlink.success')
+    flash[:success] = I18n.t('defendants.unlink.success', maat_id: @unlink_attempt.maat_reference)
     redirect_to new_laa_reference_path(id: defendant.id, urn: prosecution_case_reference)
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
-    render 'edit'
+    render 'unlink_form'
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    render 'edit'
+    render 'unlink_form'
   end
 
   def prosecution_case_reference
