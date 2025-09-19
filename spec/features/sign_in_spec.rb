@@ -29,11 +29,7 @@ RSpec.feature 'Sign in', type: :feature do
                                                                      info: {
                                                                        'email' => 'Bob.Smith@example.com'
                                                                      } })
-        click_button 'Sign in with your Ministry of Justice account'
-      end
-
-      it 'successful sign in message displayed' do
-        expect(page).to have_govuk_flash(:notice, text: 'Signed in successfully')
+        click_button 'Sign in'
       end
 
       it 'updates UID' do
@@ -72,11 +68,7 @@ RSpec.feature 'Sign in', type: :feature do
                                                                        'email' => 'bob.smith.new@example.com'
                                                                      }
                                                                    })
-        click_button 'Sign in with your Ministry of Justice account'
-      end
-
-      it 'displays successful sign in message' do
-        expect(page).to have_govuk_flash(:notice, text: 'Signed in successfully')
+        click_button 'Sign in'
       end
 
       it 'updates email' do
@@ -93,7 +85,7 @@ RSpec.feature 'Sign in', type: :feature do
                                                                      'email' => 'bob.smith.new@example.com'
                                                                    }
                                                                  })
-      click_button 'Sign in with your Ministry of Justice account'
+      click_button 'Sign in'
     end
 
     it 'displays error message' do
@@ -105,7 +97,7 @@ RSpec.feature 'Sign in', type: :feature do
   context 'with an unsuccessful omniauth flow' do
     before do
       OmniAuth.config.mock_auth[:entra] = :invalid_credentials
-      click_button 'Sign in with your Ministry of Justice account'
+      click_button 'Sign in'
     end
 
     it 'displays error message' do

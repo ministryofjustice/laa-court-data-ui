@@ -9,7 +9,7 @@ module Users
                      email: entra_email,
                      email_confirmation: entra_email)
         sign_in user
-        redirect_to authenticated_root_path, flash: { notice: t('devise.sessions.user.signed_in') }
+        redirect_to authenticated_root_path
       else
         redirect_to unauthenticated_root_path, flash: { alert: t('devise.failure.user.unauthorised') }
       end
