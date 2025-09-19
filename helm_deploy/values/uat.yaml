@@ -18,8 +18,5 @@ featureFlags:
   maintenanceMode: false
   noLinking: false
   timeBasedAccessRestriction: true
-<<<<<<< HEAD
   showStats: true
-=======
   fakeAuth: false
->>>>>>> acadc40c (Entra SSO)

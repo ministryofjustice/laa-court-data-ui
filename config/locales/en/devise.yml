@@ -63,7 +63,7 @@ en:
         updated_but_not_signed_in: Your account has been updated successfully, but since your password was changed, you need to sign in again
     sessions:
       user:
-        already_signed_out: Signed out successfully.
+        already_signed_out: You have signed out.
         form:
           page_title: Sign in to view court data
           submit: Sign in
@@ -72,7 +72,7 @@ en:
         - It is available every day from 7am to 10pm.
         - To request access, contact your line manager.
         signed_in: Signed in successfully.
-        signed_out: Signed out successfully.
+        signed_out: You have signed out.
     shared:
       fake_auth: Or (in dev environment only) choose a user to sign in as
       links:

@@ -10,7 +10,7 @@ RSpec.feature 'Sign out', type: :feature do
   end
 
   it 'displays signed out message' do
-    expect(page).to have_text('Signed out successfully')
+    expect(page).to have_text('You have signed out')
   end
 
   it 'displays sign in page' do
