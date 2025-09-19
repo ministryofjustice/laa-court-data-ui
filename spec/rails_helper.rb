@@ -84,3 +84,5 @@ RSpec.configure do |config|
 
   config.include ActiveSupport::Testing::TimeHelpers
 end
+
+OmniAuth.config.test_mode = true
