@@ -1,15 +1,9 @@
 ---
 en:
   users:
-    change_password:
-      change_password_button: Change password
-      confirm_password_label: Confirm new password
-      current_password_label: Current password
-      new_password_label: New password
-      page_title: Change password
     create:
       flash:
-        success: User successfully added and password reset instructions sent
+        success: User successfully added
     destroy:
       flash:
         success: User successfully deleted
@@ -22,7 +16,6 @@ en:
         feature_flags_legend: What features does the user have access to?
         first_name_label: First name
         last_name_label: Last name
-        login_label: Username or email
         roles_legend: What roles does the user have?
         save_button: Save
         username_hint: Use MAAT/MLRA username
@@ -68,8 +61,6 @@ en:
       selected_filters: Selected filters
     show:
       caption: User details
-      change_password_link: Change password
-      change_password_link_aria: Change %{name}'s password
       edit_link: Edit
       edit_link_aria: Edit %{name}'s account
       email_label: Email
@@ -82,6 +73,3 @@ en:
     update:
       flash:
         success: User details successfully updated
-    update_password:
-      flash:
-        success: Password successfully updated

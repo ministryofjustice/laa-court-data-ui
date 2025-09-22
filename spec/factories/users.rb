@@ -4,8 +4,6 @@ FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
     email_confirmation { email }
-    password { 'testing123' }
-    password_confirmation { 'testing123' }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     username { "#{last_name.delete('\'')[0, 4]}-#{first_name.delete('\'')[0, 1]}#{rand(99)}".downcase }
