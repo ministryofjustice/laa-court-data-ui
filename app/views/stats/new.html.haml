@@ -1,0 +1,16 @@
+= govuk_page_heading(t('stats.new.title'))
+
+= form_with url: stats_path, model: @model do |f|
+  - content_for :error_summary do
+    = f.govuk_error_summary
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      .govuk-date-fieldset-m
+        = f.govuk_date_field :from,
+                             legend: { text: t('stats.new.from') }
+      .govuk-date-fieldset-m
+        = f.govuk_date_field :to,
+                             legend: { text: t('stats.new.to') }
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      = f.govuk_submit(t('generic.search'))

@@ -1,0 +1,34 @@
+---
+en:
+  activemodel:
+    errors:
+      models:
+        stat_range:
+          attributes:
+            from:
+              blank: Enter a valid period start date
+            to:
+              blank: Enter a valid period end date
+  stats:
+    new:
+      from: Enter the first date of the period for which you want to see stats
+      title: View usage stats
+      to: Enter the last date of the period for which you want to see stats
+    show:
+      caption: Current range statistics
+      change_period: Change date range
+      current_period: Chosen period
+      date_from: Period start
+      date_to: Period end
+      linked: MAAT IDs linked
+      other_reasons_given: Other reasons given
+      previous_periods: Previous periods
+      previous_ranges:
+        caption: Previous range statistics
+        from: Period start
+        linked: MAAT IDs linked
+        to: Period end
+        unlinked: MAAT IDs subsequently unlinked
+      title: Usage statistics
+      unlink_reason_types: Unlink reason types
+      unlinked: MAAT IDs subsequently unlinked
