@@ -48,5 +48,6 @@ module LaaCourtDataUi
     config.active_support.to_time_preserves_timezone = :zone
 
     Time::DATE_FORMATS[:date_only] = "%b %d, %Y"
+    Date::DATE_FORMATS[:human_readable] = "%a, %-d %B %Y"
   end
 end
