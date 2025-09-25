@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   end
 
   resources :hearing_repull_batches, only: %i[new create show]
+  resource :stats, only: %i[new create]
 
   post '/cookies/settings', to: 'cookies#create'
   get '/cookies/settings', to: 'cookies#new'
