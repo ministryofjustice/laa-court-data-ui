@@ -26,6 +26,7 @@ en:
       previous_ranges:
         caption: Previous range statistics
         from: Period start
+        hint: The last 10 periods will update to reflect your chosen time period
         linked: MAAT IDs linked
         to: Period end
         unlinked: MAAT IDs subsequently unlinked
