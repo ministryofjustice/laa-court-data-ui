@@ -19,5 +19,5 @@
                   = t('layouts.application.header.navigation.manage_users')
             - if can?(:read, Cda::LinkingStatCollection)
               %li.govuk-service-navigation__item.pull-right
-                %a.govuk-link--no-visited-state{ href: new_stats_path }
+                %a.govuk-link--no-visited-state{ href: stats_path }
                   = t('layouts.application.header.navigation.view_stats')

@@ -11,17 +11,17 @@ en:
               blank: Enter a valid period end date
   stats:
     new:
-      from: Enter the first date of the period for which you want to see stats
-      title: View usage stats
-      to: Enter the last date of the period for which you want to see stats
+      from: Start date
+      title: Select date range for linking data
+      to: End date
     show:
-      caption: Current range statistics
-      change_period: Change date range
+      change: Change
       current_period: Chosen period
-      date_from: Period start
-      date_to: Period end
+      date_from: Start date
+      date_to: End date
       linked: MAAT IDs linked
       other_reasons_given: Other reasons given
+      period: period
       previous_periods: Previous periods
       previous_ranges:
         caption: Previous range statistics
@@ -29,6 +29,6 @@ en:
         linked: MAAT IDs linked
         to: Period end
         unlinked: MAAT IDs subsequently unlinked
-      title: Usage statistics
+      title: Linking data
       unlink_reason_types: Unlink reason types
       unlinked: MAAT IDs subsequently unlinked

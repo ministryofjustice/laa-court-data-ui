@@ -1,13 +1,17 @@
 RSpec.feature 'View usage stats', :vcr do
   let(:user) { create(:user, roles: ['admin']) }
 
-  before { sign_in user }
+  before do
+    sign_in user
+    UnlinkReason.create! code: 1, description: "Linked to wrong case ID (correct defendant)"
+    UnlinkReason.create! code: 7, description: "Other"
+  end
 
   scenario 'I enter invalid dates' do
-    visit new_stats_path
-    fill_in 'stat_range_from_3i', with: '27'
-    fill_in 'stat_range_from_2i', with: '13'
-    fill_in 'stat_range_from_1i', with: '2000'
+    travel_to Date.new(2025, 8, 30)
+    visit stats_path
+    click_on 'Change', match: :first
+    fill_in 'Start date', with: '2000-13-27'
     click_button 'Search'
 
     expect(page).to have_content 'Enter a valid period start date'
@@ -15,22 +19,15 @@ RSpec.feature 'View usage stats', :vcr do
   end
 
   scenario 'I enter valid dates' do
-    UnlinkReason.create! code: 1, description: "Linked to wrong case ID (correct defendant)"
-    UnlinkReason.create! code: 7, description: "Other"
-
     visit new_stats_path
-    fill_in 'stat_range_from_3i', with: '1'
-    fill_in 'stat_range_from_2i', with: '9'
-    fill_in 'stat_range_from_1i', with: '2025'
-    fill_in 'stat_range_to_3i', with: '1'
-    fill_in 'stat_range_to_2i', with: '10'
-    fill_in 'stat_range_to_1i', with: '2025'
+    fill_in 'Start date', with: '2025-9-1'
+    fill_in 'End date', with: '2025-10-1'
     click_button 'Search'
 
     expect(page).to have_content(
-      "Period start Mon, 1 September 2025"
+      "Start date Mon, 1 September 2025"
     ).and have_content(
-      "Period end Wed, 1 October 2025"
+      "End date Wed, 1 October 2025"
     ).and have_content(
       "MAAT IDs linked 5"
     ).and have_content(

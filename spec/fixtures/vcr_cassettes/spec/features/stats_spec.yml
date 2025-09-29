@@ -57,4 +57,61 @@ http_interactions:
       encoding: UTF-8
       string: '{"current_range":{"date_from":"2025-09-01","date_to":"2025-10-01","linked":5,"unlinked":3,"unlink_reason_codes":{"7":1,"1":2},"other_unlink_reasons":["I made a mistake"]},"previous_ranges":[{"date_from":"2025-08-01","date_to":"2025-08-31","linked":4,"unlinked":4},{"date_from":"2025-07-01","date_to":"2025-07-31","linked":2,"unlinked":2},{"date_from":"2025-05-31","date_to":"2025-06-30","linked":1,"unlinked":1}]}'
   recorded_at: Thu, 25 Sep 2025 10:47:26 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/stats/linking?from=2025-08-02&to=2025-08-29
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      X-Request-Id:
+      - 382e2d47-3b27-46ff-a4b3-b331b28aaae8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 382e2d47-3b27-46ff-a4b3-b331b28aaae8
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"ffc90c41c31cfdb21f6699dfd35c542a"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.020210'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=3.83, instantiation.active_record;dur=0.08,
+        process_action.action_controller;dur=10.92
+      Content-Length:
+      - '395'
+    body:
+      encoding: UTF-8
+      string: '{"current_range":{"date_from":"2025-09-01","date_to":"2025-10-01","linked":5,"unlinked":3,"unlink_reason_codes":{"7":1,"1":2},"other_unlink_reasons":["I made a mistake"]},"previous_ranges":[{"date_from":"2025-08-01","date_to":"2025-08-31","linked":4,"unlinked":4},{"date_from":"2025-07-01","date_to":"2025-07-31","linked":2,"unlinked":2},{"date_from":"2025-05-31","date_to":"2025-06-30","linked":1,"unlinked":1}]}'
+  recorded_at: Thu, 25 Sep 2025 10:47:26 GMT
 recorded_with: VCR 6.3.1

@@ -4,13 +4,22 @@
   - content_for :error_summary do
     = f.govuk_error_summary
   .govuk-grid-row
-    .govuk-grid-column-two-thirds
+    .govuk-grid-column-one-third
       .govuk-date-fieldset-m
-        = f.govuk_date_field :from,
-                             legend: { text: t('stats.new.from') }
+        .moj-datepicker{ "data-module" => "moj-date-picker" }
+          .govuk-form-group
+            %label.govuk-label{ for: 'stat-range-from-field' }
+              = t('stats.new.from')
+            %input.govuk-input.moj-js-datepicker-input#stat-range-from-field{ autocomplete: "off", name: "stat_range[from]", type: "text" }
+
+    .govuk-grid-column-one-third
       .govuk-date-fieldset-m
-        = f.govuk_date_field :to,
-                             legend: { text: t('stats.new.to') }
+        .moj-datepicker{ "data-module" => "moj-date-picker" }
+          .govuk-form-group
+            %label.govuk-label{ for: 'stat-range-to-field' }
+              = t('stats.new.to')
+            %input.govuk-input.moj-js-datepicker-input#stat-range-to-field{ autocomplete: "off", name: "stat_range[to]", type: "text" }
+
   .govuk-grid-row
     .govuk-grid-column-two-thirds
       = f.govuk_submit(t('generic.search'))
