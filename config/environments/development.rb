@@ -70,19 +70,9 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
 
-  # have puma server output to stdout (when started via `foreman start`)
-  config.logger = Logger.new($stdout)
+  # have puma server output to stdout
+  config.logger = ActiveSupport::TaggedLogging.new(Logger.new($stdout))
+  config.log_tags = [:request_id]
 
-  # see https://github.com/shadabahmed/logstasher
-  config.logstasher.enabled = true
-  config.logstasher.log_level = Logger::INFO
-  config.logstasher.controller_enabled = true
-  config.logstasher.mailer_enabled = false
-  config.logstasher.record_enabled = false
-  config.logstasher.view_enabled = false
-  config.logstasher.job_enabled = true
-  config.logstasher.suppress_app_log = false
-  config.logstasher.source = "laa-court-data-ui-development"
-  config.logstasher.backtrace = true
-  config.logstasher.logger_path = "log/logstasher_development.log"
+  config.lograge.enabled = true
 end

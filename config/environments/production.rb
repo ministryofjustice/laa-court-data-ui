@@ -94,16 +94,4 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   # see https://github.com/shadabahmed/logstasher
-  config.logstasher.enabled = true
-  config.logstasher.log_level = Logger::INFO
-  config.logstasher.logger = config.logger
-  config.logstasher.controller_enabled = true
-  config.logstasher.mailer_enabled = false
-  config.logstasher.record_enabled = false
-  config.logstasher.view_enabled = false
-  config.logstasher.job_enabled = true
-  config.logstasher.suppress_app_log = true
-  config.logstasher.source = "laa-court-data-ui-production-#{ENV.fetch('ENV', nil)}"
-  config.logstasher.backtrace = false
-  config.logstasher.logger_path = "log/logstasher.log"
 end

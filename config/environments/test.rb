@@ -63,21 +63,6 @@ Rails.application.configure do
   # Raises error for missing translations.
   config.i18n.raise_on_missing_translations = true
 
-  # see https://github.com/shadabahmed/logstasher
-  config.logstasher.enabled = false
-  if config.logstasher.enabled
-    config.logstasher.log_level = Logger::DEBUG
-    config.logstasher.controller_enabled = true
-    config.logstasher.mailer_enabled = false
-    config.logstasher.record_enabled = false
-    config.logstasher.view_enabled = false
-    config.logstasher.job_enabled = true
-    config.logstasher.suppress_app_log = false
-    config.logstasher.source = "laa-court-data-ui-test"
-    config.logstasher.backtrace = true
-    config.logstasher.logger_path = "log/logstasher_test.log"
-  end
-
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
