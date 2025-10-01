@@ -22,7 +22,7 @@ gem 'faraday_middleware', '~> 1.2.1'
 gem 'govuk-components'
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 5.11'
-gem 'haml-rails', '~> 2.1.0'
+gem 'haml-rails', '~> 3.0.0'
 gem 'lograge'
 gem 'oauth2', '~> 2.0.17'
 gem 'pagy'
@@ -31,11 +31,11 @@ gem 'prometheus_exporter', '2.3.0'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 8.0'
 gem 'redis', '~> 5.4.1'
-gem 'sentry-rails', '~> 5.27.1'
-gem 'sentry-sidekiq', '~> 5.27.1'
+gem 'sentry-rails', '~> 5.28.0'
+gem 'sentry-sidekiq', '~> 5.28.0'
 gem 'sidekiq', '~> 8.0.7'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 2.0.16'
+gem 'turbo-rails', '~> 2.0.17'
 
 group :test do
   gem 'axe-core-rspec', '~> 4.10.3'
@@ -50,7 +50,7 @@ group :test do
   gem 'rspec_junit_formatter', require: false
   gem 'rspec-rails', '~> 8.0'
   gem 'rspec-retry'
-  gem 'rubocop', '~> 1.80', require: false
+  gem 'rubocop', '~> 1.81', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false
