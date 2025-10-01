@@ -61,6 +61,7 @@ class Ability
 
   def admin_abilities
     caseworker_abilities
+    can :read, Cda::LinkingStatCollection
   end
 
   def can_search

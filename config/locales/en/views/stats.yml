@@ -1,0 +1,35 @@
+---
+en:
+  activemodel:
+    errors:
+      models:
+        stat_range:
+          attributes:
+            from:
+              blank: Enter a valid period start date
+            to:
+              blank: Enter a valid period end date
+  stats:
+    new:
+      from: Start date
+      title: Select date range for linking data
+      to: End date
+    show:
+      change: Change
+      current_period: Chosen period
+      date_from: Start date
+      date_to: End date
+      linked: MAAT IDs linked
+      other_reasons_given: Other reasons given
+      period: period
+      previous_periods: Previous periods
+      previous_ranges:
+        caption: Previous range statistics
+        from: Period start
+        hint: The last 10 periods will update to reflect your chosen time period
+        linked: MAAT IDs linked
+        to: Period end
+        unlinked: MAAT IDs subsequently unlinked
+      title: Linking data
+      unlink_reason_types: Unlink reason types
+      unlinked: MAAT IDs subsequently unlinked

@@ -30,5 +30,6 @@ en:
           search: Search
           sign_in: Sign in
           sign_out: Sign out
+          view_stats: Check linking data
         phase_banner_html: This is a new service – your <a class="govuk-link" href="%{feedback}" target="_blank" rel="noopener noreferrer nofollow">feedback (opens in new tab)</a> will help us to improve it.
       skip_content: Skip to main content

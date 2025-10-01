@@ -4,6 +4,7 @@ import '@hotwired/turbo'
 
 import Rails from '@rails/ujs'
 import { initAll } from 'govuk-frontend'
+import * as MOJFrontend from '@ministryofjustice/frontend'
 
 // Prevent turbo from intercepting form submissions in ways that don't play nicely
 // with things like the Rails flash system, unless it's explicitly asked for. Note:
@@ -26,6 +27,7 @@ Rails.start()
 
 const setUpEventListeners = () => {
   initAll()
+  MOJFrontend.initAll()
 
   document.querySelector('.search-form-toggle')?.addEventListener('click', () => {
     document.querySelectorAll('.search-form-element').forEach((element) => {
