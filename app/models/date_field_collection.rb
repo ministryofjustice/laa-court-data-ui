@@ -2,13 +2,13 @@
 # we preserve what the user entered so we can show it back to them with an appropriate error message.
 # If we were to directly parse to a Date, invalid values would be rejected and at best we could
 # represent the entire attribute as `nil`, losing the specifics of what was invalid.
-class DobFieldCollection
-  def initialize(params)
+class DateFieldCollection
+  def initialize(params, param_name)
     return unless params
 
-    @year = params["dob(1i)"]
-    @month = params["dob(2i)"]
-    @day = params["dob(3i)"]
+    @year = params["#{param_name}(1i)"]
+    @month = params["#{param_name}(2i)"]
+    @day = params["#{param_name}(3i)"]
   end
 
   attr_reader :day, :month, :year
