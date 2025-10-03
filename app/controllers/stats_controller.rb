@@ -12,6 +12,7 @@ class StatsController < ApplicationController
   end
 
   def new
+    raise "Feature not enabled!" unless FeatureFlag.enabled?(:show_stats)
     @model = StatRange.new
   end
 

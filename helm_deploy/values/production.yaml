@@ -17,3 +17,4 @@ featureFlags:
   maintenanceMode: false
   noLinking: false
   timeBasedAccessRestriction: true
+  showStats: false
