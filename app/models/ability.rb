@@ -40,6 +40,7 @@ class Ability
     caseworker_abilities if user.caseworker?
     manager_abilities if user.manager?
     admin_abilities if user.admin?
+    data_analyst_abilities if user.data_analyst?
   end
 
   private
@@ -61,6 +62,9 @@ class Ability
 
   def admin_abilities
     caseworker_abilities
+  end
+
+  def data_analyst_abilities
     can :read, Cda::LinkingStatCollection
   end
 

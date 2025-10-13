@@ -17,7 +17,7 @@ class User < ApplicationRecord
           :validatable,
           :lockable
 
-  accepts_roles :caseworker, :manager, :admin
+  accepts_roles :caseworker, :manager, :admin, :data_analyst
 
   validates :first_name, presence: true
   validates :last_name, presence: true

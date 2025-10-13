@@ -1,5 +1,5 @@
 RSpec.feature 'View usage stats', :vcr do
-  let(:user) { create(:user, roles: ['admin']) }
+  let(:user) { create(:user, roles: ['data_analyst']) }
 
   before do
     sign_in user
