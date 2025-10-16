@@ -3,11 +3,15 @@ module Users
     skip_authorization_check
 
     def entra
-      user = User.find_by(entra_id: entra_details.uid) || User.find_by(entra_id: nil, email: entra_email)
+      user = User.find_by(entra_id: entra_details.uid)
+      if user # User is found by entra_id, which means they already logged in at least once
+        user.update!(email: entra_email, email_confirmation: entra_email)
+      else
+        user = User.find_by(entra_id: nil, email: entra_email)
+        user&.update!(entra_id: entra_details.uid) # User is found by email and no entra_id, which means it's their first login
+      end
+
       if user
-        user.update!(entra_id: entra_details.uid,
-                     email: entra_email,
-                     email_confirmation: entra_email)
         sign_in user
         redirect_to authenticated_root_path
       else
