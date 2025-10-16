@@ -12,9 +12,11 @@ googleAnalyticsId: 'UA-131160087-17'
 displayRawResponses: enabled
 identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-uat-green
 cert: laa-court-data-ui-uat-cert
+omniauthRedirectUri: https://uat.view-court-data.service.justice.gov.uk/users/auth/entra/callback
 featureFlags:
   perUserFeatureFlags: true
   maintenanceMode: false
   noLinking: false
   timeBasedAccessRestriction: true
   showStats: true
+  fakeAuth: false
