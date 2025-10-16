@@ -2,7 +2,6 @@ class StatsController < ApplicationController
   before_action :authorize_access
 
   def show
-    raise "Feature not enabled!" unless FeatureFlag.enabled?(:show_stats)
     @model = StatRange.new(stat_params)
     if @model.valid?
       @collection = Cda::LinkingStatCollection.find_from_range(@model.from.to_s, @model.to.to_s)
@@ -13,7 +12,6 @@ class StatsController < ApplicationController
   end
 
   def new
-    raise "Feature not enabled!" unless FeatureFlag.enabled?(:show_stats)
     @model = StatRange.new
   end
 

@@ -39,6 +39,8 @@
             %th.govuk-table__header{ scope: 'col' }
               = t('users.generic.email')
             %th.govuk-table__header{ scope: 'col' }
+              Roles
+            %th.govuk-table__header{ scope: 'col' }
               = t('users.generic.last_sign_in')
             %th.govuk-table__header{ scope: 'col' }
               = t('users.generic.action')
@@ -54,6 +56,8 @@
                 = mail_to user.email, class: 'govuk-link', target: '_blank' do
                   = user.email
                   %span.govuk-visually-hidden= t('generic.new_window')
+              %td.govuk-table__cell
+                = user.roles.map(&:titlecase).join(', ')
               %td.govuk-table__cell
                 - if user.last_sign_in_at
                   - if user.last_sign_in_at < 3.months.ago

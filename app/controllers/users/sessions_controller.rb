@@ -3,6 +3,14 @@
 class Users::SessionsController < Devise::SessionsController
   skip_authorization_check only: %i[new create destroy update_cookies]
 
+  def after_sign_in_path_for(user)
+    if user.data_analyst?
+      new_stats_path
+    else
+      new_search_filter_path
+    end
+  end
+
   def destroy
     super do
       # Turbo requires redirects be :see_other (303); so override Devise default (302)

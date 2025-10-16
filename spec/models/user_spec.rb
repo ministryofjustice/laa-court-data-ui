@@ -139,7 +139,7 @@ RSpec.describe User, type: :model do
       subject { described_class.valid_roles }
 
       it 'returns all valid roles for class' do
-        is_expected.to eq %w[caseworker manager admin]
+        is_expected.to eq %w[caseworker manager admin data_analyst]
       end
     end
 

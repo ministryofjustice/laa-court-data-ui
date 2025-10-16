@@ -10,14 +10,16 @@
           %button.govuk-service-navigation__toggle.govuk-js-service-navigation-toggle{ "aria-controls" => "navigation", hidden: "", type: "button" }
             = t('layouts.application.header.navigation.menu')
           %ul.govuk-service-navigation__list#navigation
-            %li.govuk-service-navigation__item
-              %a.govuk-service-navigation__link{ href: new_search_filter_path }
-                = t('layouts.application.header.navigation.search')
+            - if can?(:new, Search)
+              %li.govuk-service-navigation__item
+                %a.govuk-service-navigation__link{ href: new_search_filter_path }
+                  = t('layouts.application.header.navigation.search')
             - if can?(:index, User)
               %li.govuk-service-navigation__item.pull-right
                 %a.govuk-link--no-visited-state{ href: users_path }
                   = t('layouts.application.header.navigation.manage_users')
-            - if can?(:read, Cda::LinkingStatCollection) && FeatureFlag.enabled?(:show_stats)
+            -# TODO: remove FeatureFlag show_stats
+            - if can?(:read, Cda::LinkingStatCollection)
               %li.govuk-service-navigation__item.pull-right
                 %a.govuk-link--no-visited-state{ href: stats_path }
                   = t('layouts.application.header.navigation.view_stats')
