@@ -20,7 +20,7 @@ gem 'govuk_notify_rails', '~> 3.0.0'
 gem 'govuk-components'
 # rails GDS design system form builder
 gem 'govuk_design_system_formbuilder', '~> 5.11'
-gem 'haml-rails', '~> 2.1.0'
+gem 'haml-rails', '~> 3.0.0'
 gem 'lograge'
 gem 'oauth2', '~> 2.0.17'
 gem 'omniauth_openid_connect', '0.8.0'
@@ -31,14 +31,14 @@ gem 'prometheus_exporter', '2.3.0'
 gem 'puma', '>= 5.6.4'
 gem 'rails', '~> 8.0'
 gem 'redis', '~> 5.4.1'
-gem 'sentry-rails', '~> 5.27.1'
-gem 'sentry-sidekiq', '~> 5.27.1'
-gem 'sidekiq', '~> 8.0.7'
+gem 'sentry-rails', '~> 6.0.0'
+gem 'sentry-sidekiq', '~> 6.0.0'
+gem 'sidekiq', '~> 8.0.8'
 gem 'sidekiq_alive'
-gem 'turbo-rails', '~> 2.0.16'
+gem 'turbo-rails', '~> 2.0.17'
 
 group :test do
-  gem 'axe-core-rspec', '~> 4.10.3'
+  gem 'axe-core-rspec', '~> 4.11.0'
   gem 'brakeman'
   gem 'capybara'
   gem 'capybara_table'
@@ -50,14 +50,14 @@ group :test do
   gem 'rspec_junit_formatter', require: false
   gem 'rspec-rails', '~> 8.0'
   gem 'rspec-retry'
-  gem 'rubocop', '~> 1.80', require: false
+  gem 'rubocop', '~> 1.81', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rspec_rails', require: false
-  gem 'selenium-webdriver', '~> 4.35'
+  gem 'selenium-webdriver', '~> 4.38'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
@@ -89,7 +89,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'net-imap', '~> 0.5.10'
+gem 'net-imap', '~> 0.5.12'
 gem 'net-pop', '~> 0.1.2'
 gem 'net-smtp', '~> 0.5.0'
 
