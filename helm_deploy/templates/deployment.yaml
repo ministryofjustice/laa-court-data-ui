@@ -83,6 +83,8 @@ spec:
               value: "{{ .Values.featureFlags.timeBasedAccessRestriction }}"
             - name: SHOW_STATS
               value: "{{ .Values.featureFlags.showStats }}"
+            - name: FAKE_AUTH
+              value: "{{ .Values.featureFlags.fakeAuth }}"
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
@@ -113,21 +115,6 @@ spec:
                 secretKeyRef:
                   name: lcdui-elasticache
                   key: auth_token
-            - name: ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: ADMIN_PASSWORD
-            - name: CASEWORKER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: CASEWORKER_PASSWORD
-            - name: MANAGER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secrets
-                  key: MANAGER_PASSWORD
             - name: GOVUK_NOTIFY_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -143,6 +130,23 @@ spec:
                 secretKeyRef:
                   name: aws-secrets
                   key: SLACK_ALERTS_WEBHOOK
+            - name: OMNIAUTH_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: OMNIAUTH_CLIENT_ID
+            - name: OMNIAUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: OMNIAUTH_CLIENT_SECRET
+            - name: OMNIAUTH_TENANT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: OMNIAUTH_TENANT_ID
+            - name: OMNIAUTH_REDIRECT_URI
+              value: '{{ .Values.omniauthRedirectUri }}'
         - name: laa-court-data-ui-metrics
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: Always
