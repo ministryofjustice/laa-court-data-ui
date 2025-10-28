@@ -12,11 +12,12 @@ en:
     form:
       fields:
         email_confirmation_label: Confirm email
-        email_label: Email
+        email_label: Email address
         feature_flags_legend: What features does the user have access to?
         first_name_label: First name
         last_name_label: Last name
         roles_legend: What roles does the user have?
+        roles_hint: Select all that apply
         save_button: Save
         username_hint: Use MAAT/MLRA username
         username_label: Username

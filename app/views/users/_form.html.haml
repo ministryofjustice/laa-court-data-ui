@@ -24,7 +24,8 @@
                                    User.valid_roles,
                                    :to_s,
                                    :titlecase,
-                                   legend: { text: t('users.form.fields.roles_legend') }
+                                   legend: { text: t('users.form.fields.roles_legend') },
+                                   hint: { text: t('users.form.fields.roles_hint') }
   - if FeatureFlag.enabled?(:per_user_feature_flags)
     = f.govuk_collection_check_boxes :feature_flags,
                                      User.feature_flags.keys,
