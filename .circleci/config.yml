@@ -369,8 +369,7 @@ jobs:
       - court-data-end-to-end-tests/run-e2e-tests:
           e2e_current_image_var: VCD_IMAGE
           e2e_current_image: 754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-assess-a-claim/laa-court-data-ui:branch-${CIRCLE_SHA1}
-          # TODO: revert to main
-          e2e_branch: ACD-832-sso # Change this to work against a fixed e2e test repo branch if needed (e.g. a deliberate UI change)
+          e2e_branch: main
 
   e2e-test-main:
     executor: court-data-end-to-end-tests/e2e-test-executor
