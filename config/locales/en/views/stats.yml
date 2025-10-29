@@ -31,5 +31,6 @@ en:
         to: Period end
         unlinked: MAAT IDs subsequently unlinked
       title: Linking data
+      hint: Data shows how many MAAT IDs were linked and unlinked, and the reasons caseworkers chose for unlinking.
       unlink_reason_types: Unlink reason types
       unlinked: MAAT IDs subsequently unlinked
