@@ -19,7 +19,6 @@ en:
       current_period: Chosen period
       date_from: Start date
       date_to: End date
-      hint: Data shows how many MAAT IDs were linked and unlinked, and the reasons caseworkers chose for unlinking.
       linked: MAAT IDs linked
       other_reasons_given: Other reasons given
       period: period
