@@ -11,7 +11,7 @@ en:
       page_title: Edit user
     form:
       fields:
-        email_confirmation_label: Confirm email
+        email_confirmation_label: Confirm email address
         email_label: Email address
         feature_flags_legend: What features does the user have access to?
         first_name_label: First name
