@@ -86,7 +86,7 @@ class HearingsController < ApplicationController
   end
 
   def hearing_day
-    @hearing_day ||= params[:day]&.to_date || helpers.earliest_day_for(@hearing)
+    @hearing_day ||= params[:day]&.to_date || @hearing.earliest_sitting_day.date
   end
 
   def extract_hearing_datetime
