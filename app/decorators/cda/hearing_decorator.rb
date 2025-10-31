@@ -50,6 +50,14 @@ module Cda
       safe_join(hearing.judiciary.map { |jd| "#{jd.title} #{jd.first_name} #{jd.last_name}" }, tag.br)
     end
 
+    def hearing_days
+      object.hearing.hearing_days || []
+    end
+
+    def earliest_sitting_day
+      object.hearing.hearing_days.min_by(&:date)
+    end
+
     private
 
     def defence_counsel_sentences
