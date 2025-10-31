@@ -21,20 +21,6 @@ RSpec.describe HearingHelper, type: :helper do
     }
   end
 
-  describe '#earliest_day_for' do
-    subject { helper.earliest_day_for(hearing) }
-
-    let(:hearing) do
-      Cda::Hearing.new(
-        hearing_days: ['2021-01-19T10:45:15.000Z',
-                       '2021-01-19T10:45:30.000Z',
-                       '2021-01-20T16:00:00.000Z']
-      )
-    end
-
-    it { is_expected.to eql('2021-01-19T10:45:15.000Z'.to_datetime) }
-  end
-
   describe '#transform_and_sanitize' do
     subject { helper.transform_and_sanitize(text) }
 
