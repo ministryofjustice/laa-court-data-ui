@@ -4,8 +4,11 @@ ENVIRONMENT=$1
 PINGDOM_IPS=$(curl -s https://my.pingdom.com/probes/ipv4 | tr -d ' ' | tr '\n' ',' | sed 's/,/\\,/g' | sed 's/\\,$//')
 VPN_IPS=$(curl -s https://raw.githubusercontent.com/ministryofjustice/laa-ip-allowlist/main/cidrs.txt | tr -d ' ' | tr '\n' ',' | sed 's/,/\\,/g' | sed 's/\\,$//')
 
-# Convert the branch name into a string that can be turned into a valid URL
-BRANCH_RELEASE_NAME=$(echo $CIRCLE_BRANCH | tr '[:upper:]' '[:lower:]' | sed 's:^\w*\/::' | tr -s ' _/[]().' '-' | cut -c1-18 | sed 's/-$//')
+# Consider only the first 8 characters of the branch name, wich corresponds to the Jira ticket code (e.g. ACD-1234).
+# Then add "-vcd" to form the first part of the deployment host name.
+# Example:
+# ACD-1234-add-new-feature -> https://acd-1234-vcd.apps.live.cloud-platform.service.justice.gov.uk
+BRANCH_RELEASE_NAME=$(echo $CIRCLE_BRANCH | tr '[:upper:]' '[:lower:]' | sed 's:^\w*\/::' | tr -s ' _/[]().' '-' | cut -c1-8 | sed 's/-$//')
 
 deploy_branch() {
   # Set the deployment host, this will add the prefix of the branch name

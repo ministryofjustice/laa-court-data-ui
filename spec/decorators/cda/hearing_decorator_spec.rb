@@ -17,6 +17,26 @@ RSpec.describe Cda::HearingDecorator, type: :decorator do
     let(:object) { hearing }
   end
 
+  describe '#hearing_days' do
+    let(:hearing) { build(:hearing, :with_hearing_details) }
+
+    it 'returns the hearing days from the hearing' do
+      expect(decorator.hearing_days).to eq(hearing.hearing.hearing_days)
+    end
+  end
+
+  describe '#earliest_sitting_day' do
+    let(:hearing_day1) { build(:hearing_day, sitting_day: '2022-08-01') }
+    let(:hearing_day2) { build(:hearing_day, sitting_day: '2022-08-02') }
+    let(:hearing) { build(:hearing, :with_hearing_details) }
+
+    it 'returns the earliest hearing day date' do
+      hearing.hearing.hearing_days = [hearing_day2, hearing_day1]
+
+      expect(decorator.earliest_sitting_day).to eq(hearing_day1)
+    end
+  end
+
   describe '#cracked_ineffective_trial' do
     let(:hearing_details) { build(:hearing_details, cracked_ineffective_trial:) }
     let(:hearing) { build(:hearing, hearing: hearing_details) }
