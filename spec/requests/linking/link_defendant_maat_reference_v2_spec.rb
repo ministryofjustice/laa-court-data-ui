@@ -103,7 +103,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
         end
 
         it 'renders laa_referencer/new' do
-          expect(response.body).to include('Defendant details') 
+          expect(response.body).to include('Defendant details')
         end
       end
     end

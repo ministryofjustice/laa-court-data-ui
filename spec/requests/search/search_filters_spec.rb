@@ -16,17 +16,20 @@ RSpec.describe 'Search filters', type: :request do
   end
 
   describe '#create' do
-
     context 'when posting a valid search filter' do
       let(:params) { { search_filter: { id: 'whatever' } } }
       let(:target_path) { new_search_path(params: { search: { filter: 'whatever' } }) }
+
       before { post '/search_filters', params: }
+
       it { expect(response).to redirect_to(target_path) }
     end
 
     context 'when posting a invalid search filter' do
       let(:params) { { search_filter: { id: nil } } }
+
       before { post '/search_filters', params: }
+
       it { expect(response.body).to include('There is a problem') }
     end
   end

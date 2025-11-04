@@ -23,11 +23,13 @@ RSpec.describe 'Search filters', type: :request do
       let(:target_path) { new_search_path(params: { search: { filter: 'whatever' } }) }
 
       before { post '/search_filters', params: }
+
       it { expect(response).to redirect_to(target_path) }
     end
 
     context 'when posting a invalid search filter' do
       let(:params) { { search_filter: { id: nil } } }
+
       before { post '/search_filters', params: }
 
       it { expect(response.body).to include('There is a problem') }

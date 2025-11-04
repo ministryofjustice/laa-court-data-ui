@@ -43,14 +43,6 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
         expect(response.body).to include('4 search results')
       end
 
-      it 'renders searches/_results' do
-        expect(response.body).to include('search result')
-      end
-
-      it 'renders searches/_results_header' do
-        expect(response.body).to include('search result')
-      end
-
       it 'renders results/_defendant' do
         expect(response.body).to include('ASN')
       end

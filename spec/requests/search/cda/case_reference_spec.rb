@@ -25,8 +25,6 @@ RSpec.describe 'case reference search', :stub_defendants_case_search, type: :req
       expect(response).to have_http_status :ok
     end
 
-   
-
     context 'when results returned' do
       it 'assigns array of results' do
         expect(response.body).to include('4 search results')

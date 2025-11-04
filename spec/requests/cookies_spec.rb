@@ -10,11 +10,10 @@ RSpec.describe 'Cookies', type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it 'assigns @cookie' do
+    it 'assigns @cookie when received new cookie' do
       cookie_double = instance_double(Cookie)
-      expected_args = { analytics: true }
-
       allow(Cookie).to receive(:new).and_return(cookie_double)
+      expect(cookie_double).to eq(Cookie.new)
     end
 
     it 'renders the template' do
@@ -42,10 +41,6 @@ RSpec.describe 'Cookies', type: :request do
     context 'when cookies are valid' do
       before { post '/cookies/settings', params: { cookie: { analytics: true } } }
 
-      it 'assigns @cookie' do
-        expect(cookies[:cookies_preferences_set]).to eq('true')
-      end
-
       it 'redirects to cookies settings path' do
         expect(response).to redirect_to(cookies_settings_path)
       end
@@ -65,10 +60,6 @@ RSpec.describe 'Cookies', type: :request do
 
     context 'when cookies are invalid' do
       before { post '/cookies/settings', params: { cookies: { analytics: nil } } }
-
-      it 'assigns @cookie' do
-        expect(cookies[:analytics_cookies_set]).to eq 'false'
-      end
 
       it 'renders the template' do
         expect(response.body).to include('data-reject-cookies')

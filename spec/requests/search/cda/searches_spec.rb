@@ -75,6 +75,7 @@ RSpec.describe 'Searches', type: :request do
         expect(response).to have_http_status(:ok)
       end
     end
+
     context 'when POSTing a valid defendant name search', :stub_defendants_name_search do
       let(:params) do
         {
@@ -88,14 +89,13 @@ RSpec.describe 'Searches', type: :request do
           }
         }
       end
+
       it 'displays search results' do
         expect(response.body).to include('ASN')
       end
     end
-    
   end
 
-   
   describe 'GET #create', :stub_defendants_case_search do
     before { get '/searches', params: params }
 

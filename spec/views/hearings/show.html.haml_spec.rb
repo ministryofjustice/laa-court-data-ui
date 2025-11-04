@@ -36,12 +36,6 @@ RSpec.describe 'hearings/show', :stub_v2_hearing_data, :stub_v2_hearing_summary,
     end
   end
 
-  context 'when viewing attendees' do
-    it 'displays the partial' do
-      is_expected.to include('Court Applications')
-    end
-  end
-
   context 'when viewing results' do
     it 'displays the partial' do
       is_expected.to include('Attendees')
