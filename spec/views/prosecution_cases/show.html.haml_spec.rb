@@ -24,6 +24,6 @@ RSpec.describe 'prosecution_cases/show.html.haml', type: :view do
     allow(decorated_case_summary).to receive_messages(case_summary_details)
   end
 
-  it { is_expected.to render_template(:_overall_defendants) }
-  it { is_expected.to render_template(:_hearing_summaries) }
+  it { is_expected.to include('Defendants') }
+  it { is_expected.to include('Hearings') }
 end

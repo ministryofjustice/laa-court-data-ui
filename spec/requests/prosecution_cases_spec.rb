@@ -13,7 +13,7 @@ RSpec.describe 'prosecution cases', :stub_case_search,
     end
 
     it 'renders prosecution_cases/show' do
-      expect(response).to render_template('prosecution_cases/show')
+      expect(response.body).to include('Hearings')
     end
 
     context 'when exception ActiveResource::BadRequest is raised' do

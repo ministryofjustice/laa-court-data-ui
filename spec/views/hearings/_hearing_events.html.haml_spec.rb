@@ -13,7 +13,7 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
 
   context 'without hearing_events', :stub_v2_hearing_events_empty do
     it 'renders template without error' do
-      is_expected.to render_template(:_hearing_events)
+      is_expected.to include('Hearing events')
     end
   end
 

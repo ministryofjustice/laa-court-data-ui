@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'renders common defendant details' do
-  it { expect(response).to render_template('defendants/_defendant') }
+  it { expect(response.body).to include('Defendant details - View court data - GOV.UK') }
   it { expect(response.body).to include('Jammy Dodger') }
-  it { expect(response).to render_template('defendants/_offences') }
+  it { expect(response.body).to include('Offence list') }
 end
 
 RSpec.describe 'defendants', type: :request do
@@ -38,7 +38,7 @@ RSpec.describe 'defendants', type: :request do
 
       it_behaves_like 'renders common defendant details'
 
-      it { expect(response).to render_template('laa_references/_form') }
+      it { expect(response.body).to include('/laa_references') }
     end
 
     context 'with linked defendant' do
@@ -50,7 +50,7 @@ RSpec.describe 'defendants', type: :request do
 
       it_behaves_like 'renders common defendant details'
 
-      it { expect(response).to render_template('defendants/_form') }
+      it { expect(response.body).to include('defendants/41fcb1cd-516e-438e-887a-5987d92ef90f') }
     end
 
     describe 'offence history' do
@@ -60,7 +60,7 @@ RSpec.describe 'defendants', type: :request do
 
       let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
 
-      it { expect(response).to render_template('defendants/_offences') }
+      it { expect(response.body).to include('offence-table') }
     end
   end
 
