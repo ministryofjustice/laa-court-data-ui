@@ -3,13 +3,13 @@
 RSpec.shared_examples 'a standard user' do
   it 'can search' do
     get new_search_filter_path
-    expect(response).to render_template('search_filters/new')
+    expect(response.body).to include('/search_filters')
   end
 
   # TODO: needs expanding once edit, etc are added
   it 'can manage themselves' do
     get user_path(user)
-    expect(response).to render_template('users/show')
+    expect(response.body).to include('User details')
   end
 
   context 'when performing unauthorized action on user' do
@@ -43,17 +43,17 @@ RSpec.describe 'authorization', type: :request do
 
     it 'can search' do
       get new_search_filter_path
-      expect(response).to render_template('search_filters/new')
+      expect(response.body).to include('/search_filters')
     end
 
     it 'can manage themselves' do
       get user_path(user)
-      expect(response).to render_template('users/show')
+      expect(response.body).to include('User details')
     end
 
     it 'can manage other users' do
       get user_path(other_user)
-      expect(response).to render_template('users/show')
+      expect(response.body).to include('User details')
     end
   end
 

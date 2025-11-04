@@ -71,7 +71,7 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
                                            'to be associated with this defendant.')
         }
 
-        it { expect(response).to render_template('new') }
+        it { expect(response.body).to include('/laa_references') }
       end
     end
   end
