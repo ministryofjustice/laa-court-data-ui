@@ -45,7 +45,6 @@ group :test do
   gem 'haml_lint', require: false
   gem 'i18n-tasks', '~> 1.0.15'
   gem 'launchy'
-  gem 'rails-controller-testing'
   gem 'rspec-html-matchers', '~> 0.10.0'
   gem 'rspec_junit_formatter', require: false
   gem 'rspec-rails', '~> 8.0'

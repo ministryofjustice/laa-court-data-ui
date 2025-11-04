@@ -7,9 +7,9 @@ RSpec.describe 'case reference search', :stub_defendants_case_search, type: :req
     sign_in user
   end
 
-  it 'renders searches#new' do
+  it 'renders searches#new to Search by caseReference' do
     get '/searches/new', params: { search: { filter: :case_reference } }
-    expect(response).to render_template('searches/new')
+    expect(response.body).to include('Unique reference number')
   end
 
   context 'when posting a query' do
@@ -25,22 +25,19 @@ RSpec.describe 'case reference search', :stub_defendants_case_search, type: :req
       expect(response).to have_http_status :ok
     end
 
-    it 'renders searches/new' do
-      expect(response).to render_template('searches/new')
-    end
+   
 
     context 'when results returned' do
       it 'assigns array of results' do
-        expect(assigns(:results))
-          .to include(an_instance_of(Cda::DefendantSummaryDecorator))
+        expect(response.body).to include('4 search results')
       end
 
       it 'renders searches/_results' do
-        expect(response).to render_template('searches/_results')
+        expect(response.body).to include('search result')
       end
 
       it 'renders results/_defendant' do
-        expect(response).to render_template('results/_defendant')
+        expect(response.body).to include('ASN')
       end
     end
 
@@ -51,11 +48,11 @@ RSpec.describe 'case reference search', :stub_defendants_case_search, type: :req
       end
 
       it 'renders searches/_results_header' do
-        expect(response).to render_template('searches/_results_header')
+        expect(response.body).to include('search result')
       end
 
       it 'renders results/_none template' do
-        expect(response).to render_template('results/_none')
+        expect(response.body).to include('There are no matching results.')
       end
     end
   end

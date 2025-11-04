@@ -9,7 +9,7 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
 
   it 'renders searches#new' do
     get '/searches/new', params: { search: { filter: :defendant_name } }
-    expect(response).to render_template('searches/new')
+    expect(response.body).to include('Defendant date of birth')
   end
 
   context 'when posting a query', :stub_defendants_name_search do
@@ -33,27 +33,26 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
 
     it 'renders searches/new' do
       post '/searches', params: search_params
-      expect(response).to render_template('searches/new')
+      expect(response.body).to include('search')
     end
 
     context 'when results returned', :vcr do
       before { post '/searches', params: search_params }
 
       it 'assigns array of results' do
-        expect(assigns(:results))
-          .to include(an_instance_of(Cda::DefendantSummaryDecorator))
+        expect(response.body).to include('4 search results')
       end
 
       it 'renders searches/_results' do
-        expect(response).to render_template('searches/_results')
+        expect(response.body).to include('search result')
       end
 
       it 'renders searches/_results_header' do
-        expect(response).to render_template('searches/_results_header')
+        expect(response.body).to include('search result')
       end
 
       it 'renders results/_defendant' do
-        expect(response).to render_template('results/_defendant')
+        expect(response.body).to include('ASN')
       end
     end
 
@@ -64,11 +63,11 @@ RSpec.describe 'Defendant by name and dob search', type: :request do
       end
 
       it 'renders searches/_results_header' do
-        expect(response).to render_template('searches/_results_header')
+        expect(response.body).to include('search result')
       end
 
       it 'renders results/_none template' do
-        expect(response).to render_template('results/_none')
+        expect(response.body).to include('There are no matching results.')
       end
     end
   end
