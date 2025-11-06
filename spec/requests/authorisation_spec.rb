@@ -3,7 +3,7 @@
 RSpec.shared_examples 'a standard user' do
   it 'can search' do
     get new_search_filter_path
-    expect(response.body).to include('/search_filters')
+    expect(response.body).to include('<h1 class="govuk-fieldset__heading">Search for</h1>')
   end
 
   # TODO: needs expanding once edit, etc are added
@@ -43,7 +43,7 @@ RSpec.describe 'authorization', type: :request do
 
     it 'can search' do
       get new_search_filter_path
-      expect(response.body).to include('/search_filters')
+      expect(response.body).to include('<h1 class="govuk-fieldset__heading">Search for</h1>')
     end
 
     it 'can manage themselves' do

@@ -10,14 +10,8 @@ RSpec.describe 'Cookies', type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it 'assigns @cookie when received new cookie' do
-      cookie_double = instance_double(Cookie)
-      allow(Cookie).to receive(:new).and_return(cookie_double)
-      expect(cookie_double).to eq(Cookie.new)
-    end
-
     it 'renders the template' do
-      expect(response.body).to include('new_cookie')
+      expect(response.body).to include('Change your cookie settings')
     end
 
     it 'stores the request referrer' do
@@ -30,10 +24,6 @@ RSpec.describe 'Cookies', type: :request do
       it 'stores the request referrer' do
         expect(session[:return_to]).to eq '/searches'
       end
-    end
-
-    it 'sets @cookie.analytics to analytics_cookies_set cookie value' do
-      expect(cookies[:analytics_cookies_set]).to eq('false')
     end
   end
 

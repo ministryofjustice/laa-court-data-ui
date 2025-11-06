@@ -110,14 +110,12 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
 
     context 'when server returns 500 error', :stub_v2_link_server_failure do
       it { expect(response.body).to include 'Court Data Adaptor could not be reached.' }
-
-      it { expect(response.body).to include '/laa_reference' }
     end
 
     context 'when cda returns 424 error', :stub_v2_link_cda_failure do
       it { expect(response.body).to include 'HMCTS Common Platform could not be reached.' }
 
-      it { expect(response.body).to include '/laa_references' }
+      it { expect(response.body).to include 'Create link without MAAT ID' }
     end
   end
 

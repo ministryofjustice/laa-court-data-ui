@@ -38,7 +38,7 @@ RSpec.describe 'defendants', type: :request do
 
       it_behaves_like 'renders common defendant details'
 
-      it { expect(response.body).to include('/laa_references') }
+      it { expect(response.body).to include('Create link to court data') }
     end
 
     context 'with linked defendant' do
@@ -50,7 +50,7 @@ RSpec.describe 'defendants', type: :request do
 
       it_behaves_like 'renders common defendant details'
 
-      it { expect(response.body).to include('defendants/41fcb1cd-516e-438e-887a-5987d92ef90f') }
+      it { expect(response.body).to include('Remove link to court data') }
     end
 
     describe 'offence history' do
