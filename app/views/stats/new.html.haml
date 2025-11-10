@@ -1,25 +1,48 @@
-= govuk_page_heading(t('stats.new.title'))
+= govuk_page_heading(t('stats.new.title'), tag_options: { class: 'govuk-!-margin-bottom-2' })
 
-= form_with url: stats_path, model: @model do |f|
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
+    %p.govuk-hint
+      Data shows how many MAAT IDs were linked and unlinked, and the reasons caseworkers chose for unlinking.
+
+= form_with url: new_stats_path, model: @stat_range_dates, method: :get, local: true, class: "moj-filter", data: { module: "moj-filter" } do |f|
   - content_for :error_summary do
-    = f.govuk_error_summary
-  .govuk-grid-row
-    .govuk-grid-column-one-third
-      .govuk-date-fieldset-m
-        .moj-datepicker{ "data-module" => "moj-date-picker" }
-          .govuk-form-group
-            %label.govuk-label{ for: 'stat-range-from-field' }
-              = t('stats.new.from')
-            %input.govuk-input.moj-js-datepicker-input#stat-range-from-field{ autocomplete: "off", name: "stat_range[from]", type: "text" }
+    = f.govuk_error_summary(title: 'There is a problem', link_base_errors_to: nil, error_list: @stat_range_dates.errors.full_messages)
 
-    .govuk-grid-column-one-third
-      .govuk-date-fieldset-m
-        .moj-datepicker{ "data-module" => "moj-date-picker" }
-          .govuk-form-group
-            %label.govuk-label{ for: 'stat-range-to-field' }
-              = t('stats.new.to')
-            %input.govuk-input.moj-js-datepicker-input#stat-range-to-field{ autocomplete: "off", name: "stat_range[to]", type: "text" }
+  .moj-filter__content
+    .moj-filter__selected
+      %h2.govuk-heading-m Period start and end dates
+      %p.govuk-body Select both dates below to filter results.
 
-  .govuk-grid-row
-    .govuk-grid-column-two-thirds
-      = f.govuk_submit(t('generic.search'))
+      .govuk-grid-row
+        .govuk-grid-column-one-third
+          .moj-datepicker{ "data-module" => "moj-date-picker" }
+            .govuk-form-group
+              %label.govuk-label{ for: 'stat-range-from-field' }
+                = t('stats.new.from')
+              %input.govuk-input.moj-js-datepicker-input#stat-range-from-field{
+                autocomplete: "off",
+                name: "stat_range[from]",
+                type: "text",
+                value: @stat_range_dates.from
+              }
+
+        .govuk-grid-column-one-third
+          .moj-datepicker{ "data-module" => "moj-date-picker" }
+            .govuk-form-group
+              %label.govuk-label{ for: 'stat-range-to-field' }
+                = t('stats.new.to')
+              %input.govuk-input.moj-js-datepicker-input#stat-range-to-field{
+                autocomplete: "off",
+                name: "stat_range[to]",
+                type: "text",
+                value: @stat_range_dates.to
+              }
+
+      .govuk-grid-row
+        .govuk-grid-column-one-third
+          .govuk-button-group{ class: "govuk-!-margin-bottom-0" }
+            = f.govuk_submit(t('generic.search'), class: "govuk-button", data: { module: "govuk-button" })
+            = link_to "Clear all", "#", id: "clear-dates", class: "govuk-link govuk-link--no-visited-state"
+
+= render partial: 'stats/stats', locals: { collection: @collection } if @collection.present?
