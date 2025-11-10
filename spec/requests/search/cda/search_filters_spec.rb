@@ -11,7 +11,7 @@ RSpec.describe 'Search filters', type: :request do
     before { get '/search_filters/new' }
 
     it 'renders search_filters#new' do
-      expect(response).to render_template('search_filters/new')
+      expect(response.body).to include('/search_filters')
     end
   end
 
@@ -22,13 +22,17 @@ RSpec.describe 'Search filters', type: :request do
       let(:params) { { search_filter: { id: 'whatever' } } }
       let(:target_path) { new_search_path(params: { search: { filter: 'whatever' } }) }
 
+      before { post '/search_filters', params: }
+
       it { expect(response).to redirect_to(target_path) }
     end
 
     context 'when posting a invalid search filter' do
       let(:params) { { search_filter: { id: nil } } }
 
-      it { expect(response).to render_template(:new) }
+      before { post '/search_filters', params: }
+
+      it { expect(response.body).to include('There is a problem') }
     end
   end
 end

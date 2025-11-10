@@ -9,7 +9,7 @@ RSpec.describe 'error routes', type: :request do
     end
 
     it 'renders the template' do
-      expect(response).to render_template('errors/unauthorized')
+      expect(response.body).to include('Unauthorized connection to source data.')
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe 'error routes', type: :request do
       end
 
       it 'renders the 404/not_found template' do
-        expect(response).to render_template('errors/not_found')
+        expect(response.body).to include('Page not found')
       end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe 'error routes', type: :request do
     end
 
     it 'renders the 422/unacceptable template' do
-      expect(response).to render_template('errors/unacceptable')
+      expect(response.body).to include('The change you wanted was rejected')
     end
   end
 
@@ -63,7 +63,7 @@ RSpec.describe 'error routes', type: :request do
     end
 
     it 'renders the 500/internal_error template' do
-      expect(response).to render_template('errors/internal_error')
+      expect(response.body).to include('Sorry, something went wrong')
     end
   end
 end

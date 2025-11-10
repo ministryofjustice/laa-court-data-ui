@@ -12,7 +12,7 @@ RSpec.describe 'caseworkers', type: :request do
     context 'when themself' do
       it 'renders /users/:id' do
         get "/users/#{user.id}"
-        expect(response).to render_template('users/show')
+        expect(response.body).to include('User details')
       end
     end
 

@@ -5,7 +5,7 @@ RSpec.describe 'Root route', type: :request do
     before { get '/' }
 
     it 'redirects to devise/sessions/new' do
-      expect(response).to render_template('devise/sessions/new')
+      expect(response.body).to include('Sign in to view court data')
     end
   end
 
@@ -18,7 +18,7 @@ RSpec.describe 'Root route', type: :request do
     end
 
     it 'renders search_filters/new' do
-      expect(response).to render_template('search_filters/new')
+      expect(response.body).to include('search_filters/new')
     end
   end
 end

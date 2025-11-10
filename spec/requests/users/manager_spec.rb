@@ -12,12 +12,12 @@ RSpec.describe 'managers', type: :request do
   describe 'Show user', type: :request do
     it 'can render /users/:id' do
       get "/users/#{user.id}"
-      expect(response).to render_template('users/show')
+      expect(response.body).to include('User details')
     end
 
     it 'can render other /users/:id' do
       get "/users/#{other_user.id}"
-      expect(response).to render_template('users/show')
+      expect(response.body).to include('User details')
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe 'managers', type: :request do
     end
 
     it 'renders /users/new' do
-      expect(response).to render_template('users/new')
+      expect(response.body).to include('Manage users')
     end
   end
 
@@ -66,12 +66,12 @@ RSpec.describe 'managers', type: :request do
   describe 'Edit user', type: :request do
     it 'renders /users/:id/edit' do
       get "/users/#{user.id}/edit"
-      expect(response).to render_template('users/edit')
+      expect(response.body).to include('Edit user')
     end
 
     it 'renders other /users/:id/edit' do
       get "/users/#{other_user.id}/edit"
-      expect(response).to render_template('users/edit')
+      expect(response.body).to include('Edit user')
     end
   end
 
@@ -154,7 +154,7 @@ RSpec.describe 'managers', type: :request do
     end
 
     it 'retrieves the csv' do
-      expect(response).to render_template('users/export')
+      expect(response.body).to include('Username')
     end
   end
 end

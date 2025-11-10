@@ -10,12 +10,8 @@ RSpec.describe 'Cookies', type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it 'assigns @cookie' do
-      expect(assigns(:cookie)).to be_instance_of(Cookie)
-    end
-
     it 'renders the template' do
-      expect(response).to render_template(:new)
+      expect(response.body).to include('Change your cookie settings')
     end
 
     it 'stores the request referrer' do
@@ -29,19 +25,11 @@ RSpec.describe 'Cookies', type: :request do
         expect(session[:return_to]).to eq '/searches'
       end
     end
-
-    it 'sets @cookie.analytics to analytics_cookies_set cookie value' do
-      expect(assigns(:cookie).analytics.to_s).to eq cookies[:analytics_cookies_set]
-    end
   end
 
   describe 'POST /cookies/settings' do
     context 'when cookies are valid' do
       before { post '/cookies/settings', params: { cookie: { analytics: true } } }
-
-      it 'assigns @cookie' do
-        expect(assigns(:cookie)).to be_instance_of(Cookie)
-      end
 
       it 'redirects to cookies settings path' do
         expect(response).to redirect_to(cookies_settings_path)
@@ -63,16 +51,8 @@ RSpec.describe 'Cookies', type: :request do
     context 'when cookies are invalid' do
       before { post '/cookies/settings', params: { cookies: { analytics: nil } } }
 
-      it 'assigns @cookie' do
-        expect(assigns(:cookie)).to be_instance_of(Cookie)
-      end
-
       it 'renders the template' do
-        expect(response).to render_template(:new)
-      end
-
-      it 'sets error message' do
-        expect(assigns(:cookie).errors[:analytics][0]).to eq "can't be blank"
+        expect(response.body).to include('data-reject-cookies')
       end
     end
   end

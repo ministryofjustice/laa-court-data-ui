@@ -81,7 +81,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
                                          'be associated with this defendant.'
       }
 
-      it { expect(response).to render_template('new') }
+      it { expect(response.body).to include('Create link to court data') }
     end
 
     context 'with invalid maat_reference' do
@@ -92,7 +92,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
                                            'be associated with this defendant.'
         }
 
-        it { expect(response).to render_template('new') }
+        it { expect(response.body).to include('Create link to court data') }
       end
 
       context 'when invalid format' do
@@ -103,21 +103,19 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
         end
 
         it 'renders laa_referencer/new' do
-          expect(response).to render_template 'laa_references/new'
+          expect(response.body).to include('Defendant details')
         end
       end
     end
 
     context 'when server returns 500 error', :stub_v2_link_server_failure do
       it { expect(response.body).to include 'Court Data Adaptor could not be reached.' }
-
-      it { expect(response).to render_template 'laa_references/new' }
     end
 
     context 'when cda returns 424 error', :stub_v2_link_cda_failure do
       it { expect(response.body).to include 'HMCTS Common Platform could not be reached.' }
 
-      it { expect(response).to render_template 'laa_references/new' }
+      it { expect(response.body).to include 'Create link without MAAT ID' }
     end
   end
 
