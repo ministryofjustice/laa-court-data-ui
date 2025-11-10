@@ -17,7 +17,7 @@
             -# TODO: remove FeatureFlag show_stats
             - if can?(:read, Cda::LinkingStatCollection)
               %li.govuk-service-navigation__item.pull-right
-                %a.govuk-link--no-visited-state{ href: stats_path }
+                %a.govuk-link--no-visited-state{ href: new_stats_path }
                   = t('layouts.application.header.navigation.view_stats')
             - if can?(:index, User)
               %li.govuk-service-navigation__item
