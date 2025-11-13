@@ -15,7 +15,6 @@ en:
       title: Select date range for linking data
       to: End date
     show:
-      change: Change
       current_period: Chosen period
       date_from: Start date
       date_to: End date
