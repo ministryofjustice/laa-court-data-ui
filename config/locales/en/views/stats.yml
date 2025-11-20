@@ -12,10 +12,9 @@ en:
   stats:
     new:
       from: Start date
-      title: Select date range for linking data
+      title: Linking data
       to: End date
     show:
-      change: Change
       current_period: Chosen period
       date_from: Start date
       date_to: End date
@@ -30,6 +29,5 @@ en:
         linked: MAAT IDs linked
         to: Period end
         unlinked: MAAT IDs subsequently unlinked
-      title: Linking data
       unlink_reason_types: Unlink reason types
       unlinked: MAAT IDs subsequently unlinked

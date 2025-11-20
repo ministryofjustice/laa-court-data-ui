@@ -41,6 +41,19 @@ const setUpEventListeners = () => {
     })
     document.querySelector('.search-form-toggle').classList.remove('moj-js-hidden')
   })
+
+  const clearDatesLink = document.getElementById('clear-dates')
+  if (clearDatesLink) {
+    clearDatesLink.addEventListener('click', (event) => {
+      event.preventDefault()
+
+      const fromField = document.getElementById('stat-range-from-field')
+      const toField = document.getElementById('stat-range-to-field')
+
+      if (fromField) fromField.value = ''
+      if (toField) toField.value = ''
+    })
+  }
 }
 
 document.addEventListener('DOMContentLoaded', setUpEventListeners)
