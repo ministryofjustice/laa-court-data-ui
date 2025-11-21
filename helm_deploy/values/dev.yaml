@@ -12,9 +12,7 @@ googleAnalyticsId: 'UA-131160087-14'
 displayRawResponses: enabled
 identifier: laa-court-data-ui-app-ingress-laa-court-data-ui-dev-green
 cert: laa-court-data-ui-dev-cert
-# TODO: Before merge, switch back to main dev
-# omniauthRedirectUri: https://dev.view-court-data.service.justice.gov.uk/users/auth/entra/callback
-omniauthRedirectUri: https://acd-832-sso-vcd.apps.live.cloud-platform.service.justice.gov.uk/users/auth/entra/callback
+omniauthRedirectUri: https://dev.view-court-data.service.justice.gov.uk/users/auth/entra/callback
 featureFlags:
   perUserFeatureFlags: true
   maintenanceMode: false
