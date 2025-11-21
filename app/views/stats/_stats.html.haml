@@ -1,6 +1,3 @@
-= govuk_page_heading(t('stats.show.title'))
-%p.govuk-hint
-  Data shows how many MAAT IDs were linked and unlinked, and the reasons caseworkers chose for unlinking.
 .govuk-grid-row
   .govuk-grid-column-two-thirds
     %h2.govuk-heading-l{ class: 'govuk-!-margin-top-5 ' }
@@ -10,46 +7,40 @@
         %dt.govuk-summary-list__key
           = t('stats.show.date_from')
         %dd.govuk-summary-list__value
-          = @collection.current_range.date_from.to_date.to_fs(:human_readable)
+          = collection.current_range.date_from.to_date.to_fs(:human_readable)
         %dd.govuk-summary-list__actions
-          = link_to new_stats_path, class: 'govuk-link' do
-            = t('stats.show.change')
-            %span.govuk-visually-hidden
-              = t('stats.show.period')
+          %span.govuk-visually-hidden
+            = t('stats.show.period')
       .govuk-summary-list__row
         %dt.govuk-summary-list__key
           = t('stats.show.date_to')
         %dd.govuk-summary-list__value
-          = @collection.current_range.date_to.to_date.to_fs(:human_readable)
+          = collection.current_range.date_to.to_date.to_fs(:human_readable)
         %dd.govuk-summary-list__actions
-          = link_to new_stats_path, class: 'govuk-link' do
-            = t('stats.show.change')
-            %span.govuk-visually-hidden
-              = t('stats.show.period')
+          %span.govuk-visually-hidden
+            = t('stats.show.period')
       .govuk-summary-list__row
         %dt.govuk-summary-list__key
           = t('stats.show.linked')
         %dd.govuk-summary-list__value
-          = @collection.current_range.linked
+          = collection.current_range.linked
       .govuk-summary-list__row
         %dt.govuk-summary-list__key
           = t('stats.show.unlinked')
         %dd.govuk-summary-list__value
-          = @collection.current_range.unlinked
+          = collection.current_range.unlinked
       .govuk-summary-list__row
         %dt.govuk-summary-list__key
           = t('stats.show.unlink_reason_types')
-
         %dd.govuk-summary-list__value
-          - @collection.unlink_reason_types.each do |reason, total|
+          - collection.unlink_reason_types.each do |reason, total|
             %p.govuk-body
               #{reason}: #{total}
       .govuk-summary-list__row
         %dt.govuk-summary-list__key
           = t('stats.show.other_reasons_given')
-
         %dd.govuk-summary-list__value
-          - @collection.current_range.other_unlink_reasons.each do |reason|
+          - collection.current_range.other_unlink_reasons.each do |reason|
             %p.govuk-boxy
               = reason
 
@@ -69,7 +60,7 @@
           %th.govuk-table__header{ scope: 'col', class: 'govuk-!-width-one-quarter' }= t('stats.show.previous_ranges.linked')
           %th.govuk-table__header{ scope: 'col', class: 'govuk-!-width-one-quarter' }= t('stats.show.previous_ranges.unlinked')
       %tbody.govuk-table__body
-        - @collection.previous_ranges.each do |range|
+        - collection.previous_ranges.each do |range|
           %tr.govuk-table__row
             %td.govuk-table__cell
               = range.date_from.to_date.to_fs(:human_readable)

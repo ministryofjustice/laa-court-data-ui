@@ -1,18 +1,18 @@
 class StatsController < ApplicationController
   before_action :authorize_access
 
-  def show
-    @model = StatRange.new(stat_params)
-    if @model.valid?
-      @collection = Cda::LinkingStatCollection.find_from_range(@model.from.to_s, @model.to.to_s)
-      render :show
-    else
-      render :new
-    end
-  end
-
   def new
-    @model = StatRange.new
+    @stat_range_dates = StatRange.new(stat_params)
+
+    if @stat_range_dates.valid?
+
+      @collection = Cda::LinkingStatCollection.find_from_range(
+        Date.parse(@stat_range_dates.from).to_s,
+        Date.parse(@stat_range_dates.to).to_s
+      )
+    end
+
+    render :new
   end
 
   private
@@ -25,7 +25,11 @@ class StatsController < ApplicationController
     if params[:stat_range]
       params.require(:stat_range).permit(:from, :to)
     else
-      { from: 28.days.ago.to_date, to: 1.day.ago.to_date }
+      seven_days_ago = Time.zone.today - 7.days
+      {
+        from: seven_days_ago.beginning_of_week.strftime('%d/%m/%Y'),
+        to: seven_days_ago.end_of_week.strftime('%d/%m/%Y')
+      }
     end
   end
 end
