@@ -17,15 +17,9 @@ RSpec.feature 'View usage stats', :vcr do
   scenario 'I enter valid dates' do
     visit new_stats_path(stat_range: { from: '01/09/2025', to: '1/10/2025' })
 
-    expect(page).to have_content "Start date Mon, 1 September 2025"
-    expect(page).to have_content "End date Wed, 1 October 2025"
+    expect(page).to have_content "Total links and unlinks"
     expect(page).to have_content "MAAT IDs linked 5"
-    expect(page).to have_content "MAAT IDs subsequently unlinked 3"
-    expect(page).to have_content "Unlink reason types\n" \
-                                 "Other: 1\n" \
-                                 "Linked to wrong case ID (correct defendant): 2"
-
-    expect(page).to have_content "Other reasons given\nI made a mistake"
+    expect(page).to have_content "MAAT IDs unlinked 3"
 
     expect(page).to have_content "Previous periods"
     expect(page).to have_content "Period start Period end MAAT IDs linked MAAT IDs subsequently unlinked"

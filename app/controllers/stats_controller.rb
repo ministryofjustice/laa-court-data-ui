@@ -10,8 +10,11 @@ class StatsController < ApplicationController
         Date.parse(@stat_range_dates.from).to_s,
         Date.parse(@stat_range_dates.to).to_s
       )
+      @all_collection = Cda::LinkingStatCollection.find_from_range(
+        100.years.ago.to_date.to_s,
+        Date.today.to_s
+      )
     end
-
     render :new
   end
 

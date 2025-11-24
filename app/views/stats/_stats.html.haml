@@ -2,47 +2,24 @@
   .govuk-grid-column-two-thirds
     %h2.govuk-heading-l{ class: 'govuk-!-margin-top-5 ' }
       = t('stats.show.current_period')
-    %dl.govuk-summary-list
-      .govuk-summary-list__row
-        %dt.govuk-summary-list__key
-          = t('stats.show.date_from')
-        %dd.govuk-summary-list__value
-          = collection.current_range.date_from.to_date.to_fs(:human_readable)
-        %dd.govuk-summary-list__actions
-          %span.govuk-visually-hidden
-            = t('stats.show.period')
-      .govuk-summary-list__row
-        %dt.govuk-summary-list__key
-          = t('stats.show.date_to')
-        %dd.govuk-summary-list__value
-          = collection.current_range.date_to.to_date.to_fs(:human_readable)
-        %dd.govuk-summary-list__actions
-          %span.govuk-visually-hidden
-            = t('stats.show.period')
-      .govuk-summary-list__row
-        %dt.govuk-summary-list__key
-          = t('stats.show.linked')
-        %dd.govuk-summary-list__value
-          = collection.current_range.linked
-      .govuk-summary-list__row
-        %dt.govuk-summary-list__key
-          = t('stats.show.unlinked')
-        %dd.govuk-summary-list__value
-          = collection.current_range.unlinked
-      .govuk-summary-list__row
-        %dt.govuk-summary-list__key
-          = t('stats.show.unlink_reason_types')
-        %dd.govuk-summary-list__value
-          - collection.unlink_reason_types.each do |reason, total|
-            %p.govuk-body
-              #{reason}: #{total}
-      .govuk-summary-list__row
-        %dt.govuk-summary-list__key
-          = t('stats.show.other_reasons_given')
-        %dd.govuk-summary-list__value
-          - collection.current_range.other_unlink_reasons.each do |reason|
-            %p.govuk-boxy
-              = reason
+    %table.govuk-table{ class: "govuk-!-margin-bottom-4" }
+      %caption.govuk-table__caption.govuk-visually-hidden
+        = t('stats.show.previous_ranges.caption')
+      %thead.govuk-table__head
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'col', class: 'govuk-!-width-one-quarter' }
+          %th.govuk-table__header{ scope: 'col', class: 'govuk-!-width-one-quarter' }= t('stats.show.alltime')
+          %th.govuk-table__header{ scope: 'col', class: 'govuk-!-width-one-quarter' }= t('stats.show.daterange')
+      %tbody.govuk-table__body
+        %tr.govuk-table__row
+          %td.govuk-table__cell= t('stats.show.linked')
+          %td.govuk-table__cell= @all_collection.current_range.linked
+          %td.govuk-table__cell= collection.current_range.linked
+        %tr.govuk-table__row
+          %td.govuk-table__cell= t('stats.show.unlinked')
+          %td.govuk-table__cell= @all_collection.current_range.unlinked
+          %td.govuk-table__cell= collection.current_range.unlinked
+
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
@@ -62,11 +39,7 @@
       %tbody.govuk-table__body
         - collection.previous_ranges.each do |range|
           %tr.govuk-table__row
-            %td.govuk-table__cell
-              = range.date_from.to_date.to_fs(:human_readable)
-            %td.govuk-table__cell
-              = range.date_to.to_date.to_fs(:human_readable)
-            %td.govuk-table__cell
-              = range.linked
-            %td.govuk-table__cell
-              = range.unlinked
+            %td.govuk-table__cell= range.date_from.to_date.to_fs(:human_readable)
+            %td.govuk-table__cell= range.date_to.to_date.to_fs(:human_readable)
+            %td.govuk-table__cell= range.linked
+            %td.govuk-table__cell= range.unlinked
