@@ -3,16 +3,16 @@ class StatsController < ApplicationController
 
   def new
     @stat_range_dates = StatRange.new(stat_params)
-
+  
+    @all_collection = Cda::LinkingStatCollection.find_from_range(
+        100.years.ago.to_date.to_s,
+        Time.zone.today.to_s
+      )
     if @stat_range_dates.valid?
 
       @collection = Cda::LinkingStatCollection.find_from_range(
         Date.parse(@stat_range_dates.from).to_s,
         Date.parse(@stat_range_dates.to).to_s
-      )
-      @all_collection = Cda::LinkingStatCollection.find_from_range(
-        100.years.ago.to_date.to_s,
-        Time.zone.today.to_s
       )
     end
     render :new

@@ -45,4 +45,4 @@
             = f.govuk_submit(t('generic.search'), class: "govuk-button", data: { module: "govuk-button" })
             = link_to "Clear all", "#", id: "clear-dates", class: "govuk-link govuk-link--no-visited-state"
 
-= render partial: 'stats/stats', locals: { collection: @collection } if @collection.present?
+= render partial: 'stats/stats', locals: { collection: @collection, all_collection: @all_collection } if @collection.present? && @all_collection.present?

@@ -1,11 +1,38 @@
-RSpec.feature 'View usage stats', :vcr do
+
+RSpec.describe 'View usage stats', :vcr, type: :feature do
+  include Warden::Test::Helpers
+
   let(:user) { create(:user, roles: ['data_analyst']) }
 
   before do
-    sign_in user
-    UnlinkReason.create! code: 1, description: "Linked to wrong case ID (correct defendant)"
-    UnlinkReason.create! code: 7, description: "Other"
+    Warden.test_mode!
+    login_as(user, scope: :user)
+
+    # Create required data
+    UnlinkReason.create!(code: 1, description: "Linked to wrong case ID (correct defendant)")
+    UnlinkReason.create!(code: 7, description: "Other")
+
+    # Stub external calls for predictable data
+    allow(Cda::LinkingStatCollection).to receive(:find_from_range)
+      .with(100.years.ago.to_date.to_s, Time.zone.today.to_s)
+      .and_return(double(
+        current_range: double(linked: 10, unlinked: 5),
+        previous_ranges: []
+      ))
+
+    allow(Cda::LinkingStatCollection).to receive(:find_from_range)
+      .with("2025-09-01", "2025-10-01")
+      .and_return(double(
+        current_range: double(linked: 5, unlinked: 3),
+        previous_ranges: [
+          double(date_from: Date.new(2025, 8, 1), date_to: Date.new(2025, 8, 31), linked: 4, unlinked: 4),
+          double(date_from: Date.new(2025, 7, 1), date_to: Date.new(2025, 7, 31), linked: 2, unlinked: 2),
+          double(date_from: Date.new(2025, 5, 31), date_to: Date.new(2025, 6, 30), linked: 1, unlinked: 1)
+        ]
+      ))
   end
+
+  after { Warden.test_reset! }
 
   scenario 'I enter invalid dates' do
     visit new_stats_path(stat_range: { from: 'aaa', to: 'bbb' })
@@ -18,8 +45,8 @@ RSpec.feature 'View usage stats', :vcr do
     visit new_stats_path(stat_range: { from: '01/09/2025', to: '1/10/2025' })
 
     expect(page).to have_content "Total links and unlinks"
-    expect(page).to have_content "MAAT IDs linked 5"
-    expect(page).to have_content "MAAT IDs unlinked 3"
+    expect(page).to have_content "MAAT IDs linked 10"
+    expect(page).to have_content "MAAT IDs unlinked 5"
 
     expect(page).to have_content "Previous periods"
     expect(page).to have_content "Period start Period end MAAT IDs linked MAAT IDs subsequently unlinked"
