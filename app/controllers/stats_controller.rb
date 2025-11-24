@@ -12,7 +12,7 @@ class StatsController < ApplicationController
       )
       @all_collection = Cda::LinkingStatCollection.find_from_range(
         100.years.ago.to_date.to_s,
-        Date.today.to_s
+        Time.zone.today.to_s
       )
     end
     render :new
