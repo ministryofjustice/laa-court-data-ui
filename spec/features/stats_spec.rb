@@ -12,28 +12,29 @@ RSpec.describe 'View usage stats', :vcr, type: :feature do
     UnlinkReason.create!(code: 7, description: "Other")
 
     # Stub external calls for predictable data
+    # rubocop:disable RSpec/VerifiedDoubles
     allow(Cda::LinkingStatCollection).to receive(:find_from_range)
       .with(100.years.ago.to_date.to_s, Time.zone.today.to_s)
-      .and_return(instance_double(current_range: instance_double(linked: 10, unlinked: 5),
-                                  previous_ranges: []))
-
+      .and_return(double(current_range: double(linked: 10, unlinked: 5),
+                         previous_ranges: []))
     allow(Cda::LinkingStatCollection).to receive(:find_from_range)
       .with("2025-09-01", "2025-10-01")
-      .and_return(instance_double(current_range: instance_double(linked: 5, unlinked: 3),
-                                  previous_ranges: [
-                                    instance_double(date_from: Date.new(2025, 8, 1),
-                                                    date_to: Date.new(2025, 8, 31), linked: 4,
-                                                    unlinked: 4),
-                                    instance_double(date_from: Date.new(2025, 7, 1),
-                                                    date_to: Date.new(2025, 7, 31), linked: 2,
-                                                    unlinked: 2),
-                                    instance_double(date_from: Date.new(2025, 5, 31),
-                                                    date_to: Date.new(2025, 6, 30), linked: 1,
-                                                    unlinked: 1)
-                                  ]))
+      .and_return(double(current_range: double(linked: 5, unlinked: 3),
+                         previous_ranges: [
+                           double(date_from: Date.new(2025, 8, 1),
+                                  date_to: Date.new(2025, 8, 31), linked: 4,
+                                  unlinked: 4),
+                           double(date_from: Date.new(2025, 7, 1),
+                                  date_to: Date.new(2025, 7, 31), linked: 2,
+                                  unlinked: 2),
+                           double(date_from: Date.new(2025, 5, 31),
+                                  date_to: Date.new(2025, 6, 30), linked: 1,
+                                  unlinked: 1)
+                         ]))
   end
 
   after { Warden.test_reset! }
+  # rubocop:enable RSpec/VerifiedDoubles
 
   scenario 'I enter invalid dates' do
     visit new_stats_path(stat_range: { from: 'aaa', to: 'bbb' })
