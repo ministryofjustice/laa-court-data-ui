@@ -1,4 +1,6 @@
 RSpec.describe 'View usage stats', :vcr, type: :feature do
+  
+  # TODO: VCR/cassettes or Webmock stubs to mock external API calls can be placed here
   include Warden::Test::Helpers
 
   let(:user) { create(:user, roles: ['data_analyst']) }
