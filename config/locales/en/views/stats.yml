@@ -19,7 +19,6 @@ en:
       current_period: Total links and unlinks
       date_range: Selected date range
       linked: MAAT IDs linked
-      unlinked: MAAT IDs unlinked
       previous_periods: Previous periods
       previous_ranges:
         caption: Previous range statisticszs
@@ -28,4 +27,4 @@ en:
         linked: MAAT IDs linked
         to: Period end
         unlinked: MAAT IDs subsequently unlinked
-
+      unlinked: MAAT IDs unlinked
