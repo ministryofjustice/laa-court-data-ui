@@ -15,19 +15,16 @@ en:
       title: Linking data
       to: End date
     show:
-      current_period: Chosen period
-      date_from: Start date
-      date_to: End date
+      all_time: All time
+      current_period: Total links and unlinks
+      date_range: Selected date range
       linked: MAAT IDs linked
-      other_reasons_given: Other reasons given
-      period: period
       previous_periods: Previous periods
       previous_ranges:
-        caption: Previous range statistics
+        caption: Previous range statisticszs
         from: Period start
         hint: The last 10 periods will update to reflect your chosen time period
         linked: MAAT IDs linked
         to: Period end
         unlinked: MAAT IDs subsequently unlinked
-      unlink_reason_types: Unlink reason types
-      unlinked: MAAT IDs subsequently unlinked
+      unlinked: MAAT IDs unlinked
