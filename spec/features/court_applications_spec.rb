@@ -46,7 +46,7 @@ RSpec.feature 'Court Applications', :vcr do
 
     scenario 'I view the application details' do
       expect(page).to have_content "Appeal against a conviction"
-      expect(page).to have_content prosecution_case_urn_from_vcr
+      expect(page).to have_content "MyString" # The application reference
       expect(page).to have_content "Result: Not available"
       expect(page).to have_content "Mauricio Rath"
       expect(page).to have_content "06/05/1994"
