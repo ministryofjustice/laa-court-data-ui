@@ -10,7 +10,8 @@ class StatRange
   validate :valid_date_format
 
   DATE_FORMAT = '%d/%m/%Y'.freeze
-  DATE_REGEX = %r{\A\d{1,2}/\d{2}/\d{4}\z}
+  # Allow single or double digit day and month (eg. 1/1/2025 or 01/01/2025)
+  DATE_REGEX = %r{\A\d{1,2}/\d{1,2}/\d{4}\z}
 
   private
 
