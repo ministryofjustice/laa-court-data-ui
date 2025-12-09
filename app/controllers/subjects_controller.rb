@@ -51,7 +51,7 @@ class SubjectsController < ApplicationController
   end
 
   def add_extra_breadcrumbs
-    reference = @application.prosecution_case_reference
+    reference = @application.application_reference
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
     add_breadcrumb t("subjects.#{@application.application_category}"),
                    court_application_path(@application.application_id)

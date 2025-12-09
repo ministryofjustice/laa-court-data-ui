@@ -12,7 +12,7 @@ module Cda
     end
 
     def prosecution_case_reference
-      case_summary.first.prosecution_case_reference
+      case_summary.first&.prosecution_case_reference
     end
 
     def hearing_days_sorted_by(date_sort_direction)

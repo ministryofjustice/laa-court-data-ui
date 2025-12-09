@@ -1,7 +1,7 @@
 - content_for :pre_heading do
   = render '/feedback_on_appeals_to_crown_court', application: @application
 
-= govuk_page_heading(@application.prosecution_case_reference,
+= govuk_page_heading(@application.application_reference,
                      caption_text: t("subjects.#{@application.application_category}"),
                      tag_options: { class: 'govuk-!-margin-bottom-4' })
 
