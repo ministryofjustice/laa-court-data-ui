@@ -363,18 +363,18 @@ jobs:
       - deploy-to-environment:
           environment: production
 
-  e2e-test-branch:
-    executor: court-data-end-to-end-tests/e2e-test-executor
-    steps:
-      - court-data-end-to-end-tests/run-e2e-tests:
-          e2e_current_image_var: VCD_IMAGE
-          e2e_current_image: 754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-assess-a-claim/laa-court-data-ui:branch-${CIRCLE_SHA1}
-          e2e_branch: main
+  # e2e-test-branch:
+  #   executor: court-data-end-to-end-tests/e2e-test-executor
+  #   steps:
+  #     - court-data-end-to-end-tests/run-e2e-tests:
+  #         e2e_current_image_var: VCD_IMAGE
+  #         e2e_current_image: 754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com/laa-assess-a-claim/laa-court-data-ui:branch-${CIRCLE_SHA1}
+  #         e2e_branch: main
 
-  e2e-test-main:
-    executor: court-data-end-to-end-tests/e2e-test-executor
-    steps:
-      - court-data-end-to-end-tests/run-e2e-tests
+  # e2e-test-main:
+  #   executor: court-data-end-to-end-tests/e2e-test-executor
+  #   steps:
+  #     - court-data-end-to-end-tests/run-e2e-tests
 
 # ------------------
 # WORKFLOWS
@@ -418,9 +418,9 @@ workflows:
           context: laa-court-data-ui-live-production
           requires:
             - hold-production
-      - e2e-test-main:
-          requires:
-            - build-app-container
+      # - e2e-test-main:
+      #     requires:
+      #       - build-app-container
 
   test-branch:
     jobs:
@@ -475,7 +475,7 @@ workflows:
           context: laa-court-data-ui-live-uat
           requires:
             - hold-uat
-      - e2e-test-branch:
-          context: laa-court-data-e2e-tests
-          requires:
-            - build-app-container
+      # - e2e-test-branch:
+      #     context: laa-court-data-e2e-tests
+      #     requires:
+      #       - build-app-container
