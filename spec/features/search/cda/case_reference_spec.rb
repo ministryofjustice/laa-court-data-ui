@@ -96,9 +96,8 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     expect(page).to be_accessible
   end
 
-  context 'when appeals flag is set' do
+  context 'view appeals feature' do
     before do
-      user.update!(feature_flags: ['view_appeals'])
       visit '/'
       choose 'A case by URN'
       click_link_or_button 'Continue'

@@ -8,8 +8,7 @@ SeedHelper.find_or_create_user(
     first_name: 'Casey',
     last_name: 'Worker',
     username: 'work-c',
-    roles: %w[caseworker],
-    feature_flags: %w[view_appeals]
+    roles: %w[caseworker]
   }
 )
 
@@ -19,8 +18,7 @@ SeedHelper.find_or_create_user(
     first_name: 'Mangy',
     last_name: 'Worker',
     username: 'work-m',
-    roles: %w[caseworker manager],
-    feature_flags: %w[view_appeals]
+    roles: %w[caseworker manager]
   }
 )
 
@@ -30,7 +28,6 @@ SeedHelper.find_or_create_user(
     first_name: 'Admin',
     last_name: 'Worker',
     username: 'work-a',
-    roles: %w[admin],
-    feature_flags: %w[view_appeals]
+    roles: %w[admin]
   }
 )
