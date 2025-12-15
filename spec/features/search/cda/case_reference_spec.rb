@@ -96,7 +96,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     expect(page).to be_accessible
   end
 
-  context 'view appeals feature' do
+  context 'when view appeals feature' do
     before do
       visit '/'
       choose 'A case by URN'
