@@ -16,9 +16,9 @@ RSpec.describe 'prosecution cases', :stub_case_search,
       expect(response.body).to include('Hearings')
     end
 
-    context 'when exception ActiveResource::BadRequest is raised' do
+    context 'when exception ActiveResource::ResourceNotFound is raised' do
       before do
-        allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::BadRequest,
+        allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::ResourceNotFound,
                                                                    'Fake error')
         get "/prosecution_cases/#{case_reference}"
       end

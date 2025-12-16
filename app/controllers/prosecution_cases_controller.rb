@@ -24,13 +24,13 @@ class ProsecutionCasesController < ApplicationController
   def set_prosecution_case
     build_prosecution_case
   rescue ActiveResource::ConnectionError => e
-    logger.error 'SERVER_ERROR_OCCURRED'
+    logger.error '404_Not_Found'
     Sentry.capture_exception(e)
     redirect_to_search_path(e)
   end
 
   def build_prosecution_case
-    raise(ActiveResource::BadRequest, "URN '#{urn}' not found") unless search_results
+    raise(ActiveResource::ResourceNotFound, "URN '#{urn}' not found") unless search_results
     @prosecution_case ||= helpers.decorate(search_results, Cda::CaseSummaryDecorator)
     update_prosecution_case
   end
