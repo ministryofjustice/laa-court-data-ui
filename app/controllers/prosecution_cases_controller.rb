@@ -25,7 +25,6 @@ class ProsecutionCasesController < ApplicationController
     build_prosecution_case
   rescue ActiveResource::ConnectionError => e
     logger.error '404_Not_Found'
-    Sentry.capture_exception(e)
     redirect_to_search_path(e)
   end
 
