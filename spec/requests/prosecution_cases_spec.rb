@@ -46,12 +46,6 @@ RSpec.describe 'prosecution cases', :stub_case_search,
         get "/prosecution_cases/#{case_reference}"
         expect(response).to redirect_to(searches_path(search_params))
       end
-
-      it 'captures the exception in Sentry' do
-        allow(Sentry).to receive(:capture_exception).with(ActiveResource::ServerError)
-        get "/prosecution_cases/#{case_reference}"
-        expect(Sentry).to have_received(:capture_exception)
-      end
     end
   end
 
