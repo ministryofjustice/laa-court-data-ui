@@ -33,7 +33,7 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def build_prosecution_case
-    raise(ActiveResource::ResourceNotFound, "URN '#{urn}' not found") unless search_results
+    raise(ActiveResource::BadRequest, "URN '#{urn}' not found") unless search_results
     @prosecution_case ||= helpers.decorate(search_results, Cda::CaseSummaryDecorator)
     update_prosecution_case
   end
