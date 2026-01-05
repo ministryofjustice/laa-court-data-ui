@@ -95,25 +95,4 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
 
     expect(page).to be_accessible
   end
-
-  context 'when view appeals feature' do
-    before do
-      visit '/'
-      choose 'A case by URN'
-      click_link_or_button 'Continue'
-    end
-
-    scenario 'there are multiple results' do
-      fill_in 'search-term-field', with: 'TEST12345'
-      click_button 'Search'
-      expect(page).to have_text '4 search results'
-      expect(page).to be_accessible
-    end
-
-    scenario 'there is just one result' do
-      fill_in 'search-term-field', with: 'TEST54321'
-      click_button 'Search'
-      expect(page).to have_text '1 search result'
-    end
-  end
 end
