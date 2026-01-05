@@ -32,6 +32,27 @@ RSpec.describe 'prosecution cases', :stub_case_search,
       end
     end
 
+    context 'when exception ActiveResource::BadRequest is raised' do
+      before do
+        allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::BadRequest, 'Fake error')
+        get "/prosecution_cases/#{case_reference}"
+      end
+
+      let(:search_params) do
+        { search: { term: case_reference, filter: :case_reference } }
+      end
+
+      it 'redirects to the searches page' do
+        expect(response).to redirect_to(searches_path(search_params))
+      end
+
+      it 'captures the exception in Sentry' do
+        allow(Sentry).to receive(:capture_exception).with(ActiveResource::ServerError)
+        get "/prosecution_cases/#{case_reference}"
+        expect(Sentry).to have_received(:capture_exception)
+      end
+    end
+
     context 'when exception ActiveResource::ServerError is raised' do
       before do
         allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::ServerError,
