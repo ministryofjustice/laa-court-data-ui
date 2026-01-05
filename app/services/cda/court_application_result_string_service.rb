@@ -10,22 +10,24 @@ module Cda
     end
 
     def call
-      if proceedings_must_be_concluded && !application_summary.subject_summary.proceedings_concluded
-        return not_available
+      if @proceedings_must_be_concluded && !@application_summary.subject_summary.proceedings_concluded
+        return result_not_available
       end
 
-      judicial_results.presence || not_available
-    end
-
-    def judicial_results
-      application_summary.judicial_results.map(&:label)&.join(' & ')
+      judicial_results
     end
 
     private
 
-    attr_reader :application_summary, :proceedings_must_be_concluded
+    def judicial_results
+      if @application_summary.respond_to?(:judicial_results) && @application_summary.judicial_results.any?
+        @application_summary.judicial_results.map(&:label)&.join(' & ')
+      else
+        result_not_available
+      end
+    end
 
-    def not_available
+    def result_not_available
       I18n.t("court_applications.results.not_available")
     end
   end
