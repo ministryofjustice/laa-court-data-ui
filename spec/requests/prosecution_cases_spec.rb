@@ -47,7 +47,7 @@ RSpec.describe 'prosecution cases', :stub_case_search,
       end
 
       it 'captures the exception in Sentry' do
-        allow(Sentry).to receive(:capture_exception).with(ActiveResource::ServerError)
+        allow(Sentry).to receive(:capture_exception).with(ActiveResource::BadRequest)
         get "/prosecution_cases/#{case_reference}"
         expect(Sentry).to have_received(:capture_exception)
       end
