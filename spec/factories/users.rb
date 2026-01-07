@@ -13,16 +13,12 @@ FactoryBot.define do
       roles { ['caseworker'] }
     end
 
-    trait :with_manager_role do
-      roles { ['manager'] }
+    trait :with_caseworker_role do
+      roles { %w[caseworker] }
     end
 
-    trait :with_caseworker_manager_role do
-      roles { %w[caseworker manager] }
-    end
-
-    trait :with_caseworker_manager_admin_role do
-      roles { %w[caseworker manager admin] }
+    trait :with_caseworker_admin_role do
+      roles { %w[caseworker admin] }
     end
 
     trait :with_admin_role do

@@ -36,15 +36,10 @@ RSpec.describe 'authorization', type: :request do
     it_behaves_like('a standard user')
   end
 
-  context 'when manager signed in' do
-    let(:user) { create(:user, roles: ['manager']) }
+  context 'when admin signed in' do
+    let(:user) { create(:user, roles: ['admin']) }
 
     before { sign_in user }
-
-    it 'can search' do
-      get new_search_filter_path
-      expect(response.body).to include('<h1 class="govuk-fieldset__heading">Search for</h1>')
-    end
 
     it 'can manage themselves' do
       get user_path(user)
@@ -55,13 +50,5 @@ RSpec.describe 'authorization', type: :request do
       get user_path(other_user)
       expect(response.body).to include('User details')
     end
-  end
-
-  context 'when admin signed in' do
-    let(:user) { create(:user, roles: ['admin']) }
-
-    before { sign_in user }
-
-    it_behaves_like('a standard user')
   end
 end

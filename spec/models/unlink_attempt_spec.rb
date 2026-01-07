@@ -11,7 +11,7 @@ RSpec.describe UnlinkAttempt, type: :model do
   subject(:unlink_attempt) do
     described_class.new(
       id: 'defendant-nino-or-asn',
-      username: 'work-m',
+      username: 'work-c',
       reason_code: 1,
       other_reason_text: ''
     )

@@ -60,25 +60,11 @@ RSpec.describe Ability, type: :model do
     is_able_to 'query v2 CDA'
   end
 
-  context 'when a manager' do
-    let(:themself) { create(:user, roles: ['manager']) }
-
-    it { is_expected.to be_able_to(:manage, themself) }
-    it { is_expected.to be_able_to(:manage, other_user) }
-
-    is_able_to 'perform search'
-    is_able_to 'link maat reference'
-    is_able_to 'query v2 CDA'
-  end
-
   context 'when an admin' do
     let(:themself) { create(:user, roles: ['admin']) }
 
-    is_able_to 'manage themselves only'
-    is_able_to 'not manage others'
-    is_able_to 'perform search'
-    is_able_to 'link maat reference'
-    is_able_to 'query v2 CDA'
+    it { is_expected.to be_able_to(:manage, themself) }
+    it { is_expected.to be_able_to(:manage, other_user) }
   end
 end
 # rubocop:enable RSpec/EmptyExampleGroup

@@ -26,26 +26,6 @@ RSpec.feature 'Navigation', type: :feature do
     end
   end
 
-  context 'when manager user logged in' do
-    let(:user) { create(:user, roles: %w[manager]) }
-
-    before { sign_in user }
-
-    scenario 'manager navigation options available' do
-      visit '/'
-
-      within '.govuk-service-navigation' do
-        expect(page).to have_link('View court data')
-        expect(page).to have_link('Manage users')
-      end
-    end
-
-    scenario 'visit sidekiq console via address bar' do
-      visit sidekiq_web_path
-      expect(page).to have_content('Page not found')
-    end
-  end
-
   context 'when admin user logged in' do
     let(:user) { create(:user, roles: %w[admin]) }
 
