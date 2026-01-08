@@ -4,7 +4,9 @@ class Users::SessionsController < Devise::SessionsController
   skip_authorization_check only: %i[new create destroy update_cookies fake]
 
   def after_sign_in_path_for(user)
-    if user.data_analyst?
+    if user.admin?
+      authenticated_admin_root_path
+    elsif user.data_analyst?
       new_stats_path
     else
       new_search_filter_path
@@ -20,8 +22,13 @@ class Users::SessionsController < Devise::SessionsController
 
   def fake
     redirect_to unauthenticated_root_path unless FeatureFlag.enabled?(:fake_auth)
-    sign_in User.find(params[:user_id])
-    redirect_to authenticated_root_path
+    user = User.find(params[:user_id])
+    sign_in user
+    if user.admin?
+      redirect_to authenticated_admin_root_path
+    else
+      redirect_to authenticated_root_path
+    end
   end
 
   # before_action :configure_sign_in_params, only: [:create]

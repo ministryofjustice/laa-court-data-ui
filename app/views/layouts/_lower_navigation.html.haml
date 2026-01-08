@@ -2,7 +2,7 @@
   .govuk-width-container
     .govuk-service-navigation__container
       %span.govuk-service-navigation__service-name
-        %a.govuk-service-navigation__link{ href: signed_in? ? authenticated_root_path : unauthenticated_root_path }
+        %a.govuk-service-navigation__link{ href: signed_in? ? current_user.admin? ? authenticated_admin_root_path : authenticated_root_path : unauthenticated_root_path }
           = service_name
 
       - if signed_in?

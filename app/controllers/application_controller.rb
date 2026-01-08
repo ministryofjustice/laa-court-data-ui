@@ -35,7 +35,11 @@ class ApplicationController < ActionController::Base
       format.json { head :forbidden }
       format.html do
         flash[:alert] = exception.message
-        redirect_to authenticated_root_path
+        if current_user.admin?
+          redirect_to authenticated_admin_root_path
+        else
+          redirect_to authenticated_root_path
+        end
       end
     end
   end
@@ -57,7 +61,11 @@ class ApplicationController < ActionController::Base
     case exception
     when *EXPECTED_ERROR_TYPES
       assign_error_flash(exception)
-      redirect_to authenticated_root_path
+      if current_user.admin?
+        redirect_to authenticated_admin_root_path
+      else
+        redirect_to authenticated_root_path
+      end
     else
       redirect_to internal_error_path
     end
