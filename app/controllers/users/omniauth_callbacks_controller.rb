@@ -13,13 +13,17 @@ module Users
 
       if user
         sign_in user
-        redirect_to user.admin? ? authenticated_admin_root_path : authenticated_root_path
+        redirect_to authenticated_user_root_path(user)
       else
         redirect_to unauthenticated_root_path, flash: { alert: t('devise.failure.user.unauthorised') }
       end
     end
 
     private
+
+    def authenticated_user_root_path(user)
+      user.admin? ? authenticated_admin_root_path : authenticated_root_path
+    end
 
     def after_omniauth_failure_path_for(_scope)
       unauthenticated_root_path
