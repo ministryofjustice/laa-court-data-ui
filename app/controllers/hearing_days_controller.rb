@@ -1,5 +1,5 @@
 class HearingDaysController < ApplicationController
-  before_action :load_and_authorize_application, :load_hearing_days, :load_hearing_details,
+  before_action :set_application, :load_hearing_days, :load_hearing_details,
                 :load_hearing_events
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
@@ -8,13 +8,14 @@ class HearingDaysController < ApplicationController
 
   HEARING_SORT_DIRECTION = "asc".freeze
 
-  def show; end
+  def show
+    authorize! :show, @application
+  end
 
   private
 
-  def load_and_authorize_application
+  def set_application
     @application = Cda::CourtApplication.find(params[:court_application_id])
-    authorize! :show, @application
   end
 
   def load_hearing_days
