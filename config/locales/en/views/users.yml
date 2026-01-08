@@ -53,13 +53,22 @@ en:
       clear: Clear filters
       filter: Filter
       keywords: Name, username or email
-      last_sign_in: Last sign-in
+      last_sign_in: Last sign in
       old: Over three months ago
       old_label: Over three months ago (%{count})
       recent: Within last three months
       recent_label: Within last three months (%{count})
       remove: Remove this filter
       selected_filters: Selected filters
+      roles: Roles
+      manager: Manager
+      admin: Admin
+      case_worker: Case worker
+      data_analyst: Data analyst
+      manager_label: Manager (%{count})
+      admin_label: Admin (%{count})
+      case_worker_label: Case worker (%{count})
+      data_analyst_label: Data analyst (%{count})
     show:
       caption: User details
       edit_link: Edit

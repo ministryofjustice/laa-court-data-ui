@@ -27,6 +27,14 @@ class UserSearchService
       scope.where(last_sign_in_at: 3.months.ago..)
     elsif search_model.old_sign_ins && !search_model.recent_sign_ins
       scope.where('last_sign_in_at IS NULL OR last_sign_in_at < ?', 3.months.ago)
+    elsif search_model.manager_role
+      scope.where('roles IS NULL OR ? = ANY(roles)', 'manager')
+    elsif search_model.admin_role
+      scope.where('roles IS NULL OR ? = ANY(roles)', 'admin')
+    elsif search_model.caseworker_role
+      scope.where('roles IS NULL OR ? = ANY(roles)', 'caseworker')
+    elsif search_model.data_analyst_role
+      scope.where('roles IS NULL OR ? = ANY(roles)', 'data_analyst')
     else
       scope
     end
