@@ -36,7 +36,7 @@ RSpec.feature 'Navigation', type: :feature do
 
       within '.govuk-service-navigation' do
         expect(page).to have_link('View court data')
-        expect(page).to have_no_link('Manage users')
+        expect(page).to have_link('Manage users')
       end
     end
   end
