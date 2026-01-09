@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe Users::SessionsController, type: :controller do
-
   let(:user) { create(:user, :with_admin_role) }
   let(:other_user) { create(:user, :with_caseworker_role) }
   let(:data_user) { create(:user, :with_data_analyst) }
