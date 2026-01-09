@@ -55,9 +55,10 @@ RSpec.describe 'authorization', type: :request do
   context 'when admin performing unauthorized action on case' do
     let(:user) { create(:user, roles: ['admin']) }
 
-    before { sign_in user }
-
-    before { get new_search_filter_path }
+    before {
+      sign_in user
+      get new_search_filter_path
+    }
 
     it 'redirects to root' do
       expect(response).to redirect_to authenticated_admin_root_path
