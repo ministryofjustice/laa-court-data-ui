@@ -24,5 +24,9 @@ FactoryBot.define do
     trait :with_admin_role do
       roles { %w[admin] }
     end
+
+    trait :with_data_analyst do
+      roles { %w[data_analyst] }
+    end
   end
 end
