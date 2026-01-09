@@ -9,8 +9,8 @@ RSpec.describe 'Root route', type: :request do
     end
   end
 
-  context 'with sign in' do
-    let(:user) { create(:user) }
+  context 'with caseworker sign in' do
+    let(:user) { create(:user, roles: %w[caseworker]) }
 
     before do
       sign_in user
@@ -19,6 +19,19 @@ RSpec.describe 'Root route', type: :request do
 
     it 'renders search_filters/new' do
       expect(response.body).to include('search_filters/new')
+    end
+  end
+
+  context 'with admin sign in' do
+    let(:user) { create(:user, roles: %w[admin]) }
+
+    before do
+      sign_in user
+      get '/'
+    end
+
+    it 'renders users#index' do
+      expect(response.body).to include('/users')
     end
   end
 end
