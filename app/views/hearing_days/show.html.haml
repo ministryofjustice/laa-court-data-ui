@@ -16,15 +16,15 @@
       %p.govuk-visually-hidden{ "aria-labelledby": 'pagination-label' }
         = t(".pagination_navigation")
       %ul.moj-pagination__list
-        - if @next_day
-          %li.moj-pagination__item.moj-pagination__item--next
-            = link_to(t('.next'),
-                      court_application_hearing_hearing_day_path(@application.application_id, @next_day.hearing.id, @next_day.date),
-                      class: 'moj-pagination__link')
         - if @previous_day
           %li.moj-pagination__item.moj-pagination__item--prev
             = link_to(t('.previous'),
                       court_application_hearing_hearing_day_path(@application.application_id, @previous_day.hearing.id, @previous_day.date),
+                      class: 'moj-pagination__link')
+        - if @next_day
+          %li.moj-pagination__item.moj-pagination__item--next
+            = link_to(t('.next'),
+                      court_application_hearing_hearing_day_path(@application.application_id, @next_day.hearing.id, @next_day.date),
                       class: 'moj-pagination__link')
 
 .govuk-grid-row
