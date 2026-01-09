@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  authenticated :user do
+  authenticated :user, ->(u) { u.admin? } do
+    root to: 'users#index', as: :authenticated_admin_root
+  end
+
+  authenticated :user, ->(u) { u.caseworker? } do
     root to: 'search_filters#new', as: :authenticated_root
   end
 
