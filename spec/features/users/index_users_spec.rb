@@ -26,7 +26,7 @@ RSpec.feature 'Index users', :js, type: :feature do
     let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Bertie', last_name: 'Bear') }
 
     scenario 'can index users' do
-      expect(page).to have_current_path(authenticated_root_path)
+      expect(page).to have_current_path(authenticated_admin_root_path)
 
       click_link_or_button 'Manage users'
 
