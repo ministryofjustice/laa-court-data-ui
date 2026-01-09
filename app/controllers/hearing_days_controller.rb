@@ -47,10 +47,13 @@ class HearingDaysController < ApplicationController
   end
 
   def get_adjacent_hearing_days(hearing_day)
-    current_day_index = sorted_hearing_days.index(hearing_day)
+    current_day_index = sorted_hearing_days.find_index do |day|
+      day.hearing.id == hearing_day.hearing.id && day.date == hearing_day.date
+    end
 
     previous_day = sorted_hearing_days[current_day_index - 1] if current_day_index.positive?
-    next_day = sorted_hearing_days[current_day_index + 1]
+    next_day = sorted_hearing_days[current_day_index + 1] if current_day_index < sorted_hearing_days.size - 1
+
     [previous_day, next_day]
   end
 
