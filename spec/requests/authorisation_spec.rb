@@ -51,4 +51,20 @@ RSpec.describe 'authorization', type: :request do
       expect(response.body).to include('User details')
     end
   end
+
+  context 'when admin performing unauthorized action on case' do
+    let(:user) { create(:user, roles: ['admin']) }
+
+    before { sign_in user }
+
+    before { get new_search_filter_path }
+
+    it 'redirects to root' do
+      expect(response).to redirect_to authenticated_admin_root_path
+    end
+
+    it 'flashes alert' do
+      expect(flash.now[:alert]).to match(/You are unauthorised to new Search filter/)
+    end
+  end
 end
