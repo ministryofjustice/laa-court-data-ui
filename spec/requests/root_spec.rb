@@ -18,7 +18,7 @@ RSpec.describe 'Root route', type: :request do
     end
 
     it 'renders search_filters/new' do
-      expect(response.body).to include('search_filters/new')
+      expect(response.body).to include(authenticated_root_path)
     end
   end
 
@@ -30,8 +30,8 @@ RSpec.describe 'Root route', type: :request do
       get '/'
     end
 
-    it 'renders users#index' do
-      expect(response.body).to include('/users')
+    it 'renders /users' do
+      expect(response.body).to include(authenticated_admin_root_path)
     end
   end
 end
