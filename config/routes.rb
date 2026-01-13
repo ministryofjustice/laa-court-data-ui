@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     root to: 'users#index', as: :authenticated_admin_root
   end
 
-  authenticated :user, ->(u) { u.caseworker? && (!u.admin?)} do
+  authenticated :user, ->(u) { !u.admin? && u.caseworker? } do
     root to: 'search_filters#new', as: :authenticated_root
   end
 
