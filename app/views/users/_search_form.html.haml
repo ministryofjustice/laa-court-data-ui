@@ -25,7 +25,9 @@
                     %span.govuk-visually-hidden
                       = t('users.search.remove')
                     = user_search.search_string
-          - if user_search.recent_sign_ins || user_search.old_sign_ins || user_search.manager_role || user_search.admin_role || user_search.caseworker_role || user_search.data_analyst_role
+          - if user_search.recent_sign_ins || user_search.old_sign_ins
+          || user_search.manager_role || user_search.admin_role || user_search.caseworker_role
+          || user_search.data_analyst_role
             %h3.govuk-heading-s{ class: "govuk-!-margin-bottom-0" }
               = t('users.search.roles')
               %ul.moj-filter-tags
@@ -80,13 +82,13 @@
               = t('users.search.roles')
             .govuk-checkboxes.govuk-checkboxes--small.app-no-wrap{ "data-module" => "govuk-checkboxes" }
               .govuk-checkboxes__item
-                = f.govuk_check_box :manager_role, 1, nil, multiple: false, label: { text: t('users.search.manager_label', count: user_search.manager_count)}
+                = f.govuk_check_box :manager_role, 1, nil, multiple: false, label: { text: t('users.search.manager_label', count: user_search.manager_count) }
               .govuk-checkboxes__item
                 = f.govuk_check_box :admin_role, 1, nil, multiple: false, label: { text: t('users.search.admin_label', count: user_search.admin_count) }
               .govuk-checkboxes__item
-                = f.govuk_check_box :caseworker_role, 1, nil, multiple: false, label: { text: t('users.search.case_worker_label', count: user_search.caseworker_count)}
+                = f.govuk_check_box :caseworker_role, 1, nil, multiple: false, label: { text: t('users.search.case_worker_label', count: user_search.caseworker_count) }
               .govuk-checkboxes__item
-                = f.govuk_check_box :data_analyst_role, 1, nil, multiple: false, label: { text: t('users.search.data_analyst_label', count: user_search.data_analyst_count)}
+                = f.govuk_check_box :data_analyst_role, 1, nil, multiple: false, label: { text: t('users.search.data_analyst_label', count: user_search.data_analyst_count) }
               %br/
               %legend.govuk-fieldset__legend.govuk-fieldset__legend--m
                 = t('users.search.last_sign_in')
