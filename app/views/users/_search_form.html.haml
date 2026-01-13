@@ -25,9 +25,8 @@
                     %span.govuk-visually-hidden
                       = t('users.search.remove')
                     = user_search.search_string
-          - if user_search.recent_sign_ins || user_search.old_sign_ins
-          || user_search.manager_role || user_search.admin_role || user_search.caseworker_role
-          || user_search.data_analyst_role
+          - if user_search.recent_sign_ins || user_search.old_sign_ins || user_search.manager_role || user_search.admin_role || user_search.caseworker_role
+            || user_search.data_analyst_role
             %h3.govuk-heading-s{ class: "govuk-!-margin-bottom-0" }
               = t('users.search.roles')
               %ul.moj-filter-tags
