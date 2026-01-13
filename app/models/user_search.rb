@@ -5,12 +5,14 @@ class UserSearch
   attribute :search_string, :string
   attribute :recent_sign_ins, :boolean
   attribute :old_sign_ins, :boolean
+  attribute :manager_role, :boolean
   attribute :caseworker_role, :boolean
   attribute :admin_role, :boolean
   attribute :data_analyst_role, :boolean
 
   def filters_applied?
-    search_string.present? || recent_sign_ins || old_sign_ins || manager_role || caseworker_role || admin_role || data_analyst_role
+    search_string.present? || recent_sign_ins || old_sign_ins || manager_role || caseworker_role ||
+      admin_role || data_analyst_role
   end
 
   def toggle_class
@@ -36,6 +38,7 @@ class UserSearch
   def caseworker_count
     User.where('roles IS NULL OR ? = ANY(roles)', 'caseworker').count
   end
+
   def admin_count
     User.where('roles IS NULL OR ? = ANY(roles)', 'admin').count
   end
