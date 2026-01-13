@@ -83,11 +83,11 @@ RSpec.feature 'Index users', :js, type: :feature do
 
       scenario 'I view pagination options' do
         click_link_or_button 'Manage users'
-        expect(page).to have_content("Showing 1 to 10 of 35 users")
+        expect(page).to have_content("Showing 1 to 10 of 32 users")
         click_on "3"
-        expect(page).to have_content("Showing 21 to 30 of 35 users")
+        expect(page).to have_content("Showing 21 to 30 of 32 users")
         click_on "Next page"
-        expect(page).to have_content("Showing 31 to 35 of 35 users")
+        expect(page).to have_content("Showing 31 to 32 of 32 users")
       end
     end
   end
