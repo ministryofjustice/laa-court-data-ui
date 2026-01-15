@@ -2,7 +2,6 @@
   - content_for :error_summary do
     = f.govuk_error_summary
   = f.govuk_fieldset legend: { text: t('users.form.heading'), size: 'l', class: 'govuk-!-margin-bottom-7' } do
-
     = f.govuk_text_field(:first_name,
                          label: { text: t('users.form.fields.first_name_label') },
                          width: 'one-half')
