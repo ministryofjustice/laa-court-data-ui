@@ -10,14 +10,16 @@ en:
     edit:
       page_title: Edit user
     form:
+      back_link: Back to Manage Users
+      heading: User information
       fields:
         email_confirmation_label: Confirm email address
         email_label: Email address
-        feature_flags_legend: What features does the user have access to?
+        feature_flags_legend: Additional caseworker features
         first_name_label: First name
         last_name_label: Last name
         roles_hint: Select all that apply
-        roles_legend: What roles does the user have?
+        roles_legend: Which roles does this user have?
         save_button: Save
         username_hint: Use MAAT/MLRA username
         username_label: Username
@@ -47,7 +49,7 @@ en:
       - searching for something less specific.
       show_filter: Show filters
     new:
-      page_title: New user
+      page_title: Enter new user details
     search:
       apply_filters: Apply filters
       clear: Clear filters
