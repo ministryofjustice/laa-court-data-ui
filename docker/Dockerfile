@@ -27,21 +27,20 @@ COPY --from=node /usr/local/bin /usr/local/bin
 # - postgres-dev for pg/activerecord gems
 # - tzdata - for railtie/tzinfo-data ??
 # - runit for process management (because we have multiple services)
-#
-RUN apk --update-cache upgrade \
-&& apk --no-cache add --upgrade --virtual build-dependencies \
-                    build-base \
-                    yarn \
-                    git \
-&& apk --no-cache add --upgrade \
-                  nodejs \
-                  linux-headers \
-                  libxml2-dev \
-                  libxslt-dev \
-                  postgresql-dev \
-                  tzdata \
-                  runit \
-                  yaml-dev
+
+RUN apk update && apk upgrade && \
+    apk add --no-cache \
+    build-base \
+    yarn \
+    git \
+    nodejs \
+    linux-headers \
+    libxml2-dev \
+    libxslt-dev \
+    postgresql-dev \
+    tzdata \
+    runit \
+    yaml-dev
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \
