@@ -22,6 +22,7 @@ class UserSearchService
     filter_by_sign_in(scope)
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def filter_by_sign_in(scope)
     if search_model.recent_sign_ins && !search_model.old_sign_ins
       scope.where(last_sign_in_at: 3.months.ago..)
@@ -39,7 +40,8 @@ class UserSearchService
       scope
     end
   end
-
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  
   private
 
   def add_filter(token, scope)
