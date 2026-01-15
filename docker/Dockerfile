@@ -1,5 +1,5 @@
-FROM node:20.19-alpine AS node
-FROM ruby:3.4.4-alpine3.21
+FROM node:20.20-alpine3.23 AS node
+FROM ruby:3.4.8-alpine3.23
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Access Court Data"
 LABEL Contact="<access-court-data-team@digital.justice.gov.uk>"
@@ -7,7 +7,7 @@ LABEL Contact="<access-court-data-team@digital.justice.gov.uk>"
 # fail early and print all commands
 RUN set -ex
 
-# Get node 20.19 from the node image into the ruby image
+# Get node 20.20 from the node image into the ruby image
 COPY --from=node /usr/lib /usr/lib
 COPY --from=node /usr/local/share /usr/local/share
 COPY --from=node /usr/local/lib /usr/local/lib
@@ -27,20 +27,21 @@ COPY --from=node /usr/local/bin /usr/local/bin
 # - postgres-dev for pg/activerecord gems
 # - tzdata - for railtie/tzinfo-data ??
 # - runit for process management (because we have multiple services)
-
-RUN apk update && apk upgrade && \
-    && apk --no-cache add --upgrade --virtual build-dependencies \
-    build-base \
-    yarn \
-    git \
-    nodejs \
-    linux-headers \
-    libxml2-dev \
-    libxslt-dev \
-    postgresql-dev \
-    tzdata \
-    runit \
-    yaml-dev
+#
+RUN apk --update-cache upgrade \
+&& apk --no-cache add --upgrade --virtual build-dependencies \
+                    build-base \
+                    yarn \
+                    git \
+&& apk --no-cache add --upgrade \
+                  nodejs \
+                  linux-headers \
+                  libxml2-dev \
+                  libxslt-dev \
+                  postgresql-dev \
+                  tzdata \
+                  runit \
+                  yaml-dev
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \
