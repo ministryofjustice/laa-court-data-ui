@@ -41,7 +41,7 @@ class UserSearchService
     end
   end
   # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-  
+
   private
 
   def add_filter(token, scope)
