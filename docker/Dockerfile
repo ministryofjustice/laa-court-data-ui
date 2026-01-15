@@ -29,7 +29,7 @@ COPY --from=node /usr/local/bin /usr/local/bin
 # - runit for process management (because we have multiple services)
 
 RUN apk update && apk upgrade && \
-    apk add --no-cache \
+    && apk --no-cache add --upgrade --virtual build-dependencies \
     build-base \
     yarn \
     git \
