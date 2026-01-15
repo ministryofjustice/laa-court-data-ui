@@ -11,7 +11,6 @@ en:
       page_title: Edit user
     form:
       back_link: Back to Manage Users
-      heading: User information
       fields:
         email_confirmation_label: Confirm email address
         email_label: Email address
@@ -23,6 +22,7 @@ en:
         save_button: Save
         username_hint: Use MAAT/MLRA username
         username_label: Username
+      heading: User information
     generic:
       action: Action
       email: Email
