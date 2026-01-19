@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   require 'csv'
   load_and_authorize_resource except: :create
 
-  add_breadcrumb 'Home', :new_search_filter_path
-  add_breadcrumb 'User Management', :users_path
+  add_breadcrumb t('users.breadcrumb.home'), :new_search_filter_path
+  add_breadcrumb t('users.breadcrumb.user_management'), :users_path
 
   def index
     session.delete(:user_search)
@@ -24,11 +24,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    add_breadcrumb 'New User'
+    add_breadcrumb t('users.breadcrumb.new_user')
   end
 
   def edit
-    add_breadcrumb 'Edit User'
+    add_breadcrumb t('users.breadcrumb.edit_user')
   end
 
   def create
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     authorize!(:create, @user)
 
     if @user.save
-      redirect_to @user, notice: I18n.t('users.create.flash.success')
+      redirect_to @user, notice: t('users.create.flash.success')
     else
       render :new
     end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     email_changed = @user.email_changed?
     if @user.save
       Devise::Mailer.email_changed(@user).deliver_later if email_changed
-      redirect_to @user, notice: I18n.t('users.update.flash.success')
+      redirect_to @user, notice: t('users.update.flash.success')
     else
       render :edit
     end
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, status: :see_other, notice: I18n.t('users.destroy.flash.success')
+    redirect_to users_path, status: :see_other, notice: t('users.destroy.flash.success')
   end
 
   private

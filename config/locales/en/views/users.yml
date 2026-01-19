@@ -1,6 +1,11 @@
 ---
 en:
   users:
+    breadcrumb:
+      home: Home
+      user_management: User Management
+      new_user: New User
+      edit_user: Edit User
     create:
       flash:
         success: User successfully added
