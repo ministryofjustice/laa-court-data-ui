@@ -23,9 +23,6 @@
     - if @application.appeal?
       %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
         = t("subjects.appeal")
-    - elsif @application.application_category.nil?
-      %strong.govuk-tag{ class: "govuk-tag--blue govuk-!-margin-bottom-5" }
-        = t("generic.case")
     - else
       %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
         = t("subjects.#{@application.application_category}")
