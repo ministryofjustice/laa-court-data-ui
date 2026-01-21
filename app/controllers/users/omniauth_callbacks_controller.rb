@@ -21,10 +21,6 @@ module Users
 
     private
 
-    def authenticated_user_root_path(user)
-      user.admin? ? authenticated_admin_root_path : authenticated_root_path
-    end
-
     def after_omniauth_failure_path_for(_scope)
       unauthenticated_root_path
     end

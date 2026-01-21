@@ -24,11 +24,7 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to unauthenticated_root_path unless FeatureFlag.enabled?(:fake_auth)
     user = User.find(params[:user_id])
     sign_in user
-    if user.admin?
-      redirect_to authenticated_admin_root_path
-    else
-      redirect_to authenticated_root_path
-    end
+    authenticated_user_root_path(user)
   end
 
   # before_action :configure_sign_in_params, only: [:create]

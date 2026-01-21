@@ -56,16 +56,16 @@ class ApplicationController < ActionController::Base
     process_error_based_on_type(exception)
   end
 
+  def authenticated_user_root_path(user)
+    user.admin? ? authenticated_admin_root_path : authenticated_root_path
+  end
+
   def process_error_based_on_type(exception)
     Sentry.capture_exception(exception)
     case exception
     when *EXPECTED_ERROR_TYPES
       assign_error_flash(exception)
-      if current_user.admin?
-        redirect_to authenticated_admin_root_path
-      else
-        redirect_to authenticated_root_path
-      end
+      redirect_to authenticated_user_root_path(current_user)
     else
       redirect_to internal_error_path
     end
