@@ -1,8 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :load_and_authorize_application
-  add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
-  add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
-  before_action :add_extra_breadcrumbs
+  before_action :set_breadcrumbs
 
   def show
     @form_model = @application.maat_linked? ? load_unlink_attempt : load_link_attempt
@@ -50,7 +48,13 @@ class SubjectsController < ApplicationController
     authorize! :show, @application
   end
 
-  def add_extra_breadcrumbs
+  def set_breadcrumbs
+    # Example:
+    # Home > Search > Case XXXXXXXXXX > Appeal/Breach/Poca > John Doe
+
+    add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
+    add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+
     reference = @application.application_reference
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
     add_breadcrumb t("subjects.#{@application.application_category}"),
