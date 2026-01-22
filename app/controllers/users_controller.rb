@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource except: :create
 
   add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
-  add_breadcrumb I18n.t('users.breadcrumb.user_management'), :users_path
+  add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
 
   def index
     session.delete(:user_search)
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    add_breadcrumb I18n.t('users.breadcrumb.edit_user')
+    add_breadcrumb @user.name
   end
 
   def create
