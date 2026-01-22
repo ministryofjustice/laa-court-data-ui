@@ -22,15 +22,25 @@ class UserSearchService
     filter_by_sign_in(scope)
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def filter_by_sign_in(scope)
     if search_model.recent_sign_ins && !search_model.old_sign_ins
       scope.where(last_sign_in_at: 3.months.ago..)
     elsif search_model.old_sign_ins && !search_model.recent_sign_ins
       scope.where('last_sign_in_at IS NULL OR last_sign_in_at < ?', 3.months.ago)
+    elsif search_model.manager_role
+      scope.where('roles IS NULL OR ? = ANY(roles)', 'manager')
+    elsif search_model.admin_role
+      scope.where('roles IS NULL OR ? = ANY(roles)', 'admin')
+    elsif search_model.caseworker_role
+      scope.where('roles IS NULL OR ? = ANY(roles)', 'caseworker')
+    elsif search_model.data_analyst_role
+      scope.where('roles IS NULL OR ? = ANY(roles)', 'data_analyst')
     else
       scope
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   private
 
