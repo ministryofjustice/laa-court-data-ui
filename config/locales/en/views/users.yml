@@ -29,6 +29,8 @@ en:
       never_signed_in: Never signed-in
       user: user
       username: Username
+      over_3_months: Over 3 months
+      recently: Recently
     index:
       action_aria: "%{name}'s account"
       delete: Delete
