@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe 'managers', type: :request do
-  let(:user) { create(:user, :with_manager_role) }
+RSpec.describe 'admin', type: :request do
+  let(:user) { create(:user, :with_admin_role) }
   let(:other_user) { create(:user, :with_caseworker_role) }
   let(:message_delivery) { instance_double(GovukNotifyRails::Mailer::MessageDelivery) }
 
