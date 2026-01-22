@@ -27,10 +27,10 @@ en:
       last_sign_in: Last Sign In
       name: Name
       never_signed_in: Never signed-in
-      user: user
-      username: Username
       over_3_months: Over 3 months
       recently: Recently
+      user: user
+      username: Username
     index:
       action_aria: "%{name}'s account"
       delete: Delete
