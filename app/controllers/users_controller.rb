@@ -22,6 +22,8 @@ class UsersController < ApplicationController
 
   def edit; end
 
+  def confirm_delete; end
+
   def create
     @user = build_user
     authorize!(:create, @user)
