@@ -9,14 +9,13 @@
   width: 6px;
   height: 2.5em;
   margin-top: 2px;
-  border-radius: 2px;
   background-color: currentcolor;
 }
 
 .govuk-table__cell.last-sign-in-cell .last-sign-in__content {
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   white-space: nowrap;
   gap: 2px;
 }
@@ -29,7 +28,7 @@
 }
 
 .last-sign-in__subtext {
-  color: #505a5f;
+  color: #0b0c0c;
   font-size: 16px;
   line-height: 1.25;
 }
@@ -39,7 +38,7 @@
 }
 
 .lsi--green {
-  color: #00703c;
+  color: #00A598;
 }
 
 .lsi--amber {
@@ -47,7 +46,7 @@
 }
 
 .lsi--red   {
-  color: #d4351c;
+  color: #E71B00;
 }
 
 .lsi--grey  {

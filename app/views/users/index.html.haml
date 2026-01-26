@@ -58,7 +58,7 @@
                 .last-sign-in
                   %span.last-sign-in__bar
                   .last-sign-in__content
-                    %span.last-sign-in__date= last ? last.to_formatted_s(:date_only) : '—'
+                    %span.last-sign-in__date= last ? last.to_formatted_s(:date_only) : ''
                     - if last.nil?
                       %span.last-sign-in__subtext= t('users.generic.never_signed_in')
                     - elsif last < 3.months.ago
