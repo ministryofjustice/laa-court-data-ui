@@ -1,0 +1,54 @@
+.govuk-table__cell.last-sign-in-cell .last-sign-in {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.govuk-table__cell.last-sign-in-cell .last-sign-in__bar {
+  display: inline-block;
+  width: 6px;
+  height: 2.5em;
+  margin-top: 2px;
+  background-color: currentcolor;
+}
+
+.govuk-table__cell.last-sign-in-cell .last-sign-in__content {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: nowrap;
+  gap: 2px;
+}
+
+.last-sign-in__date {
+  color: #0b0c0c;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.last-sign-in__subtext {
+  color: #0b0c0c;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.last-sign-in__subtext--warning {
+  color: #7a1f1f;
+}
+
+.lsi--green {
+  color: #00A598;
+}
+
+.lsi--amber {
+  color: #ffbf47;
+}
+
+.lsi--red   {
+  color: #E71B00;
+}
+
+.lsi--grey  {
+  color: #b1b4b6;
+}
