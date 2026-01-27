@@ -22,7 +22,9 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def confirm_delete; end
+  def confirm_delete
+    # This method is intentionally left empty as a check your answer page.
+  end
 
   def create
     @user = build_user
