@@ -28,11 +28,9 @@ RSpec.feature 'Delete user', type: :feature do
       expect(page).to have_content('You cannot undo this action')
       expect(page).to have_link('No, do not delete user', href: users_path)
 
-      expect do
-        click_link_or_button 'Yes, delete user'.
-        expect(page).to have_current_path(users_path)
-        expect(page).to have_govuk_flash(:notice, text: 'User successfully deleted')
-      end
+      click_link_or_button 'Yes, delete user'
+      expect(page).to have_current_path(users_path)
+      expect(page).to have_govuk_flash(:notice, text: 'User successfully deleted')
     end
   end
 end
