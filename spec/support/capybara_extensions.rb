@@ -21,6 +21,8 @@ module CapybaraExtensions
       case key
       when :notice
         has_selector?('.lcdui-notice-summary', **options)
+      when :successful
+        has_selector?('.moj-banner.moj-banner--success', **options)
       else
         has_selector?('.govuk-error-summary', **options)
       end
