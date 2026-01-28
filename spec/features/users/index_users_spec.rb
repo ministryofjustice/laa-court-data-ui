@@ -44,9 +44,7 @@ RSpec.feature 'Index users', :js, type: :feature do
       expect(row).to have_link(other_user.username, href: user_path(other_user))
       expect(row).to have_link(other_user.email, href: "mailto:#{other_user.email}")
       expect(row).to have_link('Edit', href: edit_user_path(other_user))
-      expect(row).to have_link('Delete', href: user_path(other_user)) { |link|
-                       link['data-turbo-method'] == 'delete'
-                     }
+      expect(row).to have_link('Delete', href: users_confirm_delete_path(other_user))
 
       # Verify sorting by name
       expect(page.text.index(user.email)).to be < page.text.index(other_user.email)
