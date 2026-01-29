@@ -1,10 +1,6 @@
 class HearingDaysController < ApplicationController
   before_action :set_application
-
-  add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
-  add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
-
-  after_action :add_extra_breadcrumbs
+  before_action :set_breadcrumbs
 
   HEARING_SORT_DIRECTION = "asc".freeze
 
@@ -61,11 +57,17 @@ class HearingDaysController < ApplicationController
     @sorted_hearing_days ||= @application.hearing_days_sorted_by(HEARING_SORT_DIRECTION)
   end
 
-  def add_extra_breadcrumbs
+  def set_breadcrumbs
+    # Example:
+    # Home > Search > Case XXXXXXXXXXX > Appeal/Breach/Poca > Hearing day 01/12/2025
+
+    add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
+    add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
+
     reference = @application.application_reference
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
     add_breadcrumb t("subjects.#{@application.application_category}"),
                    court_application_path(@application.application_id)
-    add_breadcrumb t('hearing_days.show.breadcrumb', day: @hearing_day.day_string)
+    add_breadcrumb t('hearing_days.show.breadcrumb', day: current_hearing_day.day_string)
   end
 end
