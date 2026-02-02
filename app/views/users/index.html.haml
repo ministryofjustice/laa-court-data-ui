@@ -51,9 +51,9 @@
                 = Roles
                 = user_sorter_column?('roles')? direction : nondirection
             %th.govuk-table__header{ scope: 'col' }
-              = link_to(user_sorter_link('last_sign_in'), class: "app-no-wrap govuk-link--no-visited-state") do
+              = link_to(user_sorter_link('last_sign_in_at'), class: "app-no-wrap govuk-link--no-visited-state") do
                 = t('users.generic.last_sign_in')
-                = user_sorter_column?('last_sign_in')? direction : nondirection
+                = user_sorter_column?('last_sign_in_at')? direction : nondirection
             %th.govuk-table__header{ scope: 'col' }
               = t('users.generic.action')
 
