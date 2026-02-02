@@ -25,7 +25,7 @@
         = t('users.index.inactive_user')
 .govuk-grid-row
   .govuk-grid-column-full
-    - direction = render (user_sorter_direction == 'asc' ? "shared/up_icon" : "shared/down_icon")
+    - direction = render user_sorter_direction == 'asc' ? "shared/up_icon" : "shared/down_icon"
     - nondirection = render "shared/updown_icon"
     - if @users.any?
       %table.govuk-table
@@ -37,23 +37,23 @@
             %th.govuk-table__header{ scope: 'col' }
               = link_to(user_sorter_link('name'), class: "govuk-link--no-visited-state") do
                 = t('users.generic.name')
-                = user_sorter_column?('name')? direction : nondirection
+                = user_sorter_column?('name') ? direction : nondirection
             %th.govuk-table__header{ scope: 'col' }
               = link_to(user_sorter_link('username'), class: "app-no-wrap govuk-link--no-visited-state") do
                 = t('users.generic.username')
-                = user_sorter_column?('username')? direction : nondirection
+                = user_sorter_column?('username') ? direction : nondirection
             %th.govuk-table__header{ scope: 'col' }
               = link_to(user_sorter_link('email'), class: "govuk-link--no-visited-state") do
                 = t('users.generic.email')
-                = user_sorter_column?('email')? direction : nondirection
+                = user_sorter_column?('email') ? direction : nondirection
             %th.govuk-table__header{ scope: 'col' }
               = link_to(user_sorter_link('roles'), class: "govuk-link--no-visited-state") do
                 = Roles
-                = user_sorter_column?('roles')? direction : nondirection
+                = user_sorter_column?('roles') ? direction : nondirection
             %th.govuk-table__header{ scope: 'col' }
               = link_to(user_sorter_link('last_sign_in_at'), class: "app-no-wrap govuk-link--no-visited-state") do
                 = t('users.generic.last_sign_in')
-                = user_sorter_column?('last_sign_in_at')? direction : nondirection
+                = user_sorter_column?('last_sign_in_at') ? direction : nondirection
             %th.govuk-table__header{ scope: 'col' }
               = t('users.generic.action')
 
