@@ -22,8 +22,8 @@ RSpec.feature 'Index users', :js, type: :feature do
   end
 
   context 'when manager' do
-    let(:user) { create(:user, :with_manager_role, first_name: 'Amy', last_name: 'Aardvark') }
-    let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Bertie', last_name: 'Bear') }
+    let(:user) { create(:user, :with_manager_role, first_name: 'Amy', last_name: 'Aardvark', email: 'b@b.com') }
+    let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Bertie', last_name: 'Bear', email: 'a@a.com') }
 
     scenario 'can index users' do
       expect(page).to have_current_path(authenticated_root_path)
@@ -34,9 +34,13 @@ RSpec.feature 'Index users', :js, type: :feature do
 
       within '.govuk-table__head' do
         expect(page).to have_css('.govuk-table__header', text: 'Name')
+        expect(page).to have_link('Name', href: "/users?user_sort_column=name&user_sort_direction=asc")
         expect(page).to have_css('.govuk-table__header', text: 'Username')
+        expect(page).to have_link('Username', href: "/users?user_sort_column=username&user_sort_direction=asc")
         expect(page).to have_css('.govuk-table__header', text: 'Email')
+        expect(page).to have_link('Email', href: "/users?user_sort_column=email&user_sort_direction=asc")
         expect(page).to have_css('.govuk-table__header', text: 'Last Sign In')
+        expect(page).to have_link('Last Sign In', href: "/users?user_sort_column=last_sign_in_at&user_sort_direction=asc")
         expect(page).to have_css('.govuk-table__header', text: 'Action')
       end
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
@@ -50,6 +54,11 @@ RSpec.feature 'Index users', :js, type: :feature do
 
       # Verify sorting by name
       expect(page.text.index(user.email)).to be < page.text.index(other_user.email)
+      # Verify sorting by email
+      click_link_or_button 'Email'
+      expect(page).to have_current_path("/users?user_sort_column=email&user_sort_direction=asc")
+      expect(page).to have_link('Email', href: "/users?user_sort_column=email&user_sort_direction=desc")
+      expect(page.text.index(user.email)).to be > page.text.index(other_user.email)
 
       expect(page).to be_accessible
     end
