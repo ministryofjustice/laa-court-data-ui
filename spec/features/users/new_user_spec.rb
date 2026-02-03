@@ -23,8 +23,8 @@ RSpec.feature 'New user', type: :feature do
     end
   end
 
-  context 'when manager' do
-    let(:user) { create(:user, :with_manager_role) }
+  context 'when admin' do
+    let(:user) { create(:user, :with_admin_role) }
 
     scenario 'can new and create users' do
       visit users_path
@@ -41,7 +41,6 @@ RSpec.feature 'New user', type: :feature do
       expect(page).to have_field('Email', type: 'email')
       expect(page).to have_field('Confirm email', type: 'email')
       expect(page).to have_field('Caseworker', type: 'checkbox')
-      expect(page).to have_field('Manager', type: 'checkbox')
       expect(page).to have_field('Admin', type: 'checkbox')
 
       fill_in 'First name', with: 'Jim'
