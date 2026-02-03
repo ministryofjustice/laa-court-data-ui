@@ -5,8 +5,8 @@ RSpec.feature 'Delete user', type: :feature do
     sign_in user
   end
 
-  context 'when manager' do
-    let(:user) { create(:user, :with_manager_role) }
+  context 'when admin' do
+    let(:user) { create(:user, :with_admin_role) }
     let!(:other_user) { create(:user, :with_caseworker_role) }
 
     scenario 'can index and delete users' do

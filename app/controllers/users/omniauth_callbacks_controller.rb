@@ -13,7 +13,7 @@ module Users
 
       if user
         sign_in user
-        redirect_to authenticated_root_path
+        redirect_to authenticated_user_root_path(user)
       else
         redirect_to unauthenticated_root_path, flash: { alert: t('devise.failure.user.unauthorised') }
       end

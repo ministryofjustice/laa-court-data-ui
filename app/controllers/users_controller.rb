@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   require 'csv'
   load_and_authorize_resource except: :create
 
+  add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
+  add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
+
   def index
     session.delete(:user_search)
     @user_search = UserSearch.new
@@ -16,11 +19,17 @@ class UsersController < ApplicationController
     render :index
   end
 
-  def show; end
+  def show
+    add_breadcrumb @user.name
+  end
 
-  def new; end
+  def new
+    add_breadcrumb I18n.t('users.breadcrumb.new_user')
+  end
 
-  def edit; end
+  def edit
+    add_breadcrumb @user.name
+  end
 
   def confirm_delete
     # This method is intentionally left empty as a check your answer page.
