@@ -1,6 +1,10 @@
 ---
 en:
   users:
+    breadcrumb:
+      home: Home
+      manage_users: Manage Users
+      new_user: New User
     create:
       flash:
         success: User successfully added
@@ -47,7 +51,7 @@ en:
       - searching for something less specific.
       show_filter: Show filters
     new:
-      page_title: New user
+      page_title: Edit new user details
     search:
       admin: Admin
       admin_label: Admin (%{count})
@@ -76,7 +80,7 @@ en:
       email_label: Email
       feature_flags_label: Feature access
       name_label: Name
-      page_heading: "%{name}'s account"
+      page_heading: User account
       page_title: User account
       roles_label: Roles
       username_label: Username
