@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     authorize!(:create, @user)
 
     if @user.save
-      redirect_to @user, flash: { successful: I18n.t('users.create.flash.success') }
+      redirect_to @user, flash: { success_moj_banner: I18n.t('users.create.flash.success') }
     else
       render :new
     end
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     email_changed = @user.email_changed?
     if @user.save
       Devise::Mailer.email_changed(@user).deliver_later if email_changed
-      redirect_to @user, flash: { successful: I18n.t('users.update.flash.success') }
+      redirect_to @user, flash: { success_moj_banner: I18n.t('users.update.flash.success') }
     else
       render :edit
     end
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, status: :see_other, flash: { successful: I18n.t('users.destroy.flash.success') }
+    redirect_to users_path, status: :see_other, flash: { success_moj_banner: I18n.t('users.destroy.flash.success') }
   end
 
   private

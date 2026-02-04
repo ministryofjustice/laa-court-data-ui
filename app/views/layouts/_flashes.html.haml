@@ -17,7 +17,7 @@
     - when 'success'
       = govuk_notification_banner(sanitize(value), key.capitalize)
 
-    - when 'successful'
+    - when 'success_moj_banner'
       .moj-banner.moj-banner--success{ role: "region", "aria-label": "Success" }
         %svg.moj-banner__icon{
           fill: "currentColor",

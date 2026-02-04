@@ -55,7 +55,7 @@ RSpec.describe 'admin', type: :request do
 
     it 'flashes notice' do
       request
-      expect(flash.now[:successful]).to match(/success/)
+      expect(flash.now[:success_moj_banner]).to match(/success/)
     end
 
     it 'creates user' do
@@ -92,7 +92,7 @@ RSpec.describe 'admin', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:successful]).to match(/success/)
+        expect(flash.now[:success_moj_banner]).to match(/success/)
       end
 
       it 'updates user' do
@@ -116,7 +116,7 @@ RSpec.describe 'admin', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:successful]).to match(/success/)
+        expect(flash.now[:success_moj_banner]).to match(/success/)
       end
 
       it 'updates other user' do
@@ -144,7 +144,7 @@ RSpec.describe 'admin', type: :request do
 
     it 'flashes notice' do
       request
-      expect(flash.now[:successful]).to match(/success/)
+      expect(flash.now[:success_moj_banner]).to match(/success/)
     end
   end
 
