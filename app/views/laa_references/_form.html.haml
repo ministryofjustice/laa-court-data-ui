@@ -30,5 +30,4 @@
     %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
     = hidden_field_tag(:urn, params[:urn])
     = f.hidden_field(:defendant_id, value: params[:id] || defendant_uuid)
-    -# = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'commit', value: t('laa_reference.missing_maat_id.submit'))
     = f.govuk_submit t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'maat_ref_required', value: 'false'
