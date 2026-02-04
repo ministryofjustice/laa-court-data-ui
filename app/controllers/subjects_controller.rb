@@ -2,6 +2,7 @@ class SubjectsController < ApplicationController
   before_action :load_and_authorize_application
   before_action :set_breadcrumbs
 
+  # GET /court_applications/:court_application_id/subject
   def show
     @form_model = @application.maat_linked? ? load_unlink_attempt : load_link_attempt
 
@@ -13,6 +14,7 @@ class SubjectsController < ApplicationController
     )
   end
 
+  # POST /court_applications/:court_application_id/subject/link
   def link
     @form_model = load_link_attempt
     @form_model.validate!
@@ -27,6 +29,7 @@ class SubjectsController < ApplicationController
     render :show
   end
 
+  # POST /court_applications/:court_application_id/subject/unlink
   def unlink
     @form_model = load_unlink_attempt
     @form_model.validate!
