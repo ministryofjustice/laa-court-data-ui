@@ -56,16 +56,25 @@ en:
     new:
       page_title: Enter new user details
     search:
+      admin: Admin
+      admin_label: Admin (%{count})
       apply_filters: Apply filters
+      case_worker: Case worker
+      case_worker_label: Case worker (%{count})
       clear: Clear filters
+      data_analyst: Data analyst
+      data_analyst_label: Data analyst (%{count})
       filter: Filter
       keywords: Name, username or email
-      last_sign_in: Last sign-in
+      last_sign_in: Last sign in
+      manager: Manager
+      manager_label: Manager (%{count})
       old: Over three months ago
       old_label: Over three months ago (%{count})
       recent: Within last three months
       recent_label: Within last three months (%{count})
       remove: Remove this filter
+      roles: Roles
       selected_filters: Selected filters
     show:
       caption: User details
