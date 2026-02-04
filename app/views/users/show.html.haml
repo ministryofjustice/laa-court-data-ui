@@ -1,4 +1,4 @@
-= govuk_page_heading(t('users.show.page_heading', name: @user.name), title: t('users.show.page_title'))
+= govuk_page_heading(t('users.show.page_heading'), title: t('users.show.page_title'))
 
 %table.govuk-table
   %caption.govuk-table__caption
@@ -42,3 +42,4 @@
             "data-module": 'govuk-button',
             draggable: 'false',
             role: 'button'
+= link_to t('users.form.back_link'), users_path, class: 'govuk-back-link'
