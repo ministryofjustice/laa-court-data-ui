@@ -51,17 +51,17 @@
               %td.govuk-table__cell
                 = user.roles.map(&:titlecase).join(', ')
 
-              - last = user.last_sign_in_at&.to_time
-              - status_class = last_sign_in_status_class(last)
+              - last_sign_in = user.last_sign_in_at&.to_time
+              - status_class = last_sign_in_status_class(last_sign_in)
 
               %td.govuk-table__cell.last-sign-in-cell{ class: status_class }
                 .last-sign-in
                   %span.last-sign-in__bar
                   .last-sign-in__content
-                    %span.last-sign-in__date= last ? last.to_formatted_s(:date_only) : ''
-                    - if last.nil?
+                    %span.last-sign-in__date= last_sign_in ? last_sign_in.to_formatted_s(:date_only) : ''
+                    - if last_sign_in.nil?
                       %span.last-sign-in__subtext= t('users.generic.never_signed_in')
-                    - elsif last < 3.months.ago
+                    - elsif last_sign_in < 3.months.ago
                       %span.last-sign-in__subtext= t('users.generic.over_3_months')
                     - else
                       %span.last-sign-in__subtext= t('users.generic.recently')
