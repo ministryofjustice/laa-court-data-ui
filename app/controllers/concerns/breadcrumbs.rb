@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 module Breadcrumbs
+  include AbstractController::Translation
   extend ActiveSupport::Concern
 
   included do
     def search_filter_breadcrumb_name
-      I18n.t('search_filter.breadcrumb')
+      t('search_filter.breadcrumb')
     end
     helper_method :search_filter_breadcrumb_name
 
     def search_breadcrumb_name
-      I18n.t('search.breadcrumb')
+      t('search.breadcrumb')
     end
     helper_method :search_breadcrumb_name
 
@@ -20,7 +21,7 @@ module Breadcrumbs
     helper_method :search_breadcrumb_path
 
     def prosecution_case_name(reference)
-      I18n.t('prosecution_case.breadcrumb', prosecution_case_reference: reference)
+      t('prosecution_case.breadcrumb', prosecution_case_reference: reference)
     end
     helper_method :prosecution_case_name
   end
