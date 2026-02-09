@@ -1,11 +1,11 @@
 - content_for :pre_heading do
   = render '/feedback_on_appeals_to_crown_court', application: @application
 
-= govuk_page_heading(@hearing_day.day_string, caption_text: t('generic.hearing_day'), tag_options: { class: 'govuk-!-margin-bottom-3' })
+= govuk_page_heading(@hearing_day.day_string, caption_text: t('generic.hearing_day'), tag_options: { class: 'govuk-!-margin-bottom-0' })
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    %nav.moj-pagination#pagination-label
+    %nav.moj-pagination#pagination-label{ class: "govuk-!-margin-top-1" }
       %p.govuk-visually-hidden{ "aria-labelledby": 'pagination-label' }
         = t(".pagination_navigation")
       %ul.moj-pagination__list
@@ -20,12 +20,12 @@
                       court_application_hearing_hearing_day_path(@application.application_id, @next_day.hearing.id, @next_day.date),
                       class: 'moj-pagination__link')
 
-    - if @application.appeal?
-      %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
-        = t("subjects.appeal")
-    - else
-      %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
-        = t("subjects.#{@application.application_category}")
+- if @application.appeal?
+  %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5 govuk-!-margin-top-3" }
+    = t("subjects.appeal")
+- else
+  %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5 govuk-!-margin-top-3" }
+    = t("subjects.#{@application.application_category}")
 
 .govuk-grid-row
   .govuk-grid-column-one-third
