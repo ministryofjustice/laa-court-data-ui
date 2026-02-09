@@ -48,7 +48,7 @@ RSpec.describe UsersController, type: :controller do
 
         expect(users_relation)
           .to have_received(:order)
-          .with("email ASC")
+          .with({email: :asc})
 
         expect(controller).to have_received(:pagy).with(ordered_relation)
       end
@@ -60,7 +60,7 @@ RSpec.describe UsersController, type: :controller do
 
         expect(users_relation)
           .to have_received(:order)
-          .with("last_sign_in_at DESC")
+          .with({last_sign_in_at: :desc})
 
         expect(controller).to have_received(:pagy).with(ordered_relation)
       end
