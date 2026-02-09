@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def index
     session.delete(:user_search)
     @user_search = UserSearch.new
-    order = params[:user_sort_direction] ==  "desc"  ? :desc : :asc
+    order = params[:user_sort_direction].nil? ? "asc" : params[:user_sort_direction]
     column = params[:user_sort_column]
     if %w[username email roles last_sign_in_at name].include?(column)
       order_by(column, order)
@@ -106,13 +106,10 @@ class UsersController < ApplicationController
 
   def order_by(column, order)
     direction = (order == "asc") ? :asc : :desc
-    order_params =
-      if column == "name"
-        { first_name: direction, last_name: direction }
-      else
-        { column => direction }
-      end
-
-    @pagy, @users = pagy(@users.order(order_params))
+    if column == 'name'
+      @pagy, @users = pagy(@users.order(first_name: direction, last_name: direction))
+    else
+      @pagy, @users = pagy(@users.order("#{column}": direction))
+    end
   end
 end
