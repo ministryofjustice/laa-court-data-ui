@@ -50,6 +50,19 @@ module ApplicationHelper
     # rubocop:enable Rails/OutputSafety
   end
 
+  def user_sorter_link(column)
+    direction = params[:user_sort_direction] == 'asc' ? 'desc' : 'asc'
+    users_path(user_sort_column: column, user_sort_direction: direction)
+  end
+
+  def user_sorter_direction
+    params[:user_sort_direction] == 'asc' ? 'desc' : 'asc'
+  end
+
+  def user_sorter_column?(column)
+    params[:user_sort_column] == column
+  end
+
   private
 
   def decorator_instance(object, decorator_class = nil)
