@@ -17,15 +17,17 @@
 
       - unless FeatureFlag.enabled?(:no_linking)
         = hidden_field_tag(:urn, params[:urn])
-
         = f.hidden_field(:defendant_id, value: params[:id] || defendant_uuid)
 
         = f.govuk_text_field :maat_reference,
                              label: { text: t('laa_reference.link.form.maat_reference.label') },
                              hint: { text: t('laa_reference.link.form.maat_reference.hint') }
 
-        = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }
+        = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }, name: 'maat_ref_required', value: 'true'
 
-        = govuk_detail(t('laa_reference.missing_maat_id.label')) do
-          %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
-          = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'commit', value: t('laa_reference.missing_maat_id.submit'))
+= govuk_detail(t('laa_reference.missing_maat_id.label')) do
+  = form_with(model: link_attempt, url: '/laa_references', data: { turbo: false }) do |f|
+    %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
+    = hidden_field_tag(:urn, params[:urn])
+    = f.hidden_field(:defendant_id, value: params[:id] || defendant_uuid)
+    = f.govuk_submit t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'maat_ref_required', value: 'false'

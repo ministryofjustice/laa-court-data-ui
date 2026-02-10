@@ -16,12 +16,19 @@ class SubjectsController < ApplicationController
 
   # POST /court_applications/:court_application_id/subject/link
   def link
-    @form_model = load_link_attempt
-    @form_model.validate!
+    @form_model = LinkAttempt.new(defendant_id: @subject.subject_id,
+                                  username: current_user.username,
+                                  maat_reference: params.dig(:link_attempt, :maat_reference))
+
+    if params[:maat_ref_required] == 'true'
+      @form_model.validate!(:maat_ref_required)
+    else
+      @form_model.validate!
+    end
 
     Cda::CourtApplicationLaaReference.create!(@form_model)
-    redirect_to court_application_subject_path(@application.application_id),
-                flash: { notice: t('.success') }
+
+    redirect_to court_application_subject_path(@application.application_id), flash: { notice: t('.success') }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render :show
