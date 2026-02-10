@@ -34,7 +34,7 @@ RSpec.feature 'New user', type: :feature do
       click_link_or_button 'Create a new user'
       expect(page).to have_current_path(new_user_path)
 
-      expect(page).to have_govuk_page_heading(text: 'Edit new user details')
+      expect(page).to have_govuk_page_heading(text: 'Enter new user details')
       expect(page).to have_field('First name', type: 'text')
       expect(page).to have_field('Last name', type: 'text')
       expect(page).to have_field('Username', type: 'text')

@@ -3,10 +3,12 @@ require "rails_helper"
 RSpec.describe UserSearchService do
   subject(:search_results) { described_class.call(user_search, User).to_a }
 
-  let(:user_search) { UserSearch.new(search_string:, recent_sign_ins:, old_sign_ins:) }
+  let(:user_search) do
+    UserSearch.new(search_string:, recent_sign_ins:, old_sign_ins:, caseworker_role:, admin_role:)
+  end
   let(:searched_user) do
     create(:user, first_name: 'Jane', last_name: 'Doe', username: 'j-doe', email: 'jane@example.com',
-                  last_sign_in_at: 1.day.ago)
+                  last_sign_in_at: 1.day.ago, roles: ['admin'])
   end
   let(:unsearched_user) do
     create(:user, first_name: 'John', last_name: 'Smith', username: 'j-smith', email: 'john@example.com',
@@ -14,6 +16,8 @@ RSpec.describe UserSearchService do
   end
   let(:recent_sign_ins) { false }
   let(:old_sign_ins) { false }
+  let(:caseworker_role) { false }
+  let(:admin_role) { false }
   let(:search_string) { nil }
 
   before do
@@ -75,6 +79,25 @@ RSpec.describe UserSearchService do
     before do
       searched_user.update(last_sign_in_at: 4.months.ago)
       unsearched_user.update(last_sign_in_at: 1.day.ago)
+    end
+
+    it { is_expected.to include(searched_user) }
+    it { is_expected.not_to include(unsearched_user) }
+  end
+
+  context 'when filtering by admin role' do
+    let(:admin_role) { true }
+
+    it { is_expected.to include(searched_user) }
+    it { is_expected.not_to include(unsearched_user) }
+  end
+
+  context 'when filtering by caseworker role' do
+    let(:caseworker_role) { true }
+
+    before do
+      searched_user.update(roles: %w[caseworker admin])
+      unsearched_user.update(roles: %w[data_analyst])
     end
 
     it { is_expected.to include(searched_user) }

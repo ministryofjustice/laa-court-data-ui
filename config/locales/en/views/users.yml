@@ -20,23 +20,27 @@ en:
     edit:
       page_title: Edit user
     form:
+      back_link: Back to Manage Users
       fields:
         email_confirmation_label: Confirm email address
         email_label: Email address
-        feature_flags_legend: What features does the user have access to?
+        feature_flags_legend: Additional caseworker features
         first_name_label: First name
         last_name_label: Last name
         roles_hint: Select all that apply
-        roles_legend: What roles does the user have?
+        roles_legend: Which roles does this user have?
         save_button: Save
         username_hint: Use MAAT/MLRA username
         username_label: Username
+      heading: User information
     generic:
       action: Action
       email: Email
       last_sign_in: Last Sign In
       name: Name
       never_signed_in: Never signed-in
+      over_3_months: Over 3 months
+      recently: Recently
       user: user
       username: Username
     index:
@@ -45,7 +49,6 @@ en:
       edit: Edit
       hide_filter: Hide filters
       improve_search: 'Improve your search results by:'
-      inactive_user: indicates that the user has not signed in for more than 3 months.
       new_link: Create a new user
       none: There are no matching results.
       page_title: List of users
@@ -56,18 +59,27 @@ en:
       - searching for something less specific.
       show_filter: Show filters
     new:
-      page_title: Edit new user details
+      page_title: Enter new user details
     search:
+      admin: Admin
+      admin_label: Admin (%{count})
       apply_filters: Apply filters
+      case_worker: Case worker
+      case_worker_label: Case worker (%{count})
       clear: Clear filters
+      data_analyst: Data analyst
+      data_analyst_label: Data analyst (%{count})
       filter: Filter
       keywords: Name, username or email
-      last_sign_in: Last sign-in
+      last_sign_in: Last sign in
+      manager: Manager
+      manager_label: Manager (%{count})
       old: Over three months ago
       old_label: Over three months ago (%{count})
       recent: Within last three months
       recent_label: Within last three months (%{count})
       remove: Remove this filter
+      roles: Roles
       selected_filters: Selected filters
     show:
       caption: User details

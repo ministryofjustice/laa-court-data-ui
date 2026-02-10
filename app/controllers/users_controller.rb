@@ -105,7 +105,11 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
       params.require(:user_search).permit(
         :search_string,
         :recent_sign_ins,
-        :old_sign_ins
+        :old_sign_ins,
+        :manager_role,
+        :caseworker_role,
+        :admin_role,
+        :data_analyst_role
       ).tap { session[:user_search] = session_safe(it) }
     else
       session[:user_search]
