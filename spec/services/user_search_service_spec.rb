@@ -8,7 +8,7 @@ RSpec.describe UserSearchService do
   end
   let(:searched_user) do
     create(:user, first_name: 'Jane', last_name: 'Doe', username: 'j-doe', email: 'jane@example.com',
-                  last_sign_in_at: 1.day.ago, roles: ['manager'])
+                  last_sign_in_at: 1.day.ago, roles: ['admin'])
   end
   let(:unsearched_user) do
     create(:user, first_name: 'John', last_name: 'Smith', username: 'j-smith', email: 'john@example.com',
@@ -85,8 +85,8 @@ RSpec.describe UserSearchService do
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when filtering by manager role' do
-    let(:manager_role) { true }
+  context 'when filtering by admin role' do
+    let(:admin_role) { true }
 
     it { is_expected.to include(searched_user) }
     it { is_expected.not_to include(unsearched_user) }
@@ -96,7 +96,7 @@ RSpec.describe UserSearchService do
     let(:admin_role) { true }
 
     before do
-      searched_user.update(roles: %w[manager admin])
+      searched_user.update(roles: %w[caseworker admin])
     end
 
     it { is_expected.to include(searched_user) }
