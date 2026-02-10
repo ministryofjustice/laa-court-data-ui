@@ -23,7 +23,15 @@ RSpec.feature 'Index users', :js, type: :feature do
 
   context 'when admin' do
     let(:user) { create(:user, :with_admin_role, first_name: 'Amy', last_name: 'Aardvark', email: 'b@b.com') }
-    let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Bertie', last_name: 'Bear', email: 'a@a.com') }
+    let!(:other_user) do
+      create(
+        :user,
+        :with_caseworker_role,
+        first_name: 'Bertie',
+        last_name: 'Bear',
+        email: 'a@a.com'
+      )
+    end
 
     scenario 'can index users' do
       expect(page).to have_current_path(authenticated_admin_root_path)
