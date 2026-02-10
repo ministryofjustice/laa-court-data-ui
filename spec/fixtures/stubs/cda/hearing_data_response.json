@@ -80,7 +80,7 @@
           "category_code": "CO",
           "link_type": "LINKED",
           "jurisdiction": "EITHER",
-          "appeal_flag": false,
+          "appeal_flag": true,
           "summons_template_type": "NOT_APPLICABLE",
           "valid_from": null,
           "valid_to": null,

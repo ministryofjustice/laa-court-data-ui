@@ -2,8 +2,13 @@
   %h2.govuk-heading-l
     = t('hearings.show.attendees.heading')
 
+    = hearing.relates_to_appeals?
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-    = t('hearings.show.attendees.appellants')
+    - if hearing.relates_to_appeals?
+      = t('hearings.show.attendees.appellants')
+    - else
+      = t('hearings.show.attendees.respondents')
+
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defendants" }
     - if prosecution_case.defendant_summaries.any?
       = safe_join(prosecution_case.defendant_summaries.map(&:name), tag.br)
@@ -11,7 +16,10 @@
       = t('generic.not_available')
 
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-    = t('hearings.show.attendees.appellant_advocates')
+    - if hearing.relates_to_appeals?
+      = t('hearings.show.attendees.appellant_advocates')
+    - else
+      = t('hearings.show.attendees.respondent_advocates')
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "appellant" }
     - if hearing_details.try(:applicant_counsels)&.any?
       = hearing.applicant_counsels_list
@@ -19,7 +27,10 @@
       = t('generic.not_available')
 
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-    = t('hearings.show.attendees.respondent_advocates')
+    - if hearing.relates_to_appeals?
+      = t('hearings.show.attendees.respondent_advocates')
+    - else
+      = t('hearings.show.attendees.applicant_advocates')
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "respondent" }
     - if hearing_details.try(:respondent_counsels)&.any?
       = hearing.respondent_counsels_list

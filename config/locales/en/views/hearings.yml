@@ -5,12 +5,14 @@ en:
       attendees:
         appellant_advocates: Appellant advocates
         appellants: Appellants
+        applicant_advocates: Applicant advocates
         defence: Defence advocates
         defendants: Defendants
         heading: Attendees
         judges: Judges
         prosecution_advocates: Prosecution advocates
         respondent_advocates: Respondent advocates
+        respondents: Respondents
       court: Court
       court_applications:
         applicant_synonym: Applicant synonym
