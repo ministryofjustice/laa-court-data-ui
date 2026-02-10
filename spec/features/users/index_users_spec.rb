@@ -21,16 +21,12 @@ RSpec.feature 'Index users', :js, type: :feature do
     end
   end
 
-  context 'when manager' do
-    let(:user) do
-      create(:user, :with_manager_role, first_name: 'Amy', last_name: 'Aardvark', email: 'b@b.com')
-    end
-    let!(:other_user) do
-      create(:user, :with_caseworker_role, first_name: 'Bertie', last_name: 'Bear', email: 'a@a.com')
-    end
+  context 'when admin' do
+    let(:user) { create(:user, :with_admin_role, first_name: 'Amy', last_name: 'Aardvark', email: 'b@b.com') }
+    let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Bertie', last_name: 'Bear', email: 'a@a.com') }
 
     scenario 'can index users' do
-      expect(page).to have_current_path(authenticated_root_path)
+      expect(page).to have_current_path(authenticated_admin_root_path)
 
       click_link_or_button 'Manage users'
 
@@ -74,7 +70,7 @@ RSpec.feature 'Index users', :js, type: :feature do
     end
 
     context 'when searching' do
-      let(:user) { create(:user, :with_manager_role, first_name: 'John') }
+      let(:user) { create(:user, :with_admin_role, first_name: 'John') }
       let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Jane') }
 
       scenario 'I search' do
