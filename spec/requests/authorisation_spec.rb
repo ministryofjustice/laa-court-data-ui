@@ -36,15 +36,10 @@ RSpec.describe 'authorization', type: :request do
     it_behaves_like('a standard user')
   end
 
-  context 'when manager signed in' do
-    let(:user) { create(:user, roles: ['manager']) }
+  context 'when admin signed in' do
+    let(:user) { create(:user, roles: ['admin']) }
 
     before { sign_in user }
-
-    it 'can search' do
-      get new_search_filter_path
-      expect(response.body).to include('<h1 class="govuk-fieldset__heading">Search for</h1>')
-    end
 
     it 'can manage themselves' do
       get user_path(user)
@@ -57,11 +52,20 @@ RSpec.describe 'authorization', type: :request do
     end
   end
 
-  context 'when admin signed in' do
+  context 'when admin performing unauthorized action on case' do
     let(:user) { create(:user, roles: ['admin']) }
 
-    before { sign_in user }
+    before do
+      sign_in user
+      get new_search_filter_path
+    end
 
-    it_behaves_like('a standard user')
+    it 'redirects to root' do
+      expect(response).to redirect_to authenticated_admin_root_path
+    end
+
+    it 'flashes alert' do
+      expect(flash.now[:alert]).to match(/You are unauthorised to new Search filter/)
+    end
   end
 end

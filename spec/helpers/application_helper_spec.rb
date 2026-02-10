@@ -260,4 +260,110 @@ RSpec.describe ApplicationHelper, type: :helper do
       it { is_expected.to be_nil }
     end
   end
+
+  describe '#user_sorter_column?' do
+    context "when params[:user_sort_column] matches the given column" do
+      it "returns true" do
+        allow(helper).to receive(:params).and_return({ user_sort_column: 'email' })
+
+        expect(helper.user_sorter_column?('email')).to be true
+      end
+    end
+
+    context "when params[:user_sort_column] does not match the given column" do
+      it "returns false" do
+        allow(helper).to receive(:params).and_return({ user_sort_column: 'name' })
+
+        expect(helper.user_sorter_column?('email')).to be false
+      end
+    end
+
+    context "when params[:user_sort_column] is nil" do
+      it "returns false" do
+        allow(helper).to receive(:params).and_return({ user_sort_column: nil })
+
+        expect(helper.user_sorter_column?('email')).to be false
+      end
+    end
+
+    context "when params[:user_sort_column] is missing" do
+      it "returns false" do
+        allow(helper).to receive(:params).and_return({})
+
+        expect(helper.user_sorter_column?('email')).to be false
+      end
+    end
+  end
+
+  describe '#user_sorter_direction' do
+    context "when params[:user_sort_direction] is 'asc'" do
+      it "returns 'desc'" do
+        allow(helper).to receive(:params).and_return({ user_sort_direction: 'asc' })
+
+        expect(helper.user_sorter_direction).to eq('desc')
+      end
+    end
+
+    context "when params[:user_sort_direction] is 'desc'" do
+      it "returns 'asc'" do
+        allow(helper).to receive(:params).and_return({ user_sort_direction: 'desc' })
+
+        expect(helper.user_sorter_direction).to eq('asc')
+      end
+    end
+
+    context "when params[:user_sort_direction] is nil" do
+      it "returns 'asc'" do
+        allow(helper).to receive(:params).and_return({ user_sort_direction: nil })
+
+        expect(helper.user_sorter_direction).to eq('asc')
+      end
+    end
+
+    context "when params[:user_sort_direction] is missing" do
+      it "returns 'asc'" do
+        allow(helper).to receive(:params).and_return({})
+
+        expect(helper.user_sorter_direction).to eq('asc')
+      end
+    end
+  end
+
+  describe '#user_sorter_link' do
+    before do
+      allow(helper).to receive(:users_path) do |args|
+        "/users?user_sort_column=#{args[:user_sort_column]}&user_sort_direction=#{args[:user_sort_direction]}"
+      end
+    end
+
+    context "when current sort direction is 'asc'" do
+      it "returns a users_path with direction set to 'desc'" do
+        allow(helper).to receive(:params).and_return({ user_sort_direction: 'asc' })
+
+        result = helper.user_sorter_link('email')
+
+        expect(result).to eq("/users?user_sort_column=email&user_sort_direction=desc")
+      end
+    end
+
+    context "when current sort direction is 'desc'" do
+      it "returns a users_path with direction set to 'asc'" do
+        allow(helper).to receive(:params).and_return({ user_sort_direction: 'desc' })
+
+        result = helper.user_sorter_link('email')
+
+        expect(result).to eq("/users?user_sort_column=email&user_sort_direction=asc")
+      end
+    end
+
+    context "when no sort direction param is present" do
+      it "defaults to ascending next" do
+        allow(helper).to receive(:params).and_return({})
+
+        result = helper.user_sorter_link('email')
+
+        expect(result).to eq("/users?user_sort_column=email&user_sort_direction=asc")
+      end
+    end
+  end
 end

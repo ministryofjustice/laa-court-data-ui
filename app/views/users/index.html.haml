@@ -23,6 +23,8 @@
 
 .govuk-grid-row
   .govuk-grid-column-full
+    - direction = render user_sorter_direction == 'asc' ? "shared/up_icon" : "shared/down_icon"
+    - nondirection = render "shared/updown_icon"
     - if @users.any?
       %table.govuk-table
         %caption.govuk-table__caption.govuk-visually-hidden
@@ -30,12 +32,28 @@
 
         %thead.govuk-table__head
           %tr.govuk-table__row
-            %th.govuk-table__header{ scope: 'col' }= t('users.generic.name')
-            %th.govuk-table__header{ scope: 'col' }= t('users.generic.username')
-            %th.govuk-table__header{ scope: 'col' }= t('users.generic.email')
-            %th.govuk-table__header{ scope: 'col' } Roles
-            %th.govuk-table__header{ scope: 'col' }= t('users.generic.last_sign_in')
-            %th.govuk-table__header{ scope: 'col' }= t('users.generic.action')
+            %th.govuk-table__header{ scope: 'col' }
+              = link_to(user_sorter_link('name'), class: "govuk-link--no-visited-state", "aria-label": "Sort name") do
+                = t('users.generic.name')
+                = user_sorter_column?('name') ? direction : nondirection
+            %th.govuk-table__header{ scope: 'col' }
+              = link_to(user_sorter_link('username'), class: "app-no-wrap govuk-link--no-visited-state", "aria-label": "Sort username") do
+                = t('users.generic.username')
+                = user_sorter_column?('username') ? direction : nondirection
+            %th.govuk-table__header{ scope: 'col' }
+              = link_to(user_sorter_link('email'), class: "govuk-link--no-visited-state", "aria-label": "Sort email") do
+                = t('users.generic.email')
+                = user_sorter_column?('email') ? direction : nondirection
+            %th.govuk-table__header{ scope: 'col' }
+              = link_to(user_sorter_link('roles'), class: "govuk-link--no-visited-state", "aria-label": "Sort roles") do
+                = Roles
+                = user_sorter_column?('roles') ? direction : nondirection
+            %th.govuk-table__header{ scope: 'col' }
+              = link_to(user_sorter_link('last_sign_in_at'), class: "app-no-wrap govuk-link--no-visited-state", "aria-label": "Sort last_sign_in_at") do
+                = t('users.generic.last_sign_in')
+                = user_sorter_column?('last_sign_in_at') ? direction : nondirection
+            %th.govuk-table__header{ scope: 'col' }
+              = t('users.generic.action')
 
         %tbody.govuk-table__body
           - @users.each do |user|
@@ -71,10 +89,7 @@
                   = t('users.index.edit')
                   %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
                 %br
-                = link_to user_path(user), data: { turbo_method: :delete, turbo_confirm: t('users.index.delete_confirmation', name: user.name) }, class: 'govuk-link' do
-                  = t('users.index.delete')
-                  %span.govuk-visually-hidden= t('users.index.action_aria', name: user.name)
-
+                = link_to t('users.index.delete'), users_confirm_delete_path(user), class: 'govuk-link'
       = render 'shared/pagination', pagy: @pagy, item_name: t('users.generic.user')
       = link_to 'Export Users', users_export_all_path, class: 'govuk-button govuk-button--secondary govuk-!-margin-top-5'
     - else

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe 'managers', type: :request do
-  let(:user) { create(:user, :with_manager_role) }
+RSpec.describe 'admin', type: :request do
+  let(:user) { create(:user, :with_admin_role) }
   let(:other_user) { create(:user, :with_caseworker_role) }
   let(:message_delivery) { instance_double(GovukNotifyRails::Mailer::MessageDelivery) }
 
@@ -55,7 +55,7 @@ RSpec.describe 'managers', type: :request do
 
     it 'flashes notice' do
       request
-      expect(flash.now[:notice]).to match(/success/)
+      expect(flash.now[:success_moj_banner]).to match(/success/)
     end
 
     it 'creates user' do
@@ -92,7 +92,7 @@ RSpec.describe 'managers', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:notice]).to match(/success/)
+        expect(flash.now[:success_moj_banner]).to match(/success/)
       end
 
       it 'updates user' do
@@ -116,7 +116,7 @@ RSpec.describe 'managers', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:notice]).to match(/success/)
+        expect(flash.now[:success_moj_banner]).to match(/success/)
       end
 
       it 'updates other user' do
@@ -144,7 +144,7 @@ RSpec.describe 'managers', type: :request do
 
     it 'flashes notice' do
       request
-      expect(flash.now[:notice]).to match(/success/)
+      expect(flash.now[:success_moj_banner]).to match(/success/)
     end
   end
 

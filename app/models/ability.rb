@@ -36,7 +36,6 @@ class Ability
     return if user.blank?
 
     caseworker_abilities if user.caseworker?
-    manager_abilities if user.manager?
     admin_abilities if user.admin?
     data_analyst_abilities if user.data_analyst?
   end
@@ -50,20 +49,13 @@ class Ability
     can_manage_self
   end
 
-  def manager_abilities
-    can_search
-    can_query_cda
-    can_manage_links
-    can :manage, User
-    can :manage, Cda::HearingRepullBatch
-  end
-
   def admin_abilities
-    caseworker_abilities
+    can :manage, User
   end
 
   def data_analyst_abilities
     can :read, Cda::LinkingStatCollection
+    can :manage, Cda::HearingRepullBatch
   end
 
   def can_search

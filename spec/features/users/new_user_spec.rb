@@ -23,8 +23,8 @@ RSpec.feature 'New user', type: :feature do
     end
   end
 
-  context 'when manager' do
-    let(:user) { create(:user, :with_manager_role) }
+  context 'when admin' do
+    let(:user) { create(:user, :with_admin_role) }
 
     scenario 'can new and create users' do
       visit users_path
@@ -41,7 +41,6 @@ RSpec.feature 'New user', type: :feature do
       expect(page).to have_field('Email', type: 'email')
       expect(page).to have_field('Confirm email', type: 'email')
       expect(page).to have_field('Caseworker', type: 'checkbox')
-      expect(page).to have_field('Manager', type: 'checkbox')
       expect(page).to have_field('Admin', type: 'checkbox')
 
       fill_in 'First name', with: 'Jim'
@@ -63,7 +62,7 @@ RSpec.feature 'New user', type: :feature do
       expect(new_user).to be_persisted
       expect(new_user).to be_caseworker
       expect(page).to have_current_path(user_path(new_user))
-      expect(page).to have_govuk_flash(:notice, text: 'User successfully added')
+      expect(page).to have_govuk_flash(:success_moj_banner, text: 'User successfully added')
 
       expect(page).to have_govuk_page_heading(text: 'User account')
       expect(page).to have_css('.govuk-table__cell', text: 'Jim Bob')
