@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     order = params[:user_sort_direction] == "desc" ? "desc" : "asc"
     column = params[:user_sort_column]
     if %w[username email roles last_sign_in_at name].include?(column)
-      order_by(column, order)
+      @pagy, @users = order_by(column, order)
     else
       @pagy, @users = pagy(@users.by_name)
     end
