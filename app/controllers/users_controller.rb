@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
+class UsersController < ApplicationController # rubocop:disable Metrics/ClassLength
   require 'csv'
   load_and_authorize_resource except: :create
 
@@ -120,4 +120,4 @@ class UsersController < ApplicationController
       @pagy, @users = pagy(@users.order("#{column}": direction))
     end
   end
-end
+end # rubocop:enable Metrics/ClassLength
