@@ -4,7 +4,7 @@ RSpec.describe UserSearchService do
   subject(:search_results) { described_class.call(user_search, User).to_a }
 
   let(:user_search) do
-    UserSearch.new(search_string:, recent_sign_ins:, old_sign_ins:, manager_role:, admin_role:)
+    UserSearch.new(search_string:, recent_sign_ins:, old_sign_ins:, caseworker_role:, admin_role:)
   end
   let(:searched_user) do
     create(:user, first_name: 'Jane', last_name: 'Doe', username: 'j-doe', email: 'jane@example.com',
@@ -16,7 +16,7 @@ RSpec.describe UserSearchService do
   end
   let(:recent_sign_ins) { false }
   let(:old_sign_ins) { false }
-  let(:manager_role) { false }
+  let(:caseworker_role) { false }
   let(:admin_role) { false }
   let(:search_string) { nil }
 
@@ -92,11 +92,12 @@ RSpec.describe UserSearchService do
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when filtering by admin role' do
-    let(:admin_role) { true }
+  context 'when filtering by caseworker role' do
+    let(:caseworker_role) { true }
 
     before do
       searched_user.update(roles: %w[caseworker admin])
+      unsearched_user.update(roles: %w[data_analyst])
     end
 
     it { is_expected.to include(searched_user) }
