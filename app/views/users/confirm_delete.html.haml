@@ -1,0 +1,48 @@
+= govuk_page_heading(t('users.delete.page_heading'), title: t('users.delete.page_title'))
+
+%table.govuk-table
+
+  %tbody.govuk-table__body
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'row' }
+        = t('users.show.name_label')
+      %td.govuk-table__cell
+        = @user.name
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'row' }
+        = t('users.show.username_label')
+      %td.govuk-table__cell
+        = @user.username
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'row' }
+        = t('users.show.email_label')
+      %td.govuk-table__cell
+        = mail_to @user.email, class: 'govuk-link', target: '_blank' do
+          = @user.email
+          %span.govuk-visually-hidden= t('generic.new_window')
+    %tr.govuk-table__row
+      %th.govuk-table__header{ scope: 'row' }
+        = t('users.show.roles_label')
+      %td.govuk-table__cell
+        = @user.roles.map(&:titlecase).join(', ')
+    - if FeatureFlag.enabled?(:per_user_feature_flags)
+      %tr.govuk-table__row
+        %th.govuk-table__header{ scope: 'row' }
+          = t('users.show.feature_flags_label')
+        %td.govuk-table__cell
+          = @user.feature_flags.map(&:humanize).join(', ')
+
+.govuk-warning-text{ class: "govuk-!-margin-bottom-5" }
+  %span.govuk-warning-text__icon{ "aria-hidden" => "true" } !
+  %strong.govuk-warning-text__text
+    %span.govuk-visually-hidden
+      = t('generic.warning')
+    = t('users.delete.warning')
+
+- if can? :destroy, @user
+  .div.govuk-button-group
+    = link_to t('users.delete.yes_link'), user_path(@user),
+              data: { turbo_method: :delete }, "aria-label": t('users.show.edit_link_aria', name: @user.name),
+              class: 'govuk-button govuk-button--warning', "data-module": 'govuk-button', draggable: 'false', role: 'button'
+
+    = link_to t('users.delete.no_link'), users_path, class: 'govuk-link govuk-!-font-size-19'

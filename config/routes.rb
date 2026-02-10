@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   get 'ping', to: 'status#ping', format: :json
 
   get 'users/export/all', to: 'users#export', defaults: { format: :csv }
+  get 'users/confirm_delete/:id', to: 'users#confirm_delete', as: 'users_confirm_delete'
 
   get '/401', to: 'errors#unauthorized', as: 'unauthorized_error'
   get '/404', to: 'errors#not_found', as: 'not_found_error'
