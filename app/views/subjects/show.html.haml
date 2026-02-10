@@ -15,7 +15,7 @@
     = t("subjects.#{@application.application_category}")
 
   .govuk-body
-    = t("subjects.show.alert")
+    Information on this screen relates to the person as a respondent, and may differ from the defendant or appeal screens.
 
 :ruby
   link_url = if @application.maat_linked?
@@ -89,9 +89,11 @@
             = t('defendants.unlink.detail')
           = render 'defendants/unlink_warning'
           = render 'defendants/unlinking_fields', { f: }
+        - elsif @application.poca? # Poca, not linked - The linking uses a dummy MAAT ID
+          = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), name: 'maat_ref_required', value: 'false')
         - else
           = f.govuk_text_field :maat_reference,
                                label: { text: t('laa_reference.link.form.maat_reference.label') },
                                hint: { text: t('laa_reference.link.form.maat_reference.hint') }
 
-          = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }
+          = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }, name: 'maat_ref_required', value: 'true'

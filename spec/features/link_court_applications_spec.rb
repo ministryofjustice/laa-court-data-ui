@@ -66,4 +66,32 @@ RSpec.feature 'Link court applications' do
       expect(page).to have_content "Unable to link the defendant to that MAAT ID"
     end
   end
+
+  context "when application is POCA" do
+    before do
+      create(:unlink_reason, code: 4, description: "Initially processed on Libra", text_required: false)
+    end
+
+    around do |example|
+      VCR.use_cassette('spec/features/link_court_applications_poca_spec') do
+        example.run
+      end
+    end
+
+    let(:court_application_id) { '186a439d-66ea-4cad-a44b-505cf074e839' }
+
+    scenario 'I link and then unlink a POCA application' do
+      visit court_application_subject_path(court_application_id)
+
+      click_on "Create link without MAAT ID"
+
+      expect(page).to have_content "You have successfully linked to the court data source"
+      expect(page).to have_content "Remove link to court data"
+
+      select "Initially processed on Libra", from: "Reason for unlinking"
+      click_on "Remove link to court data"
+
+      expect(page).to have_content "You have successfully unlinked from the court data source"
+    end
+  end
 end
