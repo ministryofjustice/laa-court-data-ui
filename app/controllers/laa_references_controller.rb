@@ -16,6 +16,7 @@ class LaaReferencesController < ApplicationController
   add_breadcrumb proc { |v| v.controller.defendant.name },
                  proc { |v| v.defendant_path(v.controller.defendant.id) }
 
+  # GET /laa_references/new
   def new
     return unless params.fetch(:include_offence_history, 'false') == 'true'
 
@@ -25,10 +26,15 @@ class LaaReferencesController < ApplicationController
     )
   end
 
+  # POST /laa_references
   def create
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
 
-    @link_attempt.validate!
+    if params[:maat_ref_required] == 'true'
+      @link_attempt.validate!(:maat_ref_required)
+    else
+      @link_attempt.validate!
+    end
 
     Cda::ProsecutionCaseLaaReference.create!(resource_params)
 
@@ -87,16 +93,11 @@ class LaaReferencesController < ApplicationController
   def link_attempt_params
     return unless laa_reference_params[:link_attempt]
 
-    laa_reference_params[:link_attempt].merge(no_maat_id: no_maat_id?,
-                                              username: current_user.username)
+    laa_reference_params[:link_attempt].merge(username: current_user.username)
   end
 
   def resource_params
     @resource_params ||= @link_attempt.to_link_attributes
-  end
-
-  def no_maat_id?
-    params[:commit] == 'Create link without MAAT ID'
   end
 
   def set_link_attempt

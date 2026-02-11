@@ -8,6 +8,7 @@ en:
             defendant_id:
               blank: Defendant is required
             maat_reference:
+              blank: MAAT ID is required
               invalid: Enter a MAAT ID in the correct format
             username:
               blank: Current username is required
