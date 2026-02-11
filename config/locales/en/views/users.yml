@@ -49,23 +49,23 @@ en:
       edit: Edit
       hide_filter: Hide filters
       improve_search: 'Improve your search results by:'
-      new_link: Create a new user
+      new_link: Create new user
       none: There are no matching results.
-      page_title: List of users
+      page_title: Manage Users
       search_suggestions:
       - removing filters
       - double-checking your spelling
       - using fewer keywords
       - searching for something less specific.
-      show_filter: Show filters
+      show_filter: Show filter
     new:
       page_title: Enter new user details
     search:
       admin: Admin
       admin_label: Admin (%{count})
       apply_filters: Apply filters
-      case_worker: Case worker
-      case_worker_label: Case worker (%{count})
+      case_worker: Caseworker
+      case_worker_label: Caseworker (%{count})
       clear: Clear filters
       data_analyst: Data analyst
       data_analyst_label: Data analyst (%{count})
@@ -79,7 +79,7 @@ en:
       recent: Within last three months
       recent_label: Within last three months (%{count})
       remove: Remove this filter
-      roles: Roles
+      roles: Role(s)
       selected_filters: Selected filters
     show:
       caption: User details
