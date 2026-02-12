@@ -61,8 +61,10 @@ RSpec.feature 'Link court applications' do
 
     scenario 'I try to link but there are problems upstream' do
       visit court_application_subject_path(unlinked_court_application_with_problems_id)
+
       fill_in "MAAT ID", with: '7654321'
       click_on "Create link to court data"
+
       expect(page).to have_content "Unable to link the defendant to that MAAT ID"
     end
   end
@@ -83,6 +85,22 @@ RSpec.feature 'Link court applications' do
     scenario 'I link and then unlink a POCA application' do
       visit court_application_subject_path(court_application_id)
 
+      fill_in "MAAT ID", with: '1234567'
+      click_on "Create link to court data"
+
+      expect(page).to have_content "You have successfully linked to the court data source"
+      expect(page).to have_content "Remove link to court data"
+
+      select "Initially processed on Libra", from: "Reason for unlinking"
+      click_on "Remove link to court data"
+
+      expect(page).to have_content "You have successfully unlinked from the court data source"
+    end
+
+    scenario 'I link and then unlink a POCA application, without a MAAT ID' do
+      visit court_application_subject_path(court_application_id)
+
+      find("summary", text: "The MAAT id is missing").click
       click_on "Create link without MAAT ID"
 
       expect(page).to have_content "You have successfully linked to the court data source"
