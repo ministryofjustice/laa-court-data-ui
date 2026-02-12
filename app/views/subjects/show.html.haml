@@ -89,11 +89,15 @@
             = t('defendants.unlink.detail')
           = render 'defendants/unlink_warning'
           = render 'defendants/unlinking_fields', { f: }
-        - elsif @application.poca? # Poca, not linked - The linking uses a dummy MAAT ID
-          = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), name: 'maat_ref_required', value: 'false')
         - else
           = f.govuk_text_field :maat_reference,
                                label: { text: t('laa_reference.link.form.maat_reference.label') },
                                hint: { text: t('laa_reference.link.form.maat_reference.hint') }
 
           = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }, name: 'maat_ref_required', value: 'true'
+
+          -# For POCA it is possible linking without a MAAT ID (Dummy MAAT ID)
+          - if @application.poca?
+            = govuk_detail(t('laa_reference.missing_maat_id.label')) do
+              %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
+              = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'maat_ref_required', value: 'false')
