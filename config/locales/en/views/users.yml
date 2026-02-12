@@ -2,10 +2,10 @@
 en:
   users:
     breadcrumb:
+      delete_user: Delete User
       home: Home
       manage_users: Manage Users
       new_user: New User
-      delete_user: Delete User
     create:
       flash:
         success: User successfully added
