@@ -59,8 +59,7 @@ class SubjectsController < ApplicationController
   end
 
   def set_breadcrumbs
-    # Example:
-    # Home > Search > Case XXXXXXXXXX > Appeal/Breach/Poca > John Doe
+    # Example: Home > Search > Case XXXXXXXXXX > Appeal/Breach/Poca > John Doe
 
     add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
     add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
