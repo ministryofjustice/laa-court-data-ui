@@ -34,6 +34,10 @@ module Cda
       formatted_counsels_list(hearing.respondent_counsels)
     end
 
+    def relates_to_appeals?
+      hearing.court_applications.any? { it.type.appeal_flag == true }
+    end
+
     def formatted_counsels_list(counsels)
       return t('generic.not_available') unless loaded?
 
