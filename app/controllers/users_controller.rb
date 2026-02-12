@@ -38,7 +38,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
   end
 
   def confirm_delete
-    # This method is intentionally left empty as a check your answer page.
+    add_breadcrumb I18n.t('users.breadcrumb.delete_user')
   end
 
   def create
