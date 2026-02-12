@@ -17,7 +17,7 @@
                 %a.govuk-link.govuk-link--no-visited-state{ href: search_users_path(user_search: { reset: true }) }
                   = t('users.search.clear')
           - if user_search.search_string.present?
-            %h3.govuk-heading-s{ class: "govuk-!-margin-bottom-0" }
+            %h3.govuk-heading-l{ class: "govuk-!-margin-bottom-0" }
               = t('users.search.keywords')
               %ul.moj-filter-tags
                 %li
