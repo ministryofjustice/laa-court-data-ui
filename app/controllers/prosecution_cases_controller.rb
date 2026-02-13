@@ -2,7 +2,7 @@
 
 class ProsecutionCasesController < ApplicationController
   before_action :load_and_authorize_search, :set_prosecution_case
-  before_action :add_breadcrumbs
+  before_action :set_breadcrumbs
 
   def show
     render :show, locals: { prosecution_case: @prosecution_case }
@@ -53,7 +53,7 @@ class ProsecutionCasesController < ApplicationController
     flash[:notice] = cda_error_string(exception) || I18n.t('prosecution_case.show.failure')
   end
 
-  def add_breadcrumbs
+  def set_breadcrumbs
     add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
     add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
     add_breadcrumb prosecution_case_name(@prosecution_case.prosecution_case_reference),
