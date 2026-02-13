@@ -43,10 +43,19 @@ module Cda
       application_category == "breach"
     end
 
-    def maat_reference
-      return if !linked_maat_id || linked_maat_id.starts_with?(DUMMY_MAAT_PREFIX)
+    def poca?
+      application_category == "poca"
+    end
 
-      linked_maat_id
+    def maat_reference
+      return unless linked_maat_id
+
+      # If it is a dummy MAAT Reference
+      if linked_maat_id.starts_with?(DUMMY_MAAT_PREFIX)
+        nil
+      else
+        linked_maat_id
+      end
     end
 
     def maat_linked?

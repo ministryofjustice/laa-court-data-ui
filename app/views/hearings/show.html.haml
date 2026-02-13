@@ -10,6 +10,8 @@
 .govuk-grid-row
   .govuk-grid-column-two-thirds
     = render partial: 'pagination', locals: { paginator: @paginator }
+%strong.govuk-tag{ class: "govuk-tag--blue govuk-!-margin-bottom-5" }
+  = t("generic.case")
 
 .govuk-grid-row
   .govuk-grid-column-one-third
@@ -17,13 +19,14 @@
                                            hearing_datetime: @hearing_datetime }
 
     - is_prosecution_case = @hearing.try(:hearing)&.prosecution_cases&.any?
-    - if is_prosecution_case || !@hearing.loaded?
-      = render partial: 'attendees_on_prosecution_cases', locals: { hearing: @hearing,
-                                                                    hearing_details: @hearing.try(:hearing) }
-    - else
-      = render partial: 'attendees_on_court_applications', locals: { hearing: @hearing,
-                                                                     hearing_details: @hearing.try(:hearing),
-                                                                     prosecution_case: @prosecution_case }
+    - if @hearing.loaded?
+      - if is_prosecution_case
+        = render partial: 'attendees_on_prosecution_cases', locals: { hearing: @hearing,
+                                                                      hearing_details: @hearing.hearing }
+      - else # Appeal, Breach or Poca
+        = render partial: 'attendees_on_court_applications', locals: { hearing: @hearing,
+                                                                       hearing_details: @hearing.hearing,
+                                                                       prosecution_case: @prosecution_case }
 
   .govuk-grid-column-two-thirds
     = render(partial: 'hearing_events', locals: { hearing_events: @hearing_events, hearing_day: @hearing_day }) if @hearing_events
