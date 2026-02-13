@@ -28,10 +28,10 @@ RSpec.feature 'New user', type: :feature do
 
     scenario 'can new and create users' do
       visit users_path
-      expect(page).to have_govuk_page_heading(text: 'List of users')
+      expect(page).to have_govuk_page_heading(text: 'Manage Users')
 
-      expect(page).to have_link(text: 'Create a new user')
-      click_link_or_button 'Create a new user'
+      expect(page).to have_link(text: 'Create new user')
+      click_link_or_button 'Create new user'
       expect(page).to have_current_path(new_user_path)
 
       expect(page).to have_govuk_page_heading(text: 'Enter new user details')
