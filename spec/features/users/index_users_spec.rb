@@ -46,14 +46,14 @@ RSpec.feature 'Index users', :js, type: :feature do
         expect(page).to have_css('.govuk-table__header', text: 'Username')
         expect(page).to have_link(
           'Username',
-          href: "/users?user_sort_column=username&user_sort_direction=asc"
+          href: "/users?user_sort_column=username&user_sort_direction=desc"
         )
         expect(page).to have_css('.govuk-table__header', text: 'Email')
-        expect(page).to have_link('Email', href: "/users?user_sort_column=email&user_sort_direction=asc")
+        expect(page).to have_link('Email', href: "/users?user_sort_column=email&user_sort_direction=desc")
         expect(page).to have_css('.govuk-table__header', text: 'Last Sign In')
         expect(page).to have_link(
           'Last Sign In',
-          href: "/users?user_sort_column=last_sign_in_at&user_sort_direction=asc"
+          href: "/users?user_sort_column=last_sign_in_at&user_sort_direction=desc"
         )
         expect(page).to have_css('.govuk-table__header', text: 'Action')
       end
@@ -68,9 +68,9 @@ RSpec.feature 'Index users', :js, type: :feature do
       expect(page.text.index(user.email)).to be < page.text.index(other_user.email)
       # Verify sorting by email
       click_link_or_button 'Email'
-      expect(page).to have_current_path("/users?user_sort_column=email&user_sort_direction=asc")
-      expect(page).to have_link('Email', href: "/users?user_sort_column=email&user_sort_direction=desc")
-      expect(page.text.index(user.email)).to be > page.text.index(other_user.email)
+      expect(page).to have_current_path("/users?user_sort_column=email&user_sort_direction=desc")
+      expect(page).to have_link('Email', href: "/users?user_sort_column=email&user_sort_direction=asc")
+      expect(page.text.index(user.email)).to be < page.text.index(other_user.email)
 
       expect(page).to be_accessible
     end
