@@ -1,4 +1,7 @@
 linters:
+  RuboCop:
+    ignored_cops:
+      - Style/IfUnlessModifier
   LineLength:
     max: 180
     exclude:
