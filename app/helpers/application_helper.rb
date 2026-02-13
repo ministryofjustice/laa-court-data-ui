@@ -38,6 +38,16 @@ module ApplicationHelper
     link_to(title, prosecution_case_path(id: prosecution_case.prosecution_case_reference, column:, direction:, anchor: column), class: 'govuk-link govuk-link--no-visited-state', id: column, "aria-label": "Sort #{column} #{direction}")
   end
 
+  def navigation_item(path, label, active: current_page?(path))
+    active_class = active ? " govuk-service-navigation__item--active" : ""
+
+    tag.li(class: "govuk-service-navigation__item#{active_class}") do
+      tag.a(class: "govuk-service-navigation__link", href: path, aria: (active ? { current: "true" } : {})) do
+        active ? tag.strong(label, class: "govuk-service-navigation__active-fallback") : label
+      end
+    end
+  end
+
   def app_environment
     "app-environment-#{ENV.fetch('ENV', 'local')}"
   end

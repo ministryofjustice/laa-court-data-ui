@@ -227,6 +227,22 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
+  describe '#navigation_item' do
+    subject(:html) { helper.navigation_item('/search', 'Search', active:) }
+
+    context 'when active' do
+      let(:active) { true }
+
+      it { is_expected.to have_css('li.govuk-service-navigation__item--active') }
+    end
+
+    context 'when inactive' do
+      let(:active) { false }
+
+      it { is_expected.to have_no_css('li.govuk-service-navigation__item--active') }
+    end
+  end
+
   describe '#app_environment' do
     subject(:app_environment) { helper.app_environment }
 
