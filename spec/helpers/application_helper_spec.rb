@@ -297,18 +297,18 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe '#user_sorter_direction' do
     context "when params[:user_sort_direction] is 'asc'" do
-      it "returns 'desc'" do
+      it "returns 'asc'" do
         allow(helper).to receive(:params).and_return({ user_sort_direction: 'asc' })
 
-        expect(helper.user_sorter_direction).to eq('desc')
+        expect(helper.user_sorter_direction).to eq('asc')
       end
     end
 
     context "when params[:user_sort_direction] is 'desc'" do
-      it "returns 'asc'" do
+      it "returns 'desc'" do
         allow(helper).to receive(:params).and_return({ user_sort_direction: 'desc' })
 
-        expect(helper.user_sorter_direction).to eq('asc')
+        expect(helper.user_sorter_direction).to eq('desc')
       end
     end
 
@@ -357,12 +357,12 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     context "when no sort direction param is present" do
-      it "defaults to ascending next" do
+      it "defaults to desc next" do
         allow(helper).to receive(:params).and_return({})
 
         result = helper.user_sorter_link('email')
 
-        expect(result).to eq("/users?user_sort_column=email&user_sort_direction=asc")
+        expect(result).to eq("/users?user_sort_column=email&user_sort_direction=desc")
       end
     end
   end

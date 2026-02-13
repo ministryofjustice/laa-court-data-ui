@@ -42,7 +42,7 @@ RSpec.feature 'Index users', :js, type: :feature do
 
       within '.govuk-table__head' do
         expect(page).to have_css('.govuk-table__header', text: 'Name')
-        expect(page).to have_link('Name', href: "/users?user_sort_column=name&user_sort_direction=asc")
+        expect(page).to have_link('Name', href: "/users?user_sort_column=name&user_sort_direction=desc")
         expect(page).to have_css('.govuk-table__header', text: 'Username')
         expect(page).to have_link(
           'Username',

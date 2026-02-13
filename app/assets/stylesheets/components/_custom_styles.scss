@@ -21,13 +21,19 @@ body:not(.js-enabled) .app-js-only {
   margin-bottom: 0.5rem;
 }
 
+.table-heading-blue {
+  color: #1a65a6;
+  vertical-align: bottom;
+}
+
+
 @media (min-width: 40.0625em) {
   // The below CSS allows us to right-align
   // nav links such as 'Manage users'
   .govuk-service-navigation__wrapper {
     flex-grow: 1;
     justify-content: space-between;
-    
+
     .pull-right {
      margin-left: auto;
     }
