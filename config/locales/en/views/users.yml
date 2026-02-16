@@ -89,6 +89,7 @@ en:
       name_label: Name
       page_heading: User account
       page_title: User account
+      roles_delete_page: Roles
       roles_label: Role(s)
       username_label: Username
     update:
