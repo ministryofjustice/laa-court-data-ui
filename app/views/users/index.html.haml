@@ -46,7 +46,7 @@
                 = user_sorter_column?('email') ? direction : nondirection
             %th.govuk-table__header{ scope: 'col' }
               = link_to(user_sorter_link('roles'), class: "govuk-link--no-visited-state govuk-link--no-underline", "aria-label": "Sort roles") do
-                = Roles
+                = t('users.show.roles_label')
                 = user_sorter_column?('roles') ? direction : nondirection
             %th.govuk-table__header{ scope: 'col' }
               = link_to(user_sorter_link('last_sign_in_at'), class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline", "aria-label": "Sort last_sign_in_at") do
