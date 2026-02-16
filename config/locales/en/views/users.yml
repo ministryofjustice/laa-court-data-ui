@@ -30,14 +30,14 @@ en:
         last_name_label: Last name
         roles_hint: Select all that apply
         roles_legend: Which roles does this user have?
-        save_button: Save
+        save_button: Save and continue
         username_hint: Use MAAT/MLRA username
         username_label: Username
       heading: User information
     generic:
       action: Action
       email: Email
-      last_sign_in: Last Sign In
+      last_sign_in: Last sign in
       name: Name
       never_signed_in: Never signed-in
       over_3_months: Over 3 months
@@ -73,14 +73,12 @@ en:
       filter: Filter
       keywords: Name, username or email
       last_sign_in: Last sign in
-      manager: Manager
-      manager_label: Manager (%{count})
       old: Over three months ago
       old_label: Over three months ago (%{count})
       recent: Within last three months
       recent_label: Within last three months (%{count})
       remove: Remove this filter
-      roles: Role(s)
+      roles: Role
       selected_filters: Selected filters
     show:
       caption: User details
@@ -91,7 +89,7 @@ en:
       name_label: Name
       page_heading: User account
       page_title: User account
-      roles_label: Roles
+      roles_label: Role(s)
       username_label: Username
     update:
       flash:

@@ -25,17 +25,10 @@
                     %span.govuk-visually-hidden
                       = t('users.search.remove')
                     = user_search.search_string
-          - if user_search.recent_sign_ins || user_search.old_sign_ins || user_search.manager_role || user_search.admin_role || user_search.caseworker_role
-            || user_search.data_analyst_role
+          - if user_search.recent_sign_ins || user_search.old_sign_ins || user_search.admin_role || user_search.caseworker_role || user_search.data_analyst_role
             %h3.govuk-heading-s{ class: "govuk-!-margin-bottom-0" }
               = t('users.search.roles')
               %ul.moj-filter-tags
-                - if user_search.manager_role
-                  %li
-                    %a.moj-filter__tag{ href: search_users_path(user_search: user_search.attributes.merge('manager_role' => nil)) }
-                      %span.govuk-visually-hidden
-                        = t('users.search.remove')
-                      = t('users.search.manager')
                 - if user_search.admin_role
                   %li
                     %a.moj-filter__tag{ href: search_users_path(user_search: user_search.attributes.merge('admin_role' => nil)) }
@@ -80,8 +73,6 @@
             %legend.govuk-fieldset__legend.govuk-fieldset__legend--m
               = t('users.search.roles')
             .govuk-checkboxes.govuk-checkboxes--small.app-no-wrap{ "data-module" => "govuk-checkboxes" }
-              .govuk-checkboxes__item
-                = f.govuk_check_box :manager_role, 1, nil, multiple: false, label: { text: t('users.search.manager_label', count: user_search.manager_count) }
               .govuk-checkboxes__item
                 = f.govuk_check_box :admin_role, 1, nil, multiple: false, label: { text: t('users.search.admin_label', count: user_search.admin_count) }
               .govuk-checkboxes__item
