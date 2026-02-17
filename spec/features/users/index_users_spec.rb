@@ -50,9 +50,9 @@ RSpec.feature 'Index users', :js, type: :feature do
         )
         expect(page).to have_css('.govuk-table__header', text: 'Email')
         expect(page).to have_link('Email', href: "/users?user_sort_column=email&user_sort_direction=desc")
-        expect(page).to have_css('.govuk-table__header', text: 'Last Sign In')
+        expect(page).to have_css('.govuk-table__header', text: 'Last sign in')
         expect(page).to have_link(
-          'Last Sign In',
+          'Last sign in',
           href: "/users?user_sort_column=last_sign_in_at&user_sort_direction=desc"
         )
         expect(page).to have_css('.govuk-table__header', text: 'Action')

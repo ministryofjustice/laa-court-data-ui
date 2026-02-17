@@ -24,7 +24,7 @@
           %span.govuk-visually-hidden= t('generic.new_window')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
-        = t('users.show.roles_label')
+        = t('users.show.roles_delete_page')
       %td.govuk-table__cell
         = @user.roles.map(&:titlecase).join(', ')
     - if FeatureFlag.enabled?(:per_user_feature_flags)
@@ -42,4 +42,4 @@
             "data-module": 'govuk-button',
             draggable: 'false',
             role: 'button'
-= link_to t('users.form.back_link'), users_path, class: 'govuk-back-link'
+= link_to t('users.form.back_link'), users_path, class: 'govuk-link govuk-!-font-size-19'
