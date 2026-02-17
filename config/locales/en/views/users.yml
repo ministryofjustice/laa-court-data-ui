@@ -8,7 +8,7 @@ en:
       new_user: New User
     create:
       flash:
-        success: User successfully added
+        success: "%{username}'s account created"
     delete:
       no_link: No, do not delete user
       page_heading: Are you sure you want to delete this user?
@@ -17,7 +17,7 @@ en:
       yes_link: Yes, delete user
     destroy:
       flash:
-        success: User successfully deleted
+        success: "%{username}'s account deleted"
     edit:
       page_title: Edit user
     form:
@@ -95,4 +95,4 @@ en:
       username_label: Username
     update:
       flash:
-        success: User details successfully updated
+        success: "%{username}'s account updated"

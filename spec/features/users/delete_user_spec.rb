@@ -30,7 +30,7 @@ RSpec.feature 'Delete user', type: :feature do
 
       click_link_or_button 'Yes, delete user'
       expect(page).to have_current_path(users_path)
-      expect(page).to have_govuk_flash(:success_moj_banner, text: 'User successfully deleted')
+      expect(page).to have_govuk_flash(:success_moj_banner, text: "#{other_user.username}'s account deleted")
     end
   end
 end

@@ -46,7 +46,14 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
     authorize!(:create, @user)
 
     if @user.save
-      redirect_to @user, flash: { success_moj_banner: I18n.t('users.create.flash.success') }
+      redirect_to @user,
+                  flash: {
+                    success_moj_banner: I18n.t(
+                      'users.create.flash.success',
+                      username: @user.username
+                    )
+                  }
+
     else
       render :new
     end
@@ -57,7 +64,13 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
     email_changed = @user.email_changed?
     if @user.save
       Devise::Mailer.email_changed(@user).deliver_later if email_changed
-      redirect_to @user, flash: { success_moj_banner: I18n.t('users.update.flash.success') }
+      redirect_to @user,
+                  flash: {
+                    success_moj_banner: I18n.t(
+                      'users.update.flash.success',
+                      username: @user.username
+                    )
+                  }
     else
       render :edit
     end
@@ -77,7 +90,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
     redirect_to users_path,
                 status: :see_other,
                 flash: {
-                  success_moj_banner: I18n.t('users.destroy.flash.success')
+                  success_moj_banner: I18n.t('users.destroy.flash.success', username: @user.username)
                 }
   end
 

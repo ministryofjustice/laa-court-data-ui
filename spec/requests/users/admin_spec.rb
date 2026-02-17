@@ -55,7 +55,7 @@ RSpec.describe 'admin', type: :request do
 
     it 'flashes notice' do
       request
-      expect(flash.now[:success_moj_banner]).to match(/success/)
+      expect(flash.now[:success_moj_banner]).to match(/bob-b's account created/)
     end
 
     it 'creates user' do
@@ -92,7 +92,7 @@ RSpec.describe 'admin', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:success_moj_banner]).to match(/success/)
+        expect(flash.now[:success_moj_banner]).to match(/#{user.username}'s account updated/)
       end
 
       it 'updates user' do
@@ -116,7 +116,7 @@ RSpec.describe 'admin', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:success_moj_banner]).to match(/success/)
+        expect(flash.now[:success_moj_banner]).to match(/#{other_user.username}'s account updated/)
       end
 
       it 'updates other user' do
@@ -144,7 +144,7 @@ RSpec.describe 'admin', type: :request do
 
     it 'flashes notice' do
       request
-      expect(flash.now[:success_moj_banner]).to match(/success/)
+      expect(flash.now[:success_moj_banner]).to match(/#{other_user.username}'s account deleted/)
     end
   end
 

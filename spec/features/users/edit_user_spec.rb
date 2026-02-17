@@ -49,8 +49,8 @@ RSpec.feature 'Edit user', :js, type: :feature do
       fill_in 'Confirm email', with: ''
 
       click_link_or_button 'Save'
-      expect(page).to have_govuk_error_summary('doesn\'t match Email')
-      expect(page).to have_govuk_error_field(:user, :email_confirmation, 'doesn\'t match Email')
+      expect(page).to have_govuk_error_summary('Enter matching email addresses')
+      expect(page).to have_govuk_error_field(:user, :email_confirmation, 'Enter matching email addresses')
 
       check 'Admin'
       fill_in 'Email', with: 'changed@example.com'
@@ -65,7 +65,10 @@ RSpec.feature 'Edit user', :js, type: :feature do
         # avoiding evaluating the `have_enqueued_job` expectation before the job has
         # had a chance to be enqueued.
         # expect(page).to have_content('User details successfully updated')
-        expect(page).to have_govuk_flash(:success_moj_banner, text: 'User details successfully updated')
+        expect(page).to have_govuk_flash(
+          :success_moj_banner,
+          text: "#{other_user.username}'s account updated"
+        )
       end.to have_enqueued_job.on_queue('mailers')
 
       expect(page).to have_current_path(user_path(other_user))
