@@ -23,8 +23,11 @@ class ProsecutionCasesController < ApplicationController
 
   def set_prosecution_case
     build_prosecution_case
+  rescue ActiveResource::ResourceNotFound => e
+    logger.error "404 URN '#{urn}' not found"
+    redirect_to_search_path(e)
   rescue ActiveResource::ConnectionError => e
-    logger.error 'SERVER_ERROR_OCCURRED'
+    logger.error "SERVER_ERROR_OCCURRED"
     Sentry.capture_exception(e)
     redirect_to_search_path(e)
   end
