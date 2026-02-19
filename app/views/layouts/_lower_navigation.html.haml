@@ -11,15 +11,8 @@
             = t('layouts.application.header.navigation.menu')
           %ul.govuk-service-navigation__list#navigation
             - if can?(:new, Search)
-              %li.govuk-service-navigation__item
-                %a.govuk-service-navigation__link{ href: new_search_filter_path }
-                  = t('layouts.application.header.navigation.search')
-            -# TODO: remove FeatureFlag show_stats
+              = navigation_item(new_search_filter_path, t('layouts.application.header.navigation.search'), active: controller_name.in?(%w[search_filters searches]))
             - if can?(:read, Cda::LinkingStatCollection)
-              %li.govuk-service-navigation__item.pull-right
-                %a.govuk-link--no-visited-state{ href: new_stats_path }
-                  = t('layouts.application.header.navigation.view_stats')
+              = navigation_item(new_stats_path, t('layouts.application.header.navigation.view_stats'))
             - if can?(:index, User)
-              %li.govuk-service-navigation__item
-                %a.govuk-link--no-visited-state{ href: users_path }
-                  = t('layouts.application.header.navigation.manage_users')
+              = navigation_item(users_path, t('layouts.application.header.navigation.manage_users'), active: controller_name == 'users')
