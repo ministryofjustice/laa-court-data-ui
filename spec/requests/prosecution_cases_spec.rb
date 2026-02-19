@@ -16,6 +16,18 @@ RSpec.describe 'prosecution cases', :stub_case_search,
       expect(response.body).to include('Hearings')
     end
 
+    context 'when search returns no results' do
+      before do
+        allow(Cda::CaseSummaryService).to receive(:call).and_return(nil)
+        get "/prosecution_cases/#{case_reference}"
+      end
+
+      it 'redirects to the searches page' do
+        expect(response).to redirect_to(searches_path(search: { term: case_reference,
+                                                                filter: :case_reference }))
+      end
+    end
+
     context 'when exception ActiveResource::BadRequest is raised' do
       before do
         allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::BadRequest,

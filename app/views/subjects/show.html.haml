@@ -43,12 +43,13 @@
               = t(".case_urn")
             %td.govuk-table__cell
               = @application.application_reference
-          - if @application.appeal?
+          - if @application.appeal? || @application.poca?
             %tr.govuk-table__row
               %th.govuk-table__header{ scope: "row" }
                 = t(".arrest_summons_number")
               %td.govuk-table__cell
-                = @subject.defendant_asn
+                -# Important: In case of an appeal, the ASN comes nil from the @subject, so we need to get it from the @application.defendant
+                = @application.defendant.arrest_summons_number
           - else
             %tr.govuk-table__row
               %th.govuk-table__header{ scope: "row" }
