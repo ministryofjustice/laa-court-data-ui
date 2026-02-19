@@ -16,13 +16,13 @@ class SubjectsController < ApplicationController
 
   # POST /court_applications/:court_application_id/subject/link
   def link
-    @form_model = LinkAttempt.new(defendant_id: @subject.subject_id,
-                                  username: current_user.username,
+    @form_model = LinkAttempt.new(defendant_id: @subject.subject_id, username: current_user.username,
                                   maat_reference: params.dig(:link_attempt, :maat_reference))
 
     if params[:maat_ref_required] == 'true'
       @form_model.validate!(:maat_ref_required)
     else
+      @form_model.maat_reference = nil
       @form_model.validate!
     end
 
@@ -59,8 +59,7 @@ class SubjectsController < ApplicationController
   end
 
   def set_breadcrumbs
-    # Example:
-    # Home > Search > Case XXXXXXXXXX > Appeal/Breach/Poca > John Doe
+    # Example: Home > Search > Case XXXXXXXXXX > Appeal/Breach/Poca > John Doe
 
     add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
     add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
