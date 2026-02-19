@@ -1,8 +1,6 @@
 %div{ class: "govuk-!-margin-bottom-9" }
   %h2.govuk-heading-l
     = t('hearings.show.attendees.heading')
-
-    = hearing.relates_to_appeals?
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     - if hearing.relates_to_appeals?
       = t('hearings.show.attendees.appellants')
