@@ -35,8 +35,8 @@ RSpec.feature 'Court Application subjects', :vcr do
       "Mauricio Rath"
     ).and have_content(
       "06/05/1994"
-    ).and have_content(
-      "KQJXI10ZJXCI"
+    ).and have_content( # The ASN is coming from the arrest_summons_number field of the @application.defendant,
+      "ZGWYZ74MKETB"    # since Common Platform is not sending the @subject.defendant_asn for appeals.
     )
     expect(page).to be_accessible
 
