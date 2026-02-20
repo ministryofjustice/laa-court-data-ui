@@ -33,6 +33,8 @@
     - if FeatureFlag.enabled?(:per_user_feature_flags)
       = f.govuk_collection_check_boxes :feature_flags,
                                        feature_flag_options,
+                                       :first,
+                                       :last,
                                        :to_s,
                                        :humanize,
                                        legend: { text: t('users.form.fields.feature_flags_legend'), size: 'l' }
