@@ -26,7 +26,7 @@
     - direction = render user_sorter_direction == 'asc' ? "shared/up_icon" : "shared/down_icon"
     - nondirection = render "shared/updown_icon"
     - if @users.any?
-      %table.govuk-table
+      %table.govuk-table{ 'style' => 'word-break: break-word;' }
         %caption.govuk-table__caption.govuk-visually-hidden
           = t('users.show.caption')
 
@@ -52,7 +52,7 @@
               = link_to(user_sorter_link('last_sign_in_at'), class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline", "aria-label": "Sort last_sign_in_at") do
                 = t('users.generic.last_sign_in')
                 = user_sorter_column?('last_sign_in_at') ? direction : nondirection
-            %th.govuk-table__header.table-heading-blue{ scope: 'col' }
+            %th.govuk-table__header.table-heading-blue.app-no-wrap{ scope: 'col' }
               = t('users.generic.action')
 
         %tbody.govuk-table__body
