@@ -175,6 +175,9 @@ RSpec/SortMetadata: #38 errors
   Enabled: false
 
 # => Style
+Style/GuardClause:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

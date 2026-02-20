@@ -26,6 +26,8 @@ en:
         email_confirmation_label: Confirm email address
         email_label: Email address
         feature_flags_legend: Additional caseworker features
+        feature_flags_options:
+          view_appeals: View appeals, breaches and POCA
         first_name_label: First name
         last_name_label: Last name
         roles_hint: Select all that apply

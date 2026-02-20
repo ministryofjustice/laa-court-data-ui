@@ -3,6 +3,7 @@
 class UsersController < ApplicationController # rubocop:disable Metrics/ClassLength
   require 'csv'
   load_and_authorize_resource except: :create
+  helper_method :feature_flag_options
 
   add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
   add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
@@ -95,6 +96,13 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
   end
 
   private
+
+  # This is a helper method to provide the options for the feature flags checkboxes in the user form.
+  def feature_flag_options
+    User.feature_flags.keys.map do |key|
+      [key, I18n.t("users.form.fields.feature_flags_options.#{key}", default: key.humanize)]
+    end
+  end
 
   def user_params
     params[:user][:roles]&.reject!(&:blank?)
