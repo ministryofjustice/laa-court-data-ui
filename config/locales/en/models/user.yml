@@ -7,12 +7,14 @@ en:
           attributes:
             email:
               blank: Enter an email address
-              taken: Email already taken
+              confirmation: Enter matching email addresses
+              invalid: Enter an email address in the correct format, like name@example.com
+              taken: Enter an email address that is not already in use
             first_name:
               blank: Enter a first name
             last_name:
-              blank: Enter a last name
+              blank: Enter a surname
             username:
               blank: Enter a username
               invalid: Username format is invalid
-              taken: Username already taken
+              taken: Enter a username that is not already in use
