@@ -86,11 +86,12 @@ en:
       caption: User details
       edit_link: Edit
       edit_link_aria: Edit %{name}'s account
+      email_confirmation_label: Email address
       email_label: Email
       feature_flags_label: Feature access
       name_label: Name
-      page_heading: User account
-      page_title: User account
+      page_heading: "%{name}'s account"
+      page_title: "%{name}'s account"
       roles_delete_page: Roles
       roles_label: Role(s)
       username_label: Username

@@ -1,7 +1,7 @@
-= govuk_page_heading(t('users.show.page_heading'), title: t('users.show.page_title'))
+= govuk_page_heading(t('users.show.page_heading', name: @user.name))
 
 %table.govuk-table
-  %caption.govuk-table__caption
+  %caption.govuk-table__caption.govuk-visually-hidden
     = t('users.show.caption')
 
   %tbody.govuk-table__body
@@ -17,7 +17,7 @@
         = @user.username
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
-        = t('users.show.email_label')
+        = t('users.show.email_confirmation_label')
       %td.govuk-table__cell
         = mail_to @user.email, class: 'govuk-link', target: '_blank' do
           = @user.email
@@ -34,6 +34,7 @@
         %td.govuk-table__cell
           = @user.feature_flags.map(&:humanize).join(', ')
 
+.govuk-button-group
 - if can? :edit, @user
   = link_to t('users.show.edit_link'),
             edit_user_path(@user),
@@ -42,4 +43,5 @@
             "data-module": 'govuk-button',
             draggable: 'false',
             role: 'button'
-= link_to t('users.form.back_link'), users_path, class: 'govuk-link govuk-!-font-size-19'
+
+  = link_to t('users.form.back_link'), users_path, class: 'govuk-link govuk-!-font-size-19'
