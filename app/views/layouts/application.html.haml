@@ -43,8 +43,7 @@
       %main.govuk-main-wrapper#main-content{ role: "main" }
         = render partial: 'layouts/flashes' unless flash.empty?
         = content_for :error_summary
-        - if content_for(:pre_heading)
-          = yield :pre_heading
+        = content_for :pre_heading
         = render_breadcrumbs(builder: govuk_breadcrumb_builder)
         = content_for :page_heading
         = yield
