@@ -2,13 +2,11 @@
 - if !application || application.appeal?
   .govuk-notification-banner{ role: "region", aria: { labelledby: "govuk-notification-banner-title" }, data: { module: "govuk-notification-banner" } }
     .govuk-notification-banner__content
-      .govuk-notification-banner__message
+      %p.govuk-notification-banner__heading
         %svg.govuk-notification-banner__icon{ xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 25 25", "aria-hidden": "true", focusable: "false", height: "25", width: "25" }
           %circle{ cx: "12.5", cy: "12.5", r: "12.5", fill: "#0b58a4" }
           %text{ x: "12.5", y: "17.5", "text-anchor": "middle", "font-size": "14", "font-weight": "bold", fill: "white" } i
-        %div
-          %p
-            What do you think of the new related court applications (appeals, breaches and POCA) pages?
-          %p
-            %a.govuk-notification-banner__link{ href: "https://www.smartsurvey.co.uk/s/appeals-to-crown-court/", target: "_blank", rel: "noreferrer noopener" }
-              Give feedback (opens in new tab).
+        What do you think of the new related court applications (appeals, breaches and POCA) pages?
+      %p
+        %a.govuk-notification-banner__link{ href: "https://www.smartsurvey.co.uk/s/appeals-to-crown-court/", target: "_blank", rel: "noreferrer noopener" }
+          Give feedback (opens in new tab).
