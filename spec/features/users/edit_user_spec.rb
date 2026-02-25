@@ -67,7 +67,7 @@ RSpec.feature 'Edit user', :js, type: :feature do
         # expect(page).to have_content('User details successfully updated')
         expect(page).to have_govuk_flash(
           :success_moj_banner,
-          text: "#{other_user.username}'s account updated"
+          text: "#{other_user.name}'s account updated"
         )
       end.to have_enqueued_job.on_queue('mailers')
 

@@ -62,7 +62,7 @@ RSpec.feature 'New user', type: :feature do
       expect(new_user).to be_persisted
       expect(new_user).to be_caseworker
       expect(page).to have_current_path(user_path(new_user))
-      expect(page).to have_govuk_flash(:success_moj_banner, text: 'bob-j\'s account created')
+      expect(page).to have_govuk_flash(:success_moj_banner, text: 'Jim Bob\'s account created')
 
       expect(page).to have_govuk_page_heading(text: 'Jim Bob\'s account')
       expect(page).to have_css('.govuk-table__cell', text: 'Jim Bob')
