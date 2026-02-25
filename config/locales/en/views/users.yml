@@ -41,7 +41,7 @@ en:
       email: Email
       last_sign_in: Last sign in
       name: Name
-      never_signed_in: Never signed-in
+      never_signed_in: Never signed in
       over_3_months: Over 3 months
       recently: Recently
       user: user
