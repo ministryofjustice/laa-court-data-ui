@@ -7,7 +7,6 @@
 # a cases' hearing's hearing days.
 #
 class HearingPaginator
-  include ActionView::Helpers
   include Rails.application.routes.url_helpers
 
   PageItem = Struct.new(:id, :day)
@@ -46,22 +45,16 @@ class HearingPaginator
     [items.size - 1, 0].max
   end
 
-  def next_page_link
-    # TODO: add <span class="govuk-visually-hidden"> set of pages</span> within hyperlink ?!
-    link_to(t('hearings.show.pagination.next_page'),
-            hearing_path(id: next_item.id,
-                         urn: @prosecution_case.prosecution_case_reference,
-                         day: next_item.day),
-            class: 'moj-pagination__link')
+  def next_path
+    hearing_path(id: next_item.id,
+                 urn: @prosecution_case.prosecution_case_reference,
+                 day: next_item.day)
   end
 
-  def previous_page_link
-    # TODO: add <span class="govuk-visually-hidden"> set of pages</span> within hyperlink ?!
-    link_to(t('hearings.show.pagination.previous_page'),
-            hearing_path(id: previous_item.id,
-                         urn: @prosecution_case.prosecution_case_reference,
-                         day: previous_item.day),
-            class: 'moj-pagination__link')
+  def previous_path
+    hearing_path(id: previous_item.id,
+                 urn: @prosecution_case.prosecution_case_reference,
+                 day: previous_item.day)
   end
 
   private

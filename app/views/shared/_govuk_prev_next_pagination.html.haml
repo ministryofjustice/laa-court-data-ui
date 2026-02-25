@@ -1,0 +1,15 @@
+%nav.govuk-pagination{ aria: { label: "Pagination" } }
+  - if local_assigns[:prev_url]
+    .govuk-pagination__prev
+      = link_to prev_url, class: "govuk-link govuk-pagination__link", rel: "prev" do
+        = pagination_svg_icon(:prev)
+        %span.govuk-pagination__link-title
+          Previous
+          %span.govuk-visually-hidden page
+  - if local_assigns[:next_url]
+    .govuk-pagination__next
+      = link_to next_url, class: "govuk-link govuk-pagination__link", rel: "next" do
+        %span.govuk-pagination__link-title
+          Next
+          %span.govuk-visually-hidden page
+        = pagination_svg_icon(:next)

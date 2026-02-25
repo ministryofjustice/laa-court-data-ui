@@ -5,20 +5,9 @@
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    %nav.moj-pagination#pagination-label{ class: "govuk-!-margin-top-1" }
-      %p.govuk-visually-hidden{ "aria-labelledby": 'pagination-label' }
-        = t(".pagination_navigation")
-      %ul.moj-pagination__list
-        - if @previous_day
-          %li.moj-pagination__item.moj-pagination__item--prev
-            = link_to(t('.previous'),
-                      court_application_hearing_hearing_day_path(@application.application_id, @previous_day.hearing.id, @previous_day.date),
-                      class: 'moj-pagination__link')
-        - if @next_day
-          %li.moj-pagination__item.moj-pagination__item--next
-            = link_to(t('.next'),
-                      court_application_hearing_hearing_day_path(@application.application_id, @next_day.hearing.id, @next_day.date),
-                      class: 'moj-pagination__link')
+    = render 'shared/govuk_prev_next_pagination',
+             prev_url: @previous_day && court_application_hearing_hearing_day_path(@application.application_id, @previous_day.hearing.id, @previous_day.date),
+             next_url: @next_day && court_application_hearing_hearing_day_path(@application.application_id, @next_day.hearing.id, @next_day.date)
 
 - if @application.appeal?
   %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5 govuk-!-margin-top-3" }

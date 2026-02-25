@@ -9,7 +9,9 @@
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    = render partial: 'pagination', locals: { paginator: @paginator }
+    = render 'shared/govuk_prev_next_pagination',
+           prev_url: (@paginator.first_page? ? nil : @paginator.previous_path),
+           next_url: (@paginator.last_page? ? nil : @paginator.next_path)
 %strong.govuk-tag{ class: "govuk-tag--blue govuk-!-margin-bottom-5" }
   = t("generic.case")
 
