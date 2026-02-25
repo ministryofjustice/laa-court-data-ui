@@ -22,7 +22,7 @@ body:not(.js-enabled) .app-js-only {
 }
 
 // Left-align "Next ->" when it is the only pagination link (no "<- Previous")
-nav.govuk-pagination .govuk-pagination__next:only-child {
+.govuk-pagination .govuk-pagination__next:only-child {
   margin-left: -15px;
 }
 
@@ -32,6 +32,7 @@ nav.govuk-pagination .govuk-pagination__next:only-child {
   .govuk-service-navigation__wrapper {
     flex-grow: 1;
     justify-content: space-between;
+
     .pull-right {
      margin-left: auto;
     }
