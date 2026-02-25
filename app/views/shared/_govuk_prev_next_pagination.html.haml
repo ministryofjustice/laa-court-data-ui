@@ -1,4 +1,4 @@
-%nav.govuk-pagination{ aria: { label: "Pagination" } }
+%nav.govuk-pagination{ class: "govuk-!-margin-bottom-5", aria: { label: "Pagination" } }
   - if local_assigns[:prev_url]
     .govuk-pagination__prev
       = link_to prev_url, class: "govuk-link govuk-pagination__link", rel: "prev" do
