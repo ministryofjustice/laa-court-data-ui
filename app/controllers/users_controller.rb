@@ -51,7 +51,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
                   flash: {
                     success_moj_banner: I18n.t(
                       'users.create.flash.success',
-                      username: @user.username
+                      username: @user.name
                     )
                   }
 
@@ -69,7 +69,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
                   flash: {
                     success_moj_banner: I18n.t(
                       'users.update.flash.success',
-                      username: @user.username
+                      username: @user.name
                     )
                   }
     else
@@ -91,7 +91,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
     redirect_to users_path,
                 status: :see_other,
                 flash: {
-                  success_moj_banner: I18n.t('users.destroy.flash.success', username: @user.username)
+                  success_moj_banner: I18n.t('users.destroy.flash.success', username: @user.name)
                 }
   end
 
