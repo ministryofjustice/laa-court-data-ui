@@ -235,21 +235,16 @@ RSpec.describe HearingPaginator, type: :helper do
     end
   end
 
-  describe '#next_page_link' do
-    subject { instance.next_page_link }
+  describe '#next_path' do
+    subject { instance.next_path }
 
     include_context 'with multiple hearings and hearing days'
 
-    it {
-      is_expected.to have_link('Next',
-                               href: %r{/hearings/#{hearing2.id}\?
-                               day=2021-01-21&urn=ACASEURN}x,
-                               class: 'moj-pagination__link')
-    }
+    it { is_expected.to match(%r{/hearings/#{hearing2.id}\?day=2021-01-21&urn=ACASEURN}) }
   end
 
-  describe '#previous_page_link' do
-    subject { instance.previous_page_link }
+  describe '#previous_path' do
+    subject { instance.previous_path }
 
     include_context 'with multiple hearings and hearing days'
 
@@ -259,11 +254,6 @@ RSpec.describe HearingPaginator, type: :helper do
                           hearing_day: Date.new(2021, 1, 21))
     end
 
-    it {
-      is_expected.to have_link('Previous',
-                               href: %r{/hearings/#{hearing1.id}\?
-                               day=2021-01-20&urn=ACASEURN}x,
-                               class: 'moj-pagination__link')
-    }
+    it { is_expected.to match(%r{/hearings/#{hearing1.id}\?day=2021-01-20&urn=ACASEURN}) }
   end
 end
