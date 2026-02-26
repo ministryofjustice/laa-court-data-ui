@@ -1,31 +1,18 @@
 - content_for :pre_heading do
   = render '/feedback_on_appeals_to_crown_court', application: @application
 
-= govuk_page_heading(@hearing_day.day_string, caption_text: t('generic.hearing_day'), tag_options: { class: 'govuk-!-margin-bottom-0' })
+= govuk_page_heading(@hearing_day.day_string, caption_text: t('generic.hearing_day'), tag_options: { class: 'govuk-!-margin-bottom-2' })
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    %nav.moj-pagination#pagination-label{ class: "govuk-!-margin-top-1" }
-      %p.govuk-visually-hidden{ "aria-labelledby": 'pagination-label' }
-        = t(".pagination_navigation")
-      %ul.moj-pagination__list
-        - if @previous_day
-          %li.moj-pagination__item.moj-pagination__item--prev
-            = link_to(t('.previous'),
-                      court_application_hearing_hearing_day_path(@application.application_id, @previous_day.hearing.id, @previous_day.date),
-                      class: 'moj-pagination__link')
-        - if @next_day
-          %li.moj-pagination__item.moj-pagination__item--next
-            = link_to(t('.next'),
-                      court_application_hearing_hearing_day_path(@application.application_id, @next_day.hearing.id, @next_day.date),
-                      class: 'moj-pagination__link')
+    = render 'shared/govuk_prev_next_pagination',
+             prev_url: @previous_day && court_application_hearing_hearing_day_path(@application.application_id, @previous_day.hearing.id, @previous_day.date),
+             next_url: @next_day && court_application_hearing_hearing_day_path(@application.application_id, @next_day.hearing.id, @next_day.date)
 
 - if @application.appeal?
-  %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5 govuk-!-margin-top-3" }
-    = t("subjects.appeal")
+  = render 'shared/govuk_tag', tag_name: t("subjects.appeal"), tag_colour: 'purple'
 - else
-  %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5 govuk-!-margin-top-3" }
-    = t("subjects.#{@application.application_category}")
+  = render 'shared/govuk_tag', tag_name: t("subjects.#{@application.application_category}"), tag_colour: 'yellow'
 
 .govuk-grid-row
   .govuk-grid-column-one-third

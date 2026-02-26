@@ -21,13 +21,18 @@ body:not(.js-enabled) .app-js-only {
   margin-bottom: 0.5rem;
 }
 
+// Left-align "Next ->" when it is the only pagination link (no "<- Previous")
+.govuk-pagination .govuk-pagination__next:only-child {
+  margin-left: -15px;
+}
+
 @media (min-width: 40.0625em) {
   // The below CSS allows us to right-align
   // nav links such as 'Manage users'
   .govuk-service-navigation__wrapper {
     flex-grow: 1;
     justify-content: space-between;
-    
+
     .pull-right {
      margin-left: auto;
     }
