@@ -32,10 +32,7 @@
         %th.govuk-table__header{ scope: 'row' }
           = t('users.show.feature_flags_label')
         %td.govuk-table__cell
-          - if @user.feature_flags.any?
-            = @user.feature_flags.map(&:humanize).join(', ')
-          - else
-            None
+          = feature_flag_descriptions_for_user(@user)
 
 - if can? :edit, @user
   .govuk-button-group
