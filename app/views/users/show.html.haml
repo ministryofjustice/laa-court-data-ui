@@ -37,14 +37,14 @@
           - else
             None
 
-.govuk-button-group
 - if can? :edit, @user
-  = link_to t('users.show.edit_link'),
-            edit_user_path(@user),
-            "aria-label": t('users.show.edit_link_aria', name: @user.name),
-            class: 'govuk-button',
-            "data-module": 'govuk-button',
-            draggable: 'false',
-            role: 'button'
+  .govuk-button-group
+    = link_to t('users.show.edit_link'),
+              edit_user_path(@user),
+              "aria-label": t('users.show.edit_link_aria', name: @user.name),
+              class: 'govuk-button',
+              "data-module": 'govuk-button',
+              draggable: 'false',
+              role: 'button'
 
-  = link_to t('users.form.back_link'), users_path, class: 'govuk-link govuk-!-font-size-19 govuk-!-margin-left-3'
+    = link_to t('users.form.back_link'), users_path, class: 'govuk-link govuk-!-font-size-19'
