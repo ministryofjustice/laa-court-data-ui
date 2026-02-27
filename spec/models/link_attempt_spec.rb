@@ -5,7 +5,7 @@ RSpec.describe LinkAttempt, type: :model do
     described_class.new(
       defendant_id: 'a-defendant-uuid',
       maat_reference: '1234567',
-      username: 'work-m'
+      username: 'work-c'
     )
   end
 
@@ -48,7 +48,7 @@ RSpec.describe LinkAttempt, type: :model do
     it { is_expected.to be_a Hash }
 
     context 'with maat_reference included' do
-      it { is_expected.to include(user_name: 'work-m') }
+      it { is_expected.to include(user_name: 'work-c') }
       it { is_expected.to include(defendant_id: 'a-defendant-uuid') }
       it { is_expected.to include(maat_reference: '1234567') }
     end
@@ -56,7 +56,7 @@ RSpec.describe LinkAttempt, type: :model do
     context 'with maat_reference is not present' do
       before { link_attempt.maat_reference = '' }
 
-      it { is_expected.to include(user_name: 'work-m') }
+      it { is_expected.to include(user_name: 'work-c') }
       it { is_expected.to include(defendant_id: 'a-defendant-uuid') }
       it { is_expected.not_to have_key(:maat_reference) }
     end

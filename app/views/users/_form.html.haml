@@ -1,36 +1,41 @@
 = form_with model: user do |f|
   - content_for :error_summary do
     = f.govuk_error_summary
+  = f.govuk_fieldset legend: { text: t('users.form.heading'), size: 'l', class: 'govuk-!-margin-bottom-7' } do
+    = f.govuk_text_field(:first_name,
+                         label: { text: t('users.form.fields.first_name_label') },
+                         width: 'one-half')
 
-  = f.govuk_text_field(:first_name,
-                       label: { text: t('users.form.fields.first_name_label') })
+    = f.govuk_text_field(:last_name,
+                         label: { text: t('users.form.fields.last_name_label') },
+                         width: 'one-half')
 
-  = f.govuk_text_field(:last_name,
-                       label: { text: t('users.form.fields.last_name_label') })
+    = f.govuk_text_field(:username,
+                         label: { text: t('users.form.fields.username_label') },
+                         hint: { text: t('users.form.fields.username_hint') },
+                         width: 'one-half',
+                         maxlength: 10)
 
-  = f.govuk_text_field(:username,
-                       label: { text: t('users.form.fields.username_label') },
-                       hint: { text: t('users.form.fields.username_hint') },
-                       maxlength: 10)
+    = f.govuk_email_field(:email,
+                          label: { text: t('users.form.fields.email_label') },
+                          width: 'one-half')
 
-  = f.govuk_email_field(:email,
-                        label: { text: t('users.form.fields.email_label') })
-
-  = f.govuk_email_field(:email_confirmation,
-                        value: user.email,
-                        label: { text: t('users.form.fields.email_confirmation_label') })
-
-  = f.govuk_collection_check_boxes :roles,
-                                   User.valid_roles,
-                                   :to_s,
-                                   :titlecase,
-                                   legend: { text: t('users.form.fields.roles_legend') },
-                                   hint: { text: t('users.form.fields.roles_hint') }
-  - if FeatureFlag.enabled?(:per_user_feature_flags)
-    = f.govuk_collection_check_boxes :feature_flags,
-                                     feature_flag_options,
-                                     :first,
-                                     :last,
-                                     legend: { text: t('users.form.fields.feature_flags_legend') }
-
-  = f.govuk_submit(t('users.form.fields.save_button'))
+    = f.govuk_email_field(:email_confirmation,
+                          value: user.email,
+                          label: { text: t('users.form.fields.email_confirmation_label') },
+                          width: 'one-half')
+    = f.govuk_collection_check_boxes :roles,
+                                     User.valid_roles,
+                                     :to_s,
+                                     :humanize,
+                                     legend: { text: t('users.form.fields.roles_legend'), size: 'l' },
+                                     hint: { text: t('users.form.fields.roles_hint') }
+    - if FeatureFlag.enabled?(:per_user_feature_flags)
+      = f.govuk_collection_check_boxes :feature_flags,
+                                       feature_flag_options,
+                                       :first,
+                                       :last,
+                                       legend: { text: t('users.form.fields.feature_flags_legend'), size: 'l' }
+  .govuk-button-group
+    = f.govuk_submit(t('users.form.fields.save_button'))
+    = link_to 'Cancel', users_path, class: 'govuk-link govuk-!-font-size-19'

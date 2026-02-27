@@ -23,25 +23,24 @@ RSpec.feature 'New user', type: :feature do
     end
   end
 
-  context 'when manager' do
-    let(:user) { create(:user, :with_manager_role) }
+  context 'when admin' do
+    let(:user) { create(:user, :with_admin_role) }
 
     scenario 'can new and create users' do
       visit users_path
-      expect(page).to have_govuk_page_heading(text: 'List of users')
+      expect(page).to have_govuk_page_heading(text: 'Manage Users')
 
-      expect(page).to have_link(text: 'Create a new user')
-      click_link_or_button 'Create a new user'
+      expect(page).to have_link(text: 'Create new user')
+      click_link_or_button 'Create new user'
       expect(page).to have_current_path(new_user_path)
 
-      expect(page).to have_govuk_page_heading(text: 'Edit new user details')
+      expect(page).to have_govuk_page_heading(text: 'Enter new user details')
       expect(page).to have_field('First name', type: 'text')
       expect(page).to have_field('Last name', type: 'text')
       expect(page).to have_field('Username', type: 'text')
       expect(page).to have_field('Email', type: 'email')
       expect(page).to have_field('Confirm email', type: 'email')
       expect(page).to have_field('Caseworker', type: 'checkbox')
-      expect(page).to have_field('Manager', type: 'checkbox')
       expect(page).to have_field('Admin', type: 'checkbox')
 
       fill_in 'First name', with: 'Jim'
@@ -63,9 +62,9 @@ RSpec.feature 'New user', type: :feature do
       expect(new_user).to be_persisted
       expect(new_user).to be_caseworker
       expect(page).to have_current_path(user_path(new_user))
-      expect(page).to have_govuk_flash(:notice, text: 'User successfully added')
+      expect(page).to have_govuk_flash(:success_moj_banner, text: 'Jim Bob\'s account created')
 
-      expect(page).to have_govuk_page_heading(text: 'User account')
+      expect(page).to have_govuk_page_heading(text: 'Jim Bob\'s account')
       expect(page).to have_css('.govuk-table__cell', text: 'Jim Bob')
       expect(page).to have_css('.govuk-table__cell', text: 'jim.bob@example.com')
       expect(page).to have_css('.govuk-table__cell', text: 'bob-j')

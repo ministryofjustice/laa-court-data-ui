@@ -1,5 +1,5 @@
 RSpec.feature 'Create a batch of hearing repulls' do
-  let(:user) { create(:user, roles: ['manager']) }
+  let(:user) { create(:user, roles: ['data_analyst']) }
 
   before { sign_in user }
 

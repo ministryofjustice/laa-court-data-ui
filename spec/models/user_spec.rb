@@ -14,11 +14,16 @@ RSpec.describe User, type: :model do
   it { is_expected.to respond_to(:first_name, :last_name, :login, :name, :roles, :email_confirmation) }
 
   it { is_expected.to validate_presence_of(:first_name).with_message(/Enter a first name/) }
-  it { is_expected.to validate_presence_of(:last_name).with_message(/Enter a last name/) }
+  it { is_expected.to validate_presence_of(:last_name).with_message(/Enter a surname/) }
 
   context 'when validating email' do
     it { is_expected.to validate_presence_of(:email).with_message(/Enter an email address/) }
-    it { is_expected.to validate_uniqueness_of(:email).case_insensitive.with_message(/Email already taken/) }
+
+    it {
+      is_expected.to validate_uniqueness_of(:email)
+        .case_insensitive
+        .with_message(/Enter an email address that is not already in use/)
+    }
 
     # see config/initializers/devise.rb
     context 'with upper case chars' do
@@ -59,7 +64,7 @@ RSpec.describe User, type: :model do
       is_expected.to \
         validate_uniqueness_of(:username)
         .case_insensitive
-        .with_message(/Username already taken/)
+        .with_message(/Enter a username that is not already in use/)
     }
 
     it {
@@ -143,17 +148,17 @@ RSpec.describe User, type: :model do
       subject { described_class.valid_roles }
 
       it 'returns all valid roles for class' do
-        is_expected.to eq %w[caseworker manager admin data_analyst]
+        is_expected.to eq %w[caseworker admin data_analyst]
       end
     end
 
     describe '#roles' do
       subject { user.roles }
 
-      let(:user) { build(:user, roles: %i[caseworker manager]) }
+      let(:user) { build(:user, roles: %i[caseworker admin]) }
 
       it 'returns roles on user object' do
-        is_expected.to eq %w[caseworker manager]
+        is_expected.to eq %w[caseworker admin]
       end
     end
   end
@@ -170,7 +175,7 @@ RSpec.describe User, type: :model do
         expect do
           user.update!(email: 'john.boy@example.com', email_confirmation: 'jim.bob@example.com')
         end.to \
-          raise_error ActiveRecord::RecordInvalid, /Email confirmation doesn't match Email/
+          raise_error ActiveRecord::RecordInvalid, /Enter matching email addresses/
       end
 
       it 'blank email confirmation raises error' do

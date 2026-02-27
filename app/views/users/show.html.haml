@@ -1,7 +1,7 @@
-= govuk_page_heading(t('users.show.page_heading'), title: t('users.show.page_title'))
+= govuk_page_heading(t('users.show.page_heading', name: @user.name))
 
 %table.govuk-table
-  %caption.govuk-table__caption
+  %caption.govuk-table__caption.govuk-visually-hidden
     = t('users.show.caption')
 
   %tbody.govuk-table__body
@@ -17,14 +17,14 @@
         = @user.username
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
-        = t('users.show.email_label')
+        = t('users.show.email_confirmation_label')
       %td.govuk-table__cell
         = mail_to @user.email, class: 'govuk-link', target: '_blank' do
           = @user.email
           %span.govuk-visually-hidden= t('generic.new_window')
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
-        = t('users.show.roles_label')
+        = t('users.show.roles_delete_page')
       %td.govuk-table__cell
         = @user.roles.map(&:titlecase).join(', ')
     - if FeatureFlag.enabled?(:per_user_feature_flags)
@@ -32,13 +32,16 @@
         %th.govuk-table__header{ scope: 'row' }
           = t('users.show.feature_flags_label')
         %td.govuk-table__cell
-          = @user.feature_flags.map(&:humanize).join(', ')
+          = feature_flag_descriptions_for_user(@user)
 
 - if can? :edit, @user
-  = link_to t('users.show.edit_link'),
-            edit_user_path(@user),
-            "aria-label": t('users.show.edit_link_aria', name: @user.name),
-            class: 'govuk-button',
-            "data-module": 'govuk-button',
-            draggable: 'false',
-            role: 'button'
+  .govuk-button-group
+    = link_to t('users.show.edit_link'),
+              edit_user_path(@user),
+              "aria-label": t('users.show.edit_link_aria', name: @user.name),
+              class: 'govuk-button',
+              "data-module": 'govuk-button',
+              draggable: 'false',
+              role: 'button'
+
+    = link_to t('users.form.back_link'), users_path, class: 'govuk-link govuk-!-font-size-19'
