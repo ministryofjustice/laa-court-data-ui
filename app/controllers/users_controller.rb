@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :check_admin_and_set_breadcrumbs
+
   require 'csv'
   load_and_authorize_resource except: :create
   helper_method :feature_flag_options
-
-  add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
-  add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
 
   def index
     session.delete(:user_search)
@@ -103,6 +102,15 @@ class UsersController < ApplicationController
       ).tap { session[:user_search] = session_safe(it) }
     else
       session[:user_search]
+    end
+  end
+
+  def check_admin_and_set_breadcrumbs
+    if current_user.roles?.admin?
+      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
+      add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
+    else
+      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
     end
   end
 end
