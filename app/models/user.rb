@@ -23,9 +23,7 @@ class User < ApplicationRecord
             presence: true,
             uniqueness: { case_sensitive: false },
             format: { with: /\A[\w-]{1,10}\z/ }
-  validates :email, confirmation: {
-    message: I18n.t('activerecord.errors.models.user.attributes.email.confirmation')
-  }
+  validates :email, confirmation: true
 
   validates :email_confirmation, presence: true, if: :email_changed?
 
