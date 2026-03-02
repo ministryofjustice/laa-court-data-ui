@@ -53,7 +53,13 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticated_user_root_path(user)
-    user.admin? ? authenticated_admin_root_path : authenticated_root_path
+    if user.admin?
+      authenticated_admin_root_path
+    elsif user.data_analyst?
+      new_stats_path
+    else
+      authenticated_root_path
+    end
   end
 
   def process_error_based_on_type(exception)

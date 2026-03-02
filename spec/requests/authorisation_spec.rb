@@ -52,7 +52,7 @@ RSpec.describe 'authorization', type: :request do
     end
   end
 
-  context 'when admin performing unauthorized action on case' do
+  context 'when admin tries to access the search page' do
     let(:user) { create(:user, roles: ['admin']) }
 
     before do
@@ -62,6 +62,23 @@ RSpec.describe 'authorization', type: :request do
 
     it 'redirects to root' do
       expect(response).to redirect_to authenticated_admin_root_path
+    end
+
+    it 'flashes alert' do
+      expect(flash.now[:alert]).to match(/You are unauthorised to new Search filter/)
+    end
+  end
+
+  context 'when data_analyst tries to access the search page' do
+    let(:user) { create(:user, roles: ['data_analyst']) }
+
+    before do
+      sign_in user
+      get new_search_filter_path
+    end
+
+    it 'redirects to stats path' do
+      expect(response).to redirect_to new_stats_path
     end
 
     it 'flashes alert' do
