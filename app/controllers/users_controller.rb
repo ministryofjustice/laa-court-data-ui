@@ -106,7 +106,7 @@ class UsersController < ApplicationController
   end
 
   def check_admin_and_set_breadcrumbs
-    if current_user.roles?.admin?
+    if current_user.admin?
       add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
       add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
     else
