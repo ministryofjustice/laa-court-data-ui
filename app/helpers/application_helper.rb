@@ -76,6 +76,23 @@ module ApplicationHelper
                 viewBox: "0 0 15 13")
   end
 
+  def user_sorter_link(column)
+    direction = params[:user_sort_direction] == 'desc' ? 'asc' : 'desc'
+    users_path(user_sort_column: column, user_sort_direction: direction)
+  end
+
+  def user_sorter_direction
+    params[:user_sort_direction] == 'desc' ? 'desc' : 'asc'
+  end
+
+  def user_sorter_column?(column)
+    if params[:user_sort_column].nil?
+      column == 'name'
+    else
+      params[:user_sort_column] == column
+    end
+  end
+
   private
 
   def decorator_instance(object, decorator_class = nil)

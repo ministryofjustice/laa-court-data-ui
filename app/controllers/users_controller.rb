@@ -1,17 +1,21 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
+class UsersController < ApplicationController # rubocop:disable Metrics/ClassLength
   require 'csv'
   load_and_authorize_resource except: :create
-  helper_method :feature_flag_options
-
   add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
   add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
 
   def index
     session.delete(:user_search)
     @user_search = UserSearch.new
-    @pagy, @users = pagy(@users.by_name)
+    order = params[:user_sort_direction] == "desc" ? "desc" : "asc"
+    column = params[:user_sort_column]
+    if %w[username email roles last_sign_in_at name].include?(column)
+      @pagy, @users = order_by(column, order)
+    else
+      @pagy, @users = pagy(@users.by_name)
+    end
   end
 
   def search
@@ -32,12 +36,23 @@ class UsersController < ApplicationController
     add_breadcrumb @user.name
   end
 
+  def confirm_delete
+    add_breadcrumb I18n.t('users.breadcrumb.delete_user')
+  end
+
   def create
     @user = build_user
     authorize!(:create, @user)
 
     if @user.save
-      redirect_to @user, notice: I18n.t('users.create.flash.success')
+      redirect_to @user,
+                  flash: {
+                    success_moj_banner: I18n.t(
+                      'users.create.flash.success',
+                      username: @user.name
+                    )
+                  }
+
     else
       render :new
     end
@@ -48,7 +63,13 @@ class UsersController < ApplicationController
     email_changed = @user.email_changed?
     if @user.save
       Devise::Mailer.email_changed(@user).deliver_later if email_changed
-      redirect_to @user, notice: I18n.t('users.update.flash.success')
+      redirect_to @user,
+                  flash: {
+                    success_moj_banner: I18n.t(
+                      'users.update.flash.success',
+                      username: @user.name
+                    )
+                  }
     else
       render :edit
     end
@@ -65,17 +86,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, status: :see_other, notice: t('users.destroy.flash.success')
+    redirect_to users_path,
+                status: :see_other,
+                flash: {
+                  success_moj_banner: I18n.t('users.destroy.flash.success', username: @user.name)
+                }
   end
 
   private
-
-  # This is a helper method to provide the options for the feature flags checkboxes in the user form.
-  def feature_flag_options
-    User.feature_flags.keys.map do |key|
-      [key, I18n.t("users.form.fields.feature_flags_options.#{key}", default: key.humanize)]
-    end
-  end
 
   def user_params
     params[:user][:roles]&.reject!(&:blank?)
@@ -99,10 +117,22 @@ class UsersController < ApplicationController
       params.require(:user_search).permit(
         :search_string,
         :recent_sign_ins,
-        :old_sign_ins
+        :old_sign_ins,
+        :caseworker_role,
+        :admin_role,
+        :data_analyst_role
       ).tap { session[:user_search] = session_safe(it) }
     else
       session[:user_search]
     end
   end
-end
+
+  def order_by(column, order)
+    direction = order == "asc" ? :asc : :desc
+    if column == 'name'
+      @pagy, @users = pagy(@users.order(first_name: direction, last_name: direction))
+    else
+      @pagy, @users = pagy(@users.order("#{column}": direction))
+    end
+  end
+end # rubocop:enable Metrics/ClassLength

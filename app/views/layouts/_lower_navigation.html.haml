@@ -1,9 +1,14 @@
 %section.govuk-service-navigation{ "aria-label" => "Service information", "data-module" => "govuk-service-navigation" }
   .govuk-width-container
     .govuk-service-navigation__container
-      %span.govuk-service-navigation__service-name
-        %a.govuk-service-navigation__link{ href: signed_in? ? authenticated_root_path : unauthenticated_root_path }
-          = service_name
+      - if signed_in?
+        %span.govuk-service-navigation__service-name
+          %a.govuk-service-navigation__link{ href: current_user.admin? ? authenticated_admin_root_path : authenticated_root_path }
+            = service_name
+      - else
+        %span.govuk-service-navigation__service-name
+          %a.govuk-service-navigation__link{ href: unauthenticated_root_path }
+            = service_name
 
       - if signed_in?
         %nav.govuk-service-navigation__wrapper{ "aria-label" => t('layouts.application.header.navigation.menu') }

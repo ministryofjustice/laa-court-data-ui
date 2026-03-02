@@ -21,6 +21,12 @@ body:not(.js-enabled) .app-js-only {
   margin-bottom: 0.5rem;
 }
 
+.table-heading-blue {
+  color: #1a65a6;
+  vertical-align: bottom;
+}
+
+
 // Left-align "Next ->" when it is the only pagination link (no "<- Previous")
 .govuk-pagination .govuk-pagination__next:only-child {
   margin-left: -15px;
