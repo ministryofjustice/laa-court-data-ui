@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     root to: 'search_filters#new', as: :authenticated_root
   end
 
+  authenticated :user, ->(u) { u.data_analyst? && !u.admin? } do
+    root to: 'stats#new', as: :authenticated_data_analyst_root
+  end
+
   authenticated :user, ->(u) { u.admin? } do
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'

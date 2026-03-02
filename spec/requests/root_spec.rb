@@ -9,7 +9,7 @@ RSpec.describe 'Root route', type: :request do
     end
   end
 
-  context 'with caseworker sign in' do
+  context 'when caseworker sign in' do
     let(:user) { create(:user, roles: %w[caseworker]) }
 
     before do
@@ -22,7 +22,7 @@ RSpec.describe 'Root route', type: :request do
     end
   end
 
-  context 'with admin sign in' do
+  context 'when admin sign in' do
     let(:user) { create(:user, roles: %w[admin]) }
 
     before do
@@ -32,6 +32,23 @@ RSpec.describe 'Root route', type: :request do
 
     it 'renders /users' do
       expect(response.body).to include(authenticated_admin_root_path)
+    end
+  end
+
+  context 'when data_analyst sign in' do
+    let(:user) { create(:user, roles: %w[data_analyst]) }
+
+    before do
+      # rubocop:disable RSpec/VerifiedDoubles
+      allow(Cda::LinkingStatCollection).to receive(:find_from_range)
+        .and_return(double(current_range: double(linked: 0, unlinked: 0), previous_ranges: []))
+      # rubocop:enable RSpec/VerifiedDoubles
+      sign_in user
+      get '/'
+    end
+
+    it 'renders stats/new' do
+      expect(response.body).to include(authenticated_data_analyst_root_path)
     end
   end
 end
