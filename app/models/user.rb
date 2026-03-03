@@ -15,7 +15,7 @@ class User < ApplicationRecord
           :lockable,
           :validatable
 
-  accepts_roles :caseworker, :manager, :admin, :data_analyst
+  accepts_roles :caseworker, :admin, :data_analyst
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -24,6 +24,7 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             format: { with: /\A[\w-]{1,10}\z/ }
   validates :email, confirmation: true
+
   validates :email_confirmation, presence: true, if: :email_changed?
 
   scope :by_name, -> { order(:first_name, :last_name) }
