@@ -33,6 +33,12 @@ RSpec.feature 'Index users', :js, type: :feature do
       )
     end
 
+    scenario 'sees manage users breadcrumb on users index' do
+      visit users_path
+
+      expect(page).to have_govuk_breadcrumb('Manage Users', aria_current: true)
+    end
+
     scenario 'can index users' do
       expect(page).to have_current_path(authenticated_admin_root_path)
 
@@ -77,6 +83,7 @@ RSpec.feature 'Index users', :js, type: :feature do
 
     context 'when searching' do
       let(:user) { create(:user, :with_admin_role, first_name: 'John') }
+      let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Jane') }
 
       scenario 'I search' do
         click_link_or_button 'Manage users'
@@ -85,9 +92,12 @@ RSpec.feature 'Index users', :js, type: :feature do
         click_on 'Apply filters'
 
         expect(page).to have_content(user.email)
+        expect(page).to have_no_content(other_user.email)
+
         click_on 'Clear filters'
 
         expect(page).to have_content(user.email)
+        expect(page).to have_content(other_user.email)
       end
     end
 
