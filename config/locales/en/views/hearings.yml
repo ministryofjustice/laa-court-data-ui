@@ -35,8 +35,5 @@ en:
           events_error: There was an error retrieving the hearing events from the server
           server_error: Error retrieving data from server
       hearing_type: Hearing type
-      pagination:
-        next_page: Next
-        previous_page: Previous
       result: Result
       time_listed: Time listed
