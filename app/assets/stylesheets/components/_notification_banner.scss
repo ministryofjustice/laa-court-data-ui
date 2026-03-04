@@ -8,15 +8,5 @@
 }
 
 .govuk-notification-banner__heading {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  white-space: nowrap;
 }
-
-.govuk-notification-banner__icon {
-  flex-shrink: 0;
-  width: 25px;
-  height: 25px;
-  margin-top: 2px;
-}
-
