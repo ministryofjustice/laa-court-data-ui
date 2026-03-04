@@ -32,7 +32,11 @@ en:
         first_name_label: First name
         last_name_label: Last name
         roles_hint: Select all that apply
-        roles_legend: Which roles does this user have?
+        roles_legend: Roles
+        roles_options:
+          admin: Manage users
+          caseworker: Search and view case information, link or unlink records
+          data_analyst: View data dashboard
         save_button: Save and continue
         username_hint: Use MAAT/MLRA username
         username_label: Username
