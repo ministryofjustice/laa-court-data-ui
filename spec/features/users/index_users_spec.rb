@@ -33,6 +33,12 @@ RSpec.feature 'Index users', :js, type: :feature do
       )
     end
 
+    scenario 'sees manage users breadcrumb on users index' do
+      visit users_path
+
+      expect(page).to have_govuk_breadcrumb('Manage Users', aria_current: true)
+    end
+
     scenario 'can index users' do
       expect(page).to have_current_path(authenticated_admin_root_path)
 

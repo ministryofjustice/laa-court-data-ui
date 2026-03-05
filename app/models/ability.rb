@@ -56,6 +56,7 @@ class Ability
   def data_analyst_abilities
     can :read, Cda::LinkingStatCollection
     can :manage, Cda::HearingRepullBatch
+    can_manage_self
   end
 
   def can_search
