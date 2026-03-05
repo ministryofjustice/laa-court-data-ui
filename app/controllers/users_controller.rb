@@ -136,7 +136,13 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
   end
 
   def set_breadcrumbs
-    add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
-    add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path if current_user.admin?
+    if current_user.admin?
+      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
+      add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
+    elsif current_user.data_analyst?
+      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_stats_path
+    else
+      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
+    end
   end
 end
