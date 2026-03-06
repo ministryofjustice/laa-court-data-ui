@@ -1,5 +1,5 @@
 - application ||= nil
-- if !application || application.appeal?
+- if !application || application.appeal? || application.breach? || application.poca?
 
   = render "shared/alert" do
     .moj-alert__content
