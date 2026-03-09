@@ -28,6 +28,7 @@
                                      User.valid_roles,
                                      :to_s,
                                      :humanize,
+                                     ->(role) { t("users.form.fields.roles_options.#{role}") },
                                      legend: { text: t('users.form.fields.roles_legend'), size: 'l' },
                                      hint: { text: t('users.form.fields.roles_hint') }
     - if FeatureFlag.enabled?(:per_user_feature_flags)
