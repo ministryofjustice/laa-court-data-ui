@@ -19,6 +19,7 @@ RSpec.describe 'prosecution cases', :stub_case_search,
     context 'when search returns no results' do
       before do
         allow(Cda::CaseSummaryService).to receive(:call).and_return(nil)
+        allow(Sentry).to receive(:capture_exception)
         get "/prosecution_cases/#{case_reference}"
       end
 
@@ -26,12 +27,17 @@ RSpec.describe 'prosecution cases', :stub_case_search,
         expect(response).to redirect_to(searches_path(search: { term: case_reference,
                                                                 filter: :case_reference }))
       end
+
+      it 'does not capture the exception in Sentry' do
+        expect(Sentry).not_to have_received(:capture_exception)
+      end
     end
 
     context 'when exception ActiveResource::ResourceNotFound is raised' do
       before do
         allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::ResourceNotFound,
                                                                    'Fake error')
+        allow(Sentry).to receive(:capture_exception)
         get "/prosecution_cases/#{case_reference}"
       end
 
@@ -41,6 +47,10 @@ RSpec.describe 'prosecution cases', :stub_case_search,
 
       it 'redirects to the searches page' do
         expect(response).to redirect_to(searches_path(search_params))
+      end
+
+      it 'does not capture the exception in Sentry' do
+        expect(Sentry).not_to have_received(:capture_exception)
       end
     end
 

@@ -24,7 +24,7 @@ class ProsecutionCasesController < ApplicationController
   def set_prosecution_case
     build_prosecution_case
   rescue ActiveResource::ResourceNotFound => e
-    logger.error "404 URN '#{urn}' not found"
+    logger.error e.message
     redirect_to_search_path(e)
   rescue ActiveResource::ConnectionError => e
     logger.error "SERVER_ERROR_OCCURRED"
@@ -33,7 +33,10 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def build_prosecution_case
-    raise(ActiveResource::BadRequest, "URN '#{urn}' not found") unless search_results
+    unless search_results
+      raise(ActiveResource::ResourceNotFound, "ProsecutionCasesController: URN '#{urn}' not found")
+    end
+
     @prosecution_case ||= helpers.decorate(search_results, Cda::CaseSummaryDecorator)
     update_prosecution_case
   end
