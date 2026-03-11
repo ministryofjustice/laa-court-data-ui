@@ -28,9 +28,9 @@ RSpec.describe 'prosecution cases', :stub_case_search,
       end
     end
 
-    context 'when exception ActiveResource::BadRequest is raised' do
+    context 'when exception ActiveResource::ResourceNotFound is raised' do
       before do
-        allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::BadRequest,
+        allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::ResourceNotFound,
                                                                    'Fake error')
         get "/prosecution_cases/#{case_reference}"
       end
@@ -46,8 +46,8 @@ RSpec.describe 'prosecution cases', :stub_case_search,
 
     context 'when exception ActiveResource::ServerError is raised' do
       before do
-        allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::ServerError,
-                                                                   'Fake error')
+        allow(Cda::CaseSummaryService).to receive(:call).and_raise(ActiveResource::ServerError, 'Fake error')
+        get "/prosecution_cases/#{case_reference}"
       end
 
       let(:search_params) do
@@ -55,7 +55,6 @@ RSpec.describe 'prosecution cases', :stub_case_search,
       end
 
       it 'redirects to the searches page' do
-        get "/prosecution_cases/#{case_reference}"
         expect(response).to redirect_to(searches_path(search_params))
       end
 
