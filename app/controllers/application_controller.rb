@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
   def unexpected_exception_handler(exception)
     raise if Rails.env.development?
 
-    logger.error("Unexpected #{exception.class} error: #{exception}")
+    logger.error("Unexpected #{exception.class} error: #{loggable_error_message(exception)}")
     process_error_based_on_type(exception)
   end
 
@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
   end
 
   def process_error_based_on_type(exception)
-    Sentry.capture_exception(exception)
+    Sentry.capture_exception(sentry_capturable(exception))
     case exception
     when *EXPECTED_ERROR_TYPES
       assign_error_flash(exception)
@@ -106,5 +106,21 @@ class ApplicationController < ActionController::Base
 
   def cda_error_string_context
     nil
+  end
+
+  def loggable_error_message(exception)
+    return exception.to_s unless exception.is_a?(OAuth2::Error)
+
+    [
+      "status=#{exception.response.try(:status)}",
+      exception.code,
+      exception.description
+    ].compact.join(" ")
+  end
+
+  def sentry_capturable(exception)
+    return exception unless exception.is_a?(OAuth2::Error)
+
+    RuntimeError.new("OAuth2::Error: #{loggable_error_message(exception)}")
   end
 end
