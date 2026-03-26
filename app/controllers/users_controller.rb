@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController # rubocop:disable Metrics/ClassLength
+  before_action :set_breadcrumbs
   require 'csv'
   load_and_authorize_resource except: :create
-  add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
-  add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
 
   def index
     session.delete(:user_search)
@@ -135,4 +134,15 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
       @pagy, @users = pagy(@users.order("#{column}": direction))
     end
   end
-end # rubocop:enable Metrics/ClassLength
+
+  def set_breadcrumbs
+    if current_user.admin?
+      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
+      add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
+    elsif current_user.data_analyst?
+      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_stats_path
+    else
+      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
+    end
+  end
+end
