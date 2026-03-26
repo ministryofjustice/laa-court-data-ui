@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   post '/cookies/settings', to: 'cookies#create'
   get '/cookies/settings', to: 'cookies#new'
   get '/cookies', to: 'cookies#cookie_details'
+  get '/accessibility', to: 'pages#accessibility_statement'
 
   get 'ping', to: 'status#ping', format: :json
 

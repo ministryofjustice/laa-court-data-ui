@@ -8,5 +8,6 @@ linters:
       - app/views/layouts/_moj_logo.html.haml
       - app/views/layouts/_footer_crown.html.haml
       - app/views/shared/_alert.html.haml
+      - app/views/pages/accessibility_statement.html.haml
   ViewLength:
     max: 200
