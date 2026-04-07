@@ -34,7 +34,6 @@ RSpec.shared_examples 'not manage others' do
   }
 end
 
-# rubocop:disable RSpec/EmptyExampleGroup
 RSpec.describe Ability, type: :model do
   subject(:ability) { described_class.new(themself) }
 
@@ -48,6 +47,7 @@ RSpec.describe Ability, type: :model do
     it { is_expected.not_to be_able_to(%i[new create], Search) }
     it { is_expected.not_to be_able_to(%i[read], Cda::ProsecutionCase) }
     it { is_expected.not_to be_able_to(:create, :link_maat_reference) }
+    it { is_expected.not_to be_able_to(:show, :link_migrated_case) }
   end
 
   context 'when a caseworker' do
@@ -58,6 +58,8 @@ RSpec.describe Ability, type: :model do
     is_able_to 'perform search'
     is_able_to 'link maat reference'
     is_able_to 'query v2 CDA'
+
+    it { is_expected.to be_able_to(:show, :link_migrated_case) }
   end
 
   context 'when an admin' do
@@ -65,6 +67,6 @@ RSpec.describe Ability, type: :model do
 
     it { is_expected.to be_able_to(:manage, themself) }
     it { is_expected.to be_able_to(:manage, other_user) }
+    it { is_expected.not_to be_able_to(:show, :link_migrated_case) }
   end
 end
-# rubocop:enable RSpec/EmptyExampleGroup

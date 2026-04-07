@@ -52,6 +52,32 @@ RSpec.describe 'authorization', type: :request do
     end
   end
 
+  context 'when caseworker accesses link migrated cases' do
+    let(:user) { create(:user, roles: ['caseworker']) }
+
+    before do
+      sign_in user
+      get link_migrated_cases_path
+    end
+
+    it 'renders successfully' do
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  context 'when admin tries to access link migrated cases' do
+    let(:user) { create(:user, roles: ['admin']) }
+
+    before do
+      sign_in user
+      get link_migrated_cases_path
+    end
+
+    it 'redirects to root' do
+      expect(response).to redirect_to authenticated_admin_root_path
+    end
+  end
+
   context 'when admin tries to access the search page' do
     let(:user) { create(:user, roles: ['admin']) }
 
