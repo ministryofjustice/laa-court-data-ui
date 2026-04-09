@@ -43,6 +43,9 @@
     "stylelint-order": "^7.0.0",
     "wait-on": "^9.0.1"
   },
+  "resolutions": {
+    "lodash": ">=4.18.0"
+  },
   "standard": {
     "globals": [
       "dataLayer",
