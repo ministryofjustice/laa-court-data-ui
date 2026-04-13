@@ -49,6 +49,26 @@ rails db:seed
 ```
 
 
+## Creating a User
+
+To create a user via the rails console:
+```
+> bundle exec rails c
+> User.create!(
+  first_name: 'Jane',
+  last_name: 'Doe',
+  username: 'jdoe',
+  email: 'jane.doe@example.com',
+  email_confirmation: 'jane.doe@justice.gov.uk',
+  roles: ['caseworker', 'admin' ]
+)
+```
+
+Important:
+- Available roles: `caseworker`, `admin`, `data_analyst`.
+- The user's email must have the `@justice.gov.uk` domain to be able to use Single Sign On (SSO).
+
+
 ## Running
 
 To run the app locally you can use `rails server` or
@@ -69,4 +89,3 @@ COURT_DATA_ADAPTOR_API_SECRET: secret-for-adaptor-api-above
 ```
 
 The uid and secret can be generated as described by [laa-court-data-adptor#api-authentication](https://github.com/ministryofjustice/laa-court-data-adaptor#api-authentication)
-
