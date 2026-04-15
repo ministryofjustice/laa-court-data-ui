@@ -7,7 +7,7 @@ module Cda
     end
 
     def date_of_birth
-      defendant_dob.to_date
+      defendant_dob.presence&.to_date
     end
   end
 end
