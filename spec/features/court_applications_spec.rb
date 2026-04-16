@@ -61,6 +61,15 @@ RSpec.feature 'Court Applications', :vcr do
     end
   end
 
+  scenario 'I view an application where the defendant date of birth is missing' do
+    without_partial_double_verification do
+      allow_any_instance_of(Cda::SubjectSummary).to receive(:defendant_dob).and_return(nil)
+    end
+    sign_in user
+    visit court_application_path(found_court_application_id)
+    expect(page.status_code).to eq(200)
+  end
+
   context 'when I view a breach application successfully' do
     before do
       sign_in user
