@@ -19,4 +19,5 @@ featureFlags:
   noLinking: false
   timeBasedAccessRestriction: true
   showStats: true
+  showLinkMigratedCases: true
   fakeAuth: false

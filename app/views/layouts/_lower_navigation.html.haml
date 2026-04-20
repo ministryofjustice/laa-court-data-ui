@@ -19,5 +19,7 @@
               = navigation_item(new_search_filter_path, t('layouts.application.header.navigation.search'), active: controller_name.in?(%w[search_filters searches]))
             - if can?(:read, Cda::LinkingStatCollection)
               = navigation_item(new_stats_path, t('layouts.application.header.navigation.view_stats'))
+            - if FeatureFlag.enabled?(:show_link_migrated_cases) && can?(:show, :link_migrated_case)
+              = navigation_item(link_migrated_cases_path, t('layouts.application.header.navigation.link_migrated_cases'), active: controller_name == 'link_migrated_cases')
             - if can?(:index, User)
               = navigation_item(users_path, t('layouts.application.header.navigation.manage_users'), active: controller_name == 'users')

@@ -83,6 +83,8 @@ spec:
               value: "{{ .Values.featureFlags.timeBasedAccessRestriction }}"
             - name: SHOW_STATS
               value: "{{ .Values.featureFlags.showStats }}"
+            - name: SHOW_LINK_MIGRATED_CASES
+              value: "{{ .Values.featureFlags.showLinkMigratedCases }}"
             - name: FAKE_AUTH
               value: "{{ .Values.featureFlags.fakeAuth }}"
             - name: COURT_DATA_ADAPTOR_API_UID

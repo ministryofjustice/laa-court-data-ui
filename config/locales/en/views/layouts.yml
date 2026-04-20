@@ -25,6 +25,7 @@ en:
       header:
         legal_aid_agency: Legal Aid Agency
         navigation:
+          link_migrated_cases: Link migrated cases
           manage_users: Manage users
           menu: Menu
           search: Search
