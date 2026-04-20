@@ -4,8 +4,8 @@ class LinkMigratedCasesController < ApplicationController
   authorize_resource class: false
   before_action :check_feature_flag
 
-  def show
-    render :show
+  def index
+    render :index
   end
 
   private
