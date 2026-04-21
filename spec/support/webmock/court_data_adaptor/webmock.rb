@@ -322,4 +322,13 @@ RSpec.configure do |config|
       body: load_json_stub('cda/hearing_data_empty_response.json')
     )
   end
+
+  config.before(:each, :stub_link_migrated_cases) do
+    stub_request(:get, %r{http.*/api/internal/v2/link_migrated_cases})
+      .to_return(
+        status: 200,
+        headers: { 'Content-Type' => 'application/json' },
+        body: load_json_stub('cda/internal_v2_link_migrated_cases_response.json')
+      )
+  end
 end
