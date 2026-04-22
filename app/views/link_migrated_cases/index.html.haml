@@ -1,3 +1,57 @@
+= govuk_page_heading(t('link_migrated_cases.index.page_title'))
+
 .govuk-grid-row
   .govuk-grid-column-full
-    %h1.govuk-heading-xl Link migrated cases
+    - if @cases.any?
+      - direction = render(link_migrated_cases_sorter_direction == 'asc' ? 'shared/up_icon' : 'shared/down_icon')
+      - nondirection = render 'shared/updown_icon'
+      .moj-scrollable-pane
+        %table.govuk-table
+          %caption.govuk-table__caption.govuk-visually-hidden
+            = t('link_migrated_cases.index.caption')
+          %thead.govuk-table__head
+            %tr.govuk-table__row
+              %th.govuk-table__header{ scope: 'col' }
+                = link_to(link_migrated_cases_sorter_link('case_urn'),
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
+                          "aria-label": "Sort case_urn") do
+                  = t('link_migrated_cases.index.columns.case_urn')
+                  = current_sort_column?('case_urn') ? direction : nondirection
+              %th.govuk-table__header{ scope: 'col' }
+                = link_to(link_migrated_cases_sorter_link('defendant_name'),
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
+                          "aria-label": "Sort defendant_name") do
+                  = t('link_migrated_cases.index.columns.defendant_name')
+                  = current_sort_column?('defendant_name') ? direction : nondirection
+              %th.govuk-table__header{ scope: 'col' }
+                = link_to(link_migrated_cases_sorter_link('xhibit_case_number'),
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
+                          "aria-label": "Sort xhibit_case_number") do
+                  = t('link_migrated_cases.index.columns.xhibit_ref')
+                  = current_sort_column?('xhibit_case_number') ? direction : nondirection
+              %th.govuk-table__header{ scope: 'col' }
+                = link_to(link_migrated_cases_sorter_link('court_name'),
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
+                          "aria-label": "Sort court_name") do
+                  = t('link_migrated_cases.index.columns.court')
+                  = current_sort_column?('court_name') ? direction : nondirection
+              %th.govuk-table__header{ scope: 'col' }
+                = link_to(link_migrated_cases_sorter_link('mode_of_trial'),
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
+                          "aria-label": "Sort mode_of_trial") do
+                  = t('link_migrated_cases.index.columns.mode_of_trial')
+                  = current_sort_column?('mode_of_trial') ? direction : nondirection
+              %th.govuk-table__header{ scope: 'col' }= t('link_migrated_cases.index.columns.reason_for_linking')
+              %th.govuk-table__header{ scope: 'col' }= t('link_migrated_cases.index.columns.maat_id')
+          %tbody.govuk-table__body
+            - @cases.each do |c|
+              %tr.govuk-table__row
+                %td.govuk-table__cell= c['case_urn']
+                %td.govuk-table__cell= [c['defendant_first_name'], c['defendant_last_name']].compact.join(' ')
+                %td.govuk-table__cell= c['xhibit_case_number']
+                %td.govuk-table__cell= c['court_name']
+                %td.govuk-table__cell= c['mode_of_trial']
+                %td.govuk-table__cell= c['process_errors']
+                %td.govuk-table__cell= c['maat_id']
+    - else
+      %p.govuk-body= t('link_migrated_cases.index.no_results')
