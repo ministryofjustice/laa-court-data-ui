@@ -65,8 +65,8 @@ RSpec.describe Cda::LinkMigratedCasesService do
 
       it 'does not include status in the query string' do
         result
-        expect(WebMock).to have_requested(:get, %r{/link_migrated_cases})
-          .with { |req| !req.uri.query.to_s.include?('status') }
+        expect(WebMock).to(have_requested(:get, %r{/link_migrated_cases})
+          .with { |req| !req.uri.query.to_s.include?('status') })
       end
     end
   end
