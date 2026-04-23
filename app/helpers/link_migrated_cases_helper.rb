@@ -18,4 +18,10 @@ module LinkMigratedCasesHelper
       params[:sort_column] == column
     end
   end
+
+  def page_url(page_num)
+    link_migrated_cases_path(page: page_num,
+                             sort_column: params[:sort_column],
+                             sort_direction: params[:sort_direction])
+  end
 end
