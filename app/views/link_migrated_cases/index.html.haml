@@ -6,39 +6,44 @@
       - direction = render(link_migrated_cases_sorter_direction == 'asc' ? 'shared/up_icon' : 'shared/down_icon')
       - nondirection = render 'shared/updown_icon'
       .moj-scrollable-pane
-        %table.govuk-table
+        %table.govuk-table.app-link-migrated-cases-table
+          %colgroup
+            %col{ style: 'width: 150px' }
+            %col{ style: 'width: 120px' }
+            %col{ style: 'width: 150px' }
+            %col{ style: 'width: 130px' }
+            %col{ style: 'width: 140px' }
+            %col{ style: 'width: 100px' }
+            %col{ style: 'width: 120px' }
           %caption.govuk-table__caption.govuk-visually-hidden
             = t('link_migrated_cases.index.caption')
           %thead.govuk-table__head
             %tr.govuk-table__row
               %th.govuk-table__header{ scope: 'col' }
                 = link_to(link_migrated_cases_sorter_link('case_urn'),
-                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
-                          "aria-label": "Sort case_urn") do
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline") do
                   = t('link_migrated_cases.index.columns.case_urn')
                   = current_sort_column?('case_urn') ? direction : nondirection
               %th.govuk-table__header{ scope: 'col' }
                 = link_to(link_migrated_cases_sorter_link('defendant_name'),
-                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
-                          "aria-label": "Sort defendant_name") do
-                  = t('link_migrated_cases.index.columns.defendant_name')
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline") do
+                  Defendant
+                  %br
+                  name
                   = current_sort_column?('defendant_name') ? direction : nondirection
               %th.govuk-table__header{ scope: 'col' }
                 = link_to(link_migrated_cases_sorter_link('xhibit_case_number'),
-                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
-                          "aria-label": "Sort xhibit_case_number") do
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline") do
                   = t('link_migrated_cases.index.columns.xhibit_ref')
                   = current_sort_column?('xhibit_case_number') ? direction : nondirection
               %th.govuk-table__header{ scope: 'col' }
                 = link_to(link_migrated_cases_sorter_link('court_name'),
-                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
-                          "aria-label": "Sort court_name") do
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline") do
                   = t('link_migrated_cases.index.columns.court')
                   = current_sort_column?('court_name') ? direction : nondirection
               %th.govuk-table__header{ scope: 'col' }
                 = link_to(link_migrated_cases_sorter_link('mode_of_trial'),
-                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline",
-                          "aria-label": "Sort mode_of_trial") do
+                          class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline") do
                   = t('link_migrated_cases.index.columns.mode_of_trial')
                   = current_sort_column?('mode_of_trial') ? direction : nondirection
               %th.govuk-table__header{ scope: 'col' }= t('link_migrated_cases.index.columns.reason_for_linking')
@@ -53,5 +58,6 @@
                 %td.govuk-table__cell= c['mode_of_trial']
                 %td.govuk-table__cell= c['process_errors']
                 %td.govuk-table__cell= c['maat_id']
+      = render 'pagination'
     - else
       %p.govuk-body= t('link_migrated_cases.index.no_results')
