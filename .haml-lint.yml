@@ -11,3 +11,6 @@ linters:
       - app/views/pages/accessibility_statement.html.haml
   ViewLength:
     max: 200
+  InlineStyles:
+    exclude:
+      - app/views/link_migrated_cases/index.html.haml
