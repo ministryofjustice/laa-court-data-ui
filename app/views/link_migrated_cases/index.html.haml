@@ -84,3 +84,5 @@
               %td.govuk-table__cell= c['maat_id']
     - if @cases.any?
       = render 'pagination', pagy: @pagy
+    - else
+      %p.govuk-body= t('link_migrated_cases.index.no_results')

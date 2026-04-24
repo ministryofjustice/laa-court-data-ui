@@ -86,8 +86,9 @@ RSpec.feature 'Index users', :js, type: :feature do
       let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Jane') }
 
       scenario 'I search' do
-        click_link_or_button 'Manage users'
+        visit users_path
         click_button 'Show filter'
+        expect(page).to have_field('Name, username or email')
         fill_in 'Name, username or email', with: user.first_name
         click_on 'Apply filters'
 
