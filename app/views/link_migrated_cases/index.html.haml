@@ -8,13 +8,13 @@
       .moj-scrollable-pane
         %table.govuk-table.app-link-migrated-cases-table
           %colgroup
-            %col{ style: 'width: 150px' }
-            %col{ style: 'width: 120px' }
-            %col{ style: 'width: 150px' }
-            %col{ style: 'width: 130px' }
-            %col{ style: 'width: 140px' }
-            %col{ style: 'width: 100px' }
-            %col{ style: 'width: 120px' }
+            %col{ style: 'width: 150px' } / case_urn
+            %col{ style: 'width: 200px' } / defendant_name
+            %col{ style: 'width: 150px' } / xhibit_ref
+            %col{ style: 'width: 130px' } / court
+            %col{ style: 'width: 140px' } / mode_of_trial
+            %col{ style: 'width: 100px' } / reason_for_linking
+            %col{ style: 'width: 120px' } / maat_id
           %caption.govuk-table__caption.govuk-visually-hidden
             = t('link_migrated_cases.index.caption')
           %thead.govuk-table__head
@@ -27,9 +27,7 @@
               %th.govuk-table__header{ scope: 'col' }
                 = link_to(link_migrated_cases_sorter_link('defendant_name'),
                           class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline") do
-                  Defendant
-                  %br
-                  name
+                  = t('link_migrated_cases.index.columns.defendant_name')
                   = current_sort_column?('defendant_name') ? direction : nondirection
               %th.govuk-table__header{ scope: 'col' }
                 = link_to(link_migrated_cases_sorter_link('xhibit_case_number'),
@@ -58,6 +56,6 @@
                 %td.govuk-table__cell= c['mode_of_trial']
                 %td.govuk-table__cell= c['process_errors']
                 %td.govuk-table__cell= c['maat_id']
-      = render 'pagination'
+      = render 'pagination', pagy: @pagy
     - else
       %p.govuk-body= t('link_migrated_cases.index.no_results')
