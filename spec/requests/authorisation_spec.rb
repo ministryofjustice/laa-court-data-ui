@@ -52,10 +52,12 @@ RSpec.describe 'authorization', type: :request do
     end
   end
 
-  context 'when caseworker accesses link migrated cases' do
+  context 'when caseworker accesses link migrated cases', :stub_oauth_token, :stub_link_migrated_cases do
     let(:user) { create(:user, roles: ['caseworker']) }
 
     before do
+      allow(FeatureFlag).to receive(:enabled?).and_call_original
+      allow(FeatureFlag).to receive(:enabled?).with(:show_link_migrated_cases).and_return(true)
       sign_in user
       get link_migrated_cases_path
     end
