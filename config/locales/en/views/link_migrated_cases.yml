@@ -2,14 +2,14 @@
 en:
   link_migrated_cases:
     index:
-      page_title: Link migrated cases
       caption: Link migrated cases
-      no_results: No Link migrated cases found
       columns:
         case_urn: Case URN
-        defendant_name: Defendant name
-        xhibit_ref: Xhibit ref.
         court: Court
+        defendant_name: Defendant name
+        maat_id: MAAT ID
         mode_of_trial: Mode of trial
         reason_for_linking: Reason for man. linking
-        maat_id: MAAT ID
+        xhibit_ref: Xhibit ref.
+      no_results: No Link migrated cases found
+      page_title: Link migrated cases
