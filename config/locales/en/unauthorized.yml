@@ -5,3 +5,4 @@ en:
     manage:
       all: You are unauthorised to %{action} %{subject}
       user: You are unauthorised to manage users
+      link_migrated_case: You are not authorised to access "Link Migrated Cases"

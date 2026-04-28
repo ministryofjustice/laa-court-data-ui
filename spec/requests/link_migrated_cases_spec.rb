@@ -10,8 +10,15 @@ RSpec.describe 'link_migrated_cases', type: :request do
   end
 
   context 'when a non-need_linking tab is requested', :stub_oauth_token, :stub_link_migrated_cases do
-    it 'renders the index with an empty cases list' do
+    it 'renders the index' do
       get link_migrated_cases_path(tab: 'manually_linked')
+      expect(response).to be_successful
+    end
+  end
+
+  context 'when the pending tab is requested', :stub_oauth_token, :stub_link_migrated_cases do
+    it 'renders the index with pending cases' do
+      get link_migrated_cases_path(tab: 'pending')
       expect(response).to be_successful
     end
   end

@@ -6,22 +6,28 @@
       %ul.moj-sub-navigation__list
         %li.moj-sub-navigation__item
           - if @tab == 'need_linking'
-            %a.moj-sub-navigation__link{ href: link_migrated_cases_path, "aria-current": "page" }
-              Need linking (#{@pending_count})
+            %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: 'need_linking'), "aria-current": "page" }
+              Need linking (#{@cases_count['need_linking']})
           - else
-            = link_to "Need linking (#{@pending_count})", link_migrated_cases_path, class: 'moj-sub-navigation__link'
+            = link_to "Need linking (#{@cases_count['need_linking']})", link_migrated_cases_path(tab: 'need_linking'), class: 'moj-sub-navigation__link'
         %li.moj-sub-navigation__item
           - if @tab == 'manually_linked'
             %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: 'manually_linked'), "aria-current": "page" }
-              Manually linked cases (0)
+              Manually linked cases (#{@cases_count['manually_linked']})
           - else
-            = link_to 'Manually linked cases (0)', link_migrated_cases_path(tab: 'manually_linked'), class: 'moj-sub-navigation__link'
+            = link_to "Manually linked cases (#{@cases_count['manually_linked']})", link_migrated_cases_path(tab: 'manually_linked'), class: 'moj-sub-navigation__link'
         %li.moj-sub-navigation__item
           - if @tab == 'auto_linked'
             %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: 'auto_linked'), "aria-current": "page" }
-              Auto linked cases (0)
+              Auto linked cases (#{@cases_count['auto_linked']})
           - else
-            = link_to 'Auto linked cases (0)', link_migrated_cases_path(tab: 'auto_linked'), class: 'moj-sub-navigation__link'
+            = link_to "Auto linked cases (#{@cases_count['auto_linked']})", link_migrated_cases_path(tab: 'auto_linked'), class: 'moj-sub-navigation__link'
+        %li.moj-sub-navigation__item
+          - if @tab == 'pending'
+            %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: 'pending'), "aria-current": "page" }
+              Pending (#{@cases_count['pending']})
+          - else
+            = link_to "Pending (#{@cases_count['pending']})", link_migrated_cases_path(tab: 'pending'), class: 'moj-sub-navigation__link'
     - direction = render(link_migrated_cases_sorter_direction == 'asc' ? 'shared/up_icon' : 'shared/down_icon')
     - nondirection = render 'shared/updown_icon'
     .moj-scrollable-pane
