@@ -6,31 +6,29 @@ class LinkMigratedCasesController < ApplicationController
 
   SORTABLE_COLUMNS = %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial].freeze
   CASES_PER_PAGE = 10
-  TABS = { 'need_linking' => 'pending', 'manually_linked' => 'manually_linked',
-           'auto_linked' => 'auto_linked' }.freeze
+  TABS = %w[need_linking pending manually_linked auto_linked].freeze
 
   def index
-    @tab = tab_param
+    @tab = current_tab_param
 
-    if @tab == 'need_linking'
-      @result = Cda::LinkMigratedCasesService.call(status: TABS[@tab],
-                                                   sort_by: sort_col_param, sort_direction: sort_dir_param,
-                                                   page: page_param, per_page: CASES_PER_PAGE)
-      @cases = @result['results'] || []
-      @pagy = Pagy.new(count: @result['total_results'].to_i, page: page_param, limit: CASES_PER_PAGE)
-      @pending_count = @pagy.count
-    else
-      pending_result = Cda::LinkMigratedCasesService.call(status: TABS['need_linking'], per_page: 1)
-      @pending_count = pending_result['total_results'].to_i
-      @cases = []
-      @pagy = Pagy.new(count: 0, page: 1, limit: CASES_PER_PAGE)
-    end
+    @result = Cda::LinkMigratedCasesService.call(status: @tab,
+                                                 sort_by: sort_col_param, sort_direction: sort_dir_param,
+                                                 page: page_param, per_page: CASES_PER_PAGE)
+    @cases = @result['results'] || []
+    @pagy = Pagy.new(count: @result['total_results'].to_i, page: page_param, limit: CASES_PER_PAGE)
+    @cases_count = fetch_counts
   end
 
   private
 
-  def tab_param
-    TABS.key?(params[:tab]) ? params[:tab] : 'need_linking'
+  def fetch_counts
+    TABS.index_with do |status|
+      Cda::LinkMigratedCasesService.call(status: status, per_page: 1)['total_results'].to_i
+    end
+  end
+
+  def current_tab_param
+    TABS.include?(params[:tab]) ? params[:tab] : 'pending'
   end
 
   def sort_col_param
