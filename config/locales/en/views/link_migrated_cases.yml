@@ -9,7 +9,7 @@ en:
         defendant_name: Defendant name
         maat_id: MAAT ID
         mode_of_trial: Mode of trial
-        reason_for_linking: Reason for man. linking
+        reason_for_man_linking: Reason for man. linking
         xhibit_ref: Xhibit ref.
       no_results: No link migrated cases found
       page_title: Link migrated cases
