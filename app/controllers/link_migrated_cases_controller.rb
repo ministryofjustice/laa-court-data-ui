@@ -7,6 +7,12 @@ class LinkMigratedCasesController < ApplicationController
   SORTABLE_COLUMNS = %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial].freeze
   CASES_PER_PAGE = 10
   TABS = %w[need_linking pending manually_linked auto_linked].freeze
+  COLUMNS = {
+    'need_linking'    => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial reason_for_man_linking maat_id],
+    'pending'         => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial],
+    'manually_linked' => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial reason_for_man_linking maat_id],
+    'auto_linked'     => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial maat_id]
+  }.freeze
 
   def index
     @tab = current_tab_param
@@ -17,6 +23,7 @@ class LinkMigratedCasesController < ApplicationController
     @cases = @result['results'] || []
     @pagy = Pagy.new(count: @result['total_results'].to_i, page: page_param, limit: CASES_PER_PAGE)
     @cases_count = fetch_counts
+    @columns = COLUMNS[@tab]
   end
 
   private
