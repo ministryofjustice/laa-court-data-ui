@@ -4,14 +4,16 @@ class LinkMigratedCasesController < ApplicationController
   authorize_resource class: false
   before_action :check_feature_flag
 
-  SORTABLE_COLUMNS = %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial].freeze
+  SORTABLE_COLUMNS = %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial
+                        maat_id defendant_date_of_birth linked_at linked_by].freeze
   CASES_PER_PAGE = 10
   TABS = %w[need_linking pending manually_linked auto_linked].freeze
   COLUMNS = {
-    'need_linking'    => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial reason_for_man_linking maat_id],
-    'pending'         => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial],
-    'manually_linked' => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial reason_for_man_linking maat_id],
-    'auto_linked'     => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial maat_id]
+    'need_linking' => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial
+                         reason_for_man_linking maat_id],
+    'pending' => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial],
+    'manually_linked' => %w[case_urn maat_id defendant_name defendant_date_of_birth linked_at linked_by],
+    'auto_linked' => %w[case_urn maat_id defendant_name defendant_date_of_birth mode_of_trial linked_at]
   }.freeze
 
   def index
