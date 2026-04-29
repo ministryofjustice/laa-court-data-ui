@@ -6,7 +6,10 @@ en:
       columns:
         case_urn: Case URN
         court: Court
+        defendant_date_of_birth: Date of birth
         defendant_name: Defendant name
+        linked_at: Linked date
+        linked_by: Linked by
         maat_id: MAAT ID
         mode_of_trial: Mode of trial
         reason_for_man_linking: Reason for man. linking
