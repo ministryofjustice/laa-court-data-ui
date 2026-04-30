@@ -15,12 +15,12 @@ RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
     end
 
     it 'displays all applications' do
-      is_expected.to have_tag('span.govuk-accordion__section-button',
+      is_expected.to have_tag('h3.govuk-summary-card__title',
                               text: /Application for transfer of legal aid/)
     end
 
     it 'displays received date correctly' do
-      is_expected.to have_tag('div.govuk-accordion__section-summary', text: /29 March 2021/)
+      is_expected.to have_tag('span.govuk-summary-card__actions', text: /29 March 2021/)
     end
   end
 
