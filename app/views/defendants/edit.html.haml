@@ -1,10 +1,10 @@
-- content_for :page_title, "#{t('generic.defendant')} #{@defendant.name} - #{service_name} - GOV.UK"
+- content_for :page_title, "#{t('defendants.title')} - #{service_name} - GOV.UK"
 - content_for :page_heading do
-  %span#copy-alert.govuk-visually-hidden{ "aria-live": "polite" }
+  %span.govuk-visually-hidden#copy-alert{ "aria-live": "polite" }
   %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
     %span.govuk-caption-xl= t('generic.defendant')
     %span#defendant-name= @defendant.name
-    %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-defendant-name", class: "govuk-!-margin-bottom-0 govuk-!-margin-left-2" }
+    %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-defendant-name", type: "button", class: "govuk-!-margin-bottom-0 govuk-!-margin-left-2" }
       Copy
 %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
   = t("generic.case")
