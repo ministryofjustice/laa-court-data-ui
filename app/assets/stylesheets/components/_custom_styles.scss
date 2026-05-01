@@ -32,6 +32,23 @@ body:not(.js-enabled) .app-js-only {
   margin-left: -15px;
 }
 
+// Hide copy buttons if Javascript is disabled
+.copy-button { display: none }
+
+body.js-enabled {
+  .copy-button { display: inline-block }
+
+  @media print {
+    .copy-button { display: none }
+  }
+}
+
+.disable-click {
+  pointer-events: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
 @media (min-width: 40.0625em) {
   // The below CSS allows us to right-align
   // nav links such as 'Manage users'

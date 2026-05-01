@@ -13,7 +13,8 @@ const config = {
       path.resolve(__dirname, 'app', 'assets', 'javascript', 'application.js'),
       path.resolve(__dirname, 'app', 'assets', 'stylesheets', 'application.scss')
     ],
-    unlink: path.resolve(__dirname, 'app', 'assets', 'javascript', 'unlink.js')
+    unlink: path.resolve(__dirname, 'app', 'assets', 'javascript', 'unlink.js'),
+    copy_button: path.resolve(__dirname, 'app', 'assets', 'javascript', 'copy_button.js')
   },
   module: {
     rules: [

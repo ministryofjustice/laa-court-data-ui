@@ -3,10 +3,16 @@
 
 - content_for :custom_packs do
   = javascript_include_tag 'unlink', defer: true
-= govuk_page_heading(@subject.name,
-                     caption_text: @application.appeal? ? t(".appellant") : t(".respondent"),
-                     title: @application.appeal? ? t(".appeal_title") : t(".title"),
-                     tag_options: { class: "govuk-!-margin-bottom-5" })
+  = javascript_include_tag 'copy_button', defer: true
+
+- content_for :page_title, "#{@application.appeal? ? t('.appeal_title') : t('.title')} - #{service_name} - GOV.UK"
+- content_for :page_heading do
+  %span#copy-alert.govuk-visually-hidden{ "aria-live": "polite" }
+  %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
+    %span.govuk-caption-xl= @application.appeal? ? t(".appellant") : t(".respondent")
+    %span#subject-name= @subject.name
+    %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-name", class: "govuk-!-margin-bottom-0 govuk-!-margin-left-2" }
+      Copy
 - if @application.appeal?
   %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
     = t("subjects.appeal")
@@ -37,36 +43,52 @@
             %th.govuk-table__header{ scope: "row" }
               = t(".date_of_birth")
             %td.govuk-table__cell
-              = l(@subject.date_of_birth)
+              %span#subject-dob= l(@subject.date_of_birth)
+            %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+              %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-dob", class: "govuk-!-margin-bottom-0" }
+                Copy
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
               = t(".case_urn")
             %td.govuk-table__cell
-              = @application.application_reference
+              %span#subject-case-urn= @application.application_reference
+            %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+              %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-case-urn", class: "govuk-!-margin-bottom-0" }
+                Copy
           - if @application.appeal? || @application.poca?
             %tr.govuk-table__row
               %th.govuk-table__header{ scope: "row" }
                 = t(".arrest_summons_number")
               %td.govuk-table__cell
                 -# Important: In case of an appeal, the ASN comes nil from the @subject, so we need to get it from the @application.defendant
-                = @application.defendant.arrest_summons_number
+                %span#subject-asn= @application.defendant.arrest_summons_number
+              %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+                %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", class: "govuk-!-margin-bottom-0" }
+                  Copy
           - else
             %tr.govuk-table__row
               %th.govuk-table__header{ scope: "row" }
                 = t(".respondent_arrest_summons_number")
               %td.govuk-table__cell
-                = @subject.defendant_asn
+                %span#subject-asn= @subject.defendant_asn
+              %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+                %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", class: "govuk-!-margin-bottom-0" }
+                  Copy
             - if @application.breach?
               %tr.govuk-table__row
                 %th.govuk-table__header{ scope: "row" }
                   = t(".plea")
                 %td.govuk-table__cell
                   = @application.result_string
+                %td.govuk-table__cell
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
               = t(".maat_number")
             %td.govuk-table__cell
-              = @application.maat_reference
+              %span#subject-maat-number= @application.maat_reference
+            %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+              %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-maat-number", class: "govuk-!-margin-bottom-0" }
+                Copy
 
   = link_to t(".view.#{@application.application_category}"),
             court_application_path(@application.application_id),
