@@ -26,14 +26,23 @@ body:not(.js-enabled) .app-js-only {
   vertical-align: bottom;
 }
 
-
 // Left-align "Next ->" when it is the only pagination link (no "<- Previous")
 .govuk-pagination .govuk-pagination__next:only-child {
   margin-left: -15px;
 }
 
 // Hide copy buttons if Javascript is disabled
-.copy-button { display: none }
+.copy-button {
+  display: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 4px 10px;
+}
+
+.copy-button-heading {
+  display: inline-flex;
+  align-items: center;
+}
 
 body.js-enabled {
   .copy-button { display: inline-block }
