@@ -9,16 +9,13 @@
   - hearing.court_applications.each do |court_application|
     .govuk-summary-card
       .govuk-summary-card__title-wrapper
-        %h3{ class: "govuk-summary-card__title govuk-!-width-two-thirds" }
+        %h3.govuk-summary-card__title
           = court_application&.type&.description || not_available
-        %span{ class: "govuk-summary-card__actions govuk-!-font-weight-regular" }
-          = l(court_application.received_date&.to_date, format: :long)
       .govuk-summary-card__content
         - key_class = { class: "govuk-!-width-one-half" }
         - value_class = { class: "vcd-capitalize-first-letter govuk-!-width-one-half" }
         %dl.govuk-summary-list
           = govuk_summary_list_entry(t('hearings.show.court_applications.received_date'), l(court_application.received_date&.to_date, format: :long), key_class, value_class)
-          = govuk_summary_list_entry(t('hearings.show.court_applications.type'), court_application&.type&.description || not_available, key_class, value_class)
           = govuk_summary_list_entry(t('hearings.show.court_applications.code'), court_application&.type&.code || not_available, key_class, value_class)
           = govuk_summary_list_entry(t('hearings.show.court_applications.legislation'), court_application&.type&.legislation || not_available, key_class, value_class)
           - court_application.judicial_results&.each do |result|

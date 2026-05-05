@@ -34,9 +34,9 @@ body:not(.js-enabled) .app-js-only {
 // Hide copy buttons if Javascript is disabled
 .copy-button {
   display: none;
+  padding: 4px 10px;
   font-size: 1.1rem;
   line-height: 1;
-  padding: 4px 10px;
 }
 
 .copy-button-heading {
@@ -44,11 +44,15 @@ body:not(.js-enabled) .app-js-only {
   align-items: center;
 }
 
-body.js-enabled {
-  .copy-button { display: inline-block }
+.js-enabled {
+  .copy-button {
+    display: inline-block;
+  }
 
   @media print {
-    .copy-button { display: none }
+    .copy-button {
+      display: none;
+    }
   }
 }
 
