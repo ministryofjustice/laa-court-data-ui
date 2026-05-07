@@ -18,6 +18,13 @@ function copyText (textElementId, copyElementId, screenReaderAlertText, original
       copyElement.classList.add('disable-click')
       copyElement.textContent = 'Copied'
 
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'copy_button_click', {
+          button_id: copyElementId.replace(/^#/, ''),
+          page_path: window.location.pathname
+        })
+      }
+
       setTimeout(() => {
         screenReaderAlert.textContent = ''
         copyElement.classList.remove('disable-click')
