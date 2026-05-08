@@ -14,7 +14,7 @@ gem 'cancancan'
 # csv was loaded from the standard library, but will no longer be part of the default gems starting from Ruby 3.4.0
 gem 'csv', require: false
 
-gem 'devise', '~> 4.9'
+gem 'devise', '~> 5.0'
 gem 'govuk_notify_rails', '~> 3.0.0'
 
 gem 'govuk-components'
