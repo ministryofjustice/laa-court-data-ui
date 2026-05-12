@@ -1,4 +1,14 @@
+.moj-pagination {
+  .govuk-pagination {
+    margin-bottom: 5px;
+  }
+}
+
 .app-link-migrated-cases-table {
   width: 100%;
   table-layout: fixed;
+
+  .govuk-table__header {
+    vertical-align: bottom;
+  }
 }

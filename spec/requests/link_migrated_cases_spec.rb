@@ -23,6 +23,18 @@ RSpec.describe 'link_migrated_cases', type: :request do
     end
   end
 
+  context 'when the auto_linked tab is requested', :stub_oauth_token, :stub_link_migrated_cases do
+    it 'renders the index with auto linked cases' do
+      get link_migrated_cases_path(tab: 'auto_linked')
+      expect(response).to be_successful
+    end
+
+    it 'renders the index sorted by auto_linked_at' do
+      get link_migrated_cases_path(tab: 'auto_linked', sort_column: 'auto_linked_at', sort_direction: 'desc')
+      expect(response).to be_successful
+    end
+  end
+
   context 'when the feature flag is disabled' do
     it 'redirects to the user root' do
       allow(FeatureFlag).to receive(:enabled?).with(:show_link_migrated_cases).and_return(false)

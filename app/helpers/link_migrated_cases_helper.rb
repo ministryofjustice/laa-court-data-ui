@@ -2,14 +2,16 @@
 
 module LinkMigratedCasesHelper
   COLUMN_CONFIG = {
+    'auto_linked_at' => { width: '120px', sortable: true, i18n_key: 'auto_linked_at' },
     'case_urn' => { width: '150px', sortable: true, i18n_key: 'case_urn' },
-    'defendant_name' => { width: '200px', sortable: true, i18n_key: 'defendant_name' },
+    'case_urn_new_tab' => { width: '160px', sortable: true, i18n_key: 'case_urn_new_tab_html' },
+    'defendant_name' => { width: '180px', sortable: true, i18n_key: 'defendant_name' },
     'xhibit_case_number' => { width: '130px', sortable: true, i18n_key: 'xhibit_ref' },
     'court_name' => { width: '100px', sortable: true, i18n_key: 'court' },
     'mode_of_trial' => { width: '140px', sortable: true, i18n_key: 'mode_of_trial' },
     'reason_for_man_linking' => { width: '130px', sortable: true, i18n_key: 'reason_for_man_linking_html' },
-    'maat_id' => { width: '120px', sortable: true, i18n_key: 'maat_id' },
-    'defendant_date_of_birth' => { width: '140px', sortable: true, i18n_key: 'defendant_date_of_birth' },
+    'maat_id' => { width: '100px', sortable: true, i18n_key: 'maat_id' },
+    'defendant_date_of_birth' => { width: '120px', sortable: true, i18n_key: 'defendant_date_of_birth' },
     'linked_at' => { width: '120px', sortable: true, i18n_key: 'linked_at' },
     'linked_by' => { width: '120px', sortable: true, i18n_key: 'linked_by' }
   }.freeze
@@ -22,6 +24,8 @@ module LinkMigratedCasesHelper
     case column
     when 'defendant_name' then [m_case['defendant_first_name'],
                                 m_case['defendant_last_name']].compact.join(' ')
+    when 'auto_linked_at' then m_case['linked_at']
+    when 'case_urn_new_tab' then m_case['case_urn']
     when 'reason_for_man_linking' then m_case['process_errors']
     else m_case[column]
     end
@@ -40,7 +44,7 @@ module LinkMigratedCasesHelper
 
   def current_sort_column?(column)
     if params[:sort_column].nil?
-      column == 'case_urn'
+      %w[case_urn case_urn_new_tab].include?(column)
     else
       params[:sort_column] == column
     end

@@ -4,7 +4,9 @@ en:
     index:
       caption: Link migrated cases
       columns:
+        auto_linked_at: Auto linked date
         case_urn: Case URN
+        case_urn_new_tab_html: Case URN<br>(opens in new tab)
         court: Court
         defendant_date_of_birth: Date of birth
         defendant_name: Defendant name
