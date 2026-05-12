@@ -5,7 +5,7 @@ class LinkMigratedCasesController < ApplicationController
   before_action :check_feature_flag
 
   SORTABLE_COLUMNS = %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial
-                        maat_id defendant_date_of_birth linked_at linked_by].freeze
+                        reason_for_man_linking maat_id defendant_date_of_birth linked_at linked_by].freeze
   CASES_PER_PAGE = 10
   TABS = %w[need_linking pending manually_linked auto_linked].freeze
   COLUMNS = {
@@ -41,7 +41,8 @@ class LinkMigratedCasesController < ApplicationController
   end
 
   def sort_col_param
-    SORTABLE_COLUMNS.include?(params[:sort_column]) ? params[:sort_column] : 'case_urn'
+    col = SORTABLE_COLUMNS.include?(params[:sort_column]) ? params[:sort_column] : 'case_urn'
+    col == 'reason_for_man_linking' ? 'process_errors' : col
   end
 
   def sort_dir_param

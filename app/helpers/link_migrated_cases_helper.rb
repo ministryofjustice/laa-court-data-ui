@@ -4,10 +4,10 @@ module LinkMigratedCasesHelper
   COLUMN_CONFIG = {
     'case_urn' => { width: '150px', sortable: true, i18n_key: 'case_urn' },
     'defendant_name' => { width: '200px', sortable: true, i18n_key: 'defendant_name' },
-    'xhibit_case_number' => { width: '150px', sortable: true, i18n_key: 'xhibit_ref' },
-    'court_name' => { width: '130px', sortable: true, i18n_key: 'court' },
+    'xhibit_case_number' => { width: '130px', sortable: true, i18n_key: 'xhibit_ref' },
+    'court_name' => { width: '100px', sortable: true, i18n_key: 'court' },
     'mode_of_trial' => { width: '140px', sortable: true, i18n_key: 'mode_of_trial' },
-    'reason_for_man_linking' => { width: '100px', sortable: false, i18n_key: 'reason_for_man_linking' },
+    'reason_for_man_linking' => { width: '130px', sortable: true, i18n_key: 'reason_for_man_linking_html' },
     'maat_id' => { width: '120px', sortable: true, i18n_key: 'maat_id' },
     'defendant_date_of_birth' => { width: '140px', sortable: true, i18n_key: 'defendant_date_of_birth' },
     'linked_at' => { width: '120px', sortable: true, i18n_key: 'linked_at' },
