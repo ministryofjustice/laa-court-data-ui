@@ -62,7 +62,7 @@
                 %td.govuk-table__cell
                   = link_to user.name, user_path(user), class: 'govuk-link'
                 %td.govuk-table__cell
-                  = link_to user.username.to_s, user_path(user), class: 'govuk-link'
+                  = user.username
                 %td.govuk-table__cell
                   = mail_to user.email, class: 'govuk-link', target: '_blank' do
                     = user.email

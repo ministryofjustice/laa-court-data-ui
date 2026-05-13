@@ -65,7 +65,7 @@ RSpec.feature 'Index users', :js, type: :feature do
       end
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
       expect(row).to have_link(other_user.name, href: user_path(other_user))
-      expect(row).to have_link(other_user.username, href: user_path(other_user))
+      expect(row).to have_text(other_user.username)
       expect(row).to have_link(other_user.email, href: "mailto:#{other_user.email}")
       expect(row).to have_link('Edit', href: edit_user_path(other_user))
       expect(row).to have_link('Delete', href: users_confirm_delete_path(other_user))
