@@ -62,6 +62,45 @@ body:not(.js-enabled) .app-js-only {
   box-shadow: none;
 }
 
+// Desktop: hide mobile list; mobile: hide desktop list
+@media (min-width: 641px) {
+  .govuk-pagination__list--mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .govuk-pagination__list--desktop {
+    display: none;
+  }
+
+  .govuk-pagination__list--mobile .govuk-pagination__item {
+    display: block;
+  }
+}
+
+// Desktop: nav left, results below left. Mobile: both centred.
+.moj-pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: govuk-spacing(2);
+}
+
+.moj-pagination .govuk-pagination {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .moj-pagination {
+    align-items: center;
+  }
+
+  .moj-pagination .moj-pagination__results {
+    text-align: center;
+  }
+}
+
 @media (min-width: 40.0625em) {
   // The below CSS allows us to right-align
   // nav links such as 'Manage users'

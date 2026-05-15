@@ -1,6 +1,24 @@
-.app-pagination__container.govuk-grid-row{ class: "govuk-!-display-none-print" }
-  .govuk-grid-column-one-half
-    = govuk_pagination(pagy:).presence || "&nbsp;".html_safe
-  .govuk-grid-column-one-half{ class: "govuk-!-text-align-right" }
-    %div{ class: "govuk-body govuk-!-margin-top-2" }
-      = pagination_info(pagy, item_name)
+- if pagy.pages > 1
+  .moj-pagination{ class: "govuk-!-display-none-print" }
+    %nav.govuk-pagination.moj-pagination__pagination{ "aria-label": "Pagination" }
+      - if pagy.prev
+        .govuk-pagination__prev
+          = link_to pagy_url_for(pagy, pagy.prev), rel: "prev", class: "govuk-link govuk-pagination__link" do
+            = pagination_svg_icon(:prev)
+            %span.govuk-pagination__link-title
+              Previous
+              %span.govuk-visually-hidden page
+      %ul.govuk-pagination__list.govuk-pagination__list--desktop
+        - pagy.series.each do |item|
+          = pagination_item_tag(item, pagy)
+      %ul.govuk-pagination__list.govuk-pagination__list--mobile
+        - mobile_pagination_series(pagy).each do |item|
+          = pagination_item_tag(item, pagy)
+      - if pagy.next
+        .govuk-pagination__next
+          = link_to pagy_url_for(pagy, pagy.next), rel: "next", class: "govuk-link govuk-pagination__link" do
+            %span.govuk-pagination__link-title
+              Next
+              %span.govuk-visually-hidden page
+            = pagination_svg_icon(:next)
+    %p.moj-pagination__results= pagination_info(pagy, item_name)
