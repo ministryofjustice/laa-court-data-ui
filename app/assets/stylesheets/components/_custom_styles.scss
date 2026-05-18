@@ -16,11 +16,6 @@ body:not(.js-enabled) .app-js-only {
   white-space: nowrap;
 }
 
-.appeal_title_spacing {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
 .table-heading-blue {
   color: #1a65a6;
   vertical-align: bottom;
@@ -107,8 +102,6 @@ body:not(.js-enabled) .app-js-only {
     flex-grow: 1;
     justify-content: space-between;
 
-    .pull-right {
-     margin-left: auto;
-    }
+
   }
 }

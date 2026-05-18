@@ -2,7 +2,7 @@
   - if local_assigns[:prev_url]
     .govuk-pagination__prev
       = link_to prev_url, class: "govuk-link govuk-pagination__link", rel: "prev" do
-        = pagination_svg_icon(:prev)
+        = render 'shared/pagination_prev'
         %span.govuk-pagination__link-title
           Previous
           %span.govuk-visually-hidden page
@@ -12,4 +12,4 @@
         %span.govuk-pagination__link-title
           Next
           %span.govuk-visually-hidden page
-        = pagination_svg_icon(:next)
+        = render 'shared/pagination_next'

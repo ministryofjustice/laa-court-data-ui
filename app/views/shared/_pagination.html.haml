@@ -4,7 +4,7 @@
       - if pagy.prev
         .govuk-pagination__prev
           = link_to pagy_url_for(pagy, pagy.prev), rel: "prev", class: "govuk-link govuk-pagination__link" do
-            = pagination_svg_icon(:prev)
+            = render 'shared/pagination_prev'
             %span.govuk-pagination__link-title
               Previous
               %span.govuk-visually-hidden page
@@ -20,5 +20,5 @@
             %span.govuk-pagination__link-title
               Next
               %span.govuk-visually-hidden page
-            = pagination_svg_icon(:next)
+            = render 'shared/pagination_next'
     %p.moj-pagination__results= pagination_info(pagy, item_name)
