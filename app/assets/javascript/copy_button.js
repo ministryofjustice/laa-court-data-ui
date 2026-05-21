@@ -1,3 +1,6 @@
+/* The copy button functionality is based on the MOJ design-patterns:
+   https://design-patterns.service.justice.gov.uk/components/copy-button */
+
 function copyText (textElementId, copyElementId, screenReaderAlertText, originalCopyText = 'Copy') {
   const textElement = document.querySelector(textElementId)
   const copyElement = document.querySelector(copyElementId)
