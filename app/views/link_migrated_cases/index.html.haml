@@ -1,0 +1,60 @@
+= govuk_page_heading(t('link_migrated_cases.index.page_title'))
+
+.govuk-grid-row
+  .govuk-grid-column-full
+    %nav.moj-sub-navigation
+      %ul.moj-sub-navigation__list
+        %li.moj-sub-navigation__item
+          - if @tab == 'need_linking'
+            %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: 'need_linking'), "aria-current": "page" }
+              Need linking (#{@cases_count['need_linking']})
+          - else
+            = link_to "Need linking (#{@cases_count['need_linking']})", link_migrated_cases_path(tab: 'need_linking'), class: 'moj-sub-navigation__link'
+        %li.moj-sub-navigation__item
+          - if @tab == 'manually_linked'
+            %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: 'manually_linked'), "aria-current": "page" }
+              Manually linked cases (#{@cases_count['manually_linked']})
+          - else
+            = link_to "Manually linked cases (#{@cases_count['manually_linked']})", link_migrated_cases_path(tab: 'manually_linked'), class: 'moj-sub-navigation__link'
+        %li.moj-sub-navigation__item
+          - if @tab == 'auto_linked'
+            %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: 'auto_linked'), "aria-current": "page" }
+              Auto linked cases (#{@cases_count['auto_linked']})
+          - else
+            = link_to "Auto linked cases (#{@cases_count['auto_linked']})", link_migrated_cases_path(tab: 'auto_linked'), class: 'moj-sub-navigation__link'
+        %li.moj-sub-navigation__item
+          - if @tab == 'pending'
+            %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: 'pending'), "aria-current": "page" }
+              Pending (#{@cases_count['pending']})
+          - else
+            = link_to "Pending (#{@cases_count['pending']})", link_migrated_cases_path(tab: 'pending'), class: 'moj-sub-navigation__link'
+    - direction = render(link_migrated_cases_sorter_direction == 'asc' ? 'shared/up_icon' : 'shared/down_icon')
+    - nondirection = render 'shared/updown_icon'
+    .moj-scrollable-pane
+      %table.govuk-table.app-link-migrated-cases-table
+        %colgroup
+          - @columns.each do |col|
+            %col{ style: "width: #{column_config(col)[:width]}" }
+        %caption.govuk-table__caption.govuk-visually-hidden
+          = t('link_migrated_cases.index.caption')
+        %thead.govuk-table__head
+          %tr.govuk-table__row
+            - @columns.each do |col|
+              - config = column_config(col)
+              %th.govuk-table__header{ scope: 'col' }
+                - if config[:sortable]
+                  = link_to(link_migrated_cases_sorter_link(col),
+                            class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline") do
+                    = t("link_migrated_cases.index.columns.#{config[:i18n_key]}")
+                    = current_sort_column?(col) ? direction : nondirection
+                - else
+                  = t("link_migrated_cases.index.columns.#{config[:i18n_key]}")
+        %tbody.govuk-table__body
+          - @cases.each do |m_case|
+            %tr.govuk-table__row
+              - @columns.each do |col|
+                %td.govuk-table__cell= column_value(col, m_case)
+    - if @cases.any?
+      = render 'pagination', pagy: @pagy
+    - else
+      %p.govuk-body= t('link_migrated_cases.index.no_results')

@@ -1,0 +1,29 @@
+- if pagy.pages > 1
+  .moj-pagination
+    %nav.govuk-pagination.moj-pagination__pagination{ aria: { label: 'Pagination' } }
+      - if pagy.prev
+        .govuk-pagination__prev
+          = link_to page_url(pagy.prev), class: 'govuk-link govuk-pagination__link', rel: 'prev' do
+            = pagination_svg_icon(:prev)
+            %span.govuk-pagination__link-title Previous
+      %ul.govuk-pagination__list
+        - pagy.series.each do |item|
+          - if item == :gap
+            %li.govuk-pagination__item.govuk-pagination__item--ellipsis &ctdot;
+          - elsif item.is_a?(String)
+            %li.govuk-pagination__item.govuk-pagination__item--current
+              = link_to page_url(item.to_i), class: 'govuk-link govuk-pagination__link',
+                                             aria: { label: "Page #{item}", current: 'page' } do
+                = item
+          - else
+            %li.govuk-pagination__item
+              = link_to page_url(item), class: 'govuk-link govuk-pagination__link',
+                                        aria: { label: "Page #{item}" } do
+                = item
+      - if pagy.next
+        .govuk-pagination__next
+          = link_to page_url(pagy.next), class: 'govuk-link govuk-pagination__link', rel: 'next' do
+            %span.govuk-pagination__link-title Next
+            = pagination_svg_icon(:next)
+    %p.moj-pagination__results
+      Showing #{pagy.from} to #{pagy.to} of #{pagy.count} total results
