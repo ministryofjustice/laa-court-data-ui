@@ -8,8 +8,9 @@
       %td.govuk-table__cell
         %span#defendant-dob= l(defendant.date_of_birth&.to_date)
       %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
-        %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-dob", type: "button", class: "govuk-!-margin-bottom-0" }
-          Copy
+        - if defendant.date_of_birth.present?
+          %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-dob", type: "button", class: "govuk-!-margin-bottom-0" }
+            Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.prosecution_case_reference')
@@ -24,16 +25,18 @@
       %td.govuk-table__cell
         %span#defendant-ni-number= defendant.national_insurance_number
       %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
-        %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-ni-number", type: "button", class: "govuk-!-margin-bottom-0" }
-          Copy
+        - if defendant.national_insurance_number.present?
+          %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-ni-number", type: "button", class: "govuk-!-margin-bottom-0" }
+            Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.arrest_summons_number')
       %td.govuk-table__cell
         %span#defendant-asn= defendant.arrest_summons_number
       %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
-        %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-asn", type: "button", class: "govuk-!-margin-bottom-0" }
-          Copy
+        - if defendant.arrest_summons_number.present?
+          %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-asn", type: "button", class: "govuk-!-margin-bottom-0" }
+            Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.maat_number')
