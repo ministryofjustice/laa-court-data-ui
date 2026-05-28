@@ -1,0 +1,20 @@
+---
+en:
+  link_migrated_cases:
+    index:
+      caption: Link migrated cases
+      columns:
+        auto_linked_at: Auto linked date
+        case_urn: Case URN
+        case_urn_new_tab_html: Case URN<br>(opens in new tab)
+        court: Court
+        defendant_date_of_birth: Date of birth
+        defendant_name: Defendant name
+        linked_at: Linked date
+        linked_by: Linked by
+        maat_id: MAAT ID
+        mode_of_trial: Mode of trial
+        reason_for_man_linking_html: Reason for<br>man. linking
+        xhibit_ref: Xhibit ref.
+      no_results: No link migrated cases found
+      page_title: Link migrated cases

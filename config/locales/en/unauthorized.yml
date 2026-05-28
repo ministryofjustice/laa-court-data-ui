@@ -4,4 +4,5 @@ en:
     default: You are not authorised to perform that action
     manage:
       all: You are unauthorised to %{action} %{subject}
+      link_migrated_case: You are not authorised to access "Link Migrated Cases"
       user: You are unauthorised to manage users
