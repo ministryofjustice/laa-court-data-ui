@@ -1,12 +1,18 @@
-= govuk_page_heading(@defendant.name,
-                     caption_text: t('generic.defendant'),
-                     title: t('defendants.title'),
-                     tag_options: { class: "govuk-!-margin-bottom-5" })
+- content_for :page_title, "#{t('defendants.title')} - #{service_name} - GOV.UK"
+- content_for :page_heading do
+  %span.govuk-visually-hidden#copy-alert{ "aria-live": "polite" }
+  %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
+    %span.govuk-caption-xl= t('generic.defendant')
+    %span.copy-button-heading
+      %span#defendant-name= @defendant.name
+      %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-defendant-name", type: "button", class: "govuk-!-margin-bottom-0 govuk-!-margin-left-2" }
+        Copy
 %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
   = t("generic.case")
 
 - content_for :custom_packs do
   = javascript_include_tag 'unlink', defer: true
+  = javascript_include_tag 'copy_button', defer: true
 
 = render partial: 'form', locals: { defendant: @defendant,
                                     unlink_attempt: @unlink_attempt,

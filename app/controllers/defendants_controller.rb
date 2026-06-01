@@ -16,18 +16,27 @@ class DefendantsController < ApplicationController
   add_breadcrumb proc { |v| v.controller.defendant.name },
                  proc { |v| v.defendant_path(v.controller.defendant.id) }
 
+  # GET /defendants/:id/edit?urn=:urn
+  # Defendant detail page: shows defendant info (DOB, URN, NI, ASN, MAAT),
+  # offences, and the unlink MAAT form. The link form is at new_laa_reference_path.
+  # View: app/views/defendants/edit.html.haml
   def edit
     return unless params.fetch(:include_offence_history, 'false') == 'true'
 
     @offence_history_collection = load_offence_histories
   end
 
+  # GET /defendants/:id/offences?urn=:urn
+  # Returns the offences table fragment rendered without layout (used by Turbo Frame).
+  # View: app/views/defendants/offences.html.haml
   def offences
     @offence_history_collection = load_offence_histories
     @offence_ids = params[:offence_ids]&.split(',')
     render :offences, layout: false
   end
 
+  # PATCH /defendants/:id?urn=:urn
+  # Processes the unlink MAAT submission. Redirects to the link form on success.
   def update
     @unlink_attempt.validate!
 

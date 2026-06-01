@@ -24,7 +24,6 @@ en:
         respondent_synonyms: Respondent synonyms
         result_codes: Result code
         result_text: Result text
-        type: Type
       events:
         caption: Hearing events
         event: Event

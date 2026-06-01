@@ -3,6 +3,10 @@ class SubjectsController < ApplicationController
   before_action :set_breadcrumbs
 
   # GET /court_applications/:court_application_id/subject
+  # Respondent/appellant detail page: shows subject info (DOB, URN, ASN, MAAT),
+  # offences (appeals only), and the link/unlink MAAT form.
+  # The same view adapts to both roles via @application.appeal?.
+  # View: app/views/subjects/show.html.haml
   def show
     @form_model = @application.maat_linked? ? load_unlink_attempt : load_link_attempt
 
@@ -15,6 +19,7 @@ class SubjectsController < ApplicationController
   end
 
   # POST /court_applications/:court_application_id/subject/link
+  # Processes the link MAAT submission for a respondent/appellant. Redirects to show on success.
   def link
     @form_model = LinkAttempt.new(defendant_id: @subject.subject_id, username: current_user.username,
                                   maat_reference: params.dig(:link_attempt, :maat_reference))
@@ -37,6 +42,7 @@ class SubjectsController < ApplicationController
   end
 
   # POST /court_applications/:court_application_id/subject/unlink
+  # Processes the unlink MAAT submission for a respondent/appellant. Redirects to show on success.
   def unlink
     @form_model = load_unlink_attempt
     @form_model.validate!

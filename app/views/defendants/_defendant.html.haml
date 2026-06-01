@@ -6,26 +6,45 @@
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.date_of_birth')
       %td.govuk-table__cell
-        = l(defendant.date_of_birth&.to_date)
+        %span#defendant-dob= l(defendant.date_of_birth&.to_date)
+      %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+        - if defendant.date_of_birth.present?
+          %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-dob", type: "button", class: "govuk-!-margin-bottom-0" }
+            Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.prosecution_case_reference')
       %td.govuk-table__cell
-        = prosecution_case_reference
+        %span#defendant-case-urn= prosecution_case_reference
+      %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+        %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-case-urn", type: "button", class: "govuk-!-margin-bottom-0" }
+          Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.national_insurance_number')
       %td.govuk-table__cell
-        = defendant.national_insurance_number
+        %span#defendant-ni-number= defendant.national_insurance_number
+      %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+        - if defendant.national_insurance_number.present?
+          %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-ni-number", type: "button", class: "govuk-!-margin-bottom-0" }
+            Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.arrest_summons_number')
       %td.govuk-table__cell
-        = defendant.arrest_summons_number
+        %span#defendant-asn= defendant.arrest_summons_number
+      %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+        - if defendant.arrest_summons_number.present?
+          %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-asn", type: "button", class: "govuk-!-margin-bottom-0" }
+            Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: 'row' }
         = t('search.result.defendant.maat_number')
       %td.govuk-table__cell
-        = defendant.maat_reference
+        %span#defendant-maat-number= defendant.maat_reference
+      %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+        - if defendant.maat_reference.present?
+          %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-maat-number", type: "button", class: "govuk-!-margin-bottom-0" }
+            Copy
 
 = link_to 'View case', prosecution_case_path(prosecution_case_reference), class: 'govuk-button govuk-button--secondary govuk-!-margin-bottom-9'
