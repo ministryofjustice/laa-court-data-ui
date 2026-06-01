@@ -1,5 +1,7 @@
-= render partial: 'results_header', locals: { term: term, dob: dob, results: results }
+.govuk-grid-column-two-thirds
+  = render partial: 'results_header', locals: { term: term, dob: dob, results: results }
 - if results.empty?
   = render 'results/none'
 - else
-  = render partial: 'results/defendant', locals: { results: results }
+  .govuk-grid-column-full
+    = render partial: 'results/defendant', locals: { results: results }

@@ -16,7 +16,7 @@
 
 .govuk-grid-row
   .govuk-grid-column-one-third
-    .govuk-heading-l
+    %h2.govuk-heading-l
       = t('.details')
     %div{ class: "govuk-!-margin-bottom-9" }
       .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
@@ -52,7 +52,7 @@
       = @hearing_details.judiciary_list
 
   .govuk-grid-column-two-thirds
-    .govuk-heading-l
+    %h2.govuk-heading-l
       = t('.events')
     - if @hearing_events&.events&.any?
       %table.govuk-table
@@ -79,7 +79,7 @@
     = render partial: 'hearings/court_applications', locals: { hearing: (@hearing_details.hearing if @hearing_details.loaded?) }
 
     - if @application.subject_summary.proceedings_concluded
-      .govuk-heading-l
+      %h2.govuk-heading-l
         = t('.result')
       .govuk-body
         = @application.result_string
