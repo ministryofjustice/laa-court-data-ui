@@ -58,6 +58,8 @@ RSpec.feature 'Court Application subjects', :vcr do
       "Plea for the breach Not available"
     ).and have_content(
       "View breach"
+    ).and have_content(
+      "The MAAT id is missing"
     )
   end
 
