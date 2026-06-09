@@ -47,7 +47,7 @@ RSpec.describe 'error routes', type: :request do
     before { get '/422' }
 
     it 'has a status of 422' do
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
 
     it 'renders the 422/unacceptable template' do
