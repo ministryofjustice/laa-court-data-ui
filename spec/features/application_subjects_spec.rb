@@ -63,6 +63,22 @@ RSpec.feature 'Court Application subjects', :vcr do
     )
   end
 
+  scenario 'I view the link court data page for a breach' do
+    sign_in user
+    visit show_link_court_application_subject_path(breach_court_application_id)
+    expect(page).to have_css('h1', text: 'Link court data')
+    expect(page).to have_css('.govuk-tag', text: 'Breach')
+    expect(page).to have_content(
+      "Name Mauricio Rath"
+    ).and have_content(
+      "Case URN MyString"
+    ).and have_content(
+      "ASN KQJXI10ZJXCI"
+    ).and have_content(
+      "Plea for the breach"
+    )
+  end
+
   scenario 'I view a linked application' do
     sign_in user
     visit court_application_path(linked_court_application_id)
