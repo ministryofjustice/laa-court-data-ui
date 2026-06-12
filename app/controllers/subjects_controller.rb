@@ -18,6 +18,17 @@ class SubjectsController < ApplicationController
     end
   end
 
+  # GET /court_applications/:court_application_id/subject/show_link
+  # First page of the new linking journey; the template depends on the application type.
+  def show_link
+    @form_model = load_link_attempt
+
+    case @application.application_category
+    when 'breach'
+      render :show_link_breach
+    end
+  end
+
   # POST /court_applications/:court_application_id/subject/link
   # Processes the link MAAT submission for a respondent/appellant. Redirects to show on success.
   def link

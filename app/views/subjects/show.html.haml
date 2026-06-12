@@ -41,11 +41,11 @@
           = t(".respondent")
         %tbody.govuk-table__body
           %tr.govuk-table__row
-            %th.govuk-table__header{ scope: "row" }
+            %th.govuk-table__header{ scope: "row", class: "govuk-!-width-one-third" }
               = t(".date_of_birth")
             %td.govuk-table__cell
               %span#subject-dob= l(@subject.date_of_birth)
-            %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+            %td.govuk-table__cell{ class: "govuk-!-text-align-right govuk-!-width-one-third" }
               - if @subject.date_of_birth.present?
                 %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-dob", type: "button", class: "govuk-!-margin-bottom-0" }
                   Copy
@@ -91,11 +91,16 @@
             %th.govuk-table__header{ scope: "row" }
               = t(".maat_number")
             %td.govuk-table__cell
-              %span#subject-maat-number= @application.maat_reference
+              - if @application.maat_reference.present?
+                %span#subject-maat-number= @application.maat_reference
+              - else
+                Not linked
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
               - if @application.maat_reference.present?
                 %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-maat-number", type: "button", class: "govuk-!-margin-bottom-0" }
                   Copy
+              - else
+                = link_to "Link MAAT ID", show_link_court_application_subject_path(@application.application_id), class: "govuk-link"
 
   = link_to t(".view.#{@application.application_category}"),
             court_application_path(@application.application_id),
