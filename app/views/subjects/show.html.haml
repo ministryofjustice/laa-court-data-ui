@@ -100,7 +100,7 @@
                 %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-maat-number", type: "button", class: "govuk-!-margin-bottom-0" }
                   Copy
               - else
-                = link_to "Link MAAT ID", show_link_court_application_subject_path(@application.application_id), class: "govuk-link"
+                = link_to "Link MAAT ID", link_court_application_subject_path(@application.application_id), class: "govuk-link"
 
   = link_to t(".view.#{@application.application_category}"),
             court_application_path(@application.application_id),
@@ -124,15 +124,3 @@
             = t('defendants.unlink.detail')
           = render 'defendants/unlink_warning'
           = render 'defendants/unlinking_fields', { f: }
-        - else
-          = f.govuk_text_field :maat_reference,
-                               label: { text: t('laa_reference.link.form.maat_reference.label') },
-                               hint: { text: t('laa_reference.link.form.maat_reference.hint') }
-
-          = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }, name: 'maat_ref_required', value: 'true'
-
-          -# For POCA, Appeal and Breach it is possible to link without a MAAT ID (Dummy MAAT ID)
-          - if @application.poca? || @application.appeal? || @application.breach?
-            = govuk_detail(t('laa_reference.missing_maat_id.label')) do
-              %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
-              = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'maat_ref_required', value: 'false')

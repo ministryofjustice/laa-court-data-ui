@@ -58,14 +58,14 @@ RSpec.feature 'Court Application subjects', :vcr do
       "Plea for the breach Not available"
     ).and have_text(
       "View breach"
-    ).and have_content(
-      "The MAAT id is missing"
+    ).and have_link(
+      "Link MAAT ID"
     )
   end
 
   scenario 'I view the link court data page for a breach' do
     sign_in user
-    visit show_link_court_application_subject_path(breach_court_application_id)
+    visit link_court_application_subject_path(breach_court_application_id)
     expect(page).to have_css('h1', text: 'Link court data')
     expect(page).to have_css('.govuk-tag', text: 'Breach')
     expect(page).to have_content(
@@ -77,6 +77,41 @@ RSpec.feature 'Court Application subjects', :vcr do
     ).and have_content(
       "Plea for the breach"
     )
+  end
+
+  scenario 'I stay on the link page when I submit an invalid MAAT ID for a breach' do
+    sign_in user
+    visit link_court_application_subject_path(breach_court_application_id)
+
+    click_on "Create link to court data"
+
+    expect(page).to have_css('h1', text: 'Link court data')
+    expect(page).to have_css('.govuk-tag', text: 'Breach')
+    expect(page).to have_content "MAAT ID is required"
+  end
+
+  scenario 'I view the link court data page for an appeal' do
+    sign_in user
+    visit link_court_application_subject_path(found_court_application_id)
+    expect(page).to have_css('h1', text: 'Link court data')
+    expect(page).to have_css('.govuk-tag', text: 'Appeal')
+    expect(page).to have_content(
+      "Name Mauricio Rath"
+    ).and have_content(
+      "Case URN MyString"
+    )
+    expect(page).to have_no_content("Plea for the breach")
+  end
+
+  scenario 'I stay on the link page when I submit an invalid MAAT ID for an appeal' do
+    sign_in user
+    visit link_court_application_subject_path(found_court_application_id)
+
+    click_on "Create link to court data"
+
+    expect(page).to have_css('h1', text: 'Link court data')
+    expect(page).to have_css('.govuk-tag', text: 'Appeal')
+    expect(page).to have_content "MAAT ID is required"
   end
 
   scenario 'I view a linked application' do

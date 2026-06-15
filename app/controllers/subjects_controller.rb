@@ -18,15 +18,10 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # GET /court_applications/:court_application_id/subject/show_link
-  # First page of the new linking journey; the template depends on the application type.
+  # GET /court_applications/:court_application_id/subject/link
+  # First page of the new linking journey; renders the dedicated link page for all categories.
   def show_link
     @form_model = load_link_attempt
-
-    case @application.application_category
-    when 'breach'
-      render :show_link_breach
-    end
   end
 
   # POST /court_applications/:court_application_id/subject/link
@@ -47,9 +42,9 @@ class SubjectsController < ApplicationController
     redirect_to court_application_subject_path(@application.application_id), flash: { notice: t('.success') }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
-    render :show
+    render :show_link
   rescue ActiveModel::ValidationError
-    render :show
+    render :show_link
   end
 
   # POST /court_applications/:court_application_id/subject/unlink
