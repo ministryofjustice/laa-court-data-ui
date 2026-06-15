@@ -2,8 +2,12 @@
 - content_for :page_heading do
   %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
     = t(".title")
-%strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
-  = t("subjects.breach")
+- if @application.appeal?
+  %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
+    = t("subjects.appeal")
+- else
+  %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
+    = t("subjects.#{@application.application_category}")
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
@@ -30,12 +34,14 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".arrest_summons_number")
           %td.govuk-table__cell
-            = @subject.defendant_asn
-        %tr.govuk-table__row
-          %th.govuk-table__header{ scope: "row" }
-            = t(".plea")
-          %td.govuk-table__cell
-            = @application.result_string
+            -# In case of an appeal, the ASN comes nil from the @subject, so we get it from the @application.defendant
+            = @application.appeal? ? @application.defendant.arrest_summons_number : @subject.defendant_asn
+        - if @application.breach?
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: "row" }
+              = t(".plea")
+            %td.govuk-table__cell
+              = @application.result_string
 
 = form_with(model: @form_model, url: link_court_application_subject_path(@application.application_id), data: { turbo: false }) do |f|
   - content_for :error_summary do

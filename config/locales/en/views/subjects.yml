@@ -22,7 +22,7 @@ en:
         appeal: View appeal
         breach: View breach
         poca: View POCA
-    show_link_breach:
+    show_link:
       arrest_summons_number: ASN
       case_urn: Case URN
       date_of_birth: Date of birth
