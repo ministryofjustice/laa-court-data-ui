@@ -4,7 +4,7 @@
       - if pagy.prev
         .govuk-pagination__prev
           = link_to page_url(pagy.prev), class: 'govuk-link govuk-pagination__link', rel: 'prev' do
-            = pagination_svg_icon(:prev)
+            = render 'shared/pagination_prev'
             %span.govuk-pagination__link-title Previous
       %ul.govuk-pagination__list
         - pagy.series.each do |item|
@@ -24,6 +24,6 @@
         .govuk-pagination__next
           = link_to page_url(pagy.next), class: 'govuk-link govuk-pagination__link', rel: 'next' do
             %span.govuk-pagination__link-title Next
-            = pagination_svg_icon(:next)
+            = render 'shared/pagination_next'
     %p.moj-pagination__results
       Showing #{pagy.from} to #{pagy.to} of #{pagy.count} total results
