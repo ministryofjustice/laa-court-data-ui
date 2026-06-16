@@ -31,10 +31,10 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
       expect(page).to have_field('Year', with: '2000')
 
       within 'tbody.govuk-table__body' do
-        expect(page).to have_content('Wendie Bogisiche Lowe', minimum: 1)
-        expect(page).to have_content('Marlin Schaefer Leuschke', minimum: 1)
-        expect(page).to have_content('Randal Huels Mitchell', minimum: 1)
-        expect(page).to have_content('Jammy Dodger', minimum: 1)
+        expect(page).to have_text('Wendie Bogisiche Lowe', minimum: 1)
+        expect(page).to have_text('Marlin Schaefer Leuschke', minimum: 1)
+        expect(page).to have_text('Randal Huels Mitchell', minimum: 1)
+        expect(page).to have_text('Jammy Dodger', minimum: 1)
       end
     end
 
@@ -64,8 +64,8 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
     expect(page).to have_field('Year', with: '2000')
 
     within 'tbody.govuk-table__body' do
-      expect(page).to have_content('Wendie', minimum: 1)
-      expect(page).to have_content('Wendie', maximum: 1)
+      expect(page).to have_text('Wendie', minimum: 1)
+      expect(page).to have_text('Wendie', maximum: 1)
     end
   end
 
@@ -94,7 +94,7 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
     expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
-      expect(page).to have_content('Defendant date of birth required')
+      expect(page).to have_text('Defendant date of birth required')
     end
 
     expect(page).to have_css('#search-dob-error', text: 'Defendant date of birth required')
@@ -114,7 +114,7 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
     expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
-      expect(page).to have_content('Enter a valid defendant date of birth')
+      expect(page).to have_text('Enter a valid defendant date of birth')
     end
 
     expect(page).to have_css('#search-dob-error', text: 'Enter a valid defendant date of birth')
@@ -134,7 +134,7 @@ RSpec.feature 'Defendant by name and dob search', :vcr, :js, type: :feature do
     expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
-      expect(page).to have_content('Enter a valid defendant date of birth')
+      expect(page).to have_text('Enter a valid defendant date of birth')
     end
 
     expect(page).to have_css('#search-dob-error', text: 'Enter a valid defendant date of birth')

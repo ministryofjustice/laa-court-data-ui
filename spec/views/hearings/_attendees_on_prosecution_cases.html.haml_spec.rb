@@ -15,9 +15,10 @@ RSpec.describe 'hearings/_attendees_on_prosecution_cases', type: :view do
   let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
   let(:hearing) { Cda::Hearing.find(hearing_id) }
 
-  not_available_text = /Not available/
+  let(:not_available_text) { /Not available/ }
+  let(:small_gov_heading) { 'div.govuk-heading-s' }
+
   not_available_test = 'displays not available'
-  small_gov_heading = 'div.govuk-heading-s'
 
   shared_examples 'returns correct headers' do
     it 'displays the section' do

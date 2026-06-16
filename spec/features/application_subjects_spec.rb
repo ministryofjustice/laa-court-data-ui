@@ -9,34 +9,34 @@ RSpec.feature 'Court Application subjects', :vcr do
 
   scenario 'I am not signed in' do
     visit court_application_subject_path(found_court_application_id)
-    expect(page).to have_content "You need to sign in before continuing."
+    expect(page).to have_text "You need to sign in before continuing."
   end
 
   scenario 'The application cannot be found' do
     sign_in user
     visit court_application_subject_path(missing_court_application_id)
-    expect(page).to have_content "There was a problem getting the information you requested"
+    expect(page).to have_text "There was a problem getting the information you requested"
   end
 
   scenario 'There is a server error' do
     sign_in user
     visit court_application_subject_path(erroring_court_application_id)
-    expect(page).to have_content "There was a problem getting the information you requested"
+    expect(page).to have_text "There was a problem getting the information you requested"
   end
 
   scenario 'I view the application details', :js do
     sign_in user
     visit court_application_subject_path(found_court_application_id)
-    expect(page).to have_content(
+    expect(page).to have_text(
       ["Home", "Search", "Case MyString", "Appeal", "Mauricio Rath"].join("\n") # Breadcrumb
-    ).and have_content(
+    ).and have_text(
       "Appeal"
-    ).and have_content(
+    ).and have_text(
       "Mauricio Rath"
-    ).and have_content(
+    ).and have_text(
       "06/05/1994"
-    ).and have_content( # The ASN is coming from the arrest_summons_number field of the @application.defendant,
-      "ZGWYZ74MKETB"    # since Common Platform is not sending the @subject.defendant_asn for appeals.
+    ).and have_text( # The ASN is coming from the arrest_summons_number field of the @application.defendant,
+      "ZGWYZ74MKETB" # since Common Platform is not sending the @subject.defendant_asn for appeals.
     )
     expect(page).to be_accessible
 
@@ -48,17 +48,17 @@ RSpec.feature 'Court Application subjects', :vcr do
   scenario 'I view breach application subject details' do
     sign_in user
     visit court_application_subject_path(breach_court_application_id)
-    expect(page).to have_content(
+    expect(page).to have_text(
       ["Home", "Search", "Case MyString", "Breach", "Mauricio Rath"].join # Breadcrumb
-    ).and have_content(
+    ).and have_text(
       "Mauricio Rath"
-    ).and have_content(
+    ).and have_text(
       "Respondent ASN KQJXI10ZJXCI"
-    ).and have_content(
+    ).and have_text(
       "Plea for the breach Not available"
-    ).and have_content(
+    ).and have_text(
       "View breach"
-    ).and have_content(
+    ).and have_text(
       "The MAAT id is missing"
     )
   end
@@ -66,22 +66,22 @@ RSpec.feature 'Court Application subjects', :vcr do
   scenario 'I view a linked application' do
     sign_in user
     visit court_application_path(linked_court_application_id)
-    expect(page).to have_content maat_id_from_vcr
+    expect(page).to have_text maat_id_from_vcr
   end
 
   scenario 'I view the offence details' do
     sign_in user
     visit court_application_subject_path(found_court_application_id)
-    expect(page).to have_content "Making, custody or control of counterfeiting materials etc"
-    expect(page).to have_content "Proceeds of Crime Act 2002 s.339(1A)"
-    expect(page).to have_content "Loading"
+    expect(page).to have_text "Making, custody or control of counterfeiting materials etc"
+    expect(page).to have_text "Proceeds of Crime Act 2002 s.339(1A)"
+    expect(page).to have_text "Loading"
   end
 
   scenario 'I view the full offence details' do
     sign_in user
     visit court_application_subject_path(found_court_application_id, include_offence_history: true)
-    expect(page).to have_content "Making, custody or control of counterfeiting materials etc"
-    expect(page).to have_content "Proceeds of Crime Act 2002 s.339(1A)"
-    expect(page).to have_content "Guilty"
+    expect(page).to have_text "Making, custody or control of counterfeiting materials etc"
+    expect(page).to have_text "Proceeds of Crime Act 2002 s.339(1A)"
+    expect(page).to have_text "Guilty"
   end
 end

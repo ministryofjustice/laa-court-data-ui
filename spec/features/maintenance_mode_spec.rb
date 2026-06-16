@@ -9,7 +9,7 @@ RSpec.describe 'Maintenance mode', type: :feature do
     end
 
     it 'shows a generic error' do
-      expect(page).to have_content 'This service is currently unavailable'
+      expect(page).to have_text 'This service is currently unavailable'
     end
 
     it 'is accessible', :js do

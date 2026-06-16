@@ -13,7 +13,6 @@ RSpec.describe 'View usage stats', :vcr, type: :feature do
     UnlinkReason.create!(code: 7, description: "Other")
 
     # Stub external calls for predictable data
-    # rubocop:disable RSpec/VerifiedDoubles
     allow(Cda::LinkingStatCollection).to receive(:find_from_range)
       .with(100.years.ago.to_date.to_s, Time.zone.today.to_s)
       .and_return(double(current_range: double(linked: 10, unlinked: 5),
@@ -35,26 +34,25 @@ RSpec.describe 'View usage stats', :vcr, type: :feature do
   end
 
   after { Warden.test_reset! }
-  # rubocop:enable RSpec/VerifiedDoubles
 
   scenario 'I enter invalid dates' do
     visit new_stats_path(stat_range: { from: 'aaa', to: 'bbb' })
 
-    expect(page).to have_content 'Start date must be in format dd/mm/yyyy'
-    expect(page).to have_content 'End date must be in format dd/mm/yyyy'
+    expect(page).to have_text 'Start date must be in format dd/mm/yyyy'
+    expect(page).to have_text 'End date must be in format dd/mm/yyyy'
   end
 
   scenario 'I enter valid dates' do
     visit new_stats_path(stat_range: { from: '01/09/2025', to: '1/10/2025' })
 
-    expect(page).to have_content "Total links and unlinks"
-    expect(page).to have_content "MAAT IDs linked 10"
-    expect(page).to have_content "MAAT IDs unlinked 5"
+    expect(page).to have_text "Total links and unlinks"
+    expect(page).to have_text "MAAT IDs linked 10"
+    expect(page).to have_text "MAAT IDs unlinked 5"
 
-    expect(page).to have_content "Previous periods"
-    expect(page).to have_content "Period start Period end MAAT IDs linked MAAT IDs subsequently unlinked"
-    expect(page).to have_content "Fri, 1 August 2025 Sun, 31 August 2025 4 4"
-    expect(page).to have_content "Tue, 1 July 2025 Thu, 31 July 2025 2 2"
-    expect(page).to have_content "Sat, 31 May 2025 Mon, 30 June 2025 1 1"
+    expect(page).to have_text "Previous periods"
+    expect(page).to have_text "Period start Period end MAAT IDs linked MAAT IDs subsequently unlinked"
+    expect(page).to have_text "Fri, 1 August 2025 Sun, 31 August 2025 4 4"
+    expect(page).to have_text "Tue, 1 July 2025 Thu, 31 July 2025 2 2"
+    expect(page).to have_text "Sat, 31 May 2025 Mon, 30 June 2025 1 1"
   end
 end

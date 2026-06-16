@@ -97,7 +97,7 @@ module Cda
           next dc_defendant_id unless dc_defendant_id.is_a?(String)
 
           defendant_details = prosecution_case.defendants.find do |defendant|
-            (dc_defendant_id == defendant.id)
+            dc_defendant_id == defendant.id
           end
           defendant_details || dc_defendant_id
         end

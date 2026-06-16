@@ -23,7 +23,7 @@ RSpec.feature 'Navigation', type: :feature do
 
     scenario 'visit sidekiq console via address bar' do
       visit sidekiq_web_path
-      expect(page).to have_content('Page not found')
+      expect(page).to have_text('Page not found')
     end
   end
 

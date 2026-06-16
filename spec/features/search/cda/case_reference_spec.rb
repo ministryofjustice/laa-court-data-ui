@@ -17,7 +17,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     expect(page).to have_text 'Search results'
 
     within 'tbody.govuk-table__body' do
-      expect(page).to have_content('TEST12345', count: 4)
+      expect(page).to have_text('TEST12345', count: 4)
       # Depending on whether there is a MAAT reference, we either link to the new reference
       # screen (to allow linking) or the defendant edit screen (to allow unlinking)
       expect(find('a', text: 'Wendie Bogisiche Lowe')['href']).to match(%r{laa_references/new})
@@ -50,7 +50,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
-      expect(page).to have_content('Search term required')
+      expect(page).to have_text('Search term required')
     end
 
     expect(page).to have_css('#search-term-error', text: 'Search term required')
@@ -69,10 +69,10 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
-      expect(page).to have_content('Unable to complete the search. Please try again in a moment.')
+      expect(page).to have_text('Unable to complete the search. Please try again in a moment.')
 
       # It shows a situation-specific error message
-      expect(page).to have_content('HMCTS Common Platform could not be reached')
+      expect(page).to have_text('HMCTS Common Platform could not be reached')
     end
 
     expect(page).to be_accessible
@@ -90,7 +90,7 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
     expect(page).to have_css('.govuk-error-summary')
     within '.govuk-error-summary' do
       expect(page)
-        .to have_content('Unable to complete the search. Please adjust the search terms and try again.')
+        .to have_text('Unable to complete the search. Please adjust the search terms and try again.')
     end
 
     expect(page).to be_accessible

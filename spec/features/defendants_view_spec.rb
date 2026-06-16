@@ -46,7 +46,7 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
-      expect(page).to have_content('Create link to court data')
+      expect(page).to have_text('Create link to court data')
     end
 
     scenario 'it is accessible', :js do
@@ -56,7 +56,7 @@ RSpec.feature 'defendants view', type: :feature do
     scenario 'show full plea history' do
       visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
       click_on 'Reload page with full offence history'
-      expect(page).to have_content 'Guilty'
+      expect(page).to have_text 'Guilty'
     end
 
     context 'when linking is disabled' do
@@ -68,7 +68,7 @@ RSpec.feature 'defendants view', type: :feature do
       scenario 'page shows without linking options' do
         visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
         expect(page).to have_title('Defendant details')
-        expect(page).to have_no_content('Create link to court data')
+        expect(page).to have_no_text('Create link to court data')
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.feature 'defendants view', type: :feature do
       scenario 'laa_references page returns to previous page' do
         visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
         expect(page).to have_current_path '/'
-        expect(page).to have_content(
+        expect(page).to have_text(
           "The HMCTS record for this defendant cannot be displayed."
         )
       end
@@ -106,7 +106,7 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
-      expect(page).to have_content('Remove link to court data')
+      expect(page).to have_text('Remove link to court data')
     end
 
     scenario 'it is accessible', :js do
@@ -116,7 +116,7 @@ RSpec.feature 'defendants view', type: :feature do
     scenario 'show full plea history manually' do
       visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
       click_on 'Reload page with full offence history'
-      expect(page).to have_content 'Guilty'
+      expect(page).to have_text 'Guilty'
     end
 
     context 'when linking is disabled' do
@@ -128,7 +128,7 @@ RSpec.feature 'defendants view', type: :feature do
       scenario 'page shows without linking options' do
         visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
         expect(page).to have_title('Defendant details')
-        expect(page).to have_no_content('Remove link to court data')
+        expect(page).to have_no_text('Remove link to court data')
       end
     end
   end

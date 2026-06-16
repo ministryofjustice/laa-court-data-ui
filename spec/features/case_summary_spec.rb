@@ -11,19 +11,19 @@ RSpec.feature 'Case summary', :stub_case_search, type: :feature do
 
   scenario 'I visit the case summary page', :js do
     expect(page).to have_current_path(prosecution_case_path(case_reference))
-    expect(page).to have_content case_reference
+    expect(page).to have_text case_reference
 
     # Defendants
-    expect(page).to have_content(
+    expect(page).to have_text(
       'Maxie Turcotte Raynor'
-    ).and have_content(
+    ).and have_text(
       '30/06/1973'
-    ).and have_content('Not linked')
+    ).and have_text('Not linked')
 
     # Hearings
-    expect(page).to have_content(
+    expect(page).to have_text(
       '23/10/2019'
-    ).and have_content('Trial (TRL)')
+    ).and have_text('Trial (TRL)')
 
     expect(page).to be_accessible
   end

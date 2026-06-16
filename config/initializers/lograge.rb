@@ -9,7 +9,7 @@ Rails.application.configure do
   config.lograge.custom_payload do |controller|
     req = controller.request
     req.headers.env.select { |k, _| k.start_with?("HTTP_") }
-       .merge("laa-transaction-id": req.request_id)
+                   .merge("laa-transaction-id": req.request_id)
   end
 
   # Adds allocations (from Rails' process_action payload)

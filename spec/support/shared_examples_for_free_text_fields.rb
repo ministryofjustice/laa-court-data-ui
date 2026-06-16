@@ -18,7 +18,7 @@ RSpec.shared_examples 'free text fields' do
     let(:free_text) { free_text_with_unicode_notes }
 
     it 'renders unicode characters correctly' do
-      is_expected.to have_content('!\"#£%&()*,-./Æ½ŵ€')
+      is_expected.to have_text('!\"#£%&()*,-./Æ½ŵ€')
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.shared_examples 'free text fields' do
     let(:free_text) { free_text_with_unpermitted_html }
 
     it 'does not render unpermitted html' do
-      is_expected.to have_content('a comment and (this is another example)')
+      is_expected.to have_text('a comment and (this is another example)')
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.shared_examples 'free text fields' do
     let(:free_text) { free_text_with_crlf_escape_sequences }
 
     it 'renders crlf escape sequences correctly' do
-      is_expected.to have_content("text\nmore details\nother information\n")
+      is_expected.to have_text("text\nmore details\nother information\n")
     end
   end
 end
