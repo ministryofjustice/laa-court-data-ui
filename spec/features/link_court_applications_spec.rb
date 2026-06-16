@@ -37,6 +37,11 @@ RSpec.feature 'Link court applications' do
       expect(page).to have_content "Enter a MAAT ID in the correct format"
     end
 
+    scenario 'I can see the option to create a link without MAAT ID for an appeal application' do
+      visit court_application_subject_path(unlinked_court_application_id)
+      expect(page).to have_content "The MAAT id is missing"
+    end
+
     context 'when linking is disabled' do
       before do
         allow(FeatureFlag).to receive(:enabled?).and_call_original
