@@ -12,30 +12,30 @@ RSpec.feature 'Court Applications', :vcr do
 
   scenario 'I am not signed in' do
     visit court_application_path(found_court_application_id)
-    expect(page).to have_content "You need to sign in before continuing."
+    expect(page).to have_text "You need to sign in before continuing."
   end
 
   scenario 'The application cannot be found' do
     sign_in user
     visit court_application_path(missing_court_application_id)
-    expect(page).to have_content "There was a problem getting the information you requeste"
+    expect(page).to have_text "There was a problem getting the information you requeste"
   end
 
   scenario 'There is a server error' do
     sign_in user
     visit court_application_path(erroring_court_application_id)
-    expect(page).to have_content "There was a problem getting the information you requeste"
+    expect(page).to have_text "There was a problem getting the information you requeste"
   end
 
   scenario 'There is a row on the related applications page' do
     sign_in user
     visit prosecution_case_path(prosecution_case_urn_from_vcr)
     click_link 'Related court applications'
-    expect(page).to have_content "Appeal against a conviction"
-    expect(page).to have_content "Mauricio Rath"
-    expect(page).to have_content "Not available"
-    expect(page).to have_content "Not linked"
-    expect(page).to have_content "Crown Court"
+    expect(page).to have_text "Appeal against a conviction"
+    expect(page).to have_text "Mauricio Rath"
+    expect(page).to have_text "Not available"
+    expect(page).to have_text "Not linked"
+    expect(page).to have_text "Crown Court"
   end
 
   context 'when I view an application successfully' do
@@ -45,12 +45,12 @@ RSpec.feature 'Court Applications', :vcr do
     end
 
     scenario 'I view the application details' do
-      expect(page).to have_content "Appeal against a conviction"
-      expect(page).to have_content "MyString" # The application reference
-      expect(page).to have_content "Result: Not available"
-      expect(page).to have_content "Mauricio Rath"
-      expect(page).to have_content "06/05/1994"
-      expect(page).to have_content "Not linked"
+      expect(page).to have_text "Appeal against a conviction"
+      expect(page).to have_text "MyString" # The application reference
+      expect(page).to have_text "Result: Not available"
+      expect(page).to have_text "Mauricio Rath"
+      expect(page).to have_text "06/05/1994"
+      expect(page).to have_text "Not linked"
 
       click_on "Mauricio Rath"
       expect(page).to have_current_path court_application_subject_path(found_court_application_id)
@@ -77,12 +77,12 @@ RSpec.feature 'Court Applications', :vcr do
     end
 
     scenario 'I view the application details' do
-      expect(page).to have_content("Breach")
-      expect(page).to have_content(
+      expect(page).to have_text("Breach")
+      expect(page).to have_text(
         "Type of application: Failing to comply with the requirements of a youth rehabilitation order " \
         "with intensive supervision and surveillance"
       )
-      expect(page).to have_content(
+      expect(page).to have_text(
         "Information on the 'Application without offence' screen relates to the person as a respondent"
       )
     end
@@ -95,14 +95,14 @@ RSpec.feature 'Court Applications', :vcr do
   scenario 'I view a linked application' do
     sign_in user
     visit court_application_path(linked_court_application_id)
-    expect(page).to have_content maat_id_from_vcr
+    expect(page).to have_text maat_id_from_vcr
   end
 
   scenario 'I view and sort an application with hearings' do
     sign_in user
     visit court_application_path(id_with_hearings)
-    expect(page).to have_content "23/10/2019 Mention - Defendant to Attend (MDA) Not available"
-    expect(page).to have_content "10/04/2025 Pre-Trial Review (PTR) Mr Leone Spinka (Direct counsel)"
+    expect(page).to have_text "23/10/2019 Mention - Defendant to Attend (MDA) Not available"
+    expect(page).to have_text "10/04/2025 Pre-Trial Review (PTR) Mr Leone Spinka (Direct counsel)"
 
     node = find("a", text: "23/10/2019")
     expect(node["href"]).to eq court_application_hearing_hearing_day_path(id_with_hearings,

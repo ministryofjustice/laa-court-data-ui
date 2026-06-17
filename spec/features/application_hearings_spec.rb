@@ -16,20 +16,20 @@ RSpec.feature 'Court Application Hearings', :vcr do
   scenario 'I am not signed in' do
     visit court_application_hearing_hearing_day_path(court_application_id, first_hearing_id,
                                                      first_hearing_day)
-    expect(page).to have_content "You need to sign in before continuing."
+    expect(page).to have_text "You need to sign in before continuing."
   end
 
   scenario 'The application cannot be found' do
     sign_in user
     visit court_application_hearing_hearing_day_path(missing_court_application_id, first_hearing_id,
                                                      first_hearing_day)
-    expect(page).to have_content "There was a problem getting the information you requested"
+    expect(page).to have_text "There was a problem getting the information you requested"
   end
 
   scenario 'There is a server error' do
     sign_in user
     visit court_application_path(erroring_court_application_id)
-    expect(page).to have_content "There was a problem getting the information you requested"
+    expect(page).to have_text "There was a problem getting the information you requested"
   end
 
   scenario 'I view a hearing details page', :js do
@@ -41,31 +41,31 @@ RSpec.feature 'Court Application Hearings', :vcr do
                                                                                  first_hearing_day)
 
     # Details
-    expect(page).to have_content(
+    expect(page).to have_text(
       "Details\nHearing type\nMention - Defendant to Attend (MDA)"
-    ).and have_content(
+    ).and have_text(
       "Court\nDerby Crown Court"
-    ).and have_content("Time listed\n16:19")
+    ).and have_text("Time listed\n16:19")
 
     # Attendees
-    expect(page).to have_content(
+    expect(page).to have_text(
       "Attendees\nAppellants\nMauricio Rath"
-    ).and have_content(
+    ).and have_text(
       "Appellant advocates\nGlenn Walsh Macgyver (Customer counsel)"
-    ).and have_content(
+    ).and have_text(
       "Respondent advocates\nArden Macejkovic"
-    ).and have_content("Judges\nMyString MyString MyString")
+    ).and have_text("Judges\nMyString MyString MyString")
 
     # Events
-    expect(page).to have_content("11:20").and have_content("Est ut cum placeat.").and have_content(
+    expect(page).to have_text("11:20").and have_text("Est ut cum placeat.").and have_text(
       "Praesentium animi hic dolore."
     )
 
     # Court applications
-    expect(page).to have_content("COURT APPLICATION DESCRIPTION").and have_content "April 2025"
+    expect(page).to have_text("COURT APPLICATION DESCRIPTION").and have_text "April 2025"
 
     # Result
-    expect(page).to have_content "Result\nNot available"
+    expect(page).to have_text "Result\nNot available"
 
     expect(page).to be_accessible
   end
@@ -76,48 +76,48 @@ RSpec.feature 'Court Application Hearings', :vcr do
                                                      first_hearing_day)
 
     # Details
-    expect(page).to have_content(
+    expect(page).to have_text(
       "Details\nHearing type\nMention - Defendant to Attend (MDA)"
-    ).and have_content(
+    ).and have_text(
       "Court\nDerby Crown Court"
-    ).and have_content("Time listed\n16:19")
+    ).and have_text("Time listed\n16:19")
 
     # Attendees
-    expect(page).to have_content(
+    expect(page).to have_text(
       "Attendees\nRespondents\nMauricio Rath"
-    ).and have_content(
+    ).and have_text(
       "Respondent advocates\nGlenn Walsh Macgyver (Customer counsel)"
-    ).and have_content(
+    ).and have_text(
       "Applicant advocates\nArden Macejkovic"
-    ).and have_content("Judges\nMyString MyString MyString")
+    ).and have_text("Judges\nMyString MyString MyString")
 
     # Events
-    expect(page).to have_content("11:20").and have_content("Est ut cum placeat.").and have_content(
+    expect(page).to have_text("11:20").and have_text("Est ut cum placeat.").and have_text(
       "Praesentium animi hic dolore."
     )
 
     # Court applications
-    expect(page).to have_content("COURT APPLICATION DESCRIPTION").and have_content "April 2025"
+    expect(page).to have_text("COURT APPLICATION DESCRIPTION").and have_text "April 2025"
 
     # Result
-    expect(page).to have_content "Result\nNot available"
+    expect(page).to have_text "Result\nNot available"
   end
 
   scenario 'I navigate between hearing pages' do
     sign_in user
     visit court_application_hearing_hearing_day_path(court_application_id, first_hearing_id,
                                                      first_hearing_day)
-    expect(page).to have_content "23/10/2019"
-    expect(page).to have_content "Next"
-    expect(page).to have_no_content "Previous"
+    expect(page).to have_text "23/10/2019"
+    expect(page).to have_text "Next"
+    expect(page).to have_no_text "Previous"
 
     click_on "Next"
-    expect(page).to have_content "10/04/2025"
-    expect(page).to have_no_content "Next"
-    expect(page).to have_content "Previous"
+    expect(page).to have_text "10/04/2025"
+    expect(page).to have_no_text "Next"
+    expect(page).to have_text "Previous"
 
     click_on "Previous"
-    expect(page).to have_content "23/10/2019"
+    expect(page).to have_text "23/10/2019"
   end
 
   scenario 'Hearing details are not available' do
@@ -125,7 +125,7 @@ RSpec.feature 'Court Application Hearings', :vcr do
     visit court_application_hearing_hearing_day_path(problematic_application_id,
                                                      erroring_hearing_id,
                                                      first_hearing_day)
-    expect(page).to have_content "Sorry, something went wrong"
+    expect(page).to have_text "Sorry, something went wrong"
   end
 
   scenario 'Hearing is not resulted' do
@@ -134,8 +134,8 @@ RSpec.feature 'Court Application Hearings', :vcr do
                                                      unresulted_hearing_id,
                                                      first_hearing_day)
     # Page can be viewed, just missing data that is not returned
-    expect(page).to have_content "Appellant advocates\nNot available"
-    expect(page).to have_content "11:20 Est ut cum placeat"
+    expect(page).to have_text "Appellant advocates\nNot available"
+    expect(page).to have_text "11:20 Est ut cum placeat"
   end
 
   scenario 'Hearing events are not available' do
@@ -143,7 +143,7 @@ RSpec.feature 'Court Application Hearings', :vcr do
     visit court_application_hearing_hearing_day_path(problematic_application_id,
                                                      problematic_hearing_id,
                                                      erroring_hearing_day)
-    expect(page).to have_content "Sorry, something went wrong"
+    expect(page).to have_text "Sorry, something went wrong"
   end
 
   scenario 'No relevant hearing events' do
@@ -151,8 +151,8 @@ RSpec.feature 'Court Application Hearings', :vcr do
     visit court_application_hearing_hearing_day_path(problematic_application_id,
                                                      problematic_hearing_id,
                                                      missing_hearing_day)
-    expect(page).to have_content "11/04/2025"
-    expect(page).to have_content "No events are associated with this hearing"
-    expect(page).to have_no_content "Something went wrong"
+    expect(page).to have_text "11/04/2025"
+    expect(page).to have_text "No events are associated with this hearing"
+    expect(page).to have_no_text "Something went wrong"
   end
 end

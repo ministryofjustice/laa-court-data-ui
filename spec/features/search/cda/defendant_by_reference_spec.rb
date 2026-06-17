@@ -48,7 +48,7 @@ RSpec.feature 'Defendant by reference search', :vcr, :js, type: :feature do
       expect(page).to have_no_css('.govuk-body', text: 'There are no matching results')
       expect(page).to have_css('.govuk-error-summary')
       within '.govuk-error-summary' do
-        expect(page).to have_content('Search term required')
+        expect(page).to have_text('Search term required')
       end
 
       expect(page).to have_css('#search-term-error', text: 'Search term required')

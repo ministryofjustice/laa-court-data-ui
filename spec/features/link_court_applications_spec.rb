@@ -16,30 +16,30 @@ RSpec.feature 'Link court applications' do
 
     scenario 'I view a linked court application subject' do
       visit court_application_subject_path(linked_court_application_id)
-      expect(page).to have_content "MAAT number 1234567"
-      expect(page).to have_no_content "Enter the MAAT ID"
+      expect(page).to have_text "MAAT number 1234567"
+      expect(page).to have_no_text "Enter the MAAT ID"
     end
 
     scenario 'I successfully link a court application' do
       visit court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_content "Enter the MAAT ID"
+      expect(page).to have_text "Enter the MAAT ID"
       fill_in "MAAT ID", with: '7654321'
       click_on "Create link to court data"
-      expect(page).to have_content "You have successfully linked to the court data source"
-      expect(page).to have_content "MAAT number 7654321"
-      expect(page).to have_no_content "Enter the MAAT ID"
+      expect(page).to have_text "You have successfully linked to the court data source"
+      expect(page).to have_text "MAAT number 7654321"
+      expect(page).to have_no_text "Enter the MAAT ID"
     end
 
     scenario 'I try to link with an invalid MAAT' do
       visit court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: '123'
       click_on "Create link to court data"
-      expect(page).to have_content "Enter a MAAT ID in the correct format"
+      expect(page).to have_text "Enter a MAAT ID in the correct format"
     end
 
     scenario 'I can see the option to create a link without MAAT ID for an appeal application' do
       visit court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_content "The MAAT id is missing"
+      expect(page).to have_text "The MAAT id is missing"
     end
 
     context 'when linking is disabled' do
@@ -50,8 +50,8 @@ RSpec.feature 'Link court applications' do
 
       scenario 'page shows without linking options' do
         visit court_application_subject_path(unlinked_court_application_id)
-        expect(page).to have_content "MAAT number"
-        expect(page).to have_no_content "Enter the MAAT ID"
+        expect(page).to have_text "MAAT number"
+        expect(page).to have_no_text "Enter the MAAT ID"
       end
     end
   end
@@ -70,7 +70,7 @@ RSpec.feature 'Link court applications' do
       fill_in "MAAT ID", with: '7654321'
       click_on "Create link to court data"
 
-      expect(page).to have_content "Unable to link the defendant to that MAAT ID"
+      expect(page).to have_text "Unable to link the defendant to that MAAT ID"
     end
   end
 
@@ -93,13 +93,13 @@ RSpec.feature 'Link court applications' do
       fill_in "MAAT ID", with: '1234567'
       click_on "Create link to court data"
 
-      expect(page).to have_content "You have successfully linked to the court data source"
-      expect(page).to have_content "Remove link to court data"
+      expect(page).to have_text "You have successfully linked to the court data source"
+      expect(page).to have_text "Remove link to court data"
 
       select "Initially processed on Libra", from: "Reason for unlinking"
       click_on "Remove link to court data"
 
-      expect(page).to have_content "You have successfully unlinked from the court data source"
+      expect(page).to have_text "You have successfully unlinked from the court data source"
     end
 
     scenario 'I link and then unlink a POCA application, without a MAAT ID' do
@@ -108,13 +108,13 @@ RSpec.feature 'Link court applications' do
       find("summary", text: "The MAAT id is missing").click
       click_on "Create link without MAAT ID"
 
-      expect(page).to have_content "You have successfully linked to the court data source"
-      expect(page).to have_content "Remove link to court data"
+      expect(page).to have_text "You have successfully linked to the court data source"
+      expect(page).to have_text "Remove link to court data"
 
       select "Initially processed on Libra", from: "Reason for unlinking"
       click_on "Remove link to court data"
 
-      expect(page).to have_content "You have successfully unlinked from the court data source"
+      expect(page).to have_text "You have successfully unlinked from the court data source"
     end
   end
 end

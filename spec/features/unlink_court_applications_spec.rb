@@ -20,27 +20,27 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
 
     scenario 'I view an unlinked court application subject' do
       visit court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_content "Enter the MAAT ID"
-      expect(page).to have_no_content "Remove link to court data"
+      expect(page).to have_text "Enter the MAAT ID"
+      expect(page).to have_no_text "Remove link to court data"
     end
 
     scenario 'I successfully unlink a court application' do
       visit court_application_subject_path(linked_court_application_id)
-      expect(page).to have_content "MAAT number 1234568"
-      expect(page).to have_content "Remove link to court data"
+      expect(page).to have_text "MAAT number 1234568"
+      expect(page).to have_text "Remove link to court data"
 
       select "Initially processed on Libra", from: "Reason for unlinking"
       click_on "Remove link to court data"
-      expect(page).to have_content "You have successfully unlinked from the court data source"
-      expect(page).to have_no_content "MAAT number 1234568"
-      expect(page).to have_content "Enter the MAAT ID"
+      expect(page).to have_text "You have successfully unlinked from the court data source"
+      expect(page).to have_no_text "MAAT number 1234568"
+      expect(page).to have_text "Enter the MAAT ID"
     end
 
     scenario 'I try to unlink without selecting a reason' do
       visit court_application_subject_path(linked_court_application_id)
 
       click_on "Remove link to court data"
-      expect(page).to have_content "Choose a reason for unlinking"
+      expect(page).to have_text "Choose a reason for unlinking"
     end
 
     scenario 'I try to unlink without explaining my choice of "other"' do
@@ -48,7 +48,7 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
 
       select "Other", from: "Reason for unlinking"
       click_on "Remove link to court data"
-      expect(page).to have_content "Enter the reason for unlinking"
+      expect(page).to have_text "Enter the reason for unlinking"
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
 
       select "Initially processed on Libra", from: "Reason for unlinking"
       click_on "Remove link to court data"
-      expect(page).to have_content "Unable to unlink the defendant"
+      expect(page).to have_text "Unable to unlink the defendant"
     end
   end
 end

@@ -27,29 +27,29 @@ RSpec.describe 'hearings/_hearing_events.html.haml', type: :view do
     context 'with hearing_events notes' do
       it 'displays the notes' do
         is_expected
-          .to have_content('Hearing event 0')
-          .and have_content('Hearing note 0')
+          .to have_text('Hearing event 0')
+          .and have_text('Hearing note 0')
       end
     end
 
     context 'with no hearing_events notes' do
       it 'displays the row' do
         is_expected
-          .to have_content('Hearing event 1')
+          .to have_text('Hearing event 1')
       end
     end
 
     context 'with notes containing html, unicode and crlf_escape_sequences' do
       it 'renders unicode characters correctly' do
-        is_expected.to have_content('!\"#£%&()*,-./Æ½ŵ€')
+        is_expected.to have_text('!\"#£%&()*,-./Æ½ŵ€')
       end
 
       it 'does not render unpermitted html' do
-        is_expected.to have_content('a comment and (this is another example)')
+        is_expected.to have_text('a comment and (this is another example)')
       end
 
       it 'renders crlf escape sequences correctly' do
-        is_expected.to have_content("text\nmore details\nother information\n")
+        is_expected.to have_text("text\nmore details\nother information\n")
       end
     end
   end

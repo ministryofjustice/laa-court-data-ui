@@ -28,7 +28,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
     end
 
     it 'displays the MAAT ID field hint' do
-      expect(page).to have_content('Enter the MAAT ID')
+      expect(page).to have_text('Enter the MAAT ID')
     end
 
     it 'does not display the Remove link' do
@@ -50,7 +50,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
     end
 
     it 'does not display the MAAT ID field hint' do
-      expect(page).to have_no_content('Enter the MAAT ID')
+      expect(page).to have_no_text('Enter the MAAT ID')
     end
 
     it 'displays the remove link detail' do

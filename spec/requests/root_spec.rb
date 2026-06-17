@@ -39,10 +39,8 @@ RSpec.describe 'Root route', type: :request do
     let(:user) { create(:user, roles: %w[data_analyst]) }
 
     before do
-      # rubocop:disable RSpec/VerifiedDoubles
       allow(Cda::LinkingStatCollection).to receive(:find_from_range)
         .and_return(double(current_range: double(linked: 0, unlinked: 0), previous_ranges: []))
-      # rubocop:enable RSpec/VerifiedDoubles
       sign_in user
       get '/'
     end

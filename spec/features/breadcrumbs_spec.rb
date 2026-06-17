@@ -13,7 +13,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
 
     it 'breadcrumbs are not displayed' do
       within_breadcrumbs do
-        expect(page).to have_no_content(/.+/)
+        expect(page).to have_no_text(/.+/)
       end
     end
   end
@@ -27,7 +27,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
     context 'when on search filters page' do
       scenario 'no breadcrumbs are displayed' do
         within '.govuk-breadcrumbs' do
-          expect(page).to have_no_content(/.+/)
+          expect(page).to have_no_text(/.+/)
         end
       end
     end
@@ -156,7 +156,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
 
   def then_breadcrumbs_are_not_displayed
     within_breadcrumbs do
-      expect(page).to have_no_content(/.+/)
+      expect(page).to have_no_text(/.+/)
     end
   end
 
