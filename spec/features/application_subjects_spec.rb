@@ -114,6 +114,32 @@ RSpec.feature 'Court Application subjects', :vcr do
     expect(page).to have_content "MAAT ID is required"
   end
 
+  scenario 'I view the unlink page for a linked appeal' do
+    sign_in user
+    visit unlink_court_application_subject_path(found_court_application_id)
+    expect(page).to have_css('h1', text: 'Remove link to court data')
+    expect(page).to have_css('.govuk-tag', text: 'Appeal')
+    expect(page).to have_content(
+      "Name Mauricio Rath"
+    ).and have_content(
+      "Case URN MyString"
+    ).and have_content(
+      "MAAT ID #{maat_id_from_vcr}"
+    )
+    expect(page).to have_content("Reason for unlinking")
+    expect(page).to have_button("Remove link to MAAT ID")
+  end
+
+  scenario 'I stay on the unlink page when I submit without a reason' do
+    sign_in user
+    visit unlink_court_application_subject_path(found_court_application_id)
+
+    click_on "Remove link to MAAT ID"
+
+    expect(page).to have_css('h1', text: 'Remove link to court data')
+    expect(page).to have_content "Choose a reason for unlinking"
+  end
+
   scenario 'I view a linked application' do
     sign_in user
     visit court_application_path(linked_court_application_id)

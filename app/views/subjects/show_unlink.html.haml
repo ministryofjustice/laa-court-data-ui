@@ -36,25 +36,34 @@
           %td.govuk-table__cell
             -# In case of an appeal, the ASN comes nil from the @subject, so we get it from the @application.defendant
             = @application.appeal? ? @application.defendant.arrest_summons_number : @subject.defendant_asn
-        - if @application.breach?
-          %tr.govuk-table__row
-            %th.govuk-table__header{ scope: "row" }
-              = t(".plea")
-            %td.govuk-table__cell
-              = @application.result_string
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".maat_number")
+          %td.govuk-table__cell
+            = @application.maat_reference
 
-= form_with(model: @form_model, url: link_court_application_subject_path(@application.application_id), data: { turbo: false }) do |f|
+= form_with(model: @form_model, url: unlink_court_application_subject_path(@application.application_id), data: { turbo: false }) do |f|
   - content_for :error_summary do
     = f.govuk_error_summary
 
   .govuk-grid-row
     .govuk-grid-column-two-thirds
-      = f.govuk_text_field :maat_reference,
-                           label: { text: t('laa_reference.link.form.maat_reference.label') },
-                           hint: { text: t('laa_reference.link.form.maat_reference.hint') }
+      - unlink_reasons = UnlinkReason.all
+      = f.govuk_radio_buttons_fieldset :reason_code, small: true, legend: { text: t('defendants.form.reason_code.label') } do
+        - unlink_reasons.each do |reason|
+          - if reason.text_required?
+            = f.govuk_radio_button :reason_code, reason.code, label: { text: reason.description } do
+              = f.govuk_text_area :other_reason_text,
+                                  label: { text: t('defendants.form.other_reason_text.label') },
+                                  hint: { text: t('defendants.form.other_reason_text.hint') },
+                                  rows: 5,
+                                  max_chars: 500
+          - else
+            = f.govuk_radio_button :reason_code, reason.code, label: { text: reason.description }
 
-      = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }, name: 'maat_ref_required', value: 'true'
+      .govuk-inset-text
+        = t('defendants.unlink.warning')
 
-      = govuk_detail(t('laa_reference.missing_maat_id.label')) do
-        %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
-        = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'maat_ref_required', value: 'false')
+      .govuk-button-group
+        = f.govuk_submit t('.submit'), data: { disable_with: t('defendants.form.unlinking') }, class: 'govuk-button--warning'
+        = link_to t('.back'), court_application_subject_path(@application.application_id), class: 'govuk-link'

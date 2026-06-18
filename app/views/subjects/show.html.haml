@@ -2,7 +2,6 @@
   = render '/feedback_on_appeals_to_crown_court', application: @application
 
 - content_for :custom_packs do
-  = javascript_include_tag 'unlink', defer: true
   = javascript_include_tag 'copy_button', defer: true
 
 - content_for :page_title, "#{@application.appeal? ? t('.appeal_title') : t('.title')} - #{service_name} - GOV.UK"
@@ -24,103 +23,86 @@
   .govuk-body
     Information on this screen relates to the person as a respondent, and may differ from the defendant or appeal screens.
 
-:ruby
-  link_url = if @application.maat_linked?
-    unlink_court_application_subject_path(@application.application_id)
-  else
-    link_court_application_subject_path(@application.application_id)
-  end
-= form_with(model: @form_model, url: link_url, data: { turbo: false }) do |f|
-  - content_for :error_summary do
-    = f.govuk_error_summary
-
-  .govuk-grid-row
-    .govuk-grid-column-two-thirds
-      %table.govuk-table
-        %caption.govuk-table__caption.govuk-visually-hidden
-          = t(".respondent")
-        %tbody.govuk-table__body
-          %tr.govuk-table__row
-            %th.govuk-table__header{ scope: "row", class: "govuk-!-width-one-third" }
-              = t(".date_of_birth")
-            %td.govuk-table__cell
-              %span#subject-dob= l(@subject.date_of_birth)
-            %td.govuk-table__cell{ class: "govuk-!-text-align-right govuk-!-width-one-third" }
-              - if @subject.date_of_birth.present?
-                %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-dob", type: "button", class: "govuk-!-margin-bottom-0" }
-                  Copy
-          %tr.govuk-table__row
-            %th.govuk-table__header{ scope: "row" }
-              = t(".case_urn")
-            %td.govuk-table__cell
-              %span#subject-case-urn= @application.application_reference
-            %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
-              %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-case-urn", type: "button", class: "govuk-!-margin-bottom-0" }
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
+    %table.govuk-table
+      %caption.govuk-table__caption.govuk-visually-hidden
+        = t(".respondent")
+      %tbody.govuk-table__body
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row", class: "govuk-!-width-one-third" }
+            = t(".date_of_birth")
+          %td.govuk-table__cell
+            %span#subject-dob= l(@subject.date_of_birth)
+          %td.govuk-table__cell{ class: "govuk-!-text-align-right govuk-!-width-one-third" }
+            - if @subject.date_of_birth.present?
+              %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-dob", type: "button", class: "govuk-!-margin-bottom-0" }
                 Copy
-          -# haml-lint:disable RepeatedId
-          - if @application.appeal? || @application.poca?
-            %tr.govuk-table__row
-              %th.govuk-table__header{ scope: "row" }
-                = t(".arrest_summons_number")
-              %td.govuk-table__cell
-                -# Important: In case of an appeal, the ASN comes nil from the @subject, so we need to get it from the @application.defendant
-                %span#subject-asn= @application.defendant.arrest_summons_number
-              %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
-                - if @application.defendant.arrest_summons_number.present?
-                  %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }
-                    Copy
-          - else
-            %tr.govuk-table__row
-              %th.govuk-table__header{ scope: "row" }
-                = t(".respondent_arrest_summons_number")
-              %td.govuk-table__cell
-                %span#subject-asn= @subject.defendant_asn
-              %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
-                - if @subject.defendant_asn.present?
-                  %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }
-                    Copy
-            - if @application.breach?
-              %tr.govuk-table__row
-                %th.govuk-table__header{ scope: "row" }
-                  = t(".plea")
-                %td.govuk-table__cell
-                  = @application.result_string
-                %td.govuk-table__cell
-          -# haml-lint:enable RepeatedId
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".case_urn")
+          %td.govuk-table__cell
+            %span#subject-case-urn= @application.application_reference
+          %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+            %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-case-urn", type: "button", class: "govuk-!-margin-bottom-0" }
+              Copy
+        -# haml-lint:disable RepeatedId
+        - if @application.appeal? || @application.poca?
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
-              = t(".maat_number")
+              = t(".arrest_summons_number")
             %td.govuk-table__cell
-              - if @application.maat_reference.present?
-                %span#subject-maat-number= @application.maat_reference
-              - else
-                Not linked
+              -# Important: In case of an appeal, the ASN comes nil from the @subject, so we need to get it from the @application.defendant
+              %span#subject-asn= @application.defendant.arrest_summons_number
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
-              - if @application.maat_reference.present?
-                %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-maat-number", type: "button", class: "govuk-!-margin-bottom-0" }
+              - if @application.defendant.arrest_summons_number.present?
+                %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }
                   Copy
-              - else
-                = link_to "Link MAAT ID", link_court_application_subject_path(@application.application_id), class: "govuk-link"
+        - else
+          %tr.govuk-table__row
+            %th.govuk-table__header{ scope: "row" }
+              = t(".respondent_arrest_summons_number")
+            %td.govuk-table__cell
+              %span#subject-asn= @subject.defendant_asn
+            %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+              - if @subject.defendant_asn.present?
+                %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }
+                  Copy
+          - if @application.breach?
+            %tr.govuk-table__row
+              %th.govuk-table__header{ scope: "row" }
+                = t(".plea")
+              %td.govuk-table__cell
+                = @application.result_string
+              %td.govuk-table__cell
+        -# haml-lint:enable RepeatedId
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".maat_number")
+          %td.govuk-table__cell
+            - if @application.maat_reference.present?
+              %span#subject-maat-number= @application.maat_reference
+              %br
+              = link_to "Unlink MAAT ID", unlink_court_application_subject_path(@application.application_id), class: "govuk-link"
+            - else
+              Not linked
+          %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
+            - if @application.maat_reference.present?
+              %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-maat-number", type: "button", class: "govuk-!-margin-bottom-0" }
+                Copy
+            - else
+              = link_to "Link MAAT ID", link_court_application_subject_path(@application.application_id), class: "govuk-link"
 
-  = link_to t(".view.#{@application.application_category}"),
-            court_application_path(@application.application_id),
-            class: "govuk-button govuk-button--secondary"
+= link_to t(".view.#{@application.application_category}"),
+          court_application_path(@application.application_id),
+          class: "govuk-button govuk-button--secondary"
 
-  - if @application.appeal?
-    %turbo-frame#offence-table{
-      src: offences_defendant_path(@application.defendant.id, urn: @application.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
-    }
-      = render partial: 'defendants/offences',
-               locals: { defendant: @application.defendant, offence_history_collection: @offence_history_collection, offence_ids: @subject.offence_summary.map(&:id) }
-      - if @offence_history_collection.nil?
-        .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
-          = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'
-
-  .govuk-grid-row
-    .govuk-grid-column-two-thirds
-      - unless FeatureFlag.enabled?(:no_linking)
-        - if @application.maat_linked?
-          %h2.govuk-heading-m{ class: "govuk-!-margin-bottom-2" }
-            = t('defendants.unlink.detail')
-          = render 'defendants/unlink_warning'
-          = render 'defendants/unlinking_fields', { f: }
+- if @application.appeal?
+  %turbo-frame#offence-table{
+    src: offences_defendant_path(@application.defendant.id, urn: @application.prosecution_case_reference, offence_ids: @subject.offence_summary.map(&:id).join(","))
+  }
+    = render partial: 'defendants/offences',
+             locals: { defendant: @application.defendant, offence_history_collection: @offence_history_collection, offence_ids: @subject.offence_summary.map(&:id) }
+    - if @offence_history_collection.nil?
+      .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
+        = link_to t('defendants.reload'), court_application_subject_path(@application.application_id, include_offence_history: 'true'), class: 'govuk-link'

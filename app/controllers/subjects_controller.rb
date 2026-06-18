@@ -8,8 +8,6 @@ class SubjectsController < ApplicationController
   # The same view adapts to both roles via @application.appeal?.
   # View: app/views/subjects/show.html.haml
   def show
-    @form_model = @application.maat_linked? ? load_unlink_attempt : load_link_attempt
-
     if params.fetch(:include_offence_history, 'false') == 'true'
       @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(
         @application.defendant.id,
@@ -22,6 +20,12 @@ class SubjectsController < ApplicationController
   # First page of the new linking journey; renders the dedicated link page for all categories.
   def show_link
     @form_model = load_link_attempt
+  end
+
+  # GET /court_applications/:court_application_id/subject/unlink
+  # First page of the unlink journey; renders the dedicated unlink page for all categories.
+  def show_unlink
+    @form_model = load_unlink_attempt
   end
 
   # POST /court_applications/:court_application_id/subject/link
@@ -57,9 +61,9 @@ class SubjectsController < ApplicationController
                 flash: { notice: t('.success') }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
-    render :show
+    render :show_unlink
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    render :show
+    render :show_unlink
   end
 
   private
@@ -80,7 +84,17 @@ class SubjectsController < ApplicationController
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
     add_breadcrumb t("subjects.#{@application.application_category}"),
                    court_application_path(@application.application_id)
-    add_breadcrumb @subject.name
+
+    case action_name
+    when "show_link", "link"
+      add_breadcrumb @subject.name, court_application_subject_path(@application.application_id)
+      add_breadcrumb "Link"
+    when "show_unlink", "unlink"
+      add_breadcrumb @subject.name, court_application_subject_path(@application.application_id)
+      add_breadcrumb "Unlink"
+    else
+      add_breadcrumb @subject.name
+    end
   end
 
   def load_unlink_attempt

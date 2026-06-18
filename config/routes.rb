@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     resource :subject, only: %i[show] do
       member do
         get :link, to: 'show_link'
-        get :unlink, to 'show_unlink'
+        get :unlink, to: 'show_unlink'
         post :link
         post :unlink
       end

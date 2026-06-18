@@ -323,6 +323,73 @@ http_interactions:
         - Granted","cjs_code":null,"ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]}],"linked_maat_id":"A10000074"}'
   recorded_at: Thu, 05 Feb 2026 21:53:29 GMT
 - request:
+    method: get
+    uri: http://localhost:9292/api/internal/v2/court_applications/186a439d-66ea-4cad-a44b-505cf074e839
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      X-Request-Id:
+      - 649aa140-8ef6-4d9e-821d-70559461cf92
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - 649aa140-8ef6-4d9e-821d-70559461cf92
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Vary:
+      - Accept
+      Etag:
+      - W/"af77a4f2e0af5dcfa0fde1bd30833e34"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Runtime:
+      - '0.196355'
+      Server-Timing:
+      - start_processing.action_controller;dur=0.01, sql.active_record;dur=16.86,
+        instantiation.active_record;dur=0.17, start_transaction.active_record;dur=0.01,
+        transaction.active_record;dur=10.24, process_action.action_controller;dur=188.89
+      Content-Length:
+      - '2955'
+    body:
+      encoding: UTF-8
+      string: '{"application_id":"186a439d-66ea-4cad-a44b-505cf074e839","short_id":"A268PGRJKSBO","application_reference":"VMAC197443","application_status":"FINALISED","application_title":"Application
+        for a confiscation order in the Crown Court","application_type":"PC02541","application_result":null,"application_category":"poca","received_date":"2026-01-29","case_summary":[{"case_status":"INACTIVE","prosecution_case_id":"8fe2b5c2-1da9-4cdb-846e-9b35594acda5","prosecution_case_reference":"VMAC197443"}],"hearing_summary":[{"id":"30d800b9-cf6f-446e-a2c6-c2eb77d645ca","hearing_type":"Application
+        under the Proceeds of Crime Act 2002","estimated_duration":null,"defendant_ids":null,"jurisdiction_type":"MAGISTRATES","court_centre":{"id":"f8254db1-1683-483e-afb3-b87fde5a0a26","name":"Lavender
+        Hill Magistrates'' Court","welsh_name":null,"room_id":"9e4932f7-97b2-3010-b942-ddd2624e4dd8","room_name":"Courtroom
+        01","welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B01LY","oucode_l2_code":"1","code":"B01LY00","address":{"address_1":"176A
+        Lavender Hill","address_2":"London","address_3":"","address_4":"","address_5":null,"postcode":null}},"hearing_days":[{"sitting_day":"2026-01-29T10:00:00.000Z","listing_sequence":6,"listed_duration_minutes":20,"has_shared_results":true}],"defence_counsels":[]}],"subject_summary":{"subject_id":"0a8adfeb-f860-483c-a992-f66d136aff3f","date_of_next_hearing":"2026-01-29T10:00:00.000Z","defendant_asn":null,"defendant_dob":"1973-01-29","defendant_first_name":"Melvin","defendant_last_name":"Wiegand","master_defendant_id":"2d8f38d9-d155-45fe-8a41-b77cf9e3d6b5","offence_summary":[{"id":"2494fa76-b89e-47cd-8a9b-d8ede263e925","code":"PC02541","order_index":1,"mode_of_trial":null,"start_date":"2026-01-29","title":"Application
+        for a confiscation order in the Crown Court","wording":null,"proceedings_concluded":null,"legislation":null,"arrest_date":null,"charge_date":null,"laa_application":{"reference":"A10000074","id":null,"status_code":null,"status_date":null,"description":null,"effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":true,"organisation_name":null,"representation_order":{}},"judicial_results":[{"id":"6c88008a-fa7a-48e8-ac71-250426f688d1","label":"Confiscation
+        order","is_adjournment_result":false,"is_available_for_court_extract":true,"is_convicted_result":true,"is_financial_result":false,"qualifier":null,"text":"CONFAA
+        - Confiscation order","cjs_code":"3056","ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]},{"id":"23d2d0f5-1edf-4ed6-8f9e-1f378696b481","label":"Granted","is_adjournment_result":false,"is_available_for_court_extract":true,"is_convicted_result":false,"is_financial_result":false,"qualifier":null,"text":"G
+        - Granted","cjs_code":null,"ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]}],"linked_maat_id":"A10000074"}'
+  recorded_at: Thu, 05 Feb 2026 21:53:29 GMT
+- request:
     method: patch
     uri: http://localhost:9292/api/internal/v2/court_application_laa_references/0a8adfeb-f860-483c-a992-f66d136aff3f
     body:
