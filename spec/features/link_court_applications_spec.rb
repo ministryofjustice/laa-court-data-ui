@@ -16,34 +16,27 @@ RSpec.feature 'Link court applications' do
 
     scenario 'I view a linked court application subject' do
       visit court_application_subject_path(linked_court_application_id)
-      expect(page).to have_text "MAAT number 1234567"
-      expect(page).to have_no_text "Enter the MAAT ID"
+      expect(page).to have_content "MAAT number 1234567"
+      expect(page).to have_link "Remove link"
     end
 
     scenario 'I successfully link a court application' do
-      visit court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_text "Enter the MAAT ID"
+      visit link_court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: '7654321'
       click_on "Create link to court data"
-      expect(page).to have_text "You have successfully linked to the court data source"
-      expect(page).to have_text "MAAT number 7654321"
-      expect(page).to have_no_text "Enter the MAAT ID"
+      expect(page).to have_content "You have successfully linked to the court data source"
+      expect(page).to have_content "MAAT number 7654321"
     end
 
     scenario 'I try to link with an invalid MAAT' do
-      visit court_application_subject_path(unlinked_court_application_id)
+      visit link_court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: '123'
       click_on "Create link to court data"
-      expect(page).to have_text "Enter a MAAT ID in the correct format"
+      expect(page).to have_content "Enter a MAAT ID in the correct format"
     end
 
     scenario 'I can see the option to create a link without MAAT ID for an appeal application' do
-      visit court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_text "The MAAT id is missing"
-    end
-
-    scenario 'I can see the option to create a link without MAAT ID for an appeal application' do
-      visit court_application_subject_path(unlinked_court_application_id)
+      visit link_court_application_subject_path(unlinked_court_application_id)
       expect(page).to have_content "The MAAT id is missing"
     end
 
@@ -53,10 +46,9 @@ RSpec.feature 'Link court applications' do
         allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(true)
       end
 
-      scenario 'page shows without linking options' do
+      scenario 'subject page shows the MAAT number row' do
         visit court_application_subject_path(unlinked_court_application_id)
-        expect(page).to have_text "MAAT number"
-        expect(page).to have_no_text "Enter the MAAT ID"
+        expect(page).to have_content "MAAT number"
       end
     end
   end
@@ -70,12 +62,12 @@ RSpec.feature 'Link court applications' do
     end
 
     scenario 'I try to link but there are problems upstream' do
-      visit court_application_subject_path(unlinked_court_application_with_problems_id)
+      visit link_court_application_subject_path(unlinked_court_application_with_problems_id)
 
       fill_in "MAAT ID", with: '7654321'
       click_on "Create link to court data"
 
-      expect(page).to have_text "Unable to link the defendant to that MAAT ID"
+      expect(page).to have_content "Unable to link the defendant to that MAAT ID"
     end
   end
 
@@ -93,33 +85,33 @@ RSpec.feature 'Link court applications' do
     let(:court_application_id) { '186a439d-66ea-4cad-a44b-505cf074e839' }
 
     scenario 'I link and then unlink a POCA application' do
-      visit court_application_subject_path(court_application_id)
+      visit link_court_application_subject_path(court_application_id)
 
       fill_in "MAAT ID", with: '1234567'
       click_on "Create link to court data"
 
-      expect(page).to have_text "You have successfully linked to the court data source"
-      expect(page).to have_text "Remove link to court data"
+      expect(page).to have_content "You have successfully linked to the court data source"
 
-      select "Initially processed on Libra", from: "Reason for unlinking"
-      click_on "Remove link to court data"
+      click_on "Remove link"
+      choose "Initially processed on Libra"
+      click_on "Remove link to MAAT ID"
 
-      expect(page).to have_text "You have successfully unlinked from the court data source"
+      expect(page).to have_content "You have successfully unlinked from the court data source"
     end
 
     scenario 'I link and then unlink a POCA application, without a MAAT ID' do
-      visit court_application_subject_path(court_application_id)
+      visit link_court_application_subject_path(court_application_id)
 
       find("summary", text: "The MAAT id is missing").click
       click_on "Create link without MAAT ID"
 
-      expect(page).to have_text "You have successfully linked to the court data source"
-      expect(page).to have_text "Remove link to court data"
+      expect(page).to have_content "You have successfully linked to the court data source"
 
-      select "Initially processed on Libra", from: "Reason for unlinking"
-      click_on "Remove link to court data"
+      click_on "Remove link"
+      choose "Initially processed on Libra"
+      click_on "Remove link to MAAT ID"
 
-      expect(page).to have_text "You have successfully unlinked from the court data source"
+      expect(page).to have_content "You have successfully unlinked from the court data source"
     end
   end
 end
