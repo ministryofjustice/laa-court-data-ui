@@ -16,6 +16,10 @@ body:not(.js-enabled) .app-js-only {
   white-space: nowrap;
 }
 
+.app-table-fixed {
+  table-layout: fixed;
+}
+
 .table-heading-blue {
   color: #1a65a6;
   vertical-align: bottom;
