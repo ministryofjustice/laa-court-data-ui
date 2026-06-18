@@ -24,8 +24,8 @@
     Information on this screen relates to the person as a respondent, and may differ from the defendant or appeal screens.
 
 .govuk-grid-row
-  .govuk-grid-column-two-thirds
-    %table.govuk-table
+  .govuk-grid-column-three-quarters
+    %table.govuk-table.app-table-fixed
       %caption.govuk-table__caption.govuk-visually-hidden
         = t(".respondent")
       %tbody.govuk-table__body
@@ -79,11 +79,10 @@
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".maat_number")
-          %td.govuk-table__cell
+          %td.govuk-table__cell.app-no-wrap
             - if @application.maat_reference.present?
               %span#subject-maat-number= @application.maat_reference
-              %br
-              = link_to "Unlink MAAT ID", unlink_court_application_subject_path(@application.application_id), class: "govuk-link"
+              = link_to "Unlink MAAT ID", unlink_court_application_subject_path(@application.application_id), class: "govuk-link govuk-!-margin-left-4"
             - else
               Not linked
           %td.govuk-table__cell{ class: "govuk-!-text-align-right" }

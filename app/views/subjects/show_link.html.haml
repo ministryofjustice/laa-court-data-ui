@@ -53,7 +53,9 @@
                            label: { text: t('laa_reference.link.form.maat_reference.label') },
                            hint: { text: t('laa_reference.link.form.maat_reference.hint') }
 
-      = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }, name: 'maat_ref_required', value: 'true'
+      .govuk-button-group
+        = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }, name: 'maat_ref_required', value: 'true'
+        = link_to subject_back_label(@application), court_application_subject_path(@application.application_id), class: 'govuk-link'
 
       = govuk_detail(t('laa_reference.missing_maat_id.label')) do
         %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
