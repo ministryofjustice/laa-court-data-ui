@@ -3,15 +3,28 @@ en:
   defendants:
     form:
       other_reason_text:
-        hint: Specify reason for unlinking
-        label: Other reason
+        label: Reason for unlinking
       reason_code:
         label: Reason for unlinking
-      submit: Remove link to court data
       unlinking: Unlinking...
     reload: Reload page with full offence history
+    show_link:
+      arrest_summons_number: ASN
+      back: Back
+      case_urn: Case URN
+      date_of_birth: Date of birth
+      name: Name
+      title: Link court data
+    show_unlink:
+      arrest_summons_number: ASN
+      back: Back to defendant
+      case_urn: Case URN
+      date_of_birth: Date of birth
+      maat_number: MAAT ID
+      name: Name
+      submit: Remove link to MAAT ID
+      title: Confirm you want to remove MAAT ID link
     title: Defendant details
     unlink:
-      detail: Remove link to court data
       success: You have successfully unlinked from the court data source
       warning: Removing the link will stop hearing updates being received
