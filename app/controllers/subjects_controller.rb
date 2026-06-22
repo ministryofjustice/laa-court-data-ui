@@ -75,7 +75,7 @@ class SubjectsController < ApplicationController
   end
 
   def set_breadcrumbs
-    # Example: Home > Search > Case XXXXXXXXXX > Appeal/Breach/Poca > John Doe
+    # Example: Home > Search > Case XXXXXXXXXX > Appeal/Breach/Poca > John Doe > Link/Unlink
 
     add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
     add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
@@ -85,16 +85,18 @@ class SubjectsController < ApplicationController
     add_breadcrumb t("subjects.#{@application.application_category}"),
                    court_application_path(@application.application_id)
 
-    case action_name
-    when "show_link", "link"
-      add_breadcrumb @subject.name, court_application_subject_path(@application.application_id)
-      add_breadcrumb "Link"
-    when "show_unlink", "unlink"
-      add_breadcrumb @subject.name, court_application_subject_path(@application.application_id)
-      add_breadcrumb "Unlink"
-    else
+    if action_name == "show" # The Subject page itself
       add_breadcrumb @subject.name
+    else
+      add_breadcrumb @subject.name, court_application_subject_path(@application.application_id)
+      add_breadcrumb final_crumb # The Link/unlink pages
     end
+  end
+
+  def final_crumb
+    { 'show_link' => 'Link',
+      'link' => 'Link',
+      'show_unlink' => 'Unlink', 'unlink' => 'Unlink' }[action_name]
   end
 
   def load_unlink_attempt

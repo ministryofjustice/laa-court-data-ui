@@ -31,7 +31,6 @@ en:
       title: Link court data
     show_unlink:
       arrest_summons_number: ASN
-      back: Back
       case_urn: Case URN
       date_of_birth: Date of birth
       maat_number: MAAT ID

@@ -68,13 +68,13 @@ RSpec.feature 'Court Application subjects', :vcr do
     visit link_court_application_subject_path(breach_court_application_id)
     expect(page).to have_css('h1', text: 'Link court data')
     expect(page).to have_css('.govuk-tag', text: 'Breach')
-    expect(page).to have_content(
+    expect(page).to have_text(
       "Name Mauricio Rath"
-    ).and have_content(
+    ).and have_text(
       "Case URN MyString"
-    ).and have_content(
+    ).and have_text(
       "ASN KQJXI10ZJXCI"
-    ).and have_content(
+    ).and have_text(
       "Plea for the breach"
     )
   end
@@ -83,11 +83,11 @@ RSpec.feature 'Court Application subjects', :vcr do
     sign_in user
     visit link_court_application_subject_path(breach_court_application_id)
 
-    click_on "Create link to court data"
+    click_on "Link court data"
 
     expect(page).to have_css('h1', text: 'Link court data')
     expect(page).to have_css('.govuk-tag', text: 'Breach')
-    expect(page).to have_content "MAAT ID is required"
+    expect(page).to have_text "MAAT ID is required"
   end
 
   scenario 'I view the link court data page for an appeal' do
@@ -95,38 +95,38 @@ RSpec.feature 'Court Application subjects', :vcr do
     visit link_court_application_subject_path(found_court_application_id)
     expect(page).to have_css('h1', text: 'Link court data')
     expect(page).to have_css('.govuk-tag', text: 'Appeal')
-    expect(page).to have_content(
+    expect(page).to have_text(
       "Name Mauricio Rath"
-    ).and have_content(
+    ).and have_text(
       "Case URN MyString"
     )
-    expect(page).to have_no_content("Plea for the breach")
+    expect(page).to have_no_text("Plea for the breach")
   end
 
   scenario 'I stay on the link page when I submit an invalid MAAT ID for an appeal' do
     sign_in user
     visit link_court_application_subject_path(found_court_application_id)
 
-    click_on "Create link to court data"
+    click_on "Link court data"
 
     expect(page).to have_css('h1', text: 'Link court data')
     expect(page).to have_css('.govuk-tag', text: 'Appeal')
-    expect(page).to have_content "MAAT ID is required"
+    expect(page).to have_text "MAAT ID is required"
   end
 
   scenario 'I view the unlink page for a linked appeal' do
     sign_in user
     visit unlink_court_application_subject_path(found_court_application_id)
-    expect(page).to have_css('h1', text: 'Remove link to court data')
+    expect(page).to have_css('h1', text: 'Confirm you want to remove MAAT ID link')
     expect(page).to have_css('.govuk-tag', text: 'Appeal')
-    expect(page).to have_content(
+    expect(page).to have_text(
       "Name Mauricio Rath"
-    ).and have_content(
+    ).and have_text(
       "Case URN MyString"
-    ).and have_content(
+    ).and have_text(
       "MAAT ID #{maat_id_from_vcr}"
     )
-    expect(page).to have_content("Reason for unlinking")
+    expect(page).to have_text("Reason for unlinking")
     expect(page).to have_button("Remove link to MAAT ID")
   end
 
@@ -136,8 +136,8 @@ RSpec.feature 'Court Application subjects', :vcr do
 
     click_on "Remove link to MAAT ID"
 
-    expect(page).to have_css('h1', text: 'Remove link to court data')
-    expect(page).to have_content "Choose a reason for unlinking"
+    expect(page).to have_css('h1', text: 'Confirm you want to remove MAAT ID link')
+    expect(page).to have_text "Choose a reason for unlinking"
   end
 
   scenario 'I view a linked application' do
