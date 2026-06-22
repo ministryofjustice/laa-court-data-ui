@@ -2,12 +2,8 @@
 - content_for :page_heading do
   %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
     = t(".title")
-- if @application.appeal?
-  %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
-    = t("subjects.appeal")
-- else
-  %strong.govuk-tag{ class: "govuk-tag--yellow govuk-!-margin-bottom-5" }
-    = t("subjects.#{@application.application_category}")
+%strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
+  = t("generic.case")
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
@@ -19,30 +15,29 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".name")
           %td.govuk-table__cell
-            = @subject.name
+            = @defendant.name
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".date_of_birth")
           %td.govuk-table__cell
-            = l(@subject.date_of_birth, format: :medium)
+            = l(@defendant.date_of_birth&.to_date, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".case_urn")
           %td.govuk-table__cell
-            = @application.application_reference
+            = @prosecution_case_reference
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".arrest_summons_number")
           %td.govuk-table__cell
-            -# In case of an appeal, the ASN comes nil from the @subject, so we get it from the @application.defendant
-            = @application.appeal? ? @application.defendant.arrest_summons_number : @subject.defendant_asn
+            = @defendant.arrest_summons_number
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".maat_number")
           %td.govuk-table__cell
-            = @application.maat_reference
+            = @defendant.maat_reference
 
-= form_with(model: @form_model, url: unlink_court_application_subject_path(@application.application_id), data: { turbo: false }) do |f|
+= form_with(model: @form_model, url: unlink_defendant_path(@defendant.id, urn: @prosecution_case_reference), data: { turbo: false }) do |f|
   - content_for :error_summary do
     = f.govuk_error_summary
 
@@ -65,4 +60,4 @@
 
       .govuk-button-group
         = f.govuk_submit t('.submit'), data: { disable_with: t('defendants.form.unlinking') }, class: 'govuk-button--warning'
-        = link_to subject_back_label(@application), court_application_subject_path(@application.application_id), class: 'govuk-link'
+        = link_to t('.back'), defendant_path(@defendant.id, urn: @prosecution_case_reference), class: 'govuk-link'
