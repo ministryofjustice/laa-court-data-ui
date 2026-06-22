@@ -27,26 +27,18 @@ RSpec.feature 'defendants view', type: :feature do
       )
   end
 
-  context 'when visting laa_references page' do
-    let(:defendant_by_id_fixture) { load_json_stub('unlinked_defendant.json') }
-
-    before do
-      visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
-    end
-
-    scenario 'laa_references page shows data' do
+  shared_examples 'renders the defendant details' do
+    scenario 'shows the defendant data and offences' do
       expect(page).to have_title('Defendant details')
       expect(page).to have_css('th.govuk-table__header', text: 'Date of birth')
       expect(page).to have_css('th.govuk-table__header', text: 'Case URN')
-      expect(page).to have_css('th.govuk-table__header', text: 'NI number')
       expect(page).to have_css('th.govuk-table__header', text: 'ASN')
       expect(page).to have_css('th.govuk-table__header', text: 'MAAT number')
-      expect(page).to have_link('View case')
-      expect(page).to have_css('div.govuk-heading-l', text: 'Offences')
+      expect(page).to have_link('View case summary')
+      expect(page).to have_css('div.govuk-heading-m', text: 'Offences')
       expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')
       expect(page).to have_css('th.govuk-table__header', text: 'Plea')
       expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
-      expect(page).to have_text('Create link to court data')
     end
 
     scenario 'it is accessible', :js do
@@ -54,9 +46,22 @@ RSpec.feature 'defendants view', type: :feature do
     end
 
     scenario 'show full plea history' do
-      visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
       click_on 'Reload page with full offence history'
       expect(page).to have_text 'Guilty'
+    end
+  end
+
+  context 'with an unlinked defendant' do
+    let(:defendant_by_id_fixture) { load_json_stub('unlinked_defendant.json') }
+
+    before do
+      visit "defendants/#{defendant_id}?urn=#{case_urn}"
+    end
+
+    it_behaves_like 'renders the defendant details'
+
+    scenario 'offers the link to court data' do
+      expect(page).to have_link('Link MAAT ID')
     end
 
     context 'when linking is disabled' do
@@ -66,17 +71,17 @@ RSpec.feature 'defendants view', type: :feature do
       end
 
       scenario 'page shows without linking options' do
-        visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
+        visit "defendants/#{defendant_id}?urn=#{case_urn}"
         expect(page).to have_title('Defendant details')
-        expect(page).to have_no_text('Create link to court data')
+        expect(page).to have_no_link('Link MAAT ID')
       end
     end
 
     context "when defendant is unavailable" do
       let(:defendant_id) { "500" }
 
-      scenario 'laa_references page returns to previous page' do
-        visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
+      scenario 'returns to previous page' do
+        visit "defendants/#{defendant_id}?urn=#{case_urn}"
         expect(page).to have_current_path '/'
         expect(page).to have_text(
           "The HMCTS record for this defendant cannot be displayed."
@@ -85,38 +90,18 @@ RSpec.feature 'defendants view', type: :feature do
     end
   end
 
-  context 'when visting defendants page' do
+  context 'with a linked defendant' do
     let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
     let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
 
     before do
-      visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
+      visit "defendants/#{defendant_id}?urn=#{case_urn}"
     end
 
-    scenario 'defendants page shows data' do
-      expect(page).to have_title('Defendant details')
-      expect(page).to have_css('th.govuk-table__header', text: 'Date of birth')
-      expect(page).to have_css('th.govuk-table__header', text: 'Case URN')
-      expect(page).to have_css('th.govuk-table__header', text: 'NI number')
-      expect(page).to have_css('th.govuk-table__header', text: 'ASN')
-      expect(page).to have_css('th.govuk-table__header', text: 'MAAT number')
-      expect(page).to have_link('View case')
-      expect(page).to have_css('div.govuk-heading-l', text: 'Offences')
-      expect(page).to have_css('th.govuk-table__header', text: 'Date')
-      expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')
-      expect(page).to have_css('th.govuk-table__header', text: 'Plea')
-      expect(page).to have_css('th.govuk-table__header', text: 'Mode of trial')
-      expect(page).to have_text('Remove link to court data')
-    end
+    it_behaves_like 'renders the defendant details'
 
-    scenario 'it is accessible', :js do
-      expect(page).to be_accessible
-    end
-
-    scenario 'show full plea history manually' do
-      visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
-      click_on 'Reload page with full offence history'
-      expect(page).to have_text 'Guilty'
+    scenario 'offers the unlink from court data' do
+      expect(page).to have_link('Unlink MAAT ID')
     end
 
     context 'when linking is disabled' do
@@ -126,9 +111,9 @@ RSpec.feature 'defendants view', type: :feature do
       end
 
       scenario 'page shows without linking options' do
-        visit "defendants/#{defendant_id}/edit?urn=#{case_urn}"
+        visit "defendants/#{defendant_id}?urn=#{case_urn}"
         expect(page).to have_title('Defendant details')
-        expect(page).to have_no_text('Remove link to court data')
+        expect(page).to have_no_link('Unlink MAAT ID')
       end
     end
   end

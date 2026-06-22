@@ -29,28 +29,49 @@ RSpec.describe 'defendants', type: :request do
       )
     end
 
-    context 'with unlinked defendant' do
+    describe 'show page' do
       before do
-        get "/laa_references/new?id=#{defendant_id_from_fixture}&urn=#{case_reference_from_fixture}"
+        get "/defendants/#{defendant_id_from_fixture}?urn=#{case_reference_from_fixture}"
+      end
+
+      context 'with unlinked defendant' do
+        let(:defendant_by_id_fixture) { load_json_stub('unlinked_defendant.json') }
+
+        it_behaves_like 'renders common defendant details'
+
+        it { expect(response.body).to include('Link MAAT ID') }
+        it { expect(response.body).not_to include('Unlink MAAT ID') }
+      end
+
+      context 'with linked defendant' do
+        let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
+
+        it_behaves_like 'renders common defendant details'
+
+        it { expect(response.body).to include('Unlink MAAT ID') }
+      end
+    end
+
+    describe 'link page' do
+      before do
+        get "/defendants/#{defendant_id_from_fixture}/link?urn=#{case_reference_from_fixture}"
       end
 
       let(:defendant_by_id_fixture) { load_json_stub('unlinked_defendant.json') }
 
-      it_behaves_like 'renders common defendant details'
-
-      it { expect(response.body).to include('Create link to court data') }
+      it { expect(response.body).to include('Link court data - View court data - GOV.UK') }
+      it { expect(response.body).to include('Jammy Dodger') }
     end
 
-    context 'with linked defendant' do
+    describe 'unlink page' do
       before do
-        get "/defendants/#{defendant_id_from_fixture}/edit?urn=#{case_reference_from_fixture}"
+        get "/defendants/#{defendant_id_from_fixture}/unlink?urn=#{case_reference_from_fixture}"
       end
 
       let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
 
-      it_behaves_like 'renders common defendant details'
-
-      it { expect(response.body).to include('Remove link to court data') }
+      it { expect(response.body).to include('Confirm you want to remove MAAT ID link') }
+      it { expect(response.body).to include('Remove link to MAAT ID') }
     end
 
     describe 'offence history' do
@@ -66,7 +87,7 @@ RSpec.describe 'defendants', type: :request do
 
   context 'when not authenticated' do
     before do
-      get "/defendants/#{defendant_id_from_fixture}/edit?urn=#{case_reference_from_fixture}"
+      get "/defendants/#{defendant_id_from_fixture}?urn=#{case_reference_from_fixture}"
     end
 
     it 'redirects to sign in page' do

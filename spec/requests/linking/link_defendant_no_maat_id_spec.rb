@@ -6,12 +6,11 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
   let(:case_urn) { 'TEST12345' }
   let(:defendant_id) { defendant_id_from_fixture }
   let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-  let(:commit) { 'Create link without MAAT ID' }
 
   let(:params) do
-    { commit:,
-      urn: case_urn,
-      link_attempt: { defendant_id: } }
+    { urn: case_urn,
+      maat_ref_required: 'false',
+      link_attempt: {} }
   end
 
   let(:cda_request_path) { %r{.*/laa_references} }
@@ -26,20 +25,9 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
   end
 
   context 'when authenticated' do
-    let(:error_detail) do
-      'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
-    end
-
-    let(:maat_error_message) do
-      {
-        message: error_detail,
-        title: 'Unable to link the defendant using the MAAT ID.'
-      }
-    end
-
     before do
       sign_in user
-      post '/laa_references', params:
+      post "/defendants/#{defendant_id}/link", params:
     end
 
     context 'with valid params', :stub_v2_link_success do
@@ -54,7 +42,7 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(id: defendant_id, urn: case_urn)
+        expect(response).to redirect_to defendant_path(id: defendant_id, urn: case_urn)
       end
 
       it 'flashes alert' do
@@ -71,14 +59,14 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
                                            'to be associated with this defendant.')
         }
 
-        it { expect(response.body).to include('/laa_references') }
+        it { expect(response.body).to include('Link court data') }
       end
     end
   end
 
   context 'when not authenticated' do
     context 'when creating a reference' do
-      before { post '/laa_references', params: }
+      before { post "/defendants/#{defendant_id}/link", params: }
 
       it_behaves_like 'unauthenticated request'
     end

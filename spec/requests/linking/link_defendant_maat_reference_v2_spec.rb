@@ -10,9 +10,8 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
 
   let(:params) do
     { urn: case_urn,
-      link_attempt:
-        { defendant_id:,
-          maat_reference: } }
+      maat_ref_required: 'true',
+      link_attempt: { maat_reference: } }
   end
 
   let(:api_request_path) { %r{.*/laa_references} }
@@ -28,28 +27,9 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
   end
 
   context 'when authenticated' do
-    let(:maat_invalid_uuid) do
-      {
-        title: 'Unable to link the defendant using the MAAT ID.',
-        message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
-      }
-    end
-    let(:maat_invalid_reference) do
-      {
-        title: 'Unable to link the defendant using the MAAT ID.',
-        message: 'The MAAT reference you provided is not available to be associated with this defendant.'
-      }
-    end
-    let(:maat_error_message) do
-      {
-        title: 'A Court Data Source link could not be established.',
-        message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
-      }
-    end
-
     before do
       sign_in user
-      post '/laa_references', params:
+      post "/defendants/#{defendant_id}/link", params:
     end
 
     context 'with valid params', :stub_v2_link_success do
@@ -64,8 +44,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
       end
 
       it 'redirects to defendant path' do
-        expect(response).to redirect_to edit_defendant_path(id: defendant_id,
-                                                            urn: case_urn)
+        expect(response).to redirect_to defendant_path(id: defendant_id, urn: case_urn)
       end
 
       it 'flashes alert' do
@@ -74,14 +53,12 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
     end
 
     context 'when defendant_id is not a valid uuid', :stub_v2_link_failure_with_invalid_defendant_uuid do
-      let(:defendant_id) { 'not-a-uuid' }
-
       it {
         expect(response.body).to include 'The MAAT reference you provided is not available to ' \
                                          'be associated with this defendant.'
       }
 
-      it { expect(response.body).to include('Create link to court data') }
+      it { expect(response.body).to include('Link court data') }
     end
 
     context 'with invalid maat_reference' do
@@ -92,7 +69,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
                                            'be associated with this defendant.'
         }
 
-        it { expect(response.body).to include('Create link to court data') }
+        it { expect(response.body).to include('Link court data') }
       end
 
       context 'when invalid format' do
@@ -102,8 +79,8 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
           expect(response.body).to include('Enter a MAAT ID in the correct format')
         end
 
-        it 'renders laa_referencer/new' do
-          expect(response.body).to include('Defendant details')
+        it 'renders the link page' do
+          expect(response.body).to include('Link court data')
         end
       end
     end
@@ -121,7 +98,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
 
   context 'when not authenticated' do
     context 'when creating a reference' do
-      before { post '/laa_references', params: }
+      before { post "/defendants/#{defendant_id}/link", params: }
 
       it_behaves_like 'unauthenticated request'
     end
