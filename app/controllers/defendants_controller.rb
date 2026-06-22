@@ -7,7 +7,7 @@ class DefendantsController < ApplicationController
   before_action :set_breadcrumbs
 
   # GET /defendants/:id?urn=:urn
-  # Defendant detail page: defendant info + offences. Links out to link/unlink. No form.
+  # Defendant detail page - Defendant info + offences
   def show
     return unless params.fetch(:include_offence_history, 'false') == 'true'
 
