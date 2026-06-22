@@ -84,7 +84,7 @@ RSpec.feature 'Cookies', type: :feature do
 
     before do
       sign_in user
-      visit "laa_references/new?id=#{defendant_id}&urn=#{case_urn}"
+      visit "defendants/#{defendant_id}?urn=#{case_urn}"
       click_link_or_button 'Accept analytics cookies'
     end
 
