@@ -39,10 +39,15 @@ Rails.application.routes.draw do
   resources :prosecution_cases, only: %i[show] do
     member { get :related_court_applications }
   end
-  resources :defendants, only: %i[edit update] do
-    member { get :offences }
+  resources :defendants, only: %i[show] do
+    member do
+      get :offences
+      get :link, to: 'defendants#show_link'
+      get :unlink, to: 'defendants#show_unlink'
+      post :link
+      post :unlink
+    end
   end
-  resources :laa_references, only: %i[new create]
   resources :hearings, only: %i[show]
   resources :court_applications, only: %i[show] do
     resource :subject, only: %i[show] do
