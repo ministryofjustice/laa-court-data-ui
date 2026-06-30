@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     unauthenticated :user do
       root to: 'users/sessions#new', as: :unauthenticated_root
     end
+
+    get '/users/sign_in', to: redirect('/')
   end
 
   resources :search_filters, only: %i[new create]
