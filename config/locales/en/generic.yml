@@ -7,9 +7,6 @@ en:
     defendant: Defendant
     detail: Details
     filter_not_recognized: Filter "%{value}" is not recognized
-    form:
-      select:
-        blank_option: Please select
     hearing_day: Hearing day
     new_window: opens in a new window
     not_available: Not available

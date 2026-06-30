@@ -71,7 +71,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
 
         click_link_or_button(case_urn, match: :first)
         click_link_or_button('Jammy Dodger')
-        expect(page).to have_current_path(%r{/laa_references/.+})
+        expect(page).to have_current_path(%r{/defendants/.+})
         then_has_defendant_details_breadcrumbs(case_urn, 'Jammy Dodger')
       end
     end
@@ -102,7 +102,7 @@ RSpec.feature 'Breadcrumb', :stub_unlinked, type: :feature do
       then_has_case_details_breadcrumbs(case_urn)
 
       click_link_or_button('Jammy Dodger')
-      expect(page).to have_current_path(%r{/laa_references/.+})
+      expect(page).to have_current_path(%r{/defendants/.+})
       then_has_defendant_details_breadcrumbs(case_urn, 'Jammy Dodger')
 
       click_breadcrumb 'Case TEST12345'

@@ -4,4 +4,5 @@ en:
     formats:
       default: "%d/%m/%Y"
       long: "%d %B %Y"
+      medium: "%d %b %Y"
       short: "%b %d"

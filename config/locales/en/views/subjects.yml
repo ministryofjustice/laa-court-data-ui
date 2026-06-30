@@ -22,6 +22,21 @@ en:
         appeal: View appeal
         breach: View breach
         poca: View POCA
+    show_link:
+      arrest_summons_number: ASN
+      case_urn: Case URN
+      date_of_birth: Date of birth
+      name: Name
+      plea: Plea for the breach
+      title: Link court data
+    show_unlink:
+      arrest_summons_number: ASN
+      case_urn: Case URN
+      date_of_birth: Date of birth
+      maat_number: MAAT ID
+      name: Name
+      submit: Remove link to MAAT ID
+      title: Confirm you want to remove MAAT ID link
     unlink:
       failure: Unable to unlink the defendant
       success: You have successfully unlinked from the court data source

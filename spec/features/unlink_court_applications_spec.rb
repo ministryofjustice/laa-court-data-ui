@@ -20,34 +20,33 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
 
     scenario 'I view an unlinked court application subject' do
       visit court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_text "Enter the MAAT ID"
-      expect(page).to have_no_text "Remove link to court data"
+      expect(page).to have_link "Link MAAT ID"
+      expect(page).to have_no_link "Remove link"
     end
 
     scenario 'I successfully unlink a court application' do
-      visit court_application_subject_path(linked_court_application_id)
-      expect(page).to have_text "MAAT number 1234568"
-      expect(page).to have_text "Remove link to court data"
+      visit unlink_court_application_subject_path(linked_court_application_id)
+      expect(page).to have_css('h1', text: 'Confirm you want to remove MAAT ID link')
+      expect(page).to have_text "MAAT ID 1234568"
 
-      select "Initially processed on Libra", from: "Reason for unlinking"
-      click_on "Remove link to court data"
+      choose "Initially processed on Libra"
+      click_on "Remove link to MAAT ID"
+
       expect(page).to have_text "You have successfully unlinked from the court data source"
-      expect(page).to have_no_text "MAAT number 1234568"
-      expect(page).to have_text "Enter the MAAT ID"
     end
 
     scenario 'I try to unlink without selecting a reason' do
-      visit court_application_subject_path(linked_court_application_id)
+      visit unlink_court_application_subject_path(linked_court_application_id)
 
-      click_on "Remove link to court data"
+      click_on "Remove link to MAAT ID"
       expect(page).to have_text "Choose a reason for unlinking"
     end
 
     scenario 'I try to unlink without explaining my choice of "other"' do
-      visit court_application_subject_path(linked_court_application_id)
+      visit unlink_court_application_subject_path(linked_court_application_id)
 
-      select "Other", from: "Reason for unlinking"
-      click_on "Remove link to court data"
+      choose "Other"
+      click_on "Remove link to MAAT ID"
       expect(page).to have_text "Enter the reason for unlinking"
     end
   end
@@ -61,10 +60,10 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
     end
 
     scenario 'I try to unlink but there are problems upstream' do
-      visit court_application_subject_path(linked_court_application_with_problems_id)
+      visit unlink_court_application_subject_path(linked_court_application_with_problems_id)
 
-      select "Initially processed on Libra", from: "Reason for unlinking"
-      click_on "Remove link to court data"
+      choose "Initially processed on Libra"
+      click_on "Remove link to MAAT ID"
       expect(page).to have_text "Unable to unlink the defendant"
     end
   end
