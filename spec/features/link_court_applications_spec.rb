@@ -76,7 +76,7 @@ RSpec.feature 'Link court applications' do
 
   context "when application is POCA" do
     before do
-      create(:unlink_reason, code: 4, description: "Initially processed on Libra", text_required: false)
+      create(:unlink_reason, code: 4, description: "Initially processed on Libra")
     end
 
     around do |example|

@@ -29,8 +29,8 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
   include RSpecHtmlMatchers
 
   before do
-    create(:unlink_reason, code: 1, description: 'Reason not requiring text', text_required: false)
-    create(:unlink_reason, code: 7, description: 'Reason requiring text', text_required: true)
+    create(:unlink_reason, code: 1, description: 'Reason not requiring text')
+    create(:unlink_reason, code: UnlinkReason::OTHER_REASON_CODE, description: 'Reason requiring text')
   end
 
   let(:user) { create(:user) }
@@ -172,7 +172,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
         {
           laa_reference: { defendant_id:,
                            user_name: user.username,
-                           unlink_reason_code: 7,
+                           unlink_reason_code: UnlinkReason::OTHER_REASON_CODE,
                            maat_reference:,
                            unlink_other_reason_text: 'a reason for unlinking' }
         }

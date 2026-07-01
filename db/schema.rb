@@ -10,42 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_08_123153) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_01_095152) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "unlink_reasons", force: :cascade do |t|
     t.integer "code", null: false
-    t.string "description", null: false
-    t.boolean "text_required", default: false, null: false
     t.datetime "created_at", null: false
+    t.string "description", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_unlink_reasons_on_code", unique: true
     t.index ["description"], name: "index_unlink_reasons_on_description", unique: true
   end
 
   create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "current_sign_in_at", precision: nil
+    t.inet "current_sign_in_ip"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.datetime "remember_created_at", precision: nil
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at", precision: nil
-    t.datetime "last_sign_in_at", precision: nil
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
+    t.string "entra_id"
     t.integer "failed_attempts", default: 0, null: false
-    t.string "unlock_token"
-    t.datetime "locked_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "feature_flags", default: [], array: true
     t.string "first_name", null: false
     t.string "last_name", null: false
+    t.datetime "last_sign_in_at", precision: nil
+    t.inet "last_sign_in_ip"
+    t.datetime "locked_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
+    t.datetime "reset_password_sent_at", precision: nil
+    t.string "reset_password_token"
     t.string "roles", default: ["caseworker"], array: true
+    t.integer "sign_in_count", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "updated_at", null: false
     t.string "username", null: false
-    t.string "feature_flags", default: [], array: true
-    t.string "entra_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
