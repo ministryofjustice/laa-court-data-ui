@@ -12,9 +12,8 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
 
     create(:unlink_reason,
            code: 1,
-           description: 'Linked to wrong case ID (correct defendant)',
-           text_required: false)
-    create(:unlink_reason, code: 7, description: 'Other', text_required: true)
+           description: 'Linked to wrong case ID (correct defendant)')
+    create(:unlink_reason, code: 7, description: 'Other')
 
     visit(url)
   end
