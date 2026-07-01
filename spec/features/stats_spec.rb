@@ -10,7 +10,7 @@ RSpec.describe 'View usage stats', :vcr, type: :feature do
 
     # Create required data
     UnlinkReason.create!(code: 1, description: "Linked to wrong case ID (correct defendant)")
-    UnlinkReason.create!(code: 7, description: "Other")
+    UnlinkReason.create!(code: UnlinkReason::OTHER_REASON_CODE, description: "Other")
 
     # Stub external calls for predictable data
     allow(Cda::LinkingStatCollection).to receive(:find_from_range)

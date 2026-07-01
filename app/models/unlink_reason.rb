@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class UnlinkReason < ApplicationRecord
+  OTHER_REASON_CODE = 7
+
   def text_required?
-    code == 7
+    code == OTHER_REASON_CODE
   end
 
   def self.ordered
-    all.sort_by { |r| [r.description == 'Other' ? 1 : 0, r.code] }
+    all.sort_by { |r| [r.text_required? ? 1 : 0, r.code] }
   end
 
   validates :code, presence: true, uniqueness: true
