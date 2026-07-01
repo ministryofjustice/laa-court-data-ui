@@ -6,7 +6,7 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
 
   before do
     create(:unlink_reason, code: 4, description: "Initially processed on Libra")
-    create(:unlink_reason, code: 7, description: "Other")
+    create(:unlink_reason, code: UnlinkReason::OTHER_REASON_CODE, description: "Other")
     sign_in user
   end
 

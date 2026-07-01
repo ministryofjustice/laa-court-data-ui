@@ -13,7 +13,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
     create(:unlink_reason,
            code: 1,
            description: 'Linked to wrong case ID (correct defendant)')
-    create(:unlink_reason, code: 7, description: 'Other')
+    create(:unlink_reason, code: UnlinkReason::OTHER_REASON_CODE, description: 'Other')
 
     visit(url)
   end
@@ -93,7 +93,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
           {
             laa_reference: { defendant_id:,
                              user_name: user.username,
-                             unlink_reason_code: 7,
+                             unlink_reason_code: UnlinkReason::OTHER_REASON_CODE,
                              maat_reference:,
                              unlink_other_reason_text: 'Case already concluded' }
           }
