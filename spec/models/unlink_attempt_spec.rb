@@ -2,7 +2,7 @@
 
 RSpec.shared_context 'with text_required' do |required|
   before do
-    unlink_reason = instance_double(UnlinkReason, text_required?: required)
+    unlink_reason = UnlinkReason.new(code: required ? 7 : 1)
     allow(UnlinkReason).to receive(:find_by).and_return unlink_reason
   end
 end

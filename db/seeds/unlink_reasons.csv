@@ -1,9 +1,9 @@
-code,description,text_required
-1,Linked to right person but wrong case URN,false
-2,Linked to wrong person and wrong case URN,false
-3,"Linked to wrong court proceeding (appeal, breach, POCA or case)",false
-4,Initially processed on Libra,false
-5,Duplicate MAAT record for same case,false
-6,Transfer to another area,false
-8,There was a system issue,false
-7,Other,true
+code,description
+1,Linked to right person but wrong case URN
+2,Linked to wrong person and wrong case URN
+3,"Linked to wrong court proceeding (appeal, breach, POCA or case)"
+4,Initially processed on Libra
+5,Duplicate MAAT record for same case
+6,Transfer to another area
+8,There was a system issue
+7,Other

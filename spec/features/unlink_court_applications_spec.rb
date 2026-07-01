@@ -5,8 +5,8 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
   let(:linked_court_application_id) { 'd174af7f-75da-428b-9875-c823eb182a23' }
 
   before do
-    create(:unlink_reason, code: 4, description: "Initially processed on Libra", text_required: false)
-    create(:unlink_reason, code: 7, description: "Other", text_required: true)
+    create(:unlink_reason, code: 4, description: "Initially processed on Libra")
+    create(:unlink_reason, code: 7, description: "Other")
     sign_in user
   end
 
