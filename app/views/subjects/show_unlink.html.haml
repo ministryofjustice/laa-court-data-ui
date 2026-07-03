@@ -48,7 +48,7 @@
 
   .govuk-grid-row
     .govuk-grid-column-two-thirds
-      - unlink_reasons = UnlinkReason.all
+      - unlink_reasons = UnlinkReason.ordered
       = f.govuk_radio_buttons_fieldset :reason_code, small: true, legend: { text: t('defendants.form.reason_code.label') } do
         - unlink_reasons.each do |reason|
           - if reason.text_required?
