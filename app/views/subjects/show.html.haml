@@ -6,13 +6,15 @@
 
 - content_for :page_title, "#{@application.appeal? ? t('.appeal_title') : t('.title')} - #{service_name} - GOV.UK"
 - content_for :page_heading do
-  %span.govuk-visually-hidden#copy-alert{ "aria-live": "polite" }
-  %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
-    %span.govuk-caption-xl= @application.appeal? ? t(".appellant") : t(".respondent")
-    %span.copy-button-heading
-      %span#subject-name= @subject.name
-      %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-name", type: "button", class: "govuk-!-margin-bottom-0 govuk-!-margin-left-2" }
-        Copy
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      %span.govuk-visually-hidden#copy-alert{ "aria-live": "polite" }
+      %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
+        %span.govuk-caption-xl= @application.appeal? ? t(".appellant") : t(".respondent")
+        %span.copy-button-heading
+          %span#subject-name= @subject.name
+          %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-name", type: "button", class: "govuk-!-margin-bottom-0 govuk-!-margin-left-2" }
+            Copy
 - if @application.appeal?
   %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
     = t("subjects.appeal")

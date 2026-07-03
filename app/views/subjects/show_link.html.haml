@@ -1,7 +1,9 @@
 - content_for :page_title, "#{t('.title')} - #{service_name} - GOV.UK"
 - content_for :page_heading do
-  %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
-    = t(".title")
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
+        = t(".title")
 - if @application.appeal?
   %strong.govuk-tag{ class: "govuk-tag--purple govuk-!-margin-bottom-5" }
     = t("subjects.appeal")
