@@ -268,21 +268,21 @@ jobs:
             - ~/repo
       - rspec
 
-#  coverage:
-#    executor: test-executor
-#    steps:
-#      - attach_workspace:
-#          at: .
-#      - restore_cache:
-#          name: Restoring assets and dependencies cache from tests
-#          key: vcd-repo-{{ .Environment.CIRCLE_SHA1 }}
-#      - run:
-#          name: Process coverage
-#          command: |
-#            bundle exec rake simplecov:process_coverage
-#      - store_artifacts:
-#          path: ~/repo/coverage
-#          destination: coverage
+  coverage:
+    executor: test-executor
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          name: Restoring assets and dependencies cache from tests
+          key: vcd-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Process coverage
+          command: |
+            bundle exec rake simplecov:process_coverage
+      - store_artifacts:
+          path: ~/repo/coverage
+          destination: coverage
 
   scan-docker-image:
     parameters:
