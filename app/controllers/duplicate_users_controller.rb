@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController # rubocop:disable Metrics/ClassLength
+class DuplicateUsersController < ApplicationController # rubocop:disable Metrics/ClassLength
   before_action :set_breadcrumbs
   require 'csv'
   load_and_authorize_resource except: :create
