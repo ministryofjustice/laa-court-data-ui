@@ -438,7 +438,6 @@ workflows:
           requires:
             - build-test-container
       - coverage:
-          context: SonarCloud
           requires:
             - rspec-tests
       - scan-docker-image:
