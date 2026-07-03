@@ -33,7 +33,7 @@ RSpec.feature 'defendants view', type: :feature do
       expect(page).to have_css('th.govuk-table__header', text: 'Date of birth')
       expect(page).to have_css('th.govuk-table__header', text: 'Case URN')
       expect(page).to have_css('th.govuk-table__header', text: 'ASN')
-      expect(page).to have_css('th.govuk-table__header', text: 'MAAT number')
+      expect(page).to have_css('th.govuk-table__header', text: 'MAAT ID')
       expect(page).to have_link('View case summary')
       expect(page).to have_css('div.govuk-heading-m', text: 'Offences')
       expect(page).to have_css('th.govuk-table__header', text: 'Offence and legislation')

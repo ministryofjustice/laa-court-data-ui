@@ -14,7 +14,7 @@ en:
       defendant:
         breach_date: Breach date
         date_of_birth: Date of birth
-        maat_number: MAAT number
+        maat_number: MAAT ID
         name: Name
       hearing:
         date: Date

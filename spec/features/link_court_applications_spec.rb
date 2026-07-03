@@ -16,7 +16,7 @@ RSpec.feature 'Link court applications' do
 
     scenario 'I view a linked court application subject' do
       visit court_application_subject_path(linked_court_application_id)
-      expect(page).to have_text "MAAT number 1234567"
+      expect(page).to have_text "MAAT ID 1234567"
       expect(page).to have_link "Unlink MAAT ID"
     end
 
@@ -25,7 +25,7 @@ RSpec.feature 'Link court applications' do
       fill_in "MAAT ID", with: '7654321'
       click_on "Link court data"
       expect(page).to have_text "You have successfully linked to the court data source"
-      expect(page).to have_text "MAAT number 7654321"
+      expect(page).to have_text "MAAT ID 7654321"
     end
 
     scenario 'I try to link with an invalid MAAT' do
@@ -46,9 +46,9 @@ RSpec.feature 'Link court applications' do
         allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(true)
       end
 
-      scenario 'subject page shows the MAAT number row' do
+      scenario 'subject page shows the MAAT ID row' do
         visit court_application_subject_path(unlinked_court_application_id)
-        expect(page).to have_text "MAAT number"
+        expect(page).to have_text "MAAT ID"
       end
     end
   end

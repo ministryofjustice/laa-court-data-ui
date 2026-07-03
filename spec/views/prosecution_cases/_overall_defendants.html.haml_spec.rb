@@ -31,7 +31,7 @@ RSpec.describe 'prosecution_cases/_overall_defendants.html.haml', type: :view do
     is_expected
       .to have_css('.govuk-table__header', text: 'Name')
       .and have_css('.govuk-table__header', text: 'Date of birth')
-      .and have_css('.govuk-table__header', text: 'MAAT number')
+      .and have_css('.govuk-table__header', text: 'MAAT ID')
   end
 
   it { is_expected.to have_link('Joe X Bloggs') }
