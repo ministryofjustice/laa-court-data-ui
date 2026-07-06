@@ -24,7 +24,7 @@ RSpec.feature 'Link court applications' do
       visit link_court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: '7654321'
       click_on "Link court data"
-      expect(page).to have_text "You have successfully linked to the court data source"
+      expect(page).to have_text "Successfully linked to MAAT ID 7654321"
       expect(page).to have_text "MAAT ID 7654321"
     end
 
@@ -76,42 +76,52 @@ RSpec.feature 'Link court applications' do
       create(:unlink_reason, code: 4, description: "Initially processed on Libra")
     end
 
-    around do |example|
-      VCR.use_cassette('spec/features/link_court_applications_poca_spec') do
-        example.run
+    let(:court_application_id) { '186a439d-66ea-4cad-a44b-505cf074e839' }
+
+    context 'with a MAAT ID' do
+      around do |example|
+        VCR.use_cassette('spec/features/link_court_applications_poca_spec') do
+          example.run
+        end
+      end
+
+      scenario 'I link and then unlink a POCA application' do
+        visit link_court_application_subject_path(court_application_id)
+
+        fill_in "MAAT ID", with: '1234567'
+        click_on "Link court data"
+
+        expect(page).to have_text "Successfully linked to MAAT ID 1234567"
+
+        click_on "Unlink MAAT ID"
+        choose "Initially processed on Libra"
+        click_on "Remove link to MAAT ID"
+
+        expect(page).to have_text "You removed the link to MAAT ID 1234567"
       end
     end
 
-    let(:court_application_id) { '186a439d-66ea-4cad-a44b-505cf074e839' }
+    context 'without a MAAT ID' do
+      around do |example|
+        VCR.use_cassette('spec/features/link_court_applications_poca_no_maat_id_spec') do
+          example.run
+        end
+      end
 
-    scenario 'I link and then unlink a POCA application' do
-      visit link_court_application_subject_path(court_application_id)
+      scenario 'I link and then unlink a POCA application, without a MAAT ID' do
+        visit link_court_application_subject_path(court_application_id)
 
-      fill_in "MAAT ID", with: '1234567'
-      click_on "Link court data"
+        find("summary", text: "The MAAT id is missing").click
+        click_on "Create link without MAAT ID"
 
-      expect(page).to have_text "You have successfully linked to the court data source"
+        expect(page).to have_text "Successfully linked to MAAT ID A10000074"
 
-      click_on "Unlink MAAT ID"
-      choose "Initially processed on Libra"
-      click_on "Remove link to MAAT ID"
+        click_on "Unlink MAAT ID"
+        choose "Initially processed on Libra"
+        click_on "Remove link to MAAT ID"
 
-      expect(page).to have_text "You have successfully unlinked from the court data source"
-    end
-
-    scenario 'I link and then unlink a POCA application, without a MAAT ID' do
-      visit link_court_application_subject_path(court_application_id)
-
-      find("summary", text: "The MAAT id is missing").click
-      click_on "Create link without MAAT ID"
-
-      expect(page).to have_text "You have successfully linked to the court data source"
-
-      click_on "Unlink MAAT ID"
-      choose "Initially processed on Libra"
-      click_on "Remove link to MAAT ID"
-
-      expect(page).to have_text "You have successfully unlinked from the court data source"
+        expect(page).to have_text "You removed the link to MAAT ID A10000074"
+      end
     end
   end
 end
