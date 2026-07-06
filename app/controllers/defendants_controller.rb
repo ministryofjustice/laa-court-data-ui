@@ -2,6 +2,7 @@
 
 require_dependency 'feature_flag'
 
+# rubocop:disable Metrics/ClassLength
 class DefendantsController < ApplicationController
   before_action :load_and_authorize_defendant
   before_action :set_breadcrumbs
@@ -42,7 +43,8 @@ class DefendantsController < ApplicationController
     Cda::ProsecutionCaseLaaReference.create!(@form_model.to_link_attributes)
 
     redirect_to defendant_path(defendant.id, urn: prosecution_case_reference),
-                notice: I18n.t('laa_reference.link.success')
+                flash: { success_moj_banner: I18n.t('laa_reference.link.success',
+                                                    maat_id: @form_model.maat_reference) }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render :show_link
@@ -59,7 +61,8 @@ class DefendantsController < ApplicationController
     Cda::ProsecutionCaseLaaReference.update!(@form_model.to_unlink_attributes)
 
     redirect_to defendant_path(defendant.id, urn: prosecution_case_reference),
-                notice: I18n.t('defendants.unlink.success')
+                flash: { success_moj_banner: I18n.t('defendants.unlink.success',
+                                                    maat_id: @form_model.maat_reference) }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
     render :show_unlink
@@ -137,3 +140,4 @@ class DefendantsController < ApplicationController
     Cda::OffenceHistoryCollection.find_from_id_and_urn(params[:id], prosecution_case_reference)
   end
 end
+# rubocop:enable Metrics/ClassLength

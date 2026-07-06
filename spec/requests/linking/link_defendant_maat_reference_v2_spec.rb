@@ -47,8 +47,8 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
         expect(response).to redirect_to defendant_path(id: defendant_id, urn: case_urn)
       end
 
-      it 'flashes alert' do
-        expect(flash.now[:notice]).to match(/You have successfully linked to the court data source/)
+      it 'flashes success banner' do
+        expect(flash.now[:success_moj_banner]).to match(/Successfully linked to MAAT ID #{maat_reference}/)
       end
     end
 

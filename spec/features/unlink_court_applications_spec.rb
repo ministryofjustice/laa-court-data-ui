@@ -32,7 +32,7 @@ RSpec.feature 'Unlink court applications - SubjectsController#unlink' do
       choose "Initially processed on Libra"
       click_on "Remove link to MAAT ID"
 
-      expect(page).to have_text "You have successfully unlinked from the court data source"
+      expect(page).to have_text "You removed the link to MAAT ID 1234568"
     end
 
     scenario 'I try to unlink without selecting a reason' do
