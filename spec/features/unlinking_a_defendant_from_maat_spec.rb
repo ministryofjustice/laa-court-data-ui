@@ -49,7 +49,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
     end
 
     it 'displays the remove link warning' do
-      expect(page).to have_text('Removing the link will stop hearing updates being received')
+      expect(page).to have_text('Removing the link will stop hearing updates from being received.')
     end
 
     context 'when user unlinks with success' do

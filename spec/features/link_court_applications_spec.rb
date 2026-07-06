@@ -37,7 +37,7 @@ RSpec.feature 'Link court applications' do
 
     scenario 'I can see the option to create a link without MAAT ID for an appeal application' do
       visit link_court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_text "The MAAT id is missing"
+      expect(page).to have_text "The MAAT ID is missing"
     end
 
     context 'when linking is disabled' do
@@ -111,7 +111,7 @@ RSpec.feature 'Link court applications' do
       scenario 'I link and then unlink a POCA application, without a MAAT ID' do
         visit link_court_application_subject_path(court_application_id)
 
-        find("summary", text: "The MAAT id is missing").click
+        find("summary", text: "The MAAT ID is missing").click
         click_on "Create link without MAAT ID"
 
         expect(page).to have_text "Successfully linked to MAAT ID A10000074"

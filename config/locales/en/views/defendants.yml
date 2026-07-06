@@ -10,7 +10,7 @@ en:
     reload: Reload page with full offence history
     show_link:
       arrest_summons_number: ASN
-      back: Back
+      back: Back to defendant
       case_urn: Case URN
       date_of_birth: Date of birth
       name: Name
@@ -27,4 +27,4 @@ en:
     title: Defendant details
     unlink:
       success: You removed the link to MAAT ID %{maat_id}
-      warning: Removing the link will stop hearing updates being received
+      warning: Removing the link will stop hearing updates from being received.

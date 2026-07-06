@@ -39,8 +39,8 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
     visit "prosecution_cases/#{case_urn}"
     click_link_or_button('Jammy Dodger')
     click_link_or_button('Link MAAT ID')
-    expect(page).to have_text('The MAAT id is missing')
-    find(:xpath, "//details[@class='govuk-details']", text: 'The MAAT id is missing').click
+    expect(page).to have_text('The MAAT ID is missing')
+    find(:xpath, "//details[@class='govuk-details']", text: 'The MAAT ID is missing').click
     expect(page).to have_button('Create link without MAAT ID')
     stub_linked_defendant(maat_reference: 'A1000001')
     click_link_or_button 'Create link without MAAT ID'
