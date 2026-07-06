@@ -7,13 +7,15 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
   let(:defendant_name) { 'Jammy Dodger' }
   let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
 
-  let(:linked_defendant_stub) do
+  def stub_linked_defendant(maat_reference:)
+    fixture = JSON.parse(load_json_stub('unlinked_defendant.json'))
+
     stub_request(
       :get,
       %r{http.*/api/internal/v2/prosecution_cases/.*/defendants/#{defendant_id}}
     ).to_return(
       status: 200,
-      body: load_json_stub('unlinked_defendant.json'),
+      body: fixture.merge('maat_reference' => maat_reference).to_json,
       headers: { 'Content-Type' => 'application/vnd.api+json' }
     )
   end
@@ -27,7 +29,7 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
     click_link_or_button('Jammy Dodger')
     click_link_or_button('Link MAAT ID')
     fill_in "MAAT ID", with: "1234567"
-    linked_defendant_stub
+    stub_linked_defendant(maat_reference: '1234567')
     click_link_or_button 'Link court data'
     expect(page).to \
       have_govuk_flash(:success_moj_banner, text: 'Successfully linked to MAAT ID 1234567')
@@ -40,10 +42,10 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
     expect(page).to have_text('The MAAT id is missing')
     find(:xpath, "//details[@class='govuk-details']", text: 'The MAAT id is missing').click
     expect(page).to have_button('Create link without MAAT ID')
+    stub_linked_defendant(maat_reference: 'A1000001')
     click_link_or_button 'Create link without MAAT ID'
-    linked_defendant_stub
     expect(page).to \
-      have_govuk_flash(:success_moj_banner, text: 'Successfully linked to MAAT ID')
+      have_govuk_flash(:success_moj_banner, text: 'Successfully linked to MAAT ID A1000001')
   end
 
   scenario 'CDA errors out', :stub_v2_link_cda_failure do

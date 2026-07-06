@@ -2,7 +2,6 @@
 
 require_dependency 'feature_flag'
 
-# rubocop:disable Metrics/ClassLength
 class DefendantsController < ApplicationController
   before_action :load_and_authorize_defendant
   before_action :set_breadcrumbs
@@ -25,26 +24,27 @@ class DefendantsController < ApplicationController
 
   # GET /defendants/:id/link?urn=:urn
   def show_link
-    @form_model = load_link_attempt
+    @form_model = new_link_attempt
   end
 
   # GET /defendants/:id/unlink?urn=:urn
   def show_unlink
-    @form_model = load_unlink_attempt
+    @form_model = new_unlink_attempt
   end
 
   # POST /defendants/:id/link?urn=:urn
   def link
     authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
 
-    @form_model = load_link_attempt
+    @form_model = new_link_attempt
     validate_link_attempt!
 
     Cda::ProsecutionCaseLaaReference.create!(@form_model.to_link_attributes)
+    @defendant = Cda::Defendant.find_from_id_and_urn(@defendant.id, prosecution_case_reference)
 
-    redirect_to defendant_path(defendant.id, urn: prosecution_case_reference),
+    redirect_to defendant_path(@defendant.id, urn: prosecution_case_reference),
                 flash: { success_moj_banner: I18n.t('laa_reference.link.success',
-                                                    maat_id: @form_model.maat_reference) }
+                                                    maat_id: @defendant.maat_reference) }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render :show_link
@@ -54,13 +54,13 @@ class DefendantsController < ApplicationController
 
   # POST /defendants/:id/unlink?urn=:urn
   def unlink
-    @form_model = load_unlink_attempt
+    @form_model = new_unlink_attempt
     @form_model.validate!
 
     logger.info 'CALLING_V2_MAAT_UNLINK'
     Cda::ProsecutionCaseLaaReference.update!(@form_model.to_unlink_attributes)
 
-    redirect_to defendant_path(defendant.id, urn: prosecution_case_reference),
+    redirect_to defendant_path(@defendant.id, urn: prosecution_case_reference),
                 flash: { success_moj_banner: I18n.t('defendants.unlink.success',
                                                     maat_id: @form_model.maat_reference) }
   rescue ActiveResource::ConnectionError => e
@@ -69,8 +69,6 @@ class DefendantsController < ApplicationController
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
     render :show_unlink
   end
-
-  attr_reader :defendant
 
   def prosecution_case_reference
     @prosecution_case_reference ||= params[:urn]
@@ -88,7 +86,7 @@ class DefendantsController < ApplicationController
     add_breadcrumb :search_breadcrumb_name, :search_breadcrumb_path
     add_breadcrumb prosecution_case_name(prosecution_case_reference),
                    prosecution_case_path(prosecution_case_reference)
-    add_breadcrumb defendant.name, defendant_path(defendant.id, urn: prosecution_case_reference)
+    add_breadcrumb @defendant.name, defendant_path(@defendant.id, urn: prosecution_case_reference)
 
     add_breadcrumb 'Link' if action_name.in?(%w[show_link link])
     add_breadcrumb 'Unlink' if action_name.in?(%w[show_unlink unlink])
@@ -103,24 +101,21 @@ class DefendantsController < ApplicationController
     end
   end
 
-  def load_link_attempt
+  def new_link_attempt
     LinkAttempt.new(
-      defendant_id: defendant.id,
+      defendant_id: @defendant.id,
       username: current_user.username,
       maat_reference: params.dig(:link_attempt, :maat_reference)
     )
   end
 
-  def load_unlink_attempt
-    reason_code = params.dig(:unlink_attempt, :reason_code).to_i
-    reason_code = nil if reason_code.zero?
-
+  def new_unlink_attempt
     UnlinkAttempt.new(
-      defendant_id: defendant.id,
+      defendant_id: @defendant.id,
       username: current_user.username,
-      reason_code:,
+      reason_code: params.dig(:unlink_attempt, :reason_code).presence&.to_i,
       other_reason_text: params.dig(:unlink_attempt, :other_reason_text),
-      maat_reference: defendant.maat_reference
+      maat_reference: @defendant.maat_reference
     )
   end
 
@@ -140,4 +135,3 @@ class DefendantsController < ApplicationController
     Cda::OffenceHistoryCollection.find_from_id_and_urn(params[:id], prosecution_case_reference)
   end
 end
-# rubocop:enable Metrics/ClassLength
