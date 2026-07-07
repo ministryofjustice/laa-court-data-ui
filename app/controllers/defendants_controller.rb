@@ -40,11 +40,9 @@ class DefendantsController < ApplicationController
     validate_link_attempt!
 
     Cda::ProsecutionCaseLaaReference.create!(@form_model.to_link_attributes)
-    @defendant = Cda::Defendant.find_from_id_and_urn(@defendant.id, prosecution_case_reference)
 
     redirect_to defendant_path(@defendant.id, urn: prosecution_case_reference),
-                flash: { success_moj_banner: I18n.t('laa_reference.link.success',
-                                                    maat_id: @defendant.maat_reference) }
+                flash: { success_moj_banner: I18n.t('laa_reference.link.success') }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render :show_link
@@ -61,8 +59,7 @@ class DefendantsController < ApplicationController
     Cda::ProsecutionCaseLaaReference.update!(@form_model.to_unlink_attributes)
 
     redirect_to defendant_path(@defendant.id, urn: prosecution_case_reference),
-                flash: { success_moj_banner: I18n.t('defendants.unlink.success',
-                                                    maat_id: @form_model.maat_reference) }
+                flash: { success_moj_banner: I18n.t('defendants.unlink.success') }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
     render :show_unlink

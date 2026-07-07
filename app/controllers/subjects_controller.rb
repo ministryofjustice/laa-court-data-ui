@@ -36,9 +36,8 @@ class SubjectsController < ApplicationController
                                   maat_reference: params.dig(:link_attempt, :maat_reference))
     validate_link_attempt!
     Cda::CourtApplicationLaaReference.create!(@form_model)
-    @application = Cda::CourtApplication.find(@application.application_id)
     redirect_to court_application_subject_path(@application.application_id),
-                flash: { success_moj_banner: t('.success', maat_id: @application.maat_reference) }
+                flash: { success_moj_banner: t('.success') }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render :show_link
@@ -53,7 +52,7 @@ class SubjectsController < ApplicationController
     @form_model.validate!
     Cda::CourtApplicationLaaReference.update!(@form_model)
     redirect_to court_application_subject_path(@application.application_id),
-                flash: { success_moj_banner: t('.success', maat_id: @form_model.maat_reference) }
+                flash: { success_moj_banner: t('.success') }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
     render :show_unlink

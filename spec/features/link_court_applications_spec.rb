@@ -24,7 +24,7 @@ RSpec.feature 'Link court applications' do
       visit link_court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: '7654321'
       click_on "Link court data"
-      expect(page).to have_text "Successfully linked to MAAT ID 7654321"
+      expect(page).to have_text "Application linked successfully."
       expect(page).to have_text "MAAT ID 7654321"
     end
 
@@ -91,13 +91,13 @@ RSpec.feature 'Link court applications' do
         fill_in "MAAT ID", with: '1234567'
         click_on "Link court data"
 
-        expect(page).to have_text "Successfully linked to MAAT ID 1234567"
+        expect(page).to have_text "Application linked successfully."
 
         click_on "Unlink MAAT ID"
         choose "Initially processed on Libra"
         click_on "Remove link to MAAT ID"
 
-        expect(page).to have_text "You removed the link to MAAT ID 1234567"
+        expect(page).to have_text "Link removed successfully."
       end
     end
 
@@ -114,13 +114,13 @@ RSpec.feature 'Link court applications' do
         find("summary", text: "The MAAT ID is missing").click
         click_on "Create link without MAAT ID"
 
-        expect(page).to have_text "Successfully linked to MAAT ID A10000074"
+        expect(page).to have_text "Application linked successfully."
 
         click_on "Unlink MAAT ID"
         choose "Initially processed on Libra"
         click_on "Remove link to MAAT ID"
 
-        expect(page).to have_text "You removed the link to MAAT ID A10000074"
+        expect(page).to have_text "Link removed successfully."
       end
     end
   end

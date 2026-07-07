@@ -7,7 +7,7 @@ en:
           hint: Enter the MAAT ID so this case can be linked to the court data source
           label: MAAT ID
         submit: Link court data
-      success: Successfully linked to MAAT ID %{maat_id}
+      success: Case linked successfully.
     missing_maat_id:
       description: If you are confident that this is the correct defendant, then you can still link
       label: The MAAT ID is missing

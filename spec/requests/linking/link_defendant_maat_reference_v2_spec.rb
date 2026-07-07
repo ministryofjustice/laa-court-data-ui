@@ -26,19 +26,6 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
     }
   end
 
-  before do
-    fixture = JSON.parse(load_json_stub('unlinked_defendant.json'))
-
-    stub_request(
-      :get,
-      %r{http.*/api/internal/v2/prosecution_cases/.*/defendants/#{defendant_id}}
-    ).to_return(
-      status: 200,
-      body: fixture.merge('maat_reference' => maat_reference).to_json,
-      headers: { 'Content-Type' => 'application/vnd.api+json' }
-    )
-  end
-
   context 'when authenticated' do
     before do
       sign_in user
@@ -61,7 +48,7 @@ RSpec.describe 'link defendant maat reference', :vcr, :stub_unlinked, type: :req
       end
 
       it 'flashes success banner' do
-        expect(flash.now[:success_moj_banner]).to match(/Successfully linked to MAAT ID #{maat_reference}/)
+        expect(flash.now[:success_moj_banner]).to eq('Case linked successfully.')
       end
     end
 

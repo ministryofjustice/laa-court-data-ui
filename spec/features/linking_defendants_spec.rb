@@ -32,7 +32,7 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
     stub_linked_defendant(maat_reference: '1234567')
     click_link_or_button 'Link court data'
     expect(page).to \
-      have_govuk_flash(:success_moj_banner, text: 'Successfully linked to MAAT ID 1234567')
+      have_govuk_flash(:success_moj_banner, text: 'Case linked successfully.')
   end
 
   scenario 'user links defendant details with no maat id', :stub_v2_link_success do
@@ -45,7 +45,7 @@ RSpec.describe 'Linking a defendant', :stub_unlinked, :stub_hearing_summary, typ
     stub_linked_defendant(maat_reference: 'A1000001')
     click_link_or_button 'Create link without MAAT ID'
     expect(page).to \
-      have_govuk_flash(:success_moj_banner, text: 'Successfully linked to MAAT ID A1000001')
+      have_govuk_flash(:success_moj_banner, text: 'Case linked successfully.')
   end
 
   scenario 'CDA errors out', :stub_v2_link_cda_failure do

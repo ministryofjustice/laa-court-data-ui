@@ -77,7 +77,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
         it 'flashes success banner' do
           expect(page).to \
             have_govuk_flash(:success_moj_banner,
-                             text: "You removed the link to MAAT ID #{maat_reference}")
+                             text: 'Link removed successfully.')
         end
       end
 
@@ -107,7 +107,7 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
         it 'flashes success banner' do
           expect(page).to \
             have_govuk_flash(:success_moj_banner,
-                             text: "You removed the link to MAAT ID #{maat_reference}")
+                             text: 'Link removed successfully.')
         end
       end
     end

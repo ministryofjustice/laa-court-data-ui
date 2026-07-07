@@ -46,7 +46,7 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
       end
 
       it 'flashes success banner' do
-        expect(flash.now[:success_moj_banner]).to match(/Successfully linked to MAAT ID/)
+        expect(flash.now[:success_moj_banner]).to eq('Case linked successfully.')
       end
     end
 

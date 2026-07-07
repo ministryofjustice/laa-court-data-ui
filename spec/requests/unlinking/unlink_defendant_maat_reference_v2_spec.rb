@@ -105,7 +105,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       end
 
       it 'flashes success banner' do
-        expect(flash.now[:success_moj_banner]).to match(/You removed the link to MAAT ID #{maat_reference}/)
+        expect(flash.now[:success_moj_banner]).to eq('Link removed successfully.')
       end
     end
 
@@ -156,7 +156,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       end
 
       it 'flashes success banner' do
-        expect(flash.now[:success_moj_banner]).to match(/You removed the link to MAAT ID #{maat_reference}/)
+        expect(flash.now[:success_moj_banner]).to eq('Link removed successfully.')
       end
 
       it 'redirects to defendant path' do
@@ -190,7 +190,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       end
 
       it 'flashes success banner' do
-        expect(flash.now[:success_moj_banner]).to match(/You removed the link to MAAT ID #{maat_reference}/)
+        expect(flash.now[:success_moj_banner]).to eq('Link removed successfully.')
       end
 
       it 'redirects to defendant path' do

@@ -5,7 +5,7 @@ en:
     breach: Breach
     link:
       failure: Unable to link the defendant to that MAAT ID
-      success: Successfully linked to MAAT ID %{maat_id}
+      success: Application linked successfully.
     poca: POCA
     show:
       appeal_title: Appellant details
@@ -39,4 +39,4 @@ en:
       title: Confirm you want to remove MAAT ID link
     unlink:
       failure: Unable to unlink the defendant
-      success: You removed the link to MAAT ID %{maat_id}
+      success: Link removed successfully.
