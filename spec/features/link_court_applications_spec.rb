@@ -88,12 +88,17 @@ RSpec.feature 'Link court applications' do
       scenario 'I link and then unlink a POCA application' do
         visit link_court_application_subject_path(court_application_id)
 
+        expect(page).to have_text "2391NX0000558631827D" # The ASN, taken from the prosecution case defendant
+
         fill_in "MAAT ID", with: '1234567'
         click_on "Link court data"
 
         expect(page).to have_text "Application linked successfully."
 
         click_on "Unlink MAAT ID"
+
+        expect(page).to have_text "2391NX0000558631827D" # The ASN, taken from the prosecution case defendant
+
         choose "Initially processed on Libra"
         click_on "Remove link to MAAT ID"
 

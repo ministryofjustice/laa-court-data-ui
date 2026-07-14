@@ -35,6 +35,16 @@ module Cda
       end
     end
 
+    # For appeals and POCA, Common Platform returns the ASN as nil on the subject summary,
+    # so we get it from the defendant on the underlying prosecution case.
+    def subject_asn
+      if appeal? || poca?
+        defendant.arrest_summons_number
+      else
+        subject_summary.defendant_asn
+      end
+    end
+
     def appeal?
       application_category == "appeal"
     end

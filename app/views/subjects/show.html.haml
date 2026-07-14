@@ -54,10 +54,9 @@
             %th.govuk-table__header{ scope: "row" }
               = t(".arrest_summons_number")
             %td.govuk-table__cell
-              -# Important: In case of an appeal, the ASN comes nil from the @subject, so we need to get it from the @application.defendant
-              %span#subject-asn= @application.defendant.arrest_summons_number
+              %span#subject-asn= @application.subject_asn
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
-              - if @application.defendant.arrest_summons_number.present?
+              - if @application.subject_asn.present?
                 %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }
                   Copy
         - else
@@ -65,9 +64,9 @@
             %th.govuk-table__header{ scope: "row" }
               = t(".respondent_arrest_summons_number")
             %td.govuk-table__cell
-              %span#subject-asn= @subject.defendant_asn
+              %span#subject-asn= @application.subject_asn
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
-              - if @subject.defendant_asn.present?
+              - if @application.subject_asn.present?
                 %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }
                   Copy
           - if @application.breach?

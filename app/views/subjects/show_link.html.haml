@@ -36,8 +36,7 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".arrest_summons_number")
           %td.govuk-table__cell
-            -# In case of an appeal, the ASN comes nil from the @subject, so we get it from the @application.defendant
-            = @application.appeal? ? @application.defendant.arrest_summons_number : @subject.defendant_asn
+            = @application.subject_asn
         - if @application.breach?
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
