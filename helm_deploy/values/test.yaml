@@ -5,6 +5,7 @@ replicas:
 image:
   tag: ""
   repository: "nginx"
+resources: {}
 env: test
 host: test.view-court-data.service.justice.gov.uk
 cdaHost: https://laa-court-data-adaptor-test.apps.live.cloud-platform.service.justice.gov.uk/api/internal/v1
