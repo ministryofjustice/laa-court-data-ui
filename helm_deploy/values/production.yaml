@@ -5,6 +5,13 @@ replicas:
 image:
   tag: ""
   repository: "nginx"
+resources:
+  limits:
+    cpu: 1
+    memory: 1000Mi
+  requests:
+    cpu: 100m
+    memory: 500Mi
 env: production
 host: view-court-data.service.justice.gov.uk
 cdaHost: https://court-data-adaptor.service.justice.gov.uk/api/internal/v1
