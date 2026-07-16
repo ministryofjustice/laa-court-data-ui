@@ -23,9 +23,8 @@ en:
         caption: Defendants
         date_of_birth: Date of birth
         heading: Defendants
-        maat_number: MAAT number
+        maat_number: MAAT ID
         name: Name
-        national_insurance_number: NI number
         prosecution_case_reference: Case URN
         unlinked: Not linked
       hearing:
@@ -46,7 +45,7 @@ en:
         caption: Representation order list
         granted_at: Date granted
         heading: Representation orders
-        maat_number: MAAT number
+        maat_number: MAAT ID
         provider: Provider
       result: result
     term:

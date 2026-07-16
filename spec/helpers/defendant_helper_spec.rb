@@ -9,34 +9,20 @@ RSpec.describe DefendantHelper, type: :helper do
     # rubocop:enable RSpec/VerifiedDoubles
     let(:id) { '12abc3de-456f-789g-012h-3456i78jk90l' }
 
+    before do
+      allow(defendant).to receive(:id).and_return(id)
+    end
+
     context 'with URN specified' do
       subject { helper.defendant_link_path(defendant, prosecution_case_reference) }
 
-      context 'when defendant linked' do
-        before do
-          allow(defendant).to receive_messages(linked?: true, id:)
-        end
-
-        it { is_expected.to eql "/defendants/#{id}/edit?urn=#{prosecution_case_reference}" }
-      end
-
-      context 'when defendant not linked' do
-        before do
-          allow(defendant).to receive_messages(linked?: false, id:)
-        end
-
-        it { is_expected.to eql "/laa_references/new?id=#{id}&urn=#{prosecution_case_reference}" }
-      end
+      it { is_expected.to eql "/defendants/#{id}?urn=#{prosecution_case_reference}" }
     end
 
     context 'without URN specified' do
       subject { helper.defendant_link_path(defendant) }
 
-      before do
-        allow(defendant).to receive_messages(linked?: true, id:)
-      end
-
-      it { is_expected.to eql "/defendants/#{id}/edit" }
+      it { is_expected.to eql "/defendants/#{id}" }
     end
   end
 end

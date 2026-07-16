@@ -12,16 +12,15 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
 
     create(:unlink_reason,
            code: 1,
-           description: 'Linked to wrong case ID (correct defendant)',
-           text_required: false)
-    create(:unlink_reason, code: 7, description: 'Other', text_required: true)
+           description: 'Linked to wrong case ID (correct defendant)')
+    create(:unlink_reason, code: UnlinkReason::OTHER_REASON_CODE, description: 'Other')
 
     visit(url)
   end
 
-  context 'when user views unlinked defendant' do
+  context 'when user views the link page' do
     let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-    let(:url) { "laa_references/new?id=#{defendant_id}&urn=#{case_urn}" }
+    let(:url) { "defendants/#{defendant_id}/link?urn=#{case_urn}" }
 
     it 'displays the MAAT ID field' do
       expect(page).to have_field('MAAT ID')
@@ -31,34 +30,26 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
       expect(page).to have_text('Enter the MAAT ID')
     end
 
-    it 'does not display the Remove link' do
-      expect(page).to have_no_text('Remove link to court data')
-    end
-
-    it 'does not display the remove MAAT ID warning' do
-      expect(page).not_to have_govuk_warning('Removing the link will stop hearing updates being received')
+    it 'does not display the unlink reasons' do
+      expect(page).to have_no_text('Reason for unlinking')
     end
   end
 
-  context 'when user views linked defendant' do
+  context 'when user views the unlink page' do
     let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-    let(:url) { "defendants/#{defendant_id}/edit?urn=#{case_urn}" }
+    let(:url) { "defendants/#{defendant_id}/unlink?urn=#{case_urn}" }
     let(:maat_reference) { 2_123_456.to_s }
 
     it 'does not display the MAAT ID field' do
       expect(page).to have_no_field('MAAT ID')
     end
 
-    it 'does not display the MAAT ID field hint' do
-      expect(page).to have_no_text('Enter the MAAT ID')
-    end
-
-    it 'displays the remove link detail' do
-      expect(page).to have_text('Remove link to court data')
+    it 'displays the reason for unlinking' do
+      expect(page).to have_text('Reason for unlinking')
     end
 
     it 'displays the remove link warning' do
-      expect(page).to have_govuk_warning('Removing the link will stop hearing updates being received')
+      expect(page).to have_text('Removing the link will stop hearing updates from being received.')
     end
 
     context 'when user unlinks with success' do
@@ -73,8 +64,8 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
 
       context 'with standard reason' do
         before do
-          select 'Linked to wrong case ID (correct defendant)', from: 'Reason for unlinking'
-          click_link_or_button 'Remove link to court data'
+          choose 'Linked to wrong case ID (correct defendant)'
+          click_link_or_button 'Remove link to MAAT ID'
         end
 
         it 'sends an unlink request to CD API' do
@@ -83,9 +74,10 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
             .to have_been_made
         end
 
-        it 'flashes notice' do
+        it 'flashes success banner' do
           expect(page).to \
-            have_govuk_flash(:notice, text: 'You have successfully unlinked from the court data source')
+            have_govuk_flash(:success_moj_banner,
+                             text: 'Link removed successfully.')
         end
       end
 
@@ -94,16 +86,16 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
           {
             laa_reference: { defendant_id:,
                              user_name: user.username,
-                             unlink_reason_code: 7,
+                             unlink_reason_code: UnlinkReason::OTHER_REASON_CODE,
                              maat_reference:,
                              unlink_other_reason_text: 'Case already concluded' }
           }
         end
 
         before do
-          select 'Other', from: 'Reason for unlinking'
-          fill_in 'Other reason', with: 'Case already concluded'
-          click_link_or_button 'Remove link to court data'
+          choose 'Other'
+          fill_in 'Reason for unlinking', with: 'Case already concluded'
+          click_link_or_button 'Remove link to MAAT ID'
         end
 
         it 'sends an unlink request to CD API' do
@@ -112,17 +104,18 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
             .to have_been_made
         end
 
-        it 'flashes notice' do
+        it 'flashes success banner' do
           expect(page).to \
-            have_govuk_flash(:notice, text: 'You have successfully unlinked from the court data source')
+            have_govuk_flash(:success_moj_banner,
+                             text: 'Link removed successfully.')
         end
       end
     end
 
     context 'when user unlinks defendant with failure' do
       before do
-        select 'Linked to wrong case ID (correct defendant)', from: 'Reason for unlinking'
-        click_link_or_button 'Remove link to court data'
+        choose 'Linked to wrong case ID (correct defendant)'
+        click_link_or_button 'Remove link to MAAT ID'
       end
 
       it 'flashes alert for 422 Unprocessable Content response', :stub_v2_unlink_bad_response do

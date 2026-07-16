@@ -139,7 +139,7 @@ http_interactions:
     uri: http://localhost:9292/api/internal/v2/court_application_laa_references/
     body:
       encoding: UTF-8
-      string: '{"laa_reference":{"maat_reference":"1234567","subject_id":"0a8adfeb-f860-483c-a992-f66d136aff3f","user_name":"ohar-h57"}}'
+      string: '{"laa_reference":{"maat_reference":null,"subject_id":"0a8adfeb-f860-483c-a992-f66d136aff3f","user_name":"ohar-h57"}}'
     headers:
       Content-Type:
       - application/json
@@ -250,10 +250,10 @@ http_interactions:
         Hill Magistrates'' Court","welsh_name":null,"room_id":"9e4932f7-97b2-3010-b942-ddd2624e4dd8","room_name":"Courtroom
         01","welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B01LY","oucode_l2_code":"1","code":"B01LY00","address":{"address_1":"176A
         Lavender Hill","address_2":"London","address_3":"","address_4":"","address_5":null,"postcode":null}},"hearing_days":[{"sitting_day":"2026-01-29T10:00:00.000Z","listing_sequence":6,"listed_duration_minutes":20,"has_shared_results":true}],"defence_counsels":[]}],"subject_summary":{"subject_id":"0a8adfeb-f860-483c-a992-f66d136aff3f","date_of_next_hearing":"2026-01-29T10:00:00.000Z","defendant_asn":null,"defendant_dob":"1973-01-29","defendant_first_name":"Melvin","defendant_last_name":"Wiegand","master_defendant_id":"2d8f38d9-d155-45fe-8a41-b77cf9e3d6b5","offence_summary":[{"id":"2494fa76-b89e-47cd-8a9b-d8ede263e925","code":"PC02541","order_index":1,"mode_of_trial":null,"start_date":"2026-01-29","title":"Application
-        for a confiscation order in the Crown Court","wording":null,"proceedings_concluded":null,"legislation":null,"arrest_date":null,"charge_date":null,"laa_application":{"reference":"1234567","id":null,"status_code":null,"status_date":null,"description":null,"effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":true,"organisation_name":null,"representation_order":{}},"judicial_results":[{"id":"6c88008a-fa7a-48e8-ac71-250426f688d1","label":"Confiscation
+        for a confiscation order in the Crown Court","wording":null,"proceedings_concluded":null,"legislation":null,"arrest_date":null,"charge_date":null,"laa_application":{"reference":"A10000074","id":null,"status_code":null,"status_date":null,"description":null,"effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":true,"organisation_name":null,"representation_order":{}},"judicial_results":[{"id":"6c88008a-fa7a-48e8-ac71-250426f688d1","label":"Confiscation
         order","is_adjournment_result":false,"is_available_for_court_extract":true,"is_convicted_result":true,"is_financial_result":false,"qualifier":null,"text":"CONFAA
         - Confiscation order","cjs_code":"3056","ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]},{"id":"23d2d0f5-1edf-4ed6-8f9e-1f378696b481","label":"Granted","is_adjournment_result":false,"is_available_for_court_extract":true,"is_convicted_result":false,"is_financial_result":false,"qualifier":null,"text":"G
-        - Granted","cjs_code":null,"ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]}],"linked_maat_id":"1234567"}'
+        - Granted","cjs_code":null,"ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]}],"linked_maat_id":"A10000074"}'
   recorded_at: Thu, 05 Feb 2026 21:53:29 GMT
 - request:
     method: get
@@ -317,10 +317,10 @@ http_interactions:
         Hill Magistrates'' Court","welsh_name":null,"room_id":"9e4932f7-97b2-3010-b942-ddd2624e4dd8","room_name":"Courtroom
         01","welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B01LY","oucode_l2_code":"1","code":"B01LY00","address":{"address_1":"176A
         Lavender Hill","address_2":"London","address_3":"","address_4":"","address_5":null,"postcode":null}},"hearing_days":[{"sitting_day":"2026-01-29T10:00:00.000Z","listing_sequence":6,"listed_duration_minutes":20,"has_shared_results":true}],"defence_counsels":[]}],"subject_summary":{"subject_id":"0a8adfeb-f860-483c-a992-f66d136aff3f","date_of_next_hearing":"2026-01-29T10:00:00.000Z","defendant_asn":null,"defendant_dob":"1973-01-29","defendant_first_name":"Melvin","defendant_last_name":"Wiegand","master_defendant_id":"2d8f38d9-d155-45fe-8a41-b77cf9e3d6b5","offence_summary":[{"id":"2494fa76-b89e-47cd-8a9b-d8ede263e925","code":"PC02541","order_index":1,"mode_of_trial":null,"start_date":"2026-01-29","title":"Application
-        for a confiscation order in the Crown Court","wording":null,"proceedings_concluded":null,"legislation":null,"arrest_date":null,"charge_date":null,"laa_application":{"reference":"1234567","id":null,"status_code":null,"status_date":null,"description":null,"effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":true,"organisation_name":null,"representation_order":{}},"judicial_results":[{"id":"6c88008a-fa7a-48e8-ac71-250426f688d1","label":"Confiscation
+        for a confiscation order in the Crown Court","wording":null,"proceedings_concluded":null,"legislation":null,"arrest_date":null,"charge_date":null,"laa_application":{"reference":"A10000074","id":null,"status_code":null,"status_date":null,"description":null,"effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":true,"organisation_name":null,"representation_order":{}},"judicial_results":[{"id":"6c88008a-fa7a-48e8-ac71-250426f688d1","label":"Confiscation
         order","is_adjournment_result":false,"is_available_for_court_extract":true,"is_convicted_result":true,"is_financial_result":false,"qualifier":null,"text":"CONFAA
         - Confiscation order","cjs_code":"3056","ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]},{"id":"23d2d0f5-1edf-4ed6-8f9e-1f378696b481","label":"Granted","is_adjournment_result":false,"is_available_for_court_extract":true,"is_convicted_result":false,"is_financial_result":false,"qualifier":null,"text":"G
-        - Granted","cjs_code":null,"ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]}],"linked_maat_id":"1234567"}'
+        - Granted","cjs_code":null,"ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]}],"linked_maat_id":"A10000074"}'
   recorded_at: Thu, 05 Feb 2026 21:53:29 GMT
 - request:
     method: get
@@ -384,17 +384,17 @@ http_interactions:
         Hill Magistrates'' Court","welsh_name":null,"room_id":"9e4932f7-97b2-3010-b942-ddd2624e4dd8","room_name":"Courtroom
         01","welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"B01LY","oucode_l2_code":"1","code":"B01LY00","address":{"address_1":"176A
         Lavender Hill","address_2":"London","address_3":"","address_4":"","address_5":null,"postcode":null}},"hearing_days":[{"sitting_day":"2026-01-29T10:00:00.000Z","listing_sequence":6,"listed_duration_minutes":20,"has_shared_results":true}],"defence_counsels":[]}],"subject_summary":{"subject_id":"0a8adfeb-f860-483c-a992-f66d136aff3f","date_of_next_hearing":"2026-01-29T10:00:00.000Z","defendant_asn":null,"defendant_dob":"1973-01-29","defendant_first_name":"Melvin","defendant_last_name":"Wiegand","master_defendant_id":"2d8f38d9-d155-45fe-8a41-b77cf9e3d6b5","offence_summary":[{"id":"2494fa76-b89e-47cd-8a9b-d8ede263e925","code":"PC02541","order_index":1,"mode_of_trial":null,"start_date":"2026-01-29","title":"Application
-        for a confiscation order in the Crown Court","wording":null,"proceedings_concluded":null,"legislation":null,"arrest_date":null,"charge_date":null,"laa_application":{"reference":"1234567","id":null,"status_code":null,"status_date":null,"description":null,"effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":true,"organisation_name":null,"representation_order":{}},"judicial_results":[{"id":"6c88008a-fa7a-48e8-ac71-250426f688d1","label":"Confiscation
+        for a confiscation order in the Crown Court","wording":null,"proceedings_concluded":null,"legislation":null,"arrest_date":null,"charge_date":null,"laa_application":{"reference":"A10000074","id":null,"status_code":null,"status_date":null,"description":null,"effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{},"plea":{},"pleas":[]}],"proceedings_concluded":true,"organisation_name":null,"representation_order":{}},"judicial_results":[{"id":"6c88008a-fa7a-48e8-ac71-250426f688d1","label":"Confiscation
         order","is_adjournment_result":false,"is_available_for_court_extract":true,"is_convicted_result":true,"is_financial_result":false,"qualifier":null,"text":"CONFAA
         - Confiscation order","cjs_code":"3056","ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]},{"id":"23d2d0f5-1edf-4ed6-8f9e-1f378696b481","label":"Granted","is_adjournment_result":false,"is_available_for_court_extract":true,"is_convicted_result":false,"is_financial_result":false,"qualifier":null,"text":"G
-        - Granted","cjs_code":null,"ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]}],"linked_maat_id":"1234567"}'
+        - Granted","cjs_code":null,"ordered_date":"2026-01-29","post_hearing_custody_status":null,"wording":null,"prompts":[]}],"linked_maat_id":"A10000074"}'
   recorded_at: Thu, 05 Feb 2026 21:53:29 GMT
 - request:
     method: patch
     uri: http://localhost:9292/api/internal/v2/court_application_laa_references/0a8adfeb-f860-483c-a992-f66d136aff3f
     body:
       encoding: UTF-8
-      string: '{"laa_reference":{"subject_id":"0a8adfeb-f860-483c-a992-f66d136aff3f","user_name":"ohar-h57","unlink_reason_code":4,"unlink_other_reason_text":null,"maat_reference":"1234567"}}'
+      string: '{"laa_reference":{"subject_id":"0a8adfeb-f860-483c-a992-f66d136aff3f","user_name":"ohar-h57","unlink_reason_code":4,"unlink_other_reason_text":null,"maat_reference":"A10000074"}}'
     headers:
       Content-Type:
       - application/json
