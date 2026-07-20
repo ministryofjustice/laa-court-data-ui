@@ -26,7 +26,7 @@ RSpec.describe 'caseworkers', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/unauthorised/)
+        expect(flash.now[:alert]).to include('unauthorised')
       end
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe 'caseworkers', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/unauthorised/)
+        expect(flash.now[:alert]).to include('unauthorised')
       end
     end
   end
@@ -70,7 +70,7 @@ RSpec.describe 'caseworkers', type: :request do
 
       it 'flashes alert' do
         request
-        expect(flash.now[:alert]).to match(/unauthorised/)
+        expect(flash.now[:alert]).to include('unauthorised')
       end
 
       it 'does not create user' do
@@ -90,7 +90,7 @@ RSpec.describe 'caseworkers', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/unauthorised/)
+        expect(flash.now[:alert]).to include('unauthorised')
       end
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe 'caseworkers', type: :request do
       end
 
       it 'flashes alert' do
-        expect(flash.now[:alert]).to match(/unauthorised/)
+        expect(flash.now[:alert]).to include('unauthorised')
       end
 
       it 'does not update user' do
@@ -130,7 +130,7 @@ RSpec.describe 'caseworkers', type: :request do
 
     it 'flashes alert' do
       request
-      expect(flash.now[:alert]).to match(/unauthorised/)
+      expect(flash.now[:alert]).to include('unauthorised')
     end
   end
 end

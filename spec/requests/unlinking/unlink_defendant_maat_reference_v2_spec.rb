@@ -273,7 +273,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
     end
 
     it 'flashes alert' do
-      expect(flash.now[:alert]).to match(/sign in before continuing/)
+      expect(flash.now[:alert]).to include('sign in before continuing')
     end
   end
 end

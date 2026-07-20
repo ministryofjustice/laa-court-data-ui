@@ -20,8 +20,8 @@ RSpec.feature 'Case reference search', :vcr, :js, type: :feature do
       expect(page).to have_text('TEST12345', count: 4)
       # Both linked and unlinked defendants link to the defendant detail page,
       # which offers the link/unlink actions.
-      expect(find('a', text: 'Wendie Bogisiche Lowe')['href']).to match(%r{defendants/})
-      expect(find('a', text: 'Marlin Schaefer Leuschke')['href']).to match(%r{defendants/})
+      expect(find('a', text: 'Wendie Bogisiche Lowe')['href']).to include('defendants/')
+      expect(find('a', text: 'Marlin Schaefer Leuschke')['href']).to include('defendants/')
     end
 
     expect(page).to be_accessible

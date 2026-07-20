@@ -55,7 +55,7 @@ RSpec.describe 'hearings_v2', type: :request do
     end
 
     it 'flashes notice' do
-      expect(flash.now[:alert]).to match(/Error retrieving data from server/)
+      expect(flash.now[:alert]).to include('Error retrieving data from server')
     end
   end
 
@@ -71,7 +71,7 @@ RSpec.describe 'hearings_v2', type: :request do
     end
 
     it 'flashes notice' do
-      expect(flash.now[:alert]).to match(/Error retrieving data from server/)
+      expect(flash.now[:alert]).to include('Error retrieving data from server')
     end
   end
 end

@@ -20,7 +20,7 @@ RSpec.shared_examples 'a standard user' do
     end
 
     it 'flashes alert' do
-      expect(flash.now[:alert]).to match(/You are unauthorised to manage users/)
+      expect(flash.now[:alert]).to include('You are unauthorised to manage users')
     end
   end
 end
@@ -93,7 +93,7 @@ RSpec.describe 'authorization', type: :request do
     end
 
     it 'flashes alert' do
-      expect(flash.now[:alert]).to match(/You are unauthorised to new Search filter/)
+      expect(flash.now[:alert]).to include('You are unauthorised to new Search filter')
     end
   end
 
@@ -110,7 +110,7 @@ RSpec.describe 'authorization', type: :request do
     end
 
     it 'flashes alert' do
-      expect(flash.now[:alert]).to match(/You are unauthorised to new Search filter/)
+      expect(flash.now[:alert]).to include('You are unauthorised to new Search filter')
     end
   end
 end
