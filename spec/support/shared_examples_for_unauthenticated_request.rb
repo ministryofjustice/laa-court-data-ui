@@ -6,6 +6,6 @@ RSpec.shared_examples 'unauthenticated request' do
   end
 
   it 'flashes alert' do
-    expect(flash.now[:alert]).to match(/sign in before continuing/)
+    expect(flash.now[:alert]).to include('sign in before continuing')
   end
 end

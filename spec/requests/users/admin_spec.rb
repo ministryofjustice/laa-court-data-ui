@@ -55,7 +55,7 @@ RSpec.describe 'admin', type: :request do
 
     it 'flashes notice' do
       request
-      expect(flash.now[:success_moj_banner]).to match(/Billy Bob's account created/)
+      expect(flash.now[:success_moj_banner]).to include("Billy Bob's account created")
     end
 
     it 'creates user' do

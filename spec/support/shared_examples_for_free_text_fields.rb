@@ -14,6 +14,7 @@ RSpec.shared_examples 'free text fields' do
   include_context 'with free text fields'
 
   let(:free_text) { '' }
+
   context 'with text containing unicode characters' do
     let(:free_text) { free_text_with_unicode_notes }
 
