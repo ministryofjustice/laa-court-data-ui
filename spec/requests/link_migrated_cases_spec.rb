@@ -9,6 +9,13 @@ RSpec.describe "link_migrated_cases", type: :request do
     allow(FeatureFlag).to receive(:enabled?).with(:show_link_migrated_cases).and_return(true)
   end
 
+  context "when the need_linking tab is requested", :stub_link_migrated_cases, :stub_oauth_token do
+    it "renders the index with action required cases" do
+      get link_migrated_cases_path(tab: "action_required")
+      expect(response).to be_successful
+    end
+  end
+
   context "when a non-need_linking tab is requested", :stub_link_migrated_cases, :stub_oauth_token do
     it "renders the index" do
       get link_migrated_cases_path(tab: "manually_linked")
