@@ -13,8 +13,19 @@ RSpec.describe 'link_migrated_cases/index.html.haml', type: :view do
     expect(rendered).to have_css('tbody.govuk-table__body tr:nth-child(1) td', count: cells.length)
 
     cells.each_with_index do |cell, index|
-      expect(rendered).to have_css("tbody.govuk-table__body tr:nth-child(1) td:nth-child(#{index + 1})",
-                                   text: cell)
+      selector = "tbody.govuk-table__body tr:nth-child(1) td:nth-child(#{index + 1})"
+
+      if cell.is_a?(Hash)
+        # Allow expectations like { text: 'Link MAAT ID', href: '/path' }
+        text = cell[:text] || cell['text']
+        href = cell[:href] || cell['href']
+
+        expect(rendered).to have_css(selector)
+        expect(rendered).to have_css("#{selector} a", text: text) if text
+        expect(rendered).to have_css("#{selector} a[href='#{href}']") if href
+      else
+        expect(rendered).to have_css(selector, text: cell)
+      end
     end
   end
 
@@ -25,7 +36,7 @@ RSpec.describe 'link_migrated_cases/index.html.haml', type: :view do
 
     it 'renders the no results message' do
       render
-      expect(rendered).to include('No link migrated cases found')
+      expect(rendered).to include('No migrated cases found')
     end
 
     it 'does not render pagination' do
@@ -40,10 +51,23 @@ RSpec.describe 'link_migrated_cases/index.html.haml', type: :view do
 
   let(:cases) do
     [
-      { 'case_urn' => 'TEST12345', 'defendant_first_name' => 'John', 'defendant_last_name' => 'Smith',
-        'xhibit_case_number' => 'X123', 'court_name' => 'Southwark', 'mode_of_trial' => 'Summary',
-        'maat_id' => '1234567', 'defendant_date_of_birth' => '01/01/1990', 'linked_at' => '2024-03-01',
-        'linked_by' => 'Jane Doe', 'process_errors' => 'Missing case details' }
+      {
+        "case_urn" => "TEST12345",
+        "defendant_id" => "bf6853d0-6158-4d75-aaf9-55d6014107143",
+        "defendant_first_name" => "John",
+        "defendant_last_name" => "Smith",
+        "xhibit_case_number" => "X123",
+        "court_name" => "Southwark",
+        "mode_of_trial" => "Summary",
+        "maat_id" => "1234567",
+        "defendant_date_of_birth" => "01/01/1990",
+        "linked_at" => "2024-03-01",
+        "linked_by" => "Jane Doe",
+        "process_errors" => {
+          "error" => "429",
+          "message" => "Too Many Requests"
+        }
+      }
     ]
   end
 
@@ -99,7 +123,7 @@ RSpec.describe 'link_migrated_cases/index.html.haml', type: :view do
     before do
       assign(:tab, 'action_required')
       assign(:columns, %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial
-                          reason_for_man_linking maat_id])
+                          reason_for_man_linking link_maat_id])
     end
 
     it 'marks `action_required` tab as active' do
@@ -110,13 +134,17 @@ RSpec.describe 'link_migrated_cases/index.html.haml', type: :view do
     it 'renders the table with column headers' do
       render
       expect_table_headers('Case URN', 'Defendant name', 'Xhibit ref.', 'Court', 'Mode of trial',
-                           /Reason for/, 'MAAT ID')
+                           /Reason for/, '')
     end
 
     it 'renders case data rows' do
       render
       expect_first_row_cells('TEST12345', 'John Smith', 'X123', 'Southwark', 'Summary',
-                             'Missing case details', '1234567')
+                             '429 - Too Many Requests', {
+                               text: 'Link MAAT ID',
+                               href: link_defendant_path('bf6853d0-6158-4d75-aaf9-55d6014107143',
+                                                         urn: 'TEST12345')
+                             })
     end
 
     context 'when there are no cases' do
