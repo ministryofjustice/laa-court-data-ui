@@ -18,5 +18,226 @@ RSpec/IndexedLet:
   Enabled: false
 RSpec/NamedSubject:
   Enabled: false
+<<<<<<< HEAD
 RSpec/AnyInstance:
   Enabled: false
+=======
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Metrics/AbcSize:
+  Exclude:
+    - app/models/ability.rb
+    - spec/features/**/*
+    - spec/controllers/**/*
+    - spec/views/**/*
+    - spec/support/**/*
+    - spec/helpers/**/*
+  Max: 25
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+    - config/routes.rb
+    - config/environments/*.rb
+    - config/initializers/devise.rb
+
+Metrics/MethodLength:
+  Max: 15
+
+Naming/VariableNumber:
+  Enabled: false
+
+Performance/AncestorsInclude:
+  Enabled: true
+
+Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+
+Performance/MapCompact:
+  Enabled: true
+
+Performance/RedundantSortBlock:
+  Enabled: true
+
+Performance/RedundantStringChars:
+  Enabled: true
+
+Performance/ReverseFirst:
+  Enabled: true
+
+Performance/SelectMap:
+  Enabled: true
+
+Performance/SortReverse:
+  Enabled: true
+
+Performance/Squeeze:
+  Enabled: true
+
+Performance/StringInclude:
+  Enabled: true
+
+# => Rails
+#new
+Rails/ActionControllerFlashBeforeRender: # 4 errors
+  Enabled: false
+
+Rails/EnvironmentVariableAccess:
+  AllowReads: true
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - app/models/cda/*
+
+Rails/HelperInstanceVariable:
+  Exclude:
+    - app/helpers/hearing_paginator.rb
+
+Rails/OutputSafety:
+  Exclude:
+    - lib/gds_design_system_breadcrumb_builder.rb
+
+Rails/RequestReferer:
+  EnforcedStyle: referrer
+
+# => RSpec
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/Dialect:
+  PreferredMethods: ["feature", "scenario"]
+
+RSpec/ExampleLength:
+  Exclude:
+    - spec/features/**/*
+    - spec/controllers/**/*
+    - spec/views/**/*
+    - spec/support/**/*
+    - spec/helpers/**/*
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/features/**/*
+    - spec/controllers/**/*
+    - spec/views/**/*
+    - spec/support/**/*
+    - spec/helpers/**/*
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 15
+
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/NoExpectationExample:
+  Exclude:
+    - spec/features/unlinked_defendant_flow_spec.rb
+    - spec/features/breadcrumbs_spec.rb
+
+RSpecRails/InferredSpecType: #122 errors
+  Enabled: false
+
+RSpec/SortMetadata: #38 errors
+  Enabled: false
+
+# => Style
+Style/GuardClause:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/FormatStringToken:
+  Exclude:
+    - app/models/search.rb
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/controllers/users/*controller.rb
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+
+Style/SlicingWithRange:
+  Enabled: true
+
+Style/OpenStructUse:
+  Enabled: true
+
+Rails/I18nLocaleTexts:
+  Exclude:
+    - spec/**/*.rb
+
+RSpec/VerifiedDoubleReference:
+  Enabled: false
+
+# Rails updates enforce double quotes, to avoid conflicts with the existing codebase
+# we are enforcing double quotes only on the files listed below
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  Include:
+    - config/boot.rb
+    - config/application.rb
+    - config/environment.rb
+    - config/environments/development.rb
+    - config/environments/production.rb
+    - config/environments/test.rb
+    - config/initializers/assets.rb
+    - config/initializers/content_security_policy.rb
+    - config/initializers/filter_parameter_logging.rb
+    - config/initializers/inflections.rb
+    - config/initializers/permissions_policy.rb
+    - bin/rails
+    - bin/rake
+    - bin/setup
+    # New files from Rails 7.1
+    - bin/brakeman
+    - bin/rubocop
+    - config/initializers/new_framework_defaults_7_2.rb
+    - config/puma.rb
+
+# The new Ruby version 3.4 enforces frozen string literals by default
+Style/FrozenStringLiteralComment:
+  Enabled: false
+>>>>>>> f95fb7fc ([ACD-1214] Add specs for `LinkMigratedCasesHelper` helper)
