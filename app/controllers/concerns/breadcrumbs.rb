@@ -24,5 +24,15 @@ module Breadcrumbs
       t("prosecution_case.breadcrumb", prosecution_case_reference: reference)
     end
     helper_method :prosecution_case_name
+
+    def link_migrated_cases_breadcrumb_home
+      t('link_migrated_cases.breadcrumbs.home')
+    end
+    helper_method :link_migrated_cases_breadcrumb_home
+
+    def link_migrated_cases_breadcrumb_title
+      t('link_migrated_cases.breadcrumbs.title')
+    end
+    helper_method :link_migrated_cases_breadcrumb_title
   end
 end

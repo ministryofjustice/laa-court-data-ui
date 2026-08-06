@@ -17,23 +17,38 @@ module LinkMigratedCasesHelper
     "action" => { width: "120px", sortable: false, i18n_key: "action" },
   }.freeze
 
+  HANDLERS = {
+    "defendant_name" => :handle_defendant_name,
+    "auto_linked_at" => :handle_auto_linked_at,
+    "case_urn_new_tab" => :handle_case_urn_new_tab,
+    "reason_for_man_linking" => :handle_reason_for_man_linking,
+    "link_maat_id" => :handle_link_maat_id,
+    "linked_at" => :handle_linked_at,
+    "defendant_date_of_birth" => :handle_defendant_date_of_birth,
+  }.freeze
+
   def column_config(col)
     COLUMN_CONFIG[col]
   end
 
   def formatted_process_errors(process_errors)
-    return process_errors unless process_errors.is_a?(Hash)
+    return process_errors unless process_errors.as_json.is_a?(Hash)
 
     formatted_values = process_errors.with_indifferent_access.slice(:error, :message).values.compact_blank
     formatted_values.join(" - ").presence || process_errors.to_s
   end
 
-  def link_maat_id_url(defendant_id, case_urn)
-    # TODO: Replace this link when the "Link court data" page is created
-    # Using Defendant Link MAAT ID page instead for now
+  def link_maat_id_url(id)
     link_to("Link MAAT ID",
             link_defendant_path(defendant_id, urn: case_urn),
             class: "govuk-link govuk-link--no-visited-state")
+  end
+
+  def case_urn_new_tab_url(case_urn)
+    link_to(case_urn,
+            prosecution_case_path(case_urn),
+            class: "govuk-link govuk-link--no-visited-state",
+            target: "_blank", rel: "noopener")
   end
 
   def case_urn_new_tab_url(case_urn)

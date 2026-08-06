@@ -25,7 +25,7 @@ class OffenceDecorator < BaseDecorator
 
 private
 
-  delegate :pleas, :mode_of_trial_reasons, to: :relevant_offence_history
+  delegate :pleas, :mode_of_trial_reasons, to: :relevant_offence_history, allow_nil: true
 
   def plea_sentences
     sorted_pleas.map { |plea| plea_sentence(plea) }
@@ -52,6 +52,12 @@ private
   end
 
   def relevant_offence_history
-    @relevant_offence_history ||= offence_histories&.offence_histories&.find { it.id == id }
+    @relevant_offence_history ||= offence_history_items&.find { it.id == id }
+  end
+
+  def offence_history_items
+    return offence_histories.offence_histories if offence_histories.respond_to?(:offence_histories)
+
+    offence_histories if offence_histories.is_a?(Array)
   end
 end

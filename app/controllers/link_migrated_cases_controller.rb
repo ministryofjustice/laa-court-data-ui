@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 class LinkMigratedCasesController < ApplicationController
-  authorize_resource class: false
-  before_action :check_feature_flag
+  authorize_resource class: false, except: %i[show_link link]
+  before_action :load_and_authorize_access,
+                :load_defendant,
+                :load_prosecution_case,
+                :load_offence_history, only: %i[show_link link]
+  before_action :check_feature_flag, :set_breadcrumbs
 
   SORTABLE_COLUMNS = %w[auto_linked_at
                         case_urn
@@ -48,7 +52,32 @@ class LinkMigratedCasesController < ApplicationController
     @columns = COLUMNS[@tab]
   end
 
-private
+  def show_link
+    @form_model = new_link_attempt
+  end
+
+  def link
+    authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
+
+    @form_model = new_link_attempt
+    validate_link_attempt!
+
+    Cda::ProsecutionCaseLaaReference.create!(@form_model.to_link_attributes)
+
+    redirect_to link_link_migrated_case_path(@migrated_case.id),
+                flash: { success_moj_banner: I18n.t('laa_reference.link.success') }
+  rescue ActiveResource::ConnectionError => e
+    handle_link_failure(e.message, e)
+    render :show_link
+  rescue ActiveModel::ValidationError
+    render :show_link
+  end
+
+  def prosecution_case_reference
+    @prosecution_case_reference ||= params[:urn]
+  end
+
+  private
 
   def fetch_counts
     TABS.index_with do |status|
@@ -82,5 +111,53 @@ private
     unless FeatureFlag.enabled?(:show_link_migrated_cases)
       redirect_to authenticated_user_root_path(current_user)
     end
+  end
+
+  def new_link_attempt
+    LinkAttempt.new(
+      defendant_id: @defendant.id,
+      username: current_user.username,
+      maat_reference: params.dig(:link_attempt, :maat_reference)
+    )
+  end
+
+  def validate_link_attempt!
+    if params[:maat_ref_required] == 'true'
+      @form_model.validate!(:maat_ref_required)
+    else
+      @form_model.maat_reference = nil
+      @form_model.validate!
+    end
+  end
+
+  def load_and_authorize_access
+    @migrated_case = Cda::LinkMigratedCase.find_from_id(params[:id])
+    authorize! :show, @migrated_case
+  end
+
+  def load_defendant
+    @defendant = Cda::Defendant.find_from_id_and_urn(@migrated_case.defendant_id, @migrated_case.case_urn)
+  end
+
+  def load_prosecution_case
+    @prosecution_case_search = Cda::CaseSummaryService.new(@migrated_case.case_urn)
+    @prosecution_case = helpers.decorate(@prosecution_case_search.call, Cda::CaseSummaryDecorator)
+  end
+
+  def load_offence_history
+    @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(@migrated_case.defendant_id,
+                                                                                     @migrated_case.case_urn)
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb :link_migrated_cases_breadcrumb_home, :new_search_filter_path
+    add_breadcrumb :link_migrated_cases_breadcrumb_title, link_migrated_cases_path(tab: :action_required)
+    add_breadcrumb 'Link' if action_name.in?(%w[show_link link])
+  end
+
+  def handle_link_failure(message, exception = nil)
+    logger.warn "LINK MIGRATED CASE FAILURE (params: #{@form_model.as_json}): #{message}"
+    @form_model.errors.add(:maat_reference,
+                           cda_error_string(exception) || t('cda_errors.internal_server_error'))
   end
 end

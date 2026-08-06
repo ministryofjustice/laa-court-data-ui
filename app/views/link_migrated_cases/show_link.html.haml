@@ -1,0 +1,103 @@
+- content_for :page_title, "#{t('.title')} - #{service_name} - GOV.UK"
+- content_for :page_heading do
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
+        = t(".title")
+        
+%div{ class: "govuk-!-margin-bottom-5" }
+  = case_type_tag(@migrated_case.case_type)
+
+.govuk-grid-row
+  .govuk-grid-column-two-thirds
+    %table.govuk-table
+      %caption.govuk-table__caption.govuk-visually-hidden
+        = t(".title")
+      %tbody.govuk-table__body
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".name")
+          %td.govuk-table__cell
+            = @defendant.name
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".date_of_birth")
+          %td.govuk-table__cell
+            = l(@defendant.date_of_birth&.to_date, format: :medium)
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".case_urn")
+          %td.govuk-table__cell
+            = @migrated_case.case_urn
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".arrest_summons_number")
+          %td.govuk-table__cell
+            = @defendant.arrest_summons_number
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: 'row' }
+            = t('.maat_number')
+          %td.govuk-table__cell
+            - if @defendant.maat_reference.present?
+              %span#defendant-maat-number= @defendant.maat_reference
+            - else
+              = t('.not_linked')
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".nino")
+          %td.govuk-table__cell
+            = @defendant.national_insurance_number
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".committal_date")
+          %td.govuk-table__cell
+            = l(@migrated_case.committal_date&.to_date || @migrated_case.sent_date&.to_date, format: :medium)
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".xhibit_ref")
+          %td.govuk-table__cell
+            = @migrated_case.xhibit_case_number
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".court_name")
+          %td.govuk-table__cell
+            = @migrated_case.court_name
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".latest_hearing_date")
+          %td.govuk-table__cell
+            = l(@prosecution_case.sorted_hearing_summaries_with_day.map(&:day).last&.to_date, format: :medium)
+        %tr.govuk-table__row
+          %th.govuk-table__header{ scope: "row" }
+            = t(".reason_for_man_linking")
+          %td.govuk-table__cell
+            = formatted_process_errors(@migrated_case.process_errors)
+
+
+
+.govuk-grid-row
+  .govuk-grid-column-full
+    %turbo-frame#offence-table{ src: offences_defendant_path(@migrated_case.defendant_id, urn: @migrated_case.case_urn) }
+      = render partial: 'link_migrated_cases/offences', locals: { defendant: @defendant, offence_history_collection: @offence_history_collection }
+
+- if @defendant.maat_reference.blank?
+  = form_with(model: @form_model, url: link_link_migrated_case_path(@migrated_case.id), data: { turbo: false }) do |f|
+    - content_for :error_summary do
+      = f.govuk_error_summary
+
+    .govuk-grid-row
+      .govuk-grid-column-two-thirds
+        = f.govuk_text_field :maat_reference,
+                            label: { text: t('laa_reference.link.form.maat_reference.label') },
+                            hint: { text: t('laa_reference.link.form.maat_reference.hint') }
+
+        .govuk-inset-text
+          This will create a link between the application and the court data source.
+
+        .govuk-button-group
+          = f.govuk_submit t('laa_reference.link.form.submit'), data: { disable_with: 'Linking...' }, name: 'maat_ref_required', value: 'true'
+          = link_to t('.back'), link_migrated_cases_path(tab: :action_required), class: 'govuk-link'
+
+        = govuk_detail(t('laa_reference.missing_maat_id.label')) do
+          %p.govuk-details__details-text= t('laa_reference.missing_maat_id.description')
+          = f.govuk_submit(t('laa_reference.missing_maat_id.submit'), secondary: true, name: 'maat_ref_required', value: 'false')
