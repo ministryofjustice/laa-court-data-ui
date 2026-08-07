@@ -64,8 +64,7 @@ RSpec.describe 'link_migrated_cases/index.html.haml', type: :view do
         "linked_at" => "2024-03-01",
         "linked_by" => "Jane Doe",
         "process_errors" => {
-          "error" => "429",
-          "message" => "Too Many Requests"
+          "message" => "MAAT application not found"
         }
       }
     ]
@@ -140,7 +139,7 @@ RSpec.describe 'link_migrated_cases/index.html.haml', type: :view do
     it 'renders case data rows' do
       render
       expect_first_row_cells('TEST12345', 'John Smith', 'X123', 'Southwark', 'Summary',
-                             '429 - Too Many Requests', {
+                             'MAAT application not found', {
                                text: 'Link MAAT ID',
                                href: link_defendant_path('bf6853d0-6158-4d75-aaf9-55d6014107143',
                                                          urn: 'TEST12345')

@@ -24,8 +24,8 @@ module LinkMigratedCasesHelper
   def formatted_process_errors(process_errors)
     return process_errors unless process_errors.is_a?(Hash)
 
-    error, message = process_errors.with_indifferent_access.values_at(:error, :message)
-    [error, message].compact_blank.join(' - ').presence || process_errors.to_s
+    formatted_values = process_errors.with_indifferent_access.slice(:error, :message).values.compact_blank
+    formatted_values.join(' - ').presence || process_errors.to_s
   end
 
   def link_maat_id_url(defendant_id, case_urn)

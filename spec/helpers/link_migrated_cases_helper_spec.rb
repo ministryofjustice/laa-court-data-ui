@@ -26,6 +26,11 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
       expect(helper.formatted_process_errors(err)).to eq('ONLY_ERR')
     end
 
+    it 'returns only message when error absent' do
+      err = { 'message' => 'ONLY_MESSAGE' }
+      expect(helper.formatted_process_errors(err)).to eq('ONLY_MESSAGE')
+    end
+
     it 'falls back to stringified hash when both blank' do
       err = { error: nil, message: nil }
       expect(helper.formatted_process_errors(err)).to eq(err.to_s)
