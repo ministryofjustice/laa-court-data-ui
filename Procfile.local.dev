@@ -1,0 +1,6 @@
+# for local development run `foreman start -f Procfile.local.dev`
+# for local heroku - run `heroku local`
+#
+web: RUBYOPT=-W:no-deprecated rails s -p 3000
+js: yarn build --watch
+adaptor: cd ../laa-court-data-adaptor && PORT=3001 docker-compose up --build
