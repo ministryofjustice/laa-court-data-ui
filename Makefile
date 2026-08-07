@@ -42,3 +42,11 @@ test: #: run test suite locally
 open: #: open localhost:3000 in default browser
 	@open http://localhost:3000
 
+setup_env: #: setup environment variables for local development
+	@printf "\e[33mMAKE: setting up environment variables...\e[0m\n"
+	@echo "GA_TRACKING_ID: UA-XXXXXXXXX-XX" > .env.development
+	@echo "DISPLAY_RAW_RESPONSES: enabled" >> .env.development
+	@echo "COURT_DATA_ADAPTOR_API_URL: http://localhost:3001/api/internal/v1" >> .env.development
+	@echo "COURT_DATA_ADAPTOR_API_UID: $$(cd ../laa-court-data-adaptor && docker-compose run app bin/rails runner 'puts Doorkeeper::Application.first_or_create(name: "My CDA Client").uid')" >> .env.development
+	@echo "COURT_DATA_ADAPTOR_API_SECRET: $$(cd ../laa-court-data-adaptor && docker-compose run app bin/rails runner 'puts Doorkeeper::Application.first_or_create(name: "My CDA Client").secret')" >> .env.development
+	@echo "FAKE_AUTH: true" >> .env.development
