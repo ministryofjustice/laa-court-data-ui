@@ -41,6 +41,7 @@ group :test do
   gem 'axe-core-rspec', '~> 4.10.3'
   gem 'brakeman'
   gem 'capybara'
+  gem 'capybara-playwright-driver'
   gem 'capybara_table'
   gem 'haml_lint', require: false
   gem 'i18n-tasks', '~> 1.0.15'
