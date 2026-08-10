@@ -17,6 +17,16 @@ module LinkMigratedCasesHelper
     "link_maat_id" => { width: "120px", sortable: false, i18n_key: "link_maat_id" },
   }.freeze
 
+  HANDLERS = {
+    'defendant_name' => :handle_defendant_name,
+    'auto_linked_at' => :handle_auto_linked_at,
+    'case_urn_new_tab' => :handle_case_urn_new_tab,
+    'reason_for_man_linking' => :handle_reason_for_man_linking,
+    'link_maat_id' => :handle_link_maat_id,
+    'linked_at' => :handle_linked_at,
+    'defendant_date_of_birth' => :handle_defendant_date_of_birth
+  }.freeze
+
   def column_config(col)
     COLUMN_CONFIG[col]
   end
@@ -34,6 +44,13 @@ module LinkMigratedCasesHelper
     link_to("Link MAAT ID",
             link_defendant_path(defendant_id, urn: case_urn),
             class: "govuk-link govuk-link--no-visited-state")
+  end
+
+  def case_urn_new_tab_url(case_urn)
+    link_to(case_urn,
+            prosecution_case_path(case_urn),
+            class: 'govuk-link govuk-link--no-visited-state',
+            target: '_blank', rel: 'noopener')
   end
 
   def column_value(column, m_case)
@@ -72,5 +89,45 @@ module LinkMigratedCasesHelper
                              tab: params[:tab],
                              sort_column: params[:sort_column],
                              sort_direction: params[:sort_direction])
+  end
+
+  private
+
+  def handle_defendant_name(m_case)
+    [m_case['defendant_first_name'], m_case['defendant_last_name']].compact.join(' ')
+  end
+
+  def handle_auto_linked_at(m_case)
+    format_date(m_case['linked_at'], '%d/%m/%Y')
+  end
+
+  def handle_case_urn_new_tab(m_case)
+    tag.div(class: "tags") do
+      safe_join([case_urn_new_tab_url(m_case['case_urn']), case_type_tag(m_case['case_type'])].compact, "\n")
+    end
+  end
+
+  def handle_reason_for_man_linking(m_case)
+    formatted_process_errors(m_case['process_errors'])
+  end
+
+  def handle_link_maat_id(m_case)
+    link_maat_id_url(m_case['defendant_id'], m_case['case_urn'])
+  end
+
+  def handle_linked_at(m_case)
+    format_date(m_case['linked_at'], '%d/%m/%Y')
+  end
+
+  def handle_defendant_date_of_birth(m_case)
+    format_date(m_case['defendant_date_of_birth'], '%-d %b %Y')
+  end
+
+  def format_date(value, format)
+    return if value.blank?
+
+    DateTime.parse(value).strftime(format)
+  rescue ArgumentError
+    value
   end
 end
