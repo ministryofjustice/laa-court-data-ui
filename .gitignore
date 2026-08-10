@@ -49,3 +49,4 @@ Brewfile.lock.json
 !/app/assets/builds/.keep
 
 spec/examples.txt
+/.env.development
