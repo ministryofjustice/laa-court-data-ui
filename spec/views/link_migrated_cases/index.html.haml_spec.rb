@@ -16,13 +16,16 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
       selector = "tbody.govuk-table__body tr:nth-child(1) td:nth-child(#{index + 1})"
 
       if cell.is_a?(Hash)
-        # Allow expectations like { text: 'Link MAAT ID', href: '/path' }
+        # Allow expectations like { text: 'Link MAAT ID', href: '/path' } or { text: 'TEST12345', tag: 'Trial' }
         text = cell[:text] || cell["text"]
         href = cell[:href] || cell["href"]
+        tag = cell[:tag] || cell["tag"]
 
         expect(rendered).to have_css(selector)
-        expect(rendered).to have_css("#{selector} a", text: text) if text
+        expect(rendered).to have_css(selector.to_s, text: text) if text
+        expect(rendered).to have_css("#{selector} a", text: text) if text && href
         expect(rendered).to have_css("#{selector} a[href='#{href}']") if href
+        expect(rendered).to have_css("#{selector} .govuk-tag", text: tag) if tag
       else
         expect(rendered).to have_css(selector, text: cell)
       end
@@ -60,6 +63,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
         "court_name" => "Southwark",
         "mode_of_trial" => "Summary",
         "maat_id" => "1234567",
+        "case_type" => "T",
         "defendant_date_of_birth" => "01/01/1990",
         "linked_at" => "2024-03-01",
         "linked_by" => "Jane Doe",
@@ -111,7 +115,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
   it "renders case data rows" do
     render
-    expect_first_row_cells("TEST12345", "John Smith", "X123", "Southwark", "Summary")
+    expect_first_row_cells({ text: "TEST12345", tag: "Trial" }, "John Smith", "X123", "Southwark", "Summary")
   end
 
   context "when there are no cases" do
@@ -143,8 +147,8 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
     it "renders case data rows" do
       render
-      expect_first_row_cells("TEST12345", "John Smith", "X123", "Southwark", "Summary",
-                             "MAAT application not found", {
+      expect_first_row_cells({ text: "TEST12345", tag: "Trial" }, "John Smith", "X123", "Southwark",
+                             "Summary", "MAAT application not found", {
                                text: "Link MAAT ID",
                                href: link_defendant_path("bf6853d0-6158-4d75-aaf9-55d6014107143",
                                                          urn: "TEST12345"),
@@ -176,7 +180,9 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
     it "renders case data rows" do
       render
-      expect_first_row_cells("TEST12345", "1234567", "John Smith", "01/01/1990", "2024-03-01", "Jane Doe")
+      expect_first_row_cells({ text: "TEST12345", tag: "Trial", href: "/prosecution_cases/TEST12345" },
+                             "1234567", "John Smith", "1 Jan 1990",
+                             "01/03/2024", "Jane Doe")
     end
 
     context "when there are no cases" do
@@ -202,7 +208,8 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
     it "renders case data rows" do
       render
-      expect_first_row_cells("TEST12345", "1234567", "John Smith", "01/01/1990", "2024-03-01")
+      expect_first_row_cells({ text: "TEST12345", tag: "Trial" }, "1234567", "John Smith", "1 Jan 1990",
+                             "01/03/2024")
     end
 
     context "when there are no cases" do

@@ -20,6 +20,7 @@ module LinkMigratedCasesHelper
   HANDLERS = {
     'defendant_name' => :handle_defendant_name,
     'auto_linked_at' => :handle_auto_linked_at,
+    'case_urn' => :handle_case_urn,
     'case_urn_new_tab' => :handle_case_urn_new_tab,
     'reason_for_man_linking' => :handle_reason_for_man_linking,
     'link_maat_id' => :handle_link_maat_id,
@@ -99,6 +100,12 @@ module LinkMigratedCasesHelper
 
   def handle_auto_linked_at(m_case)
     format_date(m_case['linked_at'], '%d/%m/%Y')
+  end
+
+  def handle_case_urn(m_case)
+    tag.div(class: "tags") do
+      safe_join([m_case['case_urn'], case_type_tag(m_case['case_type'])].compact, "\n")
+    end
   end
 
   def handle_case_urn_new_tab(m_case)
