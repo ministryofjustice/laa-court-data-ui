@@ -15,7 +15,7 @@ module Cda
     end
 
     def call
-      Rails.logger.info 'FETCH_LINK_MIGRATED_CASES'
+      Rails.logger.info "FETCH_LINK_MIGRATED_CASES"
       Cda::LinkMigratedCasesCollection.fetch(
         status: @status, page: @page, per_page: @per_page,
         sort_by: @sort_by, sort_direction: @sort_direction

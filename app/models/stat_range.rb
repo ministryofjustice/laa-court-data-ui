@@ -9,25 +9,28 @@ class StatRange
   validates :from, :to, presence: true
   validate :valid_date_format
 
-  DATE_FORMAT = '%d/%m/%Y'.freeze
+  DATE_FORMAT = "%d/%m/%Y".freeze
   # Allow single or double digit day and month (eg. 1/1/2025 or 01/01/2025)
   DATE_REGEX = %r{\A\d{1,2}/\d{1,2}/\d{4}\z}
 
-  private
+private
 
   def valid_date_format
-    errors.add(:from, 'Start date must be in format dd/mm/yyyy') unless valid_date?(from)
-    errors.add(:to, 'End date must be in format dd/mm/yyyy') unless valid_date?(to)
+    errors.add(:from, "Start date must be in format dd/mm/yyyy") unless valid_date?(from)
+    errors.add(:to, "End date must be in format dd/mm/yyyy") unless valid_date?(to)
 
     return unless valid_date?(from) && valid_date?(to)
+
     from_date = Date.strptime(from, DATE_FORMAT)
     to_date = Date.strptime(to, DATE_FORMAT)
     return unless from_date > to_date
-    errors.add(:from, 'End date must be after start date')
+
+    errors.add(:from, "End date must be after start date")
   end
 
   def valid_date?(value)
     return false unless value.match?(DATE_REGEX)
+
     Date.strptime(value, DATE_FORMAT)
     true
   rescue ArgumentError, TypeError

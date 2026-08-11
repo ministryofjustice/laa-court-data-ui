@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'feature_flag'
+require "feature_flag"
 
 module ApplicationHelper
   include GovukDesignSystemHelper
 
   def service_name
-    'View court data'
+    "View court data"
   end
 
   def l(date, options = {})
@@ -28,13 +28,13 @@ module ApplicationHelper
       decorate(object, decorator_class, &)
     end
   end
-  alias decorate_each decorate_all
+  alias_method :decorate_each, :decorate_all
 
   def hearings_sorter_link(prosecution_case, column, title = nil)
     title ||= prosecution_case.column_title(column)
     title = "#{title} " + prosecution_case.column_sort_icon if column == prosecution_case.hearings_sort_column
-    direction = prosecution_case.hearings_sort_direction == 'asc' ? 'desc' : 'asc'
-    link_to(title, prosecution_case_path(id: prosecution_case.prosecution_case_reference, column:, direction:, anchor: column), class: 'govuk-link govuk-link--no-visited-state', id: column, "aria-label": "Sort #{column} #{direction}")
+    direction = prosecution_case.hearings_sort_direction == "asc" ? "desc" : "asc"
+    link_to(title, prosecution_case_path(id: prosecution_case.prosecution_case_reference, column:, direction:, anchor: column), class: "govuk-link govuk-link--no-visited-state", id: column, "aria-label": "Sort #{column} #{direction}")
   end
 
   def navigation_item(path, label, active: current_page?(path))
@@ -52,26 +52,27 @@ module ApplicationHelper
   end
 
   def user_sorter_link(column)
-    direction = params[:user_sort_direction] == 'desc' ? 'asc' : 'desc'
+    direction = params[:user_sort_direction] == "desc" ? "asc" : "desc"
     users_path(user_sort_column: column, user_sort_direction: direction)
   end
 
   def user_sorter_direction
-    params[:user_sort_direction] == 'desc' ? 'desc' : 'asc'
+    params[:user_sort_direction] == "desc" ? "desc" : "asc"
   end
 
   def user_sorter_column?(column)
     if params[:user_sort_column].nil?
-      column == 'name'
+      column == "name"
     else
       params[:user_sort_column] == column
     end
   end
 
-  private
+private
 
   def decorator_instance(object, decorator_class = nil)
     return object if object.is_a?(BaseDecorator)
+
     decorator_class ||= "#{object.class.to_s.demodulize}Decorator".constantize
     decorator_class.new(object, self)
   end

@@ -1,11 +1,11 @@
-= govuk_page_heading(t('search.page_title'))
+= govuk_page_heading(t("search.page_title"))
 
 .govuk-grid-row
   .govuk-grid-column-full
-    = render partial: 'form', locals: { search: @search,
+    = render partial: "form", locals: { search: @search,
                                         filter: @filter,
                                         term: @term,
                                         label: @label }
-    = render partial: 'error', locals: { error: @error } if @error
+    = render partial: "error", locals: { error: @error } if @error
 .govuk-grid-row
-  = render partial: 'results', locals: { results: @results, term: @term, dob: @dob, cookies_preferences_set: @cookies_preferences_set } if @results
+  = render partial: "results", locals: { results: @results, term: @term, dob: @dob, cookies_preferences_set: @cookies_preferences_set } if @results

@@ -16,11 +16,11 @@ module Roles
     klass.validate :validate_role_inclusion
   end
 
-  private
+private
 
   def method_missing(method, *args)
     if role_booleans.include?(method.to_s)
-      role?(method.to_s.delete('?'))
+      role?(method.to_s.delete("?"))
     else
       super
     end
@@ -39,13 +39,15 @@ module Roles
   end
 
   def validate_role_presence
-    errors.add(:roles, 'must have a role') if roles.blank? || roles.empty?
+    errors.add(:roles, "must have a role") if roles.blank? || roles.empty?
   end
 
   def validate_role_inclusion
     return if roles.blank? || roles.empty?
+
     roles.all? do |role|
       next if self.class.valid_roles.include?(role)
+
       errors.add(:roles, "#{role} is not a valid role")
     end
   end

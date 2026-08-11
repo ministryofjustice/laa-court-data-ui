@@ -57,7 +57,7 @@ class HearingPaginator
                  day: previous_item.day)
   end
 
-  private
+private
 
   def next_item
     items[next_page]

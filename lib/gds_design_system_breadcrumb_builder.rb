@@ -6,11 +6,11 @@
 #
 class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builder
   def render
-    @context.tag.div(class: 'govuk-breadcrumbs', role: 'navigation', "aria-label": 'Navigate Case') do
-      @context.tag.ol(class: 'govuk-breadcrumbs__list') do
-        @elements.collect.with_index do |element, idx|
+    @context.tag.div(class: "govuk-breadcrumbs", role: "navigation", "aria-label": "Navigate Case") do
+      @context.tag.ol(class: "govuk-breadcrumbs__list") do
+        @elements.collect.with_index { |element, idx|
           render_element(element, last: idx.eql?(@elements.size - 1))
-        end.join.html_safe
+        }.join.html_safe
       end
     end
   end
@@ -21,14 +21,14 @@ class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builde
               else
                 name = compute_name(element)
                 path = compute_path(element)
-                options = element.options.merge(class: 'govuk-breadcrumbs__link')
+                options = element.options.merge(class: "govuk-breadcrumbs__link")
                 is_current = @context.current_page?(path) || last
                 @context.link_to_unless(is_current, name, path, options)
               end
 
     tag_options = {}
-    tag_options[:class] = 'govuk-breadcrumbs__list-item'
-    tag_options['aria-current'] = 'page' if is_current
+    tag_options[:class] = "govuk-breadcrumbs__list-item"
+    tag_options["aria-current"] = "page" if is_current
     @context.tag.li(content, **tag_options)
   end
 end

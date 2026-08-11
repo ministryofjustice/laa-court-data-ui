@@ -1,4 +1,6 @@
 class UserSearchService
+  ROLE_FILTER = "roles IS NULL OR ? = ANY(roles)".freeze
+
   # Note that this search mechanism is inefficient for large data sets. If the number of users grows
   # beyond 1,000 it may be worth revisiting this in order to use a more advanced text search.
   def self.call(search_model, default_scope)
@@ -22,30 +24,28 @@ class UserSearchService
     filter_by_sign_in(scope)
   end
 
-  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def filter_by_sign_in(scope)
     if search_model.recent_sign_ins && !search_model.old_sign_ins
       scope.where(last_sign_in_at: 3.months.ago..)
     elsif search_model.old_sign_ins && !search_model.recent_sign_ins
-      scope.where('last_sign_in_at IS NULL OR last_sign_in_at < ?', 3.months.ago)
+      scope.where("last_sign_in_at IS NULL OR last_sign_in_at < ?", 3.months.ago)
     elsif search_model.admin_role
-      scope.where('roles IS NULL OR ? = ANY(roles)', 'admin')
+      scope.where(ROLE_FILTER, "admin")
     elsif search_model.caseworker_role
-      scope.where('roles IS NULL OR ? = ANY(roles)', 'caseworker')
+      scope.where(ROLE_FILTER, "caseworker")
     elsif search_model.data_analyst_role
-      scope.where('roles IS NULL OR ? = ANY(roles)', 'data_analyst')
+      scope.where(ROLE_FILTER, "data_analyst")
     else
       scope
     end
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
-  private
+private
 
   def add_filter(token, scope)
     scope.where(
       "first_name ILIKE :token OR last_name ILIKE :token OR email ILIKE :token OR username ILIKE :token",
-      token:
+      token:,
     )
   end
 

@@ -6,9 +6,9 @@ module Cda
       laa_reference = {
         maat_reference: link_attempt.maat_reference,
         subject_id: link_attempt.defendant_id,
-        user_name: link_attempt.username
+        user_name: link_attempt.username,
       }
-      post('', nil, { laa_reference: }.to_json)
+      post("", nil, { laa_reference: }.to_json)
     end
 
     def self.update!(unlink_attempt)
@@ -17,7 +17,7 @@ module Cda
         user_name: unlink_attempt.username,
         unlink_reason_code: unlink_attempt.reason_code,
         unlink_other_reason_text: (unlink_attempt.other_reason_text if unlink_attempt.text_required?),
-        maat_reference: unlink_attempt.maat_reference
+        maat_reference: unlink_attempt.maat_reference,
       }
       patch(unlink_attempt.defendant_id, nil, { laa_reference: }.to_json)
     end

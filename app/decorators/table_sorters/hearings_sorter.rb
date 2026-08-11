@@ -11,7 +11,7 @@ module TableSorters
     def self.for(hearings, column, direction)
       Hash.new(TableSorters::HearingsDateSorter).merge(
         type: TableSorters::HearingsTypeSorter,
-        provider: TableSorters::HearingsProviderSorter
+        provider: TableSorters::HearingsProviderSorter,
       )[column&.to_sym].new(hearings, column, direction)
     end
 
@@ -19,10 +19,11 @@ module TableSorters
       hearing.hearing_days.map(&:to_datetime).sort
     end
 
-    protected
+  protected
 
     def order_by_asc_or_desc(arr)
-      return arr.reverse if @direction == 'desc'
+      return arr.reverse if @direction == "desc"
+
       arr
     end
   end

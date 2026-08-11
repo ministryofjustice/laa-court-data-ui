@@ -8,6 +8,6 @@ class CharLengthValidator < ActiveModel::EachValidator
   end
 
   def char_length(value)
-    value.squish.tr("\s+", '').length
+    value.squish.tr("\s+", "").length
   end
 end

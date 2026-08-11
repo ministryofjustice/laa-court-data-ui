@@ -14,7 +14,7 @@ class SearchFiltersController < ApplicationController
     end
   end
 
-  private
+private
 
   def set_filter
     @search_filter = SearchFilter.new(id: params.dig(:search_filter, :id))

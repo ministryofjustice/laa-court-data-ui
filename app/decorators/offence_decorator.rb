@@ -4,15 +4,16 @@ class OffenceDecorator < BaseDecorator
   attr_accessor :offence_histories
 
   def plea_list
-    return t('generic.not_available') if pleas.blank?
+    return t("generic.not_available") if pleas.blank?
     return pleas unless pleas.is_a?(Enumerable)
 
     safe_join(plea_sentences, tag.br)
   end
 
   def mode_of_trial_reason_list
-    return t('generic.not_available') if mode_of_trial_reasons.blank?
+    return t("generic.not_available") if mode_of_trial_reasons.blank?
     return mode_of_trial_reasons unless mode_of_trial_reasons.is_a?(Enumerable)
+
     safe_join(mode_of_trial_reason_descriptions.compact, tag.br)
   end
 
@@ -22,7 +23,7 @@ class OffenceDecorator < BaseDecorator
     Date.parse(super).strftime("%d/%m/%Y")
   end
 
-  private
+private
 
   delegate :pleas, :mode_of_trial_reasons, to: :relevant_offence_history
 
@@ -37,9 +38,9 @@ class OffenceDecorator < BaseDecorator
   def plea_sentence(plea)
     plea_date = plea&.pleaded_at&.to_date
 
-    t('offence.plea.sentence',
-      plea: plea&.code&.humanize || t('generic.not_available'),
-      pleaded_at: plea_date&.strftime('%d/%m/%Y') || t('generic.not_available'))
+    t("offence.plea.sentence",
+      plea: plea&.code&.humanize || t("generic.not_available"),
+      pleaded_at: plea_date&.strftime("%d/%m/%Y") || t("generic.not_available"))
   end
 
   def mode_of_trial_reason_descriptions
@@ -47,7 +48,7 @@ class OffenceDecorator < BaseDecorator
   end
 
   def mode_of_trial_reason_description(reason)
-    reason&.description || t('generic.not_available')
+    reason&.description || t("generic.not_available")
   end
 
   def relevant_offence_history

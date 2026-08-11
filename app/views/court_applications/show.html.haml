@@ -1,75 +1,75 @@
 - content_for :pre_heading do
-  = render '/feedback_on_appeals_to_crown_court', application: @application
+  = render "/feedback_on_appeals_to_crown_court", application: @application
 
 = govuk_page_heading(@application.application_reference,
                      caption_text: t("subjects.#{@application.application_category}"),
-                     tag_options: { class: 'govuk-!-margin-bottom-4' })
+                     tag_options: { class: "govuk-!-margin-bottom-4" })
 
 - if @application.appeal?
   .govuk-body
     %strong
-      = t('.type_of_appeal')
+      = t(".type_of_appeal")
     = @application.application_title
   .govuk-body
     %strong
-      = t('.result')
+      = t(".result")
     = @application.result_string
   %h2.govuk-heading-l
-    = t('.appellant')
+    = t(".appellant")
   .govuk-body
-    = t('court_applications.show.appeal_alert')
+    = t("court_applications.show.appeal_alert")
 - else
   .govuk-body
     %strong
-      = t('.type_of_application')
+      = t(".type_of_application")
     = @application.application_title
   .govuk-body
     %strong
-      = t('.result')
+      = t(".result")
     = @application.result_string
   %h2.govuk-heading-l
-    = t('.respondent')
+    = t(".respondent")
   .govuk-body
-    = t('court_applications.show.alert')
+    = t("court_applications.show.alert")
 %table.govuk-table
   %caption.govuk-table__caption.govuk-visually-hidden
-    = t('.respondent')
+    = t(".respondent")
   %thead.govuk-table__head
     %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'col' }= t('.defendant.name')
-      %th.govuk-table__header{ scope: 'col' }= t('.defendant.date_of_birth')
-      %th.govuk-table__header{ scope: 'col' }= t('.defendant.maat_number')
+      %th.govuk-table__header{ scope: "col" }= t(".defendant.name")
+      %th.govuk-table__header{ scope: "col" }= t(".defendant.date_of_birth")
+      %th.govuk-table__header{ scope: "col" }= t(".defendant.maat_number")
       - if @application.breach?
-        %th.govuk-table__header{ scope: 'col' }= t('.defendant.breach_date')
+        %th.govuk-table__header{ scope: "col" }= t(".defendant.breach_date")
   %tbody.govuk-table__body
     %tr.govuk-table__row
       %td.govuk-table__cell
-        = link_to @application.subject_summary.name, court_application_subject_path(@application.application_id), class: 'govuk-link'
+        = link_to @application.subject_summary.name, court_application_subject_path(@application.application_id), class: "govuk-link"
       %td.govuk-table__cell
         = l(@application.subject_summary.date_of_birth)
       %td.govuk-table__cell
-        = @application.maat_reference.presence || t('search.result.defendant.unlinked')
+        = @application.maat_reference.presence || t("search.result.defendant.unlinked")
       - if @application.breach?
         %td.govuk-table__cell
           = l(@application.received_date&.to_date)
 
 %h2.govuk-heading-l
-  = t('.hearings')
+  = t(".hearings")
 %table.govuk-table.app-sortable-table
   %caption.govuk-table__caption.govuk-visually-hidden
-    = t('.hearings')
+    = t(".hearings")
   %thead.govuk-table__head
     %tr.govuk-table__row
-      %th.govuk-table__header{ scope: 'col' }
-        - direction = @date_sort_direction == 'asc' ? 'desc' : 'asc'
+      %th.govuk-table__header{ scope: "col" }
+        - direction = @date_sort_direction == "asc" ? "desc" : "asc"
         = link_to(court_application_path(id: @application.application_id, date_sort_direction: direction),
-                  class: 'govuk-link govuk-link--no-visited-state', "aria-label": "Sort date #{direction}") do
-          = t('.hearing.date')
-          = @date_sort_direction == 'asc' ? "\u25B2" : "\u25BC"
-      %th.govuk-table__header{ scope: 'col' }
-        = t('.hearing.type')
-      %th.govuk-table__header{ scope: 'col' }
-        = t('.hearing.providers')
+                  class: "govuk-link govuk-link--no-visited-state", "aria-label": "Sort date #{direction}") do
+          = t(".hearing.date")
+          = @date_sort_direction == "asc" ? "\u25B2" : "\u25BC"
+      %th.govuk-table__header{ scope: "col" }
+        = t(".hearing.type")
+      %th.govuk-table__header{ scope: "col" }
+        = t(".hearing.providers")
   %tbody.govuk-table__body
     - @application.hearing_days_sorted_by(@date_sort_direction).each do |hearing_day|
       %tr.govuk-table__row
@@ -78,7 +78,7 @@
                     court_application_hearing_hearing_day_path(@application.application_id,
                                                                hearing_day.hearing.id,
                                                                hearing_day.date),
-                    class: 'govuk-link'
+                    class: "govuk-link"
         %td.govuk-table__cell
           = hearing_day.hearing.hearing_type
         %td.govuk-table__cell
@@ -88,4 +88,4 @@
                 %br
               = counsel.name
           - else
-            = t('generic.not_available')
+            = t("generic.not_available")

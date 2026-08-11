@@ -1,59 +1,59 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples 'a standard user' do
-  it 'can search' do
+RSpec.shared_examples "a standard user" do
+  it "can search" do
     get new_search_filter_path
     expect(response.body).to include('<h1 class="govuk-fieldset__heading">Search for</h1>')
   end
 
   # TODO: needs expanding once edit, etc are added
-  it 'can manage themselves' do
+  it "can manage themselves" do
     get user_path(user)
-    expect(response.body).to include('User details')
+    expect(response.body).to include("User details")
   end
 
-  context 'when performing unauthorized action on user' do
+  context "when performing unauthorized action on user" do
     before { get user_path(other_user) }
 
-    it 'redirects to root' do
+    it "redirects to root" do
       expect(response).to redirect_to authenticated_root_path
     end
 
-    it 'flashes alert' do
-      expect(flash.now[:alert]).to include('You are unauthorised to manage users')
+    it "flashes alert" do
+      expect(flash.now[:alert]).to include("You are unauthorised to manage users")
     end
   end
 end
 
-RSpec.describe 'authorization', type: :request do
-  let(:other_user) { create(:user, roles: ['caseworker']) }
+RSpec.describe "authorization", type: :request do
+  let(:other_user) { create(:user, roles: %w[caseworker]) }
 
-  context 'when caseworker signed in' do
-    let(:user) { create(:user, roles: ['caseworker']) }
+  context "when caseworker signed in" do
+    let(:user) { create(:user, roles: %w[caseworker]) }
 
     before { sign_in user }
 
-    it_behaves_like('a standard user')
+    it_behaves_like("a standard user")
   end
 
-  context 'when admin signed in' do
-    let(:user) { create(:user, roles: ['admin']) }
+  context "when admin signed in" do
+    let(:user) { create(:user, roles: %w[admin]) }
 
     before { sign_in user }
 
-    it 'can manage themselves' do
+    it "can manage themselves" do
       get user_path(user)
-      expect(response.body).to include('User details')
+      expect(response.body).to include("User details")
     end
 
-    it 'can manage other users' do
+    it "can manage other users" do
       get user_path(other_user)
-      expect(response.body).to include('User details')
+      expect(response.body).to include("User details")
     end
   end
 
-  context 'when caseworker accesses link migrated cases', :stub_oauth_token, :stub_link_migrated_cases do
-    let(:user) { create(:user, roles: ['caseworker']) }
+  context "when caseworker accesses link migrated cases", :stub_link_migrated_cases, :stub_oauth_token do
+    let(:user) { create(:user, roles: %w[caseworker]) }
 
     before do
       allow(FeatureFlag).to receive(:enabled?).and_call_original
@@ -62,55 +62,55 @@ RSpec.describe 'authorization', type: :request do
       get link_migrated_cases_path
     end
 
-    it 'renders successfully' do
+    it "renders successfully" do
       expect(response).to have_http_status(:success)
     end
   end
 
-  context 'when admin tries to access link migrated cases' do
-    let(:user) { create(:user, roles: ['admin']) }
+  context "when admin tries to access link migrated cases" do
+    let(:user) { create(:user, roles: %w[admin]) }
 
     before do
       sign_in user
       get link_migrated_cases_path
     end
 
-    it 'redirects to root' do
+    it "redirects to root" do
       expect(response).to redirect_to authenticated_admin_root_path
     end
   end
 
-  context 'when admin tries to access the search page' do
-    let(:user) { create(:user, roles: ['admin']) }
+  context "when admin tries to access the search page" do
+    let(:user) { create(:user, roles: %w[admin]) }
 
     before do
       sign_in user
       get new_search_filter_path
     end
 
-    it 'redirects to root' do
+    it "redirects to root" do
       expect(response).to redirect_to authenticated_admin_root_path
     end
 
-    it 'flashes alert' do
-      expect(flash.now[:alert]).to include('You are unauthorised to new Search filter')
+    it "flashes alert" do
+      expect(flash.now[:alert]).to include("You are unauthorised to new Search filter")
     end
   end
 
-  context 'when data_analyst tries to access the search page' do
-    let(:user) { create(:user, roles: ['data_analyst']) }
+  context "when data_analyst tries to access the search page" do
+    let(:user) { create(:user, roles: %w[data_analyst]) }
 
     before do
       sign_in user
       get new_search_filter_path
     end
 
-    it 'redirects to stats path' do
+    it "redirects to stats path" do
       expect(response).to redirect_to new_stats_path
     end
 
-    it 'flashes alert' do
-      expect(flash.now[:alert]).to include('You are unauthorised to new Search filter')
+    it "flashes alert" do
+      expect(flash.now[:alert]).to include("You are unauthorised to new Search filter")
     end
   end
 end

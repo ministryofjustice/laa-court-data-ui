@@ -1,12 +1,12 @@
 !!!
-%html.govuk-template{ lang: 'en' }
+%html.govuk-template{ lang: "en" }
   %head
     %title
       = service_name
 
     %meta{ charset: "utf-8" }/
-    = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application', defer: true
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application", defer: true
     = csrf_meta_tags
 
     %meta{ content: "width=device-width, initial-scale=1, viewport-fit=cover", name: "viewport" }/
@@ -18,25 +18,25 @@
     %link{ href: "/govuk-icon-180.png", rel: "apple-touch-icon", sizes: "180x180" }/
     %link{ href: "/govuk-icon-192.png", rel: "apple-touch-icon", sizes: "192x192" }/
     %link{ href: "/govuk-icon-512.png", rel: "apple-touch-icon", sizes: "512x512" }/
-    = tag.meta(property: 'og:image', content: '/govuk-opengraph-image.png')
+    = tag.meta(property: "og:image", content: "/govuk-opengraph-image.png")
   %body.govuk-template__body{ class: app_environment }
     :javascript
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     %a.govuk-skip-link{ href: "#main-content", "data-module": "govuk-skip-link" }
-      = t('layouts.application.skip_content')
+      = t("layouts.application.skip_content")
 
     %header.moj-header{ role: "banner" }
       .moj-header__container
         .moj-header__logo
-          = render 'layouts/moj_logo'
+          = render "layouts/moj_logo"
           %a.moj-header__link.moj-header__link--organisation-name{ href: "https://intranet.justice.gov.uk/?agency=laa" } Legal Aid Agency
 
     .govuk-width-container
-      = render 'layouts/phase_banner'
+      = render "layouts/phase_banner"
       %main.govuk-main-wrapper#main-content{ role: "main" }
         %h1.govuk-heading-xl
-          = t('maintenance_mode.title')
+          = t("maintenance_mode.title")
         %p.govuk-body
-          = t('maintenance_mode.text')
+          = t("maintenance_mode.text")
 
-    = render 'layouts/footer'
+    = render "layouts/footer"

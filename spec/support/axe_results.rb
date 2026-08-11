@@ -30,12 +30,12 @@ class AxeResults
           tags: json["tags"],
           description: json["description"],
           help: json["help"],
-          help_url: json["helpUrl"]
+          help_url: json["helpUrl"],
         )
       end
   end
 
-  private
+private
 
   attr_reader :page
 
@@ -61,7 +61,7 @@ class AxeResults
         axe_results_console_message =
           page.driver.with_playwright_page do |playwright_page|
             playwright_page.expect_console_message(
-              predicate: method(:console_message_contains_axe_results?)
+              predicate: method(:console_message_contains_axe_results?),
             ) { playwright_page.add_script_tag(content: AXE_JS) }
           end
         JSON.parse(axe_results_console_message.text)

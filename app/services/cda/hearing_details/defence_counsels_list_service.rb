@@ -20,7 +20,7 @@ module Cda
         @result
       end
 
-      private
+    private
 
       def build_defence_counsel_sentences
         @defence_counsels.each do |defence_counsel|
@@ -29,6 +29,7 @@ module Cda
           sentence = "#{formatted_name(name_in_parts)} (#{formatted_status(status)})"
 
           next @result << sentence if !@map_counsels_to_defendants || defence_counsel.defendants.empty?
+
           build_defence_counsel_sentences_with_defendants(defence_counsel, sentence)
         end
       end
@@ -47,17 +48,17 @@ module Cda
       end
 
       def formatted_name(person_details)
-        name(**person_details) || I18n.t('generic.not_available')
+        name(**person_details) || I18n.t("generic.not_available")
       end
 
       def name(first_name:, last_name:, middle_name: nil, **)
         return nil unless first_name || middle_name || last_name
 
-        [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
+        [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(" ")
       end
 
       def formatted_status(status)
-        status || I18n.t('generic.not_available').downcase
+        status || I18n.t("generic.not_available").downcase
       end
     end
   end

@@ -7,11 +7,11 @@ RSpec.describe UserSearchService do
     UserSearch.new(search_string:, recent_sign_ins:, old_sign_ins:, caseworker_role:, admin_role:)
   end
   let(:searched_user) do
-    create(:user, first_name: 'Jane', last_name: 'Doe', username: 'j-doe', email: 'jane@example.com',
-                  last_sign_in_at: 1.day.ago, roles: ['admin'])
+    create(:user, first_name: "Jane", last_name: "Doe", username: "j-doe", email: "jane@example.com",
+                  last_sign_in_at: 1.day.ago, roles: %w[admin])
   end
   let(:unsearched_user) do
-    create(:user, first_name: 'John', last_name: 'Smith', username: 'j-smith', email: 'john@example.com',
+    create(:user, first_name: "John", last_name: "Smith", username: "j-smith", email: "john@example.com",
                   last_sign_in_at: nil)
   end
   let(:recent_sign_ins) { false }
@@ -25,79 +25,79 @@ RSpec.describe UserSearchService do
     unsearched_user
   end
 
-  context 'when searching by username' do
-    let(:search_string) { 'j-doe' }
+  context "when searching by username" do
+    let(:search_string) { "j-doe" }
 
     it { is_expected.to include(searched_user) }
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when searching by email' do
-    let(:search_string) { 'jane@example.com' }
+  context "when searching by email" do
+    let(:search_string) { "jane@example.com" }
 
     it { is_expected.to include(searched_user) }
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when searching by first name' do
-    let(:search_string) { 'Jane' }
+  context "when searching by first name" do
+    let(:search_string) { "Jane" }
 
     it { is_expected.to include(searched_user) }
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when searching by last name' do
-    let(:search_string) { 'Doe' }
+  context "when searching by last name" do
+    let(:search_string) { "Doe" }
 
     it { is_expected.to include(searched_user) }
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when searching by full name' do
-    let(:search_string) { 'Jane Doe' }
+  context "when searching by full name" do
+    let(:search_string) { "Jane Doe" }
 
     it { is_expected.to include(searched_user) }
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when searching by impossible combo' do
-    let(:search_string) { 'Jane Smith' }
+  context "when searching by impossible combo" do
+    let(:search_string) { "Jane Smith" }
 
     it { is_expected.to be_empty }
   end
 
-  context 'when filtering by recent sign ins' do
+  context "when filtering by recent sign ins" do
     let(:recent_sign_ins) { true }
 
     it { is_expected.to include(searched_user) }
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when filtering by old sign ins' do
+  context "when filtering by old sign ins" do
     let(:old_sign_ins) { true }
 
     before do
-      searched_user.update(last_sign_in_at: 4.months.ago)
-      unsearched_user.update(last_sign_in_at: 1.day.ago)
+      searched_user.update!(last_sign_in_at: 4.months.ago)
+      unsearched_user.update!(last_sign_in_at: 1.day.ago)
     end
 
     it { is_expected.to include(searched_user) }
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when filtering by admin role' do
+  context "when filtering by admin role" do
     let(:admin_role) { true }
 
     it { is_expected.to include(searched_user) }
     it { is_expected.not_to include(unsearched_user) }
   end
 
-  context 'when filtering by caseworker role' do
+  context "when filtering by caseworker role" do
     let(:caseworker_role) { true }
 
     before do
-      searched_user.update(roles: %w[caseworker admin])
-      unsearched_user.update(roles: %w[data_analyst])
+      searched_user.update!(roles: %w[caseworker admin])
+      unsearched_user.update!(roles: %w[data_analyst])
     end
 
     it { is_expected.to include(searched_user) }

@@ -1,29 +1,29 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Case summary', :stub_case_search, type: :feature do
+RSpec.feature "Case summary", :stub_case_search, type: :feature do
   let(:user) { create(:user) }
-  let(:case_reference) { 'TEST12345' }
+  let(:case_reference) { "TEST12345" }
 
   before do
     sign_in user
     visit prosecution_case_path(case_reference)
   end
 
-  scenario 'I visit the case summary page', :js do
+  scenario "I visit the case summary page", :js do
     expect(page).to have_current_path(prosecution_case_path(case_reference))
     expect(page).to have_text case_reference
 
     # Defendants
     expect(page).to have_text(
-      'Maxie Turcotte Raynor'
+      "Maxie Turcotte Raynor",
     ).and have_text(
-      '30/06/1973'
-    ).and have_text('Not linked')
+      "30/06/1973",
+    ).and have_text("Not linked")
 
     # Hearings
     expect(page).to have_text(
-      '23/10/2019'
-    ).and have_text('Trial (TRL)')
+      "23/10/2019",
+    ).and have_text("Trial (TRL)")
 
     expect(page).to be_accessible
   end

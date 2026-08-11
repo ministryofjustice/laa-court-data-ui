@@ -1,9 +1,9 @@
-.govuk-phase-banner{ class: ENV.fetch('ENV', 'local'), role: "complementary" }
+.govuk-phase-banner{ class: ENV.fetch("ENV", "local"), role: "complementary" }
   %p.govuk-phase-banner__content
     %strong.govuk-tag.govuk-phase-banner__content__tag
-      - if ENV.fetch('ENV', 'local') == 'production'
-        = t('generic.beta')
+      - if ENV.fetch("ENV", "local") == "production"
+        = t("generic.beta")
       - else
-        = ENV.fetch('ENV', 'local')
+        = ENV.fetch("ENV", "local")
     %span.govuk-phase-banner__text
-      = t('layouts.application.header.phase_banner_html', feedback: Rails.configuration.x.feedback_url)
+      = t("layouts.application.header.phase_banner_html", feedback: Rails.configuration.x.feedback_url)

@@ -1,23 +1,23 @@
 - flash.each do |key, value|
   - if value.is_a?(String)
     - case key
-    - when 'alert'
+    - when "alert"
       .govuk-error-summary
         .govuk-error-summary__title
           = sanitize(value)
         .govuk-error-message
 
-    - when 'notice'
+    - when "notice"
       .lcdui-notice-summary
         .govuk-error-summary
           .govuk-error-summary__title
             = sanitize(value)
           .govuk-error-message
 
-    - when 'success'
+    - when "success"
       = govuk_notification_banner(sanitize(value), key.capitalize)
 
-    - when 'success_moj_banner'
+    - when "success_moj_banner"
       .moj-banner.moj-banner--success{ role: "region", "aria-label": "Success" }
         %svg.moj-banner__icon{
           fill: "currentColor",
@@ -26,15 +26,16 @@
           xmlns: "http://www.w3.org/2000/svg",
           viewBox: "0 0 25 25",
           height: "25",
-          width: "25"
+          width: "25",
         }
           %path{ d: "M25,6.2L8.7,23.2L0,14.1l4-4.2l4.7,4.9L21,2L25,6.2z" }
         .moj-banner__message
           = sanitize(value)
 
   - next unless value.is_a?(Hash)
+
   - case key
-  - when 'alert'
+  - when "alert"
     .govuk-error-summary
       .govuk-error-summary__title
         = sanitize(value[:title])
@@ -43,7 +44,7 @@
           = sanitize(value[:message])
       .govuk-error-message
 
-  - when 'notice'
+  - when "notice"
     .lcdui-notice-summary
       .govuk-error-summary
         .govuk-error-summary__title

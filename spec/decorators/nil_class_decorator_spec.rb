@@ -11,7 +11,7 @@ RSpec.describe NilClassDecorator, type: :decorator do
     end
   end
 
-  it_behaves_like 'a base decorator' do
+  it_behaves_like "a base decorator" do
     let(:object) { nil }
   end
 

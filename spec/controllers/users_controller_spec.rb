@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe UsersController, type: :controller do
-  describe '#order_by (private)' do
-    let(:users_relation)       { instance_double('ActiveRecord::Relation') }
-    let(:ordered_relation)     { instance_double('ActiveRecord::Relation') }
-    let(:pagy_obj)             { instance_double('Pagy') }
+  describe "#order_by (private)" do
+    let(:users_relation)       { instance_double(ActiveRecord::Relation) }
+    let(:ordered_relation)     { instance_double(ActiveRecord::Relation) }
+    let(:pagy_obj)             { instance_double(Pagy) }
 
     before do
       controller.instance_variable_set(:@users, users_relation)
@@ -17,8 +17,8 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "when column is 'name' and order is 'asc'" do
-      it 'orders by first_name ASC, last_name ASC' do
-        controller.send(:order_by, 'name', 'asc')
+      it "orders by first_name ASC, last_name ASC" do
+        controller.send(:order_by, "name", "asc")
 
         expect(users_relation)
           .to have_received(:order)
@@ -30,8 +30,8 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "when column is 'name' and order is 'desc'" do
-      it 'orders by first_name DESC, last_name DESC' do
-        controller.send(:order_by, 'name', 'desc')
+      it "orders by first_name DESC, last_name DESC" do
+        controller.send(:order_by, "name", "desc")
 
         expect(users_relation)
           .to have_received(:order)
@@ -43,8 +43,8 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "when a non-name column is given and order is 'asc'" do
-      it 'orders by column ASC' do
-        controller.send(:order_by, 'email', 'asc')
+      it "orders by column ASC" do
+        controller.send(:order_by, "email", "asc")
 
         expect(users_relation)
           .to have_received(:order)
@@ -55,8 +55,8 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "when a non-name column is given and order is not asc" do
-      it 'orders by column DESC' do
-        controller.send(:order_by, 'last_sign_in_at', 'desc')
+      it "orders by column DESC" do
+        controller.send(:order_by, "last_sign_in_at", "desc")
 
         expect(users_relation)
           .to have_received(:order)

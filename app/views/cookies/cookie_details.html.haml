@@ -1,41 +1,41 @@
-= govuk_page_heading(t('cookies.page_title', service_name: service_name))
+= govuk_page_heading(t("cookies.page_title", service_name: service_name))
 
-%p.govuk-body= t('cookies.section_one.paragraph_one')
+%p.govuk-body= t("cookies.section_one.paragraph_one")
 
-%p.govuk-body= t('cookies.section_one.paragraph_two')
+%p.govuk-body= t("cookies.section_one.paragraph_two")
 
 %h2.govuk-heading-l{ "data-cy" => "necessary-cookies" }
-  = t('cookies.section_necessary.section_heading')
+  = t("cookies.section_necessary.section_heading")
 
-%p.govuk-body= t('cookies.section_necessary.paragraph_one')
+%p.govuk-body= t("cookies.section_necessary.paragraph_one")
 
-= render 'necessary_cookies'
+= render "necessary_cookies"
 
 %h2.govuk-heading-l{ "data-cy" => "settings-cookies" }
-  = t('cookies.section_functional.section_heading')
+  = t("cookies.section_functional.section_heading")
 
-%p.govuk-body= t('cookies.section_functional.paragraph_one')
+%p.govuk-body= t("cookies.section_functional.paragraph_one")
 
-= render 'functional_cookies'
+= render "functional_cookies"
 
 %h2.govuk-heading-l{ "data-cy" => "ga-cookies" }
-  = t('cookies.section_analytics.section_heading')
+  = t("cookies.section_analytics.section_heading")
 
-%p.govuk-body= t('cookies.section_analytics.paragraph_one')
+%p.govuk-body= t("cookies.section_analytics.paragraph_one")
 
-%p.govuk-body= t('cookies.section_analytics.paragraph_two')
+%p.govuk-body= t("cookies.section_analytics.paragraph_two")
 
 %ul.govuk-list.govuk-list--bullet
-  %li= t('cookies.section_analytics.list_item_one')
-  %li= t('cookies.section_analytics.list_item_two')
-  %li= t('cookies.section_analytics.list_item_three')
+  %li= t("cookies.section_analytics.list_item_one")
+  %li= t("cookies.section_analytics.list_item_two")
+  %li= t("cookies.section_analytics.list_item_three")
 
-%p.govuk-body= t('cookies.section_analytics.paragraph_three')
+%p.govuk-body= t("cookies.section_analytics.paragraph_three")
 
-= render 'analytics'
+= render "analytics"
 
 %h2.govuk-heading-l{ "data-cy" => "change-cookies" }
-  = t('cookies.section_adjust.section_heading')
+  = t("cookies.section_adjust.section_heading")
 
 %p.govuk-body
-  = t('cookies.section_adjust.link_text_html', href: cookies_settings_path)
+  = t("cookies.section_adjust.link_text_html", href: cookies_settings_path)

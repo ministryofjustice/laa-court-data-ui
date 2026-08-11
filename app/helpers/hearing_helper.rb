@@ -10,9 +10,9 @@ module HearingHelper
     sanitize(text_with_converted_crlf, tags: %w[br p])
   end
 
-  private
+private
 
   def convert_crlf_to_html(text)
-    simple_format(text, {}, wrapper_tag: 'span')
+    simple_format(text, {}, wrapper_tag: "span")
   end
 end

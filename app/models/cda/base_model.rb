@@ -1,7 +1,7 @@
 module Cda
   class BaseModel < ActiveResource::Base
     def self.api_url
-      uri = URI(ENV.fetch('COURT_DATA_ADAPTOR_API_URL', nil))
+      uri = URI(ENV.fetch("COURT_DATA_ADAPTOR_API_URL", nil))
       "#{uri.scheme}://#{uri.host}:#{uri.port}/api/internal/v2"
     end
 
@@ -10,9 +10,9 @@ module Cda
 
     def self.headers
       {
-        'Content-Type' => 'application/json',
-        'Authorization' => "Bearer #{Cda::Client.instance.bearer_token}",
-        'X-Request-ID' => Current.request_id
+        "Content-Type" => "application/json",
+        "Authorization" => "Bearer #{Cda::Client.instance.bearer_token}",
+        "X-Request-ID" => Current.request_id,
       }
     end
 

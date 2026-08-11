@@ -10,21 +10,21 @@
 module CapybaraExtensions
   module Matchers
     def has_govuk_page_heading?(options = {})
-      has_selector?('h1.govuk-heading-xl', **options)
+      has_selector?("h1.govuk-heading-xl", **options)
     end
 
     def has_no_govuk_page_heading?(options = {})
-      has_no_selector?('h1.govuk-heading-xl', **options)
+      has_no_selector?("h1.govuk-heading-xl", **options)
     end
 
     def has_govuk_flash?(key, options)
       case key
       when :notice
-        has_selector?('.lcdui-notice-summary', **options)
+        has_selector?(".lcdui-notice-summary", **options)
       when :success_moj_banner
-        has_selector?('.moj-banner.moj-banner--success', **options)
+        has_selector?(".moj-banner.moj-banner--success", **options)
       else
-        has_selector?('.govuk-error-summary', **options)
+        has_selector?(".govuk-error-summary", **options)
       end
     end
 
@@ -42,7 +42,7 @@ module CapybaraExtensions
       result = has_selector?(selector, **options)
 
       if href
-        actual_href = find(breadcrumb_link_selector, text:)['href']
+        actual_href = find(breadcrumb_link_selector, text:)["href"]
         result = href_match?(href, actual_href)
       end
       result
@@ -50,24 +50,24 @@ module CapybaraExtensions
 
     def has_govuk_warning?(text = nil)
       [
-        has_selector?('.govuk-warning-text strong.govuk-warning-text__text', text:),
-        has_selector?('.govuk-warning-text span.govuk-warning-text__icon', text: '!'),
-        has_selector?('.govuk-warning-text span.govuk-visually-hidden', text: 'Warning')
+        has_selector?(".govuk-warning-text strong.govuk-warning-text__text", text:),
+        has_selector?(".govuk-warning-text span.govuk-warning-text__icon", text: "!"),
+        has_selector?(".govuk-warning-text span.govuk-visually-hidden", text: "Warning"),
       ].all?
     end
 
     def has_govuk_error_summary?(error_text = nil)
       summary = find('.govuk-error-summary div[role="alert"]')
       [
-        summary.has_selector?('.govuk-error-summary__title', text: 'There is a problem'),
-        summary.has_selector?('.govuk-error-summary__title', text: 'There is a problem'),
-        summary.has_link?(error_text)
+        summary.has_selector?(".govuk-error-summary__title", text: "There is a problem"),
+        summary.has_selector?(".govuk-error-summary__title", text: "There is a problem"),
+        summary.has_link?(error_text),
       ].all?
     end
 
     def has_govuk_error_field?(model, field, error_text = nil)
-      model = model.to_s.tr('_', '-')
-      field = field.to_s.tr('_', '-')
+      model = model.to_s.tr("_", "-")
+      field = field.to_s.tr("_", "-")
       has_selector?(".govuk-error-message##{model}-#{field}-error", text: error_text)
     end
 
@@ -85,16 +85,17 @@ module CapybaraExtensions
     end
 
     def detail_summary_selector
-      'details.govuk-details summary.govuk-details__summary span.govuk-details__summary-text'
+      "details.govuk-details summary.govuk-details__summary span.govuk-details__summary-text"
     end
 
     def href_match?(expected, actual)
       return actual.match?(expected) if expected.is_a?(Regexp)
+
       CGI.unescape(expected).eql?(CGI.unescape(actual))
     end
 
     def breadcrumb_selector
-      'div.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item'
+      "div.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item"
     end
 
     def current_breadcrumb_selector
@@ -102,7 +103,7 @@ module CapybaraExtensions
     end
 
     def breadcrumb_link
-      'a.govuk-breadcrumbs__link'
+      "a.govuk-breadcrumbs__link"
     end
 
     def breadcrumb_link_selector

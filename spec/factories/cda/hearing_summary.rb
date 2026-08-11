@@ -2,14 +2,14 @@
 
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
-  factory :hearing_summary, class: 'Cda::BaseModel' do
-    hearing_type { 'Trial' }
+  factory :hearing_summary, class: "Cda::BaseModel" do
+    hearing_type { "Trial" }
     court_centre { FactoryBot.build(:court_centre) }
     hearing_days { [] }
     defendants { [] }
     defence_counsels { [] }
-    estimated_duration { '20 DAYS' }
-    id { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
+    estimated_duration { "20 DAYS" }
+    id { "844a6542-ffcb-4cd0-94ce-fda3ffc3081b" }
 
     trait :with_hearing_days do
       hearing_day1 = FactoryBot.build(:hearing_day)

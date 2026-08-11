@@ -1,5 +1,5 @@
-require 'active_resource/base'
-require 'active_resource/log_subscriber'
+require "active_resource/base"
+require "active_resource/log_subscriber"
 
 # This monkey-patch exists because we use ActiveResource which, by default, logs
 # all query params of outgoing GET requests. However, our requests include PII that we
@@ -21,10 +21,10 @@ module ActiveResource
       request_without_filtered_logging(event)
     end
 
-    alias request_without_filtered_logging request
-    alias request request_with_filtered_logging
+    alias_method :request_without_filtered_logging, :request
+    alias_method :request, :request_with_filtered_logging
 
-    private
+  private
 
     def filter_query_string(query_string)
       query_hash = Rack::Utils.parse_nested_query(query_string).with_indifferent_access

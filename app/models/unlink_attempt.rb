@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_dependency 'feature_flag'
+require_dependency "feature_flag"
 
 class UnlinkAttempt
   include ActiveModel::Model

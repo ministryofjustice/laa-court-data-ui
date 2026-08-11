@@ -7,9 +7,9 @@ module Cda
 
       body = cda_response.body
       error_response = body.is_a?(String) ? JSON.parse(body) : body
-      return unless error_response['error_codes']
+      return unless error_response["error_codes"]
 
-      error_response['error_codes']
+      error_response["error_codes"]
         .filter_map { |code| build_message(code, context) }
         .join(" ")
         .presence
@@ -23,7 +23,7 @@ module Cda
         return I18n.t("cda_errors.context.#{context}.#{code}")
       end
 
-      return unless code && I18n.t('cda_errors').key?(code.to_sym)
+      return unless code && I18n.t("cda_errors").key?(code.to_sym)
 
       I18n.t("cda_errors.#{code}")
     end

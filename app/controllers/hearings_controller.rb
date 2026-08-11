@@ -13,9 +13,9 @@ class HearingsController < ApplicationController
                  proc { |v| v.prosecution_case_path(v.controller.prosecution_case_reference) }
 
   def show
-    add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.strftime('%d/%m/%Y')}", ''
+    add_breadcrumb "#{t('generic.hearing_day')} #{hearing_day&.strftime('%d/%m/%Y')}", ""
     @paginator = helpers.paginator(@prosecution_case, hearing_id:, hearing_day:)
-    @hearing.current_sitting_day = hearing_day.strftime('%F')
+    @hearing.current_sitting_day = hearing_day.strftime("%F")
     @hearing_datetime = extract_hearing_datetime
   end
 
@@ -29,7 +29,7 @@ class HearingsController < ApplicationController
     @prosecution_case_reference ||= params[:urn]
   end
 
-  private
+private
 
   def load_and_authorize_search
     @prosecution_case_search = Cda::CaseSummaryService.new(prosecution_case_reference)
@@ -43,20 +43,20 @@ class HearingsController < ApplicationController
     # Return empty hearing so we can still display the page
     @hearing = helpers.decorate(Cda::Hearing.new, Cda::HearingDecorator)
   rescue ActiveResource::ConnectionError => e
-    log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
+    log_and_capture_error(e, "SERVER_ERROR_OCCURRED")
     redirect_to_prosecution_case(alert: server_error_message(e))
   end
 
   def set_hearing_events
     @hearing_events ||= Cda::HearingEventLog.find_from_hearing_and_date(
       hearing_id,
-      hearing_day.strftime('%F')
+      hearing_day.strftime("%F"),
     )
   rescue ActiveResource::ResourceNotFound
-    logger.info 'EVENTS_NOT_AVAILABLE'
+    logger.info "EVENTS_NOT_AVAILABLE"
   rescue ActiveResource::ConnectionError => e
-    log_and_capture_error(e, 'ERROR_CALLING_EVENTS')
-    show_alert(I18n.t('hearings.show.flash.notice.events_error'),
+    log_and_capture_error(e, "ERROR_CALLING_EVENTS")
+    show_alert(I18n.t("hearings.show.flash.notice.events_error"),
                "#{I18n.t('error.refresh')} #{I18n.t('error.it_helpdesk')}")
   end
 
@@ -66,10 +66,10 @@ class HearingsController < ApplicationController
   end
 
   def set_prosecution_case
-    logger.info 'USING_V2_ENDPOINT_CASE_SUMMARIES'
+    logger.info "USING_V2_ENDPOINT_CASE_SUMMARIES"
     @prosecution_case = helpers.decorate(@prosecution_case_search.call, Cda::CaseSummaryDecorator)
   rescue ActiveResource::ConnectionError => e
-    log_and_capture_error(e, 'SERVER_ERROR_OCCURRED')
+    log_and_capture_error(e, "SERVER_ERROR_OCCURRED")
     redirect_to_prosecution_case(alert: server_error_message(e))
   end
 
@@ -78,7 +78,7 @@ class HearingsController < ApplicationController
   end
 
   def server_error_message(exception)
-    cda_error_string(exception) || I18n.t('hearings.show.flash.notice.server_error')
+    cda_error_string(exception) || I18n.t("hearings.show.flash.notice.server_error")
   end
 
   def hearing_id

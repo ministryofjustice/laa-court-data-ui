@@ -1,7 +1,7 @@
 module Cda
   class CourtApplication < BaseModel
-    has_one :subject_summary, class_name: 'Cda::SubjectSummary'
-    has_many :hearing_summary, class_name: 'Cda::ApplicationHearing'
+    has_one :subject_summary, class_name: "Cda::SubjectSummary"
+    has_many :hearing_summary, class_name: "Cda::ApplicationHearing"
 
     DUMMY_MAAT_PREFIX = "Z".freeze
 
@@ -72,7 +72,7 @@ module Cda
       maat_reference.present?
     end
 
-    private
+  private
 
     def prosecution_case
       @prosecution_case ||= Cda::CaseSummaryService.call(prosecution_case_reference)

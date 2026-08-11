@@ -13,7 +13,7 @@ RSpec.describe Users::SessionsController, type: :controller do
 
   describe "After caseworker sign-in" do
     it "redirects to the search_filters page" do
-      expect(controller.after_sign_in_path_for(other_user)).to eq '/search_filters/new'
+      expect(controller.after_sign_in_path_for(other_user)).to eq "/search_filters/new"
     end
   end
 

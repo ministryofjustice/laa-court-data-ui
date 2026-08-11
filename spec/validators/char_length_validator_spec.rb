@@ -8,7 +8,7 @@ RSpec.describe CharLengthValidator, type: :validator do
       include ActiveModel::Model
 
       def self.name
-        'FooModel'
+        "FooModel"
       end
 
       attr_accessor :string_field
@@ -18,45 +18,45 @@ RSpec.describe CharLengthValidator, type: :validator do
     end
   end
 
-  context 'with nil' do
+  context "with nil" do
     let(:string_value) { nil }
 
     it { is_expected.to be_valid }
   end
 
-  context 'with exactly the minimum number of chars' do
-    let(:string_value) { 'aaa' }
+  context "with exactly the minimum number of chars" do
+    let(:string_value) { "aaa" }
 
     it { is_expected.to be_valid }
   end
 
-  context 'with over the minimum number of chars' do
-    let(:string_value) { 'aaaa' }
+  context "with over the minimum number of chars" do
+    let(:string_value) { "aaaa" }
 
     it { is_expected.to be_valid }
   end
 
-  context 'with less chars than minimum' do
-    let(:string_value) { 'aa' }
+  context "with less chars than minimum" do
+    let(:string_value) { "aa" }
 
     it { is_expected.not_to be_valid }
     it { is_expected.to have_activemodel_error_type(:string_field, :too_short) }
   end
 
-  context 'with less chars than minimum plus whitespace' do
+  context "with less chars than minimum plus whitespace" do
     let(:string_value) { "\s\sa\sa\s\s\t" }
 
     it { is_expected.not_to be_valid }
     it { is_expected.to have_activemodel_error_type(:string_field, :too_short) }
   end
 
-  context 'with no message option' do
+  context "with no message option" do
     let(:foo_model) do
       Class.new do
         include ActiveModel::Model
 
         def self.name
-          'FooModel'
+          "FooModel"
         end
 
         attr_accessor :string_field
@@ -66,36 +66,36 @@ RSpec.describe CharLengthValidator, type: :validator do
       end
     end
 
-    context 'with invalid value' do
-      let(:string_value) { 'a' }
+    context "with invalid value" do
+      let(:string_value) { "a" }
 
       it {
-        is_expected
-          .to have_activemodel_error_message(:string_field, 'is too short (minimum is 10 characters)')
+        expect(subject)
+          .to have_activemodel_error_message(:string_field, "is too short (minimum is 10 characters)")
       }
     end
   end
 
-  context 'with message option' do
+  context "with message option" do
     let(:foo_model) do
       Class.new do
         include ActiveModel::Model
 
         def self.name
-          'FooModel'
+          "FooModel"
         end
 
         attr_accessor :string_field
 
         validates :string_field,
-                  char_length: { minimum: 3, message: 'that is too short!' }
+                  char_length: { minimum: 3, message: "that is too short!" }
       end
     end
 
-    context 'with invalid value' do
-      let(:string_value) { 'a' }
+    context "with invalid value" do
+      let(:string_value) { "a" }
 
-      it { is_expected.to have_activemodel_error_message(:string_field, 'that is too short!') }
+      it { is_expected.to have_activemodel_error_message(:string_field, "that is too short!") }
     end
   end
 end

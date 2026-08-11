@@ -17,11 +17,11 @@ module Cda
       judicial_results
     end
 
-    private
+  private
 
     def judicial_results
       if @application_summary.respond_to?(:judicial_results) && @application_summary.judicial_results.any?
-        @application_summary.judicial_results.map(&:label)&.join(' & ')
+        @application_summary.judicial_results.map(&:label)&.join(" & ")
       else
         result_not_available
       end

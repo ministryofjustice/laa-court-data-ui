@@ -1,7 +1,7 @@
 module Cda
   class ApplicationHearing < BaseModel
-    has_many :hearing_days, class_name: 'Cda::HearingDay'
-    has_many :defence_counsels, class_name: 'Cda::DefenceCounsel'
+    has_many :hearing_days, class_name: "Cda::HearingDay"
+    has_many :defence_counsels, class_name: "Cda::DefenceCounsel"
 
     def hearing_days
       @hearing_days ||= super.map do |day|

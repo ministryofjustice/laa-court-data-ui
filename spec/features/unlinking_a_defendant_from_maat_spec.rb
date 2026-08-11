@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
-  let(:case_urn) { 'TEST12345' }
+RSpec.feature "Unlinking a defendant from MAAT", :stub_unlink, type: :feature do
+  let(:case_urn) { "TEST12345" }
   let(:api_url_v2) { Cda::BaseModel.api_url }
   let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}" }
 
@@ -12,125 +12,125 @@ RSpec.feature 'Unlinking a defendant from MAAT', :stub_unlink, type: :feature do
 
     create(:unlink_reason,
            code: 1,
-           description: 'Linked to wrong case ID (correct defendant)')
-    create(:unlink_reason, code: UnlinkReason::OTHER_REASON_CODE, description: 'Other')
+           description: "Linked to wrong case ID (correct defendant)")
+    create(:unlink_reason, code: UnlinkReason::OTHER_REASON_CODE, description: "Other")
 
     visit(url)
   end
 
-  context 'when user views the link page' do
-    let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+  context "when user views the link page" do
+    let(:defendant_id) { "41fcb1cd-516e-438e-887a-5987d92ef90f" }
     let(:url) { "defendants/#{defendant_id}/link?urn=#{case_urn}" }
 
-    it 'displays the MAAT ID field' do
-      expect(page).to have_field('MAAT ID')
+    it "displays the MAAT ID field" do
+      expect(page).to have_field("MAAT ID")
     end
 
-    it 'displays the MAAT ID field hint' do
-      expect(page).to have_text('Enter the MAAT ID')
+    it "displays the MAAT ID field hint" do
+      expect(page).to have_text("Enter the MAAT ID")
     end
 
-    it 'does not display the unlink reasons' do
-      expect(page).to have_no_text('Reason for unlinking')
+    it "does not display the unlink reasons" do
+      expect(page).to have_no_text("Reason for unlinking")
     end
   end
 
-  context 'when user views the unlink page' do
-    let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+  context "when user views the unlink page" do
+    let(:defendant_id) { "41fcb1cd-516e-438e-887a-5987d92ef90f" }
     let(:url) { "defendants/#{defendant_id}/unlink?urn=#{case_urn}" }
     let(:maat_reference) { 2_123_456.to_s }
 
-    it 'does not display the MAAT ID field' do
-      expect(page).to have_no_field('MAAT ID')
+    it "does not display the MAAT ID field" do
+      expect(page).to have_no_field("MAAT ID")
     end
 
-    it 'displays the reason for unlinking' do
-      expect(page).to have_text('Reason for unlinking')
+    it "displays the reason for unlinking" do
+      expect(page).to have_text("Reason for unlinking")
     end
 
-    it 'displays the remove link warning' do
-      expect(page).to have_text('Removing the link will stop hearing updates from being received.')
+    it "displays the remove link warning" do
+      expect(page).to have_text("Removing the link will stop hearing updates from being received.")
     end
 
-    context 'when user unlinks with success' do
+    context "when user unlinks with success" do
       let(:api_request_payload) do
         {
           laa_reference: { defendant_id:,
                            user_name: user.username,
                            unlink_reason_code: 1,
-                           maat_reference: }
+                           maat_reference: },
         }
       end
 
-      context 'with standard reason' do
+      context "with standard reason" do
         before do
-          choose 'Linked to wrong case ID (correct defendant)'
-          click_link_or_button 'Remove link to MAAT ID'
+          choose "Linked to wrong case ID (correct defendant)"
+          click_link_or_button "Remove link to MAAT ID"
         end
 
-        it 'sends an unlink request to CD API' do
+        it "sends an unlink request to CD API" do
           expect(a_request(:patch, api_request_path)
             .with(body: api_request_payload))
             .to have_been_made
         end
 
-        it 'flashes success banner' do
+        it "flashes success banner" do
           expect(page).to \
             have_govuk_flash(:success_moj_banner,
-                             text: 'Link removed successfully.')
+                             text: "Link removed successfully.")
         end
       end
 
-      context 'with other reason' do
+      context "with other reason" do
         let(:api_request_payload) do
           {
             laa_reference: { defendant_id:,
                              user_name: user.username,
                              unlink_reason_code: UnlinkReason::OTHER_REASON_CODE,
                              maat_reference:,
-                             unlink_other_reason_text: 'Case already concluded' }
+                             unlink_other_reason_text: "Case already concluded" },
           }
         end
 
         before do
-          choose 'Other'
-          fill_in 'Reason for unlinking', with: 'Case already concluded'
-          click_link_or_button 'Remove link to MAAT ID'
+          choose "Other"
+          fill_in "Reason for unlinking", with: "Case already concluded"
+          click_link_or_button "Remove link to MAAT ID"
         end
 
-        it 'sends an unlink request to CD API' do
+        it "sends an unlink request to CD API" do
           expect(a_request(:patch, api_request_path)
             .with(body: api_request_payload.to_json))
             .to have_been_made
         end
 
-        it 'flashes success banner' do
+        it "flashes success banner" do
           expect(page).to \
             have_govuk_flash(:success_moj_banner,
-                             text: 'Link removed successfully.')
+                             text: "Link removed successfully.")
         end
       end
     end
 
-    context 'when user unlinks defendant with failure' do
+    context "when user unlinks defendant with failure" do
       before do
-        choose 'Linked to wrong case ID (correct defendant)'
-        click_link_or_button 'Remove link to MAAT ID'
+        choose "Linked to wrong case ID (correct defendant)"
+        click_link_or_button "Remove link to MAAT ID"
       end
 
-      it 'flashes alert for 422 Unprocessable Content response', :stub_v2_unlink_bad_response do
+      it "flashes alert for 422 Unprocessable Content response", :stub_v2_unlink_bad_response do
         expect(page).to \
           have_govuk_flash(
             :alert,
-            text: 'The request to link/unlink the Defendant or Appellant was malformed.'
+            text: "The request to link/unlink the Defendant or Appellant was malformed.",
           )
       end
 
-      it 'flashes alert if there is a CDA failure', :stub_v2_unlink_cda_failure do
+      it "flashes alert if there is a CDA failure", :stub_v2_unlink_cda_failure do
         expect(page).to \
           have_govuk_flash(
             :alert,
-            text: 'HMCTS Common Platform could not be reached.'
+            text: "HMCTS Common Platform could not be reached.",
           )
       end
     end

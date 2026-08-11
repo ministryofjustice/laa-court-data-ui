@@ -3,7 +3,7 @@
 module Cda
   class CrackedIneffectiveTrialDecorator < BaseDecorator
     def cracked_on_sentence(hearing)
-      t('cracked_ineffective_trial.cracked_on_sentence',
+      t("cracked_ineffective_trial.cracked_on_sentence",
         type: type&.humanize,
         cracked_at: cracked_at(hearing))
     end
@@ -12,10 +12,10 @@ module Cda
       "<strong>#{type&.humanize}</strong>: #{description}"
     end
 
-    private
+  private
 
     def cracked_at(hearing)
-      hearing.hearing_days.first.sitting_day.to_date.strftime('%d/%m/%Y')
+      hearing.hearing_days.first.sitting_day.to_date.strftime("%d/%m/%Y")
     end
   end
 end

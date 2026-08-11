@@ -1,44 +1,44 @@
 %div{ class: "govuk-!-margin-bottom-9" }
   %h2.govuk-heading-l
-    = t('hearings.show.attendees.heading')
+    = t("hearings.show.attendees.heading")
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     - if hearing.relates_to_appeals?
-      = t('hearings.show.attendees.appellants')
+      = t("hearings.show.attendees.appellants")
     - else
-      = t('hearings.show.attendees.respondents')
+      = t("hearings.show.attendees.respondents")
 
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "defendants" }
     - if prosecution_case.defendant_summaries.any?
       = safe_join(prosecution_case.defendant_summaries.map(&:name), tag.br)
     - else
-      = t('generic.not_available')
+      = t("generic.not_available")
 
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     - if hearing.relates_to_appeals?
-      = t('hearings.show.attendees.appellant_advocates')
+      = t("hearings.show.attendees.appellant_advocates")
     - else
-      = t('hearings.show.attendees.respondent_advocates')
+      = t("hearings.show.attendees.respondent_advocates")
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "appellant" }
     - if hearing_details.try(:applicant_counsels)&.any?
       = hearing.applicant_counsels_list
     - else
-      = t('generic.not_available')
+      = t("generic.not_available")
 
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
     - if hearing.relates_to_appeals?
-      = t('hearings.show.attendees.respondent_advocates')
+      = t("hearings.show.attendees.respondent_advocates")
     - else
-      = t('hearings.show.attendees.applicant_advocates')
+      = t("hearings.show.attendees.applicant_advocates")
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "respondent" }
     - if hearing_details.try(:respondent_counsels)&.any?
       = hearing.respondent_counsels_list
     - else
-      = t('generic.not_available')
+      = t("generic.not_available")
 
   .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-    = t('hearings.show.attendees.judges')
+    = t("hearings.show.attendees.judges")
   %p.govuk-body{ class: "govuk-!-margin-bottom-2", id: "judges" }
     - if hearing_details&.judiciary&.any?
       = hearing.judiciary_list
     - else
-      = t('generic.not_available')
+      = t("generic.not_available")

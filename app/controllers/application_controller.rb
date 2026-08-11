@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_search_params
 
-  protected
+protected
 
   def access_denied(exception)
     respond_to do |format|
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
 
   EXPECTED_ERROR_TYPES = [
     Net::ReadTimeout,
-    ActiveResource::ConnectionError
+    ActiveResource::ConnectionError,
   ].freeze
 
   def unexpected_exception_handler(exception)
@@ -74,18 +74,18 @@ class ApplicationController < ActionController::Base
   end
 
   def assign_error_flash(exception)
-    flash[:alert] = I18n.t('error.connection_error_message',
-                           details: cda_error_string(exception) || I18n.t('error.it_helpdesk'))
+    flash[:alert] = I18n.t("error.connection_error_message",
+                           details: cda_error_string(exception) || I18n.t("error.it_helpdesk"))
   end
 
   def set_transaction_id
-    Current.request_id = request.headers['laa-transaction-id'] || request.request_id
-    response.set_header('laa-transaction-id', Current.request_id)
+    Current.request_id = request.headers["laa-transaction-id"] || request.request_id
+    response.set_header("laa-transaction-id", Current.request_id)
   end
 
   def log_sentry_error(exception, errors)
     Sentry.with_scope do |scope|
-      scope&.set_extra('error_message', errors)
+      scope&.set_extra("error_message", errors)
       Sentry.capture_exception(exception)
     end
   end
@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
   def detect_out_of_hours
     return unless FeatureFlag.enabled?(:time_based_access_restriction)
 
-    render "errors/out_of_hours" unless Time.now.in_time_zone("London").hour.in?(HOURS_OF_OPERATION)
+    render "errors/out_of_hours" unless Time.zone.now.in_time_zone("London").hour.in?(HOURS_OF_OPERATION)
   end
 
   def detect_maintenance_mode
@@ -114,7 +114,7 @@ class ApplicationController < ActionController::Base
     [
       "status=#{exception.response.try(:status)}",
       exception.code,
-      exception.description
+      exception.description,
     ].compact.join(" ")
   end
 

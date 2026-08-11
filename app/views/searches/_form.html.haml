@@ -7,10 +7,10 @@
       = f.hidden_field(:filter, value: filter)
       = f.govuk_text_field(:term, value: term, label: { text: label })
 
-      - if filter.eql?('defendant_name')
+      - if filter.eql?("defendant_name")
         .govuk-date-fieldset-m
           = f.govuk_date_field :dob,
-                               legend: { text: t('search.dob.legend_text') }
+                               legend: { text: t("search.dob.legend_text") }
   .govuk-grid-row
     .govuk-grid-column-two-thirds
-      = f.govuk_submit(t('generic.search'))
+      = f.govuk_submit(t("generic.search"))

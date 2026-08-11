@@ -1,85 +1,85 @@
 - content_for :pre_heading do
-  = render '/feedback_on_appeals_to_crown_court', application: @application
+  = render "/feedback_on_appeals_to_crown_court", application: @application
 
-= govuk_page_heading(@hearing_day.day_string, caption_text: t('generic.hearing_day'), tag_options: { class: 'govuk-!-margin-bottom-2' })
+= govuk_page_heading(@hearing_day.day_string, caption_text: t("generic.hearing_day"), tag_options: { class: "govuk-!-margin-bottom-2" })
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    = render 'shared/govuk_prev_next_pagination',
+    = render "shared/govuk_prev_next_pagination",
              prev_url: @previous_day && court_application_hearing_hearing_day_path(@application.application_id, @previous_day.hearing.id, @previous_day.date),
              next_url: @next_day && court_application_hearing_hearing_day_path(@application.application_id, @next_day.hearing.id, @next_day.date)
 
 - if @application.appeal?
-  = render 'shared/govuk_tag', tag_name: t("subjects.appeal"), tag_colour: 'purple'
+  = render "shared/govuk_tag", tag_name: t("subjects.appeal"), tag_colour: "purple"
 - else
-  = render 'shared/govuk_tag', tag_name: t("subjects.#{@application.application_category}"), tag_colour: 'yellow'
+  = render "shared/govuk_tag", tag_name: t("subjects.#{@application.application_category}"), tag_colour: "yellow"
 
 .govuk-grid-row
   .govuk-grid-column-one-third
     %h2.govuk-heading-l
-      = t('.details')
+      = t(".details")
     %div{ class: "govuk-!-margin-bottom-9" }
       .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-        = t('.hearing_type')
+        = t(".hearing_type")
       %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
-        = @hearing_day.hearing.hearing_type || t('generic.not_available')
+        = @hearing_day.hearing.hearing_type || t("generic.not_available")
       .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-        = t('.court')
+        = t(".court")
       %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
-        = @hearing_day.hearing.court_centre.name || t('generic.not_available')
+        = @hearing_day.hearing.court_centre.name || t("generic.not_available")
       .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-        = t('.time_listed')
+        = t(".time_listed")
       %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
         = @hearing_day.time_string
 
     %h2.govuk-heading-l
-      = t('.attendees')
+      = t(".attendees")
     .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-      = @application.appeal? ? t('.appellants') : t('.respondents')
+      = @application.appeal? ? t(".appellants") : t(".respondents")
     %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
       = @application.subject_summary.name
     .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-      = @application.appeal? ? t('.appellant_advocates') : t(".respondent_advocates")
+      = @application.appeal? ? t(".appellant_advocates") : t(".respondent_advocates")
     %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
       = @hearing_details.applicant_counsels_list
     .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-      = @application.appeal? ? t('.respondent_advocates') : t(".applicant_advocates")
+      = @application.appeal? ? t(".respondent_advocates") : t(".applicant_advocates")
     %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
       = @hearing_details.respondent_counsels_list
     .govuk-heading-s{ class: "govuk-!-margin-bottom-1" }
-      = t('.judges')
+      = t(".judges")
     %p.govuk-body{ class: "govuk-!-margin-bottom-2" }
       = @hearing_details.judiciary_list
 
   .govuk-grid-column-two-thirds
     %h2.govuk-heading-l
-      = t('.events')
+      = t(".events")
     - if @hearing_events&.events&.any?
       %table.govuk-table
         %caption.govuk-table__caption.govuk-visually-hidden
-          = t('.events')
+          = t(".events")
         %thead.govuk-table__head
           %tr.govuk-table__row
-            %th.govuk-table__header{ scope: 'col' }= t('.event.time')
-            %th.govuk-table__header{ scope: 'col' }= t('.event.event')
+            %th.govuk-table__header{ scope: "col" }= t(".event.time")
+            %th.govuk-table__header{ scope: "col" }= t(".event.event")
         %tbody.govuk-table__body
           - @hearing_events.events.each do |event|
             %tr.govuk-table__row
               %td.govuk-table__cell
-                = event.event_time.to_datetime.strftime('%H:%M')
+                = event.event_time.to_datetime.strftime("%H:%M")
               %td.govuk-table__cell.hearing-events-table__cell--overflow-wrap
                 = event.recorded_label
                 - if event&.note.present?
-                  %div{ class: 'govuk-!-padding-top-1' }
+                  %div{ class: "govuk-!-padding-top-1" }
                     = transform_and_sanitize(event.note)
     - else
       %p.govuk-body
-        = t('.event.none')
+        = t(".event.none")
 
-    = render partial: 'hearings/court_applications', locals: { hearing: (@hearing_details.hearing if @hearing_details.loaded?) }
+    = render partial: "hearings/court_applications", locals: { hearing: (@hearing_details.hearing if @hearing_details.loaded?) }
 
     - if @application.subject_summary.proceedings_concluded
       %h2.govuk-heading-l
-        = t('.result')
+        = t(".result")
       .govuk-body
         = @application.result_string

@@ -1,37 +1,37 @@
 # frozen_string_literal: true
 
-RSpec.describe 'hearings/_court_applications.html.haml', type: :view do
+RSpec.describe "hearings/_court_applications.html.haml", type: :view do
   include RSpecHtmlMatchers
 
-  subject(:render_partial) { render partial: 'court_applications', locals: { hearing: hearing.hearing } }
+  subject(:render_partial) { render partial: "court_applications", locals: { hearing: hearing.hearing } }
 
-  let(:hearing_id) { '844a6542-ffcb-4cd0-94ce-fda3ffc3081b' }
-  let(:hearing_day) { Date.parse('2019-10-23T10:30:00.000Z') }
+  let(:hearing_id) { "844a6542-ffcb-4cd0-94ce-fda3ffc3081b" }
+  let(:hearing_day) { Date.parse("2019-10-23T10:30:00.000Z") }
   let(:hearing) { Cda::Hearing.find(hearing_id) }
 
-  context 'with court_applications present', :stub_v2_hearing_data do
-    it 'displays the section' do
-      is_expected.to have_tag('h2.govuk-heading-l', text: /Court Applications/)
+  context "with court_applications present", :stub_v2_hearing_data do
+    it "displays the section" do
+      expect(subject).to have_tag("h2.govuk-heading-l", text: /Court Applications/)
     end
 
-    it 'displays all applications' do
-      is_expected.to have_tag('h3.govuk-summary-card__title',
-                              text: /Application for transfer of legal aid/)
+    it "displays all applications" do
+      expect(subject).to have_tag("h3.govuk-summary-card__title",
+                                  text: /Application for transfer of legal aid/)
     end
 
-    it 'displays received date correctly' do
-      is_expected.to have_tag('dd.govuk-summary-list__value', text: /29 March 2021/)
+    it "displays received date correctly" do
+      expect(subject).to have_tag("dd.govuk-summary-list__value", text: /29 March 2021/)
     end
   end
 
-  context 'with no court_applications present', :stub_v2_empty_hearing_data do
-    it 'displays the section' do
-      is_expected.to have_tag('h2.govuk-heading-l', text: /Court Applications/)
+  context "with no court_applications present", :stub_v2_empty_hearing_data do
+    it "displays the section" do
+      expect(subject).to have_tag("h2.govuk-heading-l", text: /Court Applications/)
     end
 
-    it 'displays correct message' do
-      is_expected.to have_tag('p.govuk-body',
-                              text: /No court applications are associated with this hearing/)
+    it "displays correct message" do
+      expect(subject).to have_tag("p.govuk-body",
+                                  text: /No court applications are associated with this hearing/)
     end
   end
 end

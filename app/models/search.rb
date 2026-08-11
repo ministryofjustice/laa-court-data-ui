@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_dependency 'feature_flag'
+require_dependency "feature_flag"
 
 class Search
   include ActiveModel::Model
@@ -10,11 +10,11 @@ class Search
   def self.filters
     [
       _filter(id: :case_reference,
-              name: sanitize_html(I18n.t('search_filter.radio_case_reference_label'))),
+              name: sanitize_html(I18n.t("search_filter.radio_case_reference_label"))),
       _filter(id: :defendant_reference,
-              name: sanitize_html(I18n.t('search_filter.radio_defendant_reference_label_html'))),
+              name: sanitize_html(I18n.t("search_filter.radio_defendant_reference_label_html"))),
       _filter(id: :defendant_name,
-              name: sanitize_html(I18n.t('search_filter.radio_defendant_name_label_html')))
+              name: sanitize_html(I18n.t("search_filter.radio_defendant_name_label_html"))),
     ]
   end
 
@@ -25,13 +25,13 @@ class Search
   delegate :filters, to: :class
 
   def self.sanitize_html(html_string)
-    ActionController::Base.helpers.sanitize(html_string, tags: ['b'])
+    ActionController::Base.helpers.sanitize(html_string, tags: %w[b])
   end
 
   validates :filter,
             presence: true,
             inclusion: { in: filters.map { |f| f.id.to_s },
-                         message: I18n.t('generic.filter_not_recognized') }
+                         message: I18n.t("generic.filter_not_recognized") }
 
   validates :term,
             presence: true,
@@ -44,10 +44,10 @@ class Search
     Cda::DefendantSearchService.call(filter:, term:, dob:)
   end
 
-  private
+private
 
   def dob_validity
-    return unless filter == 'defendant_name' && !dob&.valid?
+    return unless filter == "defendant_name" && !dob&.valid?
 
     if dob.blank?
       errors.add(:dob, :blank)

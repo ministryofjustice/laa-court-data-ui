@@ -1,36 +1,36 @@
-RSpec.feature 'Court Applications', :vcr do
-  let(:user) { create(:user, feature_flags: ['view_appeals']) }
-  let(:missing_court_application_id) { 'not-found-uuid' }
-  let(:erroring_court_application_id) { 'erroring-court-application-id' }
-  let(:found_court_application_id) { 'e174af7f-75da-428b-9875-c823eb182a23' }
-  let(:breach_court_application_id) { '501bac3e-47c3-4066-ab34-4c960447d493' }
-  let(:linked_court_application_id) { 'af7fc823e-428b-75da-9875-b182a23d174' }
-  let(:id_with_hearings) { 'd174af7f-75da-428b-9875-c823eb182a23' }
-  let(:prosecution_case_urn_from_vcr) { 'EPAYAQECKM' }
-  let(:maat_id_from_vcr) { '1234567' }
-  let(:hearing_id_from_vcr) { '0304d126-d773-41fd-af01-83e017cecd80' }
+RSpec.feature "Court Applications", :vcr do
+  let(:user) { create(:user, feature_flags: %w[view_appeals]) }
+  let(:missing_court_application_id) { "not-found-uuid" }
+  let(:erroring_court_application_id) { "erroring-court-application-id" }
+  let(:found_court_application_id) { "e174af7f-75da-428b-9875-c823eb182a23" }
+  let(:breach_court_application_id) { "501bac3e-47c3-4066-ab34-4c960447d493" }
+  let(:linked_court_application_id) { "af7fc823e-428b-75da-9875-b182a23d174" }
+  let(:id_with_hearings) { "d174af7f-75da-428b-9875-c823eb182a23" }
+  let(:prosecution_case_urn_from_vcr) { "EPAYAQECKM" }
+  let(:maat_id_from_vcr) { "1234567" }
+  let(:hearing_id_from_vcr) { "0304d126-d773-41fd-af01-83e017cecd80" }
 
-  scenario 'I am not signed in' do
+  scenario "I am not signed in" do
     visit court_application_path(found_court_application_id)
     expect(page).to have_text "You need to sign in before continuing."
   end
 
-  scenario 'The application cannot be found' do
+  scenario "The application cannot be found" do
     sign_in user
     visit court_application_path(missing_court_application_id)
     expect(page).to have_text "There was a problem getting the information you requeste"
   end
 
-  scenario 'There is a server error' do
+  scenario "There is a server error" do
     sign_in user
     visit court_application_path(erroring_court_application_id)
     expect(page).to have_text "There was a problem getting the information you requeste"
   end
 
-  scenario 'There is a row on the related applications page' do
+  scenario "There is a row on the related applications page" do
     sign_in user
     visit prosecution_case_path(prosecution_case_urn_from_vcr)
-    click_link 'Related court applications'
+    click_link "Related court applications"
     expect(page).to have_text "Appeal against a conviction"
     expect(page).to have_text "Mauricio Rath"
     expect(page).to have_text "Not available"
@@ -38,13 +38,13 @@ RSpec.feature 'Court Applications', :vcr do
     expect(page).to have_text "Crown Court"
   end
 
-  context 'when I view an application successfully' do
+  context "when I view an application successfully" do
     before do
       sign_in user
       visit court_application_path(found_court_application_id)
     end
 
-    scenario 'I view the application details' do
+    scenario "I view the application details" do
       expect(page).to have_text "Appeal against a conviction"
       expect(page).to have_text "MyString" # The application reference
       expect(page).to have_text "Result: Not available"
@@ -56,12 +56,12 @@ RSpec.feature 'Court Applications', :vcr do
       expect(page).to have_current_path court_application_subject_path(found_court_application_id)
     end
 
-    scenario 'the page is accessible', :js do
+    scenario "the page is accessible", :js do
       expect(page).to be_accessible
     end
   end
 
-  scenario 'I view an application where the defendant date of birth is missing' do
+  scenario "I view an application where the defendant date of birth is missing" do
     without_partial_double_verification do
       allow_any_instance_of(Cda::SubjectSummary).to receive(:defendant_dob).and_return(nil)
     end
@@ -70,35 +70,35 @@ RSpec.feature 'Court Applications', :vcr do
     expect(page.status_code).to eq(200)
   end
 
-  context 'when I view a breach application successfully' do
+  context "when I view a breach application successfully" do
     before do
       sign_in user
       visit court_application_path(breach_court_application_id)
     end
 
-    scenario 'I view the application details' do
+    scenario "I view the application details" do
       expect(page).to have_text("Breach")
       expect(page).to have_text(
         "Type of application: Failing to comply with the requirements of a youth rehabilitation order " \
-        "with intensive supervision and surveillance"
+        "with intensive supervision and surveillance",
       )
       expect(page).to have_text(
-        "Information on the 'Application without offence' screen relates to the person as a respondent"
+        "Information on the 'Application without offence' screen relates to the person as a respondent",
       )
     end
 
-    scenario 'the page is accessible', :js do
+    scenario "the page is accessible", :js do
       expect(page).to be_accessible
     end
   end
 
-  scenario 'I view a linked application' do
+  scenario "I view a linked application" do
     sign_in user
     visit court_application_path(linked_court_application_id)
     expect(page).to have_text maat_id_from_vcr
   end
 
-  scenario 'I view and sort an application with hearings' do
+  scenario "I view and sort an application with hearings" do
     sign_in user
     visit court_application_path(id_with_hearings)
     expect(page).to have_text "23/10/2019 Mention - Defendant to Attend (MDA) Not available"
