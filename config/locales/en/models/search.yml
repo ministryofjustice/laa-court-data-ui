@@ -12,5 +12,5 @@ en:
               blank: Filter required
             term:
               blank: Search term required
-              invalid: Search term must contain only letters and numbers
+              invalid: Search term must contain only letters, numbers and dash ('-')
               too_short: Search term must be at least %{count} characters
