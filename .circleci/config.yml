@@ -55,6 +55,23 @@ references:
         - node_modules
         - app/assets/builds
 
+  _restore-playwright: &restore-playwright
+    restore_cache:
+      keys:
+        - v1-playwright-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - v1-playwright-
+
+  _install-playwright: &install-playwright
+    run:
+      name: Install Playwright browsers
+      command: yarn exec playwright install
+
+  _save-playwright: &save-playwright
+    save_cache:
+      key: v1-playwright-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      paths:
+        - ~/.cache/ms-playwright
+
   _attach-tmp-workspace: &attach-tmp-workspace
     attach_workspace:
       at: ~/repo/tmp
@@ -109,6 +126,12 @@ commands:
     steps:
       - *restore-bundle
       - *restore-assets
+
+  install-playwright-browsers:
+    steps:
+      - *restore-playwright
+      - *install-playwright
+      - *save-playwright
 
   build-base:
     steps:
@@ -176,6 +199,7 @@ commands:
   rspec:
     steps:
       - db-setup
+      - install-playwright-browsers
       - run:
           name: Run rspec tests
           command: |
@@ -238,6 +262,7 @@ jobs:
     steps:
       - checkout
       - build-base
+      - install-playwright-browsers
 
   linter-tests:
     executor: test-executor

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
-require 'axe-rspec'
-
-RSpec::Matchers.alias_matcher :be_accessible, :be_axe_clean
+RSpec::Matchers.define :be_accessible do
+  match do |page|
+    results = AxeResults.new(page, exclusions: [])
+    results.violations.none?
+  end
+end
