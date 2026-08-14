@@ -29,6 +29,11 @@ const setUpEventListeners = () => {
   initAll()
   MOJFrontend.initAll()
 
+  // Set Link migrated cases table cols widths from column config
+  document.querySelectorAll('.app-link-migrated-cases-table-col-width[data-width]').forEach((col) => {
+    col.style.width = col.dataset.width
+  })
+
   document.querySelector('.search-form-toggle')?.addEventListener('click', () => {
     document.querySelectorAll('.search-form-element').forEach((element) => {
       element.classList.remove('moj-js-hidden')

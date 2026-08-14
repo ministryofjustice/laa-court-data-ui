@@ -4,7 +4,7 @@
     .govuk-grid-column-two-thirds
       %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
         = t(".title")
-        
+
 %div{ class: "govuk-!-margin-bottom-5" }
   = case_type_tag(@migrated_case.case_type)
 
@@ -73,8 +73,6 @@
           %td.govuk-table__cell
             = formatted_process_errors(@migrated_case.process_errors)
 
-
-
 .govuk-grid-row
   .govuk-grid-column-full
     %turbo-frame#offence-table{ src: offences_defendant_path(@migrated_case.defendant_id, urn: @migrated_case.case_urn) }
@@ -88,8 +86,8 @@
     .govuk-grid-row
       .govuk-grid-column-two-thirds
         = f.govuk_text_field :maat_reference,
-                            label: { text: t('laa_reference.link.form.maat_reference.label') },
-                            hint: { text: t('laa_reference.link.form.maat_reference.hint') }
+                             label: { text: t('laa_reference.link.form.maat_reference.label') },
+                             hint: { text: t('laa_reference.link.form.maat_reference.hint') }
 
         .govuk-inset-text
           This will create a link between the application and the court data source.

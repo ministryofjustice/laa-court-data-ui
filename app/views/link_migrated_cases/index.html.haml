@@ -34,7 +34,7 @@
       %table.govuk-table.app-link-migrated-cases-table
         %colgroup
           - @columns.each do |col|
-            %col{ style: "width: #{column_config(col)[:width]}" }
+            %col.app-link-migrated-cases-table-col-width{ "data-width": column_config(col)[:width] }
         %caption.govuk-table__caption.govuk-visually-hidden
           = t("link_migrated_cases.index.caption")
         %thead.govuk-table__head
