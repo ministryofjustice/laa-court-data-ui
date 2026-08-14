@@ -22,19 +22,18 @@ en:
         xhibit_ref: Xhibit ref.
       no_results: No migrated cases found
       page_title: Link migrated cases
-    reload: Reload page with full offence history
     show_link:
       arrest_summons_number: ASN
       back: Back to overview
       case_urn: URN
-      date_of_birth: Date of birth
-      name: Name
-      title: Link court data
-      nino: NI number
       committal_date: Committal date
-      xhibit_ref: Xhibit reference
       court_name: Court
+      date_of_birth: Date of birth
       latest_hearing_date: Latest hearing date
-      reason_for_man_linking: Reason for manual linking
       maat_number: MAAT ID
+      name: Name
+      nino: NI number
       not_linked: Not linked
+      reason_for_man_linking: Reason for manual linking
+      title: Link court data
+      xhibit_ref: Xhibit reference
