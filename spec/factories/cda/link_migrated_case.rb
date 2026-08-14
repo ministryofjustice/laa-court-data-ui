@@ -9,6 +9,7 @@ FactoryBot.define do
     sent_date { Date.new(2024, 3, 1) }
     xhibit_case_number { 'X123' }
     court_name { 'Any Court' }
+    case_type { 'T' }
     process_errors { { 'message' => 'MAAT application not found' } }
   end
 end

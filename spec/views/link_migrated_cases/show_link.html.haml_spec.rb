@@ -56,6 +56,8 @@ RSpec.describe 'link_migrated_cases/show_link.html.haml', type: :view do
 
       expect(rendered).to include('Link court data')
 
+      expect(rendered).to include('<strong class="govuk-tag govuk-tag--blue">Trial</strong>')
+
       expect(rendered).to include('Name')
       expect(rendered).to include('Peter Apple Rabbit')
 
