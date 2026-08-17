@@ -6,7 +6,6 @@ module PaginationHelper
   def pagination_info(pagy, item_name)
     # Pagy's output is not marked as html_safe even though it _is_ safe, so
     # we explicitly mark it as such here
-    # rubocop:disable Rails/OutputSafety
     pagy_info(pagy, item_name: item_name.downcase.pluralize(pagy.count)).html_safe
     # rubocop:enable Rails/OutputSafety
   end

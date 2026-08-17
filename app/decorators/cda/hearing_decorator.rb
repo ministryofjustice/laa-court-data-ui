@@ -12,14 +12,14 @@ module Cda
     end
 
     def defence_counsels_list
-      return t('generic.not_available') unless loaded?
+      return t("generic.not_available") unless loaded?
 
       safe_join(defence_counsel_sentences, tag.br)
     end
 
     def applicant_counsels_list
-      return t('generic.not_available') unless loaded?
-      return t('generic.not_available') if applicant_counsel_sentences.empty?
+      return t("generic.not_available") unless loaded?
+      return t("generic.not_available") if applicant_counsel_sentences.empty?
 
       safe_join(applicant_counsel_sentences, tag.br)
     end
@@ -29,7 +29,7 @@ module Cda
     end
 
     def respondent_counsels_list
-      return t('generic.not_available') unless loaded?
+      return t("generic.not_available") unless loaded?
 
       formatted_counsels_list(hearing.respondent_counsels)
     end
@@ -39,17 +39,17 @@ module Cda
     end
 
     def formatted_counsels_list(counsels)
-      return t('generic.not_available') unless loaded?
+      return t("generic.not_available") unless loaded?
 
       formatted_counsels = filter_counsels(counsels).map { |pc| "#{pc.first_name&.capitalize} #{pc.last_name&.capitalize}" }
 
-      return t('generic.not_available') if formatted_counsels.blank?
+      return t("generic.not_available") if formatted_counsels.blank?
 
       safe_join(formatted_counsels, tag.br)
     end
 
     def judiciary_list
-      return t('generic.not_available') if !loaded? || hearing.judiciary.none?
+      return t("generic.not_available") if !loaded? || hearing.judiciary.none?
 
       safe_join(hearing.judiciary.map { |jd| "#{jd.title} #{jd.first_name} #{jd.last_name}" }, tag.br)
     end
@@ -62,18 +62,18 @@ module Cda
       object.hearing.hearing_days.min_by(&:date)
     end
 
-    private
+  private
 
     def defence_counsel_sentences
       @defence_counsel_sentences ||= Cda::HearingDetails::DefenceCounselsListService.call(
-        mapped_defence_counsels
-      ).presence || [t('generic.not_available')]
+        mapped_defence_counsels,
+      ).presence || [t("generic.not_available")]
     end
 
     def applicant_counsel_sentences
       @applicant_counsel_sentences ||= Cda::HearingDetails::DefenceCounselsListService.call(
         filter_counsels(hearing.applicant_counsels), map_counsels_to_defendants: false
-      ).presence || [t('generic.not_available')]
+      ).presence || [t("generic.not_available")]
     end
 
     def mapped_defence_counsels
@@ -107,7 +107,7 @@ module Cda
     def attended_hearing_day?(counsel)
       return false unless current_sitting_day
 
-      counsel.attendance_days.include?(DateTime.parse(current_sitting_day).strftime('%Y-%m-%d'))
+      counsel.attendance_days.include?(Time.zone.parse(current_sitting_day).strftime("%Y-%m-%d"))
     end
   end
 end

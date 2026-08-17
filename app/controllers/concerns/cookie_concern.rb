@@ -6,11 +6,11 @@ module CookieConcern
   def update_cookies
     cookie_params = params.permit(:cookies_preference, :hide_banner)
 
-    render(partial: 'layouts/cookie_banner/hide') && return if params['hide_banner'] == 'true'
+    render(partial: "layouts/cookie_banner/hide") && return if params["hide_banner"] == "true"
 
     update_analytics_cookies(cookie_params[:cookies_preference])
 
-    render(partial: 'layouts/cookie_banner/success',
+    render(partial: "layouts/cookie_banner/success",
            locals: { analytics_cookies_accepted: cookies[:analytics_cookies_set] })
   end
 
@@ -21,11 +21,11 @@ module CookieConcern
     show_hide_cookie_banners
   end
 
-  private
+private
 
   def update_analytics_cookies(preference)
     case preference
-    when 'true'
+    when "true"
       set_cookie(:analytics_cookies_set, value: true)
       @analytics_cookies_accepted = true
     else
@@ -41,7 +41,7 @@ module CookieConcern
       value:,
       domain: request.host,
       expires: 1.year.from_now,
-      secure: !Rails.env.test?
+      secure: !Rails.env.test?,
     }
   end
 
@@ -50,8 +50,8 @@ module CookieConcern
   end
 
   def remove_analytics_cookies
-    cookies.delete :_ga, domain: '.justice.gov.uk'
-    cookies.delete :_gid, domain: '.justice.gov.uk'
+    cookies.delete :_ga, domain: ".justice.gov.uk"
+    cookies.delete :_gid, domain: ".justice.gov.uk"
   end
 
   def show_hide_cookie_banners

@@ -9,8 +9,8 @@ class BaseDecorator < SimpleDelegator
 
   attr_reader :object, :context
 
-  alias view context
-  alias h context
+  alias_method :view, :context
+  alias_method :h, :context
 
   delegate :translate, :t, :tag, :safe_join, :decorate, :decorate_all, to: :context
 end

@@ -4,7 +4,7 @@ module Cda
 
     # POST /api/internal/v2/laa_references
     def self.create!(laa_reference)
-      post('', nil, { laa_reference: }.to_json)
+      post("", nil, { laa_reference: }.to_json)
     end
 
     # PUT /api/internal/v2/laa_references/:defendant_id

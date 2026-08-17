@@ -4,7 +4,7 @@
     .govuk-grid-column-two-thirds
       %span.govuk-visually-hidden#copy-alert{ "aria-live": "polite" }
       %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
-        %span.govuk-caption-xl= t('generic.defendant')
+        %span.govuk-caption-xl= t("generic.defendant")
         %span.copy-button-heading
           %span#defendant-name= @defendant.name
           %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-defendant-name", type: "button", class: "govuk-!-margin-bottom-0 govuk-!-margin-left-2" }
@@ -13,18 +13,18 @@
   = t("generic.case")
 
 - content_for :custom_packs do
-  = javascript_include_tag 'copy_button', defer: true
+  = javascript_include_tag "copy_button", defer: true
 
 .govuk-grid-row
   .govuk-grid-column-three-quarters
-    = render partial: 'defendants/defendant',
+    = render partial: "defendants/defendant",
              locals: { defendant: @defendant,
                        prosecution_case_reference: @prosecution_case_reference }
 
 .govuk-grid-row
   .govuk-grid-column-full
     %turbo-frame#offence-table{ src: offences_defendant_path(params[:id], urn: @prosecution_case_reference) }
-      = render partial: 'defendants/offences', locals: { defendant: @defendant, offence_history_collection: @offence_history_collection }
+      = render partial: "defendants/offences", locals: { defendant: @defendant, offence_history_collection: @offence_history_collection }
       - if @offence_history_collection.nil?
         .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
-          = link_to t('defendants.reload'), defendant_path(params[:id], urn: @prosecution_case_reference, include_offence_history: 'true'), class: 'govuk-link'
+          = link_to t("defendants.reload"), defendant_path(params[:id], urn: @prosecution_case_reference, include_offence_history: "true"), class: "govuk-link"

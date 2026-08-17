@@ -1,6 +1,6 @@
 module Cda
   class SubjectSummary < BaseModel
-    has_many :offence_summaries, class_name: 'Cda::OffenceSummary'
+    has_many :offence_summaries, class_name: "Cda::OffenceSummary"
 
     # Attributes from CDA payload:
     #   subject_id, date_of_next_hearing, defendant_asn, defendant_dob,

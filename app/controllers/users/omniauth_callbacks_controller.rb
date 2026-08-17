@@ -15,11 +15,11 @@ module Users
         sign_in user
         redirect_to authenticated_user_root_path(user)
       else
-        redirect_to unauthenticated_root_path, flash: { alert: t('devise.failure.user.unauthorised') }
+        redirect_to unauthenticated_root_path, flash: { alert: t("devise.failure.user.unauthorised") }
       end
     end
 
-    private
+  private
 
     def after_omniauth_failure_path_for(_scope)
       unauthenticated_root_path
@@ -30,7 +30,7 @@ module Users
     end
 
     def entra_details
-      @entra_details ||= request.env['omniauth.auth']
+      @entra_details ||= request.env["omniauth.auth"]
     end
   end
 end

@@ -11,7 +11,7 @@ module Cda
     end
 
     def call
-      search = Cda::ProsecutionCaseSearch.create(filter_params)
+      search = Cda::ProsecutionCaseSearch.create!(filter_params)
 
       search.results.flat_map do |prosecution_case|
         prosecution_case.defendant_summaries.each do |defendant|
@@ -23,11 +23,11 @@ module Cda
 
     def filter_params
       case @filter
-      when 'case_reference'
+      when "case_reference"
         { prosecution_case_reference: urn }
-      when 'defendant_name'
+      when "defendant_name"
         { name: @term, date_of_birth: @dob.to_s }
-      when 'defendant_reference'
+      when "defendant_reference"
         { reference.kind => reference.value }
       end
     end

@@ -16,16 +16,16 @@ class SearchesController < ApplicationController
     authorize! :create, @search
 
     @results = helpers.decorate_all(@search.execute, Cda::DefendantSummaryDecorator) if @search.valid?
-    render 'new'
+    render "new"
   rescue ActiveResource::ClientError => e
-    Rails.logger.info 'CLIENT_ERROR_OCCURRED'
+    Rails.logger.info "CLIENT_ERROR_OCCURRED"
     handle_client_error e
   rescue ActiveResource::ServerError => e
-    Rails.logger.error 'SERVER_ERROR_OCCURRED'
+    Rails.logger.error "SERVER_ERROR_OCCURRED"
     handle_server_error e
   end
 
-  private
+private
 
   def search_params
     params.fetch(:search, most_recent_search_params).permit(:term, :dob, :filter)
@@ -36,7 +36,7 @@ class SearchesController < ApplicationController
   end
 
   def filter
-    @filter ||= search_params[:filter] || 'case_reference'
+    @filter ||= search_params[:filter] || "case_reference"
   end
 
   def term
@@ -61,30 +61,30 @@ class SearchesController < ApplicationController
 
   def set_view_options
     @label = case filter
-             when 'defendant_reference'
-               I18n.t('search.term.defendant_reference_label')
-             when 'defendant_name'
-               I18n.t('search.term.defendant_name_label')
+             when "defendant_reference"
+               I18n.t("search.term.defendant_reference_label")
+             when "defendant_name"
+               I18n.t("search.term.defendant_name_label")
              else
-               I18n.t('search.term.case_reference_label')
+               I18n.t("search.term.case_reference_label")
              end
   end
 
   def handle_client_error(exception)
-    logger.error 'CLIENT_ERROR_OCCURRED'
+    logger.error "CLIENT_ERROR_OCCURRED"
     log_sentry_error(exception, exception.response.try(:body))
-    render_error(I18n.t('search.error.unprocessable'),
-                 cda_error_string(exception) || I18n.t('error.it_helpdesk'))
+    render_error(I18n.t("search.error.unprocessable"),
+                 cda_error_string(exception) || I18n.t("error.it_helpdesk"))
   end
 
   def handle_server_error(exception)
-    logger.error 'SERVER_ERROR_OCCURRED'
+    logger.error "SERVER_ERROR_OCCURRED"
     log_sentry_error(exception, exception.response.try(:body))
-    render_error(I18n.t('search.error.failure'), cda_error_string(exception) || I18n.t('error.it_helpdesk'))
+    render_error(I18n.t("search.error.failure"), cda_error_string(exception) || I18n.t("error.it_helpdesk"))
   end
 
   def render_error(title, message)
     flash.now[:alert] = { title:, message: }
-    render 'new'
+    render "new"
   end
 end

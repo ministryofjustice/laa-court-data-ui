@@ -4,7 +4,7 @@ class User < ApplicationRecord
   include Roles
   extend ArrayEnum
 
-  FEATURE_FLAGS = ["view_appeals"].freeze
+  FEATURE_FLAGS = %w[view_appeals].freeze
   array_enum feature_flags: FEATURE_FLAGS.to_h { [it, it] }
 
   # Include default devise modules. Others available are:

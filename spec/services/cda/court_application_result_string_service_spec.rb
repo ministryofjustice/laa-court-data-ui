@@ -6,9 +6,9 @@ RSpec.describe Cda::CourtApplicationResultStringService do
   let(:data) do
     {
       subject_summary: {
-        proceedings_concluded:
+        proceedings_concluded:,
       },
-      judicial_results:
+      judicial_results:,
     }
   end
   let(:proceedings_concluded) { true }

@@ -9,10 +9,11 @@ module SeedHelper
     user = User.find_by(email:)
     if user.blank?
       attributes[:email_confirmation] = email
-      user = User.create(attributes) if user.blank?
+      user = User.create!(attributes) if user.blank?
     end
 
     return user if user.valid?
+
     user.errors
   end
 end

@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/ClassLength
 class SubjectsController < ApplicationController
   before_action :load_and_authorize_application
   before_action :set_breadcrumbs
@@ -9,10 +8,10 @@ class SubjectsController < ApplicationController
   # The same view adapts to both roles via @application.appeal?.
   # View: app/views/subjects/show.html.haml
   def show
-    if params.fetch(:include_offence_history, 'false') == 'true'
+    if params.fetch(:include_offence_history, "false") == "true"
       @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(
         @application.defendant.id,
-        @application.prosecution_case_reference
+        @application.prosecution_case_reference,
       )
     end
   end
@@ -37,7 +36,7 @@ class SubjectsController < ApplicationController
     validate_link_attempt!
     Cda::CourtApplicationLaaReference.create!(@form_model)
     redirect_to court_application_subject_path(@application.application_id),
-                flash: { success_moj_banner: t('.success') }
+                flash: { success_moj_banner: t(".success") }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render :show_link
@@ -52,7 +51,7 @@ class SubjectsController < ApplicationController
     @form_model.validate!
     Cda::CourtApplicationLaaReference.update!(@form_model)
     redirect_to court_application_subject_path(@application.application_id),
-                flash: { success_moj_banner: t('.success') }
+                flash: { success_moj_banner: t(".success") }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
     render :show_unlink
@@ -60,7 +59,7 @@ class SubjectsController < ApplicationController
     render :show_unlink
   end
 
-  private
+private
 
   def load_and_authorize_application
     @application = Cda::CourtApplication.find(params[:court_application_id])
@@ -88,9 +87,10 @@ class SubjectsController < ApplicationController
   end
 
   def final_crumb
-    { 'show_link' => 'Link',
-      'link' => 'Link',
-      'show_unlink' => 'Unlink', 'unlink' => 'Unlink' }[action_name]
+    { "show_link" => "Link",
+      "link" => "Link",
+      "show_unlink" => "Unlink",
+      "unlink" => "Unlink" }[action_name]
   end
 
   def load_unlink_attempt
@@ -99,7 +99,7 @@ class SubjectsController < ApplicationController
       username: current_user.username,
       reason_code: params.dig(:unlink_attempt, :reason_code).to_i,
       other_reason_text: params.dig(:unlink_attempt, :other_reason_text),
-      maat_reference: @application.maat_reference
+      maat_reference: @application.maat_reference,
     )
   end
 
@@ -107,12 +107,12 @@ class SubjectsController < ApplicationController
     LinkAttempt.new(
       defendant_id: @subject.subject_id,
       username: current_user.username,
-      maat_reference: params.dig(:link_attempt, :maat_reference)
+      maat_reference: params.dig(:link_attempt, :maat_reference),
     )
   end
 
   def validate_link_attempt!
-    if params[:maat_ref_required] == 'true'
+    if params[:maat_ref_required] == "true"
       @form_model.validate!(:maat_ref_required)
     else
       @form_model.maat_reference = nil
@@ -122,12 +122,12 @@ class SubjectsController < ApplicationController
 
   def handle_link_failure(message, exception = nil)
     logger.warn "LINK FAILURE (params: #{@form_model.as_json}): #{message}"
-    @form_model.errors.add(:maat_reference, cda_error_string(exception) || t('subjects.link.failure'))
+    @form_model.errors.add(:maat_reference, cda_error_string(exception) || t("subjects.link.failure"))
   end
 
   def handle_unlink_failure(message, exception = nil)
     logger.warn "UNLINK FAILURE (params: #{@form_model.as_json}): #{message}"
-    @form_model.errors.add(:reason_code, cda_error_string(exception) || t('subjects.unlink.failure'))
+    @form_model.errors.add(:reason_code, cda_error_string(exception) || t("subjects.unlink.failure"))
   end
 
   def cda_error_string_context

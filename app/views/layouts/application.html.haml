@@ -1,12 +1,12 @@
 !!!
-%html.govuk-template.govuk-template--rebranded{ lang: 'en' }
+%html.govuk-template.govuk-template--rebranded{ lang: "en" }
   %head
     %title
       = content_for?(:page_title) ? yield(:page_title) : service_name
 
     %meta{ charset: "utf-8" }/
-    = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application', defer: true
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application", defer: true
     = csrf_meta_tags
 
     %meta{ content: "width=device-width, initial-scale=1, viewport-fit=cover", name: "viewport" }/
@@ -18,38 +18,38 @@
     %link{ href: "/govuk-icon-180.png", rel: "apple-touch-icon", sizes: "180x180" }/
     %link{ href: "/govuk-icon-192.png", rel: "apple-touch-icon", sizes: "192x192" }/
     %link{ href: "/govuk-icon-512.png", rel: "apple-touch-icon", sizes: "512x512" }/
-    = tag.meta(property: 'og:image', content: '/govuk-opengraph-image.png')
-    = render partial: 'layouts/google_analytics', locals: { analytics_cookies_accepted: @analytics_cookies_accepted }
+    = tag.meta(property: "og:image", content: "/govuk-opengraph-image.png")
+    = render partial: "layouts/google_analytics", locals: { analytics_cookies_accepted: @analytics_cookies_accepted }
   %body.govuk-template__body{ class: app_environment }
     :javascript
       document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
     %a.govuk-skip-link{ href: "#main-content", "data-module": "govuk-skip-link" }
-      = t('layouts.application.skip_content')
+      = t("layouts.application.skip_content")
 
-    = render partial: 'layouts/cookie_banner/main', locals: { cookies_preferences_set: @cookies_preferences_set }
+    = render partial: "layouts/cookie_banner/main", locals: { cookies_preferences_set: @cookies_preferences_set }
 
     %header.moj-header{ role: "banner" }
       .moj-header__container
         .moj-header__logo
-          = render 'layouts/moj_logo'
+          = render "layouts/moj_logo"
           %a.moj-header__link.moj-header__link--organisation-name{ href: "https://intranet.justice.gov.uk/?agency=laa" }
-            = t('layouts.application.header.legal_aid_agency')
-        = render 'layouts/top_navigation'
+            = t("layouts.application.header.legal_aid_agency")
+        = render "layouts/top_navigation"
 
-    = render 'layouts/lower_navigation'
+    = render "layouts/lower_navigation"
 
     .govuk-width-container
-      = render 'layouts/phase_banner'
+      = render "layouts/phase_banner"
       - if content_for?(:pre_heading)
         %section{ "aria-label": "Notification", role: "region", class: "govuk-!-margin-top-4" }
           = content_for :pre_heading
       = render_breadcrumbs(builder: govuk_breadcrumb_builder)
       %main.govuk-main-wrapper#main-content{ role: "main" }
-        = render partial: 'layouts/flashes' unless flash.empty?
+        = render partial: "layouts/flashes" unless flash.empty?
         = content_for :error_summary
         = content_for :page_heading
         = yield
 
-    = render 'layouts/footer'
+    = render "layouts/footer"
 
-  = content_for?(:custom_packs) ? yield(:custom_packs) : ''
+  = content_for?(:custom_packs) ? yield(:custom_packs) : ""

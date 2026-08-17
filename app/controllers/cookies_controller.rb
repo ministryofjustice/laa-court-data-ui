@@ -23,7 +23,7 @@ class CookiesController < ApplicationController
 
   def cookie_details; end
 
-  private
+private
 
   def set_cookies
     set_cookie(:analytics_cookies_set, value: @cookie.analytics)
@@ -32,11 +32,11 @@ class CookiesController < ApplicationController
 
   def set_flash_notification
     previous_page_path = session.delete(:return_to)
-    flash[:success] = t('cookie_settings.notification_banner.preferences_set_html', href: previous_page_path)
+    flash[:success] = t("cookie_settings.notification_banner.preferences_set_html", href: previous_page_path)
   end
 
   def store_previous_page_url
-    session[:return_to] = session_safe(request.referrer, max_string_length: 200)
+    session[:return_to] = session_safe(request.referer, max_string_length: 200)
   end
 
   def cookie_params

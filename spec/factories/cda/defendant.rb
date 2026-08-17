@@ -2,11 +2,11 @@
 
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
-  factory :hearing_defendant, class: 'Cda::BaseModel' do
+  factory :hearing_defendant, class: "Cda::BaseModel" do
     hearing_details
 
     id { SecureRandom.uuid }
-    prosecution_case_id { '' }
+    prosecution_case_id { "" }
     offences { [] }
     defence_organisation { {} }
     defendant_details { {} }

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 # MUST be first
-require_relative 'simplecov_helper'
-SimpleCov.start 'rails' do
+require_relative "simplecov_helper"
+SimpleCov.start "rails" do
   enable_coverage :branch
-  unless ENV['CI']
+  unless ENV["CI"]
     primary_coverage :branch
     minimum_coverage branch: 88, line: 99
 
@@ -14,17 +14,17 @@ SimpleCov.start 'rails' do
   end
 end
 
-ENV['RAILS_ENV'] ||= 'test'
+ENV["RAILS_ENV"] ||= "test"
 
-require 'spec_helper'
-require File.expand_path('../config/environment', __dir__)
+require "spec_helper"
+require File.expand_path("../config/environment", __dir__)
 Rails.application.eager_load!
 
 # Prevent database truncation if the environment is production
-abort('The Rails environment is running in production mode!') if Rails.env.production?
-require 'rspec/rails'
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
-require 'shoulda/matchers'
+require "shoulda/matchers"
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -38,7 +38,7 @@ require 'shoulda/matchers'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.

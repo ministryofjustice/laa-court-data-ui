@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request do
+RSpec.describe "link defendant with no maat id", :stub_unlinked, type: :request do
   let(:user) { create(:user) }
 
-  let(:case_urn) { 'TEST12345' }
+  let(:case_urn) { "TEST12345" }
   let(:defendant_id) { defendant_id_from_fixture }
-  let(:defendant_id_from_fixture) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
+  let(:defendant_id_from_fixture) { "41fcb1cd-516e-438e-887a-5987d92ef90f" }
 
   let(:params) do
     { urn: case_urn,
-      maat_ref_required: 'false',
+      maat_ref_required: "false",
       link_attempt: {} }
   end
 
@@ -19,56 +19,56 @@ RSpec.describe 'link defendant with no maat id', :stub_unlinked, type: :request 
     {
       laa_reference: {
         defendant_id:,
-        user_name: user.username
-      }
+        user_name: user.username,
+      },
     }
   end
 
-  context 'when authenticated' do
+  context "when authenticated" do
     before do
       sign_in user
       post "/defendants/#{defendant_id}/link", params:
     end
 
-    context 'with valid params', :stub_v2_link_success do
-      it 'sends a link request to the adapter' do
+    context "with valid params", :stub_v2_link_success do
+      it "sends a link request to the adapter" do
         expect(a_request(:post, cda_request_path)
           .with(body: expected_request_payload.to_json))
           .to have_been_made.once
       end
 
-      it 'returns status 302' do
+      it "returns status 302" do
         expect(response).to have_http_status :redirect
       end
 
-      it 'redirects to defendant path' do
+      it "redirects to defendant path" do
         expect(response).to redirect_to defendant_path(id: defendant_id, urn: case_urn)
       end
 
-      it 'flashes success banner' do
-        expect(flash.now[:success_moj_banner]).to eq('Case linked successfully.')
+      it "flashes success banner" do
+        expect(flash.now[:success_moj_banner]).to eq("Case linked successfully.")
       end
     end
 
-    context 'with invalid defendant_id' do
-      context 'when not a uuid', :stub_v2_link_failure_with_invalid_defendant_uuid do
-        let(:defendant_id) { 'not-a-uuid' }
+    context "with invalid defendant_id" do
+      context "when not a uuid", :stub_v2_link_failure_with_invalid_defendant_uuid do
+        let(:defendant_id) { "not-a-uuid" }
 
         it {
-          expect(response.body).to include('The MAAT reference you provided is not available ' \
-                                           'to be associated with this defendant.')
+          expect(response.body).to include("The MAAT reference you provided is not available " \
+                                           "to be associated with this defendant.")
         }
 
-        it { expect(response.body).to include('Link court data') }
+        it { expect(response.body).to include("Link court data") }
       end
     end
   end
 
-  context 'when not authenticated' do
-    context 'when creating a reference' do
+  context "when not authenticated" do
+    context "when creating a reference" do
       before { post "/defendants/#{defendant_id}/link", params: }
 
-      it_behaves_like 'unauthenticated request'
+      it_behaves_like "unauthenticated request"
     end
   end
 end

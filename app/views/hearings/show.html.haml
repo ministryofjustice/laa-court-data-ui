@@ -1,4 +1,4 @@
-= govuk_page_heading(@hearing_day&.strftime('%d/%m/%Y'), caption_text: t('generic.hearing_day'), tag_options: { class: 'govuk-!-margin-bottom-2' })
+= govuk_page_heading(@hearing_day&.strftime("%d/%m/%Y"), caption_text: t("generic.hearing_day"), tag_options: { class: "govuk-!-margin-bottom-2" })
 
 - content_for :pre_heading do
   .govuk-grid-row
@@ -9,33 +9,33 @@
 
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    = render 'shared/govuk_prev_next_pagination',
+    = render "shared/govuk_prev_next_pagination",
              prev_url: (@paginator.first_page? ? nil : @paginator.previous_path),
              next_url: (@paginator.last_page? ? nil : @paginator.next_path)
 
-= render 'shared/govuk_tag', tag_name: t("generic.case"), tag_colour: 'blue'
+= render "shared/govuk_tag", tag_name: t("generic.case"), tag_colour: "blue"
 
 .govuk-grid-row
   .govuk-grid-column-one-third
-    = render partial: 'details', locals: { hearing_summary: @prosecution_case.hearing_summaries.find { |each| each.id == @hearing_id },
+    = render partial: "details", locals: { hearing_summary: @prosecution_case.hearing_summaries.find { |each| each.id == @hearing_id },
                                            hearing_datetime: @hearing_datetime }
 
     - is_prosecution_case = @hearing.try(:hearing)&.prosecution_cases&.any?
     - if is_prosecution_case || !@hearing.loaded?
-      = render partial: 'attendees_on_prosecution_cases', locals: { hearing: @hearing,
+      = render partial: "attendees_on_prosecution_cases", locals: { hearing: @hearing,
                                                                     hearing_details: @hearing.try(:hearing) }
     - else # Appeal, Breach or Poca
-      = render partial: 'attendees_on_court_applications', locals: { hearing: @hearing,
+      = render partial: "attendees_on_court_applications", locals: { hearing: @hearing,
                                                                      hearing_details: @hearing.try(:hearing),
                                                                      prosecution_case: @prosecution_case }
 
   .govuk-grid-column-two-thirds
-    = render(partial: 'hearing_events', locals: { hearing_events: @hearing_events, hearing_day: @hearing_day }) if @hearing_events
+    = render(partial: "hearing_events", locals: { hearing_events: @hearing_events, hearing_day: @hearing_day }) if @hearing_events
 
-    = render(partial: 'hearing_result', locals: { hearing: @hearing }) if @hearing.try(:hearing).try(:cracked_ineffective_trial).try(:description)
+    = render(partial: "hearing_result", locals: { hearing: @hearing }) if @hearing.try(:hearing).try(:cracked_ineffective_trial).try(:description)
 
-    = render partial: 'court_applications', locals: { hearing: @hearing.try(:hearing) }
+    = render partial: "court_applications", locals: { hearing: @hearing.try(:hearing) }
 
 - if Rails.configuration.x.display_raw_responses
-  = render partial: 'raw_response',
+  = render partial: "raw_response",
            locals: { hearing_summary: @prosecution_case.hearing_summaries, hearing: @hearing, hearing_events: @hearing_events }

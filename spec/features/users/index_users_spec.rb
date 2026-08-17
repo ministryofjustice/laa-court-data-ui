@@ -1,116 +1,112 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Index users', :js, type: :feature do
+RSpec.feature "Index users", :js, type: :feature do
   before do
     sign_in user
-    visit '/'
+    visit "/"
   end
 
-  context 'when caseworker' do
+  context "when caseworker" do
     let(:user) { create(:user, :with_caseworker_role) }
 
-    scenario 'cannot index users' do
+    scenario "cannot index users" do
       expect(page).to have_current_path(authenticated_root_path)
-      expect(page).to have_no_link 'Manage users'
+      expect(page).to have_no_link "Manage users"
     end
 
-    scenario 'cannot directly index users' do
+    scenario "cannot directly index users" do
       visit users_path
       expect(page).to have_current_path(authenticated_root_path)
-      expect(page).to have_govuk_flash(:alert, text: 'unauthorised')
+      expect(page).to have_govuk_flash(:alert, text: "unauthorised")
     end
   end
 
-  context 'when admin' do
-    let(:user) { create(:user, :with_admin_role, first_name: 'Amy', last_name: 'Aardvark', email: 'b@b.com') }
+  context "when admin" do
+    let(:user) { create(:user, :with_admin_role, first_name: "Amy", last_name: "Aardvark", email: "b@b.com") }
     let!(:other_user) do
       create(
         :user,
         :with_caseworker_role,
-        first_name: 'Bertie',
-        last_name: 'Bear',
-        email: 'a@a.com'
+        first_name: "Bertie",
+        last_name: "Bear",
+        email: "a@a.com",
       )
     end
 
-    scenario 'sees manage users breadcrumb on users index' do
+    scenario "sees manage users breadcrumb on users index" do
       visit users_path
 
-      expect(page).to have_govuk_breadcrumb('Manage Users', aria_current: true)
+      expect(page).to have_govuk_breadcrumb("Manage Users", aria_current: true)
     end
 
-    scenario 'can index users' do
+    scenario "can index users" do
       expect(page).to have_current_path(authenticated_admin_root_path)
 
-      click_link_or_button 'Manage users'
+      click_link_or_button "Manage users"
 
-      expect(page).to have_govuk_page_heading(text: 'Manage Users')
+      expect(page).to have_govuk_page_heading(text: "Manage Users")
 
-      within '.govuk-table__head' do
-        expect(page).to have_css('.govuk-table__header', text: 'Name')
-        expect(page).to have_link('Name', href: "/users?user_sort_column=name&user_sort_direction=desc")
-        expect(page).to have_css('.govuk-table__header', text: 'Username')
+      within ".govuk-table__head" do
+        expect(page).to have_css(".govuk-table__header", text: "Name")
+        expect(page).to have_link("Name", href: "/users?user_sort_column=name&user_sort_direction=desc")
+        expect(page).to have_css(".govuk-table__header", text: "Username")
         expect(page).to have_link(
-          'Username',
-          href: "/users?user_sort_column=username&user_sort_direction=desc"
+          "Username",
+          href: "/users?user_sort_column=username&user_sort_direction=desc",
         )
-        expect(page).to have_css('.govuk-table__header', text: 'Email')
-        expect(page).to have_link('Email', href: "/users?user_sort_column=email&user_sort_direction=desc")
-        expect(page).to have_css('.govuk-table__header', text: 'Last sign in')
+        expect(page).to have_css(".govuk-table__header", text: "Email")
+        expect(page).to have_link("Email", href: "/users?user_sort_column=email&user_sort_direction=desc")
+        expect(page).to have_css(".govuk-table__header", text: "Last sign in")
         expect(page).to have_link(
-          'Last sign in',
-          href: "/users?user_sort_column=last_sign_in_at&user_sort_direction=desc"
+          "Last sign in",
+          href: "/users?user_sort_column=last_sign_in_at&user_sort_direction=desc",
         )
-        expect(page).to have_css('.govuk-table__header', text: 'Action')
+        expect(page).to have_css(".govuk-table__header", text: "Action")
       end
       row = page.find(%(tr[data-user-id="#{other_user.id}"]))
       expect(row).to have_link(other_user.name, href: user_path(other_user))
       expect(row).to have_text(other_user.username)
       expect(row).to have_link(other_user.email, href: "mailto:#{other_user.email}")
-      expect(row).to have_link('Edit', href: edit_user_path(other_user))
-      expect(row).to have_link('Delete', href: users_confirm_delete_path(other_user))
+      expect(row).to have_link("Edit", href: edit_user_path(other_user))
+      expect(row).to have_link("Delete", href: users_confirm_delete_path(other_user))
 
       # Verify sorting by name
       expect(page.text.index(user.email)).to be < page.text.index(other_user.email)
       # Verify sorting by email
-      click_link_or_button 'Email'
+      click_link_or_button "Email"
       expect(page).to have_current_path("/users?user_sort_column=email&user_sort_direction=desc")
-      expect(page).to have_link('Email', href: "/users?user_sort_column=email&user_sort_direction=asc")
+      expect(page).to have_link("Email", href: "/users?user_sort_column=email&user_sort_direction=asc")
       expect(page.text.index(user.email)).to be < page.text.index(other_user.email)
 
       expect(page).to be_accessible
     end
 
-    context 'when searching' do
-      let(:user) { create(:user, :with_admin_role, first_name: 'John') }
-      let!(:other_user) { create(:user, :with_caseworker_role, first_name: 'Jane') }
+    context "when searching" do
+      let(:user) { create(:user, :with_admin_role, first_name: "John") }
+      let!(:other_user) { create(:user, :with_caseworker_role, first_name: "Jane") }
 
-      scenario 'I search' do
+      scenario "I search" do
         visit users_path
-        click_button 'Show filter'
-        expect(page).to have_field('Name, username or email')
-        fill_in 'Name, username or email', with: user.first_name
-        click_on 'Apply filters'
+        click_button "Show filter"
+        expect(page).to have_field("Name, username or email")
+        fill_in "Name, username or email", with: user.first_name
+        click_on "Apply filters"
 
         expect(page).to have_text(user.email)
         expect(page).to have_no_text(other_user.email)
 
-        click_on 'Clear filters'
+        click_on "Clear filters"
 
         expect(page).to have_text(user.email)
         expect(page).to have_text(other_user.email)
       end
     end
 
-    context 'when lots of users' do
-      # In general, `create_list` should be used sparingly, but in this case
-      # we really do want to bulk create a large amount of users
-      # rubocop:disable FactoryBot/ExcessiveCreateList
+    context "when lots of users" do
       before { create_list(:user, 30, :with_caseworker_role) }
-      # rubocop:enable FactoryBot/ExcessiveCreateList
 
-      scenario 'I view pagination options' do
-        click_link_or_button 'Manage users'
+      scenario "I view pagination options" do
+        click_link_or_button "Manage users"
         expect(page).to have_text("Showing 1 to 10 of 32 users")
         click_on "3"
         expect(page).to have_text("Showing 21 to 30 of 32 users")

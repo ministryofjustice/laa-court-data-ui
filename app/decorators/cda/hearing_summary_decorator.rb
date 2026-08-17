@@ -5,7 +5,7 @@ module Cda
     attr_accessor :day, :defendants
 
     def defence_counsel_list
-      return t('generic.not_available') if defence_counsels.blank?
+      return t("generic.not_available") if defence_counsels.blank?
 
       safe_join(defence_counsel_sentences, tag.br)
     end
@@ -16,15 +16,16 @@ module Cda
 
     def formatted_estimated_duration
       return unless estimated_duration
+
       "#{t('hearing_summary.estimated_duration')} #{estimated_duration.downcase}"
     end
 
-    private
+  private
 
     def defence_counsel_sentences
       decorated_defence_counsels = decorate_defence_counsels
 
-      return [t('generic.not_available')] if decorated_defence_counsels.empty?
+      return [t("generic.not_available")] if decorated_defence_counsels.empty?
 
       decorated_defence_counsels.map(&:name_status_and_defendants)
     end
@@ -52,7 +53,7 @@ module Cda
       return defence_counsels unless day
 
       defence_counsels.select do |defence_counsel|
-        defence_counsel.attendance_days&.include?(day.strftime('%Y-%m-%d'))
+        defence_counsel.attendance_days&.include?(day.strftime("%Y-%m-%d"))
       end
     end
   end

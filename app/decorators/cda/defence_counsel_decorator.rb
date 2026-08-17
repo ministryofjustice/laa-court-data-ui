@@ -3,7 +3,7 @@
 module Cda
   class DefenceCounselDecorator < BaseDecorator
     def name_status_and_defendants
-      return t('generic.not_available') if name_and_status_blank?
+      return t("generic.not_available") if name_and_status_blank?
 
       return "#{formatted_name} (#{formatted_status})" if defendants.blank?
 
@@ -13,7 +13,7 @@ module Cda
       safe_join(defence_counsel_list, tag.br)
     end
 
-    private
+  private
 
     def name_and_status_blank?
       name.blank? && status.blank?
@@ -22,21 +22,21 @@ module Cda
     def name
       return nil unless first_name || middle_name || last_name
 
-      [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(' ')
+      [first_name, middle_name, last_name].filter_map { |n| n&.capitalize }.reject(&:empty?).join(" ")
     end
 
     def formatted_name
-      name || t('generic.not_available')
+      name || t("generic.not_available")
     end
 
     def formatted_status
-      status || t('generic.not_available').downcase
+      status || t("generic.not_available").downcase
     end
 
     def formatted_defendant_names
       names = []
       defendants.map do |defendant|
-        next(names << t('generic.not_available').downcase) if defendant.nil? || defendant.is_a?(String)
+        next(names << t("generic.not_available").downcase) if defendant.nil? || defendant.is_a?(String)
 
         names << defendant.name
       end

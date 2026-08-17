@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController # rubocop:disable Metrics/ClassLength
+class UsersController < ApplicationController
   before_action :set_breadcrumbs
-  require 'csv'
+  require "csv"
   load_and_authorize_resource except: :create
 
   def index
@@ -28,7 +28,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
   end
 
   def new
-    add_breadcrumb I18n.t('users.breadcrumb.new_user')
+    add_breadcrumb I18n.t("users.breadcrumb.new_user")
   end
 
   def edit
@@ -36,7 +36,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
   end
 
   def confirm_delete
-    add_breadcrumb I18n.t('users.breadcrumb.delete_user')
+    add_breadcrumb I18n.t("users.breadcrumb.delete_user")
   end
 
   def create
@@ -47,9 +47,9 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
       redirect_to @user,
                   flash: {
                     success_moj_banner: I18n.t(
-                      'users.create.flash.success',
-                      username: @user.name
-                    )
+                      "users.create.flash.success",
+                      username: @user.name,
+                    ),
                   }
 
     else
@@ -65,9 +65,9 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
       redirect_to @user,
                   flash: {
                     success_moj_banner: I18n.t(
-                      'users.update.flash.success',
-                      username: @user.name
-                    )
+                      "users.update.flash.success",
+                      username: @user.name,
+                    ),
                   }
     else
       render :edit
@@ -77,22 +77,22 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
   def export
     respond_to do |format|
       format.csv do
-        response.headers['Content-Type'] = 'text/csv'
-        response.headers['Content-Disposition'] = 'attachment;filename=users.csv'
+        response.headers["Content-Type"] = "text/csv"
+        response.headers["Content-Disposition"] = "attachment;filename=users.csv"
       end
     end
   end
 
   def destroy
-    @user.destroy
+    @user.destroy!
     redirect_to users_path,
                 status: :see_other,
                 flash: {
-                  success_moj_banner: I18n.t('users.destroy.flash.success', username: @user.name)
+                  success_moj_banner: I18n.t("users.destroy.flash.success", username: @user.name),
                 }
   end
 
-  private
+private
 
   def user_params
     params[:user][:roles]&.reject!(&:blank?)
@@ -103,7 +103,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
       :email,
       :email_confirmation,
       roles: [],
-      feature_flags: []
+      feature_flags: [],
     ).tap { it[:feature_flags]&.reject!(&:blank?) }
   end
 
@@ -119,7 +119,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
         :old_sign_ins,
         :caseworker_role,
         :admin_role,
-        :data_analyst_role
+        :data_analyst_role,
       ).tap { session[:user_search] = session_safe(it) }
     else
       session[:user_search]
@@ -128,7 +128,7 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
 
   def order_by(column, order)
     direction = order == "asc" ? :asc : :desc
-    if column == 'name'
+    if column == "name"
       @pagy, @users = pagy(@users.order(first_name: direction, last_name: direction))
     else
       @pagy, @users = pagy(@users.order("#{column}": direction))
@@ -137,12 +137,12 @@ class UsersController < ApplicationController # rubocop:disable Metrics/ClassLen
 
   def set_breadcrumbs
     if current_user.admin?
-      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
-      add_breadcrumb I18n.t('users.breadcrumb.manage_users'), :users_path
+      add_breadcrumb I18n.t("users.breadcrumb.home"), :new_search_filter_path
+      add_breadcrumb I18n.t("users.breadcrumb.manage_users"), :users_path
     elsif current_user.data_analyst?
-      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_stats_path
+      add_breadcrumb I18n.t("users.breadcrumb.home"), :new_stats_path
     else
-      add_breadcrumb I18n.t('users.breadcrumb.home'), :new_search_filter_path
+      add_breadcrumb I18n.t("users.breadcrumb.home"), :new_search_filter_path
     end
   end
 end

@@ -1,119 +1,119 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Sign in', type: :feature do
+RSpec.feature "Sign in", type: :feature do
   let(:user) do
     create(:user,
-           email: 'bob.smith@example.com',
-           first_name: 'Bob',
-           last_name: 'Smith')
+           email: "bob.smith@example.com",
+           first_name: "Bob",
+           last_name: "Smith")
   end
 
   before do
     user
-    visit 'users/sign_in'
+    visit "users/sign_in"
   end
 
-  it 'displays the page header' do
-    expect(page).to have_govuk_page_heading(text: 'Sign in')
+  it "displays the page header" do
+    expect(page).to have_govuk_page_heading(text: "Sign in")
   end
 
-  it 'is accessible', :js do
+  it "is accessible", :js do
     expect(page).to be_accessible
   end
 
-  context 'when successful' do
-    context 'with email address' do
+  context "when successful" do
+    context "with email address" do
       before do
         OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({ provider: :entra,
-                                                                     uid: '19846',
+                                                                     uid: "19846",
                                                                      info: {
-                                                                       'email' => 'Bob.Smith@example.com'
+                                                                       "email" => "Bob.Smith@example.com",
                                                                      } })
-        click_button 'Sign in'
+        click_button "Sign in"
       end
 
-      it 'updates UID' do
-        expect(user.reload.entra_id).to eq '19846'
+      it "updates UID" do
+        expect(user.reload.entra_id).to eq "19846"
       end
 
-      it 'displays search filters page' do
-        expect(page).to have_css('legend', text: 'Search for')
+      it "displays search filters page" do
+        expect(page).to have_css("legend", text: "Search for")
       end
 
-      it 'displays navigation bar' do
-        expect(page).to have_css('nav.moj-header__navigation')
+      it "displays navigation bar" do
+        expect(page).to have_css("nav.moj-header__navigation")
       end
 
-      describe 'navigation bar' do
-        it 'displays user profile link' do
-          within('nav.moj-header__navigation') do
+      describe "navigation bar" do
+        it "displays user profile link" do
+          within("nav.moj-header__navigation") do
             expect(page).to have_link(user.name)
           end
         end
 
-        it 'displays sign out link' do
-          within('nav.moj-header__navigation') do
-            expect(page).to have_link('Sign out')
+        it "displays sign out link" do
+          within("nav.moj-header__navigation") do
+            expect(page).to have_link("Sign out")
           end
         end
       end
     end
 
-    context 'with uid' do
+    context "with uid" do
       before do
-        user.update(entra_id: '19846')
+        user.update!(entra_id: "19846")
         OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({
-                                                                     uid: '19846',
-                                                                     info: {
-                                                                       'email' => 'bob.smith.new@example.com'
-                                                                     }
-                                                                   })
-        click_button 'Sign in'
+          uid: "19846",
+          info: {
+            "email" => "bob.smith.new@example.com",
+          },
+        })
+        click_button "Sign in"
       end
 
-      it 'updates email' do
-        expect(user.reload.email).to eq 'bob.smith.new@example.com'
+      it "updates email" do
+        expect(user.reload.email).to eq "bob.smith.new@example.com"
       end
     end
   end
 
-  context 'when user has no matching account' do
+  context "when user has no matching account" do
     before do
       OmniAuth.config.mock_auth[:entra] = OmniAuth::AuthHash.new({
-                                                                   uid: '19846',
-                                                                   info: {
-                                                                     'email' => 'bob.smith.new@example.com'
-                                                                   }
-                                                                 })
-      click_button 'Sign in'
+        uid: "19846",
+        info: {
+          "email" => "bob.smith.new@example.com",
+        },
+      })
+      click_button "Sign in"
     end
 
-    it 'displays error message' do
-      expect(page).to have_govuk_page_heading(text: 'Sign in')
-      expect(page).to have_govuk_flash(:alert, text: 'You do not have permission to access this service')
+    it "displays error message" do
+      expect(page).to have_govuk_page_heading(text: "Sign in")
+      expect(page).to have_govuk_flash(:alert, text: "You do not have permission to access this service")
     end
   end
 
-  context 'with an unsuccessful omniauth flow' do
+  context "with an unsuccessful omniauth flow" do
     before do
       OmniAuth.config.mock_auth[:entra] = :invalid_credentials
-      click_button 'Sign in'
+      click_button "Sign in"
     end
 
-    it 'displays error message' do
-      expect(page).to have_govuk_page_heading(text: 'Sign in')
-      expect(page).to have_govuk_flash(:alert, text: 'Could not authenticate you')
+    it "displays error message" do
+      expect(page).to have_govuk_page_heading(text: "Sign in")
+      expect(page).to have_govuk_flash(:alert, text: "Could not authenticate you")
     end
   end
 
-  describe 'fake auth' do
+  describe "fake auth" do
     before { user }
 
-    it 'lets me log in as a user' do
+    it "lets me log in as a user" do
       visit unauthenticated_root_path
-      select 'bob.smith@example.com', from: :user_id
-      click_button 'Sign in without SSO'
-      within('nav.moj-header__navigation') do
+      select "bob.smith@example.com", from: :user_id
+      click_button "Sign in without SSO"
+      within("nav.moj-header__navigation") do
         expect(page).to have_link(user.name)
       end
     end

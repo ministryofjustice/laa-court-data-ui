@@ -5,10 +5,10 @@ module Cda
     include Singleton
 
     def initialize
-      @api_url = ENV.fetch('COURT_DATA_ADAPTOR_API_URL')
-      @api_uid = ENV.fetch('COURT_DATA_ADAPTOR_API_UID')
-      @api_secret = ENV.fetch('COURT_DATA_ADAPTOR_API_SECRET')
-      @api_test_mode = ENV.fetch('COURT_DATA_ADAPTOR_API_TEST_MODE', false).eql?('true')
+      @api_url = ENV.fetch("COURT_DATA_ADAPTOR_API_URL")
+      @api_uid = ENV.fetch("COURT_DATA_ADAPTOR_API_UID")
+      @api_secret = ENV.fetch("COURT_DATA_ADAPTOR_API_SECRET")
+      @api_test_mode = ENV.fetch("COURT_DATA_ADAPTOR_API_TEST_MODE", false).eql?("true")
 
       oauth_client
     end
@@ -18,7 +18,7 @@ module Cda
       @oauth_client ||= OAuth2::Client.new(
         @api_uid,
         @api_secret,
-        site: "#{uri.scheme}://#{uri.host}:#{uri.port}"
+        site: "#{uri.scheme}://#{uri.host}:#{uri.port}",
       )
     end
 
@@ -31,14 +31,14 @@ module Cda
       @api_test_mode ? fake_bearer_token : access_token.token
     end
 
-    private
+  private
 
     def new_access_token
       oauth_client.client_credentials.get_token
     end
 
     def fake_bearer_token
-      'fake-court-data-adaptor-bearer-token'
+      "fake-court-data-adaptor-bearer-token"
     end
 
     def token_expires_soon?

@@ -1,8 +1,8 @@
-RSpec.describe 'View usage stats', :vcr, type: :feature do
+RSpec.describe "View usage stats", :vcr, type: :feature do
   # TODO: VCR/cassettes or Webmock stubs to mock external API calls can be placed here
   include Warden::Test::Helpers
 
-  let(:user) { create(:user, roles: ['data_analyst']) }
+  let(:user) { create(:user, roles: %w[data_analyst]) }
 
   before do
     Warden.test_mode!
@@ -29,21 +29,21 @@ RSpec.describe 'View usage stats', :vcr, type: :feature do
                                   unlinked: 2),
                            double(date_from: Date.new(2025, 5, 31),
                                   date_to: Date.new(2025, 6, 30), linked: 1,
-                                  unlinked: 1)
+                                  unlinked: 1),
                          ]))
   end
 
   after { Warden.test_reset! }
 
-  scenario 'I enter invalid dates' do
-    visit new_stats_path(stat_range: { from: 'aaa', to: 'bbb' })
+  scenario "I enter invalid dates" do
+    visit new_stats_path(stat_range: { from: "aaa", to: "bbb" })
 
-    expect(page).to have_text 'Start date must be in format dd/mm/yyyy'
-    expect(page).to have_text 'End date must be in format dd/mm/yyyy'
+    expect(page).to have_text "Start date must be in format dd/mm/yyyy"
+    expect(page).to have_text "End date must be in format dd/mm/yyyy"
   end
 
-  scenario 'I enter valid dates' do
-    visit new_stats_path(stat_range: { from: '01/09/2025', to: '1/10/2025' })
+  scenario "I enter valid dates" do
+    visit new_stats_path(stat_range: { from: "01/09/2025", to: "1/10/2025" })
 
     expect(page).to have_text "Total links and unlinks"
     expect(page).to have_text "MAAT IDs linked 10"

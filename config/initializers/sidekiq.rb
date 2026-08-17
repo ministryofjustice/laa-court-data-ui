@@ -17,11 +17,11 @@ Sidekiq.default_job_options = { retry: 5 }
 # so you don't have to run a separate process.
 # You'll also benefit from code reloading.
 if Rails.env.development?
-  require 'sidekiq/testing'
+  require "sidekiq/testing"
   Sidekiq::Testing.inline!
 end
 
-if ENV['REDIS_HOST'].present? && ENV['REDIS_PASSWORD'].present?
+if ENV["REDIS_HOST"].present? && ENV["REDIS_PASSWORD"].present?
   redis_url = "rediss://:#{ENV.fetch('REDIS_PASSWORD',
                                      nil)}@#{ENV.fetch('REDIS_HOST',
                                                        nil)}:6379"

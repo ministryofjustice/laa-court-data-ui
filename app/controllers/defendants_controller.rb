@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_dependency 'feature_flag'
+require_dependency "feature_flag"
 
 class DefendantsController < ApplicationController
   before_action :load_and_authorize_defendant
@@ -9,7 +9,7 @@ class DefendantsController < ApplicationController
   # GET /defendants/:id?urn=:urn
   # Defendant detail page - Defendant info + offences
   def show
-    return unless params.fetch(:include_offence_history, 'false') == 'true'
+    return unless params.fetch(:include_offence_history, "false") == "true"
 
     @offence_history_collection = load_offence_histories
   end
@@ -18,7 +18,7 @@ class DefendantsController < ApplicationController
   # Offences table fragment rendered without layout (used by Turbo Frame).
   def offences
     @offence_history_collection = load_offence_histories
-    @offence_ids = params[:offence_ids]&.split(',')
+    @offence_ids = params[:offence_ids]&.split(",")
     render :offences, layout: false
   end
 
@@ -34,7 +34,7 @@ class DefendantsController < ApplicationController
 
   # POST /defendants/:id/link?urn=:urn
   def link
-    authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
+    authorize! :create, :link_maat_reference, message: I18n.t("unauthorized.default")
 
     @form_model = new_link_attempt
     validate_link_attempt!
@@ -42,7 +42,7 @@ class DefendantsController < ApplicationController
     Cda::ProsecutionCaseLaaReference.create!(@form_model.to_link_attributes)
 
     redirect_to defendant_path(@defendant.id, urn: prosecution_case_reference),
-                flash: { success_moj_banner: I18n.t('laa_reference.link.success') }
+                flash: { success_moj_banner: I18n.t("laa_reference.link.success") }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render :show_link
@@ -55,11 +55,11 @@ class DefendantsController < ApplicationController
     @form_model = new_unlink_attempt
     @form_model.validate!
 
-    logger.info 'CALLING_V2_MAAT_UNLINK'
+    logger.info "CALLING_V2_MAAT_UNLINK"
     Cda::ProsecutionCaseLaaReference.update!(@form_model.to_unlink_attributes)
 
     redirect_to defendant_path(@defendant.id, urn: prosecution_case_reference),
-                flash: { success_moj_banner: I18n.t('defendants.unlink.success') }
+                flash: { success_moj_banner: I18n.t("defendants.unlink.success") }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
     render :show_unlink
@@ -71,7 +71,7 @@ class DefendantsController < ApplicationController
     @prosecution_case_reference ||= params[:urn]
   end
 
-  private
+private
 
   def load_and_authorize_defendant
     @defendant = Cda::Defendant.find_from_id_and_urn(params[:id], prosecution_case_reference)
@@ -85,12 +85,12 @@ class DefendantsController < ApplicationController
                    prosecution_case_path(prosecution_case_reference)
     add_breadcrumb @defendant.name, defendant_path(@defendant.id, urn: prosecution_case_reference)
 
-    add_breadcrumb 'Link' if action_name.in?(%w[show_link link])
-    add_breadcrumb 'Unlink' if action_name.in?(%w[show_unlink unlink])
+    add_breadcrumb "Link" if action_name.in?(%w[show_link link])
+    add_breadcrumb "Unlink" if action_name.in?(%w[show_unlink unlink])
   end
 
   def validate_link_attempt!
-    if params[:maat_ref_required] == 'true'
+    if params[:maat_ref_required] == "true"
       @form_model.validate!(:maat_ref_required)
     else
       @form_model.maat_reference = nil
@@ -102,7 +102,7 @@ class DefendantsController < ApplicationController
     LinkAttempt.new(
       defendant_id: @defendant.id,
       username: current_user.username,
-      maat_reference: params.dig(:link_attempt, :maat_reference)
+      maat_reference: params.dig(:link_attempt, :maat_reference),
     )
   end
 
@@ -112,20 +112,20 @@ class DefendantsController < ApplicationController
       username: current_user.username,
       reason_code: params.dig(:unlink_attempt, :reason_code).presence&.to_i,
       other_reason_text: params.dig(:unlink_attempt, :other_reason_text),
-      maat_reference: @defendant.maat_reference
+      maat_reference: @defendant.maat_reference,
     )
   end
 
   def handle_link_failure(message, exception = nil)
     logger.warn "LINK DEFENDANT FAILURE (params: #{@form_model.as_json}): #{message}"
     @form_model.errors.add(:maat_reference,
-                           cda_error_string(exception) || t('cda_errors.internal_server_error'))
+                           cda_error_string(exception) || t("cda_errors.internal_server_error"))
   end
 
   def handle_unlink_failure(message, exception = nil)
     logger.warn "UNLINK DEFENDANT FAILURE (params: #{@form_model.as_json}): #{message}"
     @form_model.errors.add(:base,
-                           cda_error_string(exception) || t('cda_errors.internal_server_error'))
+                           cda_error_string(exception) || t("cda_errors.internal_server_error"))
   end
 
   def load_offence_histories

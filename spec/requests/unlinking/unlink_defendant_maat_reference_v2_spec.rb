@@ -1,47 +1,45 @@
 # frozen_string_literal: true
 
-# rubocop:disable RSpec/MultipleMemoizedHelpers
-
-RSpec.shared_examples 'invalid unlink_attempt request for CD API' do
+RSpec.shared_examples "invalid unlink_attempt request for CD API" do
   before do
     post "/defendants/#{defendant_id}/unlink?urn=#{prosecution_case_reference_from_fixture}",
          params:
   end
 
-  it 'does NOT send an unlink request to CD API' do
+  it "does NOT send an unlink request to CD API" do
     expect(a_request(:patch, api_request_path)
           .with(body: api_request_payload.to_json, headers: json_content))
       .not_to have_been_made
   end
 
-  it 'renders the unlink page' do
-    expect(response.body).to include('Confirm you want to remove MAAT ID link')
+  it "renders the unlink page" do
+    expect(response.body).to include("Confirm you want to remove MAAT ID link")
   end
 
-  it 'displays error summary with other_reason_text presence error' do
-    expect(response.body).to have_tag(:div, with: { class: 'govuk-error-summary' }) do
+  it "displays error summary with other_reason_text presence error" do
+    expect(response.body).to have_tag(:div, with: { class: "govuk-error-summary" }) do
       with_text error_message
     end
   end
 end
 
-RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request do
+RSpec.describe "unlink defendant maat reference", :stub_unlink, type: :request do
   include RSpecHtmlMatchers
 
   before do
-    create(:unlink_reason, code: 1, description: 'Reason not requiring text')
-    create(:unlink_reason, code: UnlinkReason::OTHER_REASON_CODE, description: 'Reason requiring text')
+    create(:unlink_reason, code: 1, description: "Reason not requiring text")
+    create(:unlink_reason, code: UnlinkReason::OTHER_REASON_CODE, description: "Reason requiring text")
   end
 
   let(:user) { create(:user) }
-  let(:case_urn) { 'TEST12345' }
-  let(:defendant_fixture) { load_json_stub('linked/defendant_by_reference_body.json') }
-  let(:defendant_by_id_fixture) { load_json_stub('linked_defendant.json') }
-  let(:plain_content) { { 'Content-Type' => 'text/plain; charset=utf-8' } }
-  let(:json_content) { { 'Content-Type' => 'application/json' } }
-  let(:defendant_asn_from_fixture) { '0TSQT1LMI7CR' }
-  let(:defendant_id) { '41fcb1cd-516e-438e-887a-5987d92ef90f' }
-  let(:prosecution_case_reference_from_fixture) { 'TEST12345' }
+  let(:case_urn) { "TEST12345" }
+  let(:defendant_fixture) { load_json_stub("linked/defendant_by_reference_body.json") }
+  let(:defendant_by_id_fixture) { load_json_stub("linked_defendant.json") }
+  let(:plain_content) { { "Content-Type" => "text/plain; charset=utf-8" } }
+  let(:json_content) { { "Content-Type" => "application/json" } }
+  let(:defendant_asn_from_fixture) { "0TSQT1LMI7CR" }
+  let(:defendant_id) { "41fcb1cd-516e-438e-887a-5987d92ef90f" }
+  let(:prosecution_case_reference_from_fixture) { "TEST12345" }
   let(:api_url_v2) { Cda::BaseModel.api_url }
   let(:maat_reference) { 2_123_456.to_s }
 
@@ -49,9 +47,9 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
     {
       unlink_attempt:
       {
-        reason_code: '1',
-        other_reason_text: ''
-      }
+        reason_code: "1",
+        other_reason_text: "",
+      },
     }
   end
   let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}" }
@@ -60,28 +58,28 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
       laa_reference: { defendant_id:,
                        user_name: user.username,
                        unlink_reason_code: 1,
-                       maat_reference: }
+                       maat_reference: },
     }
   end
   let(:maat_invalid_request) do
     {
-      title: 'The link to the court data source could not be removed.',
-      message: 'If this problem persists, please contact the IT Helpdesk on 0800 9175148.'
+      title: "The link to the court data source could not be removed.",
+      message: "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
     }
   end
   let(:maat_invalid_username) do
     {
-      title: 'Unable to unlink this defendant',
-      message: 'User name must not exceed 10 characters'
+      title: "Unable to unlink this defendant",
+      message: "User name must not exceed 10 characters",
     }
   end
 
-  context 'when authenticated' do
+  context "when authenticated" do
     before do
       sign_in user
     end
 
-    context 'with valid id' do
+    context "with valid id" do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -89,27 +87,27 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
              params:
       end
 
-      it 'sends an unlink request to CDA' do
+      it "sends an unlink request to CDA" do
         expect(a_request(:patch, api_request_path)
           .with(body: api_request_payload))
           .to have_been_made.once
       end
 
-      it 'returns status 302' do
+      it "returns status 302" do
         expect(response).to have_http_status :redirect
       end
 
-      it 'redirects to defendant path' do
+      it "redirects to defendant path" do
         expect(response).to redirect_to defendant_path(id: defendant_id,
                                                        urn: prosecution_case_reference_from_fixture)
       end
 
-      it 'flashes success banner' do
-        expect(flash.now[:success_moj_banner]).to eq('Link removed successfully.')
+      it "flashes success banner" do
+        expect(flash.now[:success_moj_banner]).to eq("Link removed successfully.")
       end
     end
 
-    context 'with a request that returns a 400', :stub_v2_unlink_bad_request do
+    context "with a request that returns a 400", :stub_v2_unlink_bad_request do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -119,15 +117,15 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
 
       it {
         expect(response.body)
-          .to include('The request to link/unlink the Defendant or Appellant was malformed.')
+          .to include("The request to link/unlink the Defendant or Appellant was malformed.")
       }
 
-      it 'renders the unlink page' do
-        expect(response.body).to include('Confirm you want to remove MAAT ID link')
+      it "renders the unlink page" do
+        expect(response.body).to include("Confirm you want to remove MAAT ID link")
       end
     end
 
-    context 'with a request that returns a 422', :stub_v2_unlink_bad_response do
+    context "with a request that returns a 422", :stub_v2_unlink_bad_response do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -137,37 +135,37 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
 
       it {
         expect(response.body)
-          .to include('The request to link/unlink the Defendant or Appellant was malformed.')
+          .to include("The request to link/unlink the Defendant or Appellant was malformed.")
       }
     end
 
-    context 'with valid reason_code' do
+    context "with valid reason_code" do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-      let(:params) { { unlink_attempt: { reason_code: '1', other_reason_text: '' } } }
+      let(:params) { { unlink_attempt: { reason_code: "1", other_reason_text: "" } } }
 
       before do
         post "/defendants/#{defendant_id}/unlink?urn=#{prosecution_case_reference_from_fixture}", params:
       end
 
-      it 'sends an unlink request to CDA' do
+      it "sends an unlink request to CDA" do
         expect(a_request(:patch, api_request_path)
           .with(body: api_request_payload.to_json))
           .to have_been_made.once
       end
 
-      it 'flashes success banner' do
-        expect(flash.now[:success_moj_banner]).to eq('Link removed successfully.')
+      it "flashes success banner" do
+        expect(flash.now[:success_moj_banner]).to eq("Link removed successfully.")
       end
 
-      it 'redirects to defendant path' do
+      it "redirects to defendant path" do
         expect(response).to redirect_to defendant_path(id: defendant_id,
                                                        urn: prosecution_case_reference_from_fixture)
       end
     end
 
-    context 'with valid other_reason_text' do
+    context "with valid other_reason_text" do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-      let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: 'a reason for unlinking' } } }
+      let(:params) { { unlink_attempt: { reason_code: "7", other_reason_text: "a reason for unlinking" } } }
 
       let(:api_request_payload) do
         {
@@ -175,7 +173,7 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
                            user_name: user.username,
                            unlink_reason_code: UnlinkReason::OTHER_REASON_CODE,
                            maat_reference:,
-                           unlink_other_reason_text: 'a reason for unlinking' }
+                           unlink_other_reason_text: "a reason for unlinking" },
         }
       end
 
@@ -183,23 +181,23 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
         post "/defendants/#{defendant_id}/unlink?urn=#{prosecution_case_reference_from_fixture}", params:
       end
 
-      it 'sends an unlink request to CD API' do
+      it "sends an unlink request to CD API" do
         expect(a_request(:patch, api_request_path)
           .with(body: api_request_payload.to_json))
           .to have_been_made.once
       end
 
-      it 'flashes success banner' do
-        expect(flash.now[:success_moj_banner]).to eq('Link removed successfully.')
+      it "flashes success banner" do
+        expect(flash.now[:success_moj_banner]).to eq("Link removed successfully.")
       end
 
-      it 'redirects to defendant path' do
+      it "redirects to defendant path" do
         expect(response).to redirect_to defendant_path(id: defendant_id,
                                                        urn: prosecution_case_reference_from_fixture)
       end
     end
 
-    context 'with Downstream 424 error', :stub_v2_unlink_cda_failure do
+    context "with Downstream 424 error", :stub_v2_unlink_cda_failure do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -207,14 +205,14 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
              params:
       end
 
-      it { expect(response.body).to include('HMCTS Common Platform could not be reached.') }
+      it { expect(response.body).to include("HMCTS Common Platform could not be reached.") }
 
-      it 'renders the unlink page' do
-        expect(response.body).to include('Confirm you want to remove MAAT ID link')
+      it "renders the unlink page" do
+        expect(response.body).to include("Confirm you want to remove MAAT ID link")
       end
     end
 
-    context 'with Server error 500', :stub_v2_unlink_server_failure do
+    context "with Server error 500", :stub_v2_unlink_server_failure do
       let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
 
       before do
@@ -222,58 +220,58 @@ RSpec.describe 'unlink defendant maat reference', :stub_unlink, type: :request d
              params:
       end
 
-      it { expect(response.body).to include 'Court Data Adaptor could not be reached.' }
+      it { expect(response.body).to include "Court Data Adaptor could not be reached." }
 
-      it 'renders the unlink page' do
-        expect(response.body).to include('Confirm you want to remove MAAT ID link')
+      it "renders the unlink page" do
+        expect(response.body).to include("Confirm you want to remove MAAT ID link")
       end
     end
 
-    context 'with invalid reason_code' do
-      it_behaves_like 'invalid unlink_attempt request for CD API' do
+    context "with invalid reason_code" do
+      it_behaves_like "invalid unlink_attempt request for CD API" do
         let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-        let(:params) { { unlink_attempt: { reason_code: '101', other_reason_text: '' } } }
-        let(:error_message) { 'Choose a reason for unlinking from list' }
+        let(:params) { { unlink_attempt: { reason_code: "101", other_reason_text: "" } } }
+        let(:error_message) { "Choose a reason for unlinking from list" }
       end
     end
 
-    context 'with blank reason_code' do
-      it_behaves_like 'invalid unlink_attempt request for CD API' do
+    context "with blank reason_code" do
+      it_behaves_like "invalid unlink_attempt request for CD API" do
         let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-        let(:params) { { unlink_attempt: { reason_code: '', other_reason_text: '' } } }
-        let(:error_message) { 'Choose a reason for unlinking' }
+        let(:params) { { unlink_attempt: { reason_code: "", other_reason_text: "" } } }
+        let(:error_message) { "Choose a reason for unlinking" }
       end
     end
 
-    context 'with blank other_reason_text for reason that requires it' do
-      it_behaves_like 'invalid unlink_attempt request for CD API' do
+    context "with blank other_reason_text for reason that requires it" do
+      it_behaves_like "invalid unlink_attempt request for CD API" do
         let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-        let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: '' } } }
-        let(:error_message) { 'Enter the reason for unlinking' }
+        let(:params) { { unlink_attempt: { reason_code: "7", other_reason_text: "" } } }
+        let(:error_message) { "Enter the reason for unlinking" }
       end
     end
 
-    context 'with over the maximum other_reason_text for reason that requires it' do
-      it_behaves_like 'invalid unlink_attempt request for CD API' do
+    context "with over the maximum other_reason_text for reason that requires it" do
+      it_behaves_like "invalid unlink_attempt request for CD API" do
         max_character = Faker::Lorem.characters(number: 501)
         let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-        let(:params) { { unlink_attempt: { reason_code: '7', other_reason_text: max_character } } }
-        let(:error_message) { 'Unlinking reason is too long' }
+        let(:params) { { unlink_attempt: { reason_code: "7", other_reason_text: max_character } } }
+        let(:error_message) { "Unlinking reason is too long" }
       end
     end
   end
 
-  context 'when not authenticated' do
+  context "when not authenticated" do
     before do
       post "/defendants/#{defendant_id}/unlink?urn=#{prosecution_case_reference_from_fixture}", params:
     end
 
-    it 'redirects to sign in page' do
+    it "redirects to sign in page" do
       expect(response).to redirect_to unauthenticated_root_path
     end
 
-    it 'flashes alert' do
-      expect(flash.now[:alert]).to include('sign in before continuing')
+    it "flashes alert" do
+      expect(flash.now[:alert]).to include("sign in before continuing")
     end
   end
 end

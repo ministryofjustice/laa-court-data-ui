@@ -1,4 +1,4 @@
-= govuk_page_heading(t('.title'))
+= govuk_page_heading(t(".title"))
 .govuk-grid-row
   .govuk-grid-column-two-thirds
     %table.govuk-table
@@ -27,12 +27,12 @@
   .govuk-grid-column-full
     %table.govuk-table{ class: "govuk-!-margin-bottom-9" }
       %caption.govuk-table__caption.govuk-visually-hidden
-        = t('.caption')
+        = t(".caption")
       %thead.govuk-table__head
         %tr.govuk-table__row
-          %th.govuk-table__header{ scope: 'col' }= t('.urn')
-          %th.govuk-table__header{ scope: 'col' }= t('.ids')
-          %th.govuk-table__header{ scope: 'col' }= t('.status')
+          %th.govuk-table__header{ scope: "col" }= t(".urn")
+          %th.govuk-table__header{ scope: "col" }= t(".ids")
+          %th.govuk-table__header{ scope: "col" }= t(".status")
       %tbody.govuk-table__body
         - @batch.repulls.each do |repull|
           %tr.govuk-table__row

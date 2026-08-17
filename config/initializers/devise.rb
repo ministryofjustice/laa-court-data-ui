@@ -18,19 +18,19 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'access-court-data-team@digital.justice.gov.uk'
+  config.mailer_sender = "access-court-data-team@digital.justice.gov.uk"
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'Devise::Mailer'
+  config.mailer = "Devise::Mailer"
 
   # Configure the parent class responsible to send e-mails.
-  config.parent_mailer = 'GovukNotifyRails::Mailer'
+  config.parent_mailer = "GovukNotifyRails::Mailer"
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -266,15 +266,15 @@ Devise.setup do |config|
       scope: %i[openid email],
       response_type: :code,
       client_options: {
-        identifier: ENV.fetch('OMNIAUTH_CLIENT_ID', nil),
-        secret: ENV.fetch('OMNIAUTH_CLIENT_SECRET', nil),
-        redirect_uri: ENV.fetch('OMNIAUTH_REDIRECT_URI', nil)
+        identifier: ENV.fetch("OMNIAUTH_CLIENT_ID", nil),
+        secret: ENV.fetch("OMNIAUTH_CLIENT_SECRET", nil),
+        redirect_uri: ENV.fetch("OMNIAUTH_REDIRECT_URI", nil),
       },
       discovery: true,
       pkce: true,
       issuer: "https://login.microsoftonline.com/#{ENV.fetch('OMNIAUTH_TENANT_ID', nil)}/v2.0",
-      strategy_class: OmniAuth::Strategies::OpenIDConnect
-    }
+      strategy_class: OmniAuth::Strategies::OpenIDConnect,
+    },
   )
 
   # ==> Warden configuration

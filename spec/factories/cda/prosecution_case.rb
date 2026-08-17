@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
-  factory :prosecution_case, class: 'Cda::ProsecutionCase' do
-    prosecution_case_reference { 'THECASEURN' }
+  factory :prosecution_case, class: "Cda::ProsecutionCase" do
+    prosecution_case_reference { "THECASEURN" }
     hearing_summaries { [] }
     defendant_summaries { [] }
 
@@ -22,14 +22,14 @@ FactoryBot.define do
     end
   end
 
-  factory :hearing_prosecution_case, class: 'Cda::ProsecutionCase' do
+  factory :hearing_prosecution_case, class: "Cda::ProsecutionCase" do
     hearing_details
 
     id { SecureRandom.uuid }
     prosecution_case_identifier { {} }
-    status { 'INACTIVE' }
-    statement_of_facts { 'Fuga laudantium tenetur next level et.' }
-    statement_of_facts_welsh { 'Meh pug error et non' }
+    status { "INACTIVE" }
+    statement_of_facts { "Fuga laudantium tenetur next level et." }
+    statement_of_facts_welsh { "Meh pug error et non" }
     defendants { [] }
   end
 end

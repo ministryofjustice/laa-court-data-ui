@@ -8,10 +8,10 @@ module UsersHelper
   end
 
   def feature_flag_descriptions_for_user(user)
-    return 'None' if user.feature_flags.empty?
+    return "None" if user.feature_flags.empty?
 
-    user.feature_flags.map do |flag|
+    user.feature_flags.map { |flag|
       I18n.t("users.form.fields.feature_flags_options.#{flag}", default: flag.humanize)
-    end.join(' | ')
+    }.join(" | ")
   end
 end

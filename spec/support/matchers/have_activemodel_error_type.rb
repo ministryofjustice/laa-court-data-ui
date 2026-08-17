@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rspec/expectations'
+require "rspec/expectations"
 
 # have_activemodel_error_type
 # e.g.

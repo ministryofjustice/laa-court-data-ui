@@ -22,7 +22,7 @@ class HearingDaysController < ApplicationController
     redirect_to controller: :errors, action: :internal_error
   end
 
-  private
+private
 
   def set_application
     @application = Cda::CourtApplication.find(params[:court_application_id])
@@ -68,6 +68,6 @@ class HearingDaysController < ApplicationController
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
     add_breadcrumb t("subjects.#{@application.application_category}"),
                    court_application_path(@application.application_id)
-    add_breadcrumb t('hearing_days.show.breadcrumb', day: current_hearing_day.day_string)
+    add_breadcrumb t("hearing_days.show.breadcrumb", day: current_hearing_day.day_string)
   end
 end

@@ -15,7 +15,7 @@ RSpec.describe BaseDecorator, type: :decorator do
   let(:test_class) do
     Class.new do
       def my_string
-        'hi'
+        "hi"
       end
     end
   end
@@ -28,21 +28,21 @@ RSpec.describe BaseDecorator, type: :decorator do
     end
   end
 
-  it_behaves_like 'a base decorator' do
+  it_behaves_like "a base decorator" do
     let(:object) { test_object }
   end
 
   it { is_expected.to respond_to(:my_string) }
 
-  describe '#my_string' do
+  describe "#my_string" do
     subject { decorator.my_string }
 
-    it { is_expected.to eql 'hi' }
+    it { is_expected.to eql "hi" }
   end
 
-  describe '#my_upcased_string' do
+  describe "#my_upcased_string" do
     subject { decorator.my_upcased_string }
 
-    it { is_expected.to eql('HI') }
+    it { is_expected.to eql("HI") }
   end
 end

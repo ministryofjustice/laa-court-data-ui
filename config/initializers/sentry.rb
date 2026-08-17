@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-if Rails.env.eql?('production') && ENV.fetch('SENTRY_DSN', nil).present?
+if Rails.env.eql?("production") && ENV.fetch("SENTRY_DSN", nil).present?
   EXCLUDE_PATHS = %w[/ping /ping.json].freeze
   Sentry.init do |config|
-    config.dsn = ENV.fetch('SENTRY_DSN', nil)
+    config.dsn = ENV.fetch("SENTRY_DSN", nil)
     config.breadcrumbs_logger = [:active_support_logger]
 
     config.traces_sampler = lambda do |sampling_context|
@@ -17,6 +17,6 @@ if Rails.env.eql?('production') && ENV.fetch('SENTRY_DSN', nil).present?
       # error reporting. 100% of errors are reported to Sentry.
       transaction_name.in?(EXCLUDE_PATHS) ? 0.0 : 0.05
     end
-    config.release = ENV.fetch('BUILD_TAG', 'unknown')
+    config.release = ENV.fetch("BUILD_TAG", "unknown")
   end
 end

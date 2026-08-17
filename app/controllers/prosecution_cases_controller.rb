@@ -15,7 +15,7 @@ class ProsecutionCasesController < ApplicationController
            locals: { prosecution_case: @prosecution_case, court_applications:, pagy: }
   end
 
-  private
+private
 
   def load_and_authorize_search
     authorize! :read, Cda::ProsecutionCase
@@ -55,8 +55,8 @@ class ProsecutionCasesController < ApplicationController
   end
 
   def redirect_to_search_path(exception)
-    redirect_to searches_path(search: { filter: 'case_reference', term: urn })
-    flash[:notice] = cda_error_string(exception) || I18n.t('prosecution_case.show.failure')
+    redirect_to searches_path(search: { filter: "case_reference", term: urn })
+    flash[:notice] = cda_error_string(exception) || I18n.t("prosecution_case.show.failure")
   end
 
   def set_breadcrumbs

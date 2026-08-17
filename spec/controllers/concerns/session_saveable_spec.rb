@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe SessionSaveable do
   let(:test_class) { Class.new { include SessionSaveable } }

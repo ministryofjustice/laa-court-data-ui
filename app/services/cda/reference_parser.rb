@@ -2,7 +2,6 @@
 
 module Cda
   class ReferenceParser
-    # rubocop:disable Layout/LineLength
     NINO_REGEXP = /^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])[0-9]{6}[A-D]{1}$/
     # rubocop:enable Layout/LineLength
 

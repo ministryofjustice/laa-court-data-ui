@@ -10,7 +10,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   it { is_expected.to respond_to :decorate }
   it { is_expected.to respond_to :decorate_all }
 
-  shared_context 'with mock objects and decorators' do
+  shared_context "with mock objects and decorators" do
     let(:test_objects) { [test_class.new, test_class.new] }
     let(:test_object) { test_class.new }
     let(:view_object) { view_class.new }
@@ -19,7 +19,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     let(:test_class) do
       Class.new do
         def my_string
-          'hi'
+          "hi"
         end
       end
     end
@@ -35,53 +35,53 @@ RSpec.describe ApplicationHelper, type: :helper do
     let(:other_class_decorator) do
       Class.new(BaseDecorator) do
         def my_bold_string
-          '<b>my_string</b>'
+          "<b>my_string</b>"
         end
       end
     end
   end
 
-  describe '#decorate' do
-    include_context 'with mock objects and decorators'
+  describe "#decorate" do
+    include_context "with mock objects and decorators"
 
-    shared_examples 'returns or yields decorated object' do
+    shared_examples "returns or yields decorated object" do
       subject(:decorated_object) { helper.decorate(test_object) }
 
       before do
-        stub_const('TestClassDecorator', test_class_decorator)
+        stub_const("TestClassDecorator", test_class_decorator)
       end
 
       it { is_expected.to be_instance_of(test_class_decorator) }
       it { is_expected.to respond_to(:my_string, :my_upcased_string) }
       it { expect { |b| decorate(test_object, &b) }.to yield_with_args(instance_of(test_class_decorator)) }
 
-      it 'sends view context to decorator' do
+      it "sends view context to decorator" do
         allow(test_class_decorator).to receive(:new)
         helper.decorate(test_object)
         expect(test_class_decorator).to have_received(:new).with(test_object, helper)
       end
     end
 
-    context 'when called with no decorator class' do
-      context 'with unmodularized class' do
-        before { stub_const('TestClass', test_class) }
+    context "when called with no decorator class" do
+      context "with unmodularized class" do
+        before { stub_const("TestClass", test_class) }
 
-        it_behaves_like 'returns or yields decorated object'
+        it_behaves_like "returns or yields decorated object"
       end
 
-      context 'with modularized class' do
-        before { stub_const('TestModule::TestClass', test_class) }
+      context "with modularized class" do
+        before { stub_const("TestModule::TestClass", test_class) }
 
-        it_behaves_like 'returns or yields decorated object'
+        it_behaves_like "returns or yields decorated object"
       end
     end
 
-    context 'when called with a decorator class' do
+    context "when called with a decorator class" do
       subject(:decorated_object) { helper.decorate(test_object, other_class_decorator) }
 
       before do
-        stub_const('TestClass', test_class)
-        stub_const('OtherClassDecorator', other_class_decorator)
+        stub_const("TestClass", test_class)
+        stub_const("OtherClassDecorator", other_class_decorator)
       end
 
       it { is_expected.to be_instance_of(other_class_decorator) }
@@ -93,21 +93,21 @@ RSpec.describe ApplicationHelper, type: :helper do
       }
     end
 
-    context 'when called with a nil object' do
+    context "when called with a nil object" do
       subject(:decorated_object) { helper.decorate(nil) }
 
       it { is_expected.to be_instance_of(NilClass) }
       it { expect { |b| decorate(nil, &b) }.not_to yield_control }
     end
 
-    context 'when called with a decorated object' do
+    context "when called with a decorated object" do
       subject(:decorated_object) { helper.decorate(already_decorated_object) }
 
       let(:already_decorated_object) { helper.decorate(test_class.new) }
 
       before do
-        stub_const('TestClass', test_class)
-        stub_const('TestClassDecorator', test_class_decorator)
+        stub_const("TestClass", test_class)
+        stub_const("TestClassDecorator", test_class_decorator)
       end
 
       it { is_expected.to be_instance_of(test_class_decorator) }
@@ -115,14 +115,14 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe '#decorate_all' do
-    include_context 'with mock objects and decorators'
+  describe "#decorate_all" do
+    include_context "with mock objects and decorators"
 
-    shared_examples 'returns or yields all decorated objects' do
+    shared_examples "returns or yields all decorated objects" do
       subject(:decorated_objects) { helper.decorate_all(test_objects) }
 
       before do
-        stub_const('TestClassDecorator', test_class_decorator)
+        stub_const("TestClassDecorator", test_class_decorator)
       end
 
       it { is_expected.to all(be_instance_of(test_class_decorator)) }
@@ -134,37 +134,37 @@ RSpec.describe ApplicationHelper, type: :helper do
                                     instance_of(test_class_decorator))
       }
 
-      it 'sends view context to decorator' do
+      it "sends view context to decorator" do
         allow(test_class_decorator).to receive(:new)
         helper.decorate_all(test_objects)
         expect(test_class_decorator).to have_received(:new).with(instance_of(test_class), helper).twice
       end
     end
 
-    it 'aliased as #decorate_each' do
+    it "aliased as #decorate_each" do
       expect(helper.method(:decorate_all)).to eql(helper.method(:decorate_each))
     end
 
-    context 'when called with no decorator class' do
-      context 'with unmodularized class' do
-        before { stub_const('TestClass', test_class) }
+    context "when called with no decorator class" do
+      context "with unmodularized class" do
+        before { stub_const("TestClass", test_class) }
 
-        it_behaves_like 'returns or yields all decorated objects'
+        it_behaves_like "returns or yields all decorated objects"
       end
 
-      context 'with modularized class' do
-        before { stub_const('TestModule::TestClass', test_class) }
+      context "with modularized class" do
+        before { stub_const("TestModule::TestClass", test_class) }
 
-        it_behaves_like 'returns or yields all decorated objects'
+        it_behaves_like "returns or yields all decorated objects"
       end
     end
 
-    context 'when called with a decorator class' do
+    context "when called with a decorator class" do
       subject(:decorated_object) { helper.decorate_all(test_objects, other_class_decorator) }
 
       before do
-        stub_const('TestClass', test_class)
-        stub_const('OtherClassDecorator', other_class_decorator)
+        stub_const("TestClass", test_class)
+        stub_const("OtherClassDecorator", other_class_decorator)
       end
 
       it { is_expected.to all(be_instance_of(other_class_decorator)) }
@@ -177,12 +177,12 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe '#hearings_sorter_link' do
+  describe "#hearings_sorter_link" do
     subject(:hearings_sorter_link) { helper.hearings_sorter_link(decorated_prosecution_case, column) }
 
     let(:decorated_prosecution_case) { helper.decorate(prosecution_case, Cda::CaseSummaryDecorator) }
     let(:prosecution_case) do
-      Cda::ProsecutionCase.new(prosecution_case_reference: 'TEST12345')
+      Cda::ProsecutionCase.new(prosecution_case_reference: "TEST12345")
     end
 
     before do
@@ -190,76 +190,76 @@ RSpec.describe ApplicationHelper, type: :helper do
                                                             hearings_sort_direction:)
     end
 
-    context 'when column is provider, hearings_sort_column is date and hearings_sort_direction is asc' do
-      let(:column) { 'provider' }
-      let(:hearings_sort_column) { 'date' }
-      let(:hearings_sort_direction) { 'asc' }
+    context "when column is provider, hearings_sort_column is date and hearings_sort_direction is asc" do
+      let(:column) { "provider" }
+      let(:hearings_sort_column) { "date" }
+      let(:hearings_sort_direction) { "asc" }
 
-      it 'returns the column header Providers attending' do
-        is_expected.to have_link('Providers attending',
-                                 href: '/prosecution_cases/TEST12345?column=provider&direction=desc#provider',
-                                 class: 'govuk-link govuk-link--no-visited-state')
+      it "returns the column header Providers attending" do
+        expect(subject).to have_link("Providers attending",
+                                     href: "/prosecution_cases/TEST12345?column=provider&direction=desc#provider",
+                                     class: "govuk-link govuk-link--no-visited-state")
       end
     end
 
-    context 'when column is type, hearings_sort_column is type, hearings_sort_direction is asc' do
-      let(:column) { 'type' }
-      let(:hearings_sort_column) { 'type' }
-      let(:hearings_sort_direction) { 'asc' }
+    context "when column is type, hearings_sort_column is type, hearings_sort_direction is asc" do
+      let(:column) { "type" }
+      let(:hearings_sort_column) { "type" }
+      let(:hearings_sort_direction) { "asc" }
 
-      it 'returns the column header Hearing type, with arrow pointing up' do
-        is_expected.to have_link("Hearing type \u25B2",
-                                 href: '/prosecution_cases/TEST12345?column=type&direction=desc#type',
-                                 class: 'govuk-link govuk-link--no-visited-state')
+      it "returns the column header Hearing type, with arrow pointing up" do
+        expect(subject).to have_link("Hearing type \u25B2",
+                                     href: "/prosecution_cases/TEST12345?column=type&direction=desc#type",
+                                     class: "govuk-link govuk-link--no-visited-state")
       end
     end
 
-    context 'when column is provider, sort_column is provider, direction is desc' do
-      let(:column) { 'date' }
-      let(:hearings_sort_column) { 'date' }
-      let(:hearings_sort_direction) { 'desc' }
+    context "when column is provider, sort_column is provider, direction is desc" do
+      let(:column) { "date" }
+      let(:hearings_sort_column) { "date" }
+      let(:hearings_sort_direction) { "desc" }
 
-      it 'returns the column header Date, with arrow pointing down' do
-        is_expected.to have_link("Date \u25BC",
-                                 href: '/prosecution_cases/TEST12345?column=date&direction=asc#date',
-                                 class: 'govuk-link govuk-link--no-visited-state')
+      it "returns the column header Date, with arrow pointing down" do
+        expect(subject).to have_link("Date \u25BC",
+                                     href: "/prosecution_cases/TEST12345?column=date&direction=asc#date",
+                                     class: "govuk-link govuk-link--no-visited-state")
       end
     end
   end
 
-  describe '#navigation_item' do
-    subject(:html) { helper.navigation_item('/search', 'Search', active:) }
+  describe "#navigation_item" do
+    subject(:html) { helper.navigation_item("/search", "Search", active:) }
 
-    context 'when active' do
+    context "when active" do
       let(:active) { true }
 
-      it { is_expected.to have_css('li.govuk-service-navigation__item--active') }
+      it { is_expected.to have_css("li.govuk-service-navigation__item--active") }
     end
 
-    context 'when inactive' do
+    context "when inactive" do
       let(:active) { false }
 
-      it { is_expected.to have_no_css('li.govuk-service-navigation__item--active') }
+      it { is_expected.to have_no_css("li.govuk-service-navigation__item--active") }
     end
   end
 
-  describe '#app_environment' do
+  describe "#app_environment" do
     subject(:app_environment) { helper.app_environment }
 
-    context 'when application is running within the dev kubernetes namespace' do
+    context "when application is running within the dev kubernetes namespace" do
       around do |example|
-        with_env('dev') { example.run }
+        with_env("dev") { example.run }
       end
 
-      it { is_expected.to eql 'app-environment-dev' }
+      it { is_expected.to eql "app-environment-dev" }
     end
 
-    context 'when application is running locally' do
-      it { is_expected.to eql 'app-environment-local' }
+    context "when application is running locally" do
+      it { is_expected.to eql "app-environment-local" }
     end
   end
 
-  describe '#l' do
+  describe "#l" do
     subject(:output) { helper.l(input) }
 
     context "when a date is passed in" do
@@ -277,20 +277,20 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe '#user_sorter_column?' do
+  describe "#user_sorter_column?" do
     context "when params[:user_sort_column] matches the given column" do
       it "returns true" do
-        allow(helper).to receive(:params).and_return({ user_sort_column: 'email' })
+        allow(helper).to receive(:params).and_return({ user_sort_column: "email" })
 
-        expect(helper.user_sorter_column?('email')).to be true
+        expect(helper.user_sorter_column?("email")).to be true
       end
     end
 
     context "when params[:user_sort_column] does not match the given column" do
       it "returns false" do
-        allow(helper).to receive(:params).and_return({ user_sort_column: 'name' })
+        allow(helper).to receive(:params).and_return({ user_sort_column: "name" })
 
-        expect(helper.user_sorter_column?('email')).to be false
+        expect(helper.user_sorter_column?("email")).to be false
       end
     end
 
@@ -298,7 +298,7 @@ RSpec.describe ApplicationHelper, type: :helper do
       it "returns false" do
         allow(helper).to receive(:params).and_return({ user_sort_column: nil })
 
-        expect(helper.user_sorter_column?('email')).to be false
+        expect(helper.user_sorter_column?("email")).to be false
       end
     end
 
@@ -306,25 +306,25 @@ RSpec.describe ApplicationHelper, type: :helper do
       it "returns false" do
         allow(helper).to receive(:params).and_return({})
 
-        expect(helper.user_sorter_column?('email')).to be false
+        expect(helper.user_sorter_column?("email")).to be false
       end
     end
   end
 
-  describe '#user_sorter_direction' do
+  describe "#user_sorter_direction" do
     context "when params[:user_sort_direction] is 'asc'" do
       it "returns 'asc'" do
-        allow(helper).to receive(:params).and_return({ user_sort_direction: 'asc' })
+        allow(helper).to receive(:params).and_return({ user_sort_direction: "asc" })
 
-        expect(helper.user_sorter_direction).to eq('asc')
+        expect(helper.user_sorter_direction).to eq("asc")
       end
     end
 
     context "when params[:user_sort_direction] is 'desc'" do
       it "returns 'desc'" do
-        allow(helper).to receive(:params).and_return({ user_sort_direction: 'desc' })
+        allow(helper).to receive(:params).and_return({ user_sort_direction: "desc" })
 
-        expect(helper.user_sorter_direction).to eq('desc')
+        expect(helper.user_sorter_direction).to eq("desc")
       end
     end
 
@@ -332,7 +332,7 @@ RSpec.describe ApplicationHelper, type: :helper do
       it "returns 'asc'" do
         allow(helper).to receive(:params).and_return({ user_sort_direction: nil })
 
-        expect(helper.user_sorter_direction).to eq('asc')
+        expect(helper.user_sorter_direction).to eq("asc")
       end
     end
 
@@ -340,12 +340,12 @@ RSpec.describe ApplicationHelper, type: :helper do
       it "returns 'asc'" do
         allow(helper).to receive(:params).and_return({})
 
-        expect(helper.user_sorter_direction).to eq('asc')
+        expect(helper.user_sorter_direction).to eq("asc")
       end
     end
   end
 
-  describe '#user_sorter_link' do
+  describe "#user_sorter_link" do
     before do
       allow(helper).to receive(:users_path) do |args|
         "/users?user_sort_column=#{args[:user_sort_column]}&user_sort_direction=#{args[:user_sort_direction]}"
@@ -354,9 +354,9 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context "when current sort direction is 'asc'" do
       it "returns a users_path with direction set to 'desc'" do
-        allow(helper).to receive(:params).and_return({ user_sort_direction: 'asc' })
+        allow(helper).to receive(:params).and_return({ user_sort_direction: "asc" })
 
-        result = helper.user_sorter_link('email')
+        result = helper.user_sorter_link("email")
 
         expect(result).to eq("/users?user_sort_column=email&user_sort_direction=desc")
       end
@@ -364,9 +364,9 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context "when current sort direction is 'desc'" do
       it "returns a users_path with direction set to 'asc'" do
-        allow(helper).to receive(:params).and_return({ user_sort_direction: 'desc' })
+        allow(helper).to receive(:params).and_return({ user_sort_direction: "desc" })
 
-        result = helper.user_sorter_link('email')
+        result = helper.user_sorter_link("email")
 
         expect(result).to eq("/users?user_sort_column=email&user_sort_direction=asc")
       end
@@ -376,7 +376,7 @@ RSpec.describe ApplicationHelper, type: :helper do
       it "defaults to desc next" do
         allow(helper).to receive(:params).and_return({})
 
-        result = helper.user_sorter_link('email')
+        result = helper.user_sorter_link("email")
 
         expect(result).to eq("/users?user_sort_column=email&user_sort_direction=desc")
       end

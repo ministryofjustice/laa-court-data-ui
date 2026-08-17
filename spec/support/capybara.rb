@@ -5,9 +5,9 @@
 # Idea comes from:
 # https://github.com/DavyJonesLocker/capybara-extensions
 #
-require 'capybara_table/rspec'
-require_relative 'capybara_extensions'
-require 'axe-rspec'
+require "capybara_table/rspec"
+require_relative "capybara_extensions"
+require "axe-rspec"
 
 module Capybara
   module DSL

@@ -21,57 +21,57 @@ RSpec.describe Roles, type: :concern do
     test_class.accepts_roles(:terminator, :stormtrooper)
   end
 
-  describe '.accepts_roles' do
+  describe ".accepts_roles" do
     before { test_class.accepts_roles(:replicant, :marvin) }
 
-    it 'defines valid roles for class' do
+    it "defines valid roles for class" do
       expect(test_class.valid_roles).to match_array(%w[replicant marvin])
     end
   end
 
-  describe '.valid_roles' do
+  describe ".valid_roles" do
     it { expect(test_class.valid_roles).to match_array(%w[terminator stormtrooper]) }
   end
 
-  describe '#validate_role_presence' do
+  describe "#validate_role_presence" do
     let(:object) { test_class.new }
 
-    context 'when role not present' do
-      it 'renders object invalid' do
+    context "when role not present" do
+      it "renders object invalid" do
         expect(object).not_to be_valid
       end
 
-      it 'adds error to object' do
+      it "adds error to object" do
         object.valid?
-        expect(object.errors[:roles]).to include('must have a role')
+        expect(object.errors[:roles]).to include("must have a role")
       end
     end
   end
 
-  describe '#validate_role_inclusion' do
+  describe "#validate_role_inclusion" do
     let(:object) { test_class.new(roles: %i[jedi sith]) }
 
-    context 'when role not one of those allowed' do
-      it 'renders object invalid' do
+    context "when role not one of those allowed" do
+      it "renders object invalid" do
         expect(object).not_to be_valid
       end
 
-      it 'adds error to object' do
+      it "adds error to object" do
         object.valid?
-        expect(object.errors[:roles]).to include('jedi is not a valid role')
+        expect(object.errors[:roles]).to include("jedi is not a valid role")
       end
     end
   end
 
-  describe '#roles' do
-    let(:object) { test_class.new(roles: ['stormtrooper']) }
+  describe "#roles" do
+    let(:object) { test_class.new(roles: %w[stormtrooper]) }
 
-    it { expect(object.roles).to contain_exactly('stormtrooper') }
+    it { expect(object.roles).to contain_exactly("stormtrooper") }
   end
 
   # rubocop:disable RSpec/PredicateMatcher
   describe '#"role"?' do
-    let(:object) { test_class.new(roles: ['terminator']) }
+    let(:object) { test_class.new(roles: %w[terminator]) }
 
     context 'when "role" exists and object has it' do
       it { expect(object.terminator?).to be_truthy }
@@ -87,7 +87,7 @@ RSpec.describe Roles, type: :concern do
   end
 
   describe '#responds_to?(:"role"?)' do
-    let(:object) { test_class.new(roles: ['terminator']) }
+    let(:object) { test_class.new(roles: %w[terminator]) }
 
     context 'when "role" exists' do
       it { expect(object.respond_to?(:stormtrooper?)).to be_truthy }

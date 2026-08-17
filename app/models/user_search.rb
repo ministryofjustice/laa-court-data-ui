@@ -15,11 +15,11 @@ class UserSearch
   end
 
   def toggle_class
-    filters_applied? ? 'moj-js-hidden' : ''
+    filters_applied? ? "moj-js-hidden" : ""
   end
 
   def form_class
-    filters_applied? ? '' : 'moj-js-hidden'
+    filters_applied? ? "" : "moj-js-hidden"
   end
 
   def recent_count
@@ -27,18 +27,18 @@ class UserSearch
   end
 
   def old_count
-    User.where('last_sign_in_at IS NULL OR last_sign_in_at < ?', 3.months.ago).count
+    User.where("last_sign_in_at IS NULL OR last_sign_in_at < ?", 3.months.ago).count
   end
 
   def caseworker_count
-    User.where('roles IS NULL OR ? = ANY(roles)', 'caseworker').count
+    User.where("roles IS NULL OR ? = ANY(roles)", "caseworker").count
   end
 
   def admin_count
-    User.where('roles IS NULL OR ? = ANY(roles)', 'admin').count
+    User.where("roles IS NULL OR ? = ANY(roles)", "admin").count
   end
 
   def data_analyst_count
-    User.where('? = ANY(roles)', 'data_analyst').count
+    User.where("? = ANY(roles)", "data_analyst").count
   end
 end

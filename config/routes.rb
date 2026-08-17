@@ -2,35 +2,35 @@
 
 Rails.application.routes.draw do
   authenticated :user, ->(u) { u.admin? } do
-    root to: 'users#index', as: :authenticated_admin_root
+    root to: "users#index", as: :authenticated_admin_root
   end
 
   authenticated :user, ->(u) { !u.admin? && u.caseworker? } do
-    root to: 'search_filters#new', as: :authenticated_root
+    root to: "search_filters#new", as: :authenticated_root
   end
 
   authenticated :user, ->(u) { u.data_analyst? && !u.admin? } do
-    root to: 'stats#new', as: :authenticated_data_analyst_root
+    root to: "stats#new", as: :authenticated_data_analyst_root
   end
 
   authenticated :user, ->(u) { u.admin? } do
-    require 'sidekiq/web'
-    mount Sidekiq::Web => '/sidekiq'
+    require "sidekiq/web"
+    mount Sidekiq::Web => "/sidekiq"
   end
 
   devise_scope :user do
-    get '/update_cookies', to: 'users/sessions#update_cookies'
-    delete '/session', to: 'users/sessions#destroy', as: :destroy_user_session
+    get "/update_cookies", to: "users/sessions#update_cookies"
+    delete "/session", to: "users/sessions#destroy", as: :destroy_user_session
 
     constraints ->(_req) { FeatureFlag.enabled?(:fake_auth) } do
-      post '/fake', to: 'users/sessions#fake', as: :fake_user_session
+      post "/fake", to: "users/sessions#fake", as: :fake_user_session
     end
 
     unauthenticated :user do
-      root to: 'users/sessions#new', as: :unauthenticated_root
+      root to: "users/sessions#new", as: :unauthenticated_root
     end
 
-    get '/users/sign_in', to: redirect('/')
+    get "/users/sign_in", to: redirect("/")
   end
 
   resources :search_filters, only: %i[new create]
@@ -44,8 +44,8 @@ Rails.application.routes.draw do
   resources :defendants, only: %i[show] do
     member do
       get :offences
-      get :link, to: 'defendants#show_link'
-      get :unlink, to: 'defendants#show_unlink'
+      get :link, to: "defendants#show_link"
+      get :unlink, to: "defendants#show_unlink"
       post :link
       post :unlink
     end
@@ -54,8 +54,8 @@ Rails.application.routes.draw do
   resources :court_applications, only: %i[show] do
     resource :subject, only: %i[show] do
       member do
-        get :link, to: 'show_link'
-        get :unlink, to: 'show_unlink'
+        get :link, to: "show_link"
+        get :unlink, to: "show_unlink"
         post :link
         post :unlink
       end
@@ -66,36 +66,36 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: {
-    omniauth_callbacks: 'users/omniauth_callbacks',
-    sessions: 'users/sessions'
+    omniauth_callbacks: "users/omniauth_callbacks",
+    sessions: "users/sessions",
   }
 
   resources :users, only: %i[index show new create edit update destroy] do
-    post 'search', on: :collection
-    get 'search', on: :collection
+    post "search", on: :collection
+    get "search", on: :collection
   end
 
   resources :hearing_repull_batches, only: %i[new create show]
   resource :stats, only: %i[new]
 
-  post '/cookies/settings', to: 'cookies#create'
-  get '/cookies/settings', to: 'cookies#new'
-  get '/cookies', to: 'cookies#cookie_details'
-  get '/accessibility', to: 'pages#accessibility_statement'
-  get '/link_migrated_cases', to: 'link_migrated_cases#index', as: :link_migrated_cases
+  post "/cookies/settings", to: "cookies#create"
+  get "/cookies/settings", to: "cookies#new"
+  get "/cookies", to: "cookies#cookie_details"
+  get "/accessibility", to: "pages#accessibility_statement"
+  get "/link_migrated_cases", to: "link_migrated_cases#index", as: :link_migrated_cases
 
-  get 'ping', to: 'status#ping', format: :json
+  get "ping", to: "status#ping", format: :json
 
-  get 'users/export/all', to: 'users#export', defaults: { format: :csv }
-  get 'users/confirm_delete/:id', to: 'users#confirm_delete', as: 'users_confirm_delete'
+  get "users/export/all", to: "users#export", defaults: { format: :csv }
+  get "users/confirm_delete/:id", to: "users#confirm_delete", as: "users_confirm_delete"
 
-  get '/401', to: 'errors#unauthorized', as: 'unauthorized_error'
-  get '/404', to: 'errors#not_found', as: 'not_found_error'
-  get '/422', to: 'errors#unacceptable', as: 'unacceptable_error'
-  get '/500', to: 'errors#internal_error', as: 'internal_error'
+  get "/401", to: "errors#unauthorized", as: "unauthorized_error"
+  get "/404", to: "errors#not_found", as: "not_found_error"
+  get "/422", to: "errors#unacceptable", as: "unacceptable_error"
+  get "/500", to: "errors#internal_error", as: "internal_error"
 
   # catch-all route
   # -------------------------------------------------
   # WARNING: do not put routes below this point
-  match '*path', to: 'errors#not_found', via: :all unless Rails.env.development?
+  match "*path", to: "errors#not_found", via: :all unless Rails.env.development?
 end

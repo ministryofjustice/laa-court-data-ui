@@ -28,25 +28,25 @@ module Cda
     end
 
     def column_sort_icon
-      hearings_sort_direction == 'asc' ? "\u25B2" : "\u25BC"
+      hearings_sort_direction == "asc" ? "\u25B2" : "\u25BC"
     end
 
     def column_title(column)
-      Hash.new(t('search.result.hearing.hearing_day')).merge(
-        type: t('search.result.hearing.hearing_type'),
-        provider: t('search.result.hearing.providers')
+      Hash.new(t("search.result.hearing.hearing_day")).merge(
+        type: t("search.result.hearing.hearing_type"),
+        provider: t("search.result.hearing.providers"),
       )[column.to_sym]
     end
 
     def hearings_sort_column
-      @hearings_sort_column ||= 'date'
+      @hearings_sort_column ||= "date"
     end
 
     def hearings_sort_direction
-      @hearings_sort_direction ||= 'asc'
+      @hearings_sort_direction ||= "asc"
     end
 
-    private
+  private
 
     def sorter
       TableSorters::HearingsSorter.for(hearings, hearings_sort_column, hearings_sort_direction)

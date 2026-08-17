@@ -40,7 +40,7 @@ class Ability
     data_analyst_abilities if user.data_analyst?
   end
 
-  private
+private
 
   def caseworker_abilities
     can_search

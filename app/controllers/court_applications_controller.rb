@@ -19,7 +19,7 @@ class CourtApplicationsController < ApplicationController
     @application.application_reference
   end
 
-  private
+private
 
   def load_and_authorize_application
     @application = Cda::CourtApplication.find(params[:id])

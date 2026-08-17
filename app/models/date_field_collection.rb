@@ -22,7 +22,7 @@ class DateFieldCollection
   end
 
   def to_s
-    to_date&.strftime('%F')
+    to_date&.strftime("%F")
   end
 
   def to_date
