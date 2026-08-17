@@ -49,15 +49,28 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
     end
   end
 
+  describe "#case_urn_new_tab_url" do
+    it "returns a link that opens the case urn in a new tab" do
+      allow(helper).to receive(:prosecution_case_path).with("URN-1").and_return("/prosecution_cases/URN-1")
+
+      result = helper.case_urn_new_tab_url("URN-1")
+      expect(result).to include('href="/prosecution_cases/URN-1"')
+      expect(result).to include('target="_blank"')
+      expect(result).to include('rel="noopener"')
+      expect(result).to include("govuk-link govuk-link--no-visited-state")
+    end
+  end
+
   describe "#column_value" do
     let(:base_case) do
       {
         "defendant_first_name" => "John",
         "defendant_last_name" => "Doe",
-        "linked_at" => "2024-01-01",
         "case_urn" => "URN-1",
         "process_errors" => { error: "E", message: "M" },
         "defendant_id" => 555,
+        "linked_at" => "2024-02-01T12:00:00Z",
+        "defendant_date_of_birth" => "2024-02-02T12:00:00Z",
         "x" => "y",
       }
     end
@@ -71,11 +84,15 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
     end
 
     it "returns linked_at for auto_linked_at column" do
-      expect(helper.column_value("auto_linked_at", base_case)).to eq("2024-01-01")
+      expect(helper.column_value("auto_linked_at", base_case)).to eq("01/02/2024")
     end
 
     it "returns case_urn for case_urn_new_tab column" do
-      expect(helper.column_value("case_urn_new_tab", base_case)).to eq("URN-1")
+      expected_html = <<~HTML.chomp
+        <div class="tags"><a class="govuk-link govuk-link--no-visited-state" target="_blank" rel="noopener" href="/prosecution_cases/URN-1">URN-1</a></div>
+      HTML
+
+      expect(helper.column_value("case_urn_new_tab", base_case)).to eq(expected_html)
     end
 
     it "uses formatted_process_errors for reason_for_man_linking column" do
@@ -89,6 +106,14 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
       result = helper.column_value("link_maat_id", base_case)
       expect(result).to include('href="/link/555?urn=URN-1"')
       expect(result).to include("Link MAAT ID")
+    end
+
+    it "formats linked_at values for the linked_at column" do
+      expect(helper.column_value("linked_at", base_case)).to eq("01/02/2024")
+    end
+
+    it "formats defendant_date_of_birth values for the defendant_date_of_birth column" do
+      expect(helper.column_value("defendant_date_of_birth", base_case)).to eq("2 Feb 2024")
     end
 
     it "falls back to raw value for other columns" do
@@ -119,15 +144,15 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
                                                                       sort_direction: "asc")
     end
 
-    it 'sets direction to asc when currently sorted by the column in desc order' do
-      allow(helper).to receive_messages(params: ActionController::Parameters.new(tab: 'all',
-                                                                                 sort_direction: 'desc',
-                                                                                 sort_column: 'col'),
-                                        link_migrated_cases_path: '/dummy')
+    it "sets direction to asc when currently sorted by the column in desc order" do
+      allow(helper).to receive_messages(params: ActionController::Parameters.new(tab: "all",
+                                                                                 sort_direction: "desc",
+                                                                                 sort_column: "col"),
+                                        link_migrated_cases_path: "/dummy")
 
-      helper.link_migrated_cases_sorter_link('col')
-      expect(helper).to have_received(:link_migrated_cases_path).with(tab: 'all', sort_column: 'col',
-                                                                      sort_direction: 'asc')
+      helper.link_migrated_cases_sorter_link("col")
+      expect(helper).to have_received(:link_migrated_cases_path).with(tab: "all", sort_column: "col",
+                                                                      sort_direction: "asc")
     end
   end
 

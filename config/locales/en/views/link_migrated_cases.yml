@@ -10,7 +10,7 @@ en:
         court: Court
         defendant_date_of_birth: Date of birth
         defendant_name: Defendant name
-        link_maat_id: ""
+        link_maat_id: ''
         linked_at: Linked date
         linked_by: Linked by
         maat_id: MAAT ID

@@ -124,7 +124,7 @@ private
   def format_date(value, format)
     return if value.blank?
 
-    DateTime.parse(value).strftime(format)
+    Time.zone.parse(value).strftime(format)
   rescue ArgumentError
     value
   end
