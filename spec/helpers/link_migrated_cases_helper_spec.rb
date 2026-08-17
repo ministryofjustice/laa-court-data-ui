@@ -156,17 +156,6 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
       expect(helper).to have_received(:link_migrated_cases_path).with(tab: "all", sort_column: "col",
                                                                       sort_direction: "asc")
     end
-
-    it "sets direction to asc when currently sorted by the column in desc order" do
-      allow(helper).to receive_messages(params: ActionController::Parameters.new(tab: "all",
-                                                                                 sort_direction: "desc",
-                                                                                 sort_column: "col"),
-                                        link_migrated_cases_path: "/dummy")
-
-      helper.link_migrated_cases_sorter_link("col")
-      expect(helper).to have_received(:link_migrated_cases_path).with(tab: "all", sort_column: "col",
-                                                                      sort_direction: "asc")
-    end
   end
 
   describe "#link_migrated_cases_sorter_direction" do

@@ -78,14 +78,14 @@ Rails.application.routes.draw do
   resources :hearing_repull_batches, only: %i[new create show]
   resource :stats, only: %i[new]
 
-  post '/cookies/settings', to: 'cookies#create'
-  get '/cookies/settings', to: 'cookies#new'
-  get '/cookies', to: 'cookies#cookie_details'
-  get '/accessibility', to: 'pages#accessibility_statement'
+  post "/cookies/settings", to: "cookies#create"
+  get "/cookies/settings", to: "cookies#new"
+  get "/cookies", to: "cookies#cookie_details"
+  get "/accessibility", to: "pages#accessibility_statement"
 
   resources :link_migrated_cases, only: %i[index] do
     member do
-      get :link, to: 'show_link'
+      get :link, to: "show_link"
       post :link
     end
   end

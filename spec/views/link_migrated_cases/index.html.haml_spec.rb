@@ -148,10 +148,10 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
     it "renders case data rows" do
       render
-      expect_first_row_cells({ text: 'TEST12345', tag: 'Trial' }, 'John Smith', 'X123', 'Southwark',
-                             'Summary', 'MAAT application not found', {
-                               text: 'Link MAAT ID',
-                               href: link_link_migrated_case_path('12345678-1234-1234-1234-123456789012')
+      expect_first_row_cells({ text: "TEST12345", tag: "Trial" }, "John Smith", "X123", "Southwark",
+                             "Summary", "MAAT application not found", {
+                               text: "Link MAAT ID",
+                               href: link_link_migrated_case_path("12345678-1234-1234-1234-123456789012"),
                              })
     end
 

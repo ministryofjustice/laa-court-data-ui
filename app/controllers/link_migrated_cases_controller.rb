@@ -57,7 +57,7 @@ class LinkMigratedCasesController < ApplicationController
   end
 
   def link
-    authorize! :create, :link_maat_reference, message: I18n.t('unauthorized.default')
+    authorize! :create, :link_maat_reference, message: I18n.t("unauthorized.default")
 
     @form_model = new_link_attempt
     validate_link_attempt!
@@ -65,7 +65,7 @@ class LinkMigratedCasesController < ApplicationController
     Cda::ProsecutionCaseLaaReference.create!(@form_model.to_link_attributes)
 
     redirect_to link_link_migrated_case_path(@migrated_case.id),
-                flash: { success_moj_banner: I18n.t('laa_reference.link.success') }
+                flash: { success_moj_banner: I18n.t("laa_reference.link.success") }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
     render :show_link
@@ -77,7 +77,7 @@ class LinkMigratedCasesController < ApplicationController
     @prosecution_case_reference ||= params[:urn]
   end
 
-  private
+private
 
   def fetch_counts
     TABS.index_with do |status|
@@ -117,12 +117,12 @@ class LinkMigratedCasesController < ApplicationController
     LinkAttempt.new(
       defendant_id: @defendant.id,
       username: current_user.username,
-      maat_reference: params.dig(:link_attempt, :maat_reference)
+      maat_reference: params.dig(:link_attempt, :maat_reference),
     )
   end
 
   def validate_link_attempt!
-    if params[:maat_ref_required] == 'true'
+    if params[:maat_ref_required] == "true"
       @form_model.validate!(:maat_ref_required)
     else
       @form_model.maat_reference = nil
@@ -152,12 +152,12 @@ class LinkMigratedCasesController < ApplicationController
   def set_breadcrumbs
     add_breadcrumb :link_migrated_cases_breadcrumb_home, :new_search_filter_path
     add_breadcrumb :link_migrated_cases_breadcrumb_title, link_migrated_cases_path(tab: :action_required)
-    add_breadcrumb 'Link' if action_name.in?(%w[show_link link])
+    add_breadcrumb "Link" if action_name.in?(%w[show_link link])
   end
 
   def handle_link_failure(message, exception = nil)
     logger.warn "LINK MIGRATED CASE FAILURE (params: #{@form_model.as_json}): #{message}"
     @form_model.errors.add(:maat_reference,
-                           cda_error_string(exception) || t('cda_errors.internal_server_error'))
+                           cda_error_string(exception) || t("cda_errors.internal_server_error"))
   end
 end

@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
-  factory :offence_summary, class: 'Cda::OffenceSummary' do
-    code { 'PT00011' }
+  factory :offence_summary, class: "Cda::OffenceSummary" do
+    code { "PT00011" }
     order_index { 1 }
     title { "Assisting prisoners to escape" }
     legislation { "Firearms Act 1968 s.3" }

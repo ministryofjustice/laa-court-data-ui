@@ -34,21 +34,15 @@ module LinkMigratedCasesHelper
   def formatted_process_errors(process_errors)
     return process_errors unless process_errors.as_json.is_a?(Hash)
 
-    formatted_values = process_errors.with_indifferent_access.slice(:error, :message).values.compact_blank
+    formatted_values = process_errors.as_json.with_indifferent_access.slice(:error,
+                                                                            :message).values.compact_blank
     formatted_values.join(" - ").presence || process_errors.to_s
   end
 
   def link_maat_id_url(id)
     link_to("Link MAAT ID",
-            link_defendant_path(defendant_id, urn: case_urn),
+            link_link_migrated_case_path(id),
             class: "govuk-link govuk-link--no-visited-state")
-  end
-
-  def case_urn_new_tab_url(case_urn)
-    link_to(case_urn,
-            prosecution_case_path(case_urn),
-            class: "govuk-link govuk-link--no-visited-state",
-            target: "_blank", rel: "noopener")
   end
 
   def case_urn_new_tab_url(case_urn)
@@ -125,7 +119,7 @@ private
   end
 
   def handle_action(m_case)
-    link_maat_id_url(m_case["defendant_id"], m_case["case_urn"])
+    link_maat_id_url(m_case["id"])
   end
 
   def handle_linked_at(m_case)
