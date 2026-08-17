@@ -8,7 +8,7 @@ RSpec.describe Cda::LinkMigratedCasesService do
 
     context "with default params", :stub_link_migrated_cases do
       it "returns a hash with pagination envelope" do
-        expect(result).to include("total_results" => 3, "page" => 1, "per_page" => 10)
+        expect(result).to include("total_results" => 9, "page" => 1, "per_page" => 10)
       end
 
       it "returns results as an array of hashes" do
@@ -16,7 +16,7 @@ RSpec.describe Cda::LinkMigratedCasesService do
       end
 
       it "returns the correct number of results" do
-        expect(result["results"].size).to eq(3)
+        expect(result["results"].size).to eq(9)
       end
 
       it "exposes case attributes on each result" do
@@ -38,7 +38,7 @@ RSpec.describe Cda::LinkMigratedCasesService do
       end
 
       it "passes status as a query param" do
-        expect(result).to include("total_results" => 3)
+        expect(result).to include("total_results" => 9)
       end
     end
 
@@ -56,7 +56,7 @@ RSpec.describe Cda::LinkMigratedCasesService do
       end
 
       it "passes page and per_page as query params" do
-        expect(result).to include("total_results" => 3)
+        expect(result).to include("total_results" => 9)
       end
     end
 

@@ -14,10 +14,26 @@ module LinkMigratedCasesHelper
     "defendant_date_of_birth" => { width: "120px", sortable: true, i18n_key: "defendant_date_of_birth" },
     "linked_at" => { width: "120px", sortable: true, i18n_key: "linked_at" },
     "linked_by" => { width: "120px", sortable: true, i18n_key: "linked_by" },
+    "link_maat_id" => { width: "120px", sortable: false, i18n_key: "link_maat_id" },
   }.freeze
 
   def column_config(col)
     COLUMN_CONFIG[col]
+  end
+
+  def formatted_process_errors(process_errors)
+    return process_errors unless process_errors.is_a?(Hash)
+
+    formatted_values = process_errors.with_indifferent_access.slice(:error, :message).values.compact_blank
+    formatted_values.join(" - ").presence || process_errors.to_s
+  end
+
+  def link_maat_id_url(defendant_id, case_urn)
+    # TODO: Replace this link when the "Link court data" page is created
+    # Using Defendant Link MAAT ID page instead for now
+    link_to("Link MAAT ID",
+            link_defendant_path(defendant_id, urn: case_urn),
+            class: "govuk-link govuk-link--no-visited-state")
   end
 
   def column_value(column, m_case)
@@ -26,7 +42,8 @@ module LinkMigratedCasesHelper
                                 m_case["defendant_last_name"]].compact.join(" ")
     when "auto_linked_at" then m_case["linked_at"]
     when "case_urn_new_tab" then m_case["case_urn"]
-    when "reason_for_man_linking" then m_case["process_errors"]
+    when "reason_for_man_linking" then formatted_process_errors(m_case["process_errors"])
+    when "link_maat_id" then link_maat_id_url(m_case["defendant_id"], m_case["case_urn"])
     else m_case[column]
     end
   end

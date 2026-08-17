@@ -5,11 +5,11 @@
     %nav.moj-sub-navigation
       %ul.moj-sub-navigation__list
         %li.moj-sub-navigation__item
-          - if @tab == "need_linking"
-            %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: "need_linking"), "aria-current": "page" }
-              Need linking (#{@cases_count["need_linking"]})
+          - if @tab == "action_required"
+            %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: "action_required"), "aria-current": "page" }
+              Need linking (#{@cases_count["action_required"]})
           - else
-            = link_to "Need linking (#{@cases_count['need_linking']})", link_migrated_cases_path(tab: "need_linking"), class: "moj-sub-navigation__link"
+            = link_to "Need linking (#{@cases_count['action_required']})", link_migrated_cases_path(tab: "action_required"), class: "moj-sub-navigation__link"
         %li.moj-sub-navigation__item
           - if @tab == "manually_linked"
             %a.moj-sub-navigation__link{ href: link_migrated_cases_path(tab: "manually_linked"), "aria-current": "page" }

@@ -10,11 +10,12 @@ en:
         court: Court
         defendant_date_of_birth: Date of birth
         defendant_name: Defendant name
+        link_maat_id: ''
         linked_at: Linked date
         linked_by: Linked by
         maat_id: MAAT ID
         mode_of_trial: Mode of trial
         reason_for_man_linking_html: Reason for<br>man. linking
         xhibit_ref: Xhibit ref.
-      no_results: No link migrated cases found
+      no_results: No migrated cases found
       page_title: Link migrated cases
