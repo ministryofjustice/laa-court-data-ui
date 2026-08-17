@@ -110,7 +110,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
   it "renders the table with column headers" do
     render
-    expect_table_headers("Case URN", "Defendant name", "Xhibit ref.", "Court", "Mode of trial")
+    expect_table_headers("URN", "Defendant name", "Xhibit ref.", "Court", "Mode of trial")
   end
 
   it "renders case data rows" do
@@ -141,7 +141,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
     it "renders the table with column headers" do
       render
-      expect_table_headers("Case URN", "Defendant name", "Xhibit ref.", "Court", "Mode of trial",
+      expect_table_headers("URN", "Defendant name", "Xhibit ref.", "Court", "Mode of trial",
                            /Reason for/, "")
     end
 
@@ -174,8 +174,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
     it "renders the table with column headers" do
       render
-      expect_table_headers(/Case URN/, "MAAT ID", "Defendant name", "Date of birth", "Linked date",
-                           "Linked by")
+      expect_table_headers("URN", "MAAT ID", "Defendant name", "Date of birth", "Linked date", "Linked by")
     end
 
     it "renders case data rows" do
@@ -203,7 +202,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
     it "renders the table with column headers" do
       render
-      expect_table_headers(/Case URN/, "MAAT ID", "Defendant name", "Date of birth", "Auto linked date")
+      expect_table_headers("URN", "MAAT ID", "Defendant name", "Date of birth", "Auto linked date")
     end
 
     it "renders case data rows" do
