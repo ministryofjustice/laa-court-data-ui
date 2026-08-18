@@ -5,7 +5,7 @@ class LinkMigratedCasesController < ApplicationController
   before_action :load_and_authorize_access,
                 :load_defendant,
                 :load_prosecution_case,
-                :load_offence_history, only: %i[show_link link offences]
+                :load_offence_histories, only: %i[show_link link offences]
   before_action :check_feature_flag, :set_breadcrumbs
 
   SORTABLE_COLUMNS = %w[auto_linked_at
@@ -142,16 +142,12 @@ private
     @defendant = Cda::Defendant.find_from_id_and_urn(@migrated_case.defendant_id, @migrated_case.case_urn)
   end
 
-  def load_offence_histories
-    Cda::OffenceHistoryCollection.find_from_id_and_urn(params[:id], prosecution_case_reference)
-  end
-
   def load_prosecution_case
     @prosecution_case_search = Cda::CaseSummaryService.new(@migrated_case.case_urn)
     @prosecution_case = helpers.decorate(@prosecution_case_search.call, Cda::CaseSummaryDecorator)
   end
 
-  def load_offence_history
+  def load_offence_histories
     @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(@migrated_case.defendant_id,
                                                                                      @migrated_case.case_urn)
   end

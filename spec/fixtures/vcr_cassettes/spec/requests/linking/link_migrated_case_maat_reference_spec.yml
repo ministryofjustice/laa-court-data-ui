@@ -1,309 +1,313 @@
 ---
 http_interactions:
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/link_migrated_cases/97140ef9-3a85-4d9a-89b0-eccca35486a1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"49ddcc16ad81bf2847195592631716b1"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.008312'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.00, sql.active_record;dur=0.78, instantiation.active_record;dur=2.86,
-        process_action.action_controller;dur=4.76
-      Content-Length:
-      - '733'
-    body:
-      encoding: UTF-8
-      string: '{"id":"97140ef9-3a85-4d9a-89b0-eccca35486a1","case_urn":"XAOOWDPTITQ","xhibit_case_number":"T20254007","court_name":"Derby
-        Justice Centre","ou_code":"B30PI00","case_type":"T","case_sub_type":"Either
-        way offence","mode_of_trial":"Either way","defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","defendant_first_name":"John","defendant_middle_name":null,"defendant_last_name":"Yundt","defendant_date_of_birth":"1987-05-21","defendant_arrest_summons_number":"XVITYX8RAIHZ","committal_date":null,"sent_date":"2019-10-25","created_at":"2026-08-06T11:47:06.409Z","updated_at":"2026-08-12T11:06:06.508Z","status":"action_required","maat_id":null,"linked_at":null,"linked_by":null,"process_errors":{"message":"MAAT
-        application not found"}}'
-  recorded_at: Tue, 18 Aug 2026 16:05:46 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/link_migrated_cases/97140ef9-3a85-4d9a-89b0-eccca35486a1
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"49ddcc16ad81bf2847195592631716b1"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.010799'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, sql.active_record;dur=1.29, instantiation.active_record;dur=0.07,
-        process_action.action_controller;dur=3.55
-      Content-Length:
-      - '733'
-    body:
-      encoding: UTF-8
-      string: '{"id":"97140ef9-3a85-4d9a-89b0-eccca35486a1","case_urn":"XAOOWDPTITQ","xhibit_case_number":"T20254007","court_name":"Derby
-        Justice Centre","ou_code":"B30PI00","case_type":"T","case_sub_type":"Either
-        way offence","mode_of_trial":"Either way","defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","defendant_first_name":"John","defendant_middle_name":null,"defendant_last_name":"Yundt","defendant_date_of_birth":"1987-05-21","defendant_arrest_summons_number":"XVITYX8RAIHZ","committal_date":null,"sent_date":"2019-10-25","created_at":"2026-08-06T11:47:06.409Z","updated_at":"2026-08-12T11:06:06.508Z","status":"action_required","maat_id":null,"linked_at":null,"linked_by":null,"process_errors":{"message":"MAAT
-        application not found"}}'
-  recorded_at: Tue, 18 Aug 2026 16:06:01 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/prosecution_cases/XAOOWDPTITQ/defendants/353d829f-a3e6-425e-b325-f6f13c059f0b
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"f471be39232ffab106b1a08706a1da82"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.783907'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, sql.active_record;dur=75.17,
-        instantiation.active_record;dur=9.22, start_transaction.active_record;dur=0.01,
-        transaction.active_record;dur=204.22, process_action.action_controller;dur=734.80
-      Content-Length:
-      - '1294'
-    body:
-      encoding: UTF-8
-      string: '{"id":"353d829f-a3e6-425e-b325-f6f13c059f0b","first_name":"Zachary","middle_name":"Cole","last_name":"Hansen","name":null,"arrest_summons_number":"ZLXVIUB269MA","date_of_birth":"1994-08-25","national_insurance_number":"AE946533A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"d377c5e6-b654-413c-9833-f3ed056c7afb","code":"PT00011","order_index":1,"mode_of_trial":"Either
-        way","start_date":"2019-10-17","title":"Facilitating child prostitution","wording":"Random
-        string","proceedings_concluded":false,"legislation":"Forgery and Counterfeiting
-        Act 1981 s.15","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":null,"id":"cd5c62d4-2053-4db5-bc48-21f69c274c9a","status_code":"AP","status_date":"2026-08-13","description":"FAKE
-        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{"date":"2026-08-11","type":{"id":"45e68cfa-efee-410a-8ae4-93ca889dd4c7","description":"Guilty","category":"Guilty","category_type":"GUILTY","cjs_verdict_code":"644384844","verdict_code":"649722162","sequence":3460},"offence_id":"d377c5e6-b654-413c-9833-f3ed056c7afb","originating_hearing_id":"f9f20b68-6685-4274-901f-9a0bbe34401f"},"plea":{},"pleas":[]}],"application_summaries":[],"maat_reference":null}'
-  recorded_at: Tue, 18 Aug 2026 16:06:05 GMT
-- request:
-    method: post
-    uri: http://localhost:3000/api/internal/v2/prosecution_cases//
-    body:
-      encoding: UTF-8
-      string: '{"filter":{"prosecution_case_reference":"XAOOWDPTITQ"}}'
-    headers:
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"60a3b2f7f96493ff05e79e5b30a1b304"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.261839'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.01, sql.active_record;dur=10.95,
-        instantiation.active_record;dur=0.42, start_transaction.active_record;dur=0.02,
-        transaction.active_record;dur=14.79, process_action.action_controller;dur=241.11
-      Content-Length:
-      - '2229'
-    body:
-      encoding: UTF-8
-      string: '{"total_results":1,"results":[{"prosecution_case_reference":"XAOOWDPTITQ","case_status":"ACTIVE","defendant_summaries":[{"id":"353d829f-a3e6-425e-b325-f6f13c059f0b","first_name":"Zachary","middle_name":"Cole","last_name":"Hansen","name":null,"arrest_summons_number":"ZLXVIUB269MA","date_of_birth":"1994-08-25","national_insurance_number":"AE946533A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"d377c5e6-b654-413c-9833-f3ed056c7afb","code":"PT00011","order_index":1,"mode_of_trial":"Either
-        way","start_date":"2019-10-17","title":"Facilitating child prostitution","wording":"Random
-        string","proceedings_concluded":false,"legislation":"Forgery and Counterfeiting
-        Act 1981 s.15","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":null,"id":"cd5c62d4-2053-4db5-bc48-21f69c274c9a","status_code":"AP","status_date":"2026-08-13","description":"FAKE
-        NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{"date":"2026-08-11","type":{"id":"45e68cfa-efee-410a-8ae4-93ca889dd4c7","description":"Guilty","category":"Guilty","category_type":"GUILTY","cjs_verdict_code":"644384844","verdict_code":"649722162","sequence":3460},"offence_id":"d377c5e6-b654-413c-9833-f3ed056c7afb","originating_hearing_id":"f9f20b68-6685-4274-901f-9a0bbe34401f"},"plea":{},"pleas":[]}],"application_summaries":[],"maat_reference":null}],"hearing_summaries":[{"id":"d1bc6f66-fcb8-4e2a-8012-f39b39cf488c","hearing_type":"Plea
-        and Trial Preparation (PTP)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"e2b8580f-5247-30f9-905f-4b8136b23318","name":"Nottingham
-        Crown Court","welsh_name":"Llys Y Goron Nottingham","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C31NT","oucode_l2_code":"31","code":"C31NT00","address":{"address_1":"The
-        Law Courts","address_2":"60 Canal Street","address_3":"Nottingham","address_4":"","address_5":"","postcode":"NG1
-        7EL"}},"hearing_days":[{"sitting_day":"2026-08-11T00:00:00.000Z","listing_sequence":7,"listed_duration_minutes":315,"has_shared_results":false}],"defence_counsels":[]}]}]}'
-  recorded_at: Tue, 18 Aug 2026 16:06:05 GMT
-- request:
-    method: get
-    uri: http://localhost:3000/api/internal/v2/prosecution_cases/XAOOWDPTITQ/defendants/353d829f-a3e6-425e-b325-f6f13c059f0b/offence_history
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer <BEARER_TOKEN>
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      X-Request-Id:
-      - 432b2759-60f7-4a9e-8b99-da80c2857347
-      Content-Type:
-      - application/vnd.api+json; charset=utf-8
-      Vary:
-      - Accept
-      Etag:
-      - W/"ae661bfc0a28b0c89848ecd7192083dd"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Runtime:
-      - '0.095155'
-      Server-Timing:
-      - start_processing.action_controller;dur=0.00, sql.active_record;dur=5.28, instantiation.active_record;dur=0.13,
-        start_transaction.active_record;dur=0.01, transaction.active_record;dur=6.65,
-        process_action.action_controller;dur=90.78
-      Content-Length:
-      - '161'
-    body:
-      encoding: UTF-8
-      string: '{"defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","offence_histories":[{"id":"d377c5e6-b654-413c-9833-f3ed056c7afb","pleas":[],"mode_of_trial_reasons":[]}]}'
-  recorded_at: Tue, 18 Aug 2026 16:06:06 GMT
+  - request:
+      method: get
+      uri: http://localhost:3000/api/internal/v2/link_migrated_cases/97140ef9-3a85-4d9a-89b0-eccca35486a1
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        Accept:
+          - application/json
+        Content-Type:
+          - application/json
+        Authorization:
+          - Bearer <BEARER_TOKEN>
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Xss-Protection:
+          - 1; mode=block
+        X-Content-Type-Options:
+          - nosniff
+        X-Download-Options:
+          - noopen
+        X-Permitted-Cross-Domain-Policies:
+          - none
+        Referrer-Policy:
+          - strict-origin-when-cross-origin
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Content-Type:
+          - application/vnd.api+json; charset=utf-8
+        Vary:
+          - Accept
+        Etag:
+          - W/"49ddcc16ad81bf2847195592631716b1"
+        Cache-Control:
+          - max-age=0, private, must-revalidate
+        X-Runtime:
+          - "0.008312"
+        Server-Timing:
+          - start_processing.action_controller;dur=0.00, sql.active_record;dur=0.78, instantiation.active_record;dur=2.86,
+            process_action.action_controller;dur=4.76
+        Content-Length:
+          - "733"
+      body:
+        encoding: UTF-8
+        string:
+          '{"id":"97140ef9-3a85-4d9a-89b0-eccca35486a1","case_urn":"TESTCASE001","xhibit_case_number":"T20251234","court_name":"Any
+          Justice Centre","ou_code":"B30PI00","case_type":"T","case_sub_type":"Either
+          way offence","mode_of_trial":"Either way","defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","defendant_first_name":"Peter","defendant_middle_name":null,"defendant_last_name":"Rabbit","defendant_date_of_birth":"1987-05-21","defendant_arrest_summons_number":"XPETER8RABBIT","committal_date":null,"sent_date":"2019-10-25","created_at":"2026-08-06T11:47:06.409Z","updated_at":"2026-08-12T11:06:06.508Z","status":"action_required","maat_id":null,"linked_at":null,"linked_by":null,"process_errors":{"message":"MAAT
+          application not found"}}'
+    recorded_at: Tue, 18 Aug 2026 16:05:46 GMT
+  - request:
+      method: get
+      uri: http://localhost:3000/api/internal/v2/link_migrated_cases/97140ef9-3a85-4d9a-89b0-eccca35486a1
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        Accept:
+          - application/json
+        Content-Type:
+          - application/json
+        Authorization:
+          - Bearer <BEARER_TOKEN>
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Xss-Protection:
+          - 1; mode=block
+        X-Content-Type-Options:
+          - nosniff
+        X-Download-Options:
+          - noopen
+        X-Permitted-Cross-Domain-Policies:
+          - none
+        Referrer-Policy:
+          - strict-origin-when-cross-origin
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Content-Type:
+          - application/vnd.api+json; charset=utf-8
+        Vary:
+          - Accept
+        Etag:
+          - W/"49ddcc16ad81bf2847195592631716b1"
+        Cache-Control:
+          - max-age=0, private, must-revalidate
+        X-Runtime:
+          - "0.010799"
+        Server-Timing:
+          - start_processing.action_controller;dur=0.01, sql.active_record;dur=1.29, instantiation.active_record;dur=0.07,
+            process_action.action_controller;dur=3.55
+        Content-Length:
+          - "733"
+      body:
+        encoding: UTF-8
+        string:
+          '{"id":"97140ef9-3a85-4d9a-89b0-eccca35486a1","case_urn":"TESTCASE001","xhibit_case_number":"T20251234","court_name":"Any
+          Justice Centre","ou_code":"B30PI00","case_type":"T","case_sub_type":"Either
+          way offence","mode_of_trial":"Either way","defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","defendant_first_name":"Peter","defendant_middle_name":null,"defendant_last_name":"Rabbit","defendant_date_of_birth":"1987-05-21","defendant_arrest_summons_number":"XPETER8RABBIT","committal_date":null,"sent_date":"2019-10-25","created_at":"2026-08-06T11:47:06.409Z","updated_at":"2026-08-12T11:06:06.508Z","status":"action_required","maat_id":null,"linked_at":null,"linked_by":null,"process_errors":{"message":"MAAT
+          application not found"}}'
+    recorded_at: Tue, 18 Aug 2026 16:06:01 GMT
+  - request:
+      method: get
+      uri: http://localhost:3000/api/internal/v2/prosecution_cases/TESTCASE001/defendants/353d829f-a3e6-425e-b325-f6f13c059f0b
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        Accept:
+          - application/json
+        Content-Type:
+          - application/json
+        Authorization:
+          - Bearer <BEARER_TOKEN>
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Xss-Protection:
+          - 1; mode=block
+        X-Content-Type-Options:
+          - nosniff
+        X-Download-Options:
+          - noopen
+        X-Permitted-Cross-Domain-Policies:
+          - none
+        Referrer-Policy:
+          - strict-origin-when-cross-origin
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Content-Type:
+          - application/vnd.api+json; charset=utf-8
+        Vary:
+          - Accept
+        Etag:
+          - W/"f471be39232ffab106b1a08706a1da82"
+        Cache-Control:
+          - max-age=0, private, must-revalidate
+        X-Runtime:
+          - "0.783907"
+        Server-Timing:
+          - start_processing.action_controller;dur=0.01, sql.active_record;dur=75.17,
+            instantiation.active_record;dur=9.22, start_transaction.active_record;dur=0.01,
+            transaction.active_record;dur=204.22, process_action.action_controller;dur=734.80
+        Content-Length:
+          - "1294"
+      body:
+        encoding: UTF-8
+        string:
+          '{"id":"353d829f-a3e6-425e-b325-f6f13c059f0b","first_name":"Peter","middle_name":"Cole","last_name":"Rabbit","name":null,"arrest_summons_number":"ABCDEFG269MA","date_of_birth":"1994-08-25","national_insurance_number":"AE123456A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"d377c5e6-b654-413c-9833-f3ed056c7afb","code":"PT00011","order_index":1,"mode_of_trial":"Either
+          way","start_date":"2019-10-17","title":"Facilitating child prostitution","wording":"Random
+          string","proceedings_concluded":false,"legislation":"Forgery and Counterfeiting
+          Act 1981 s.15","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":null,"id":"cd5c62d4-2053-4db5-bc48-21f69c274c9a","status_code":"AP","status_date":"2026-08-13","description":"FAKE
+          NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{"date":"2026-08-11","type":{"id":"45e68cfa-efee-410a-8ae4-93ca889dd4c7","description":"Guilty","category":"Guilty","category_type":"GUILTY","cjs_verdict_code":"644384844","verdict_code":"649722162","sequence":3460},"offence_id":"d377c5e6-b654-413c-9833-f3ed056c7afb","originating_hearing_id":"f9f20b68-6685-4274-901f-9a0bbe34401f"},"plea":{},"pleas":[]}],"application_summaries":[],"maat_reference":null}'
+    recorded_at: Tue, 18 Aug 2026 16:06:05 GMT
+  - request:
+      method: post
+      uri: http://localhost:3000/api/internal/v2/prosecution_cases//
+      body:
+        encoding: UTF-8
+        string: '{"filter":{"prosecution_case_reference":"TESTCASE001"}}'
+      headers:
+        Content-Type:
+          - application/json
+        Authorization:
+          - Bearer <BEARER_TOKEN>
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Xss-Protection:
+          - 1; mode=block
+        X-Content-Type-Options:
+          - nosniff
+        X-Download-Options:
+          - noopen
+        X-Permitted-Cross-Domain-Policies:
+          - none
+        Referrer-Policy:
+          - strict-origin-when-cross-origin
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Content-Type:
+          - application/vnd.api+json; charset=utf-8
+        Vary:
+          - Accept
+        Etag:
+          - W/"60a3b2f7f96493ff05e79e5b30a1b304"
+        Cache-Control:
+          - max-age=0, private, must-revalidate
+        X-Runtime:
+          - "0.261839"
+        Server-Timing:
+          - start_processing.action_controller;dur=0.01, sql.active_record;dur=10.95,
+            instantiation.active_record;dur=0.42, start_transaction.active_record;dur=0.02,
+            transaction.active_record;dur=14.79, process_action.action_controller;dur=241.11
+        Content-Length:
+          - "2229"
+      body:
+        encoding: UTF-8
+        string:
+          '{"total_results":1,"results":[{"prosecution_case_reference":"TESTCASE001","case_status":"ACTIVE","defendant_summaries":[{"id":"353d829f-a3e6-425e-b325-f6f13c059f0b","first_name":"Peter","middle_name":"Cole","last_name":"Rabbit","name":null,"arrest_summons_number":"ABCDEFG269MA","date_of_birth":"1994-08-25","national_insurance_number":"AE123456A","proceedings_concluded":false,"representation_order":{},"offence_summaries":[{"id":"d377c5e6-b654-413c-9833-f3ed056c7afb","code":"PT00011","order_index":1,"mode_of_trial":"Either
+          way","start_date":"2019-10-17","title":"Facilitating child prostitution","wording":"Random
+          string","proceedings_concluded":false,"legislation":"Forgery and Counterfeiting
+          Act 1981 s.15","arrest_date":"2019-10-17","charge_date":"2019-10-17","laa_application":{"reference":null,"id":"cd5c62d4-2053-4db5-bc48-21f69c274c9a","status_code":"AP","status_date":"2026-08-13","description":"FAKE
+          NEWS","effective_start_date":null,"effective_end_date":null,"contract_number":null},"verdict":{"date":"2026-08-11","type":{"id":"45e68cfa-efee-410a-8ae4-93ca889dd4c7","description":"Guilty","category":"Guilty","category_type":"GUILTY","cjs_verdict_code":"644384844","verdict_code":"649722162","sequence":3460},"offence_id":"d377c5e6-b654-413c-9833-f3ed056c7afb","originating_hearing_id":"f9f20b68-6685-4274-901f-9a0bbe34401f"},"plea":{},"pleas":[]}],"application_summaries":[],"maat_reference":null}],"hearing_summaries":[{"id":"d1bc6f66-fcb8-4e2a-8012-f39b39cf488c","hearing_type":"Plea
+          and Trial Preparation (PTP)","estimated_duration":null,"defendant_ids":["ecca893f-0928-4fc6-ae50-6a8794b78c5c"],"jurisdiction_type":"CROWN","court_centre":{"id":"e2b8580f-5247-30f9-905f-4b8136b23318","name":"Any
+          Crown Court","welsh_name":"Fake","room_id":null,"room_name":null,"welsh_room_name":null,"welsh_court_centre":null,"short_oucode":"C31NT","oucode_l2_code":"31","code":"C31NT00","address":{"address_1":"The
+          Law Courts","address_2":"123 Any Street","address_3":"World","address_4":"","address_5":"","postcode":"WL1
+          1AA"}},"hearing_days":[{"sitting_day":"2026-08-11T00:00:00.000Z","listing_sequence":7,"listed_duration_minutes":315,"has_shared_results":false}],"defence_counsels":[]}]}]}'
+    recorded_at: Tue, 18 Aug 2026 16:06:05 GMT
+  - request:
+      method: get
+      uri: http://localhost:3000/api/internal/v2/prosecution_cases/TESTCASE001/defendants/353d829f-a3e6-425e-b325-f6f13c059f0b/offence_history
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        Accept:
+          - application/json
+        Content-Type:
+          - application/json
+        Authorization:
+          - Bearer <BEARER_TOKEN>
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        User-Agent:
+          - Ruby
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        X-Frame-Options:
+          - SAMEORIGIN
+        X-Xss-Protection:
+          - 1; mode=block
+        X-Content-Type-Options:
+          - nosniff
+        X-Download-Options:
+          - noopen
+        X-Permitted-Cross-Domain-Policies:
+          - none
+        Referrer-Policy:
+          - strict-origin-when-cross-origin
+        X-Request-Id:
+          - 432b2759-60f7-4a9e-8b99-da80c2857347
+        Content-Type:
+          - application/vnd.api+json; charset=utf-8
+        Vary:
+          - Accept
+        Etag:
+          - W/"ae661bfc0a28b0c89848ecd7192083dd"
+        Cache-Control:
+          - max-age=0, private, must-revalidate
+        X-Runtime:
+          - "0.095155"
+        Server-Timing:
+          - start_processing.action_controller;dur=0.00, sql.active_record;dur=5.28, instantiation.active_record;dur=0.13,
+            start_transaction.active_record;dur=0.01, transaction.active_record;dur=6.65,
+            process_action.action_controller;dur=90.78
+        Content-Length:
+          - "161"
+      body:
+        encoding: UTF-8
+        string: '{"defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","offence_histories":[{"id":"d377c5e6-b654-413c-9833-f3ed056c7afb","pleas":[],"mode_of_trial_reasons":[]}]}'
+    recorded_at: Tue, 18 Aug 2026 16:06:06 GMT
 recorded_with: VCR 6.4.0
