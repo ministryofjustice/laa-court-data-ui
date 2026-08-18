@@ -30,10 +30,8 @@ en:
       court_name: Court
       date_of_birth: Date of birth
       latest_hearing_date: Latest hearing date
-      maat_number: MAAT ID
       name: Name
       nino: NI number
-      not_linked: Not linked
       reason_for_man_linking: Reason for manual linking
       title: Link court data
       xhibit_ref: Xhibit reference

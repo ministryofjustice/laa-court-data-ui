@@ -11,5 +11,9 @@ FactoryBot.define do
     court_name { "Any Court" }
     case_type { "T" }
     process_errors { { "message" => "MAAT application not found" } }
+
+    trait :action_required do
+      status { "action_required" }
+    end
   end
 end

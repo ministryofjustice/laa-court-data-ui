@@ -5,7 +5,7 @@ class LinkMigratedCasesController < ApplicationController
   before_action :load_and_authorize_access,
                 :load_defendant,
                 :load_prosecution_case,
-                :load_offence_history, only: %i[show_link link]
+                :load_offence_history, only: %i[show_link link offences]
   before_action :check_feature_flag, :set_breadcrumbs
 
   SORTABLE_COLUMNS = %w[auto_linked_at
@@ -73,8 +73,11 @@ class LinkMigratedCasesController < ApplicationController
     render :show_link
   end
 
-  def prosecution_case_reference
-    @prosecution_case_reference ||= params[:urn]
+  def offences
+    authorize! :create, :link_maat_reference, message: I18n.t("unauthorized.default")
+
+    @offence_ids = params[:offence_ids]&.split(",")
+    render :offences, layout: false
   end
 
 private
@@ -137,6 +140,10 @@ private
 
   def load_defendant
     @defendant = Cda::Defendant.find_from_id_and_urn(@migrated_case.defendant_id, @migrated_case.case_urn)
+  end
+
+  def load_offence_histories
+    Cda::OffenceHistoryCollection.find_from_id_and_urn(params[:id], prosecution_case_reference)
   end
 
   def load_prosecution_case

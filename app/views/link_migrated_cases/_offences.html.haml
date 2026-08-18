@@ -12,6 +12,7 @@
       %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("search.result.offence.title")
       %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("search.result.offence.plea")
       %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("search.result.offence.mode_of_trial")
+      %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("search.result.offence.verdict")
   %tbody.govuk-table__body
     - decorate_each(decorated_defendant.filtered_offence_summaries(offence_ids), OffenceDecorator) do |offence|
       - offence.offence_histories = offence_history_collection
@@ -32,5 +33,10 @@
             #{offence.mode_of_trial}:
             %br
             = offence.mode_of_trial_reason_list
+          - else
+            = t("search.result.loading")
+        %td.govuk-table__cell
+          - if offence.verdict
+            = offence.verdict.type.description || t("generic.not_available")
           - else
             = t("search.result.loading")

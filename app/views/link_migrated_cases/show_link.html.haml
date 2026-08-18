@@ -36,14 +36,6 @@
             = @defendant.arrest_summons_number
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".maat_number")
-          %td.govuk-table__cell
-            - if @defendant.maat_reference.present?
-              %span#defendant-maat-number= @defendant.maat_reference
-            - else
-              = t(".not_linked")
-        %tr.govuk-table__row
-          %th.govuk-table__header{ scope: "row" }
             = t(".nino")
           %td.govuk-table__cell
             = @defendant.national_insurance_number
@@ -75,27 +67,26 @@
 
 .govuk-grid-row
   .govuk-grid-column-full
-    %turbo-frame#offence-table{ src: offences_defendant_path(@migrated_case.defendant_id, urn: @migrated_case.case_urn) }
-      = render partial: "link_migrated_cases/offences", locals: { defendant: @defendant, offence_history_collection: @offence_history_collection }
+    %turbo-frame#offence-table{ src: offences_link_migrated_case_path(@migrated_case.id, offence_ids: @offence_history_collection.offence_histories.map(&:id).join(",")) }
+      = render partial: "offences", locals: { defendant: @defendant, offence_history_collection: @offence_history_collection }
 
-- if @defendant.maat_reference.blank?
-  = form_with(model: @form_model, url: link_link_migrated_case_path(@migrated_case.id), data: { turbo: false }) do |f|
-    - content_for :error_summary do
-      = f.govuk_error_summary
+= form_with(model: @form_model, url: link_link_migrated_case_path(@migrated_case.id), data: { turbo: false }) do |f|
+  - content_for :error_summary do
+    = f.govuk_error_summary
 
-    .govuk-grid-row
-      .govuk-grid-column-two-thirds
-        = f.govuk_text_field :maat_reference,
-                             label: { text: t("laa_reference.link.form.maat_reference.label") },
-                             hint: { text: t("laa_reference.link.form.maat_reference.hint") }
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      = f.govuk_text_field :maat_reference,
+                           label: { text: t("laa_reference.link.form.maat_reference.label") },
+                           hint: { text: t("laa_reference.link.form.maat_reference.hint") }
 
-        .govuk-inset-text
-          This will create a link between the application and the court data source.
+      .govuk-inset-text
+        This will create a link between the application and the court data source.
 
-        .govuk-button-group
-          = f.govuk_submit t("laa_reference.link.form.submit"), data: { disable_with: "Linking..." }, name: "maat_ref_required", value: "true"
-          = link_to t(".back"), link_migrated_cases_path(tab: :action_required), class: "govuk-link"
+      .govuk-button-group
+        = f.govuk_submit t("laa_reference.link.form.submit"), data: { disable_with: "Linking..." }, name: "maat_ref_required", value: "true"
+        = link_to t(".back"), link_migrated_cases_path(tab: :action_required), class: "govuk-link"
 
-        = govuk_detail(t("laa_reference.missing_maat_id.label")) do
-          %p.govuk-details__details-text= t("laa_reference.missing_maat_id.description")
-          = f.govuk_submit(t("laa_reference.missing_maat_id.submit"), secondary: true, name: "maat_ref_required", value: "false")
+      = govuk_detail(t("laa_reference.missing_maat_id.label")) do
+        %p.govuk-details__details-text= t("laa_reference.missing_maat_id.description")
+        = f.govuk_submit(t("laa_reference.missing_maat_id.submit"), secondary: true, name: "maat_ref_required", value: "false")

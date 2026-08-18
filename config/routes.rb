@@ -87,6 +87,7 @@ Rails.application.routes.draw do
     member do
       get :link, to: "show_link"
       post :link
+      get :offences
     end
   end
 
