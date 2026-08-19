@@ -95,13 +95,13 @@ private
 
   def handle_case_urn(m_case)
     tag.div(class: "tags") do
-      safe_join([m_case["case_urn"], case_type_tag(m_case["case_type"])].compact, "\n")
+      safe_join([m_case["case_urn"], case_type_tag(m_case["case_type"])].compact, "<br>".html_safe)
     end
   end
 
   def handle_case_urn_new_tab(m_case)
     tag.div(class: "tags") do
-      safe_join([case_urn_new_tab_url(m_case["case_urn"]), case_type_tag(m_case["case_type"])].compact, "\n")
+      safe_join([case_urn_new_tab_url(m_case["case_urn"]), case_type_tag(m_case["case_type"])].compact, "<br>".html_safe)
     end
   end
 
