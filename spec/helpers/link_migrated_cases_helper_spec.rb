@@ -103,7 +103,7 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
     end
 
     it "returns a link for link_maat_id column" do
-      result = helper.column_value("link_maat_id", base_case)
+      result = helper.column_value("action", base_case)
       expect(result).to include('href="/link/555?urn=URN-1"')
       expect(result).to include("Link MAAT ID")
     end

@@ -14,7 +14,7 @@ module LinkMigratedCasesHelper
     "defendant_date_of_birth" => { width: "120px", sortable: true, i18n_key: "defendant_date_of_birth" },
     "linked_at" => { width: "120px", sortable: true, i18n_key: "linked_at" },
     "linked_by" => { width: "120px", sortable: true, i18n_key: "linked_by" },
-    "link_maat_id" => { width: "120px", sortable: false, i18n_key: "link_maat_id" },
+    "action" => { width: "120px", sortable: false, i18n_key: "action" },
   }.freeze
 
   def column_config(col)
@@ -50,7 +50,7 @@ module LinkMigratedCasesHelper
     when "case_urn_new_tab" then handle_case_urn_new_tab(m_case)
     when "defendant_date_of_birth" then handle_defendant_date_of_birth(m_case)
     when "defendant_name" then handle_defendant_name(m_case)
-    when "link_maat_id" then handle_link_maat_id(m_case)
+    when "action" then handle_action(m_case)
     when "linked_at" then handle_linked_at(m_case)
     when "reason_for_man_linking" then handle_reason_for_man_linking(m_case)
     else m_case[column]
@@ -109,7 +109,7 @@ private
     formatted_process_errors(m_case["process_errors"])
   end
 
-  def handle_link_maat_id(m_case)
+  def handle_action(m_case)
     link_maat_id_url(m_case["defendant_id"], m_case["case_urn"])
   end
 

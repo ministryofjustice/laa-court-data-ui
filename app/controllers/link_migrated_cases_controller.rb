@@ -25,7 +25,7 @@ class LinkMigratedCasesController < ApplicationController
                             court_name
                             mode_of_trial
                             reason_for_man_linking
-                            link_maat_id],
+                            action],
     "pending" => %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial],
     "manually_linked" => %w[case_urn_new_tab
                             maat_id

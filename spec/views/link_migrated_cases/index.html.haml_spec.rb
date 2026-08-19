@@ -131,7 +131,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
                           court_name
                           mode_of_trial
                           reason_for_man_linking
-                          link_maat_id])
+                          action])
     end
 
     it "marks `action_required` tab as active" do
