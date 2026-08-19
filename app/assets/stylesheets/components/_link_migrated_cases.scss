@@ -11,4 +11,12 @@
   .govuk-table__header {
     vertical-align: bottom;
   }
+
+  .tags {
+    line-height: 2;
+
+    .govuk-tag {
+      margin: 0 10px 8px 0;
+    } 
+  }
 }

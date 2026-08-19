@@ -14,7 +14,7 @@ module LinkMigratedCasesHelper
     "defendant_date_of_birth" => { width: "120px", sortable: true, i18n_key: "defendant_date_of_birth" },
     "linked_at" => { width: "120px", sortable: true, i18n_key: "linked_at" },
     "linked_by" => { width: "120px", sortable: true, i18n_key: "linked_by" },
-    "link_maat_id" => { width: "120px", sortable: false, i18n_key: "link_maat_id" },
+    "action" => { width: "120px", sortable: false, i18n_key: "action" },
   }.freeze
 
   def column_config(col)
@@ -36,14 +36,23 @@ module LinkMigratedCasesHelper
             class: "govuk-link govuk-link--no-visited-state")
   end
 
+  def case_urn_new_tab_url(case_urn)
+    link_to(case_urn,
+            prosecution_case_path(case_urn),
+            class: "govuk-link govuk-link--no-visited-state",
+            target: "_blank", rel: "noopener")
+  end
+
   def column_value(column, m_case)
     case column
-    when "defendant_name" then [m_case["defendant_first_name"],
-                                m_case["defendant_last_name"]].compact.join(" ")
-    when "auto_linked_at" then m_case["linked_at"]
-    when "case_urn_new_tab" then m_case["case_urn"]
-    when "reason_for_man_linking" then formatted_process_errors(m_case["process_errors"])
-    when "link_maat_id" then link_maat_id_url(m_case["defendant_id"], m_case["case_urn"])
+    when "auto_linked_at" then handle_auto_linked_at(m_case)
+    when "case_urn" then handle_case_urn(m_case)
+    when "case_urn_new_tab" then handle_case_urn_new_tab(m_case)
+    when "defendant_date_of_birth" then handle_defendant_date_of_birth(m_case)
+    when "defendant_name" then handle_defendant_name(m_case)
+    when "action" then handle_action(m_case)
+    when "linked_at" then handle_linked_at(m_case)
+    when "reason_for_man_linking" then handle_reason_for_man_linking(m_case)
     else m_case[column]
     end
   end
@@ -72,5 +81,51 @@ module LinkMigratedCasesHelper
                              tab: params[:tab],
                              sort_column: params[:sort_column],
                              sort_direction: params[:sort_direction])
+  end
+
+private
+
+  def handle_defendant_name(m_case)
+    [m_case["defendant_first_name"], m_case["defendant_last_name"]].compact.join(" ")
+  end
+
+  def handle_auto_linked_at(m_case)
+    format_date(m_case["linked_at"], "%d/%m/%Y")
+  end
+
+  def handle_case_urn(m_case)
+    tag.div(class: "tags") do
+      safe_join([m_case["case_urn"], case_type_tag(m_case["case_type"])].compact, "<br>".html_safe)
+    end
+  end
+
+  def handle_case_urn_new_tab(m_case)
+    tag.div(class: "tags") do
+      safe_join([case_urn_new_tab_url(m_case["case_urn"]), case_type_tag(m_case["case_type"])].compact, "<br>".html_safe)
+    end
+  end
+
+  def handle_reason_for_man_linking(m_case)
+    formatted_process_errors(m_case["process_errors"])
+  end
+
+  def handle_action(m_case)
+    link_maat_id_url(m_case["defendant_id"], m_case["case_urn"])
+  end
+
+  def handle_linked_at(m_case)
+    format_date(m_case["linked_at"], "%d/%m/%Y")
+  end
+
+  def handle_defendant_date_of_birth(m_case)
+    format_date(m_case["defendant_date_of_birth"], "%-d %b %Y")
+  end
+
+  def format_date(value, format)
+    return if value.blank?
+
+    Time.zone.parse(value).strftime(format)
+  rescue ArgumentError
+    value
   end
 end
