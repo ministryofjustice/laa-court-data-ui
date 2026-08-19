@@ -49,6 +49,7 @@ RSpec.describe Ability, type: :model do
     it { is_expected.not_to be_able_to(:create, :link_maat_reference) }
     it { is_expected.not_to be_able_to(:index, :link_migrated_case) }
     it { is_expected.not_to be_able_to(:show, Cda::LinkMigratedCase) }
+    it { is_expected.not_to be_able_to(:offences, :link_migrated_case) }
   end
 
   context "when a caseworker" do
@@ -62,6 +63,7 @@ RSpec.describe Ability, type: :model do
 
     it { is_expected.to be_able_to(:index, :link_migrated_case) }
     it { is_expected.to be_able_to(:show, Cda::LinkMigratedCase) }
+    it { is_expected.to be_able_to(:offences, :link_migrated_case) }
   end
 
   context "when an admin" do
@@ -71,5 +73,6 @@ RSpec.describe Ability, type: :model do
     it { is_expected.to be_able_to(:manage, other_user) }
     it { is_expected.not_to be_able_to(:index, :link_migrated_case) }
     it { is_expected.not_to be_able_to(:show, Cda::LinkMigratedCase) }
+    it { is_expected.not_to be_able_to(:offences, :link_migrated_case) }
   end
 end
