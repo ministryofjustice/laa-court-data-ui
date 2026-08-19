@@ -17,16 +17,6 @@ module LinkMigratedCasesHelper
     "action" => { width: "120px", sortable: false, i18n_key: "action" },
   }.freeze
 
-  HANDLERS = {
-    "defendant_name" => :handle_defendant_name,
-    "auto_linked_at" => :handle_auto_linked_at,
-    "case_urn_new_tab" => :handle_case_urn_new_tab,
-    "reason_for_man_linking" => :handle_reason_for_man_linking,
-    "link_maat_id" => :handle_link_maat_id,
-    "linked_at" => :handle_linked_at,
-    "defendant_date_of_birth" => :handle_defendant_date_of_birth,
-  }.freeze
-
   def column_config(col)
     COLUMN_CONFIG[col]
   end
