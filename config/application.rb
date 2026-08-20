@@ -45,8 +45,6 @@ module LaaCourtDataUi
     config.x.display_raw_responses = %w[enabled true].include?(ENV.fetch("DISPLAY_RAW_RESPONSES", nil))
     config.action_mailer.deliver_later_queue_name = :mailers
 
-    config.active_support.to_time_preserves_timezone = :zone
-
     Time::DATE_FORMATS[:date_only] = "%b %d, %Y"
     Date::DATE_FORMATS[:human_readable] = "%a, %-d %B %Y"
   end
