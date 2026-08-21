@@ -6,7 +6,7 @@ module TagsHelper
 
     mapping = {
       "T" => { text: "Trial", colour: "blue" },
-      "S" => { text: "Breach/POCA", colour: "yellow" },
+      "S" => { text: "Sentence/Breach", colour: "yellow" },
       "A" => { text: "Appeal", colour: "purple" },
     }
 
