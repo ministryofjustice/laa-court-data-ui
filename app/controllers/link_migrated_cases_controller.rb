@@ -2,11 +2,11 @@
 
 class LinkMigratedCasesController < ApplicationController
   authorize_resource class: false, except: %i[show_link link]
+  before_action :check_feature_flag, :set_breadcrumbs
   before_action :load_and_authorize_access,
                 :load_defendant,
                 :load_prosecution_case,
                 :load_offence_histories, only: %i[show_link link offences]
-  before_action :check_feature_flag, :set_breadcrumbs
 
   SORTABLE_COLUMNS = %w[auto_linked_at
                         case_urn
