@@ -308,6 +308,6 @@ http_interactions:
           - "161"
       body:
         encoding: UTF-8
-        string: '{"defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","offence_histories":[{"id":"d377c5e6-b654-413c-9833-f3ed056c7afb","pleas":[],"mode_of_trial_reasons":[]}]}'
+        string: '{"defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","offence_histories":[{"id":"d377c5e6-b654-413c-9833-f3ed056c7afb","pleas":[],"mode_of_trial_reasons":[], "verdict": "Guilty"}]}'
     recorded_at: Tue, 18 Aug 2026 16:06:06 GMT
 recorded_with: VCR 6.4.0

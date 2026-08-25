@@ -7,7 +7,13 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
   let(:offence) { instance_double(Cda::OffenceSummary) }
   let(:offence_histories) { instance_double(Cda::OffenceHistoryCollection) }
-  let(:offence_history) { Cda::OffenceHistory.new(pleas: nil, mode_of_trial_reasons: nil) }
+  let(:offence_history) do
+    Cda::OffenceHistory.new(
+      pleas: nil,
+      mode_of_trial_reasons: nil,
+      verdict: nil,
+    )
+  end
   let(:view_object) { view_class.new }
 
   let(:plea_collection) { plea_array.map { |plea| Cda::Plea.new(plea) } }
@@ -210,6 +216,34 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
       it { expect { call }.not_to raise_error }
       it { is_expected.to eql("mode of trial reason is a string") }
+    end
+  end
+
+  describe "#verdict_description" do
+    subject(:call) { decorator.verdict_description }
+
+    context "when a verdict exists" do
+      before do
+        allow(offence_history).to receive(:verdict).and_return("Guilty")
+      end
+
+      it { is_expected.to eql("Guilty") }
+    end
+
+    context "when verdict is nil" do
+      before do
+        allow(offence_history).to receive(:verdict).and_return(nil)
+      end
+
+      it { is_expected.to eql("Not available") }
+    end
+
+    context "when verdict is blank" do
+      before do
+        allow(offence_history).to receive(:verdict).and_return("")
+      end
+
+      it { is_expected.to eql("Not available") }
     end
   end
 end

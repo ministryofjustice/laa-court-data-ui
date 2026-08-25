@@ -36,7 +36,7 @@
           - else
             = t("search.result.loading")
         %td.govuk-table__cell
-          - if offence.verdict
-            = offence.verdict.type.description || t("generic.not_available")
+          - if offence.offence_histories
+            = offence.verdict_description
           - else
             = t("search.result.loading")

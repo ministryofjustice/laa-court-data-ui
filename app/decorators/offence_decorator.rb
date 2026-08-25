@@ -17,6 +17,12 @@ class OffenceDecorator < BaseDecorator
     safe_join(mode_of_trial_reason_descriptions.compact, tag.br)
   end
 
+  def verdict_description
+    return t("generic.not_available") if verdict.blank?
+
+    verdict
+  end
+
   def start_date
     return unless super
 
@@ -25,7 +31,7 @@ class OffenceDecorator < BaseDecorator
 
 private
 
-  delegate :pleas, :mode_of_trial_reasons, to: :relevant_offence_history, allow_nil: true
+  delegate :pleas, :mode_of_trial_reasons, :verdict, to: :relevant_offence_history, allow_nil: true
 
   def plea_sentences
     sorted_pleas.map { |plea| plea_sentence(plea) }

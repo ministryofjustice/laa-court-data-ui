@@ -28,16 +28,14 @@ RSpec.describe "link_migrated_cases/show_link.html.haml", type: :view do
           process_errors: { "message" => "MAAT application not found" })
   end
 
-  let(:verdict) { double(type: double(description: "Guilty")) }
-
   let(:offence_summary) do
-    build(:offence_summary, :with_laa_application, verdict:)
+    build(:offence_summary, :with_laa_application, id: "123")
   end
 
   let(:hearing_day) { Date.new(2024, 3, 1) }
   let(:prosecution_case) { double(sorted_hearing_summaries_with_day: [double(day: hearing_day)]) }
   let(:offence_history_collection) { Cda::OffenceHistoryCollection.new(offence_histories: [offence_history]) }
-  let(:offence_history) { Cda::OffenceHistory.new(id: "123", pleas: [], mode_of_trial_reasons: []) }
+  let(:offence_history) { Cda::OffenceHistory.new(id: "123", pleas: [], mode_of_trial_reasons: [], verdict: "Guilty") }
   let(:form_model) { LinkAttempt.new(defendant_id: defendant_id, username: "tester") }
 
   before do
