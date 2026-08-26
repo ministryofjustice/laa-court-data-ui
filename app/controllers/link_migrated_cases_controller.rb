@@ -64,7 +64,7 @@ class LinkMigratedCasesController < ApplicationController
 
     Cda::ProsecutionCaseLaaReference.create!(@form_model.to_link_attributes)
 
-    redirect_to link_link_migrated_case_path(@migrated_case.id),
+    redirect_to link_migrated_cases_path(tab: "action_required"),
                 flash: { success_moj_banner: I18n.t("laa_reference.link.success") }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)

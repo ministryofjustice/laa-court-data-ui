@@ -49,8 +49,8 @@ RSpec.describe "link migrated case maat reference", :vcr, type: :request do
         expect(response).to have_http_status :redirect
       end
 
-      it "redirects to back to the link migrated case path" do
-        expect(response).to redirect_to link_link_migrated_case_path(id:)
+      it "redirects to back to the link migrated cases index path" do
+        expect(response).to redirect_to link_migrated_cases_path(tab: "action_required")
       end
 
       it "flashes success banner" do
