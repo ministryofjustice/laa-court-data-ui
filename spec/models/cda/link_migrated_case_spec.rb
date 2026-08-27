@@ -26,4 +26,20 @@ RSpec.describe Cda::LinkMigratedCase, type: :model do
       end
     end
   end
+
+  describe ".create!" do
+    subject(:create_entity) { described_class.create(params) }
+
+    let(:params) { { defendant_id: SecureRandom.uuid } }
+
+    it "sends a request" do
+      request = stub_request(:post, %r{/v2/link_migrated_cases})
+               .with(body: params.to_json)
+               .to_return(body: "{}")
+
+      create_entity
+
+      expect(request).to have_been_requested
+    end
+  end
 end

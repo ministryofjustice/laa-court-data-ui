@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe "link migrated case maat reference", :vcr, type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, username: "casp-c2") }
 
   let(:link_migrated_case_id_from_fixture) { "97140ef9-3a85-4d9a-89b0-eccca35486a1" }
   let(:id) { link_migrated_case_id_from_fixture }
@@ -20,14 +20,15 @@ RSpec.describe "link migrated case maat reference", :vcr, type: :request do
     }
   end
 
-  let(:api_request_path) { %r{.*/laa_references} }
+  let(:api_request_path) { %r{.*/link_migrated_cases} }
 
   let(:expected_request_payload) do
     {
       laa_reference: {
+        maat_reference:,
         defendant_id:,
         user_name: user.username,
-        maat_reference:,
+        id:,
       },
     }
   end

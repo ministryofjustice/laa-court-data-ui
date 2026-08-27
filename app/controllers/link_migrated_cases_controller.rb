@@ -62,7 +62,7 @@ class LinkMigratedCasesController < ApplicationController
     @form_model = new_link_attempt
     validate_link_attempt!
 
-    Cda::ProsecutionCaseLaaReference.create!(@form_model.to_link_attributes)
+    Cda::LinkMigratedCase.create!(@form_model.to_link_attributes.merge!(id: @migrated_case.id))
 
     redirect_to link_migrated_cases_path(tab: "action_required"),
                 flash: { success_moj_banner: I18n.t("laa_reference.link.success") }
@@ -159,7 +159,7 @@ private
   end
 
   def handle_link_failure(message, exception = nil)
-    logger.warn "LINK MIGRATED CASE FAILURE (params: #{@form_model.as_json}): #{message}"
+    logger.warn "LINK MIGRATED CASE FAILURE (params: #{@form_model.to_link_attributes.merge!(id: @migrated_case.id).as_json}): #{message}"
     @form_model.errors.add(:maat_reference,
                            cda_error_string(exception) || t("cda_errors.internal_server_error"))
   end

@@ -68,7 +68,7 @@ private
   def can_manage_links
     can :create, :link_maat_reference
     can :index, :link_migrated_case
-    can %i[read], Cda::LinkMigratedCase
+    can :read, Cda::LinkMigratedCase
     can :offences, :link_migrated_case
   end
 
