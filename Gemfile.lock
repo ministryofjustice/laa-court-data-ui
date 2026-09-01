@@ -203,6 +203,9 @@ GEM
       activemodel (>= 6.1)
       activesupport (>= 6.1)
       html-attributes-utils (~> 1)
+    govuk_markdown (2.0.4)
+      activesupport
+      redcarpet
     govuk_notify_rails (3.0.0)
       notifications-ruby-client (~> 6.2)
       rails (>= 4.1.0)
@@ -454,6 +457,7 @@ GEM
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
       tsort
+    redcarpet (3.6.1)
     redis (5.4.1)
       redis-client (>= 0.22.0)
     redis-client (0.30.0)
@@ -679,6 +683,7 @@ DEPENDENCIES
   foreman
   govuk-components
   govuk_design_system_formbuilder (~> 5.11)
+  govuk_markdown
   govuk_notify_rails (~> 3.0.0)
   haml-rails (~> 2.1.0)
   haml_lint
@@ -730,4 +735,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.6.5
+   2.6.9
