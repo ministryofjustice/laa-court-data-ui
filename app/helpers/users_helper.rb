@@ -14,4 +14,15 @@ module UsersHelper
       I18n.t("users.form.fields.feature_flags_options.#{flag}", default: flag.humanize)
     }.join(" | ")
   end
+
+  def user_sorter_header(column)
+    sorter_header(
+      path: users_path,
+      column: column,
+      direction_key: :user_sort_direction,
+      column_key: :user_sort_column,
+      label: t("users.generic.#{column}"),
+      default_sort_column: "name",
+    )
+  end
 end

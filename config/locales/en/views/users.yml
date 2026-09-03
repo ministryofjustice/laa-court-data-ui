@@ -44,11 +44,12 @@ en:
     generic:
       action: Action
       email: Email
-      last_sign_in: Last sign in
+      last_sign_in_at: Last sign in
       name: Name
       never_signed_in: Never signed in
       over_3_months: Over 3 months
       recently: Recently
+      roles: Role(s)
       user: user
       username: Username
     index:
@@ -96,7 +97,6 @@ en:
       name_label: Name
       page_heading: "%{name}'s account"
       roles_delete_page: Roles
-      roles_label: Role(s)
       username_label: Username
     update:
       flash:

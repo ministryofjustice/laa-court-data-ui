@@ -23,8 +23,6 @@
 
 .govuk-grid-row
   .govuk-grid-column-full
-    - direction = render user_sorter_direction == "asc" ? "shared/up_icon" : "shared/down_icon"
-    - nondirection = render "shared/updown_icon"
     - if @users.any?
       .moj-scrollable-pane
         %table.govuk-table
@@ -33,26 +31,11 @@
 
           %thead.govuk-table__head
             %tr.govuk-table__row
-              %th.govuk-table__header{ scope: "col" }
-                = link_to(user_sorter_link("name"), class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline", "aria-label": "Sort name") do
-                  = t("users.generic.name")
-                  = user_sorter_column?("name") ? direction : nondirection
-              %th.govuk-table__header{ scope: "col" }
-                = link_to(user_sorter_link("username"), class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline", "aria-label": "Sort username") do
-                  = t("users.generic.username")
-                  = user_sorter_column?("username") ? direction : nondirection
-              %th.govuk-table__header{ scope: "col" }
-                = link_to(user_sorter_link("email"), class: "govuk-link--no-visited-state govuk-link--no-underline", "aria-label": "Sort email") do
-                  = t("users.generic.email")
-                  = user_sorter_column?("email") ? direction : nondirection
-              %th.govuk-table__header{ scope: "col" }
-                = link_to(user_sorter_link("roles"), class: "govuk-link--no-visited-state govuk-link--no-underline", "aria-label": "Sort roles") do
-                  = t("users.show.roles_label")
-                  = user_sorter_column?("roles") ? direction : nondirection
-              %th.govuk-table__header{ scope: "col" }
-                = link_to(user_sorter_link("last_sign_in_at"), class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline", "aria-label": "Sort last_sign_in_at") do
-                  = t("users.generic.last_sign_in")
-                  = user_sorter_column?("last_sign_in_at") ? direction : nondirection
+              = user_sorter_header("name")
+              = user_sorter_header("username")
+              = user_sorter_header("email")
+              = user_sorter_header("roles")
+              = user_sorter_header("last_sign_in_at")
               %th.govuk-table__header.table-heading-blue.app-no-wrap{ scope: "col" }
                 = t("users.generic.action")
 
