@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   # ActiveResource Factory, use :build not :create to prevent HTTP calls
-  factory :laa_application, class: "Cda::BaseModel" do
+  factory :laa_application, class: "Cda::LaaApplication" do
     reference { "" }
     status_code { "AP" }
     description { "" }

@@ -71,12 +71,12 @@ RSpec.configure do |config|
   end
 
   config.before(:each, :stub_v2_link_success) do
-    stub_request(:post, %r{/v2/laa_references}).to_return(status: 202, body: "")
+    stub_request(:post, %r{/v2/(laa_references|link_migrated_cases)}).to_return(status: 202, body: "")
   end
 
   config.before(:each, :stub_v2_link_failure_with_invalid_defendant_uuid) do
     stub_request(
-      :post, %r{/v2/laa_references}
+      :post, %r{/v2/(laa_references|link_migrated_cases)}
     ).to_return(
       status: 422,
       headers: { "Content-Type" => "application/json" },
@@ -90,7 +90,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_link_failure_with_unknown_maat_reference) do
     stub_request(
-      :post, %r{/v2/laa_references}
+      :post, %r{/v2/(laa_references|link_migrated_cases)}
     ).to_return(
       status: 422,
       headers: { "Content-Type" => "application/json" },
@@ -103,7 +103,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_link_server_failure) do
     stub_request(
-      :post, %r{/v2/laa_references}
+      :post, %r{/v2/(laa_references|link_migrated_cases)}
     ).to_return(
       status: 500,
       body: "",
@@ -112,7 +112,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_link_cda_failure) do
     stub_request(
-      :post, %r{/v2/laa_references}
+      :post, %r{/v2/(laa_references|link_migrated_cases)}
     ).to_return(
       status: 424,
       body: '{ "error_codes": ["common_platform_connection_failed"] }',
@@ -208,7 +208,7 @@ RSpec.configure do |config|
 
     stub_request(
       :patch,
-      %r{http.*/v2/laa_references/#{defendant_id}},
+      %r{http.*/v2/(laa_references|link_migrated_cases)/#{defendant_id}},
     ).to_return(
       status: 202,
       body: "",
@@ -218,7 +218,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_unlink_bad_request) do
     stub_request(
-      :patch, %r{/v2/laa_references/#{defendant_id}}
+      :patch, %r{/v2/(laa_references|link_migrated_cases)/#{defendant_id}}
     ).to_return(
       status: 400,
       headers: { "Content-Type" => "application/json" },
@@ -231,7 +231,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_unlink_bad_response) do
     stub_request(
-      :patch, %r{/v2/laa_references/#{defendant_id}}
+      :patch, %r{/v2/(laa_references|link_migrated_cases)/#{defendant_id}}
     ).to_return(
       status: 422,
       headers: { "Content-Type" => "application/json" },
@@ -242,7 +242,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_unlink_server_failure) do
     stub_request(
-      :patch, %r{/v2/laa_references/#{defendant_id}}
+      :patch, %r{/v2/(laa_references|link_migrated_cases)/#{defendant_id}}
     ).to_return(
       status: 500,
       body: "",
@@ -251,7 +251,7 @@ RSpec.configure do |config|
 
   config.before(:each, :stub_v2_unlink_cda_failure) do
     stub_request(
-      :patch, %r{/v2/laa_references/#{defendant_id}}
+      :patch, %r{/v2/(laa_references|link_migrated_cases)/#{defendant_id}}
     ).to_return(
       status: 424,
       body: '{ "error_codes": ["common_platform_connection_failed"] }',

@@ -82,7 +82,14 @@ Rails.application.routes.draw do
   get "/cookies/settings", to: "cookies#new"
   get "/cookies", to: "cookies#cookie_details"
   get "/accessibility", to: "pages#accessibility_statement"
-  get "/link_migrated_cases", to: "link_migrated_cases#index", as: :link_migrated_cases
+
+  resources :link_migrated_cases, only: %i[index] do
+    member do
+      get :link, to: "show_link"
+      post :link
+      get :offences
+    end
+  end
 
   get "ping", to: "status#ping", format: :json
 

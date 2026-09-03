@@ -68,6 +68,8 @@ private
   def can_manage_links
     can :create, :link_maat_reference
     can :index, :link_migrated_case
+    can :read, Cda::LinkMigratedCase
+    can :offences, :link_migrated_case
   end
 
   def can_query_cda

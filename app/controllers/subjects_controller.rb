@@ -134,4 +134,3 @@ private
     @application&.application_category
   end
 end
-# rubocop:enable Metrics/ClassLength

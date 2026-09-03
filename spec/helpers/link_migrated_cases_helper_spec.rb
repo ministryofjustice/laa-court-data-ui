@@ -38,13 +38,14 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
   end
 
   describe "#link_maat_id_url" do
-    it "returns a link to the defendant linking page with the urn param" do
-      allow(helper).to receive(:link_defendant_path).with(123,
-                                                          urn: "URN123").and_return("/link/123?urn=URN123")
+    it "returns a link to the migrated case linking page with the urn param" do
+      allow(helper).to receive(:link_link_migrated_case_path)
+        .with("12345678-1234-1234-1234-123456789012")
+        .and_return("/link/12345678-1234-1234-1234-123456789012")
 
-      result = helper.link_maat_id_url(123, "URN123")
+      result = helper.link_maat_id_url("12345678-1234-1234-1234-123456789012")
       expect(result).to include("Link MAAT ID")
-      expect(result).to include('href="/link/123?urn=URN123"')
+      expect(result).to include('href="/link/12345678-1234-1234-1234-123456789012"')
       expect(result).to include("govuk-link")
     end
   end
@@ -64,6 +65,7 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
   describe "#column_value" do
     let(:base_case) do
       {
+        "id" => "12345678-1234-1234-1234-123456789012",
         "defendant_first_name" => "John",
         "defendant_last_name" => "Doe",
         "case_urn" => "URN-1",
@@ -104,7 +106,7 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
 
     it "returns a link for link_maat_id column" do
       result = helper.column_value("action", base_case)
-      expect(result).to include('href="/link/555?urn=URN-1"')
+      expect(result).to include('href="/link_migrated_cases/12345678-1234-1234-1234-123456789012/link"')
       expect(result).to include("Link MAAT ID")
     end
 

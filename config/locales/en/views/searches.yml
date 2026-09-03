@@ -41,6 +41,7 @@ en:
         mode_of_trial: Mode of trial
         plea: Plea
         title: Offence and legislation
+        verdict: Verdict
       representation_order:
         caption: Representation order list
         granted_at: Date granted
