@@ -83,10 +83,6 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
     assign(:cases_count, cases_count)
     assign(:columns, %w[case_urn defendant_name xhibit_case_number court_name mode_of_trial])
     assign(:pagy, pagy)
-    allow(view).to receive_messages(govuk_page_heading: "<h1>Link migrated cases</h1>",
-                                    link_migrated_cases_sorter_direction: "asc",
-                                    link_migrated_cases_sorter_link: "/link_migrated_cases",
-                                    current_sort_column?: false)
     allow(view).to receive(:render).and_call_original
   end
 

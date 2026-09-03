@@ -123,69 +123,6 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
     end
   end
 
-  describe "#link_migrated_cases_sorter_link" do
-    it "asks for link_migrated_cases_path with toggled direction when currently asc" do
-      allow(helper).to receive_messages(params: ActionController::Parameters.new(tab: "all",
-                                                                                 sort_direction: "asc",
-                                                                                 sort_column: "col"),
-                                        link_migrated_cases_path: "/dummy")
-
-      helper.link_migrated_cases_sorter_link("col")
-      expect(helper).to have_received(:link_migrated_cases_path).with(tab: "all", sort_column: "col",
-                                                                      sort_direction: "desc")
-    end
-
-    it "sets direction to asc when not currently sorted by the column" do
-      allow(helper).to receive_messages(params: ActionController::Parameters.new(tab: "t",
-                                                                                 sort_direction: "asc",
-                                                                                 sort_column: "other"),
-                                        link_migrated_cases_path: "/dummy")
-
-      helper.link_migrated_cases_sorter_link("col2")
-      expect(helper).to have_received(:link_migrated_cases_path).with(tab: "t", sort_column: "col2",
-                                                                      sort_direction: "asc")
-    end
-
-    it "sets direction to asc when currently sorted by the column in desc order" do
-      allow(helper).to receive_messages(params: ActionController::Parameters.new(tab: "all",
-                                                                                 sort_direction: "desc",
-                                                                                 sort_column: "col"),
-                                        link_migrated_cases_path: "/dummy")
-
-      helper.link_migrated_cases_sorter_link("col")
-      expect(helper).to have_received(:link_migrated_cases_path).with(tab: "all", sort_column: "col",
-                                                                      sort_direction: "asc")
-    end
-  end
-
-  describe "#link_migrated_cases_sorter_direction" do
-    it "returns desc only when param is desc" do
-      allow(helper).to receive(:params).and_return({ sort_direction: "desc" })
-      expect(helper.link_migrated_cases_sorter_direction).to eq("desc")
-
-      allow(helper).to receive(:params).and_return({ sort_direction: "asc" })
-      expect(helper.link_migrated_cases_sorter_direction).to eq("asc")
-
-      allow(helper).to receive(:params).and_return({})
-      expect(helper.link_migrated_cases_sorter_direction).to eq("asc")
-    end
-  end
-
-  describe "#current_sort_column?" do
-    it "returns true for default columns when sort_column param is nil" do
-      allow(helper).to receive(:params).and_return({})
-      expect(helper.current_sort_column?("case_urn")).to be true
-      expect(helper.current_sort_column?("case_urn_new_tab")).to be true
-      expect(helper.current_sort_column?("defendant_name")).to be false
-    end
-
-    it "returns true only when params sort_column matches" do
-      allow(helper).to receive(:params).and_return({ sort_column: "abc" })
-      expect(helper.current_sort_column?("abc")).to be true
-      expect(helper.current_sort_column?("other")).to be false
-    end
-  end
-
   describe "#page_url" do
     it "calls link_migrated_cases_path with page and current params" do
       allow(helper).to receive_messages(params: ActionController::Parameters.new(tab: "xx",
@@ -196,6 +133,27 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
       helper.page_url(3)
       expect(helper).to have_received(:link_migrated_cases_path).with(page: 3, tab: "xx", sort_column: "sc",
                                                                       sort_direction: "desc")
+    end
+  end
+
+  describe "#migrated_cases_sorter_header" do
+    it "delegates to sorter_header with migrated cases sort keys and translated label" do
+      allow(helper).to receive_messages(params: ActionController::Parameters.new(tab: "all"),
+                                        link_migrated_cases_path: "/link_migrated_cases?tab=all",
+                                        t: "Case URN")
+      allow(helper).to receive(:sorter_header).and_return("<th>Case URN</th>")
+
+      result = helper.migrated_cases_sorter_header("case_urn", "case_urn")
+
+      expect(helper).to have_received(:sorter_header).with(
+        path: "/link_migrated_cases?tab=all",
+        column: "case_urn",
+        direction_key: :sort_direction,
+        column_key: :sort_column,
+        label: "Case URN",
+        default_sort_column: "case_urn",
+      )
+      expect(result).to eq("<th>Case URN</th>")
     end
   end
 end
