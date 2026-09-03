@@ -3,7 +3,7 @@
 }
 
 // Display for js only
-body:not(.js-enabled) .app-js-only {
+.govuk-template__body:not(.js-enabled) .app-js-only {
   display: none;
 }
 
