@@ -45,6 +45,26 @@ RSpec.describe TableHelper, type: :helper do
     end
   end
 
+  describe "#aria_sort" do
+    it "returns ascending for the active column when sorted asc" do
+      allow(helper).to receive(:params).and_return({ user_sort_column: "email", user_sort_direction: "asc" })
+
+      expect(helper.aria_sort(:user_sort_direction, :user_sort_column, "email", "name")).to eq("ascending")
+    end
+
+    it "returns descending for the active column when sorted desc" do
+      allow(helper).to receive(:params).and_return({ user_sort_column: "email", user_sort_direction: "desc" })
+
+      expect(helper.aria_sort(:user_sort_direction, :user_sort_column, "email", "name")).to eq("descending")
+    end
+
+    it "returns none for inactive columns" do
+      allow(helper).to receive(:params).and_return({ user_sort_column: "name", user_sort_direction: "asc" })
+
+      expect(helper.aria_sort(:user_sort_direction, :user_sort_column, "email", "name")).to eq("none")
+    end
+  end
+
   describe "#sorter_path" do
     it "toggles direction and preserves existing query params" do
       allow(helper).to receive(:params).and_return({ user_sort_direction: "asc" })
@@ -103,7 +123,7 @@ RSpec.describe TableHelper, type: :helper do
         default_sort_column: "name",
       )
 
-      expect(header).to have_css("th.govuk-table__header[scope='col']")
+      expect(header).to have_css("th.govuk-table__header[scope='col'][aria-sort='ascending']")
       expect(header).to include("[up]")
       expect(header).not_to include("[updown]")
     end
@@ -123,6 +143,7 @@ RSpec.describe TableHelper, type: :helper do
         default_sort_column: "name",
       )
 
+      expect(header).to have_css("th.govuk-table__header[scope='col'][aria-sort='none']")
       expect(header).to include("[updown]")
       expect(header).not_to include("[up]")
     end

@@ -4,11 +4,19 @@ module TableHelper
   def sorter_header(path:, direction_key:, column_key:, column:, label:, default_sort_column:)
     direction = render sorter_direction(direction_key) == "asc" ? "shared/up_icon" : "shared/down_icon"
     nondirection = render "shared/updown_icon"
-    tag.th(class: "govuk-table__header", scope: "col") do
+    tag.th(class: "govuk-table__header", scope: "col", "aria-sort" => aria_sort(direction_key, column_key, column, default_sort_column)) do
       sorter_link(path: path, direction_key: direction_key, column_key: column_key, column: column) do
         concat tag.span(label)
         concat tag.span(sorter_column?(column_key, column, default_sort_column) ? direction : nondirection)
       end
+    end
+  end
+
+  def aria_sort(direction_key, column_key, column, default_sort_column)
+    if sorter_column?(column_key, column, default_sort_column)
+      sorter_direction(direction_key) == "asc" ? "ascending" : "descending"
+    else
+      "none"
     end
   end
 
