@@ -1,0 +1,141 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "3bf97596ee5d6ad36e4a4f30a71cc30f0bc0fb2bf63c72129b365527d9599984",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/users/index.html.haml",
+      "line": 19,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "::Haml::AttributeBuilder.build_class(true, \"govuk-grid-column-full search-form-element\", UserSearch.new.form_class)",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "UsersController",
+          "method": "index",
+          "line": 14,
+          "file": "app/controllers/users_controller.rb",
+          "rendered": {
+            "name": "users/index",
+            "file": "app/views/users/index.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "users/index"
+      },
+      "user_input": "UserSearch.new.form_class",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": "`form_class` returns either `moj-js-hidden` or nothing, so this is safe"
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "3ee9af2fc71bccdcce8493653a3aa8a69d8c55376a955d98846106d9a311b698",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/users/index.html.haml",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "::Haml::AttributeBuilder.build_class(true, \"search-form-element hide-search-form-toggle govuk-button govuk-button--secondary\", UserSearch.new.form_class)",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "UsersController",
+          "method": "index",
+          "line": 14,
+          "file": "app/controllers/users_controller.rb",
+          "rendered": {
+            "name": "users/index",
+            "file": "app/views/users/index.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "users/index"
+      },
+      "user_input": "UserSearch.new.form_class",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": "`form_class` returns either `moj-js-hidden` or nothing, so this is safe"
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "76fbb838a0e10d198372244aea794bffc6fe75126868821d52bb5c8c30201b7b",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/users/index.html.haml",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "::Haml::AttributeBuilder.build_class(true, \"search-form-toggle govuk-button govuk-button--secondary\", UserSearch.new.toggle_class)",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "UsersController",
+          "method": "index",
+          "line": 14,
+          "file": "app/controllers/users_controller.rb",
+          "rendered": {
+            "name": "users/index",
+            "file": "app/views/users/index.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "users/index"
+      },
+      "user_input": "UserSearch.new.toggle_class",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": "`toggle_class` returns either `moj-js-hidden` or nothing, so this is safe"
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "e0eeb1380b21c060ed94d04e295bc8a4e201108ccc47a742b7ffe87385af3cde",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/users/index.html.haml",
+      "line": 21,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "::Haml::AttributeBuilder.build_class(true, \"govuk-grid-column-one-half search-form-element\", UserSearch.new.form_class)",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "UsersController",
+          "method": "index",
+          "line": 14,
+          "file": "app/controllers/users_controller.rb",
+          "rendered": {
+            "name": "users/index",
+            "file": "app/views/users/index.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "users/index"
+      },
+      "user_input": "UserSearch.new.form_class",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": "`form_class` returns either `moj-js-hidden` or nothing, so this is safe"
+    }
+  ],
+  "brakeman_version": "8.0.5"
+}
