@@ -180,7 +180,7 @@ commands:
     steps:
       - run:
           name: Run brakeman
-          command: bundle exec brakeman -w2 # -w2 is to ignore warnings. Remove after update to Rails 7.2
+          command: bundle exec brakeman
 
   build-temp-image:
     steps:
