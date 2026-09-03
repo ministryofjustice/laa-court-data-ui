@@ -42,4 +42,32 @@ RSpec.describe HearingHelper, type: :helper do
       it { is_expected.to eq("hearing begins") }
     end
   end
+
+  describe "#hearing_sorter_header" do
+    it "delegates to sorter_header with hearing sorting keys and case-specific label" do
+      stub_const("TestProsecutionCase", Class.new do
+        def prosecution_case_reference; end
+        def column_title(_column); end
+      end)
+      prosecution_case = instance_double(TestProsecutionCase,
+                                         prosecution_case_reference: "TEST12345",
+                                         column_title: "Date")
+      allow(helper).to receive(:prosecution_case_path)
+        .with(id: "TEST12345", anchor: "date")
+        .and_return("/prosecution_cases/TEST12345#date")
+      allow(helper).to receive(:sorter_header).and_return("<th>Date</th>")
+
+      result = helper.hearing_sorter_header(prosecution_case, "date")
+
+      expect(helper).to have_received(:sorter_header).with(
+        path: "/prosecution_cases/TEST12345#date",
+        column: "date",
+        direction_key: :direction,
+        column_key: :column,
+        label: "Date",
+        default_sort_column: "date",
+      )
+      expect(result).to eq("<th>Date</th>")
+    end
+  end
 end
