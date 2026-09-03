@@ -24,9 +24,9 @@ RSpec.describe TagsHelper, type: :helper do
           .to eq('<strong class="govuk-tag govuk-tag--blue">Custom</strong>')
       end
 
-      it 'renders `Breach/POCA` tag for "S"' do
+      it 'renders `Sentence/Breach` tag for "S"' do
         expect(helper.case_type_tag("S"))
-          .to eq('<strong class="govuk-tag govuk-tag--yellow">Breach/POCA</strong>')
+          .to eq('<strong class="govuk-tag govuk-tag--yellow">Sentence/Breach</strong>')
       end
 
       it 'renders `Appeal` tag for "A"' do

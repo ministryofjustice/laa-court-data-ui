@@ -207,7 +207,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
 
     it "renders case data rows" do
       render
-      expect_first_row_cells({ text: "TEST12345", tag: "Trial" }, "1234567", "John Smith", "1 Jan 1990",
+      expect_first_row_cells({ text: "TEST12345", tag: "Trial", href: "/prosecution_cases/TEST12345" }, "1234567", "John Smith", "1 Jan 1990",
                              "01/03/2024")
     end
 
