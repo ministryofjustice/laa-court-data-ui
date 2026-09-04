@@ -10,9 +10,9 @@ RSpec.describe GdsDesignSystemBreadcrumbBuilder, type: :helper do
   describe "#render" do
     subject(:content) { builder.render }
 
-    it "renders outer <div>" do
+    it "renders outer <nav>" do
       expect(content).to include(
-        '<div class="govuk-breadcrumbs" role="navigation" aria-label="Navigate Case">',
+        '<nav class="govuk-breadcrumbs" role="navigation" aria-label="breadcrumbs">',
       )
     end
 

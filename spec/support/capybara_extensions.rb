@@ -95,7 +95,7 @@ module CapybaraExtensions
     end
 
     def breadcrumb_selector
-      "div.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item"
+      "nav.govuk-breadcrumbs ol.govuk-breadcrumbs__list li.govuk-breadcrumbs__list-item"
     end
 
     def current_breadcrumb_selector
