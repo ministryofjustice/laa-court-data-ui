@@ -66,17 +66,20 @@ RSpec.describe TableHelper, type: :helper do
   end
 
   describe "#sorter_path" do
-    it "toggles direction and preserves existing query params" do
+    before do
       allow(helper).to receive(:params).and_return({ user_sort_direction: "asc" })
+    end
 
+    it "toggles direction and preserves existing query params" do
       path = helper.sorter_path("/users?foo=bar", :user_sort_direction, :user_sort_column, "email")
-      query = Addressable::URI.parse(path).query_values
 
-      expect(query).to eq(
-        "foo" => "bar",
-        "user_sort_column" => "email",
-        "user_sort_direction" => "desc",
-      )
+      expect(path).to eq("/users?foo=bar&user_sort_column=email&user_sort_direction=desc")
+    end
+
+    it "works with no existing query params" do
+      path = helper.sorter_path("/users", :user_sort_direction, :user_sort_column, "email")
+
+      expect(path).to eq("/users?user_sort_column=email&user_sort_direction=desc")
     end
   end
 
