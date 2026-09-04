@@ -8,6 +8,7 @@ orbs:
   snyk: snyk/snyk@2.2.0
   node: circleci/node@7.1.0
   court-data-end-to-end-tests: ministryofjustice/court-data-end-to-end-tests@volatile
+  sonarcloud: sonarsource/sonarcloud@4.0
 
 references:
   _restore-bundle: &restore-bundle
@@ -308,6 +309,7 @@ jobs:
       - store_artifacts:
           path: ~/repo/coverage
           destination: coverage
+      - sonarcloud/scan
 
   scan-docker-image:
     parameters:
