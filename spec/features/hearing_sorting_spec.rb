@@ -22,12 +22,13 @@ RSpec.feature "Hearing sorting", :vcr, type: :feature do
   context "when viewing case details" do
     scenario "user can see links with hearing table sorted by date_asc" do
       within :table, "Hearings" do
-        expect(page).to have_link("Date \u25B2", href: prosecution_cases_page_url("date", "desc"),
-                                                 class: "govuk-link")
-        expect(page).to have_link("Hearing type", href: prosecution_cases_page_url("type", "desc"),
-                                                  class: "govuk-link")
-        expect(page).to have_link("Providers attending",
-                                  href: prosecution_cases_page_url("provider", "desc"), class: "govuk-link")
+        expect(page).to have_hearing_sorter_link(text: /Date/, column: "date", next_direction: "desc",
+                                                 icon_direction: "asc")
+        expect(page).to have_hearing_sorter_link(text: /Hearing type/, column: "type", next_direction: "desc",
+                                                 icon_direction: "none")
+        expect(page).to have_hearing_sorter_link(text: /Providers attending/, column: "provider",
+                                                 next_direction: "desc", icon_direction: "none")
+
         rows = find_all("tbody/tr")
         expect(rows[0]).to have_link("23/10/2019", href: hearing_page_url("2019-10-23"),
                                                    class: "govuk-link")
@@ -41,12 +42,13 @@ RSpec.feature "Hearing sorting", :vcr, type: :feature do
     scenario "user can sort by date desc" do
       click_link_or_button("Date")
       within :table, "Hearings" do
-        expect(page).to have_link("Date \u25BC", href: prosecution_cases_page_url("date", "asc"),
-                                                 class: "govuk-link")
-        expect(page).to have_link("Hearing type", href: prosecution_cases_page_url("type", "asc"),
-                                                  class: "govuk-link")
-        expect(page).to have_link("Providers attending",
-                                  href: prosecution_cases_page_url("provider", "asc"), class: "govuk-link")
+        expect(page).to have_hearing_sorter_link(text: /Date/, column: "date", next_direction: "asc",
+                                                 icon_direction: "desc")
+        expect(page).to have_hearing_sorter_link(text: /Hearing type/, column: "type", next_direction: "asc",
+                                                 icon_direction: "none")
+        expect(page).to have_hearing_sorter_link(text: /Providers attending/, column: "provider",
+                                                 next_direction: "asc", icon_direction: "none")
+
         rows = find_all("tbody/tr")
         expect(rows[0]).to have_link("02/11/2019", class: "govuk-link")
         expect(rows[5]).to have_link("26/10/2019", class: "govuk-link")
@@ -57,12 +59,13 @@ RSpec.feature "Hearing sorting", :vcr, type: :feature do
     scenario "user clicks to sort by type desc" do
       click_link_or_button("Hearing type")
       within :table, "Hearings" do
-        expect(page).to have_link("Date", href: prosecution_cases_page_url("date", "asc"),
-                                          class: "govuk-link")
-        expect(page).to have_link("Hearing type \u25BC", href: prosecution_cases_page_url("type", "asc"),
-                                                         class: "govuk-link")
-        expect(page).to have_link("Providers attending",
-                                  href: prosecution_cases_page_url("provider", "asc"), class: "govuk-link")
+        expect(page).to have_hearing_sorter_link(text: /Date/, column: "date", next_direction: "asc",
+                                                 icon_direction: "none")
+        expect(page).to have_hearing_sorter_link(text: /Hearing type/, column: "type", next_direction: "asc",
+                                                 icon_direction: "desc")
+        expect(page).to have_hearing_sorter_link(text: /Providers attending/, column: "provider",
+                                                 next_direction: "asc", icon_direction: "none")
+
         rows = find_all("tbody/tr")
         expect(rows[0]).to have_link("26/10/2019", class: "govuk-link")
         expect(rows[0]).to have_text("Pre-Trial Review (PTR)")
@@ -78,12 +81,13 @@ RSpec.feature "Hearing sorting", :vcr, type: :feature do
       click_link_or_button("Hearing type")
 
       within :table, "Hearings" do
-        expect(page).to have_link("Date", href: prosecution_cases_page_url("date", "desc"),
-                                          class: "govuk-link")
-        expect(page).to have_link("Hearing type \u25B2", href: prosecution_cases_page_url("type", "desc"),
-                                                         class: "govuk-link")
-        expect(page).to have_link("Providers attending",
-                                  href: prosecution_cases_page_url("provider", "desc"), class: "govuk-link")
+        expect(page).to have_hearing_sorter_link(text: /Date/, column: "date", next_direction: "desc",
+                                                 icon_direction: "none")
+        expect(page).to have_hearing_sorter_link(text: /Hearing type/, column: "type", next_direction: "desc",
+                                                 icon_direction: "asc")
+        expect(page).to have_hearing_sorter_link(text: /Providers attending/, column: "provider",
+                                                 next_direction: "desc", icon_direction: "none")
+
         rows = find_all("tbody/tr")
         expect(rows[0]).to have_link("31/10/2019", class: "govuk-link")
         expect(rows[0]).to have_text("Application to Break Fixture (BFA)")
@@ -97,12 +101,13 @@ RSpec.feature "Hearing sorting", :vcr, type: :feature do
     scenario "user clicks to sort by provider desc" do
       click_link_or_button("Providers attending")
       within :table, "Hearings" do
-        expect(page).to have_link("Date", href: prosecution_cases_page_url("date", "asc"),
-                                          class: "govuk-link")
-        expect(page).to have_link("Hearing type", href: prosecution_cases_page_url("type", "asc"),
-                                                  class: "govuk-link")
-        expect(page).to have_link("Providers attending \u25BC",
-                                  href: prosecution_cases_page_url("provider", "asc"), class: "govuk-link")
+        expect(page).to have_hearing_sorter_link(text: /Date/, column: "date", next_direction: "asc",
+                                                 icon_direction: "none")
+        expect(page).to have_hearing_sorter_link(text: /Hearing type/, column: "type", next_direction: "asc",
+                                                 icon_direction: "none")
+        expect(page).to have_hearing_sorter_link(text: /Providers attending/, column: "provider",
+                                                 next_direction: "asc", icon_direction: "desc")
+
         rows = find_all("tbody/tr")
         expect(rows[2]).to have_link("28/10/2019", class: "govuk-link")
         expect(rows[2]).to have_text("Pre-Trial Review (PTR)")
@@ -117,12 +122,13 @@ RSpec.feature "Hearing sorting", :vcr, type: :feature do
       click_link_or_button("Providers attending")
       click_link_or_button("Providers attending")
       within :table, "Hearings" do
-        expect(page).to have_link("Date", href: prosecution_cases_page_url("date", "desc"),
-                                          class: "govuk-link")
-        expect(page).to have_link("Hearing type", href: prosecution_cases_page_url("type", "desc"),
-                                                  class: "govuk-link")
-        expect(page).to have_link("Providers attending \u25B2",
-                                  href: prosecution_cases_page_url("provider", "desc"), class: "govuk-link")
+        expect(page).to have_hearing_sorter_link(text: /Date/, column: "date", next_direction: "desc",
+                                                 icon_direction: "none")
+        expect(page).to have_hearing_sorter_link(text: /Hearing type/, column: "type", next_direction: "desc",
+                                                 icon_direction: "none")
+        expect(page).to have_hearing_sorter_link(text: /Providers attending/, column: "provider",
+                                                 next_direction: "desc", icon_direction: "asc")
+
         rows = find_all("tbody/tr")
         expect(rows[0]).to have_link("23/10/2019", class: "govuk-link")
         expect(rows[0]).to have_text("Mention - Defendant to Attend (MDA)")

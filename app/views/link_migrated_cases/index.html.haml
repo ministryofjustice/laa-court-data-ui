@@ -28,8 +28,6 @@
               Pending (#{@cases_count["pending"]})
           - else
             = link_to "Pending (#{@cases_count['pending']})", link_migrated_cases_path(tab: "pending"), class: "moj-sub-navigation__link"
-    - direction = render(link_migrated_cases_sorter_direction == "asc" ? "shared/up_icon" : "shared/down_icon")
-    - nondirection = render "shared/updown_icon"
     .moj-scrollable-pane
       %table.govuk-table.app-link-migrated-cases-table
         %colgroup
@@ -42,11 +40,7 @@
             - @columns.each do |col|
               - config = column_config(col)
               - if config[:sortable]
-                %th.govuk-table__header{ scope: "col" }
-                  = link_to(link_migrated_cases_sorter_link(col),
-                            class: "app-no-wrap govuk-link--no-visited-state govuk-link--no-underline") do
-                    = t("link_migrated_cases.index.columns.#{config[:i18n_key]}")
-                    = current_sort_column?(col) ? direction : nondirection
+                = migrated_cases_sorter_header(col, config[:i18n_key])
               - else
                 %th.govuk-table__header.table-heading-blue.app-no-wrap{ scope: "col" }
                   = t("link_migrated_cases.index.columns.#{config[:i18n_key]}")

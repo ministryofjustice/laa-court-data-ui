@@ -24,4 +24,23 @@ RSpec.describe UsersHelper, type: :helper do
       it { is_expected.to eq("View appeals, breaches and POCA") }
     end
   end
+
+  describe "#user_sorter_header" do
+    it "delegates to sorter_header with user sorting keys and translated label" do
+      allow(helper).to receive_messages(users_path: "/users", t: "Email")
+      allow(helper).to receive(:sorter_header).and_return("<th>Email</th>")
+
+      result = helper.user_sorter_header("email")
+
+      expect(helper).to have_received(:sorter_header).with(
+        path: "/users",
+        column: "email",
+        direction_key: :user_sort_direction,
+        column_key: :user_sort_column,
+        label: "Email",
+        default_sort_column: "name",
+      )
+      expect(result).to eq("<th>Email</th>")
+    end
+  end
 end

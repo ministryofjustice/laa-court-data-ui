@@ -30,13 +30,6 @@ module ApplicationHelper
   end
   alias_method :decorate_each, :decorate_all
 
-  def hearings_sorter_link(prosecution_case, column, title = nil)
-    title ||= prosecution_case.column_title(column)
-    title = "#{title} " + prosecution_case.column_sort_icon if column == prosecution_case.hearings_sort_column
-    direction = prosecution_case.hearings_sort_direction == "asc" ? "desc" : "asc"
-    link_to(title, prosecution_case_path(id: prosecution_case.prosecution_case_reference, column:, direction:, anchor: column), class: "govuk-link govuk-link--no-visited-state", id: column, "aria-label": "Sort #{column} #{direction}")
-  end
-
   def navigation_item(path, label, active: current_page?(path))
     active_class = active ? " govuk-service-navigation__item--active" : ""
 
@@ -49,23 +42,6 @@ module ApplicationHelper
 
   def app_environment
     "app-environment-#{ENV.fetch('ENV', 'local')}"
-  end
-
-  def user_sorter_link(column)
-    direction = params[:user_sort_direction] == "desc" ? "asc" : "desc"
-    users_path(user_sort_column: column, user_sort_direction: direction)
-  end
-
-  def user_sorter_direction
-    params[:user_sort_direction] == "desc" ? "desc" : "asc"
-  end
-
-  def user_sorter_column?(column)
-    if params[:user_sort_column].nil?
-      column == "name"
-    else
-      params[:user_sort_column] == column
-    end
   end
 
 private

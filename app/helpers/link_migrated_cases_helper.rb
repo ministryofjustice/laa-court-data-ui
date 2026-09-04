@@ -56,30 +56,22 @@ module LinkMigratedCasesHelper
     end
   end
 
-  def link_migrated_cases_sorter_link(column)
-    direction = current_sort_column?(column) && params[:sort_direction] == "asc" ? "desc" : "asc"
-    link_migrated_cases_path(tab: params[:tab],
-                             sort_column: column,
-                             sort_direction: direction)
-  end
-
-  def link_migrated_cases_sorter_direction
-    params[:sort_direction] == "desc" ? "desc" : "asc"
-  end
-
-  def current_sort_column?(column)
-    if params[:sort_column].nil?
-      %w[case_urn case_urn_new_tab].include?(column)
-    else
-      params[:sort_column] == column
-    end
-  end
-
   def page_url(page_num)
     link_migrated_cases_path(page: page_num,
                              tab: params[:tab],
                              sort_column: params[:sort_column],
                              sort_direction: params[:sort_direction])
+  end
+
+  def migrated_cases_sorter_header(column, i18n_key)
+    sorter_header(
+      path: link_migrated_cases_path(tab: params[:tab]),
+      column: column,
+      direction_key: :sort_direction,
+      column_key: :sort_column,
+      label: t("link_migrated_cases.index.columns.#{i18n_key}"),
+      default_sort_column: "case_urn",
+    )
   end
 
 private

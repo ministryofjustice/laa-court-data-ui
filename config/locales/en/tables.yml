@@ -1,0 +1,7 @@
+---
+en:
+  tables:
+    headings:
+      sort:
+        asc: Sort %{column} ascending
+        desc: Sort %{column} descending

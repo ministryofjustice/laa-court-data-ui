@@ -10,6 +10,17 @@ module HearingHelper
     sanitize(text_with_converted_crlf, tags: %w[br p])
   end
 
+  def hearing_sorter_header(prosecution_case, column)
+    sorter_header(
+      path: prosecution_case_path(id: prosecution_case.prosecution_case_reference, anchor: column),
+      column: column,
+      direction_key: :direction,
+      column_key: :column,
+      label: prosecution_case.column_title(column),
+      default_sort_column: "date",
+    )
+  end
+
 private
 
   def convert_crlf_to_html(text)

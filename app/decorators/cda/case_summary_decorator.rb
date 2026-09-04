@@ -27,10 +27,6 @@ module Cda
       end
     end
 
-    def column_sort_icon
-      hearings_sort_direction == "asc" ? "\u25B2" : "\u25BC"
-    end
-
     def column_title(column)
       Hash.new(t("search.result.hearing.hearing_day")).merge(
         type: t("search.result.hearing.hearing_type"),

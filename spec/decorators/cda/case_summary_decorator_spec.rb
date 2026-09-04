@@ -172,24 +172,6 @@ RSpec.describe Cda::CaseSummaryDecorator, type: :decorator do
     end
   end
 
-  describe "#column_sort_icon" do
-    subject(:call) { decorator.column_sort_icon }
-
-    let(:test_decorator) { decorator }
-
-    context "when direction is asc" do
-      before { allow(test_decorator).to receive(:hearings_sort_direction).and_return("asc") }
-
-      it { is_expected.to eql("\u25B2") }
-    end
-
-    context "when direction is desc" do
-      before { allow(test_decorator).to receive(:hearings_sort_direction).and_return("desc") }
-
-      it { is_expected.to eql("\u25BC") }
-    end
-  end
-
   describe "#column_title" do
     subject(:call) { decorator.column_title(column) }
 
