@@ -1,5 +1,3 @@
-require "addressable"
-
 module TableHelper
   def sorter_header(path:, direction_key:, column_key:, column:, label:, default_sort_column:)
     direction = render sorter_direction(direction_key) == "asc" ? "shared/up_icon" : "shared/down_icon"
@@ -47,8 +45,10 @@ module TableHelper
 
   def sorter_path(path, direction_key, column_key, column)
     direction = target_direction(direction_key)
-    path = Addressable::URI.parse(path)
-    path.query_values = (path.query_values || {}).merge(column_key => column, direction_key => direction)
+    path = URI(path)
+    path.query = Rack::Utils.parse_query(path.query)
+                              .merge(column_key => column, direction_key => direction)
+                              .to_query
     path.to_s
   end
 end
