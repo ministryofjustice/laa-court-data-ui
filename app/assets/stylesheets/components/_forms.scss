@@ -3,8 +3,6 @@
   margin-bottom: govuk-spacing(1);
 }
 
-.govuk-select__conditional {
-  .js-enabled &--hidden {
-    display: none;
-  }
+.js-enabled .govuk-select__conditional--hidden {
+  display: none;
 }
