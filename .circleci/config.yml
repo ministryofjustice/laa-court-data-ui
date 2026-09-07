@@ -471,19 +471,28 @@ workflows:
 
   build-deploy-branch:
     jobs:
-      - branch-build-approval:
-          type: approval
+      - build-app-container:
           filters:
             branches:
               ignore:
                 - main
-      - build-app-container:
+      - scan-docker-image:
+          name: scan-docker-image
+          monitor: false
           requires:
-            - branch-build-approval
+            - build-app-container
+      - e2e-test-branch:
+          context: laa-court-data-e2e-tests
+          requires:
+            - build-app-container
+      - hold_install_on_dev:
+          type: approval
+          requires:
+            - build-app-container
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
-            - build-app-container
+            - hold_install_on_dev
       - hold-test:
           type: approval
           requires:
@@ -500,7 +509,3 @@ workflows:
           context: laa-court-data-ui-live-uat
           requires:
             - hold-uat
-      - e2e-test-branch:
-          context: laa-court-data-e2e-tests
-          requires:
-            - build-app-container
