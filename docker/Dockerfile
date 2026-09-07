@@ -1,4 +1,4 @@
-FROM node:20.20-alpine3.23 AS node
+FROM node:24.20.0-alpine3.23 AS node
 FROM ruby:3.4.9-alpine3.23
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Access Court Data"
@@ -7,7 +7,7 @@ LABEL Contact="<access-court-data-team@digital.justice.gov.uk>"
 # fail early and print all commands
 RUN set -ex
 
-# Get node 20.20 from the node image into the ruby image
+# Get node 22.20 from the node image into the ruby image
 COPY --from=node /usr/lib /usr/lib
 COPY --from=node /usr/local/share /usr/local/share
 COPY --from=node /usr/local/lib /usr/local/lib
