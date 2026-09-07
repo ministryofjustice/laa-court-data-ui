@@ -7,15 +7,18 @@
 require "gds_design_system_breadcrumb_builder"
 
 module GovukDesignSystemHelper
-  def govuk_page_heading(heading_text = nil, caption_text: nil, title: nil, tag_options: {})
+  def govuk_page_heading(heading_text = nil, caption_text: nil, title: nil, tag_options: {}, caption_position: :outside)
     title_content = title ? page_title(title) : page_title(heading_text, caption_text)
     content_for :page_title, title_content
 
+    tag_options = prepend_classes("govuk-heading-xl", tag_options)
+    heading = tag.h1(**tag_options) do
+      page_heading(heading_text, caption_position == :inside ? caption_text : nil)
+    end
+
     content_for :page_heading do
-      tag_options = prepend_classes("govuk-heading-xl", tag_options)
-      tag.h1(**tag_options) do
-        page_heading(heading_text, caption_text)
-      end
+      caption = caption_content(caption_text) if caption_text.present? && caption_position == :outside
+      caption.present? ? safe_join([caption, heading]) : heading
     end
   end
 
@@ -125,5 +128,12 @@ private
     page_title_var = title || contextual_title
     caption_var = caption.strip if caption.present?
     "#{caption_var} #{page_title_var} - #{service_name} - GOV.UK".strip
+  end
+
+  def caption_content(caption_text)
+    tag.span(class: "govuk-caption-xl") do
+      concat tag.span("This section is: ", class: "govuk-visually-hidden")
+      concat caption_text
+    end
   end
 end

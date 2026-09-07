@@ -72,11 +72,24 @@ RSpec.describe GovukDesignSystemHelper, type: :helper do
         expect(helper.content_for(:page_title)).to eql expected_markup
       end
 
-      it ":page_heading contains GDS styled heading caption" do
+      it ":page_heading contains GDS styled heading caption before heading and not inside h1" do
+        markup = helper.content_for(:page_heading)
+        expected_markup = '<span class="govuk-caption-xl"><span class="govuk-visually-hidden">This section is: </span>My page caption</span>' \
+          '<h1 class="govuk-heading-xl">My page title</h1>'
+        expect(markup).to eql expected_markup
+      end
+    end
+
+    context "when caption is displayed inside the heading" do
+      before do
+        helper.govuk_page_heading("My page title", caption_text: "My page caption", caption_position: :inside)
+      end
+
+      it ":page_heading contains GDS styled heading caption inside the heading" do
         markup = helper.content_for(:page_heading)
         expected_markup = '<h1 class="govuk-heading-xl">' \
-                          '<span class="govuk-caption-xl">My page caption</span>' \
-                          "My page title</h1>"
+          '<span class="govuk-caption-xl">My page caption</span>' \
+          "My page title</h1>"
         expect(markup).to eql expected_markup
       end
     end
