@@ -3,7 +3,7 @@
     %ul.moj-header__navigation-list
       - if signed_in?
         %li.moj-header__navigation-item
-          = link_to current_user.name,
+          = link_to t("layouts.application.header.navigation.account_area_html", name: current_user.name).html_safe,
                     user_path(current_user),
                     class: "moj-header__navigation-link"
         %li.moj-header__navigation-item

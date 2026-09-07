@@ -25,6 +25,7 @@ en:
       header:
         legal_aid_agency: Legal Aid Agency
         navigation:
+          account_area_html: "%{name} <span class='govuk-visually-hidden'>- edit user details</span>"
           link_migrated_cases: Link migrated cases
           manage_users: Manage users
           menu: Menu

@@ -6,7 +6,7 @@
 #
 class GdsDesignSystemBreadcrumbBuilder < BreadcrumbsOnRails::Breadcrumbs::Builder
   def render
-    @context.tag.div(class: "govuk-breadcrumbs", role: "navigation", "aria-label": "Navigate Case") do
+    @context.tag.nav(class: "govuk-breadcrumbs", role: "navigation", "aria-label": "breadcrumbs") do
       @context.tag.ol(class: "govuk-breadcrumbs__list") do
         @elements.collect.with_index { |element, idx|
           render_element(element, last: idx.eql?(@elements.size - 1))
