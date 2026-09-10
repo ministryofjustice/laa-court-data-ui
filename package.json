@@ -37,7 +37,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "axe-core": "^4.10.3",
-    "playwright": "^1.62.1",
+    "playwright": "^1.63.0",
     "standard": "^17.1.2",
     "stylelint": "^17.15.0",
     "stylelint-config-gds": "^3.0.0",
