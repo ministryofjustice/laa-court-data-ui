@@ -6,94 +6,29 @@ To run the app locally see [Installation and running](installation.md)
 
 ## Local stack setup
 
-For running the Court data adaptor and a Mock common platform API locally, and consuming by the user interface.
+These instructions assume the following:
 
-### Step-by-step:
+- You have the [`laa-court-data-adaptor`](https://github.com/ministryofjustice/laa-court-data-adaptor) repository cloned in a sibling directory to this repository.
+- You are [already setup on the MoJ Cloud Platform](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/getting-started/kubectl-config.html).
 
-#### Local mock common platform API setup
-
-- clone
-```
-git clone git@github.com:ministryofjustice/hmcts-common-platform-mock-api.git
-cd .../hmcts-common-platform-mock-api
-```
-
-- create dummy data
-```
-# create some data
-rails mock:demodata:load
-```
-
-- start server on port 9293
-```
-# start server
-rackup -p 9293
-```
-
-#### Local adaptor setup
-
-- clone
+If you want to run the whole stack, including the adaptor and hot reloading for the UI and adaptor, you can use the
+following command:
 
 ```
-git clone git@github.com:ministryofjustice/laa-court-data-adaptor.git
-cd .../laa-court-data-adaptor
+make run_all
 ```
 
-- configure local adaptor to use local mock common platform API, set database URL and, optionally, inline sidekiq jobs
-```
-# in .env.development.local
-COMMON_PLATFORM_URL=http://localhost:9293
-DATABASE_URL=postgres://localhost/laa_court_data_adaptor_development
-INLINE_SIDEKIQ=true
-```
+This will do the following:
 
-- setup CDA database
-```
-# setup and seed database
-rails db:setup
-```
-or
-`rails db:create db:migrate db:seed`
+- Build the necessary containers for the adaptor and the UI.
+- Create environment variables for the UI by generating a UID and secret for the adaptor API.
+- Create environment variables for the adaptor by reading the Kubenetes secrets from Cloud Platform to connect to the
+  [Common Platform Mock API](https://github.com/ministryofjustice/hmcts-common-platform-mock-api) and the development
+  instance of the [MAAT Court Data API](https://github.com/ministryofjustice/laa-maat-court-data-api)
+- Set up the databases for the adaptor and the UI, and run any seeds and migrations.
+- Run all the containers in development mode.
 
-- generate OAuth2 `client_credentials` - for the UI
-```
-rails console
-> application = Doorkeeper::Application.create(name: 'LAA Court data UI')
-> application.yield_self { |r| [r.uid, r.secret] }
-=> [6FYXUiqrR3Yuid2ispemVNPUT7-8W0LB1sSmB6c0f3k-example, K122aTsBeRj1GuP7u-Fdi3Vm6uSKaD8K2vq0pPRocIo-example]
-
-# These should be put in the UI's `.env.development.local` - see UI setup below
-```
-
-- start server
-```
-# start server
-rackup -p 9292
-```
-
-#### Local UI setup
-
-- clone
-```
-# clone or cd into
-git clone git@github.com:ministryofjustice/laa-court-data-ui.git
-cd .../laa-court-data-ui
-```
-
-- configure UI to use and authenticate against local adaptor
-```
-# .env.development.local
-COURT_DATA_ADAPTOR_API_URL: http://localhost:9292/api/internal/v1
-COURT_DATA_ADAPTOR_API_UID: uid-generated-by-adaptor-above
-COURT_DATA_ADAPTOR_API_SECRET: secret-generated-by-adaptor-above
-```
-
-- start server
-```
-# start server
-rails s
-```
-Note: sidekiq is configured to run jobs inline in development. See `config/initializers/sidekiq.rb`
+You will then be able to access the UI at `http://localhost:3000` and the adaptor at `http://localhost:3001`.
 
 ## Development notes
 
