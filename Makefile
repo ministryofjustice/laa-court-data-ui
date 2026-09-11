@@ -28,6 +28,14 @@ install: #: install all requirements
 run: #: run the application locally
 	foreman start -f Procfile.dev
 
+run_full: #: run the full application stack locally
+	@printf "\e[33mMAKE: building containers...\e[0m\n"
+	@docker-compose build --no-cache
+	@printf "\e[33mMAKE: setting up environment variables...\e[0m\n"
+	@bin/docker-setup-env
+	@printf "\e[33mMAKE: starting containers...\e[0m\n"
+	@docker-compose up
+
 test: #: run test suite locally
 	@printf "\e[33mMAKE: brakeman...\e[0m\n"
 	@bundle exec brakeman --quiet --exit-on-warn 1> /dev/null
