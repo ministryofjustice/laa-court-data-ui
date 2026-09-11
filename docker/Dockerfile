@@ -41,7 +41,9 @@ RUN apk --update-cache upgrade \
                   postgresql-dev \
                   tzdata \
                   runit \
-                  yaml-dev
+                  yaml-dev \
+                  $(if [ "$BUNDLE_DEPLOYMENT" == "false" ]; then echo "libffi-dev"; fi)
+
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \
@@ -61,10 +63,10 @@ WORKDIR /usr/src/app
 COPY Gemfile* ./
 
 # Installs bundler version used in Gemfile.lock
-# - only install production dependencies
+# - install production dependencies unless building a development image
 #
 RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") \
-&& bundle config --local without test development \
+&& if [ "$BUNDLE_DEPLOYMENT" != "false" ]; then bundle config --local without test development; fi \
 && bundle config build.nokogiri --use-system-libraries \
 && bundle check || bundle install --jobs=4 --retry=3
 

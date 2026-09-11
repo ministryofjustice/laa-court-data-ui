@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17.4-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: laa_court_data_ui_development
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+
+  cda:
+    build:
+      context: ../laa-court-data-adaptor
+      args:
+        BUNDLE_DEPLOYMENT: 'false'
+        BUNDLE_WITHOUT: ' '
+    volumes:
+      - ../laa-court-data-adaptor:/app
+      - adaptor_bundle:/usr/local/bundle
+    working_dir: /app
+    env_file:
+      - ../laa-court-data-adaptor/.env.development.local
+    environment:
+      RAILS_ENV: development
+      PORT: 3001
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/laa_court_data_adaptor_development
+      INLINE_SIDEKIQ: 'true'
+      RAILS_DEVELOPMENT_HOSTS: "cda"
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - '3001:3001'
+
+  vcd:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        BUNDLE_DEPLOYMENT: 'false'
+        BUNDLE_WITHOUT: ' '
+    volumes:
+      - .:/usr/src/app
+      - ui_bundle:/usr/local/bundle
+    working_dir: /usr/src/app
+    env_file:
+      - ./.env
+      - ./.env.development
+    environment:
+      RAILS_ENV: development
+      PORT: 3000
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/laa_court_data_ui_development
+      REDIS_URL: redis://redis:6379
+      COURT_DATA_ADAPTOR_API_URL: http://cda:3001/api/internal/v1
+    depends_on:
+      - postgres
+      - redis
+      - cda
+    ports:
+      - '3000:3000'
+
+volumes:
+  postgres_data:
+  adaptor_bundle:
+  ui_bundle:
