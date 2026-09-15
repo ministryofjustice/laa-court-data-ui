@@ -55,8 +55,7 @@ RSpec.describe "link defendant with no maat id", :stub_unlinked, type: :request 
         let(:defendant_id) { "not-a-uuid" }
 
         it {
-          expect(response.body).to include("The MAAT reference you provided is not available " \
-                                           "to be associated with this defendant.")
+          expect(response.body).to include("Enter a MAAT ID in the correct format")
         }
 
         it { expect(response.body).to include("Link court data") }

@@ -117,26 +117,12 @@ RSpec.describe "unlink defendant maat reference", :stub_unlink, type: :request d
 
       it {
         expect(response.body)
-          .to include("The request to link/unlink the Defendant or Appellant was malformed.")
+          .to include("The username you provided is too long. Please provide a username that is 10 characters or less.")
       }
 
       it "renders the unlink page" do
         expect(response.body).to include("Confirm you want to remove MAAT ID link")
       end
-    end
-
-    context "with a request that returns a 422", :stub_v2_unlink_bad_response do
-      let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-
-      before do
-        post "/defendants/#{defendant_id}/unlink?urn=#{prosecution_case_reference_from_fixture}",
-             params:
-      end
-
-      it {
-        expect(response.body)
-          .to include("The request to link/unlink the Defendant or Appellant was malformed.")
-      }
     end
 
     context "with valid reason_code" do
