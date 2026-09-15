@@ -2,7 +2,7 @@
 
 module Cda
   class ErrorCodeParser
-    def self.call(cda_response, context = nil)
+    def self.call(cda_response)
       return unless cda_response
 
       body = cda_response.body
@@ -10,22 +10,12 @@ module Cda
       return unless error_response["error_codes"]
 
       error_response["error_codes"]
-        .filter_map { |code| build_message(code, context) }
+        .filter_map { |code| I18n.t("cda_errors.#{code}") }
         .join(" ")
         .presence
     rescue StandardError => e
       Rails.logger.error "Cda::ErrorCodeParser error: #{e.message}"
       nil
-    end
-
-    def self.build_message(code, context)
-      if context && I18n.t("cda_errors.context.#{context}").key?(code.to_sym)
-        return I18n.t("cda_errors.context.#{context}.#{code}")
-      end
-
-      return unless code && I18n.t("cda_errors").key?(code.to_sym)
-
-      I18n.t("cda_errors.#{code}")
     end
   end
 end

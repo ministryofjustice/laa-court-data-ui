@@ -101,11 +101,7 @@ protected
   end
 
   def cda_error_string(exception)
-    Cda::ErrorCodeParser.call(exception.try(:response), cda_error_string_context)
-  end
-
-  def cda_error_string_context
-    nil
+    Cda::ErrorCodeParser.call(exception.try(:response))
   end
 
   def loggable_error_message(exception)
