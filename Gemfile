@@ -44,9 +44,12 @@ group :test do
   gem "capybara"
   gem "capybara-playwright-driver"
   gem "capybara_table"
+  gem "climate_control"
   gem "haml_lint", require: false
   gem "i18n-tasks", "~> 1.1.2"
   gem "launchy"
+  gem "pact"
+  gem "pact_broker-client"
   gem "rspec-html-matchers", "~> 0.10.0"
   gem "rspec_junit_formatter", require: false
   gem "rspec-rails", "~> 8.0"
