@@ -57,7 +57,7 @@ group :test do
   gem "rubocop-performance", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-rspec_rails", require: false
-  gem "selenium-webdriver", "~> 4.48"
+  gem "selenium-webdriver", "~> 4.49"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "simplecov-rcov"
@@ -89,7 +89,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "net-imap", "~> 0.6.6"
+gem "net-imap", "~> 0.6.7"
 gem "net-pop", "~> 0.1.2"
 gem "net-smtp", "~> 0.5.0"
 
