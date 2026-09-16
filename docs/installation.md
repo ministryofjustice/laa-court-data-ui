@@ -90,16 +90,5 @@ COURT_DATA_ADAPTOR_API_SECRET: secret-for-adaptor-api-above
 
 The uid and secret can be generated as described by [laa-court-data-adptor#api-authentication](https://github.com/ministryofjustice/laa-court-data-adaptor#api-authentication)
 
-Alternatively, if you want to communicate with the local version of the adaptor service (which in turn communicates with
-the hosted version of `hmcts-common-platform-mock-api`), you can set up the `.env.development` file with the following
-command:
-
-```
-make setup_env
-```
-
-You can then run the app with the following command:
-
-```
-foreman start -f Procfile.local.dev
-```
+You can also run the whole stack, including the adaptor and hot reloading for the UI and adaptor by following the instructions
+in [docs/development.md](development.md#local-stack-setup)

@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+set -eu
+
+if [ ! -d ../laa-court-data-adaptor ]; then
+  printf '%s\n' "Expected ../laa-court-data-adaptor to exist next to this repo." >&2
+  exit 1
+fi
+
+uid=$(docker compose run --rm cda bundle exec rails runner 'puts Doorkeeper::Application.first_or_create(name: "My CDA Client").uid')
+secret=$(docker compose run --rm cda bundle exec rails runner 'puts Doorkeeper::Application.first_or_create(name: "My CDA Client").secret')
+
+{
+  printf '%s\n' 'GA_TRACKING_ID: UA-XXXXXXXXX-XX'
+  printf '%s\n' 'DISPLAY_RAW_RESPONSES: enabled'
+  printf '%s\n' 'COURT_DATA_ADAPTOR_API_URL: http://localhost:3001/api/internal/v1'
+  printf '%s\n' "COURT_DATA_ADAPTOR_API_UID: ${uid}"
+  printf '%s\n' "COURT_DATA_ADAPTOR_API_SECRET: ${secret}"
+  printf '%s\n' 'FAKE_AUTH: true'
+} > .env.development
+
+../laa-court-data-adaptor/script/generate_env

@@ -28,6 +28,14 @@ install: #: install all requirements
 run: #: run the application locally
 	foreman start -f Procfile.dev
 
+run_full: #: run the full application stack locally
+	@printf "\e[33mMAKE: building containers...\e[0m\n"
+	@docker-compose build --no-cache
+	@printf "\e[33mMAKE: setting up environment variables...\e[0m\n"
+	@bin/docker-setup-env
+	@printf "\e[33mMAKE: starting containers...\e[0m\n"
+	@docker-compose up
+
 test: #: run test suite locally
 	@printf "\e[33mMAKE: brakeman...\e[0m\n"
 	@bundle exec brakeman --quiet --exit-on-warn 1> /dev/null
@@ -44,9 +52,4 @@ open: #: open localhost:3000 in default browser
 
 setup_env: #: setup environment variables for local development
 	@printf "\e[33mMAKE: setting up environment variables...\e[0m\n"
-	@echo "GA_TRACKING_ID: UA-XXXXXXXXX-XX" > .env.development
-	@echo "DISPLAY_RAW_RESPONSES: enabled" >> .env.development
-	@echo "COURT_DATA_ADAPTOR_API_URL: http://localhost:3001/api/internal/v1" >> .env.development
-	@echo "COURT_DATA_ADAPTOR_API_UID: $$(cd ../laa-court-data-adaptor && docker-compose run app bin/rails runner 'puts Doorkeeper::Application.first_or_create(name: "My CDA Client").uid')" >> .env.development
-	@echo "COURT_DATA_ADAPTOR_API_SECRET: $$(cd ../laa-court-data-adaptor && docker-compose run app bin/rails runner 'puts Doorkeeper::Application.first_or_create(name: "My CDA Client").secret')" >> .env.development
-	@echo "FAKE_AUTH: true" >> .env.development
+	@bin/docker-setup-env .env.development
