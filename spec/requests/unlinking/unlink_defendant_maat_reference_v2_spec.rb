@@ -40,7 +40,7 @@ RSpec.describe "unlink defendant maat reference", :stub_unlink, type: :request d
   let(:defendant_asn_from_fixture) { "0TSQT1LMI7CR" }
   let(:defendant_id) { "41fcb1cd-516e-438e-887a-5987d92ef90f" }
   let(:prosecution_case_reference_from_fixture) { "TEST12345" }
-  let(:api_url_v2) { Cda::BaseModel.api_url }
+  let(:api_url_v2) { Cda::BaseModel.url_with_prefix }
   let(:maat_reference) { 2_123_456.to_s }
 
   let(:params) do
@@ -52,7 +52,7 @@ RSpec.describe "unlink defendant maat reference", :stub_unlink, type: :request d
       },
     }
   end
-  let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}" }
+  let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}" }
   let(:api_request_payload) do
     {
       laa_reference: { defendant_id:,
@@ -117,26 +117,12 @@ RSpec.describe "unlink defendant maat reference", :stub_unlink, type: :request d
 
       it {
         expect(response.body)
-          .to include("The request to link/unlink the Defendant or Appellant was malformed.")
+          .to include("The username you provided is too long. Please provide a username that is 10 characters or less.")
       }
 
       it "renders the unlink page" do
         expect(response.body).to include("Confirm you want to remove MAAT ID link")
       end
-    end
-
-    context "with a request that returns a 422", :stub_v2_unlink_bad_response do
-      let(:query) { hash_including({ filter: { arrest_summons_number: defendant_asn_from_fixture } }) }
-
-      before do
-        post "/defendants/#{defendant_id}/unlink?urn=#{prosecution_case_reference_from_fixture}",
-             params:
-      end
-
-      it {
-        expect(response.body)
-          .to include("The request to link/unlink the Defendant or Appellant was malformed.")
-      }
     end
 
     context "with valid reason_code" do

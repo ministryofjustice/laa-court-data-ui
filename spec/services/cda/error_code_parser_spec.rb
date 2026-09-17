@@ -1,10 +1,9 @@
 require "rails_helper"
 
 RSpec.describe Cda::ErrorCodeParser do
-  subject(:output) { described_class.call(response, context) }
+  subject(:output) { described_class.call(response) }
 
   let(:response) { instance_double(Faraday::Response, body:) }
-  let(:context) { nil }
 
   context "when a string is provided" do
     let(:body) { '{ "error_codes":["internal_server_error"]}' }
@@ -26,7 +25,7 @@ RSpec.describe Cda::ErrorCodeParser do
     end
   end
 
-  context "when context is irrelevant" do
+  context "when a hash is provided" do
     let(:context) { "appeal" }
     let(:body) { { "error_codes" => %w[internal_server_error] } }
 
@@ -34,17 +33,6 @@ RSpec.describe Cda::ErrorCodeParser do
       expect(output).to eq(
         "Court Data Adaptor could not be reached. This may be a temporary error. " \
         "If this problem persists, please contact the IT Helpdesk on 0800 9175148.",
-      )
-    end
-  end
-
-  context "when context is relevant" do
-    let(:context) { "appeal" }
-    let(:body) { { "error_codes" => %w[maat_reference_contract_failure] } }
-
-    it "uses context" do
-      expect(output).to eq(
-        "The MAAT reference you provided is not available to be associated with this appellant.",
       )
     end
   end

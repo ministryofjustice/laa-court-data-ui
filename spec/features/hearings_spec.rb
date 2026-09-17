@@ -2,7 +2,7 @@
 
 RSpec.feature "Viewing the hearings page", :stub_case_search, :stub_internal_v2_hearing_results, :stub_v2_hearing_summary, type: :feature do
   let(:user) { create(:user) }
-  let(:api_url_v2) { Cda::BaseModel.site }
+  let(:api_url_v2) { Cda::BaseModel.url_with_prefix }
   let(:api_events_path) { "#{api_url_v2}hearings/#{hearing_id}/event_log/2019-10-23" }
   let(:api_data_path) { "#{api_url_v2}hearing_results/#{hearing_id}" }
   let(:case_reference) { "TEST12345" }

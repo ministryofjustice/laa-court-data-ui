@@ -84,7 +84,7 @@ RSpec.configure do |config|
                 "defendant_id" => ["is not a valid uuid"],
                 "maat_reference" => ["1234567 has no data created against Maat application."],
               },
-              "error_codes" => %w[maat_reference_contract_failure] }.to_json,
+              "error_codes" => %w[maat_reference_invalid_contract_failure] }.to_json,
     )
   end
 
@@ -96,7 +96,7 @@ RSpec.configure do |config|
       headers: { "Content-Type" => "application/json" },
       body: { "errors" => { "maat_reference" =>
                              ["1234567 has no common platform data created against Maat application."] },
-              "error_codes" => %w[maat_reference_contract_failure] }
+              "error_codes" => %w[maat_reference_no_common_platform_data_contract_failure] }
               .to_json,
     )
   end
@@ -224,19 +224,30 @@ RSpec.configure do |config|
       headers: { "Content-Type" => "application/json" },
       body: {
         "error" => 'Contract error: {:user_name=>[\"must not exceed 10 characters\"]}',
-        error_codes: %w[user_name_contract_failure],
+        error_codes: %w[user_name_must_not_be_greater_than_max_contract_failure],
       }.to_json,
     )
   end
 
-  config.before(:each, :stub_v2_unlink_bad_response) do
+  config.before(:each, :stub_v2_unlink_missing_reason) do
     stub_request(
       :patch, %r{/v2/(laa_references|link_migrated_cases)/#{defendant_id}}
     ).to_return(
       status: 422,
       headers: { "Content-Type" => "application/json" },
-      body: { "error" => "Contract error: {:user_name=>[\"must not exceed 10 characters\"]}",
-              error_codes: %w[user_name_contract_failure] }.to_json,
+      body: { "error" => "Contract error: {:unlink_other_reason_text=>[\"must be present\"]}",
+              error_codes: %w[unlink_other_reason_text_must_be_present_contract_failure] }.to_json,
+    )
+  end
+
+  config.before(:each, :stub_v2_unlink_invalid_username) do
+    stub_request(
+      :patch, %r{/v2/(laa_references|link_migrated_cases)/#{defendant_id}}
+    ).to_return(
+      status: 422,
+      headers: { "Content-Type" => "application/json" },
+      body: { "error" => "Contract error: {:user_name_must_not_be_greater_than_max_contract_failure=>[\"too big\"]}",
+              error_codes: %w[user_name_must_not_be_greater_than_max_contract_failure] }.to_json,
     )
   end
 

@@ -1,0 +1,302 @@
+{
+  "consumer": {
+    "name": "laa-court-data-ui"
+  },
+  "interactions": [
+    {
+      "description": "a request to link a defendant",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a MAAT ID that is already linked"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "laa_reference": {
+              "defendant_id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
+              "maat_reference": "1234567",
+              "user_name": "test_user"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Authorization": [
+            "fake-court-data-adaptor-bearer-token"
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.laa_reference.defendant_id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.laa_reference.maat_reference": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:\\A[0-9]{7}\\z)"
+                }
+              ]
+            },
+            "$.laa_reference.user_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Authorization": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/laa_references/"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "error_codes": [
+              "maat_reference_already_linked_contract_failure"
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ]
+        },
+        "status": 422
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to link a defendant",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a MAAT ID with no Common Platform data"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "laa_reference": {
+              "defendant_id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
+              "maat_reference": "1234567",
+              "user_name": "test_user"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Authorization": [
+            "fake-court-data-adaptor-bearer-token"
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.laa_reference.defendant_id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.laa_reference.maat_reference": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:\\A[0-9]{7}\\z)"
+                }
+              ]
+            },
+            "$.laa_reference.user_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Authorization": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/laa_references/"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "error_codes": [
+              "maat_reference_no_common_platform_data_contract_failure"
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ]
+        },
+        "status": 422
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to link a defendant",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "an invalid MAAT ID"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "laa_reference": {
+              "defendant_id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
+              "maat_reference": "1234567",
+              "user_name": "test_user"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Authorization": [
+            "fake-court-data-adaptor-bearer-token"
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.laa_reference.defendant_id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.laa_reference.maat_reference": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:\\A[0-9]{7}\\z)"
+                }
+              ]
+            },
+            "$.laa_reference.user_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Authorization": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/laa_references/"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "error_codes": [
+              "maat_reference_invalid_contract_failure"
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ]
+        },
+        "status": 422
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-ruby": {
+      "pact-ffi": "0.5.8"
+    },
+    "pactRust": {
+      "ffi": "0.5.8",
+      "mockserver": "2.2.6",
+      "models": "1.3.16"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "laa-court-data-adaptor"
+  }
+}

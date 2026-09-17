@@ -2,19 +2,19 @@
 en:
   cda_errors:
     common_platform_connection_failed: HMCTS Common Platform could not be reached. This may be a temporary error. If this problem persists, please contact the IT Helpdesk on 0800 9175148.
-    context:
-      appeal:
-        maat_reference_contract_failure: The MAAT reference you provided is not available to be associated with this appellant.
-      breach:
-        maat_reference_contract_failure: The MAAT reference you provided is not available to be associated with this respondent.
-      poca:
-        maat_reference_contract_failure: The MAAT reference you provided is not available to be associated with this respondent.
-    defendant_id_contract_failure: The defendant you are trying to link is not in a valid state to be linked.
+    defendant_id_invalid_uuid_contract_failure: The defendant you are trying to link has an invalid ID. Please check the defendant and try again.
+    defendant_id_is_missing_contract_failure: The defendant you are trying to link has a missing ID. Please check the defendant and try again.
     internal_server_error: Court Data Adaptor could not be reached. This may be a temporary error. If this problem persists, please contact the IT Helpdesk on 0800 9175148.
-    maat_reference_contract_failure: The MAAT reference you provided is not available to be associated with this defendant.
+    maat_reference_already_linked_contract_failure: The MAAT reference you provided is already linked to another record. Please check the MAAT reference and try again.
+    maat_reference_invalid_contract_failure: Enter a MAAT ID in the correct format
+    maat_reference_no_common_platform_data_contract_failure: The MAAT reference you provided cannot be linked right now as we do not have all the required information, please try again later.
     multiple_maats: The HMCTS record for this defendant cannot be displayed. HMCTS is aware of this issue. The record will be available once this issue has been resolved.
     spaces_in_urn: The HMCTS record for this defendant cannot be displayed. HMCTS is aware of this issue. The record will be available once this issue has been resolved.
-    subject_id_contract_failure: The appellant you are trying to link is not in a valid state to be linked.
-    unlink_other_reason_text_contract_failure: The request to unlink the Defendant or Appellant was malformed.
-    unlink_reason_code_contract_failure: The request to unlink the Defendant or Appellant was malformed.
-    user_name_contract_failure: The request to link/unlink the Defendant or Appellant was malformed.
+    subject_id_invalid_uuid_contract_failure: The appellant you are trying to link has an invalid subject ID.
+    subject_id_is_missing_contract_failure: The appellant you are trying to link has an missing subject ID.
+    subject_id_missing_summary_data_contract_failure: The appellant you are trying to link cannot be linked right now as we do not have all the required information, please try again later.
+    unlink_other_reason_text_must_be_absent_contract_failure: Please leave the reason for unlinking the Defendant or Appellant blank.
+    unlink_other_reason_text_must_be_present_contract_failure: Please provide a reason for unlinking the Defendant or Appellant.
+    unlink_reason_code_must_be_present_contract_failure: Please provide a reason for unlinking the Defendant or Appellant.
+    user_name_must_be_present_contract_failure: Please provide your username.
+    user_name_must_not_be_greater_than_max_contract_failure: The username you provided is too long. Please provide a username that is 10 characters or less.

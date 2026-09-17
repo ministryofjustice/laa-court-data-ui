@@ -61,8 +61,7 @@ RSpec.describe "link migrated case maat reference", :vcr, type: :request do
 
     context "when defendant_id is not a valid uuid", :stub_v2_link_failure_with_invalid_defendant_uuid do
       it {
-        expect(response.body).to include "The MAAT reference you provided is not available to " \
-                                         "be associated with this defendant."
+        expect(response.body).to include "Enter a MAAT ID in the correct format"
       }
 
       it { expect(response.body).to include("Link court data") }
@@ -72,8 +71,8 @@ RSpec.describe "link migrated case maat reference", :vcr, type: :request do
       context "when MAAT API does not know maat reference",
               :stub_v2_link_failure_with_unknown_maat_reference do
         it {
-          expect(response.body).to include "The MAAT reference you provided is not available to " \
-                                           "be associated with this defendant."
+          expect(response.body).to include "The MAAT reference you provided cannot be linked right now as we do not have " \
+                                             "all the required information, please try again later."
         }
 
         it { expect(response.body).to include("Link court data") }

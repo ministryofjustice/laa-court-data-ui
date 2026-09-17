@@ -2,11 +2,16 @@ module Cda
   class BaseModel < ActiveResource::Base
     def self.api_url
       uri = URI(ENV.fetch("COURT_DATA_ADAPTOR_API_URL", nil))
-      "#{uri.scheme}://#{uri.host}:#{uri.port}/api/internal/v2"
+      "#{uri.scheme}://#{uri.host}:#{uri.port}"
+    end
+
+    def self.url_with_prefix
+      "#{api_url}#{prefix}"
     end
 
     self.site = api_url
     self.include_format_in_path = false
+    self.prefix = "/api/internal/v2/"
 
     def self.headers
       {

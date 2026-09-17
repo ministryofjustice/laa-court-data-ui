@@ -2,8 +2,8 @@
 
 RSpec.feature "Unlinking a defendant from MAAT", :stub_unlink, type: :feature do
   let(:case_urn) { "TEST12345" }
-  let(:api_url_v2) { Cda::BaseModel.api_url }
-  let(:api_request_path) { "#{api_url_v2}/laa_references/#{defendant_id}" }
+  let(:api_url_v2) { Cda::BaseModel.url_with_prefix }
+  let(:api_request_path) { "#{api_url_v2}laa_references/#{defendant_id}" }
 
   let(:user) { create(:user) }
 
@@ -118,11 +118,19 @@ RSpec.feature "Unlinking a defendant from MAAT", :stub_unlink, type: :feature do
         click_link_or_button "Remove link to MAAT ID"
       end
 
-      it "flashes alert for 422 Unprocessable Content response", :stub_v2_unlink_bad_response do
+      it "flashes alert for a missing reason", :stub_v2_unlink_missing_reason do
         expect(page).to \
           have_govuk_flash(
             :alert,
-            text: "The request to link/unlink the Defendant or Appellant was malformed.",
+            text: "Please provide a reason for unlinking the Defendant or Appellant.",
+          )
+      end
+
+      it "flashes alert for an invalid username", :stub_v2_unlink_invalid_username do
+        expect(page).to \
+          have_govuk_flash(
+            :alert,
+            text: "The username you provided is too long. Please provide a username that is 10 characters or less.",
           )
       end
 
