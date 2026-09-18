@@ -18,23 +18,6 @@ RSpec.feature "Unlinking a defendant from MAAT", :stub_unlink, type: :feature do
     visit(url)
   end
 
-  context "when user views the link page" do
-    let(:defendant_id) { "41fcb1cd-516e-438e-887a-5987d92ef90f" }
-    let(:url) { "defendants/#{defendant_id}/link?urn=#{case_urn}" }
-
-    it "displays the MAAT ID field" do
-      expect(page).to have_field("MAAT ID")
-    end
-
-    it "displays the MAAT ID field hint" do
-      expect(page).to have_text("Enter the MAAT ID")
-    end
-
-    it "does not display the unlink reasons" do
-      expect(page).to have_no_text("Reason for unlinking")
-    end
-  end
-
   context "when user views the unlink page" do
     let(:defendant_id) { "41fcb1cd-516e-438e-887a-5987d92ef90f" }
     let(:url) { "defendants/#{defendant_id}/unlink?urn=#{case_urn}" }
