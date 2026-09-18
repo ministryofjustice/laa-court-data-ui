@@ -218,4 +218,22 @@ RSpec.describe User, type: :model do
       expect(mailer).to have_received(:deliver_later)
     end
   end
+
+  describe "#feature_flag_enabled?" do
+    subject { user.feature_flag_enabled?(flag) }
+
+    let(:user) { build(:user, feature_flags: %w[view_appeals]) }
+
+    context "when feature flag is enabled" do
+      let(:flag) { :view_appeals }
+
+      it { is_expected.to be true }
+    end
+
+    context "when feature flag is not enabled" do
+      let(:flag) { :non_existent_flag }
+
+      it { is_expected.to be false }
+    end
+  end
 end
