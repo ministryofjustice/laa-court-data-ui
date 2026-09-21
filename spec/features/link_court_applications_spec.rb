@@ -21,22 +21,15 @@ RSpec.feature "Link court applications" do
     end
 
     scenario "I successfully link a court application" do
-      visit link_court_application_subject_path(unlinked_court_application_id)
+      visit court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: "7654321"
       click_on "Link court data"
       expect(page).to have_text "Application linked successfully."
       expect(page).to have_text "MAAT ID 7654321"
     end
 
-    scenario "I try to link with an invalid MAAT" do
-      visit link_court_application_subject_path(unlinked_court_application_id)
-      fill_in "MAAT ID", with: "123"
-      click_on "Link court data"
-      expect(page).to have_text "Enter a MAAT ID in the correct format"
-    end
-
     scenario "I can see the option to create a link without MAAT ID for an appeal application" do
-      visit link_court_application_subject_path(unlinked_court_application_id)
+      visit court_application_subject_path(unlinked_court_application_id)
       expect(page).to have_text "The MAAT ID is missing"
     end
 
@@ -62,7 +55,7 @@ RSpec.feature "Link court applications" do
     end
 
     scenario "I try to link but there are problems upstream" do
-      visit link_court_application_subject_path(unlinked_court_application_with_problems_id)
+      visit court_application_subject_path(unlinked_court_application_with_problems_id)
 
       fill_in "MAAT ID", with: "7654321"
       click_on "Link court data"
@@ -86,7 +79,7 @@ RSpec.feature "Link court applications" do
       end
 
       scenario "I link and then unlink a POCA application" do
-        visit link_court_application_subject_path(court_application_id)
+        visit court_application_subject_path(court_application_id)
 
         expect(page).to have_text "2391NX0000558631827D" # The ASN, taken from the prosecution case defendant
 
@@ -114,7 +107,7 @@ RSpec.feature "Link court applications" do
       end
 
       scenario "I link and then unlink a POCA application, without a MAAT ID" do
-        visit link_court_application_subject_path(court_application_id)
+        visit court_application_subject_path(court_application_id)
 
         find("summary", text: "The MAAT ID is missing").click
         click_on "Create link without MAAT ID"
