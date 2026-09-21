@@ -8,18 +8,14 @@ class SubjectsController < ApplicationController
   # The same view adapts to both roles via @application.appeal?.
   # View: app/views/subjects/show.html.haml
   def show
+    @form_model = load_link_attempt
+
     if params.fetch(:include_offence_history, "false") == "true"
       @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(
         @application.defendant.id,
         @application.prosecution_case_reference,
       )
     end
-  end
-
-  # GET /court_applications/:court_application_id/subject/link
-  # First page of the new linking journey; renders the dedicated link page for all categories.
-  def show_link
-    @form_model = load_link_attempt
   end
 
   # GET /court_applications/:court_application_id/subject/unlink
@@ -39,9 +35,9 @@ class SubjectsController < ApplicationController
                 flash: { success_moj_banner: t(".success") }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
-    render :show_link
+    render :show
   rescue ActiveModel::ValidationError
-    render :show_link
+    render :show
   end
 
   # POST /court_applications/:court_application_id/subject/unlink
