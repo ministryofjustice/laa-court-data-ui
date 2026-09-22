@@ -1,4 +1,6 @@
-- if local_assigns.fetch(:show_heading, true)
+-# locals: (url:, form_model:, hint: nil, show_heading: true, inset_text: nil, secondary_link: nil)
+
+- if show_heading
   %h2.govuk-heading-m{ class: "govuk-!-margin-bottom-4" }
     = t("generic.link_court_data")
 = form_with(model: form_model, url: url, data: { turbo_stream: true }) do |f|
