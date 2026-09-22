@@ -1,13 +1,23 @@
-.govuk-heading-m{ class: "govuk-!-margin-bottom-4" }
-  = t("generic.link_court_data")
+-# locals: (url:, form_model:, hint: nil, show_heading: true, inset_text: nil, secondary_link: nil)
+
+- if show_heading
+  .govuk-heading-m{ class: "govuk-!-margin-bottom-4" }
+    = t("generic.link_court_data")
 = form_with(model: form_model, url: url, data: { turbo_stream: true }) do |f|
   - content_for :error_summary do
     = f.govuk_error_summary
   = f.govuk_text_field :maat_reference,
                        label: { text: t("laa_reference.link.form.maat_reference.label") },
+                       hint: { text: hint },
                        width: "two-thirds"
 
-  = f.govuk_submit t("laa_reference.link.form.submit"), data: { disable_with: "Linking..." }, name: "maat_ref_required", value: "true"
+  - if inset_text
+    .govuk-inset-text= inset_text
+
+  .govuk-button-group
+    = f.govuk_submit t("laa_reference.link.form.submit"), data: { disable_with: "Linking..." }, name: "maat_ref_required", value: "true"
+    - if secondary_link
+      = link_to secondary_link[:text], secondary_link[:url], class: "govuk-link"
 
   = govuk_detail(t("laa_reference.missing_maat_id.label")) do
     %p.govuk-details__details-text= t("laa_reference.missing_maat_id.description")
