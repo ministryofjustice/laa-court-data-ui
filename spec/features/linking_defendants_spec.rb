@@ -29,7 +29,7 @@ RSpec.describe "Linking a defendant", :stub_hearing_summary, :stub_unlinked, typ
     click_link_or_button("Jammy Dodger")
     fill_in "MAAT ID", with: "1234567"
     stub_linked_defendant(maat_reference: "1234567")
-    click_link_or_button "Link court data"
+    click_link_or_button I18n.t("laa_reference.link.form.submit")
     expect(page).to \
       have_govuk_flash(:success_moj_banner, text: "Case linked successfully.")
   end
@@ -50,7 +50,7 @@ RSpec.describe "Linking a defendant", :stub_hearing_summary, :stub_unlinked, typ
     visit "prosecution_cases/#{case_urn}"
     click_link_or_button("Jammy Dodger")
     fill_in "MAAT ID", with: "1234567"
-    click_link_or_button "Link court data"
+    click_link_or_button I18n.t("laa_reference.link.form.submit")
     expect(page).to have_govuk_flash(:alert, text: "HMCTS Common Platform could not be reached.")
   end
 end
