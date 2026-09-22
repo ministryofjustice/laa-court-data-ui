@@ -23,7 +23,7 @@ RSpec.feature "Link court applications" do
     scenario "I successfully link a court application" do
       visit court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: "7654321"
-      click_on "Link court data"
+      click_on I18n.t("laa_reference.link.form.submit")
       expect(page).to have_text "Application linked successfully."
       expect(page).to have_text "MAAT ID 7654321"
     end
@@ -58,7 +58,7 @@ RSpec.feature "Link court applications" do
       visit court_application_subject_path(unlinked_court_application_with_problems_id)
 
       fill_in "MAAT ID", with: "7654321"
-      click_on "Link court data"
+      click_on I18n.t("laa_reference.link.form.submit")
 
       expect(page).to have_text "Unable to link the defendant to that MAAT ID"
     end
@@ -84,7 +84,7 @@ RSpec.feature "Link court applications" do
         expect(page).to have_text "2391NX0000558631827D" # The ASN, taken from the prosecution case defendant
 
         fill_in "MAAT ID", with: "1234567"
-        click_on "Link court data"
+        click_on I18n.t("laa_reference.link.form.submit")
 
         expect(page).to have_text "Application linked successfully."
 

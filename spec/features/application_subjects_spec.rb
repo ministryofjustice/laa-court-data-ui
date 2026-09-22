@@ -67,7 +67,7 @@ RSpec.feature "Court Application subjects", :vcr do
     sign_in user
     visit court_application_subject_path(breach_court_application_id)
 
-    click_on "Link court data"
+    click_on I18n.t("laa_reference.link.form.submit")
 
     expect(page).to have_text "MAAT ID is required"
   end
