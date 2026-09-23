@@ -36,13 +36,13 @@ RSpec.describe Cda::CrackedIneffectiveTrialDecorator, type: :decorator do
     context "when type is cracked" do
       let(:type) { "CrACKed" }
 
-      it { is_expected.to include("Cracked on 19/01/2021") }
+      it { is_expected.to include("Cracked on <span class=\"govuk-visually-hidden\">19 January 2021</span><span aria-hidden=\"true\">19/01/2021</span>") }
     end
 
     context "when type is vacated" do
       let(:type) { "Vacated" }
 
-      it { is_expected.to include("Vacated on 19/01/2021") }
+      it { is_expected.to include("Vacated on <span class=\"govuk-visually-hidden\">19 January 2021</span><span aria-hidden=\"true\">19/01/2021</span>") }
     end
   end
 

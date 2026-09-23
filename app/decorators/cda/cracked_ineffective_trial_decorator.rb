@@ -14,8 +14,10 @@ module Cda
 
   private
 
+    delegate :accessible_date, to: :context
+
     def cracked_at(hearing)
-      hearing.hearing_days.first.sitting_day.to_date.strftime("%d/%m/%Y")
+      accessible_date(hearing.hearing_days.first.sitting_day.to_date)
     end
   end
 end

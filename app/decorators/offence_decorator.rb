@@ -26,12 +26,13 @@ class OffenceDecorator < BaseDecorator
   def start_date
     return unless super
 
-    Date.parse(super).strftime("%d/%m/%Y")
+    accessible_date(Date.parse(super))
   end
 
 private
 
   delegate :pleas, :mode_of_trial_reasons, :verdict, to: :relevant_offence_history, allow_nil: true
+  delegate :accessible_date, to: :context
 
   def plea_sentences
     sorted_pleas.map { |plea| plea_sentence(plea) }
@@ -46,7 +47,7 @@ private
 
     t("offence.plea.sentence",
       plea: plea&.code&.humanize || t("generic.not_available"),
-      pleaded_at: plea_date&.strftime("%d/%m/%Y") || t("generic.not_available"))
+      pleaded_at: accessible_date(plea_date) || t("generic.not_available")).html_safe
   end
 
   def mode_of_trial_reason_descriptions
