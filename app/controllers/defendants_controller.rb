@@ -84,7 +84,6 @@ private
                    prosecution_case_path(prosecution_case_reference)
     add_breadcrumb @defendant.name, defendant_path(@defendant.id, urn: prosecution_case_reference)
 
-    add_breadcrumb "Link" if action_name.in?(%w[show_link link])
     add_breadcrumb "Unlink" if action_name.in?(%w[show_unlink unlink])
   end
 

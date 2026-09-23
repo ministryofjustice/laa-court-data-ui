@@ -83,9 +83,7 @@ private
   end
 
   def final_crumb
-    { "show_link" => "Link",
-      "link" => "Link",
-      "show_unlink" => "Unlink",
+    { "show_unlink" => "Unlink",
       "unlink" => "Unlink" }[action_name]
   end
 
