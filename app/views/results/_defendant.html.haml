@@ -16,7 +16,7 @@
           %td.govuk-table__cell
             = l(defendant.date_of_birth&.to_date)
           %td.govuk-table__cell
-            = link_to defendant.prosecution_case_reference, prosecution_case_path(defendant.prosecution_case_reference), class: "govuk-link"
+            = link_to accessible_urn(defendant.prosecution_case_reference), prosecution_case_path(defendant.prosecution_case_reference), class: "govuk-link"
 
           %td.govuk-table__cell
             = defendant.arrest_summons_number

@@ -15,6 +15,7 @@
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
               = t(".complete")
+              = accessible_urn(repull.urn)
             %td.govuk-table__cell
               = @batch.complete ? t(".yes") : t(".no")
   - if @batch.complete
