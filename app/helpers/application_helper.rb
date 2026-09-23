@@ -40,6 +40,15 @@ module ApplicationHelper
     end
   end
 
+  # Screen readers read the visually hidden spaced copy of the URN digit by digit
+  # (e.g. "TFL12345" as "T F L 1 2 3 4 5") rather than as a quantity
+  def accessible_urn(urn, **options)
+    safe_join([
+      tag.span(urn, **options, aria: { hidden: true }),
+      tag.span(urn.to_s.chars.join(" "), class: "govuk-visually-hidden"),
+    ])
+  end
+
   def app_environment
     "app-environment-#{ENV.fetch('ENV', 'local')}"
   end
