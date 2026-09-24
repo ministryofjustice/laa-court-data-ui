@@ -22,7 +22,7 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".date_of_birth")
           %td.govuk-table__cell
-            = l(@defendant.date_of_birth&.to_date, format: :medium)
+            = accessible_date(@defendant.date_of_birth&.to_date, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".case_urn")

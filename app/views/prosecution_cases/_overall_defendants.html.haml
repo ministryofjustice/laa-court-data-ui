@@ -15,6 +15,6 @@
           %td.govuk-table__cell
             = link_to overall_defendant.name, defendant_link_path(overall_defendant, case_summary.prosecution_case_reference), class: "govuk-link"
           %td.govuk-table__cell
-            = l(overall_defendant.date_of_birth&.to_date)
+            = accessible_date(overall_defendant.date_of_birth&.to_date)
           %td.govuk-table__cell
             = overall_defendant.linked? ? overall_defendant.maat_reference : t("search.result.defendant.unlinked")

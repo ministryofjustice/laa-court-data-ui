@@ -23,7 +23,7 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".date_of_birth")
           %td.govuk-table__cell
-            = l(@defendant.date_of_birth&.to_date, format: :medium)
+            = accessible_date(@defendant.date_of_birth&.to_date, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".case_urn")
@@ -43,7 +43,7 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".committal_date")
           %td.govuk-table__cell
-            = l(@migrated_case.committal_date&.to_date || @migrated_case.sent_date&.to_date, format: :medium)
+            = accessible_date(@migrated_case.committal_date&.to_date || @migrated_case.sent_date&.to_date, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".xhibit_ref")
@@ -58,7 +58,7 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".latest_hearing_date")
           %td.govuk-table__cell
-            = l(@prosecution_case.sorted_hearing_summaries_with_day.map(&:day).last&.to_date, format: :medium)
+            = accessible_date(@prosecution_case.sorted_hearing_summaries_with_day.map(&:day).last&.to_date, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".reason_for_man_linking")
