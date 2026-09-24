@@ -29,7 +29,7 @@
     "postcss": "^8.5.23",
     "sass": "^1.104.1",
     "sass-loader": "^16.0.8",
-    "webpack": "^5.110.3",
+    "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
