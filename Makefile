@@ -44,6 +44,7 @@ test: #: run test suite locally
 	@printf "\e[33mMAKE: rubocop...\e[0m\n"
 	@bundle exec rubocop
 	@printf "\e[33mMAKE: linters...\e[0m\n"
+	@bundle exec haml-lint
 	@yarn run validate:js
 	@yarn run validate:scss
 	@printf "\e[33mMAKE: rspec...\e[0m\n"
