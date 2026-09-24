@@ -15,7 +15,6 @@
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
               = t(".complete")
-              = accessible_id(repull.urn)
             %td.govuk-table__cell
               = @batch.complete ? t(".yes") : t(".no")
   - if @batch.complete
@@ -40,9 +39,9 @@
           - @batch.repulls.each do |repull|
             %tr.govuk-table__row
               %td.govuk-table__cell
-                = repull.urn
+                = accessible_id(repull.urn)
               %td.govuk-table__cell
-                = repull.maat_ids
+                = accessible_id(repull.maat_ids)
               %td.govuk-table__cell
                 = t(".statuses.#{repull.status}")
 - else

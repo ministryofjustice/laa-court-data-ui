@@ -40,7 +40,7 @@
                 %td.govuk-table__cell
                   = court_application.subject_summary.name
                 %td.govuk-table__cell
-                  = court_application.linked_maat_id.presence || t("prosecution_case.related_court_applications.not_linked")
+                  = accessible_id(court_application.linked_maat_id) || t("prosecution_case.related_court_applications.not_linked")
                 %td.govuk-table__cell
                   = court_application.result_string
                 %td.govuk-table__cell
