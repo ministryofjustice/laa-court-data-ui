@@ -37,7 +37,7 @@
         - @batch.repulls.each do |repull|
           %tr.govuk-table__row
             %td.govuk-table__cell
-              = accessible_urn(repull.urn)
+              = accessible_id(repull.urn)
             %td.govuk-table__cell
               = repull.maat_ids
             %td.govuk-table__cell

@@ -31,12 +31,12 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".case_urn")
           %td.govuk-table__cell
-            = accessible_urn(@application.application_reference)
+            = accessible_id(@application.application_reference)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".arrest_summons_number")
           %td.govuk-table__cell
-            = @application.subject_asn
+            = accessible_id(@application.subject_asn)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".maat_number")

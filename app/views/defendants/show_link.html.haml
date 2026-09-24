@@ -27,12 +27,12 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".case_urn")
           %td.govuk-table__cell
-            = accessible_urn(@prosecution_case_reference)
+            = accessible_id(@prosecution_case_reference)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
             = t(".arrest_summons_number")
           %td.govuk-table__cell
-            = @defendant.arrest_summons_number
+            = accessible_id(@defendant.arrest_summons_number)
 
 = form_with(model: @form_model, url: link_defendant_path(@defendant.id, urn: @prosecution_case_reference), data: { turbo: false }) do |f|
   - content_for :error_summary do
