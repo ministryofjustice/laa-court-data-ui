@@ -82,7 +82,7 @@
             = t(".maat_number")
           %td.govuk-table__cell.app-no-wrap
             - if @application.maat_reference.present?
-              %span#subject-maat-number= @application.maat_reference
+              = accessible_id(@application.maat_reference, id: "subject-maat-number")
               = link_to "Unlink MAAT ID", unlink_court_application_subject_path(@application.application_id), class: "govuk-link govuk-!-margin-left-4"
             - else
               Not linked

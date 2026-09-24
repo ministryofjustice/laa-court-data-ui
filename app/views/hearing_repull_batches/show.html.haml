@@ -39,6 +39,6 @@
             %td.govuk-table__cell
               = accessible_id(repull.urn)
             %td.govuk-table__cell
-              = repull.maat_ids
+              = accessible_id(repull.maat_ids)
             %td.govuk-table__cell
               = t(".statuses.#{repull.status}")

@@ -33,7 +33,7 @@
         = t("search.result.defendant.maat_number")
       %td.govuk-table__cell
         - if defendant.maat_reference.present?
-          %span#defendant-maat-number= defendant.maat_reference
+          = accessible_id(defendant.maat_reference, id: "defendant-maat-number")
           - if linking_enabled?
             = link_to "Unlink MAAT ID", unlink_defendant_path(defendant.id, urn: prosecution_case_reference), class: "govuk-link govuk-!-margin-left-4"
         - else

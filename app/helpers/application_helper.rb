@@ -43,6 +43,8 @@ module ApplicationHelper
   # Screen readers read the visually hidden spaced copy of an identifier (URN, ASN, ...)
   # character by character (e.g. "12345" as "1 2 3 4 5") rather than as a quantity ("twelve thousand...")
   def accessible_id(value, **options)
+    return if value.blank?
+
     safe_join([
       tag.span(value, **options, aria: { hidden: true }),
       tag.span(value.to_s.chars.join(" "), class: "govuk-visually-hidden"),

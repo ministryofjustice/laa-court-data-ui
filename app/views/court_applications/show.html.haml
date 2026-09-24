@@ -49,7 +49,7 @@
       %td.govuk-table__cell
         = l(@application.subject_summary.date_of_birth)
       %td.govuk-table__cell
-        = @application.maat_reference.presence || t("search.result.defendant.unlinked")
+        = accessible_id(@application.maat_reference) || t("search.result.defendant.unlinked")
       - if @application.breach?
         %td.govuk-table__cell
           = l(@application.received_date&.to_date)
