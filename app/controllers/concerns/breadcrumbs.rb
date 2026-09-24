@@ -21,7 +21,7 @@ module Breadcrumbs
     helper_method :search_breadcrumb_path
 
     def prosecution_case_name(reference)
-      t("prosecution_case.breadcrumb_html", prosecution_case_reference: helpers.accessible_urn(reference))
+      t("prosecution_case.breadcrumb_html", prosecution_case_reference: helpers.accessible_id(reference))
     end
     helper_method :prosecution_case_name
 

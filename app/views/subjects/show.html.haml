@@ -44,7 +44,7 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".case_urn")
           %td.govuk-table__cell
-            = accessible_urn(@application.application_reference, id: "subject-case-urn")
+            = accessible_id(@application.application_reference, id: "subject-case-urn")
           %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
             %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-case-urn", type: "button", class: "govuk-!-margin-bottom-0" }
               Copy
@@ -54,7 +54,7 @@
             %th.govuk-table__header{ scope: "row" }
               = t(".arrest_summons_number")
             %td.govuk-table__cell
-              %span#subject-asn= @application.subject_asn
+              = accessible_id(@application.subject_asn, id: "subject-asn")
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
               - if @application.subject_asn.present?
                 %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }
@@ -64,7 +64,7 @@
             %th.govuk-table__header{ scope: "row" }
               = t(".respondent_arrest_summons_number")
             %td.govuk-table__cell
-              %span#subject-asn= @application.subject_asn
+              = accessible_id(@application.subject_asn, id: "subject-asn")
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
               - if @application.subject_asn.present?
                 %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }

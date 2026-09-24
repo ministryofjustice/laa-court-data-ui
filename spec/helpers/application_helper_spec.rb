@@ -10,14 +10,14 @@ RSpec.describe ApplicationHelper, type: :helper do
   it { is_expected.to respond_to :decorate }
   it { is_expected.to respond_to :decorate_all }
 
-  describe "#accessible_urn" do
-    subject(:markup) { helper.accessible_urn("TFL12345") }
+  describe "#accessible_id" do
+    subject(:markup) { helper.accessible_id("TFL12345") }
 
-    it "shows the URN hidden from screen readers" do
+    it "shows the identifier hidden from screen readers" do
       expect(markup).to include '<span aria-hidden="true">TFL12345</span>'
     end
 
-    it "adds a visually hidden URN with each character separated by a space" do
+    it "adds a visually hidden identifier with each character separated by a space" do
       expect(markup).to include '<span class="govuk-visually-hidden">T F L 1 2 3 4 5</span>'
     end
   end
