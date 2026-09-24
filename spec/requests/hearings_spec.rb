@@ -12,7 +12,7 @@ RSpec.describe "hearings_v2", type: :request do
     end
 
     it "shows renders the hearing page" do
-      expect(response.body).to include("Hearing day 23/10/2019 - View court data - GOV.UK")
+      expect(response.body).to include("Hearing day 23 October 2019 - View court data - GOV.UK")
     end
   end
 

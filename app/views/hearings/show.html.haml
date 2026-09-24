@@ -1,4 +1,7 @@
-= govuk_page_heading(@hearing_day&.strftime("%d/%m/%Y"), caption_text: t("generic.hearing_day"), tag_options: { class: "govuk-!-margin-bottom-2" })
+= govuk_page_heading(accessible_date(@hearing_day),
+                     caption_text: t("generic.hearing_day"),
+                     title: page_title(l(@hearing_day, format: :long), t("generic.hearing_day")),
+                     tag_options: { class: "govuk-!-margin-bottom-2" })
 
 - content_for :pre_heading do
   .govuk-grid-row
