@@ -38,13 +38,30 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
-  # Prepend all log lines with the following tags.
-  config.log_tags = [:request_id]
-
   # "info" includes generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
   # want to log everything, set the level to "debug".
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
+
+  # Prepend all log lines with the following tags.
+  config.log_tags = [:request_id]
+  $stdout.sync = true
+  config.semantic_logger.application = "" # No need to send the application name as logstash reads it from OpenSearch log tags
+  config.semantic_logger.backtrace_level = :fatal # Only attach backtraces at :fatal so error/warn lines stay small enough for OpenSearch ingestion
+  config.rails_semantic_logger.started = false
+  config.rails_semantic_logger.processing = false
+  config.active_record.logger = nil # Don't log SQL
+  # Declaring appenders here replaces the default log file appender, so logs only go to STDOUT
+  config.rails_semantic_logger.appenders do |appenders|
+    appenders.add(io: $stdout,
+                  level: config.log_level,
+                  formatter: :json,
+                  # Ignore status checks and out-of-hours events to reduce log output
+                  filter: lambda { |log|
+                    log.name != "StatusController" &&
+                      !log.message.to_s.include?("halted as :detect_out_of_hours")
+                  })
+  end
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -69,15 +86,6 @@ Rails.application.configure do
   config.active_support.report_deprecations = true
 
   config.active_support.disallowed_deprecation_warnings = []
-
-  # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = Logger::Formatter.new
-
-  if ENV.fetch("RAILS_LOG_TO_STDOUT", nil).present?
-    logger           = ActiveSupport::Logger.new($stdout)
-    logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
-  end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

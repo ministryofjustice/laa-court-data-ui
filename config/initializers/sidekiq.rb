@@ -17,7 +17,7 @@ Sidekiq.default_job_options = { retry: 5 }
 # so you don't have to run a separate process.
 # You'll also benefit from code reloading.
 if Rails.env.development?
-  require "sidekiq/testing"
+  Sidekiq.testing!(:fake)
   Sidekiq::Testing.inline!
 end
 
