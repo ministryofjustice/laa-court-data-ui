@@ -3,7 +3,7 @@ class AxeResults
   ExclusionRule = Data.define(:id, :selector)
 
   AXE_COMMAND = <<~COMMAND.freeze
-    axe.run({ runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] }, elementRef: true })
+    axe.run({ runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'] }, elementRef: true })
   COMMAND
 
   AXE_JS = <<~JS.freeze
