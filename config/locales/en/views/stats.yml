@@ -22,7 +22,7 @@ en:
       linked: MAAT IDs linked
       previous_periods: Previous periods
       previous_ranges:
-        caption: Previous range statisticszs
+        caption: Previous range statistics
         from: Period start
         hint: The last 10 periods will update to reflect your chosen time period
         linked: MAAT IDs linked
