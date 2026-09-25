@@ -7,8 +7,8 @@ if [ ! -d ../laa-court-data-adaptor ]; then
   exit 1
 fi
 
-uid=$(docker compose run --rm cda bundle exec rails runner 'puts Doorkeeper::Application.first_or_create(name: "My CDA Client").uid')
-secret=$(docker compose run --rm cda bundle exec rails runner 'puts Doorkeeper::Application.first_or_create(name: "My CDA Client").secret')
+uid=$(docker compose run --rm cda bundle exec rails runner 'print Doorkeeper::Application.first_or_create(name: "My CDA Client").uid' | tail -n1)
+secret=$(docker compose run --rm cda bundle exec rails runner 'print Doorkeeper::Application.first_or_create(name: "My CDA Client").secret' | tail -n1)
 
 {
   printf '%s\n' 'GA_TRACKING_ID: UA-XXXXXXXXX-XX'

@@ -226,4 +226,45 @@ RSpec.describe ApplicationHelper, type: :helper do
       it { is_expected.to be_nil }
     end
   end
+
+  describe "#accessible_date" do
+    subject(:output) { helper.accessible_date(input) }
+
+    context "when a date is passed in" do
+      let(:input) { Date.new(2025, 3, 4) }
+
+      it "returns a span with visually hidden and visible dates" do
+        expect(output).to have_css("span.govuk-visually-hidden", text: "04 March 2025")
+        expect(output).to have_css("span[aria-hidden='true']", text: "04/03/2025")
+      end
+    end
+
+    context "when a date is passed in with a format" do
+      subject(:output) { helper.accessible_date(input, format: :medium) }
+
+      let(:input) { Date.new(2025, 3, 4) }
+
+      it "returns a span with visually hidden and visible dates" do
+        expect(output).to have_css("span.govuk-visually-hidden", text: "04 March 2025")
+        expect(output).to have_css("span[aria-hidden='true']", text: "04 Mar 2025")
+      end
+    end
+
+    context "when options are passed in" do
+      subject(:output) { helper.accessible_date(input, class: "custom-class") }
+
+      let(:input) { Date.new(2025, 3, 4) }
+
+      it "returns a span with visually hidden and visible dates and applies the passed in options" do
+        expect(output).to have_css("span.govuk-visually-hidden", text: "04 March 2025")
+        expect(output).to have_css("span.custom-class[aria-hidden='true']", text: "04/03/2025")
+      end
+    end
+
+    context "when nil is passed in" do
+      let(:input) { nil }
+
+      it { is_expected.to be_nil }
+    end
+  end
 end

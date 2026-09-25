@@ -68,6 +68,6 @@ private
     add_breadcrumb prosecution_case_name(reference), prosecution_case_path(reference)
     add_breadcrumb t("subjects.#{@application.application_category}"),
                    court_application_path(@application.application_id)
-    add_breadcrumb t("hearing_days.show.breadcrumb", day: current_hearing_day.day_string)
+    add_breadcrumb t("hearing_days.show.breadcrumb", day: helpers.accessible_date(current_hearing_day.date)).html_safe
   end
 end

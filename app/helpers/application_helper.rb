@@ -13,6 +13,17 @@ module ApplicationHelper
     super(date, **options) if date
   end
 
+  # Presents dates in two ways, a full version for screen readers and one for visual users. The screen reader version is
+  # hidden from visual users, and the visual version is hidden from screen readers.
+  def accessible_date(date, format: :default, **options)
+    if date
+      [
+        tag.span(I18n.l(date, format: :long), class: "govuk-visually-hidden"),
+        tag.span(I18n.l(date, format: format), **options, aria: { hidden: "true" }),
+      ].join.html_safe
+    end
+  end
+
   # NOTE: implicit decorators assumed to be in app/decorators
   #
   def decorate(object, decorator_class = nil)

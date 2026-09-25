@@ -26,6 +26,7 @@ RSpec.describe OffenceDecorator, type: :decorator do
   let(:view_class) do
     Class.new do
       include ActionView::Helpers
+      include ApplicationHelper
     end
   end
 
@@ -49,12 +50,16 @@ RSpec.describe OffenceDecorator, type: :decorator do
          { code: "GUILTY",
            pleaded_at: "2020-01-20" }]
       end
+      let(:html_content) do
+        ["Not guilty on #{decorator.accessible_date(Date.parse('2020-01-01'))}",
+         "Guilty on #{decorator.accessible_date(Date.parse('2020-01-20'))}"].join("<br>")
+      end
 
       before do
         allow(offence_history).to receive(:pleas).and_return(plea_collection)
       end
 
-      it { is_expected.to eql("Not guilty on 01/01/2020<br>Guilty on 20/01/2020") }
+      it { is_expected.to eql(html_content) }
     end
 
     context "when pleas are not in pleaded_at order" do
@@ -64,12 +69,16 @@ RSpec.describe OffenceDecorator, type: :decorator do
          { code: "NOT_GUILTY",
            pleaded_at: "2020-01-01" }]
       end
+      let(:html_content) do
+        ["Not guilty on #{decorator.accessible_date(Date.parse('2020-01-01'))}",
+         "Guilty on #{decorator.accessible_date(Date.parse('2020-02-01'))}"].join("<br>")
+      end
 
       before do
         allow(offence_history).to receive(:pleas).and_return(plea_collection)
       end
 
-      it { is_expected.to eql "Not guilty on 01/01/2020<br>Guilty on 01/02/2020" }
+      it { is_expected.to eql(html_content) }
     end
 
     context "when plea does not contain an expected key" do
@@ -81,8 +90,8 @@ RSpec.describe OffenceDecorator, type: :decorator do
 
       let(:html_content) do
         ["Not guilty on Not available",
-         "Not available on 20/01/2020",
-         "Not available on 21/01/2020"].join("<br>")
+         "Not available on #{decorator.accessible_date(Date.parse('2020-01-20'))}",
+         "Not available on #{decorator.accessible_date(Date.parse('2020-01-21'))}"].join("<br>")
       end
 
       before do
@@ -122,8 +131,8 @@ RSpec.describe OffenceDecorator, type: :decorator do
     context "when there is a start date" do
       let(:offence) { Cda::OffenceSummary.new(start_date: "2023-01-05") }
 
-      it "formats it" do
-        expect(decorator.start_date).to eq "05/01/2023"
+      it "passes the parsed date to accessible_date" do
+        expect(decorator.start_date).to eq decorator.accessible_date(Date.parse("2023-01-05"))
       end
     end
 

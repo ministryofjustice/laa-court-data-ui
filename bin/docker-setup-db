@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+
+set -eu
+
+run_task() {
+  task_name=$1
+  shift
+
+  printf '%s ' "$task_name"
+
+  "$@" >/tmp/docker-setup-db-output.$$ 2>&1 &
+  task_pid=$!
+
+  while kill -0 "$task_pid" 2>/dev/null; do
+    printf '.'
+    sleep 1
+  done
+
+  if wait "$task_pid"; then
+    printf ' ✓\n'
+  else
+    printf ' ✗\n' >&2
+    cat /tmp/docker-setup-db-output.$$ >&2
+    rm -f /tmp/docker-setup-db-output.$$
+    exit 1
+  fi
+
+  rm -f /tmp/docker-setup-db-output.$$
+}
+
+if [ ! -d ../laa-court-data-adaptor ]; then
+  printf '%s\n' "Expected ../laa-court-data-adaptor to exist next to this repo." >&2
+  exit 1
+fi
+
+run_task "Creating database for laa-court-data-adaptor" docker compose run --rm cda bundle exec rake db:create
+run_task "Migrating database for laa-court-data-adaptor" docker compose run --rm cda bundle exec rake db:migrate
+
+run_task "Creating database for laa-court-data-ui" docker compose run --rm vcd bundle exec rake db:create
+run_task "Migrating database for laa-court-data-ui" docker compose run --rm vcd bundle exec rake db:migrate
+run_task "Seeding user data for laa-court-data-ui" docker compose run --rm vcd bundle exec rake db:seed

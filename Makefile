@@ -31,6 +31,8 @@ run: #: run the application locally
 run_full: #: run the full application stack locally
 	@printf "\e[33mMAKE: building containers...\e[0m\n"
 	@docker-compose build --no-cache
+	@printf "\e[33mMAKE: setting up databases...\e[0m\n"
+	@bin/docker-setup-db
 	@printf "\e[33mMAKE: setting up environment variables...\e[0m\n"
 	@bin/docker-setup-env
 	@printf "\e[33mMAKE: starting containers...\e[0m\n"
@@ -42,6 +44,7 @@ test: #: run test suite locally
 	@printf "\e[33mMAKE: rubocop...\e[0m\n"
 	@bundle exec rubocop
 	@printf "\e[33mMAKE: linters...\e[0m\n"
+	@bundle exec haml-lint
 	@yarn run validate:js
 	@yarn run validate:scss
 	@printf "\e[33mMAKE: rspec...\e[0m\n"
