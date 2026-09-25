@@ -113,4 +113,18 @@ RSpec.describe "defendants/_offences.html.haml", type: :view do
       end
     end
   end
+
+  context "when there is one offence" do
+    it "displays the title with a count of offences" do
+      expect(subject).to have_css(".govuk-heading-m", text: "Offences (1)")
+    end
+  end
+
+  context "when there are multiple offences" do
+    let(:defendant) { Cda::Defendant.new(offence_summaries: [offence, offence, offence]) }
+
+    it "displays the title with a count of offences" do
+      expect(subject).to have_css(".govuk-heading-m", text: "Offences (3)")
+    end
+  end
 end
