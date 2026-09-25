@@ -31,7 +31,7 @@ module Capybara
 end
 
 Capybara.register_driver(:playwright) do |app|
-  Capybara::Playwright::Driver.new(app, browser_type: :firefox, headless: false)
+  Capybara::Playwright::Driver.new(app, browser_type: :firefox, headless: ENV["SHOW_BROWSER"] != "true")
 end
 
 Capybara.configure do |config|

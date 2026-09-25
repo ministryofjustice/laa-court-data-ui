@@ -28,7 +28,14 @@ RSpec.feature "Court Application subjects", :vcr do
     sign_in user
     visit court_application_subject_path(found_court_application_id)
     expect(page).to have_text(
-      ["Home", "Search", "Case MyString", "Appeal", "Mauricio Rath"].join("\n"), # Breadcrumb
+      [ # Breadcrumb
+        "Home",
+        "Search",
+        "Case MyString",
+        "M y S t r i n g", # Visually hidden copy of the URN for screen readers; Capybara includes it in the page text
+        "Appeal",
+        "Mauricio Rath",
+      ].join("\n"),
     ).and have_text(
       "Appeal",
     ).and have_text(
@@ -49,7 +56,14 @@ RSpec.feature "Court Application subjects", :vcr do
     sign_in user
     visit court_application_subject_path(breach_court_application_id)
     expect(page).to have_text(
-      ["Home", "Search", "Case MyString", "Breach", "Mauricio Rath"].join, # Breadcrumb
+      [ # Breadcrumb
+        "Home",
+        "Search",
+        "Case MyString",
+        "M y S t r i n g", # Visually hidden copy of the URN for screen readers; Capybara includes it in the page text
+        "Breach",
+        "Mauricio Rath",
+      ].join,
     ).and have_text(
       "Mauricio Rath",
     ).and have_text(

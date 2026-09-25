@@ -17,7 +17,9 @@ RSpec.feature "Create a batch of hearing repulls" do
       click_on "Re-pull hearings data"
 
       expect(page).to have_text "Processing complete? No"
-      expect(page).to have_text "ONSWLFMHCQ 4444432 Pending"
+      within("tr", text: "ONSWLFMHCQ") do
+        expect(page).to have_text("4444432").and have_text("Pending")
+      end
     end
 
     scenario "I omit the MAAT IDs" do
@@ -56,7 +58,9 @@ RSpec.feature "Create a batch of hearing repulls" do
     scenario "I repull a new batch" do
       visit hearing_repull_batch_path("e64501ca-40de-4f63-b2ad-0df757e7f275")
       expect(page).to have_text "Processing complete? Yes"
-      expect(page).to have_text "ONSWLFMHCQ 4444432 Complete"
+      within("tr", text: "ONSWLFMHCQ") do
+        expect(page).to have_text("4444432").and have_text("Complete")
+      end
     end
   end
 end
