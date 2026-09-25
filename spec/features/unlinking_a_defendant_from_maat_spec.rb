@@ -33,6 +33,10 @@ RSpec.feature "Unlinking a defendant from MAAT", :stub_unlink, type: :feature do
     it "does not display the unlink reasons" do
       expect(page).to have_no_text("Reason for unlinking")
     end
+
+    it "is accessible", :js do
+      expect(page).to be_accessible
+    end
   end
 
   context "when user views the unlink page" do
@@ -46,6 +50,10 @@ RSpec.feature "Unlinking a defendant from MAAT", :stub_unlink, type: :feature do
 
     it "displays the reason for unlinking" do
       expect(page).to have_text("Reason for unlinking")
+    end
+
+    it "is accessible", :js do
+      expect(page).to be_accessible(exclusions: [GOVUK_CONDITIONAL_RADIO_ARIA_EXCLUSION])
     end
 
     it "displays the remove link warning" do

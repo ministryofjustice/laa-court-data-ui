@@ -38,6 +38,15 @@ RSpec.feature "Court Applications", :vcr do
     expect(page).to have_text "Crown Court"
   end
 
+  scenario "the related applications page is accessible", :js do
+    sign_in user
+    visit prosecution_case_path(prosecution_case_urn_from_vcr)
+    click_link "Related court applications"
+
+    expect(page).to have_text "Appeal against a conviction"
+    expect(page).to be_accessible
+  end
+
   context "when I view an application successfully" do
     before do
       sign_in user

@@ -16,6 +16,10 @@ RSpec.describe "Maintenance mode", type: :feature do
         expect(page).to have_text "Sorry, this service is unavailable"
         expect(page).to have_text "This service is available between 7am and 10pm each day."
       end
+
+      it "is accessible", :js do
+        expect(page).to be_accessible
+      end
     end
 
     context "when within hours" do

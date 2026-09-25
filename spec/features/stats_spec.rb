@@ -55,4 +55,10 @@ RSpec.describe "View usage stats", :vcr, type: :feature do
     expect(page).to have_text "Tue, 1 July 2025 Thu, 31 July 2025 2 2"
     expect(page).to have_text "Sat, 31 May 2025 Mon, 30 June 2025 1 1"
   end
+
+  scenario "the stats page is accessible", :js do
+    visit new_stats_path(stat_range: { from: "01/09/2025", to: "1/10/2025" })
+
+    expect(page).to be_accessible
+  end
 end

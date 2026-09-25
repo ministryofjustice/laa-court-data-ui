@@ -17,6 +17,12 @@ RSpec.feature "Error page", type: :feature do
     expect(page).to have_current_path("/")
   end
 
+  scenario "the 404 page is accessible", :js do
+    visit "/not-exists"
+
+    expect(page).to be_accessible
+  end
+
   scenario "returns 422" do
     visit "/422"
 
@@ -32,6 +38,12 @@ RSpec.feature "Error page", type: :feature do
     expect(page).to have_current_path("/")
   end
 
+  scenario "the 422 page is accessible", :js do
+    visit "/422"
+
+    expect(page).to be_accessible
+  end
+
   scenario "returns 401" do
     visit "/401"
 
@@ -44,6 +56,12 @@ RSpec.feature "Error page", type: :feature do
     end
     click_link_or_button "browse from the homepage"
     expect(page).to have_current_path("/")
+  end
+
+  scenario "the 401 page is accessible", :js do
+    visit "/401"
+
+    expect(page).to be_accessible
   end
 
   context "when connection error raised" do
@@ -123,6 +141,12 @@ RSpec.feature "Error page", type: :feature do
       end
       click_link_or_button "browse from the homepage"
       expect(page).to have_current_path("/")
+    end
+
+    scenario "the 500 page is accessible", :js do
+      visit user_path(user.id)
+
+      expect(page).to be_accessible
     end
   end
 

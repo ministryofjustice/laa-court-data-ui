@@ -40,6 +40,12 @@ RSpec.feature "Link court applications" do
       expect(page).to have_text "The MAAT ID is missing"
     end
 
+    scenario "the link page is accessible", :js do
+      visit link_court_application_subject_path(unlinked_court_application_id)
+
+      expect(page).to be_accessible
+    end
+
     context "when linking is disabled" do
       before do
         allow(FeatureFlag).to receive(:enabled?).and_call_original

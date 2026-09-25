@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature "New user", type: :feature do
+RSpec.feature "New user", :js, type: :feature do
   before do
     sign_in user
   end
@@ -40,8 +40,10 @@ RSpec.feature "New user", type: :feature do
       expect(page).to have_field("Username", type: "text")
       expect(page).to have_field("Email", type: "email")
       expect(page).to have_field("Confirm email", type: "email")
-      expect(page).to have_field("Caseworker", type: "checkbox")
-      expect(page).to have_field("Admin", type: "checkbox")
+      expect(page).to have_field("Caseworker", type: "checkbox", visible: :hidden)
+      expect(page).to have_field("Admin", type: "checkbox", visible: :hidden)
+
+      expect(page).to be_accessible
 
       fill_in "First name", with: "Jim"
       fill_in "Last name", with: "Bob"

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature "Delete user", type: :feature do
+RSpec.feature "Delete user", :js, type: :feature do
   before do
     sign_in user
   end
@@ -27,6 +27,8 @@ RSpec.feature "Delete user", type: :feature do
       expect(page).to have_text("Caseworker")
       expect(page).to have_text("You cannot undo this action")
       expect(page).to have_link("No, do not delete user", href: users_path)
+
+      expect(page).to be_accessible
 
       click_link_or_button "Yes, delete user"
       expect(page).to have_current_path(users_path)
