@@ -37,7 +37,7 @@ en:
       offence:
         caption: Offence list
         date: Date
-        heading: Offences
+        heading: Offences (%{count})
         mode_of_trial: Mode of trial
         plea: Plea
         title: Offence and legislation

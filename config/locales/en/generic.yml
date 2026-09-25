@@ -8,6 +8,7 @@ en:
     detail: Details
     filter_not_recognized: Filter "%{value}" is not recognized
     hearing_day: Hearing day
+    link_court_data: Link court data
     new_window: opens in a new window
     not_available: Not available
     out_of_hours:
