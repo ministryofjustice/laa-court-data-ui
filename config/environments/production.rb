@@ -56,8 +56,11 @@ Rails.application.configure do
     appenders.add(io: $stdout,
                   level: config.log_level,
                   formatter: :json,
-                  # Ignore status check events to reduce log output
-                  filter: proc { |log| log.name != "StatusController" })
+                  # Ignore status checks and out-of-hours events to reduce log output
+                  filter: lambda { |log|
+                    log.name != "StatusController" &&
+                      !log.message.to_s.include?("halted as :detect_out_of_hours")
+                  })
   end
 
   # Use a different cache store in production.
