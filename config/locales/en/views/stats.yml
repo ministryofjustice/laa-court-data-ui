@@ -16,6 +16,7 @@ en:
       to: End date
     show:
       all_time: All time
+      category: Category
       current_period: Total links and unlinks
       date_range: Selected date range
       linked: MAAT IDs linked
