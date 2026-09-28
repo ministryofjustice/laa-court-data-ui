@@ -8,13 +8,6 @@ en:
         label: Reason for unlinking
       unlinking: Unlinking...
     reload: Reload page with full offence history
-    show_link:
-      arrest_summons_number: ASN
-      back: Back to defendant
-      case_urn: Case URN
-      date_of_birth: Date of birth
-      name: Name
-      title: Link court data
     show_unlink:
       arrest_summons_number: ASN
       back: Back to defendant

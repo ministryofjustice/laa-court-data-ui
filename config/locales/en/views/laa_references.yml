@@ -5,7 +5,7 @@ en:
       form:
         maat_reference:
           hint: Enter the MAAT ID so this case can be linked to the court data source
-          label: MAAT ID
+          label: Enter the MAAT ID
         submit: Link court data
       success: Case linked successfully.
     missing_maat_id:

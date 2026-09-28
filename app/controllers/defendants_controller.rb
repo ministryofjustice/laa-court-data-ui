@@ -3,12 +3,16 @@
 require_dependency "feature_flag"
 
 class DefendantsController < ApplicationController
+  include DefendantHelper
+
   before_action :load_and_authorize_defendant
   before_action :set_breadcrumbs
 
   # GET /defendants/:id?urn=:urn
   # Defendant detail page - Defendant info + offences
   def show
+    @form_model = new_link_attempt if linking_enabled? && @defendant.maat_reference.blank?
+
     return unless params.fetch(:include_offence_history, "false") == "true"
 
     @offence_history_collection = load_offence_histories
@@ -20,11 +24,6 @@ class DefendantsController < ApplicationController
     @offence_history_collection = load_offence_histories
     @offence_ids = params[:offence_ids]&.split(",")
     render :offences, layout: false
-  end
-
-  # GET /defendants/:id/link?urn=:urn
-  def show_link
-    @form_model = new_link_attempt
   end
 
   # GET /defendants/:id/unlink?urn=:urn
@@ -45,9 +44,9 @@ class DefendantsController < ApplicationController
                 flash: { success_moj_banner: I18n.t("laa_reference.link.success") }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
-    render :show_link
+    render :show
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    render :show_link
+    render :show
   end
 
   # POST /defendants/:id/unlink?urn=:urn
