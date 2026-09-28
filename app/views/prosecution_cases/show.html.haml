@@ -14,7 +14,7 @@
 
     = render partial: "prosecution_cases/overall_defendants", locals: { case_summary: prosecution_case }
 
-    = render partial: "prosecution_cases/hearing_summaries", locals: { case_summary: prosecution_case }
+    = render partial: "prosecution_cases/hearing_summaries", locals: { case_summary: prosecution_case, hearing_summaries: prosecution_case.sorted_hearing_summaries_with_day }
 
     - if Rails.configuration.x.display_raw_responses
       = render partial: "prosecution_cases/raw_response",

@@ -23,6 +23,7 @@ en:
       ids: MAAT IDs
       new: Create another list of MAAT IDs to re-pull hearings for
       'no': 'No'
+      no_repulls: There are no hearings being re-pulled for this batch
       reload: Check for updates
       status: Status
       statuses:

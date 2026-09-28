@@ -36,6 +36,12 @@ RSpec.feature "Cookies", type: :feature do
 
       expect(page).to have_current_path cookies_path, ignore_query: true
     end
+
+    scenario "the cookie details page is accessible", :js do
+      visit cookies_path
+
+      expect(page).to be_accessible
+    end
   end
 
   context "when cookies are not set" do

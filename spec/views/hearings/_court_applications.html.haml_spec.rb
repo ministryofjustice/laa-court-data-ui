@@ -20,7 +20,7 @@ RSpec.describe "hearings/_court_applications.html.haml", type: :view do
     end
 
     it "displays received date correctly" do
-      expect(subject).to have_tag("dd.govuk-summary-list__value", text: /29 March 2021/)
+      expect(subject).to have_tag("td.govuk-table__cell", text: /29 March 2021/)
     end
   end
 

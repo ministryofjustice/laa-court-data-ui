@@ -12,8 +12,8 @@ RSpec.describe "hearings/_hearing_events.html.haml", type: :view do
   end
 
   context "without hearing_events", :stub_v2_hearing_events_empty do
-    it "renders template without error" do
-      expect(subject).to include("Hearing events")
+    it "shows a message to indicate there are no events" do
+      expect(subject).to include("No events are associated with this hearing")
     end
   end
 

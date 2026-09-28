@@ -25,6 +25,7 @@ en:
         heading: Defendants
         maat_number: MAAT ID
         name: Name
+        no_defendants: No defendants are associated with this case
         prosecution_case_reference: Case URN
         unlinked: Not linked
       hearing:
@@ -32,6 +33,7 @@ en:
         heading: Hearings
         hearing_day: Date
         hearing_type: Hearing type
+        no_hearings: No hearings are associated with this case
         providers: Providers attending
       loading: Loading...
       offence:
@@ -39,6 +41,7 @@ en:
         date: Date
         heading: Offences
         mode_of_trial: Mode of trial
+        no_offences: No offences are associated with this case
         plea: Plea
         title: Offence and legislation
         verdict: Verdict

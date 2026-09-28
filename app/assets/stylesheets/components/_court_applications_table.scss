@@ -1,0 +1,9 @@
+.vcd-court-applications-table {
+  th, td {
+    width: 50%;
+  }
+
+  td::first-letter {
+    text-transform: uppercase;
+  }
+}
