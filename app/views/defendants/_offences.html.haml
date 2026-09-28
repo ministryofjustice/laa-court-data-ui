@@ -2,7 +2,7 @@
   offence_ids ||= nil
   decorated_defendant = decorate(defendant, Cda::DefendantSummaryDecorator)
   offence_summaries = decorated_defendant.filtered_offence_summaries(offence_ids)
-.govuk-heading-m{ class: "govuk-!-margin-bottom-4" }
+%h2.govuk-heading-m{ class: "govuk-!-margin-bottom-4" }
   = t("search.result.offence.heading", count: decorated_defendant.filtered_offence_summaries(offence_ids).count)
 
 - if offence_summaries.any?
