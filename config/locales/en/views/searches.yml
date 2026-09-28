@@ -42,6 +42,7 @@ en:
         heading: Offences (%{count})
         mode_of_trial: Mode of trial
         no_offences: No offences are associated with this case
+        number: Number
         plea: Plea
         title: Offence and legislation
         verdict: Verdict

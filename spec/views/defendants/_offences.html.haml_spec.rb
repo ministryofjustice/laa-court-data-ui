@@ -68,7 +68,7 @@ RSpec.describe "defendants/_offences.html.haml", type: :view do
 
     context "when the offence has no title" do
       it "displays not available" do
-        expect(subject).to have_css(".govuk-table__cell:nth-of-type(1)", text: "Not available")
+        expect(subject).to have_css(".govuk-table__cell:nth-of-type(2)", text: "Not available")
       end
     end
 
@@ -125,6 +125,12 @@ RSpec.describe "defendants/_offences.html.haml", type: :view do
 
     it "displays the title with a count of offences" do
       expect(subject).to have_css(".govuk-heading-m", text: "Offences (3)")
+    end
+
+    it "displays the offence numbers" do
+      expect(subject).to have_css(".govuk-table__row:nth-of-type(1) .govuk-table__cell:nth-of-type(1)", text: "1")
+      expect(subject).to have_css(".govuk-table__row:nth-of-type(2) .govuk-table__cell:nth-of-type(1)", text: "2")
+      expect(subject).to have_css(".govuk-table__row:nth-of-type(3) .govuk-table__cell:nth-of-type(1)", text: "3")
     end
   end
 end
