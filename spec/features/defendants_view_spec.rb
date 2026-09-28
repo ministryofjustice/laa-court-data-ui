@@ -60,8 +60,9 @@ RSpec.feature "defendants view", type: :feature do
 
     it_behaves_like "renders the defendant details"
 
-    scenario "offers the link to court data" do
-      expect(page).to have_link("Link MAAT ID")
+    scenario "shows a form to link the MAAT ID" do
+      expect(page).to have_text(I18n.t("generic.link_court_data"))
+      expect(page).to have_field(I18n.t("laa_reference.link.form.maat_reference.label"), type: "text")
     end
 
     context "when linking is disabled" do
@@ -70,10 +71,12 @@ RSpec.feature "defendants view", type: :feature do
         allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(true)
       end
 
-      scenario "page shows without linking options" do
+      scenario "page shows without form to link the MAAT ID" do
         visit "defendants/#{defendant_id}?urn=#{case_urn}"
         expect(page).to have_title("Defendant details")
-        expect(page).to have_no_link("Link MAAT ID")
+
+        expect(page).to have_no_text(I18n.t("generic.link_court_data"))
+        expect(page).to have_no_field(I18n.t("laa_reference.link.form.maat_reference.label"), type: "text")
       end
     end
 
@@ -110,10 +113,12 @@ RSpec.feature "defendants view", type: :feature do
         allow(FeatureFlag).to receive(:enabled?).with(:no_linking).and_return(true)
       end
 
-      scenario "page shows without linking options" do
+      scenario "page shows without form to link the MAAT ID" do
         visit "defendants/#{defendant_id}?urn=#{case_urn}"
         expect(page).to have_title("Defendant details")
-        expect(page).to have_no_link("Unlink MAAT ID")
+
+        expect(page).to have_no_text(I18n.t("generic.link_court_data"))
+        expect(page).to have_no_field(I18n.t("laa_reference.link.form.maat_reference.label"), type: "text")
       end
     end
   end

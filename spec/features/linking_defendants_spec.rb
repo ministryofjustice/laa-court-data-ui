@@ -27,7 +27,6 @@ RSpec.describe "Linking a defendant", :stub_hearing_summary, :stub_unlinked, typ
   scenario "user links defendant details", :stub_v2_link_success do
     visit "prosecution_cases/#{case_urn}"
     click_link_or_button("Jammy Dodger")
-    click_link_or_button("Link MAAT ID")
     fill_in "MAAT ID", with: "1234567"
     stub_linked_defendant(maat_reference: "1234567")
     click_link_or_button "Link court data"
@@ -38,7 +37,6 @@ RSpec.describe "Linking a defendant", :stub_hearing_summary, :stub_unlinked, typ
   scenario "user links defendant details with no maat id", :stub_v2_link_success do
     visit "prosecution_cases/#{case_urn}"
     click_link_or_button("Jammy Dodger")
-    click_link_or_button("Link MAAT ID")
     expect(page).to have_text("The MAAT ID is missing")
     find(:xpath, "//details[@class='govuk-details']", text: "The MAAT ID is missing").click
     expect(page).to have_button("Create link without MAAT ID")
@@ -51,7 +49,6 @@ RSpec.describe "Linking a defendant", :stub_hearing_summary, :stub_unlinked, typ
   scenario "CDA errors out", :stub_v2_link_cda_failure do
     visit "prosecution_cases/#{case_urn}"
     click_link_or_button("Jammy Dodger")
-    click_link_or_button("Link MAAT ID")
     fill_in "MAAT ID", with: "1234567"
     click_link_or_button "Link court data"
     expect(page).to have_govuk_flash(:alert, text: "HMCTS Common Platform could not be reached.")
