@@ -10,6 +10,18 @@ RSpec.describe ApplicationHelper, type: :helper do
   it { is_expected.to respond_to :decorate }
   it { is_expected.to respond_to :decorate_all }
 
+  describe "#accessible_id" do
+    subject(:markup) { helper.accessible_id("TFL12345") }
+
+    it "shows the identifier hidden from screen readers" do
+      expect(markup).to include '<span aria-hidden="true">TFL12345</span>'
+    end
+
+    it "adds a visually hidden identifier with each character separated by a space" do
+      expect(markup).to include '<span class="govuk-visually-hidden">T F L 1 2 3 4 5</span>'
+    end
+  end
+
   shared_context "with mock objects and decorators" do
     let(:test_objects) { [test_class.new, test_class.new] }
     let(:test_object) { test_class.new }

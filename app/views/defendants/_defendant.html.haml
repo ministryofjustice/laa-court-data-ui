@@ -15,7 +15,7 @@
       %th.govuk-table__header{ scope: "row" }
         = t("search.result.defendant.prosecution_case_reference")
       %td.govuk-table__cell
-        %span#defendant-case-urn= prosecution_case_reference
+        = accessible_id(prosecution_case_reference, id: "defendant-case-urn")
       %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
         %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-case-urn", type: "button", class: "govuk-!-margin-bottom-0" }
           Copy
@@ -23,7 +23,7 @@
       %th.govuk-table__header{ scope: "row" }
         = t("search.result.defendant.arrest_summons_number")
       %td.govuk-table__cell
-        %span#defendant-asn= defendant.arrest_summons_number
+        = accessible_id(defendant.arrest_summons_number, id: "defendant-asn")
       %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
         - if defendant.arrest_summons_number.present?
           %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-asn", type: "button", class: "govuk-!-margin-bottom-0" }
@@ -33,7 +33,7 @@
         = t("search.result.defendant.maat_number")
       %td.govuk-table__cell
         - if defendant.maat_reference.present?
-          %span#defendant-maat-number= defendant.maat_reference
+          = accessible_id(defendant.maat_reference, id: "defendant-maat-number")
           - if linking_enabled?
             = link_to "Unlink MAAT ID", unlink_defendant_path(defendant.id, urn: prosecution_case_reference), class: "govuk-link govuk-!-margin-left-4"
         - else

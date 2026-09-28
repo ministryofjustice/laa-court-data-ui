@@ -1,7 +1,7 @@
 ---
 en:
   prosecution_case:
-    breadcrumb: Case %{prosecution_case_reference}
+    breadcrumb_html: Case %{prosecution_case_reference}
     related_court_applications:
       application_type: Application type
       caption: Related court applications
