@@ -22,7 +22,6 @@ gem "govuk-components"
 gem "govuk_design_system_formbuilder", "~> 6.5"
 gem "govuk_markdown"
 gem "haml-rails", "~> 3.1.0"
-gem "lograge"
 gem "oauth2", "~> 2.0.17"
 gem "omniauth_openid_connect", "0.8.0"
 gem "omniauth-rails_csrf_protection", ">= 1.0.2"
@@ -31,6 +30,7 @@ gem "pg", ">= 1.5.9", "< 2.0"
 gem "prometheus_exporter", "2.3.1"
 gem "puma", ">= 5.6.4"
 gem "rails", ">= 8.1.3.1"
+gem "rails_semantic_logger"
 gem "redis", "~> 6.0.0"
 gem "sentry-rails", "~> 7.0.0"
 gem "sentry-sidekiq", "~> 7.0.0"
@@ -69,7 +69,7 @@ group :test do
 end
 
 group :development, :test do
-  gem "awesome_print"
+  gem "amazing_print"
   gem "colorize", require: false
   gem "dotenv-rails"
   gem "factory_bot_rails"
