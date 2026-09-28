@@ -4,6 +4,7 @@ RSpec.describe "prosecution_cases/_hearing_summaries.html.haml", type: :view do
   subject(:render_partial) do
     render partial: "prosecution_cases/hearing_summaries",
            locals: { case_summary: decorated_case_summary,
+                     hearing_summaries: decorated_case_summary.sorted_hearing_summaries_with_day,
                      column: "date",
                      direction: "asc" }
   end

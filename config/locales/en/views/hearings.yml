@@ -27,6 +27,7 @@ en:
       events:
         caption: Hearing events
         event: Event
+        no_events: No events are associated with this hearing
         time: Time
         title: Events
       flash:
