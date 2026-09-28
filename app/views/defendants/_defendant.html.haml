@@ -42,7 +42,5 @@
         - if defendant.maat_reference.present?
           %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-maat-number", type: "button", class: "govuk-!-margin-bottom-0" }
             Copy
-        - elsif linking_enabled?
-          = link_to "Link MAAT ID", link_defendant_path(defendant.id, urn: prosecution_case_reference), class: "govuk-link"
 
 = link_to "View case summary", prosecution_case_path(prosecution_case_reference), class: "govuk-button govuk-button--secondary govuk-!-margin-bottom-9"

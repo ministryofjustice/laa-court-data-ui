@@ -28,3 +28,8 @@
       - if @offence_history_collection.nil?
         .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
           = link_to t("defendants.reload"), defendant_path(params[:id], urn: @prosecution_case_reference, include_offence_history: "true"), class: "govuk-link"
+
+- if @defendant.maat_reference.blank? && linking_enabled?
+  .govuk-grid-row
+    .govuk-grid-column-full
+      = render partial: "shared/link", locals: { url: link_defendant_path(@defendant.id, urn: @prosecution_case_reference), form_model: @form_model }
