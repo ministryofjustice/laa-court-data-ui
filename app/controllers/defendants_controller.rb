@@ -11,7 +11,9 @@ class DefendantsController < ApplicationController
   # GET /defendants/:id?urn=:urn
   # Defendant detail page - Defendant info + offences
   def show
-    @form_model = new_link_attempt if linking_enabled? && @defendant.maat_reference.blank?
+    if linking_enabled?
+      @form_model = @defendant.maat_reference.blank? ? new_link_attempt : new_unlink_attempt
+    end
 
     return unless params.fetch(:include_offence_history, "false") == "true"
 
@@ -24,11 +26,6 @@ class DefendantsController < ApplicationController
     @offence_history_collection = load_offence_histories
     @offence_ids = params[:offence_ids]&.split(",")
     render :offences, layout: false
-  end
-
-  # GET /defendants/:id/unlink?urn=:urn
-  def show_unlink
-    @form_model = new_unlink_attempt
   end
 
   # POST /defendants/:id/link?urn=:urn
@@ -61,9 +58,9 @@ class DefendantsController < ApplicationController
                 flash: { success_moj_banner: I18n.t("defendants.unlink.success") }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
-    render :show_unlink
+    render :show
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    render :show_unlink
+    render :show
   end
 
   def prosecution_case_reference

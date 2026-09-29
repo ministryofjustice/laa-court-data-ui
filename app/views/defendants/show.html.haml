@@ -29,7 +29,10 @@
         .moj-js-hidden
           = link_to t("defendants.reload"), defendant_path(params[:id], urn: @prosecution_case_reference, include_offence_history: "true"), class: "govuk-link"
 
-- if @defendant.maat_reference.blank? && linking_enabled?
+- if linking_enabled?
   .govuk-grid-row
     .govuk-grid-column-full
-      = render partial: "shared/link", locals: { url: link_defendant_path(@defendant.id, urn: @prosecution_case_reference), form_model: @form_model }
+      - if @defendant.maat_reference.blank?
+        = render partial: "shared/link", locals: { url: link_defendant_path(@defendant.id, urn: @prosecution_case_reference), form_model: @form_model }
+      - else
+        = render partial: "unlink", locals: { defendant: @defendant, form_model: @form_model, prosecution_case_reference: @prosecution_case_reference }
