@@ -49,18 +49,8 @@ RSpec.describe "defendants", type: :request do
         it_behaves_like "renders common defendant details"
 
         it { expect(response.body).to include("Unlink MAAT ID") }
+        it { expect(response.body).to include("Remove link to MAAT ID") }
       end
-    end
-
-    describe "unlink page" do
-      before do
-        get "/defendants/#{defendant_id_from_fixture}/unlink?urn=#{case_reference_from_fixture}"
-      end
-
-      let(:defendant_by_id_fixture) { load_json_stub("linked_defendant.json") }
-
-      it { expect(response.body).to include("Confirm you want to remove MAAT ID link") }
-      it { expect(response.body).to include("Remove link to MAAT ID") }
     end
 
     describe "offence history" do

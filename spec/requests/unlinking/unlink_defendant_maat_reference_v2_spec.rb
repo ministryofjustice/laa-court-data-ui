@@ -13,7 +13,7 @@ RSpec.shared_examples "invalid unlink_attempt request for CD API" do
   end
 
   it "renders the unlink page" do
-    expect(response.body).to include("Confirm you want to remove MAAT ID link")
+    expect(response.body).to include("Unlink MAAT ID")
   end
 
   it "displays error summary with other_reason_text presence error" do
@@ -121,7 +121,7 @@ RSpec.describe "unlink defendant maat reference", :stub_unlink, type: :request d
       }
 
       it "renders the unlink page" do
-        expect(response.body).to include("Confirm you want to remove MAAT ID link")
+        expect(response.body).to include("Unlink MAAT ID")
       end
     end
 
@@ -194,7 +194,7 @@ RSpec.describe "unlink defendant maat reference", :stub_unlink, type: :request d
       it { expect(response.body).to include("HMCTS Common Platform could not be reached.") }
 
       it "renders the unlink page" do
-        expect(response.body).to include("Confirm you want to remove MAAT ID link")
+        expect(response.body).to include("Unlink MAAT ID")
       end
     end
 
@@ -209,7 +209,7 @@ RSpec.describe "unlink defendant maat reference", :stub_unlink, type: :request d
       it { expect(response.body).to include "Court Data Adaptor could not be reached." }
 
       it "renders the unlink page" do
-        expect(response.body).to include("Confirm you want to remove MAAT ID link")
+        expect(response.body).to include("Unlink MAAT ID")
       end
     end
 

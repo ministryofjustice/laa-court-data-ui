@@ -1,0 +1,58 @@
+-# locals (form_model:, defendant:, prosecution_case_reference:)
+
+= form_with(model: form_model, url: unlink_defendant_path(defendant.id, urn: prosecution_case_reference), data: { turbo: false }, id: "unlink_form") do |f|
+  - content_for :error_summary do
+    = f.govuk_error_summary
+
+  .govuk-grid-row
+    .govuk-grid-column-two-thirds
+      - unlink_reasons = UnlinkReason.ordered
+      = f.govuk_radio_buttons_fieldset :reason_code, small: true,
+                                                     legend: { text: t("defendants.unlink.title"), size: "m", tag: "h2" },
+                                                     hint: { text: t("defendants.form.other_reason_text.hint") } do
+        - unlink_reasons.each do |reason|
+          - if reason.text_required?
+            = f.govuk_radio_button :reason_code, reason.code, label: { text: reason.description }, link_errors: true do
+              = f.govuk_text_area :other_reason_text,
+                                  label: { text: t("defendants.form.other_reason_text.label") },
+                                  rows: 5,
+                                  max_chars: 500
+          - else
+            = f.govuk_radio_button :reason_code, reason.code, label: { text: reason.description }
+
+      .govuk-warning-text
+        %span.govuk-warning-text__icon{ aria: { hidden: true } }
+          !
+        %strong.govuk-warning-text__text
+          %span.govuk-visually-hidden= t("generic.warning")
+          = t("defendants.unlink.warning")
+
+      .govuk-button-group
+        = f.govuk_submit t("defendants.unlink.submit"), data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning"
+        = link_to t("defendants.unlink.cancel"),
+                  defendant_path(defendant.id, urn: prosecution_case_reference),
+                  class: "govuk-button govuk-button--secondary"
+
+:javascript
+  ['turbo:render', 'DOMContentLoaded'].forEach(function(e) {
+    document.addEventListener(e, function() {
+      var form = document.getElementById("unlink_form");
+      var link = document.querySelector(".defendant-unlink-link");
+
+      if (!form) { return null }
+
+      // Don't hide the form if there are errors, so that the user can see them and correct them
+      if (!form.querySelector('.govuk-form-group--error')) {
+        form.classList.add('moj-js-hidden');
+      } else {
+        link.classList.add('moj-js-hidden');
+      }
+
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        link.classList.add('moj-js-hidden');
+        form.classList.remove('moj-js-hidden');
+        form.scrollIntoView();
+      });
+    });
+  })
