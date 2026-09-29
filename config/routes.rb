@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   resources :defendants, only: %i[show] do
     member do
       get :offences
-      get :unlink, to: "defendants#show_unlink"
       post :link
       post :unlink
     end
