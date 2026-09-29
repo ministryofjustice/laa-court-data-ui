@@ -15,7 +15,7 @@ If you want to run the whole stack, including the adaptor and hot reloading for 
 following command:
 
 ```
-make run_all
+make run_full
 ```
 
 This will do the following:
@@ -29,6 +29,12 @@ This will do the following:
 - Run all the containers in development mode.
 
 You will then be able to access the UI at `http://localhost:3000` and the adaptor at `http://localhost:3001`.
+
+If you want the adaptor to connect to the SIT instance of Common Platform instead of the mock API, you can run:
+
+```
+make run_full RUN_FULL_TARGET=sit
+```
 
 ## Development notes
 

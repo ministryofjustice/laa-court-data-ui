@@ -28,13 +28,15 @@ install: #: install all requirements
 run: #: run the application locally
 	foreman start -f Procfile.dev
 
-run_full: #: run the full application stack locally
+RUN_FULL_TARGET ?= mock
+
+run_full: #: run the full application stack locally (RUN_FULL_TARGET=mock|sit)
 	@printf "\e[33mMAKE: building containers...\e[0m\n"
 	@docker-compose build --no-cache
 	@printf "\e[33mMAKE: setting up databases...\e[0m\n"
 	@bin/docker-setup-db
-	@printf "\e[33mMAKE: setting up environment variables...\e[0m\n"
-	@bin/docker-setup-env
+	@printf "\e[33mMAKE: setting up environment variables for the $(RUN_FULL_TARGET) Common Platform...\e[0m\n"
+	@bin/docker-setup-env --target=$(RUN_FULL_TARGET)
 	@printf "\e[33mMAKE: starting containers...\e[0m\n"
 	@docker-compose up
 
