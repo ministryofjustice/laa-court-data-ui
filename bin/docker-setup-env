@@ -7,6 +7,22 @@ if [ ! -d ../laa-court-data-adaptor ]; then
   exit 1
 fi
 
+ENV_TARGET=mock
+for arg in "$@"; do
+  case "$arg" in
+    --target=mock)
+      ENV_TARGET=mock
+      ;;
+    --target=sit)
+      ENV_TARGET=sit
+      ;;
+    *)
+      echo "Usage: $0 [--target=mock|--target=sit]" >&2
+      exit 2
+      ;;
+  esac
+done
+
 uid=$(docker compose run --rm cda bundle exec rails runner 'print Doorkeeper::Application.first_or_create(name: "My CDA Client").uid' | tail -n1)
 secret=$(docker compose run --rm cda bundle exec rails runner 'print Doorkeeper::Application.first_or_create(name: "My CDA Client").secret' | tail -n1)
 
@@ -19,4 +35,10 @@ secret=$(docker compose run --rm cda bundle exec rails runner 'print Doorkeeper:
   printf '%s\n' 'FAKE_AUTH: true'
 } > .env.development
 
-../laa-court-data-adaptor/script/generate_env
+
+if [ "$ENV_TARGET" = sit ]; then
+  ../laa-court-data-adaptor/script/generate_env --target=sit
+else
+  ../laa-court-data-adaptor/script/generate_env --target=mock
+fi
+
