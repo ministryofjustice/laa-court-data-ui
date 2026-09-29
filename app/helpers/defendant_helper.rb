@@ -2,7 +2,8 @@
 
 module DefendantHelper
   def defendant_link_path(defendant, prosecution_case_reference = nil)
-    defendant_path(id: defendant.id, urn: prosecution_case_reference)
+    # Dots in the URN are blocked by ModSecurity (403); percent-encode them
+    defendant_path(id: defendant.id, urn: prosecution_case_reference).gsub(".", "%2E")
   end
 
   def linking_enabled?
