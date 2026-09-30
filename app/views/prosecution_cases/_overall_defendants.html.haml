@@ -9,7 +9,7 @@
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "col" }= t("search.result.defendant.name")
           %th.govuk-table__header{ scope: "col" }= t("search.result.defendant.date_of_birth")
-          %th.govuk-table__header{ scope: "col" }= t("search.result.defendant.maat_number")
+          %th.govuk-table__header{ scope: "col" }= accessible_text(t("search.result.defendant.maat_number"))
       %tbody.govuk-table__body
         - case_summary.defendants.each do |overall_defendant|
           %tr.govuk-table__row
@@ -18,7 +18,7 @@
             %td.govuk-table__cell
               = accessible_date(overall_defendant.date_of_birth&.to_date)
             %td.govuk-table__cell
-              = overall_defendant.linked? ? accessible_id(overall_defendant.maat_reference) : t("search.result.defendant.unlinked")
+              = overall_defendant.linked? ? accessible_text(overall_defendant.maat_reference) : t("search.result.defendant.unlinked")
 - else
   .govuk-body
     = t("search.result.defendant.no_defendants")

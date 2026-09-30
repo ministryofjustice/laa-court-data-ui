@@ -1,7 +1,7 @@
 - content_for :pre_heading do
   = render "/feedback_on_appeals_to_crown_court", application: @application
 
-= govuk_page_heading(accessible_id(@application.application_reference),
+= govuk_page_heading(accessible_text(@application.application_reference),
                      caption_text: t("subjects.#{@application.application_category}"),
                      title: "#{t("subjects.#{@application.application_category}")} #{@application.application_reference}",
                      tag_options: { class: "govuk-!-margin-bottom-4" })
@@ -39,7 +39,7 @@
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: "col" }= t(".defendant.name")
       %th.govuk-table__header{ scope: "col" }= t(".defendant.date_of_birth")
-      %th.govuk-table__header{ scope: "col" }= t(".defendant.maat_number")
+      %th.govuk-table__header{ scope: "col" }= accessible_text(t(".defendant.maat_number"))
       - if @application.breach?
         %th.govuk-table__header{ scope: "col" }= t(".defendant.breach_date")
   %tbody.govuk-table__body
@@ -49,7 +49,7 @@
       %td.govuk-table__cell
         = accessible_date(@application.subject_summary.date_of_birth)
       %td.govuk-table__cell
-        = accessible_id(@application.maat_reference) || t("search.result.defendant.unlinked")
+        = accessible_text(@application.maat_reference) || t("search.result.defendant.unlinked")
       - if @application.breach?
         %td.govuk-table__cell
           = accessible_date(@application.received_date&.to_date)

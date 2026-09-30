@@ -10,11 +10,11 @@ class Search
   def self.filters
     [
       _filter(id: :case_reference,
-              name: sanitize_html(I18n.t("search_filter.radio_case_reference_label"))),
+              name: accessible_html(I18n.t("search_filter.radio_case_reference_label"))),
       _filter(id: :defendant_reference,
-              name: sanitize_html(I18n.t("search_filter.radio_defendant_reference_label_html"))),
+              name: accessible_html(I18n.t("search_filter.radio_defendant_reference_label_html"))),
       _filter(id: :defendant_name,
-              name: sanitize_html(I18n.t("search_filter.radio_defendant_name_label_html"))),
+              name: accessible_html(I18n.t("search_filter.radio_defendant_name_label_html"))),
     ]
   end
 
@@ -26,6 +26,10 @@ class Search
 
   def self.sanitize_html(html_string)
     ActionController::Base.helpers.sanitize(html_string, tags: %w[b])
+  end
+
+  def self.accessible_html(html_string)
+    ApplicationController.helpers.accessible_text(sanitize_html(html_string))
   end
 
   validates :filter,
