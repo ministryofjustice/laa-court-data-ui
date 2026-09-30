@@ -5,7 +5,7 @@ RSpec::Matchers.define :have_hearing_sorter_link do |text:, column:, next_direct
     selector = "a.govuk-link--no-visited-state[href*='column=#{column}'][href*='direction=#{next_direction}']"
     return false unless node.has_css?(selector, text:)
 
-    link = node.find(selector, text:, match: :first)
+    link = node.first(selector, text:)
     link.has_css?("svg.#{icon_css_class(icon_direction)}")
   end
 

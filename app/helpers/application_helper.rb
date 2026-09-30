@@ -5,6 +5,8 @@ require "feature_flag"
 module ApplicationHelper
   include GovukDesignSystemHelper
 
+  ACRONYM_PATTERN = /[A-Z]{2,}[0-9]*/
+
   def service_name
     "View court data"
   end
@@ -51,14 +53,21 @@ module ApplicationHelper
     end
   end
 
-  # Screen readers read the visually hidden spaced copy of an identifier (URN, ASN, ...)
-  # character by character (e.g. "12345" as "1 2 3 4 5") rather than as a quantity ("twelve thousand...")
-  def accessible_id(value, **options)
+  # Screen readers read the visually hidden spaced copy character by character rather than as a
+  # word or a quantity.
+  #
+  # Identifiers (URN, ASN, MAAT reference, ...), which contain no lower case characters, are spelled
+  # out in full, e.g. "12345" becomes "1 2 3 4 5".
+  #
+  # Free text only has its acronyms (two or more consecutive capital letters, optionally followed
+  # by digits) spelled out, ie: "Link MAAT IDs" becomes "Link M A A T I Ds".
+  # A trailing lower case plural stays attached to the last letter of the acronym.
+  def accessible_text(value, **options)
     return if value.blank?
 
     safe_join([
       tag.span(value, **options, aria: { hidden: true }),
-      tag.span(value.to_s.chars.join(" "), class: "govuk-visually-hidden"),
+      tag.span(spell_out(value.to_s), class: "govuk-visually-hidden"),
     ])
   end
 
@@ -67,6 +76,16 @@ module ApplicationHelper
   end
 
 private
+
+  def spell_out(text)
+    spelled_out = if text.match?(/[a-z]/)
+                    text.gsub(ACRONYM_PATTERN) { |acronym| acronym.chars.join(" ") }
+                  else
+                    text.chars.join(" ")
+                  end
+
+    text.html_safe? ? spelled_out.html_safe : spelled_out
+  end
 
   def decorator_instance(object, decorator_class = nil)
     return object if object.is_a?(BaseDecorator)
