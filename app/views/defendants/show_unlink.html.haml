@@ -25,19 +25,19 @@
             = accessible_date(@defendant.date_of_birth&.to_date, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".case_urn")
+            = t(".case_urn", urn: t("acronyms.urn_html"))
           %td.govuk-table__cell
-            = accessible_text(@prosecution_case_reference)
+            = accessible_id(@prosecution_case_reference)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".arrest_summons_number")
+            = t(".case_urn", urn: t("acronyms.asn_html"))
           %td.govuk-table__cell
-            = accessible_text(@defendant.arrest_summons_number)
+            = accessible_id(@defendant.arrest_summons_number)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".maat_number")
+            = t(".maat_number", maat_id: t("acronyms.maat_id_html"))
           %td.govuk-table__cell
-            = accessible_text(@defendant.maat_reference)
+            = accessible_id(@defendant.maat_reference)
 
 = form_with(model: @form_model, url: unlink_defendant_path(@defendant.id, urn: @prosecution_case_reference), data: { turbo: false }) do |f|
   - content_for :error_summary do

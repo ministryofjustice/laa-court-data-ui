@@ -9,29 +9,29 @@ en:
       columns:
         action: Action
         auto_linked_at: Auto linked date
-        case_urn: URN
-        case_urn_new_tab_html: URN<br>(opens in new tab)
+        case_urn: "%{urn}"
+        case_urn_new_tab_html: "%{urn}<br>(opens in new tab)"
         court: Court
         defendant_date_of_birth: Date of birth
         defendant_name: Defendant name
         linked_at: Linked date
         linked_by: Linked by
-        maat_id: MAAT ID
+        maat_id: "%{maat_id}"
         mode_of_trial: Mode of trial
         reason_for_man_linking_html: Reason for<br>man. linking
         xhibit_ref: Xhibit ref.
       no_results: No migrated cases found
       page_title: Link migrated cases
     show_link:
-      arrest_summons_number: ASN
+      arrest_summons_number: "%{asn}"
       back: Back to overview
-      case_urn: URN
+      case_urn: "%{urn}"
       committal_date: Committal date
       court_name: Court
       date_of_birth: Date of birth
       latest_hearing_date: Latest hearing date
       name: Name
-      nino: NI number
+      nino: "%{ni} number"
       reason_for_man_linking: Reason for manual linking
       title: Link court data
       xhibit_ref: Xhibit reference

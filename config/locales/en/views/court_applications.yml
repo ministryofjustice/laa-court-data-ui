@@ -14,7 +14,7 @@ en:
       defendant:
         breach_date: Breach date
         date_of_birth: Date of birth
-        maat_number: MAAT ID
+        maat_number: "%{maat_id}"
         name: Name
       hearing:
         date: Date
@@ -23,6 +23,6 @@ en:
       hearings: Hearings
       no_hearings: No hearings are associated with this application
       respondent: Respondent
-      result: 'Result:'
-      type_of_appeal: 'Type of appeal:'
-      type_of_application: 'Type of application:'
+      result: "Result:"
+      type_of_appeal: "Type of appeal:"
+      type_of_application: "Type of application:"

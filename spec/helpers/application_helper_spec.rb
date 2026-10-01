@@ -10,79 +10,15 @@ RSpec.describe ApplicationHelper, type: :helper do
   it { is_expected.to respond_to :decorate }
   it { is_expected.to respond_to :decorate_all }
 
-  describe "#accessible_text" do
-    subject(:markup) { helper.accessible_text(value) }
+  describe "#accessible_id" do
+    subject(:markup) { helper.accessible_id("TFL12345") }
 
-    context "with an identifier" do
-      let(:value) { "TFL12345" }
-
-      it "shows the identifier hidden from screen readers" do
-        expect(markup).to include '<span aria-hidden="true">TFL12345</span>'
-      end
-
-      it "adds a visually hidden identifier with each character separated by a space" do
-        expect(markup).to include '<span class="govuk-visually-hidden">T F L 1 2 3 4 5</span>'
-      end
+    it "shows the identifier hidden from screen readers" do
+      expect(markup).to include '<span aria-hidden="true">TFL12345</span>'
     end
 
-    context "with a numeric identifier" do
-      let(:value) { 12_345 }
-
-      it "adds a visually hidden identifier with each digit separated by a space" do
-        expect(markup).to include '<span class="govuk-visually-hidden">1 2 3 4 5</span>'
-      end
-    end
-
-    context "with text containing acronyms" do
-      let(:value) { "Link MAAT IDs to cases at the MOJ." }
-
-      it "shows the text hidden from screen readers" do
-        expect(markup).to include '<span aria-hidden="true">Link MAAT IDs to cases at the MOJ.</span>'
-      end
-
-      it "adds a visually hidden copy with only the acronym letters separated by a space" do
-        expect(markup).to include(
-          '<span class="govuk-visually-hidden">Link M A A T I Ds to cases at the M O J.</span>',
-        )
-      end
-    end
-
-    context "with text containing no acronyms" do
-      let(:value) { "It is available every day from 7am to 10pm." }
-
-      it "adds an unchanged visually hidden copy" do
-        expect(markup).to include(
-          '<span class="govuk-visually-hidden">It is available every day from 7am to 10pm.</span>',
-        )
-      end
-    end
-
-    context "with html safe text" do
-      let(:value) { "A defendant by ASN <b>or</b> National insurance number".html_safe }
-
-      it "keeps the markup in both copies" do
-        expect(markup).to eq(
-          '<span aria-hidden="true">A defendant by ASN <b>or</b> National insurance number</span>' \
-          '<span class="govuk-visually-hidden">A defendant by A S N <b>or</b> National insurance number</span>',
-        )
-      end
-    end
-
-    context "with unsafe text" do
-      let(:value) { "A defendant by ASN <b>or</b> NI number" }
-
-      it "escapes the markup in both copies" do
-        expect(markup).to eq(
-          '<span aria-hidden="true">A defendant by ASN &lt;b&gt;or&lt;/b&gt; NI number</span>' \
-          '<span class="govuk-visually-hidden">A defendant by A S N &lt;b&gt;or&lt;/b&gt; N I number</span>',
-        )
-      end
-    end
-
-    context "with a blank value" do
-      let(:value) { "" }
-
-      it { is_expected.to be_nil }
+    it "adds a visually hidden identifier with each character separated by a space" do
+      expect(markup).to include '<span class="govuk-visually-hidden">T F L 1 2 3 4 5</span>'
     end
   end
 

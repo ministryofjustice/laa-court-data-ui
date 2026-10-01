@@ -30,7 +30,7 @@ module LinkMigratedCasesHelper
   end
 
   def link_maat_id_url(id)
-    link_to(accessible_text("Link MAAT ID"),
+    link_to("Link MAAT ID",
             link_link_migrated_case_path(id),
             class: "govuk-link govuk-link--no-visited-state")
   end
@@ -69,7 +69,7 @@ module LinkMigratedCasesHelper
       column: column,
       direction_key: :sort_direction,
       column_key: :sort_column,
-      label: accessible_text(t("link_migrated_cases.index.columns.#{i18n_key}")),
+      label: sanitize_html(t("link_migrated_cases.index.columns.#{i18n_key}", urn: t("acronyms.urn_html"), maat_id: t("acronyms.maat_id_html"))),
       default_sort_column: "case_urn",
     )
   end

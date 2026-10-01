@@ -4,17 +4,18 @@ require_dependency "feature_flag"
 
 class Search
   include ActiveModel::Model
+  extend ApplicationHelper
 
   attr_accessor :filter, :term, :dob
 
   def self.filters
     [
       _filter(id: :case_reference,
-              name: accessible_html(I18n.t("search_filter.radio_case_reference_label"))),
+              name: sanitize_html(I18n.t("search_filter.radio_case_reference_label", urn: I18n.t("acronyms.urn_html")))),
       _filter(id: :defendant_reference,
-              name: accessible_html(I18n.t("search_filter.radio_defendant_reference_label_html"))),
+              name: sanitize_html(I18n.t("search_filter.radio_defendant_reference_label_html", asn: I18n.t("acronyms.asn_html")))),
       _filter(id: :defendant_name,
-              name: accessible_html(I18n.t("search_filter.radio_defendant_name_label_html"))),
+              name: sanitize_html(I18n.t("search_filter.radio_defendant_name_label_html"))),
     ]
   end
 
@@ -23,14 +24,6 @@ class Search
   end
 
   delegate :filters, to: :class
-
-  def self.sanitize_html(html_string)
-    ActionController::Base.helpers.sanitize(html_string, tags: %w[b])
-  end
-
-  def self.accessible_html(html_string)
-    ApplicationController.helpers.accessible_text(sanitize_html(html_string))
-  end
 
   validates :filter,
             presence: true,

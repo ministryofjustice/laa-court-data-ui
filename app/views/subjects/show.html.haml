@@ -42,9 +42,9 @@
                 Copy
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".case_urn")
+            = t(".case_urn", urn: t("acronyms.urn_html"))
           %td.govuk-table__cell
-            = accessible_text(@application.application_reference, id: "subject-case-urn")
+            = accessible_id(@application.application_reference, id: "subject-case-urn")
           %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
             %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-case-urn", type: "button", class: "govuk-!-margin-bottom-0" }
               Copy
@@ -52,9 +52,9 @@
         - if @application.appeal? || @application.poca?
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
-              = t(".arrest_summons_number")
+              = t(".arrest_summons_number", asn: t("acronyms.asn_html"))
             %td.govuk-table__cell
-              = accessible_text(@application.subject_asn, id: "subject-asn")
+              = accessible_id(@application.subject_asn, id: "subject-asn")
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
               - if @application.subject_asn.present?
                 %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }
@@ -62,9 +62,9 @@
         - else
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
-              = t(".respondent_arrest_summons_number")
+              = t(".respondent_arrest_summons_number", asn: t("acronyms.asn_html"))
             %td.govuk-table__cell
-              = accessible_text(@application.subject_asn, id: "subject-asn")
+              = accessible_id(@application.subject_asn, id: "subject-asn")
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
               - if @application.subject_asn.present?
                 %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-asn", type: "button", class: "govuk-!-margin-bottom-0" }
@@ -79,10 +79,10 @@
         -# haml-lint:enable RepeatedId
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".maat_number")
+            = t(".maat_number", maat_id: t("acronyms.maat_id_html"))
           %td.govuk-table__cell.app-no-wrap
             - if @application.maat_reference.present?
-              = accessible_text(@application.maat_reference, id: "subject-maat-number")
+              = accessible_id(@application.maat_reference, id: "subject-maat-number")
               = link_to "Unlink MAAT ID", unlink_court_application_subject_path(@application.application_id), class: "govuk-link govuk-!-margin-left-4"
             - else
               Not linked

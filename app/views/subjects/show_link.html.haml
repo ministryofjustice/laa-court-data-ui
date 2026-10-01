@@ -29,14 +29,14 @@
             = accessible_date(@subject.date_of_birth, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".case_urn")
+            = t(".case_urn", urn: t("acronyms.urn_html"))
           %td.govuk-table__cell
-            = accessible_text(@application.application_reference)
+            = accessible_id(@application.application_reference)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".arrest_summons_number")
+            = t(".arrest_summons_number", asn: t("acronyms.asn_html"))
           %td.govuk-table__cell
-            = accessible_text(@application.subject_asn)
+            = accessible_id(@application.subject_asn)
         - if @application.breach?
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
@@ -51,8 +51,8 @@
   .govuk-grid-row
     .govuk-grid-column-two-thirds
       = f.govuk_text_field :maat_reference,
-                           label: { text: t("laa_reference.link.form.maat_reference.label") },
-                           hint: { text: t("laa_reference.link.form.maat_reference.hint") }
+                           label: { text: sanitize_html(t("laa_reference.link.form.maat_reference.label", maat_id: t("acronyms.maat_id_html"))) },
+                           hint: { text: sanitize_html(t("laa_reference.link.form.maat_reference.hint", maat_id: t("acronyms.maat_id_html"))) }
 
       .govuk-inset-text
         This will create a link between the application and the #{@application.application_category} court data.
@@ -61,6 +61,6 @@
         = f.govuk_submit t("laa_reference.link.form.submit"), data: { disable_with: "Linking..." }, name: "maat_ref_required", value: "true"
         = link_to subject_back_label(@application), court_application_subject_path(@application.application_id), class: "govuk-link"
 
-      = govuk_detail(t("laa_reference.missing_maat_id.label")) do
+      = govuk_detail(sanitize_html(t("laa_reference.missing_maat_id.label", maat_id: t("acronyms.maat_id_html")))) do
         %p.govuk-details__details-text= t("laa_reference.missing_maat_id.description")
-        = f.govuk_submit(t("laa_reference.missing_maat_id.submit"), secondary: true, name: "maat_ref_required", value: "false")
+        = f.govuk_submit(sanitize_html(t("laa_reference.missing_maat_id.submit", maat_id: t("acronyms.maat_id_html"))), secondary: true, name: "maat_ref_required", value: "false")
