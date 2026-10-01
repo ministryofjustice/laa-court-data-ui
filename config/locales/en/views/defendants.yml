@@ -23,7 +23,7 @@ en:
       maat_number: "%{maat_id}"
       name: Name
       submit: Remove link to %{maat_id}
-      title: Confirm you want to remove %{maat_id} link
+      title: Confirm you want to remove MAAT ID link
     title: Defendant details
     unlink:
       success: Link removed successfully.

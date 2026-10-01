@@ -36,7 +36,7 @@ en:
       maat_number: "%{maat_id}"
       name: Name
       submit: Remove link to %{maat_id}
-      title: Confirm you want to remove %{maat_id} link
+      title: Confirm you want to remove MAAT ID link
     unlink:
       failure: Unable to unlink the defendant
       success: Link removed successfully.

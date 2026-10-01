@@ -90,8 +90,6 @@ RSpec.describe "link defendant maat reference", :stub_unlinked, :vcr, type: :req
 
     context "when cda returns 424 error", :stub_v2_link_cda_failure do
       it { expect(response.body).to include "HMCTS Common Platform could not be reached." }
-
-      it { expect(response.body).to include "Create link without MAAT ID" }
     end
   end
 

@@ -42,7 +42,7 @@
                 Copy
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".case_urn", urn: t("acronyms.urn_html"))
+            = sanitize_html(t(".case_urn", urn: t("acronyms.urn_html")))
           %td.govuk-table__cell
             = accessible_id(@application.application_reference, id: "subject-case-urn")
           %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
@@ -52,7 +52,7 @@
         - if @application.appeal? || @application.poca?
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
-              = t(".arrest_summons_number", asn: t("acronyms.asn_html"))
+              = sanitize_html(t(".arrest_summons_number", asn: t("acronyms.asn_html")))
             %td.govuk-table__cell
               = accessible_id(@application.subject_asn, id: "subject-asn")
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
@@ -62,7 +62,7 @@
         - else
           %tr.govuk-table__row
             %th.govuk-table__header{ scope: "row" }
-              = t(".respondent_arrest_summons_number", asn: t("acronyms.asn_html"))
+              = sanitize_html(t(".respondent_arrest_summons_number", asn: t("acronyms.asn_html")))
             %td.govuk-table__cell
               = accessible_id(@application.subject_asn, id: "subject-asn")
             %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
@@ -79,7 +79,7 @@
         -# haml-lint:enable RepeatedId
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".maat_number", maat_id: t("acronyms.maat_id_html"))
+            = sanitize_html(t(".maat_number", maat_id: t("acronyms.maat_id_html")))
           %td.govuk-table__cell.app-no-wrap
             - if @application.maat_reference.present?
               = accessible_id(@application.maat_reference, id: "subject-maat-number")

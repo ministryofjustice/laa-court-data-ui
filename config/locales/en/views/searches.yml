@@ -9,7 +9,7 @@ en:
       unprocessable: Unable to complete the search. Please adjust the search terms and try again.
     no_result:
       body: There are no matching results.
-      body_guide: "Improve your search results by:"
+      body_guide: 'Improve your search results by:'
       body_guide_four: searching for something less specific
       body_guide_one: removing filters
       body_guide_three: using fewer keywords

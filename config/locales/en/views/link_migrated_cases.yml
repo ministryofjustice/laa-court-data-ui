@@ -31,7 +31,7 @@ en:
       date_of_birth: Date of birth
       latest_hearing_date: Latest hearing date
       name: Name
-      nino: "%{ni} number"
+      nino: "%{nino}"
       reason_for_man_linking: Reason for manual linking
       title: Link court data
       xhibit_ref: Xhibit reference
