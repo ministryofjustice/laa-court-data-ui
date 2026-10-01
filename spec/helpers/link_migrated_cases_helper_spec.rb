@@ -150,7 +150,7 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
         column: "case_urn",
         direction_key: :sort_direction,
         column_key: :sort_column,
-        label: "<span aria-hidden=\"true\">Case URN</span><span class=\"govuk-visually-hidden\">Case U R N</span>",
+        label: "Case URN",
         default_sort_column: "case_urn",
       )
       expect(result).to eq("<th>Case URN</th>")

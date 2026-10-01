@@ -29,17 +29,17 @@
             = accessible_date(@subject.date_of_birth, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".case_urn", urn: t("acronyms.urn_html"))
+            = sanitize_html(t(".case_urn", urn: t("acronyms.urn_html")))
           %td.govuk-table__cell
             = accessible_id(@application.application_reference)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".arrest_summons_number", asn: t("acronyms.asn_html"))
+            = sanitize_html(t(".arrest_summons_number", asn: t("acronyms.asn_html")))
           %td.govuk-table__cell
             = accessible_id(@application.subject_asn)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".maat_number", maat_id: t("acronyms.maat_id_html"))
+            = sanitize_html(t(".maat_number", maat_id: t("acronyms.maat_id_html")))
           %td.govuk-table__cell
             = accessible_id(@application.maat_reference)
 

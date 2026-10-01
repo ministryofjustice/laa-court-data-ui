@@ -22,8 +22,8 @@ RSpec.describe Search, type: :model do
 
     it "spells out acronyms in the label for screen readers" do
       expect(filters.first.name).to eq(
-        '<span aria-hidden="true">A case by URN</span>' \
-        '<span class="govuk-visually-hidden">A case by U R N</span>',
+        'A case by <span aria-hidden="true">URN</span>' \
+        '<span class="govuk-visually-hidden">U R N</span>',
       )
     end
 
