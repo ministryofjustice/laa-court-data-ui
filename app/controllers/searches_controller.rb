@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
+  include ApplicationHelper
+
   before_action :set_search_options, :handle_empty_search_params
 
   add_breadcrumb :search_filter_breadcrumb_name, :new_search_filter_path
@@ -62,7 +64,7 @@ private
   def set_view_options
     @label = case filter
              when "defendant_reference"
-               I18n.t("search.term.defendant_reference_label")
+               sanitize_html(I18n.t("search.term.defendant_reference_label", asn: I18n.t("acronyms.asn_html")))
              when "defendant_name"
                I18n.t("search.term.defendant_name_label")
              else

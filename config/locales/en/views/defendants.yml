@@ -9,21 +9,21 @@ en:
       unlinking: Unlinking...
     reload: Reload page with full offence history
     show_link:
-      arrest_summons_number: ASN
+      arrest_summons_number: "%{asn}"
       back: Back to defendant
-      case_urn: Case URN
+      case_urn: Case %{urn}
       date_of_birth: Date of birth
       name: Name
       title: Link court data
     show_unlink:
-      arrest_summons_number: ASN
+      arrest_summons_number: "%{asn}"
       back: Back to defendant
-      case_urn: Case URN
+      case_urn: Case %{urn}
       date_of_birth: Date of birth
-      maat_number: MAAT ID
+      maat_number: "%{maat_id}"
       name: Name
-      submit: Remove link to MAAT ID
-      title: Confirm you want to remove MAAT ID link
+      submit: Remove link to %{maat_id}
+      title: Confirm you want to remove %{maat_id} link
     title: Defendant details
     unlink:
       success: Link removed successfully.

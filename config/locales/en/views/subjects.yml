@@ -4,39 +4,39 @@ en:
     appeal: Appeal
     breach: Breach
     link:
-      failure: Unable to link the defendant to that MAAT ID
+      failure: Unable to link the defendant to that %{maat_id}
       success: Application linked successfully.
-    poca: POCA
+    poca: "%{poca}"
     show:
       appeal_title: Appellant details
       appellant: Appellant
-      arrest_summons_number: ASN
-      case_urn: Case URN
+      arrest_summons_number: "%{asn}"
+      case_urn: Case %{urn}
       date_of_birth: Date of birth
-      maat_number: MAAT ID
+      maat_number: "%{maat_id}"
       plea: Plea for the breach
       respondent: Respondent
-      respondent_arrest_summons_number: Respondent ASN
+      respondent_arrest_summons_number: Respondent %{asn}
       title: Respondent details
       view:
         appeal: View appeal
         breach: View breach
-        poca: View POCA
+        poca: View %{poca}
     show_link:
-      arrest_summons_number: ASN
-      case_urn: Case URN
+      arrest_summons_number: "%{asn}"
+      case_urn: Case %{urn}
       date_of_birth: Date of birth
       name: Name
       plea: Plea for the breach
       title: Link court data
     show_unlink:
-      arrest_summons_number: ASN
-      case_urn: Case URN
+      arrest_summons_number: "%{asn}"
+      case_urn: Case %{urn}
       date_of_birth: Date of birth
-      maat_number: MAAT ID
+      maat_number: "%{maat_id}"
       name: Name
-      submit: Remove link to MAAT ID
-      title: Confirm you want to remove MAAT ID link
+      submit: Remove link to %{maat_id}
+      title: Confirm you want to remove %{maat_id} link
     unlink:
       failure: Unable to unlink the defendant
       success: Link removed successfully.

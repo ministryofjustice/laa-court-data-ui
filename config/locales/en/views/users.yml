@@ -38,7 +38,7 @@ en:
           caseworker: Search and view case information, link or unlink records
           data_analyst: View data dashboard
         save_button: Save and continue
-        username_hint: Use MAAT/MLRA username
+        username_hint: Use %{maat_mlra} username
         username_label: Username
       heading: User information
     generic:
@@ -57,15 +57,15 @@ en:
       delete: Delete
       edit: Edit
       hide_filter: Hide filters
-      improve_search: 'Improve your search results by:'
+      improve_search: "Improve your search results by:"
       new_link: Create new user
       none: There are no matching results.
       page_title: Manage Users
       search_suggestions:
-      - removing filters
-      - double-checking your spelling
-      - using fewer keywords
-      - searching for something less specific.
+        - removing filters
+        - double-checking your spelling
+        - using fewer keywords
+        - searching for something less specific.
       show_filter: Show filter
     new:
       page_title: Enter new user details

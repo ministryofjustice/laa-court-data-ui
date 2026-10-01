@@ -13,11 +13,11 @@
           %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("stats.show.date_range")
       %tbody.govuk-table__body
         %tr.govuk-table__row
-          %td.govuk-table__cell= accessible_text(t("stats.show.linked"))
+          %td.govuk-table__cell= sanitize_html(t("stats.show.linked", maat_ids: t("acronyms.maat_ids_html")))
           %td.govuk-table__cell= all_collection.current_range.linked
           %td.govuk-table__cell= collection.current_range.linked
         %tr.govuk-table__row
-          %td.govuk-table__cell= accessible_text(t("stats.show.unlinked"))
+          %td.govuk-table__cell= sanitize_html(t("stats.show.unlinked", maat_ids: t("acronyms.maat_ids_html")))
           %td.govuk-table__cell= all_collection.current_range.unlinked
           %td.govuk-table__cell= collection.current_range.unlinked
 
@@ -35,8 +35,8 @@
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("stats.show.previous_ranges.from")
           %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("stats.show.previous_ranges.to")
-          %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= accessible_text(t("stats.show.previous_ranges.linked"))
-          %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= accessible_text(t("stats.show.previous_ranges.unlinked"))
+          %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= sanitize_html(t("stats.show.previous_ranges.linked", maat_ids: t("acronyms.maat_ids_html")))
+          %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= sanitize_html(t("stats.show.previous_ranges.unlinked", maat_ids: t("acronyms.maat_ids_html")))
       %tbody.govuk-table__body
         - collection.previous_ranges.each do |range|
           %tr.govuk-table__row
