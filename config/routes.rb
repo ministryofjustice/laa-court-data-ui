@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   resources :defendants, only: %i[show] do
     member do
       get :offences
-      get :link, to: "defendants#show_link"
       get :unlink, to: "defendants#show_unlink"
       post :link
       post :unlink
@@ -54,7 +53,6 @@ Rails.application.routes.draw do
   resources :court_applications, only: %i[show] do
     resource :subject, only: %i[show] do
       member do
-        get :link, to: "show_link"
         get :unlink, to: "show_unlink"
         post :link
         post :unlink

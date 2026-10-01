@@ -39,7 +39,7 @@ RSpec.describe "defendants", type: :request do
 
         it_behaves_like "renders common defendant details"
 
-        it { expect(response.body).to include("Link MAAT ID") }
+        it { expect(response.body).to include(I18n.t("generic.link_court_data")) }
         it { expect(response.body).not_to include("Unlink MAAT ID") }
       end
 
@@ -49,29 +49,8 @@ RSpec.describe "defendants", type: :request do
         it_behaves_like "renders common defendant details"
 
         it { expect(response.body).to include("Unlink MAAT ID") }
+        it { expect(response.body).to include("Remove link to MAAT ID") }
       end
-    end
-
-    describe "link page" do
-      before do
-        get "/defendants/#{defendant_id_from_fixture}/link?urn=#{case_reference_from_fixture}"
-      end
-
-      let(:defendant_by_id_fixture) { load_json_stub("unlinked_defendant.json") }
-
-      it { expect(response.body).to include("Link court data - View court data - GOV.UK") }
-      it { expect(response.body).to include("Jammy Dodger") }
-    end
-
-    describe "unlink page" do
-      before do
-        get "/defendants/#{defendant_id_from_fixture}/unlink?urn=#{case_reference_from_fixture}"
-      end
-
-      let(:defendant_by_id_fixture) { load_json_stub("linked_defendant.json") }
-
-      it { expect(response.body).to include("Confirm you want to remove MAAT ID link") }
-      it { expect(response.body).to include("Remove link to MAAT ID") }
     end
 
     describe "offence history" do

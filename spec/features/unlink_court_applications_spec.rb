@@ -20,7 +20,10 @@ RSpec.feature "Unlink court applications - SubjectsController#unlink" do
 
     scenario "I view an unlinked court application subject" do
       visit court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_link "Link MAAT ID"
+
+      expect(page).to have_field(
+        I18n.t("laa_reference.link.form.maat_reference.label"), type: "text"
+      )
       expect(page).to have_no_link "Remove link"
     end
 
