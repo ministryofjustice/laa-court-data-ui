@@ -46,11 +46,13 @@ RSpec.describe "View usage stats", :vcr, type: :feature do
     visit new_stats_path(stat_range: { from: "01/09/2025", to: "1/10/2025" })
 
     expect(page).to have_text "Total links and unlinks"
-    expect(page).to have_text "MAAT IDs linked 10"
-    expect(page).to have_text "MAAT IDs unlinked 5"
+    expect(page).to have_text "MAAT IDs"
+    expect(page).to have_text "linked 10"
+    expect(page).to have_text "unlinked 5"
 
     expect(page).to have_text "Previous periods"
-    expect(page).to have_text "Period start Period end MAAT IDs linked MAAT IDs subsequently unlinked"
+    expect(page).to have_text "Period start Period end"
+    expect(page).to have_text "subsequently unlinked"
     expect(page).to have_text "Fri, 1 August 2025 Sun, 31 August 2025 4 4"
     expect(page).to have_text "Tue, 1 July 2025 Thu, 31 July 2025 2 2"
     expect(page).to have_text "Sat, 31 May 2025 Mon, 30 June 2025 1 1"

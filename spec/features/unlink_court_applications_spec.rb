@@ -27,7 +27,8 @@ RSpec.feature "Unlink court applications - SubjectsController#unlink" do
     scenario "I successfully unlink a court application" do
       visit unlink_court_application_subject_path(linked_court_application_id)
       expect(page).to have_css("h1", text: "Confirm you want to remove MAAT ID link")
-      expect(page).to have_text "MAAT ID 1234568"
+      expect(page).to have_text "MAAT ID"
+      expect(page).to have_text "1234568"
 
       choose "Initially processed on Libra"
       click_on "Remove link to MAAT ID"

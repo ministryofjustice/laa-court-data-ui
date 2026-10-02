@@ -1,4 +1,6 @@
 class SubjectsController < ApplicationController
+  include ApplicationHelper
+
   before_action :load_and_authorize_application
   before_action :set_breadcrumbs
 
@@ -122,7 +124,7 @@ private
 
   def handle_link_failure(message, exception = nil)
     logger.warn "LINK FAILURE (params: #{@form_model.as_json}): #{message}"
-    @form_model.errors.add(:maat_reference, cda_error_string(exception) || t("subjects.link.failure"))
+    @form_model.errors.add(:maat_reference, cda_error_string(exception) || sanitize_html(t("subjects.link.failure", maat_id: t("acronyms.maat_id_html"))))
   end
 
   def handle_unlink_failure(message, exception = nil)

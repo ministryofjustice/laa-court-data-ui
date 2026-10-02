@@ -65,5 +65,5 @@
         = t("defendants.unlink.warning")
 
       .govuk-button-group
-        = f.govuk_submit t(".submit"), data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning"
+        = f.govuk_submit sanitize_html(t("subjects.show_unlink.submit", maat_id: t("acronyms.maat_id_html"))), data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning"
         = link_to subject_back_label(@application), court_application_subject_path(@application.application_id), class: "govuk-link"

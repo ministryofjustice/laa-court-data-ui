@@ -6,7 +6,7 @@ en:
         cda/hearing_repull_batch:
           attributes:
             maat_ids:
-              blank: Enter %{maat_ids} to re-pull their hearings
+              blank: Enter MAAT IDs to re-pull their hearings
   hearing_repull_batches:
     create:
       failure: We were unable to start fetching hearings
@@ -22,7 +22,7 @@ en:
       id: Batch ID
       ids: "%{maat_ids}"
       new: Create another list of %{maat_ids} to re-pull hearings for
-      'no': 'No'
+      "no": "No"
       no_repulls: There are no hearings being re-pulled for this batch
       reload: Check for updates
       status: Status
@@ -32,4 +32,4 @@ en:
         pending: Pending
       title: Re-pull batch of hearings
       urn: "%{urn}"
-      'yes': 'Yes'
+      "yes": "Yes"

@@ -41,7 +41,7 @@ RSpec.feature "Breadcrumb", :stub_unlinked, type: :feature do
 
     context "when on defendant reference search page" do
       scenario "expected breadcrumbs are displayed" do
-        when_i_choose_search_filter "A defendant by ASN or National insurance number"
+        when_i_choose_search_filter "A defendant by ASN"
         then_has_defendant_ref_search_breadcrumbs
       end
     end
