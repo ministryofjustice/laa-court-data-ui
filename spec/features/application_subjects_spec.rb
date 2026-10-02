@@ -67,7 +67,9 @@ RSpec.feature "Court Application subjects", :vcr do
     ).and have_text(
       "Mauricio Rath",
     ).and have_text(
-      "Respondent ASN KQJXI10ZJXCI",
+      "Respondent ASN",
+    ).and have_text(
+      "KQJXI10ZJXCI",
     ).and have_text(
       "Plea for the breach Not available",
     ).and have_text(
@@ -85,9 +87,13 @@ RSpec.feature "Court Application subjects", :vcr do
     expect(page).to have_text(
       "Name Mauricio Rath",
     ).and have_text(
-      "Case URN MyString",
+      "Case URN",
     ).and have_text(
-      "ASN KQJXI10ZJXCI",
+      "MyString",
+    ).and have_text(
+      "ASN",
+    ).and have_text(
+      "KQJXI10ZJXCI",
     ).and have_text(
       "Plea for the breach",
     )
@@ -112,7 +118,9 @@ RSpec.feature "Court Application subjects", :vcr do
     expect(page).to have_text(
       "Name Mauricio Rath",
     ).and have_text(
-      "Case URN MyString",
+      "Case URN",
+    ).and have_text(
+      "MyString",
     )
     expect(page).to have_no_text("Plea for the breach")
   end
@@ -136,9 +144,13 @@ RSpec.feature "Court Application subjects", :vcr do
     expect(page).to have_text(
       "Name Mauricio Rath",
     ).and have_text(
-      "Case URN MyString",
+      "Case URN",
     ).and have_text(
-      "MAAT ID #{maat_id_from_vcr}",
+      "MyString",
+    ).and have_text(
+      "MAAT ID",
+    ).and have_text(
+      maat_id_from_vcr,
     )
     expect(page).to have_text("Reason for unlinking")
     expect(page).to have_button("Remove link to MAAT ID")
