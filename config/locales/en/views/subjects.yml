@@ -6,7 +6,7 @@ en:
     link:
       failure: Unable to link the defendant to that %{maat_id}
       success: Application linked successfully.
-    poca: "%{poca}"
+    poca: POCA
     show:
       appeal_title: Appellant details
       appellant: Appellant
@@ -21,7 +21,7 @@ en:
       view:
         appeal: View appeal
         breach: View breach
-        poca: View %{poca}
+        poca: View POCA
     show_link:
       arrest_summons_number: "%{asn}"
       case_urn: Case %{urn}
