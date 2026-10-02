@@ -71,7 +71,7 @@ RSpec.describe "defendants", type: :request do
       let(:defendant_by_id_fixture) { load_json_stub("linked_defendant.json") }
 
       it { expect(response.body).to include("Confirm you want to remove MAAT ID link") }
-      it { expect(response.body).to include("Remove link to MAAT ID") }
+      it { expect(response.body).to include("Remove link to <span aria-hidden=\"true\">MAAT ID</span><span class=\"govuk-visually-hidden\">M A A T  I D</span>") }
     end
 
     describe "offence history" do

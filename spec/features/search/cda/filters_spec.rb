@@ -12,9 +12,9 @@ RSpec.feature "Search filters", :js, type: :feature do
 
     expect(page).to have_css("legend", text: "Search for")
     expect(page).to have_css(".govuk-radios__item",
-                             text: "A case by URN")
+                             text: "A case by URN\nU R N")
     expect(page).to have_css(".govuk-radios__item",
-                             text: "A defendant by ASN or National insurance number")
+                             text: "A defendant by ASN\nA S N\n or National insurance number")
     expect(page).to have_css(".govuk-radios__item",
                              text: "A defendant by name and date of birth")
 
@@ -24,9 +24,9 @@ RSpec.feature "Search filters", :js, type: :feature do
   scenario "user chooses defendant ASN or NI filter" do
     visit "/"
 
-    choose "A defendant by ASN or National insurance number"
+    choose "A defendant by ASN"
     click_link_or_button "Continue"
-    expect(page).to have_text("Defendant ASN or National insurance number")
+    expect(page).to have_text("Defendant ASN\nA S N\n or National insurance number")
 
     expect(page).to be_accessible
   end

@@ -12,7 +12,7 @@
 
     = f.govuk_text_field(:username,
                          label: { text: t("users.form.fields.username_label") },
-                         hint: { text: t("users.form.fields.username_hint") },
+                         hint: { text: t("users.form.fields.username_hint", maat_mlra: t("acronyms.maat_mlra_html")) },
                          width: "one-half",
                          maxlength: 10)
 

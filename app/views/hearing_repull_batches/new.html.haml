@@ -5,8 +5,8 @@
     .govuk-grid-column-full
       = f.govuk_error_summary
       = f.govuk_text_area :maat_ids,
-                          label: { text: t(".label") },
-                          hint: { text: t(".hint") },
+                          label: { text: sanitize_html(t(".label", maat_ids: t("acronyms.maat_ids_html"))) },
+                          hint: { text: sanitize_html(t(".hint", maat_ids: t("acronyms.maat_ids_html"))) },
                           rows: 5,
                           max_chars: 500
 

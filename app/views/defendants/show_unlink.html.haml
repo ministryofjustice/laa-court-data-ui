@@ -3,7 +3,7 @@
   .govuk-grid-row
     .govuk-grid-column-two-thirds
       %h1.govuk-heading-xl{ class: "govuk-!-margin-bottom-5" }
-        = t(".title")
+        = sanitize_html(t(".title", maat_id: t("acronyms.maat_id_html")))
 %strong.govuk-tag{ class: "govuk-!-margin-bottom-5" }
   = t("generic.case")
 
@@ -11,7 +11,7 @@
   .govuk-grid-column-two-thirds
     %table.govuk-table
       %caption.govuk-table__caption.govuk-visually-hidden
-        = t(".title")
+        = sanitize_html(t(".title", maat_id: t("acronyms.maat_id_html")))
       %tbody.govuk-table__body
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
@@ -25,17 +25,17 @@
             = accessible_date(@defendant.date_of_birth&.to_date, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".case_urn")
+            = sanitize_html(t(".case_urn", urn: t("acronyms.urn_html")))
           %td.govuk-table__cell
             = accessible_id(@prosecution_case_reference)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".arrest_summons_number")
+            = sanitize_html(t(".arrest_summons_number", asn: t("acronyms.asn_html")))
           %td.govuk-table__cell
             = accessible_id(@defendant.arrest_summons_number)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".maat_number")
+            = sanitize_html(t(".maat_number", maat_id: t("acronyms.maat_id_html")))
           %td.govuk-table__cell
             = accessible_id(@defendant.maat_reference)
 
@@ -61,5 +61,6 @@
         = t("defendants.unlink.warning")
 
       .govuk-button-group
-        = f.govuk_submit t(".submit"), data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning"
+        = f.govuk_submit(sanitize_html(t("defendants.show_unlink.submit", maat_id: t("acronyms.maat_id_html"))),
+                         data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning")
         = link_to t(".back"), defendant_path(@defendant.id, urn: @prosecution_case_reference), class: "govuk-link"

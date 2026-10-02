@@ -19,6 +19,17 @@ RSpec.describe Search, type: :model do
     it {
       expect(filters.map(&:id)).to include(:case_reference, :defendant_name, :defendant_reference)
     }
+
+    it "spells out acronyms in the label for screen readers" do
+      expect(filters.first.name).to eq(
+        'A case by <span aria-hidden="true">URN</span>' \
+        '<span class="govuk-visually-hidden">U R N</span>',
+      )
+    end
+
+    it "keeps the sanitized markup of the label" do
+      expect(filters.map(&:name).join).to include("<b>or</b>", "<b>and</b>")
+    end
   end
 
   describe "#filters" do

@@ -69,7 +69,7 @@ module LinkMigratedCasesHelper
       column: column,
       direction_key: :sort_direction,
       column_key: :sort_column,
-      label: t("link_migrated_cases.index.columns.#{i18n_key}"),
+      label: sanitize_html(t("link_migrated_cases.index.columns.#{i18n_key}", urn: t("acronyms.urn_html"), maat_id: t("acronyms.maat_id_html"))),
       default_sort_column: "case_urn",
     )
   end

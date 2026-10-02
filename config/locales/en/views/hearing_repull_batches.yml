@@ -10,18 +10,18 @@ en:
   hearing_repull_batches:
     create:
       failure: We were unable to start fetching hearings
-      success: We have started fetching the hearing data for the MAAT IDs specified
+      success: We have started fetching the hearing data for the %{maat_ids} specified
     new:
-      hint: MAAT IDs must be separated by commas or line breaks
-      label: Enter the MAAT IDs you want to re-pull
+      hint: "%{maat_ids} must be separated by commas or line breaks"
+      label: Enter the %{maat_ids} you want to re-pull
       submit: Re-pull hearings data
       title: Re-pull hearings data
     show:
       caption: All cases for which hearings are being re-pulled
       complete: Processing complete?
       id: Batch ID
-      ids: MAAT IDs
-      new: Create another list of MAAT IDs to re-pull hearings for
+      ids: "%{maat_ids}"
+      new: Create another list of %{maat_ids} to re-pull hearings for
       'no': 'No'
       no_repulls: There are no hearings being re-pulled for this batch
       reload: Check for updates
@@ -31,5 +31,5 @@ en:
         error: Error
         pending: Pending
       title: Re-pull batch of hearings
-      urn: URN
+      urn: "%{urn}"
       'yes': 'Yes'

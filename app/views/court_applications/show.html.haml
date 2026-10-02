@@ -39,7 +39,7 @@
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: "col" }= t(".defendant.name")
       %th.govuk-table__header{ scope: "col" }= t(".defendant.date_of_birth")
-      %th.govuk-table__header{ scope: "col" }= t(".defendant.maat_number")
+      %th.govuk-table__header{ scope: "col" }= sanitize_html(t(".defendant.maat_number", maat_id: t("acronyms.maat_id_html")))
       - if @application.breach?
         %th.govuk-table__header{ scope: "col" }= t(".defendant.breach_date")
   %tbody.govuk-table__body
