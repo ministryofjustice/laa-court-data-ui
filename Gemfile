@@ -32,8 +32,8 @@ gem "puma", ">= 5.6.4"
 gem "rails", ">= 8.1.3.1"
 gem "rails_semantic_logger"
 gem "redis", "~> 6.0.0"
-gem "sentry-rails", "~> 7.0.0"
-gem "sentry-sidekiq", "~> 7.0.0"
+gem "sentry-rails", "~> 7.1.0"
+gem "sentry-sidekiq", "~> 7.1.0"
 gem "sidekiq", "~> 8.1.7"
 gem "sidekiq_alive"
 gem "turbo-rails", "~> 2.0.16"
@@ -60,7 +60,7 @@ group :test do
   gem "rubocop-performance", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-rspec_rails", require: false
-  gem "selenium-webdriver", "~> 4.49"
+  gem "selenium-webdriver", "~> 4.50"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "simplecov-rcov"
@@ -94,7 +94,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "net-imap", "~> 0.6.7"
 gem "net-pop", "~> 0.1.2"
-gem "net-smtp", "~> 0.5.0"
+gem "net-smtp", "~> 0.5.2"
 
 gem "jsbundling-rails", "~> 1.3"
 
