@@ -42,19 +42,19 @@ RSpec.feature "Court Application Hearings", :vcr do
 
     # Details
     expect(page).to have_text(
-      "Details\nHearing type\nMention - Defendant to Attend (MDA)",
+      "Details\nHearing type\n\nMention - Defendant to Attend (MDA)",
     ).and have_text(
-      "Court\nDerby Crown Court",
-    ).and have_text("Time listed\n16:19")
+      "Court\n\nDerby Crown Court",
+    ).and have_text("Time listed\n\n16:19")
 
     # Attendees
     expect(page).to have_text(
-      "Attendees\nAppellants\nMauricio Rath",
+      "Attendees\nAppellants\n\nMauricio Rath",
     ).and have_text(
-      "Appellant advocates\nGlenn Walsh Macgyver (Customer counsel)",
+      "Appellant advocates\n\nGlenn Walsh Macgyver (Customer counsel)",
     ).and have_text(
-      "Respondent advocates\nArden Macejkovic",
-    ).and have_text("Judges\nMyString MyString MyString")
+      "Respondent advocates\n\nArden Macejkovic",
+    ).and have_text("Judges\n\nMyString MyString MyString")
 
     # Events
     expect(page).to have_text("11:20").and have_text("Est ut cum placeat.").and have_text(
