@@ -202,7 +202,9 @@
       "linked_at": null,
       "linked_by": null,
       "process_errors": {
-        "message": "MAAT application not found"
+        "maat": {
+          "message": "MAAT application not found"
+        }
       }
     },
     {
@@ -229,7 +231,9 @@
       "linked_at": null,
       "linked_by": null,
       "process_errors": {
-        "message": "MAAT ID already linked with other CP case (12GD3456789)"
+        "maat": {
+          "message": "MAAT ID already linked with other CP case (12GD3456789)"
+        }
       }
     }
   ]

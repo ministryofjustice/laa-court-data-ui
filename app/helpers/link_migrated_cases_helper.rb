@@ -21,12 +21,12 @@ module LinkMigratedCasesHelper
     COLUMN_CONFIG[col]
   end
 
+  # CDA keys errors by processing step, e.g.
+  # { "maat" => { "error" => 500, "message" => "Internal Server Error" } }
   def formatted_process_errors(process_errors)
-    return process_errors unless process_errors.as_json.is_a?(Hash)
+    return if process_errors.blank?
 
-    formatted_values = process_errors.as_json.with_indifferent_access.slice(:error,
-                                                                            :message).values.compact_blank
-    formatted_values.join(" - ").presence || process_errors.to_s
+    process_errors.as_json.values.map { |detail| format_process_error(detail) }.compact_blank.join("; ")
   end
 
   def link_maat_id_url(id)
@@ -75,6 +75,10 @@ module LinkMigratedCasesHelper
   end
 
 private
+
+  def format_process_error(detail)
+    detail.values_at("error", "message").compact_blank.join(" - ")
+  end
 
   def handle_defendant_name(m_case)
     [m_case["defendant_first_name"], m_case["defendant_last_name"]].compact.join(" ")
