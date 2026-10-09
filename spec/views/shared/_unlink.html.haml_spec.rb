@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe "defendants/_unlink.html.haml", type: :view do
-  let(:defendant_id) { SecureRandom.uuid }
-  let(:defendant) { instance_double(Cda::Defendant, id: defendant_id) }
-  let(:prosecution_case_reference) { "TEST12345" }
+RSpec.describe "shared/_unlink.html.haml", type: :view do
   let(:form_model) { UnlinkAttempt.new }
+  let(:url) { "/unlink" }
+  let(:cancel_url) { "/cancel" }
 
   before do
     allow(view).to receive(:default_form_builder).and_return(GOVUKDesignSystemFormBuilder::FormBuilder)
@@ -14,15 +13,15 @@ RSpec.describe "defendants/_unlink.html.haml", type: :view do
   end
 
   subject(:render_partial) do
-    render partial: "defendants/unlink",
-           locals: { form_model:, defendant:, prosecution_case_reference: }
+    render partial: "shared/unlink",
+           locals: { form_model:, url:, cancel_url: }
   end
 
   it "renders the unlink form with its reason options and warning" do
     render_partial
 
     expect(rendered).to have_css(
-      "form#unlink_form[action='/defendants/#{defendant_id}/unlink?urn=#{prosecution_case_reference}'][data-turbo='false']",
+      "form#unlink_form[action='#{url}'][data-turbo='false']",
     )
     expect(rendered).to have_css("h2", text: I18n.t("defendants.unlink.title"))
     expect(rendered).to have_field("unlink_attempt[reason_code]", type: "radio", with: "1")
@@ -33,6 +32,7 @@ RSpec.describe "defendants/_unlink.html.haml", type: :view do
       class: "govuk-button--warning",
       disabled: false,
     )
+    expect(rendered).to have_link(I18n.t("defendants.unlink.cancel"), href: cancel_url)
   end
 
   it "renders the additional reason text field for the other reason" do

@@ -1,6 +1,6 @@
--# locals (form_model:, defendant:, prosecution_case_reference:)
+-# locals (form_model:, url:, cancel_url:)
 
-= form_with(model: form_model, url: unlink_defendant_path(defendant.id, urn: prosecution_case_reference), data: { turbo: false }, id: "unlink_form") do |f|
+= form_with(model: form_model, url: url, data: { turbo: false }, id: "unlink_form") do |f|
   - content_for :error_summary do
     = f.govuk_error_summary
 
@@ -30,7 +30,7 @@
       .govuk-button-group
         = f.govuk_submit t("defendants.unlink.submit"), data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning"
         = link_to t("defendants.unlink.cancel"),
-                  defendant_path(defendant.id, urn: prosecution_case_reference),
+                  cancel_url,
                   class: "govuk-button govuk-button--secondary"
 
 :javascript
