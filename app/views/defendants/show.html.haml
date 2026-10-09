@@ -35,4 +35,6 @@
       - if @defendant.maat_reference.blank?
         = render partial: "shared/link", locals: { url: link_defendant_path(@defendant.id, urn: @prosecution_case_reference), form_model: @form_model }
       - else
-        = render partial: "unlink", locals: { defendant: @defendant, form_model: @form_model, prosecution_case_reference: @prosecution_case_reference }
+        = render partial: "shared/unlink", locals: { url: unlink_defendant_path(@defendant.id, urn: @prosecution_case_reference),
+                                                     form_model: @form_model,
+                                                     cancel_url: defendant_path(@defendant.id, urn: @prosecution_case_reference) }
