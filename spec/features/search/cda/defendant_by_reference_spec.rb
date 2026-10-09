@@ -11,7 +11,7 @@ RSpec.feature "Defendant by reference search", :js, :vcr, type: :feature do
     scenario "with one result" do
       visit "/"
 
-      choose "A defendant by ASN or National insurance number"
+      choose "A defendant by ASN"
       click_link_or_button "Continue"
       fill_in "search-term-field", with: "HX685369B"
       click_button "Search"
@@ -19,7 +19,7 @@ RSpec.feature "Defendant by reference search", :js, :vcr, type: :feature do
       expect(page).to have_text(
         "Search results",
       )
-      expect(page).to have_field("Defendant ASN or National insurance number", with: "HX685369B")
+      expect(page).to have_field("Defendant ASN", with: "HX685369B")
 
       expect(page).to be_accessible
     end
@@ -27,7 +27,7 @@ RSpec.feature "Defendant by reference search", :js, :vcr, type: :feature do
     scenario "with no results" do
       visit "/"
 
-      choose "A defendant by ASN or National insurance number"
+      choose "A defendant by ASN"
       click_link_or_button "Continue"
       fill_in "search-term-field", with: "GP999999B"
       click_button "Search"
@@ -40,7 +40,7 @@ RSpec.feature "Defendant by reference search", :js, :vcr, type: :feature do
     scenario "with no defendant reference specified" do
       visit "/"
 
-      choose "A defendant by ASN or National insurance number"
+      choose "A defendant by ASN"
       click_link_or_button "Continue"
       fill_in "search-term-field", with: ""
       click_button "Search"

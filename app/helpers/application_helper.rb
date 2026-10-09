@@ -66,6 +66,10 @@ module ApplicationHelper
     "app-environment-#{ENV.fetch('ENV', 'local')}"
   end
 
+  def sanitize_html(html_string, tags: %w[b span br], attributes: %w[aria-hidden class])
+    ActionController::Base.helpers.sanitize(html_string, tags:, attributes:)
+  end
+
 private
 
   def decorator_instance(object, decorator_class = nil)

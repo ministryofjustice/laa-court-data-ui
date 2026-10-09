@@ -6,8 +6,8 @@
       %tr.govuk-table__row
         %th.govuk-table__header{ scope: "col" }= t("search.result.defendant.name")
         %th.govuk-table__header{ scope: "col" }= t("search.result.defendant.date_of_birth")
-        %th.govuk-table__header{ scope: "col" }= t("search.result.defendant.prosecution_case_reference")
-        %th.govuk-table__header{ scope: "col" }= t("search.result.defendant.arrest_summons_number")
+        %th.govuk-table__header{ scope: "col" }= sanitize_html(t("search.result.defendant.prosecution_case_reference", urn: t("acronyms.urn_html")))
+        %th.govuk-table__header{ scope: "col" }= sanitize_html(t("search.result.defendant.arrest_summons_number", asn: t("acronyms.asn_html")))
     %tbody.govuk-table__body
       - results.each do |defendant|
         %tr.govuk-table__row
@@ -17,6 +17,5 @@
             = l(defendant.date_of_birth&.to_date)
           %td.govuk-table__cell
             = link_to accessible_id(defendant.prosecution_case_reference), prosecution_case_path(defendant.prosecution_case_reference), class: "govuk-link"
-
           %td.govuk-table__cell
             = accessible_id(defendant.arrest_summons_number)

@@ -13,7 +13,7 @@
             Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: "row" }
-        = t("search.result.defendant.prosecution_case_reference")
+        = sanitize_html(t("search.result.defendant.prosecution_case_reference", urn: t("acronyms.urn_html")))
       %td.govuk-table__cell
         = accessible_id(prosecution_case_reference, id: "defendant-case-urn")
       %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
@@ -21,7 +21,7 @@
           Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: "row" }
-        = t("search.result.defendant.arrest_summons_number")
+        = sanitize_html(t("search.result.defendant.arrest_summons_number", asn: t("acronyms.asn_html")))
       %td.govuk-table__cell
         = accessible_id(defendant.arrest_summons_number, id: "defendant-asn")
       %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
@@ -30,7 +30,7 @@
             Copy
     %tr.govuk-table__row
       %th.govuk-table__header{ scope: "row" }
-        = t("search.result.defendant.maat_number")
+        = sanitize_html(t("search.result.defendant.maat_number", maat_id: t("acronyms.maat_id_html")))
       %td.govuk-table__cell
         - if defendant.maat_reference.present?
           = accessible_id(defendant.maat_reference, id: "defendant-maat-number")

@@ -1,6 +1,10 @@
 RSpec.feature "Create a batch of hearing repulls" do
   let(:user) { create(:user, roles: %w[data_analyst]) }
 
+  def maat_ids_field
+    find("label", text: /\AEnter the .+ you want to re-pull\z/)[:for]
+  end
+
   before { sign_in user }
 
   context "when creating a new batch" do
@@ -13,7 +17,7 @@ RSpec.feature "Create a batch of hearing repulls" do
 
     scenario "I repull a new batch" do
       visit new_hearing_repull_batch_path
-      fill_in "Enter the MAAT IDs you want to re-pull", with: "4444432"
+      fill_in maat_ids_field, with: "4444432"
       click_on "Re-pull hearings data"
 
       expect(page).to have_text "Processing complete? No"
@@ -46,7 +50,7 @@ RSpec.feature "Create a batch of hearing repulls" do
 
     scenario "I repull a new batch" do
       visit new_hearing_repull_batch_path
-      fill_in "Enter the MAAT IDs you want to re-pull", with: "4444432"
+      fill_in maat_ids_field, with: "4444432"
       click_on "Re-pull hearings data"
 
       expect(page).to have_text "We were unable to start fetching hearings"

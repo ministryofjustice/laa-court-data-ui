@@ -29,17 +29,17 @@
             = accessible_date(@subject.date_of_birth, format: :medium)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".case_urn")
+            = sanitize_html(t(".case_urn", urn: t("acronyms.urn_html")))
           %td.govuk-table__cell
             = accessible_id(@application.application_reference)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".arrest_summons_number")
+            = sanitize_html(t(".arrest_summons_number", asn: t("acronyms.asn_html")))
           %td.govuk-table__cell
             = accessible_id(@application.subject_asn)
         %tr.govuk-table__row
           %th.govuk-table__header{ scope: "row" }
-            = t(".maat_number")
+            = sanitize_html(t(".maat_number", maat_id: t("acronyms.maat_id_html")))
           %td.govuk-table__cell
             = accessible_id(@application.maat_reference)
 
@@ -65,5 +65,6 @@
         = t("defendants.unlink.warning")
 
       .govuk-button-group
-        = f.govuk_submit t(".submit"), data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning"
+        = f.govuk_submit(sanitize_html(t("subjects.show_unlink.submit", maat_id: t("acronyms.maat_id_html"))),
+                         data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning")
         = link_to subject_back_label(@application), court_application_subject_path(@application.application_id), class: "govuk-link"

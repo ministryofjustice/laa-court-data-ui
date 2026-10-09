@@ -7,7 +7,7 @@ en:
       caption: Related court applications
       first_hearing_jurisdiction: First hearing court type
       item: result
-      maat_id: MAAT ID
+      maat_id: "%{maat_id}"
       no_related_applications: No related applications
       not_linked: Not linked
       respondent: Appellant/Respondent

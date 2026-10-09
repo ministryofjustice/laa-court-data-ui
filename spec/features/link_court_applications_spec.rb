@@ -16,7 +16,8 @@ RSpec.feature "Link court applications" do
 
     scenario "I view a linked court application subject" do
       visit court_application_subject_path(linked_court_application_id)
-      expect(page).to have_text "MAAT ID 1234567"
+      expect(page).to have_text "MAAT ID"
+      expect(page).to have_text "1234567"
       expect(page).to have_link "Unlink MAAT ID"
     end
 
@@ -25,7 +26,8 @@ RSpec.feature "Link court applications" do
       fill_in "MAAT ID", with: "7654321"
       click_on "Link court data"
       expect(page).to have_text "Application linked successfully."
-      expect(page).to have_text "MAAT ID 7654321"
+      expect(page).to have_text "MAAT ID"
+      expect(page).to have_text "7654321"
     end
 
     scenario "I try to link with an invalid MAAT" do
@@ -37,7 +39,7 @@ RSpec.feature "Link court applications" do
 
     scenario "I can see the option to create a link without MAAT ID for an appeal application" do
       visit link_court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_text "The MAAT ID is missing"
+      expect(page).to have_text "M A A T I D is missing"
     end
 
     scenario "the link page is accessible", :js do
@@ -122,7 +124,7 @@ RSpec.feature "Link court applications" do
       scenario "I link and then unlink a POCA application, without a MAAT ID" do
         visit link_court_application_subject_path(court_application_id)
 
-        find("summary", text: "The MAAT ID is missing").click
+        find("summary", text: "M A A T I D is missing").click
         click_on "Create link without MAAT ID"
 
         expect(page).to have_text "Application linked successfully."

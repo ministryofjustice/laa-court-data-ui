@@ -18,7 +18,7 @@
             %td.govuk-table__cell
               = @batch.complete ? t(".yes") : t(".no")
   - if @batch.complete
-    = link_to t(".new"),
+    = link_to sanitize_html(t(".new", maat_ids: t("acronyms.maat_ids_html"))),
               new_hearing_repull_batch_path,
               class: "govuk-button govuk-button--secondary"
   - else
@@ -32,8 +32,8 @@
           = t(".caption")
         %thead.govuk-table__head
           %tr.govuk-table__row
-            %th.govuk-table__header{ scope: "col" }= t(".urn")
-            %th.govuk-table__header{ scope: "col" }= t(".ids")
+            %th.govuk-table__header{ scope: "col" }= sanitize_html(t(".urn", urn: t("acronyms.urn_html")))
+            %th.govuk-table__header{ scope: "col" }= sanitize_html(t(".ids", maat_ids: t("acronyms.maat_ids_html")))
             %th.govuk-table__header{ scope: "col" }= t(".status")
         %tbody.govuk-table__body
           - @batch.repulls.each do |repull|

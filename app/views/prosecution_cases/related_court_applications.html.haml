@@ -29,7 +29,7 @@
             %tr.govuk-table__row
               %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-third" }= t("prosecution_case.related_court_applications.application_type")
               %th.govuk-table__header{ scope: "col" }= t("prosecution_case.related_court_applications.respondent")
-              %th.govuk-table__header{ scope: "col" }= t("prosecution_case.related_court_applications.maat_id")
+              %th.govuk-table__header{ scope: "col" }= sanitize_html(t("prosecution_case.related_court_applications.maat_id", maat_id: t("acronyms.maat_id_html")))
               %th.govuk-table__header{ scope: "col" }= t("prosecution_case.related_court_applications.result")
               %th.govuk-table__header{ scope: "col" }= t("prosecution_case.related_court_applications.first_hearing_jurisdiction")
           %tbody.govuk-table__body
