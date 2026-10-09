@@ -2,6 +2,10 @@
   text-transform: uppercase;
 }
 
+.defendant-unlink-link {
+  float: right;
+}
+
 // Display for js only
 .govuk-template__body:not(.js-enabled) .app-js-only {
   display: none;

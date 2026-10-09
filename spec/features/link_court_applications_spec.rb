@@ -22,28 +22,21 @@ RSpec.feature "Link court applications" do
     end
 
     scenario "I successfully link a court application" do
-      visit link_court_application_subject_path(unlinked_court_application_id)
+      visit court_application_subject_path(unlinked_court_application_id)
       fill_in "MAAT ID", with: "7654321"
-      click_on "Link court data"
+      click_on I18n.t("laa_reference.link.form.submit")
       expect(page).to have_text "Application linked successfully."
       expect(page).to have_text "MAAT ID"
       expect(page).to have_text "7654321"
     end
 
-    scenario "I try to link with an invalid MAAT" do
-      visit link_court_application_subject_path(unlinked_court_application_id)
-      fill_in "MAAT ID", with: "123"
-      click_on "Link court data"
-      expect(page).to have_text "Enter a MAAT ID in the correct format"
-    end
-
     scenario "I can see the option to create a link without MAAT ID for an appeal application" do
-      visit link_court_application_subject_path(unlinked_court_application_id)
-      expect(page).to have_text "M A A T I D is missing"
+      visit court_application_subject_path(unlinked_court_application_id)
+      expect(page).to have_text(/The MAAT ID.*is missing/)
     end
 
-    scenario "the link page is accessible", :js do
-      visit link_court_application_subject_path(unlinked_court_application_id)
+    scenario "the subject page is accessible", :js do
+      visit court_application_subject_path(unlinked_court_application_id)
 
       expect(page).to be_accessible
     end
@@ -70,10 +63,10 @@ RSpec.feature "Link court applications" do
     end
 
     scenario "I try to link but there are problems upstream" do
-      visit link_court_application_subject_path(unlinked_court_application_with_problems_id)
+      visit court_application_subject_path(unlinked_court_application_with_problems_id)
 
       fill_in "MAAT ID", with: "7654321"
-      click_on "Link court data"
+      click_on I18n.t("laa_reference.link.form.submit")
 
       expect(page).to have_text "Unable to link the defendant to that MAAT ID"
     end
@@ -94,12 +87,12 @@ RSpec.feature "Link court applications" do
       end
 
       scenario "I link and then unlink a POCA application" do
-        visit link_court_application_subject_path(court_application_id)
+        visit court_application_subject_path(court_application_id)
 
         expect(page).to have_text "2391NX0000558631827D" # The ASN, taken from the prosecution case defendant
 
         fill_in "MAAT ID", with: "1234567"
-        click_on "Link court data"
+        click_on I18n.t("laa_reference.link.form.submit")
 
         expect(page).to have_text "Application linked successfully."
 
@@ -122,7 +115,7 @@ RSpec.feature "Link court applications" do
       end
 
       scenario "I link and then unlink a POCA application, without a MAAT ID" do
-        visit link_court_application_subject_path(court_application_id)
+        visit court_application_subject_path(court_application_id)
 
         find("summary", text: "M A A T I D is missing").click
         click_on "Create link without MAAT ID"

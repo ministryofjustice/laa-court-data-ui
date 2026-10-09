@@ -22,9 +22,19 @@
                        prosecution_case_reference: @prosecution_case_reference }
 
 .govuk-grid-row
-  .govuk-grid-column-full
+  .govuk-grid-column-full{ class: "govuk-!-margin-bottom-4" }
     %turbo-frame#offence-table{ src: offences_defendant_path(params[:id], urn: @prosecution_case_reference) }
       = render partial: "defendants/offences", locals: { defendant: @defendant, offence_history_collection: @offence_history_collection }
       - if @offence_history_collection.nil?
-        .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
+        .moj-js-hidden
           = link_to t("defendants.reload"), defendant_path(params[:id], urn: @prosecution_case_reference, include_offence_history: "true"), class: "govuk-link"
+
+- if linking_enabled?
+  .govuk-grid-row
+    .govuk-grid-column-full
+      - if @defendant.maat_reference.blank?
+        = render partial: "shared/link", locals: { url: link_defendant_path(@defendant.id, urn: @prosecution_case_reference), form_model: @form_model }
+      - else
+        = render partial: "shared/unlink", locals: { url: unlink_defendant_path(@defendant.id, urn: @prosecution_case_reference),
+                                                     form_model: @form_model,
+                                                     cancel_url: defendant_path(@defendant.id, urn: @prosecution_case_reference) }

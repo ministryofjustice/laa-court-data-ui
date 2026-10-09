@@ -83,15 +83,13 @@
           %td.govuk-table__cell.app-no-wrap
             - if @application.maat_reference.present?
               = accessible_id(@application.maat_reference, id: "subject-maat-number")
-              = link_to "Unlink MAAT ID", unlink_court_application_subject_path(@application.application_id), class: "govuk-link govuk-!-margin-left-4"
+              = link_to "Unlink MAAT ID", "#unlink_form", class: "govuk-link defendant-unlink-link"
             - else
               Not linked
           %td.govuk-table__cell{ class: "govuk-!-text-align-right" }
             - if @application.maat_reference.present?
               %button.govuk-button.govuk-button--secondary.copy-button{ id: "copy-subject-maat-number", type: "button", class: "govuk-!-margin-bottom-0" }
                 Copy
-            - else
-              = link_to "Link MAAT ID", link_court_application_subject_path(@application.application_id), class: "govuk-link"
 
 = link_to t(".view.#{@application.application_category}"),
           court_application_path(@application.application_id),
@@ -106,3 +104,13 @@
     - if @offence_history_collection.nil?
       .moj-js-hidden{ class: "govuk-!-margin-bottom-4" }
         = link_to t("defendants.reload"), court_application_subject_path(@application.application_id, include_offence_history: "true"), class: "govuk-link"
+
+- if linking_enabled?
+  .govuk-grid-row
+    .govuk-grid-column-full
+      - if @application.maat_reference.blank?
+        = render partial: "shared/link", locals: { url: link_court_application_subject_path(@application.application_id), form_model: @form_model }
+      - else
+        = render partial: "shared/unlink", locals: { url: unlink_court_application_subject_path(@application.application_id),
+                                                     form_model: @form_model,
+                                                     cancel_url: court_application_subject_path(@application.application_id) }
