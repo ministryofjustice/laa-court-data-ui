@@ -19,6 +19,12 @@ RSpec.describe DefendantHelper, type: :helper do
       it { is_expected.to eql "/defendants/#{id}?urn=#{prosecution_case_reference}" }
     end
 
+    context "with URN containing a dot" do
+      subject { helper.defendant_link_path(defendant, "91HQ2347626.") }
+
+      it { is_expected.to eql "/defendants/#{id}?urn=91HQ2347626%2E" }
+    end
+
     context "without URN specified" do
       subject { helper.defendant_link_path(defendant) }
 
