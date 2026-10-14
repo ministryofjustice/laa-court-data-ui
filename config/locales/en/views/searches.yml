@@ -39,7 +39,7 @@ en:
       offence:
         caption: Offence list
         date: Date
-        heading: Offences
+        heading: Offences (%{count})
         mode_of_trial: Mode of trial
         no_offences: No offences are associated with this case
         plea: Plea
