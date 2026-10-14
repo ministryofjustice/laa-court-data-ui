@@ -11,10 +11,11 @@
       = t("search.result.offence.caption")
     %thead.govuk-table__head
       %tr.govuk-table__row
-        %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("search.result.offence.date")
-        %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("search.result.offence.title")
-        %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("search.result.offence.plea")
-        %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-quarter" }= t("search.result.offence.mode_of_trial")
+        %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-fifth" }= t("search.result.offence.date")
+        %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-fifth" }= t("search.result.offence.title")
+        %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-fifth" }= t("search.result.offence.plea")
+        %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-fifth" }= t("search.result.offence.mode_of_trial")
+        %th.govuk-table__header{ scope: "col", class: "govuk-!-width-one-fifth" }= t("search.result.offence.verdict")
     %tbody.govuk-table__body
       - decorate_each(offence_summaries, OffenceDecorator) do |offence|
         - offence.offence_histories = offence_history_collection
@@ -35,6 +36,11 @@
               #{offence.mode_of_trial}:
               %br
               = offence.mode_of_trial_reason_list
+            - else
+              = t("search.result.loading")
+          %td.govuk-table__cell
+            - if offence.offence_histories
+              = offence.verdict_description || t("generic.not_available")
             - else
               = t("search.result.loading")
 - else

@@ -10,12 +10,13 @@ RSpec.describe "defendants/_offences.html.haml", type: :view do
     Cda::OffenceSummary.new(id: "123", start_date:, mode_of_trial:, title:, legislation:)
   end
   let(:offence_history_collection) { Cda::OffenceHistoryCollection.new(offence_histories: [offence_history]) }
-  let(:offence_history) { Cda::OffenceHistory.new(id: "123", pleas:, mode_of_trial_reasons:) }
+  let(:offence_history) { Cda::OffenceHistory.new(id: "123", pleas:, mode_of_trial_reasons:, verdict:) }
   let(:start_date) { nil }
   let(:mode_of_trial_reasons) { nil }
   let(:title) { nil }
   let(:pleas) { [] }
   let(:mode_of_trial) { "Indictable only" }
+  let(:verdict) { nil }
   let(:legislation) { nil }
 
   context "when the defendant has an offence" do

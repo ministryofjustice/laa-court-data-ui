@@ -1,4 +1,4 @@
-{ 
+{
   "id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
   "offence_histories": [
     {
@@ -7,7 +7,8 @@
                   "pleaded_at": "2023-01-01",
                   "code": "GUILTY"
                }],
-      "mode_of_trial_reasons": [ { "description": "Court directs trial by jury"}]
+      "mode_of_trial_reasons": [ { "description": "Court directs trial by jury"}],
+      "verdict": "Not Guilty"
     }
   ]
 }

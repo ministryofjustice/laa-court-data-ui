@@ -1,30 +1,34 @@
-RSpec.feature "Court Application subjects", :vcr do
+RSpec.feature "Court Application subjects", :stub_oauth_token do
   let(:user) { create(:user) }
   let(:missing_court_application_id) { "not-found-uuid" }
   let(:erroring_court_application_id) { "erroring-court-application-id" }
   let(:found_court_application_id) { "d174af7f-75da-428b-9875-c823eb182a23" }
   let(:breach_court_application_id) { "501bac3e-47c3-4066-ab34-4c960447d493" }
   let(:linked_court_application_id) { "af7fc823e-428b-75da-9875-b182a23d174" }
-  let(:maat_id_from_vcr) { "1234567" }
+  let(:maat_id) { "1234567" }
+  let(:json_api_headers) { { "Content-Type" => "application/vnd.api+json; charset=utf-8" } }
+  let(:json_headers) { { "Content-Type" => "application/json" } }
+  let(:defendant_id) { "a5084e6c-6c51-43ec-89e1-482f0135f186" }
+  let(:prosecution_case_path) { %r{http.*/api/internal/v2/prosecution_cases/EPAYAQECKM} }
 
   scenario "I am not signed in" do
     visit court_application_subject_path(found_court_application_id)
     expect(page).to have_text "You need to sign in before continuing."
   end
 
-  scenario "The application cannot be found" do
+  scenario "The application cannot be found", :stub_missing_court_application do
     sign_in user
     visit court_application_subject_path(missing_court_application_id)
     expect(page).to have_text "There was a problem getting the information you requested"
   end
 
-  scenario "There is a server error" do
+  scenario "There is a server error", :stub_court_application_server_error do
     sign_in user
     visit court_application_subject_path(erroring_court_application_id)
     expect(page).to have_text "There was a problem getting the information you requested"
   end
 
-  scenario "I view the application details", :js do
+  scenario "I view the application details", :js, :stub_found_court_application, :stub_prosecution_cases do
     sign_in user
     visit court_application_subject_path(found_court_application_id)
     expect(page).to have_text(
@@ -52,7 +56,7 @@ RSpec.feature "Court Application subjects", :vcr do
     expect(page).to have_current_path court_application_path(found_court_application_id)
   end
 
-  scenario "I view breach application subject details" do
+  scenario "I view breach application subject details", :stub_found_breach_court_application do
     sign_in user
     visit court_application_subject_path(breach_court_application_id)
     expect(page).to have_text(
@@ -79,7 +83,7 @@ RSpec.feature "Court Application subjects", :vcr do
     )
   end
 
-  scenario "I view the link court data page for a breach" do
+  scenario "I view the link court data page for a breach", :stub_found_breach_court_application do
     sign_in user
     visit link_court_application_subject_path(breach_court_application_id)
     expect(page).to have_css("h1", text: "Link court data")
@@ -99,7 +103,7 @@ RSpec.feature "Court Application subjects", :vcr do
     )
   end
 
-  scenario "I stay on the link page when I submit an invalid MAAT ID for a breach" do
+  scenario "I stay on the link page when I submit an invalid MAAT ID for a breach", :stub_found_breach_court_application do
     sign_in user
     visit link_court_application_subject_path(breach_court_application_id)
 
@@ -110,7 +114,7 @@ RSpec.feature "Court Application subjects", :vcr do
     expect(page).to have_text "MAAT ID is required"
   end
 
-  scenario "I view the link court data page for an appeal" do
+  scenario "I view the link court data page for an appeal", :stub_found_court_application, :stub_prosecution_cases do
     sign_in user
     visit link_court_application_subject_path(found_court_application_id)
     expect(page).to have_css("h1", text: "Link court data")
@@ -125,7 +129,7 @@ RSpec.feature "Court Application subjects", :vcr do
     expect(page).to have_no_text("Plea for the breach")
   end
 
-  scenario "I stay on the link page when I submit an invalid MAAT ID for an appeal" do
+  scenario "I stay on the link page when I submit an invalid MAAT ID for an appeal", :stub_found_court_application, :stub_prosecution_cases do
     sign_in user
     visit link_court_application_subject_path(found_court_application_id)
 
@@ -136,7 +140,7 @@ RSpec.feature "Court Application subjects", :vcr do
     expect(page).to have_text "MAAT ID is required"
   end
 
-  scenario "I view the unlink page for a linked appeal" do
+  scenario "I view the unlink page for a linked appeal", :stub_found_court_application, :stub_prosecution_cases do
     sign_in user
     visit unlink_court_application_subject_path(found_court_application_id)
     expect(page).to have_css("h1", text: "Confirm you want to remove MAAT ID link")
@@ -150,13 +154,13 @@ RSpec.feature "Court Application subjects", :vcr do
     ).and have_text(
       "MAAT ID",
     ).and have_text(
-      maat_id_from_vcr,
+      maat_id,
     )
     expect(page).to have_text("Reason for unlinking")
     expect(page).to have_button("Remove link to MAAT ID")
   end
 
-  scenario "I stay on the unlink page when I submit without a reason" do
+  scenario "I stay on the unlink page when I submit without a reason", :stub_found_court_application, :stub_prosecution_cases do
     sign_in user
     visit unlink_court_application_subject_path(found_court_application_id)
 
@@ -166,13 +170,13 @@ RSpec.feature "Court Application subjects", :vcr do
     expect(page).to have_text "Choose a reason for unlinking"
   end
 
-  scenario "I view a linked application" do
+  scenario "I view a linked application", :stub_found_court_application do
     sign_in user
     visit court_application_path(linked_court_application_id)
-    expect(page).to have_text maat_id_from_vcr
+    expect(page).to have_text maat_id
   end
 
-  scenario "I view the offence details" do
+  scenario "I view the offence details", :stub_found_court_application, :stub_prosecution_cases do
     sign_in user
     visit court_application_subject_path(found_court_application_id)
     expect(page).to have_text "Making, custody or control of counterfeiting materials etc"
@@ -180,7 +184,7 @@ RSpec.feature "Court Application subjects", :vcr do
     expect(page).to have_text "Loading"
   end
 
-  scenario "I view the full offence details" do
+  scenario "I view the full offence details", :stub_found_court_application, :stub_offence_history, :stub_prosecution_cases do
     sign_in user
     visit court_application_subject_path(found_court_application_id, include_offence_history: true)
     expect(page).to have_text "Making, custody or control of counterfeiting materials etc"

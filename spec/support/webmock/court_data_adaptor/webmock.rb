@@ -342,4 +342,37 @@ RSpec.configure do |config|
         body: load_json_stub("cda/internal_v2_link_migrated_cases_response.json"),
       )
   end
+
+  config.before(:each, :stub_missing_court_application) do
+    stub_request(:get, %r{http.*/api/internal/v2/court_applications/.*\z})
+      .to_return(status: 404, body: "")
+  end
+
+  config.before(:each, :stub_court_application_server_error) do
+    stub_request(:get, %r{http.*/api/internal/v2/court_applications/.*\z})
+      .to_return(status: 503, body: load_json_stub("cda/court_applications/server_error.json"))
+  end
+
+  config.before(:each, :stub_found_court_application) do
+    stub_request(:get, %r{http.*/api/internal/v2/court_applications/.*\z})
+      .to_return(status: 200, body: load_json_stub("cda/court_applications/appeal.json"))
+  end
+
+  config.before(:each, :stub_found_breach_court_application) do
+    stub_request(:get, %r{http.*/api/internal/v2/court_applications/.*\z})
+      .to_return(status: 200, body: load_json_stub("cda/court_applications/breach.json"))
+  end
+
+  config.before(:each, :stub_prosecution_cases) do
+    stub_request(:post, %r{http.*/api/internal/v2/prosecution_cases})
+      .to_return(status: 200, body: load_json_stub("cda/court_applications/prosecution_cases_EPAYAQECKM.json"))
+  end
+
+  config.before(:each, :stub_offence_history) do
+    stub_request(:get, %r{#{prosecution_case_path.source}/defendants/#{defendant_id}\z})
+      .to_return(status: 200, headers: json_headers, body: load_json_stub("cda/court_applications/defendant.json"))
+    stub_request(:get, %r{#{prosecution_case_path.source}/defendants/#{defendant_id}/offence_history})
+      .to_return(status: 200, headers: json_headers,
+                 body: load_json_stub("cda/court_applications/offence_history.json"))
+  end
 end
