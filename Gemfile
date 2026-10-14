@@ -60,7 +60,7 @@ group :test do
   gem "rubocop-performance", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-rspec_rails", require: false
-  gem "selenium-webdriver", "~> 4.50"
+  gem "selenium-webdriver", "~> 4.51"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "simplecov-rcov"
