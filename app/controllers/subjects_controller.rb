@@ -10,24 +10,14 @@ class SubjectsController < ApplicationController
   # The same view adapts to both roles via @application.appeal?.
   # View: app/views/subjects/show.html.haml
   def show
+    @form_model = @application.maat_reference.blank? ? load_link_attempt : load_unlink_attempt
+
     if params.fetch(:include_offence_history, "false") == "true"
       @offence_history_collection = Cda::OffenceHistoryCollection.find_from_id_and_urn(
         @application.defendant.id,
         @application.prosecution_case_reference,
       )
     end
-  end
-
-  # GET /court_applications/:court_application_id/subject/link
-  # First page of the new linking journey; renders the dedicated link page for all categories.
-  def show_link
-    @form_model = load_link_attempt
-  end
-
-  # GET /court_applications/:court_application_id/subject/unlink
-  # First page of the unlink journey; renders the dedicated unlink page for all categories.
-  def show_unlink
-    @form_model = load_unlink_attempt
   end
 
   # POST /court_applications/:court_application_id/subject/link
@@ -41,9 +31,9 @@ class SubjectsController < ApplicationController
                 flash: { success_moj_banner: t(".success") }
   rescue ActiveResource::ConnectionError => e
     handle_link_failure(e.message, e)
-    render :show_link
+    render :show
   rescue ActiveModel::ValidationError
-    render :show_link
+    render :show
   end
 
   # POST /court_applications/:court_application_id/subject/unlink
@@ -56,9 +46,9 @@ class SubjectsController < ApplicationController
                 flash: { success_moj_banner: t(".success") }
   rescue ActiveResource::ConnectionError => e
     handle_unlink_failure(e.message, e)
-    render :show_unlink
+    render :show
   rescue ActiveModel::ValidationError # No action needed: the form already contains the validation errors
-    render :show_unlink
+    render :show
   end
 
 private
@@ -89,9 +79,7 @@ private
   end
 
   def final_crumb
-    { "show_link" => "Link",
-      "link" => "Link",
-      "show_unlink" => "Unlink",
+    { "show_unlink" => "Unlink",
       "unlink" => "Unlink" }[action_name]
   end
 
