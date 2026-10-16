@@ -40,7 +40,7 @@ RSpec.describe "defendants", type: :request do
         it_behaves_like "renders common defendant details"
 
         it { expect(response.body).to include(I18n.t("generic.link_court_data")) }
-        it { expect(response.body).not_to include("Unlink MAAT ID") }
+        it { expect(response.body).not_to include(I18n.t("defendants.unlink.title", maat_id: I18n.t("acronyms.maat_id_html"))) }
       end
 
       context "with linked defendant" do
@@ -48,8 +48,8 @@ RSpec.describe "defendants", type: :request do
 
         it_behaves_like "renders common defendant details"
 
-        it { expect(response.body).to include("Unlink MAAT ID") }
-        it { expect(response.body).to include("Remove link to MAAT ID") }
+        it { expect(response.body).to include(I18n.t("defendants.unlink.title", maat_id: I18n.t("acronyms.maat_id_html"))) }
+        it { expect(response.body).to include(I18n.t("defendants.unlink.submit", maat_id: I18n.t("acronyms.maat_id_html"))) }
       end
     end
 
