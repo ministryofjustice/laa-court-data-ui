@@ -26,11 +26,11 @@ RSpec.feature "Delete user", :js, type: :feature do
       expect(page).to have_text("Roles")
       expect(page).to have_text("Caseworker")
       expect(page).to have_text("You cannot undo this action")
-      expect(page).to have_link("No, do not delete user", href: users_path)
+      expect(page).to have_link(ActionView::Base.full_sanitizer.sanitize(I18n.t("users.delete.no_link_html", name: other_user.name)), href: users_path)
 
       expect(page).to be_accessible
 
-      click_link_or_button "Yes, delete user"
+      click_link_or_button(ActionView::Base.full_sanitizer.sanitize(I18n.t("users.delete.yes_link_html", name: other_user.name)))
       expect(page).to have_current_path(users_path)
       expect(page).to have_govuk_flash(:success_moj_banner, text: "#{other_user.name}'s account deleted")
     end

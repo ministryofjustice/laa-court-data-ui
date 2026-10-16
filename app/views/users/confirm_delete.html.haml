@@ -42,8 +42,8 @@
 
     - if can? :destroy, @user
       .div.govuk-button-group
-        = link_to t("users.delete.yes_link"), user_path(@user),
-                  data: { turbo_method: :delete }, "aria-label": t("users.delete.confirm_link_aria", name: @user.name),
+        = link_to t("users.delete.yes_link_html", name: @user.name), user_path(@user),
+                  data: { turbo_method: :delete },
                   class: "govuk-button govuk-button--warning", "data-module": "govuk-button", draggable: "false", role: "button"
 
-        = link_to t("users.delete.no_link"), users_path, class: "govuk-link govuk-!-font-size-19"
+        = link_to t("users.delete.no_link_html", name: @user.name), users_path, class: "govuk-link govuk-!-font-size-19"
