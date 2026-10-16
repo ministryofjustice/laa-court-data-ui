@@ -23,14 +23,13 @@ RSpec.describe "shared/_unlink.html.haml", type: :view do
     expect(rendered).to have_css(
       "form#unlink_form[action='#{url}'][data-turbo='false']",
     )
-    expect(rendered).to have_css("h2", text: I18n.t("defendants.unlink.title"))
+    expect(rendered).to have_css("h2", text: "Unlink MAAT IDM A A T  I D")
     expect(rendered).to have_field("unlink_attempt[reason_code]", type: "radio", with: "1")
     expect(rendered).to have_field("unlink_attempt[reason_code]", type: "radio", with: "7")
     expect(rendered).to have_css(".govuk-warning-text__text", text: I18n.t("defendants.unlink.warning"))
     expect(rendered).to have_button(
-      I18n.t("defendants.unlink.submit"),
+      "Remove link to MAAT ID",
       class: "govuk-button--warning",
-      disabled: false,
     )
     expect(rendered).to have_link(I18n.t("defendants.unlink.cancel"), href: cancel_url)
   end

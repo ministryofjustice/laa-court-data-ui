@@ -11,6 +11,13 @@ class UnlinkReason < ApplicationRecord
     all.sort_by { |r| [r.text_required? ? 1 : 0, r.code] }
   end
 
+  def description
+    escaped_description = ERB::Util.html_escape(read_attribute(:description))
+    escaped_description.gsub(/\b(?:URN|MAAT|POCA)\b/i) { |acronym|
+      I18n.t("acronyms.#{acronym.downcase}_html")
+    }.html_safe
+  end
+
   validates :code, presence: true, uniqueness: true
   validates :description, presence: true, uniqueness: { case_sensitive: false }
 end
