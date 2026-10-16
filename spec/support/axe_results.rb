@@ -1,5 +1,6 @@
 class AxeResults
-  Violation = Data.define(:id, :impact, :tags, :description, :help, :help_url)
+  Node = Data.define(:target, :html, :failure_summary)
+  Violation = Data.define(:id, :impact, :tags, :description, :help, :help_url, :nodes)
   ExclusionRule = Data.define(:id, :selector)
 
   AXE_COMMAND = <<~COMMAND.freeze
@@ -31,6 +32,13 @@ class AxeResults
           description: json["description"],
           help: json["help"],
           help_url: json["helpUrl"],
+          nodes: json.fetch("nodes").map do |node|
+            Node.new(
+              target: node["target"],
+              html: node["html"],
+              failure_summary: node["failureSummary"],
+            )
+          end,
         )
       end
   end

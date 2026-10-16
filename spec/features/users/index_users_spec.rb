@@ -78,7 +78,7 @@ RSpec.feature "Index users", :js, type: :feature do
       expect(page).to have_link("Email", href: "/users?user_sort_column=email&user_sort_direction=asc")
       expect(page.text.index(user.email)).to be < page.text.index(other_user.email)
 
-      expect(page).to be_accessible
+      expect(page).to be_accessible(exclusions: [GOVUK_HEADING_SORT_ARIA_MISMATCH_EXCLUSION])
     end
 
     context "when searching" do

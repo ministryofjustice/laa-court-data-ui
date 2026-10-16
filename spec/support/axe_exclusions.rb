@@ -12,3 +12,12 @@ GOVUK_CONDITIONAL_RADIO_ARIA_EXCLUSION = AxeResults::ExclusionRule.new(
   id: "aria-allowed-attr",
   selector: "input[aria-expanded]",
 )
+
+# Known, accepted axe-core finding: GOV.UK Design System sort links have an `aria-label` that
+# does not match the visible link text, which axe flags as a `label-content-name-mismatch` violation. This is a known
+# issue with the MoJ Design System's sortable table component, which is used in the case summary page.
+# See https://design-patterns.service.justice.gov.uk/components/sortable-table/
+GOVUK_HEADING_SORT_ARIA_MISMATCH_EXCLUSION = AxeResults::ExclusionRule.new(
+  id: "label-content-name-mismatch",
+  selector: "a[aria-label^='Sort']",
+)

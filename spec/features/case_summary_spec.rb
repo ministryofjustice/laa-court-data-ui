@@ -25,6 +25,6 @@ RSpec.feature "Case summary", :stub_case_search, type: :feature do
       "23/10/2019",
     ).and have_text("Trial (TRL)")
 
-    expect(page).to be_accessible
+    expect(page).to be_accessible(exclusions: [GOVUK_HEADING_SORT_ARIA_MISMATCH_EXCLUSION])
   end
 end

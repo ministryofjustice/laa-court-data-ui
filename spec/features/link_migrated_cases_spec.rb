@@ -13,7 +13,7 @@ RSpec.feature "Link migrated cases" do
     scenario "the index page is accessible", :js do
       visit link_migrated_cases_path(tab: "action_required")
 
-      expect(page).to be_accessible
+      expect(page).to be_accessible(exclusions: [GOVUK_HEADING_SORT_ARIA_MISMATCH_EXCLUSION])
     end
   end
 
