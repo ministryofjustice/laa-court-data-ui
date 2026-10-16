@@ -2,8 +2,10 @@
 en:
   acronyms:
     asn_html: <span aria-hidden="true">ASN</span><span class="govuk-visually-hidden">A S N</span>
+    maat_html: <span aria-hidden="true">MAAT</span><span class="govuk-visually-hidden">M A A T</span>
     maat_id_html: <span aria-hidden="true">MAAT ID</span><span class="govuk-visually-hidden">M A A T  I D</span>
     maat_ids_html: <span aria-hidden="true">MAAT IDs</span><span class="govuk-visually-hidden">M A A T  I Ds</span>
     maat_mlra_html: <span aria-hidden="true">MAAT/MLRA</span><span class="govuk-visually-hidden">M A A T  /  M L R A</span>
     nino_html: <span aria-hidden="true">NI number</span><span class="govuk-visually-hidden">N I number</span>
+    poca_html: <span aria-hidden="true">POCA</span><span class="govuk-visually-hidden">P O C A</span>
     urn_html: <span aria-hidden="true">URN</span><span class="govuk-visually-hidden">U R N</span>

@@ -83,7 +83,7 @@
           %td.govuk-table__cell.app-no-wrap
             - if @application.maat_reference.present?
               = accessible_id(@application.maat_reference, id: "subject-maat-number")
-              = link_to "Unlink MAAT ID", "#unlink_form", class: "govuk-link defendant-unlink-link"
+              = link_to sanitize_html(t("defendants.unlink.title", maat_id: t("acronyms.maat_id_html"))), "#unlink_form", class: "govuk-link defendant-unlink-link"
             - else
               Not linked
           %td.govuk-table__cell{ class: "govuk-!-text-align-right" }

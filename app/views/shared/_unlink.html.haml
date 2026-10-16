@@ -8,7 +8,7 @@
     .govuk-grid-column-two-thirds
       - unlink_reasons = UnlinkReason.ordered
       = f.govuk_radio_buttons_fieldset :reason_code, small: true,
-                                                     legend: { text: t("defendants.unlink.title"), size: "m", tag: "h2" },
+                                                     legend: { text: sanitize_html(t("defendants.unlink.title", maat_id: t("acronyms.maat_id_html"))), size: "m", tag: "h2" },
                                                      hint: { text: t("defendants.form.other_reason_text.hint") } do
         - unlink_reasons.each do |reason|
           - if reason.text_required?
@@ -28,7 +28,8 @@
           = t("defendants.unlink.warning")
 
       .govuk-button-group
-        = f.govuk_submit t("defendants.unlink.submit"), data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning"
+        = f.govuk_submit(sanitize_html(t("defendants.unlink.submit", maat_id: t("acronyms.maat_id_html"))),
+                         data: { disable_with: t("defendants.form.unlinking") }, class: "govuk-button--warning")
         = link_to t("defendants.unlink.cancel"),
                   cancel_url,
                   class: "govuk-button govuk-button--secondary"
