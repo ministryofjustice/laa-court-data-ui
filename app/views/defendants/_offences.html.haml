@@ -27,7 +27,7 @@
           %td.govuk-table__cell
             = offence.title || t("generic.not_available")
             %span.app-body-secondary
-              = offence.legislation || t("generic.not_available")
+              = offence.legislation
           %td.govuk-table__cell
             - if offence.offence_histories
               = offence.plea_list

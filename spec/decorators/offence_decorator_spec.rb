@@ -255,4 +255,28 @@ RSpec.describe OffenceDecorator, type: :decorator do
       it { is_expected.to eql("Not available") }
     end
   end
+
+  describe "#legislation" do
+    subject(:call) { decorator.legislation }
+
+    let(:offence) { Cda::OffenceSummary.new(legislation:) }
+
+    context "when legislation exists and contains HTML tags" do
+      let(:legislation) { "<p>Some legislation</p>" }
+
+      it { is_expected.to eql("Some legislation") }
+    end
+
+    context "when legislation is nil" do
+      let(:legislation) { nil }
+
+      it { is_expected.to eql("Not available") }
+    end
+
+    context "when legislation is blank" do
+      let(:legislation) { "" }
+
+      it { is_expected.to eql("Not available") }
+    end
+  end
 end
