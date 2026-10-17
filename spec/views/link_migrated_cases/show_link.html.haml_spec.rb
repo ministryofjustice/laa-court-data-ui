@@ -25,7 +25,7 @@ RSpec.describe "link_migrated_cases/show_link.html.haml", type: :view do
           sent_date: Date.new(2024, 3, 1),
           xhibit_case_number: "X123",
           court_name: "Southwark",
-          process_errors: { "message" => "MAAT application not found" })
+          process_errors: { "maat" => { "message" => "MAAT application not found" } })
   end
 
   let(:offence_summary) do

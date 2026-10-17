@@ -69,7 +69,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
         "linked_at" => "2024-03-01",
         "linked_by" => "Jane Doe",
         "process_errors" => {
-          "message" => "MAAT application not found",
+          "maat" => { "message" => "MAAT application not found" },
         },
       },
     ]

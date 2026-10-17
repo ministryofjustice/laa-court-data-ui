@@ -10,7 +10,7 @@ FactoryBot.define do
     xhibit_case_number { "X123" }
     court_name { "Any Court" }
     case_type { "T" }
-    process_errors { { "message" => "MAAT application not found" } }
+    process_errors { { "maat" => { "message" => "MAAT application not found" } } }
 
     trait :action_required do
       status { "action_required" }

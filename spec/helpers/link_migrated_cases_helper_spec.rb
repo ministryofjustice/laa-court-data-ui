@@ -12,28 +12,32 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
   end
 
   describe "#formatted_process_errors" do
-    it "returns the original value when not a hash" do
-      expect(helper.formatted_process_errors("some error")).to eq("some error")
+    it "returns nil when there are no errors" do
+      expect(helper.formatted_process_errors(nil)).to be_nil
     end
 
-    it "formats error and message when present" do
-      err = { error: "ERR", message: "Something went wrong" }
-      expect(helper.formatted_process_errors(err)).to eq("ERR - Something went wrong")
+    it "returns the message of a single step" do
+      err = { "maat" => { "message" => "MAAT application not found" } }
+      expect(helper.formatted_process_errors(err)).to eq("MAAT application not found")
     end
 
-    it "returns only error when message absent" do
-      err = { error: "ONLY_ERR" }
-      expect(helper.formatted_process_errors(err)).to eq("ONLY_ERR")
+    it "formats error and message of a step" do
+      err = { "maat" => { "error" => 500, "message" => "Internal Server Error" } }
+      expect(helper.formatted_process_errors(err)).to eq("500 - Internal Server Error")
     end
 
-    it "returns only message when error absent" do
-      err = { "message" => "ONLY_MESSAGE" }
-      expect(helper.formatted_process_errors(err)).to eq("ONLY_MESSAGE")
+    it "joins the errors of several steps" do
+      err = {
+        "maat" => { "error" => 500, "message" => "Internal Server Error" },
+        "common_platform" => { "message" => "Case not found on Common Platform" },
+      }
+      expect(helper.formatted_process_errors(err))
+        .to eq("500 - Internal Server Error; Case not found on Common Platform")
     end
 
-    it "falls back to stringified hash when both blank" do
-      err = { error: nil, message: nil }
-      expect(helper.formatted_process_errors(err)).to eq(err.to_s)
+    it "skips steps without error or message" do
+      err = { "maat" => {}, "common_platform" => { "message" => "Case not found on Common Platform" } }
+      expect(helper.formatted_process_errors(err)).to eq("Case not found on Common Platform")
     end
   end
 
@@ -69,7 +73,7 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
         "defendant_first_name" => "John",
         "defendant_last_name" => "Doe",
         "case_urn" => "URN-1",
-        "process_errors" => { error: "E", message: "M" },
+        "process_errors" => { "maat" => { "error" => "E", "message" => "M" } },
         "defendant_id" => 555,
         "linked_at" => "2024-02-01T12:00:00Z",
         "defendant_date_of_birth" => "2024-02-02T12:00:00Z",
