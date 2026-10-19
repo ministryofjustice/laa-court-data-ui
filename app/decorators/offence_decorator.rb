@@ -29,6 +29,12 @@ class OffenceDecorator < BaseDecorator
     accessible_date(Date.parse(super))
   end
 
+  def legislation
+    return I18n.t("generic.not_available") if super.blank?
+
+    ActionView::Base.full_sanitizer.sanitize(super)
+  end
+
 private
 
   delegate :pleas, :mode_of_trial_reasons, :verdict, to: :relevant_offence_history, allow_nil: true
