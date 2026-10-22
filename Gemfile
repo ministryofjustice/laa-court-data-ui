@@ -39,7 +39,7 @@ gem "sidekiq_alive"
 gem "turbo-rails", "~> 2.0.16"
 
 group :test do
-  gem "axe-core-rspec", "~> 4.13.0"
+  gem "axe-core-rspec", "~> 4.14.0"
   gem "brakeman"
   gem "capybara"
   gem "capybara-playwright-driver"
@@ -92,7 +92,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "net-imap", "~> 0.6.7"
+gem "net-imap", "~> 0.6.8"
 gem "net-pop", "~> 0.1.2"
 gem "net-smtp", "~> 0.5.2"
 
