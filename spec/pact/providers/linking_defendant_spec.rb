@@ -24,6 +24,43 @@ RSpec.describe "linking defendant", :pact, :stub_unlinked, type: :request do
     VCR.turned_off { example.run }
   end
 
+  context "when no error occurs in the CDA API" do
+    let(:body) do
+      {
+        laa_reference: {
+          defendant_id: match_uuid(defendant_id),
+          maat_reference: match_regex(/\A[0-9]{7}\z/, maat_reference),
+          user_name: match_any_string(user.username),
+        },
+      }
+    end
+
+    let(:interaction) do
+      new_interaction
+        .given("a valid MAAT ID and defendant")
+        .upon_receiving("a request to link a defendant successfully")
+        .with_request(
+          method: :post,
+          path: "/api/internal/v2/laa_references/",
+          body:,
+          headers: {
+            "Authorization" => match_any_string(Cda::Client.instance.bearer_token),
+          },
+        )
+        .will_respond_with(status: 202)
+    end
+
+    it "redirects to the defendant page with a success message" do
+      interaction.execute do |mock_server|
+        Cda::ProsecutionCaseLaaReference.site = mock_server.url
+        post "/defendants/#{defendant_id}/link", params: params
+
+        expect(response).to redirect_to(defendant_path(id: defendant_id, urn: case_urn))
+        expect(flash[:success_moj_banner]).to eq(I18n.t("laa_reference.link.success"))
+      end
+    end
+  end
+
   context "when an error occurs in the CDA API" do
     {
       "a MAAT ID that is already linked" => "maat_reference_already_linked_contract_failure",

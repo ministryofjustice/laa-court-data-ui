@@ -281,6 +281,1617 @@
       },
       "transport": "http",
       "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to link a defendant successfully",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a valid MAAT ID and defendant"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "laa_reference": {
+              "defendant_id": "41fcb1cd-516e-438e-887a-5987d92ef90f",
+              "maat_reference": "1234567",
+              "user_name": "test_user"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Authorization": [
+            "fake-court-data-adaptor-bearer-token"
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.laa_reference.defendant_id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.laa_reference.maat_reference": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:\\A[0-9]{7}\\z)"
+                }
+              ]
+            },
+            "$.laa_reference.user_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Authorization": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/laa_references/"
+      },
+      "response": {
+        "status": 202
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search a case by URN",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a prosecution case exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "prosecution_case_reference": "TEST12345"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [
+              {
+                "defendant_summaries": [
+                  {
+                    "arrest_summons_number": "any",
+                    "date_of_birth": "any",
+                    "first_name": "any",
+                    "id": "e1d01e04-3a2b-4eed-a4fb-54f5cd257338",
+                    "last_name": "any",
+                    "middle_name": "any",
+                    "national_insurance_number": "any",
+                    "offence_summaries": []
+                  }
+                ],
+                "hearing_summaries": [],
+                "prosecution_case_reference": "TEST12345"
+              }
+            ],
+            "total_results": 10
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.results[0].defendant_summaries": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].arrest_summons_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].date_of_birth": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].first_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].last_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].middle_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].national_insurance_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.total_results": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search a case by URN",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a prosecution case exists for a URN"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "prosecution_case_reference": "TEST12345"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [
+              {
+                "defendant_summaries": [
+                  {
+                    "arrest_summons_number": "any",
+                    "date_of_birth": "any",
+                    "first_name": "any",
+                    "id": "e1d01e04-3a2b-4eed-a4fb-54f5cd257338",
+                    "last_name": "any",
+                    "middle_name": "any",
+                    "national_insurance_number": "any",
+                    "offence_summaries": []
+                  }
+                ],
+                "hearing_summaries": [],
+                "prosecution_case_reference": "TEST12345"
+              }
+            ],
+            "total_results": 10
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.results[0].defendant_summaries": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].arrest_summons_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].date_of_birth": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].first_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].last_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].middle_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].national_insurance_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.total_results": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search a defendant by ASN",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a defendant exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "arrest_summons_number": "OC22ZJATX15T"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [
+              {
+                "defendant_summaries": [
+                  {
+                    "arrest_summons_number": "any",
+                    "date_of_birth": "any",
+                    "first_name": "any",
+                    "id": "e1d01e04-3a2b-4eed-a4fb-54f5cd257338",
+                    "last_name": "any",
+                    "middle_name": "any",
+                    "national_insurance_number": "any",
+                    "offence_summaries": []
+                  }
+                ],
+                "hearing_summaries": [],
+                "prosecution_case_reference": "TEST12345"
+              }
+            ],
+            "total_results": 10
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.results[0].defendant_summaries": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].arrest_summons_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].date_of_birth": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].first_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].last_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].middle_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].national_insurance_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.total_results": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search a defendant by ASN",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a prosecution case exists for an ASN"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "arrest_summons_number": "OC22ZJATX15T"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [
+              {
+                "defendant_summaries": [
+                  {
+                    "arrest_summons_number": "any",
+                    "date_of_birth": "any",
+                    "first_name": "any",
+                    "id": "e1d01e04-3a2b-4eed-a4fb-54f5cd257338",
+                    "last_name": "any",
+                    "middle_name": "any",
+                    "national_insurance_number": "any",
+                    "offence_summaries": []
+                  }
+                ],
+                "hearing_summaries": [],
+                "prosecution_case_reference": "TEST12345"
+              }
+            ],
+            "total_results": 10
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.results[0].defendant_summaries": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].arrest_summons_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].date_of_birth": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].first_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].last_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].middle_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].national_insurance_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.total_results": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search a defendant by name and date of birth",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a defendant exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "date_of_birth": "1973-06-30",
+              "name": "Maxie Raynor"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [
+              {
+                "defendant_summaries": [
+                  {
+                    "arrest_summons_number": "any",
+                    "date_of_birth": "any",
+                    "first_name": "any",
+                    "id": "e1d01e04-3a2b-4eed-a4fb-54f5cd257338",
+                    "last_name": "any",
+                    "middle_name": "any",
+                    "national_insurance_number": "any",
+                    "offence_summaries": []
+                  }
+                ],
+                "hearing_summaries": [],
+                "prosecution_case_reference": "TEST12345"
+              }
+            ],
+            "total_results": 10
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.results[0].defendant_summaries": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].arrest_summons_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].date_of_birth": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].first_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].last_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].middle_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].national_insurance_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.total_results": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search a defendant by name and date of birth",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a prosecution case exists for a URN"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "date_of_birth": "1973-06-30",
+              "name": "Maxie Raynor"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [
+              {
+                "defendant_summaries": [
+                  {
+                    "arrest_summons_number": "any",
+                    "date_of_birth": "any",
+                    "first_name": "any",
+                    "id": "e1d01e04-3a2b-4eed-a4fb-54f5cd257338",
+                    "last_name": "any",
+                    "middle_name": "any",
+                    "national_insurance_number": "any",
+                    "offence_summaries": []
+                  }
+                ],
+                "hearing_summaries": [],
+                "prosecution_case_reference": "TEST12345"
+              }
+            ],
+            "total_results": 10
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.results[0].defendant_summaries": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].arrest_summons_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].date_of_birth": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].first_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].last_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].middle_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].national_insurance_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.total_results": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search a defendant by national insurance number",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a defendant exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "national_insurance_number": "YE744478B"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [
+              {
+                "defendant_summaries": [
+                  {
+                    "arrest_summons_number": "any",
+                    "date_of_birth": "any",
+                    "first_name": "any",
+                    "id": "e1d01e04-3a2b-4eed-a4fb-54f5cd257338",
+                    "last_name": "any",
+                    "middle_name": "any",
+                    "national_insurance_number": "any",
+                    "offence_summaries": []
+                  }
+                ],
+                "hearing_summaries": [],
+                "prosecution_case_reference": "TEST12345"
+              }
+            ],
+            "total_results": 10
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.results[0].defendant_summaries": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].arrest_summons_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].date_of_birth": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].first_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].last_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].middle_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].national_insurance_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.total_results": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search a defendant by national insurance number",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a prosecution case exists for a national insurance number"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "national_insurance_number": "YE744478B"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [
+              {
+                "defendant_summaries": [
+                  {
+                    "arrest_summons_number": "any",
+                    "date_of_birth": "any",
+                    "first_name": "any",
+                    "id": "e1d01e04-3a2b-4eed-a4fb-54f5cd257338",
+                    "last_name": "any",
+                    "middle_name": "any",
+                    "national_insurance_number": "any",
+                    "offence_summaries": []
+                  }
+                ],
+                "hearing_summaries": [],
+                "prosecution_case_reference": "TEST12345"
+              }
+            ],
+            "total_results": 10
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.results[0].defendant_summaries": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].arrest_summons_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].date_of_birth": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].first_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?i-mx:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].last_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].middle_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.results[0].defendant_summaries[*].national_insurance_number": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.total_results": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search for a case with no matching URN",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "no prosecution case exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "prosecution_case_reference": "TEST12345"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [],
+            "total_results": 0
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search for a case with no matching URN",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "no prosecution case matches the URN"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "prosecution_case_reference": "TEST12345"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [],
+            "total_results": 0
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search for a defendant by ASN with no matches",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a defendant exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "arrest_summons_number": "OC22ZJATX15T"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [],
+            "total_results": 0
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search for a defendant by ASN with no matches",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "no prosecution case exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "arrest_summons_number": "OC22ZJATX15T"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [],
+            "total_results": 0
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search for a defendant by name and date of birth with no matches",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a defendant exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "date_of_birth": "1973-06-30",
+              "name": "Maxie Raynor"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [],
+            "total_results": 0
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search for a defendant by name and date of birth with no matches",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "no prosecution case exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "date_of_birth": "1973-06-30",
+              "name": "Maxie Raynor"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [],
+            "total_results": 0
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search for a defendant by national insurance number with no matches",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a defendant exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "national_insurance_number": "YE744478B"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [],
+            "total_results": 0
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to search for a defendant by national insurance number with no matches",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "no prosecution case exists"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "filter": {
+              "national_insurance_number": "YE744478B"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/api/internal/v2/prosecution_cases//"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [],
+            "total_results": 0
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
     }
   ],
   "metadata": {
