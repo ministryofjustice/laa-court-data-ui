@@ -44,6 +44,10 @@ RUN apk --update-cache upgrade \
                   yaml-dev \
                   $(if [ "$BUNDLE_DEPLOYMENT" == "false" ]; then echo "libffi-dev"; fi)
 
+# Force upgrade of CA trust-store certs
+RUN apk add --no-cache --upgrade \
+    ca-certificates \
+    ca-certificates-bundle
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup \
