@@ -224,7 +224,7 @@ RSpec.describe Search, type: :model do
         it { is_expected.not_to be_valid }
 
         it {
-          expect(subject).to have_activemodel_error_message(:term, "Search term must contain only letters and numbers")
+          expect(subject).to have_activemodel_error_message(:term, "Search term should only contain letters, numbers or dashes")
         }
       end
 
@@ -272,12 +272,7 @@ RSpec.describe Search, type: :model do
       context "with hyphen in term" do
         let(:term) { "anne-marie" }
 
-        it { is_expected.not_to be_valid }
-
-        it {
-          expect(subject)
-            .to have_activemodel_error_message(:term, "Search term must contain only letters and numbers")
-        }
+        it { is_expected.to be_valid }
       end
 
       context "with blank dob" do
