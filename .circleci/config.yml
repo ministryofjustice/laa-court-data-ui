@@ -101,7 +101,7 @@ executors:
   cloud-platform-executor:
     resource_class: small
     docker:
-      - image: ministryofjustice/cloud-platform-tools:2.10.1
+      - image: ministryofjustice/cloud-platform-tools:2.11.3
         environment:
           GITHUB_TEAM_NAME_SLUG: laa-assess-a-claim
           REPO_NAME: laa-court-data-ui
@@ -110,6 +110,98 @@ executors:
 # COMMANDS
 # ------------------
 commands:
+  get-github-token:
+    steps:
+      - run:
+          name: Request GitHub token from Octo STS
+          command: |
+            set -euo pipefail
+            set +x
+
+            oidc_token=$(
+              circleci run oidc get --claims '{"aud":"octo-sts.dev"}'
+            )
+
+            response=$(
+              curl --fail-with-body --silent --show-error \
+                --header "Authorization: Bearer $oidc_token" \
+                --get "https://octo-sts.dev/sts/exchange" \
+                --data-urlencode "scope=ministryofjustice/laa-court-data-ui" \
+                --data-urlencode "identity=laa-court-data-ui-release-recorder"
+            )
+
+            github_token=$(
+              printf '%s' "$response" |
+                jq --exit-status --raw-output \
+                  '.token | select(type == "string" and length > 0)'
+            )
+
+            printf 'export GH_TOKEN=%q\n' "$github_token" >> "$BASH_ENV"
+
+  record-deployment-start:
+    parameters:
+      environment:
+        type: enum
+        enum: [ "dev", "test", "uat", "production" ]
+    steps:
+      - run:
+          name: Record deployment in progress
+          environment:
+            DEPLOYMENT_ENVIRONMENT: << parameters.environment >>
+          command: |
+            set -euo pipefail
+
+            repo="ministryofjustice/laa-court-data-ui"
+            production=false
+            if [[ "$DEPLOYMENT_ENVIRONMENT" == "production" ]]; then
+              production=true
+            fi
+
+            deployment_id=$(
+              jq --null-input \
+                --arg ref "$CIRCLE_SHA1" \
+                --arg environment "$DEPLOYMENT_ENVIRONMENT" \
+                --argjson production "$production" \
+                '{
+                  ref: $ref,
+                  environment: $environment,
+                  auto_merge: false,
+                  production_environment: $production,
+                  transient_environment: false,
+                  required_contexts: [],
+                  description: "Deployment from CircleCI"
+                }' |
+                gh api --method POST "repos/$repo/deployments" \
+                  --input - \
+                  --jq '.id'
+            )
+
+            printf 'export GITHUB_DEPLOYMENT_ID=%q\n' \
+              "$deployment_id" >> "$BASH_ENV"
+
+            gh api --method POST \
+              "repos/$repo/deployments/$deployment_id/statuses" \
+              -f state="in_progress" \
+              -f log_url="$CIRCLE_BUILD_URL" \
+              -f description="Deployment started" > /dev/null
+
+  record-deployment-success:
+    steps:
+      - run:
+          name: Record successful deployment
+          command: |
+            set -euo pipefail
+
+            : "${GITHUB_DEPLOYMENT_ID:?Deployment ID has not been set}"
+
+            repo="ministryofjustice/laa-court-data-ui"
+
+            gh api --method POST \
+              "repos/$repo/deployments/$GITHUB_DEPLOYMENT_ID/statuses" \
+              -f state="success" \
+              -f log_url="$CIRCLE_BUILD_URL" \
+              -f description="Deployment completed" > /dev/null
+
   install-gems:
     steps:
       - *restore-bundle
@@ -235,6 +327,9 @@ commands:
         type: string
         default: 754256621582.dkr.ecr.${ECR_REGION}.amazonaws.com
     steps:
+      - get-github-token
+      - record-deployment-start:
+          environment: << parameters.environment >>
       - aws-cli/setup:
           role_arn: $ECR_ROLE_TO_ASSUME
           region: $ECR_REGION
@@ -252,6 +347,7 @@ commands:
           name: Deploy to << parameters.environment >>
           command: |
             .circleci/deploy.sh << parameters.environment >>
+      - record-deployment-success
 
 # ------------------
 # JOBS
