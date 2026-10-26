@@ -12,9 +12,7 @@ RSpec.feature "Breadcrumb", :stub_unlinked, type: :feature do
     before { visit unauthenticated_root_path }
 
     it "breadcrumbs are not displayed" do
-      within_breadcrumbs do
-        expect(page).to have_no_text(/.+/)
-      end
+      then_breadcrumbs_are_not_displayed
     end
   end
 
@@ -26,9 +24,7 @@ RSpec.feature "Breadcrumb", :stub_unlinked, type: :feature do
 
     context "when on search filters page" do
       scenario "no breadcrumbs are displayed" do
-        within ".govuk-breadcrumbs" do
-          expect(page).to have_no_text(/.+/)
-        end
+        then_breadcrumbs_are_not_displayed
       end
     end
 
@@ -153,9 +149,7 @@ RSpec.feature "Breadcrumb", :stub_unlinked, type: :feature do
   end
 
   def then_breadcrumbs_are_not_displayed
-    within_breadcrumbs do
-      expect(page).to have_no_text(/.+/)
-    end
+    expect(page).not_to have_selector(".govuk-breadcrumbs")
   end
 
   def then_has_case_ref_search_breadcrumbs
