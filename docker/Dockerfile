@@ -1,5 +1,5 @@
 FROM node:20.20-alpine3.23 AS node
-FROM ruby:3.4.9-alpine3.23
+FROM ruby:3.4.12-alpine3.23
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Access Court Data"
 LABEL Contact="<access-court-data-team@digital.justice.gov.uk>"
@@ -7,22 +7,20 @@ LABEL Contact="<access-court-data-team@digital.justice.gov.uk>"
 # fail early and print all commands
 RUN set -ex
 
-# Get node 20.20 from the node image into the ruby image
-COPY --from=node /usr/lib /usr/lib
-COPY --from=node /usr/local/share /usr/local/share
-COPY --from=node /usr/local/lib /usr/local/lib
-COPY --from=node /usr/local/include /usr/local/include
-COPY --from=node /usr/local/bin /usr/local/bin
+# Copy only Node and Yarn; keep Alpine's system libraries from the Ruby image.
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+COPY --from=node /opt/yarn-v* /opt/yarn
+RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
+&& ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg
 
 # build dependencies:
 # --virtual: create virtual package for later deletion
 # - build-base for alpine fundamentals
-# - yarn for js dependency management
 # - git for installing gems referred to using git:// uri
 
 #
 # runtime dependencies:
-# - nodejs: for ExecJS and asset compilation
+# - libstdc++: runtime libraries for the copied Node binary
 # - libxml2-dev/libxslt-dev for nokogiri, at least
 # - postgres-dev for pg/activerecord gems
 # - tzdata - for railtie/tzinfo-data ??
@@ -31,10 +29,9 @@ COPY --from=node /usr/local/bin /usr/local/bin
 RUN apk --update-cache upgrade \
 && apk --no-cache add --upgrade --virtual build-dependencies \
                     build-base \
-                    yarn \
                     git \
 && apk --no-cache add --upgrade \
-                  nodejs \
+                  libstdc++ \
                   linux-headers \
                   libxml2-dev \
                   libxslt-dev \
