@@ -101,8 +101,14 @@ OAuth2 access token requests are configured to be be ignored by VCR to avoid pro
 This application uses [Pact](https://docs.pact.io/) to specify the API contract between this application and the
 [laa-court-data-adaptor](https://github.com/ministryofjustice/laa-court-data-adaptor).
 
-Pact tests are stored in the `spec/pacts` directory and are run as part of the test suite. The Pact tests are run
-against a mock server that simulates the responses from the laa-court-data-adaptor API.
+Pact tests are stored in the `spec/pacts` directory and are not run as part of the standard test suite. To run the
+Pact tests, you can use the following command:
+
+```
+bundle exec rspec -t pact
+```
+
+The tests are run against a mock server that simulates the responses  from the laa-court-data-adaptor API.
 
 The responses from the mock server are setup like so:
 
