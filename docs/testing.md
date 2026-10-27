@@ -95,3 +95,83 @@ OAuth2 access token requests are configured to be be ignored by VCR to avoid pro
     ```
 
     This will disable real OAuth2 access token requests. API endpoint requests should now be stubbed and therefore tests should pass with no locally running adaptor API or connectivity to hosted services. Try running tests again with no internet or local servers running.
+
+## Pact tests
+
+This application uses [Pact](https://docs.pact.io/) to specify the API contract between this application and the
+[laa-court-data-adaptor](https://github.com/ministryofjustice/laa-court-data-adaptor).
+
+Pact tests are stored in the `spec/pacts` directory and are run as part of the test suite. The Pact tests are run
+against a mock server that simulates the responses from the laa-court-data-adaptor API.
+
+The responses from the mock server are setup like so:
+
+```ruby
+interaction = new_interaction
+  .given('a valid request') # this is the provider state, which will be used by the laa-court-data-adaptor to setup the correct data for the response
+  .upon_receiving('a request for court data')
+  .with( # this is the request that will be sent to the mock server
+    method: :get,
+    path: '/court-data',
+    headers: {
+      'Content-Type' => 'application/json',
+      'Accept' => 'application/json'
+    }
+  ).will_respond_with( # this is the response that the mock server will return
+    status: 200,
+    headers: {
+      'Content-Type' => 'application/json'
+    },
+    body: {
+      court_data: [
+        {
+          id: 1,
+          name: 'Court 1'
+        },
+        {
+          id: 2,
+          name: 'Court 2'
+        }
+      ]
+    }
+  )
+```
+
+Within the Pact tests, we can then execute the interaction against the mock server and verify that the response is as
+expected. For example, if we have a class that makes a request to the laa-court-data-adaptor API like so:
+
+```ruby
+class CourtDataClient
+  self.site = ENV.fetch("COURT_DATA_ADAPTOR_API_URL")
+
+  def get_court_data
+    response = Faraday.get("#{self.site}/court-data")
+    JSON.parse(response.body)
+  end
+end
+```
+
+We can then write a Pact test that verifies that the `get_court_data` method makes the correct request to the mock
+server and returns the expected response:
+
+```ruby
+interaction.execute do |mock_server|
+  # Do something that ensures the code under test makes a request to the `mock_server`
+  CourtDataClient.site = mock_server.base_url
+  result = CourtDataClient.new.get_court_data
+
+  expect(result["court_data"]).to eq([{ "id" => 1, "name" => "Court 1" }, { "id" => 2, "name" => "Court 2" }])
+end
+```
+
+When Pact tests run, they generate a Pact file that describes the interactions between this application and the
+laa-court-data-adaptor API as JSON.
+
+On every push to a branch, the Pact tests are run, and the Pact file is generated and
+uploaded to the [Pact Broker](https://laa-data-pact-broker.apps.live.cloud-platform.service.justice.gov.uk/) via the [Pact GitHub Actions workflow](https://github.com/ministryofjustice/laa-court-data-ui/actions/workflows/pact.yml).
+
+This allows laa-court-data-adaptor to pull down the Pact file and verify that it is compatible with the API contract
+defined by this application. If there are any changes to the API contract, the Pact tests in laa-court-data-adaptor
+will fail.
+
+For more information, see the [Pact documentation](https://docs.pact.io/).
