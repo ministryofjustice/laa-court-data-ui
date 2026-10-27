@@ -119,7 +119,7 @@ commands:
             set +x
 
             oidc_token=$(
-              circleci run oidc get --claims '{"aud":"octo-sts.dev"}'
+              circleci run oidc get --v1 --claims '{"aud":"octo-sts.dev"}'
             )
 
             response=$(
