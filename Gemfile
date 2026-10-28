@@ -19,7 +19,7 @@ gem "govuk_notify_rails", "~> 3.0.0"
 
 gem "govuk-components"
 # rails GDS design system form builder
-gem "govuk_design_system_formbuilder", "~> 6.5"
+gem "govuk_design_system_formbuilder", "~> 6.6"
 gem "govuk_markdown"
 gem "haml-rails", "~> 3.1.0"
 gem "oauth2", "~> 2.0.17"
