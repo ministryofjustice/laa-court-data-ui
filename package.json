@@ -27,9 +27,9 @@
     "jquery": "4.0.0",
     "mini-css-extract-plugin": "^2.10.2",
     "postcss": "^8.5.31",
-    "sass": "^1.105.2",
+    "sass": "^1.106.1",
     "sass-loader": "^16.0.8",
-    "webpack": "^5.112.0",
+    "webpack": "^5.112.2",
     "webpack-cli": "^7.2.3",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
