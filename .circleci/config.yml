@@ -580,14 +580,14 @@ workflows:
           context: laa-court-data-e2e-tests
           requires:
             - scan-docker-image
-      - hold_install_on_dev:
+      - hold-dev:
           type: approval
           requires:
             - scan-docker-image
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
-            - hold_install_on_dev
+            - hold-dev
       - hold-test:
           type: approval
           requires:
