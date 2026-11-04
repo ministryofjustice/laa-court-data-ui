@@ -22,7 +22,7 @@ gem "govuk-components"
 gem "govuk_design_system_formbuilder", "~> 6.6"
 gem "govuk_markdown"
 gem "haml-rails", "~> 3.1.0"
-gem "oauth2", "~> 2.0.17"
+gem "oauth2", "~> 2.1.0"
 gem "omniauth_openid_connect", "0.8.0"
 gem "omniauth-rails_csrf_protection", ">= 1.0.2"
 gem "pagy"
@@ -32,8 +32,8 @@ gem "puma", ">= 5.6.4"
 gem "rails", ">= 8.1.3.1"
 gem "rails_semantic_logger"
 gem "redis", "~> 6.0.0"
-gem "sentry-rails", "~> 7.1.0"
-gem "sentry-sidekiq", "~> 7.1.0"
+gem "sentry-rails", "~> 7.2.0"
+gem "sentry-sidekiq", "~> 7.2.0"
 gem "sidekiq", "~> 8.1.7"
 gem "sidekiq_alive"
 gem "turbo-rails", "~> 2.0.16"
@@ -60,7 +60,7 @@ group :test do
   gem "rubocop-performance", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-rspec_rails", require: false
-  gem "selenium-webdriver", "~> 4.51"
+  gem "selenium-webdriver", "~> 4.52"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "simplecov-rcov"
