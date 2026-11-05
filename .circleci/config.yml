@@ -514,11 +514,11 @@ workflows:
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
-            - build-app-container
+            - scan-and-monitor-docker-image
       - hold-test:
           type: approval
           requires:
-            - build-app-container
+            - scan-and-monitor-docker-image
       - deploy-test:
           context: laa-court-data-ui-live-test
           requires:
@@ -526,7 +526,7 @@ workflows:
       - hold-uat:
           type: approval
           requires:
-            - build-app-container
+            - scan-and-monitor-docker-image
       - deploy-uat:
           context: laa-court-data-ui-live-uat
           requires:
@@ -534,14 +534,14 @@ workflows:
       - hold-production:
           type: approval
           requires:
-            - build-app-container
+            - scan-and-monitor-docker-image
       - deploy-production:
           context: laa-court-data-ui-live-production
           requires:
             - hold-production
       - e2e-test-main:
           requires:
-            - build-app-container
+            - scan-and-monitor-docker-image
 
   test-branch:
     jobs:
@@ -574,25 +574,24 @@ workflows:
                 - main
       - scan-docker-image:
           name: scan-docker-image
-          monitor: false
           requires:
             - build-app-container
       - e2e-test-branch:
           context: laa-court-data-e2e-tests
           requires:
-            - build-app-container
-      - hold_install_on_dev:
+            - scan-docker-image
+      - hold-dev:
           type: approval
           requires:
-            - build-app-container
+            - scan-docker-image
       - deploy-dev:
           context: laa-court-data-ui-live-dev
           requires:
-            - hold_install_on_dev
+            - hold-dev
       - hold-test:
           type: approval
           requires:
-            - build-app-container
+            - scan-docker-image
       - deploy-test:
           context: laa-court-data-ui-live-test
           requires:
@@ -600,7 +599,7 @@ workflows:
       - hold-uat:
           type: approval
           requires:
-            - build-app-container
+            - scan-docker-image
       - deploy-uat:
           context: laa-court-data-ui-live-uat
           requires:
