@@ -22,3 +22,4 @@ featureFlags:
   showStats: true
   showLinkMigratedCases: true
   fakeAuth: true
+  searchByXhibitRefFlag: true

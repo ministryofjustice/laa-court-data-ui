@@ -34,7 +34,7 @@ RSpec.feature "Case reference search", :js, :vcr, type: :feature do
     click_link_or_button "Continue"
     fill_in "search-term-field", with: "nonexistentcaseURN"
     click_button "Search"
-    expect(page).to have_css(".govuk-body", text: "There are no matching results")
+    expect(page).to have_css(".govuk-heading-l", text: "No search results")
 
     expect(page).to be_accessible
   end
@@ -47,7 +47,7 @@ RSpec.feature "Case reference search", :js, :vcr, type: :feature do
     fill_in "search-term-field", with: ""
     click_button "Search"
 
-    expect(page).to have_no_css(".govuk-body", text: "There are no matching results")
+    expect(page).to have_no_css(".govuk-heading-l", text: "No search results")
     expect(page).to have_css(".govuk-error-summary")
     within ".govuk-error-summary" do
       expect(page).to have_text("Search term required")
@@ -66,7 +66,7 @@ RSpec.feature "Case reference search", :js, :vcr, type: :feature do
     fill_in "search-term-field", with: "error"
     click_button "Search"
 
-    expect(page).to have_no_css(".govuk-body", text: "There are no matching results")
+    expect(page).to have_no_css(".govuk-heading-l", text: "No search results")
     expect(page).to have_css(".govuk-error-summary")
     within ".govuk-error-summary" do
       expect(page).to have_text("Unable to complete the search. Please try again in a moment.")
@@ -86,7 +86,7 @@ RSpec.feature "Case reference search", :js, :vcr, type: :feature do
     fill_in "search-term-field", with: "error"
     click_button "Search"
 
-    expect(page).to have_no_css(".govuk-body", text: "There are no matching results")
+    expect(page).to have_no_css(".govuk-heading-l", text: "No search results")
     expect(page).to have_css(".govuk-error-summary")
     within ".govuk-error-summary" do
       expect(page)

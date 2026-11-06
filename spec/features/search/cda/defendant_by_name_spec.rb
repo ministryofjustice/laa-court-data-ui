@@ -80,7 +80,7 @@ RSpec.feature "Defendant by name and dob search", :js, :vcr, type: :feature do
     fill_in "search_dob_1i", with: "1928"
     click_button "Search"
 
-    expect(page).to have_css(".govuk-body", text: "There are no matching results")
+    expect(page).to have_css(".govuk-heading-l", text: "No search results")
   end
 
   scenario "with no date of birth specified", :vcr do
@@ -91,7 +91,7 @@ RSpec.feature "Defendant by name and dob search", :js, :vcr, type: :feature do
     fill_in "search-term-field", with: "Mickey Mouse"
     click_button "Search"
 
-    expect(page).to have_no_css(".govuk-body", text: "There are no matching results")
+    expect(page).to have_no_css(".govuk-heading-l", text: "No search results")
     expect(page).to have_css(".govuk-error-summary")
     within ".govuk-error-summary" do
       expect(page).to have_text("Defendant date of birth required")
@@ -111,7 +111,7 @@ RSpec.feature "Defendant by name and dob search", :js, :vcr, type: :feature do
     fill_in "search_dob_1i", with: ""
     click_button "Search"
 
-    expect(page).to have_no_css(".govuk-body", text: "There are no matching results")
+    expect(page).to have_no_css(".govuk-heading-l", text: "No search results")
     expect(page).to have_css(".govuk-error-summary")
     within ".govuk-error-summary" do
       expect(page).to have_text("Enter a valid defendant date of birth")
@@ -131,7 +131,7 @@ RSpec.feature "Defendant by name and dob search", :js, :vcr, type: :feature do
     fill_in "search_dob_1i", with: "19900"
     click_button "Search"
 
-    expect(page).to have_no_css(".govuk-body", text: "There are no matching results")
+    expect(page).to have_no_css(".govuk-heading-l", text: "No search results")
     expect(page).to have_css(".govuk-error-summary")
     within ".govuk-error-summary" do
       expect(page).to have_text("Enter a valid defendant date of birth")

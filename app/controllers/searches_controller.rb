@@ -67,6 +67,8 @@ private
                sanitize_html(I18n.t("search.term.defendant_reference_label", asn: I18n.t("acronyms.asn_html")))
              when "defendant_name"
                I18n.t("search.term.defendant_name_label")
+             when "xhibit_case_number"
+               I18n.t("search.term.xhibit_case_number_label")
              else
                I18n.t("search.term.case_reference_label")
              end

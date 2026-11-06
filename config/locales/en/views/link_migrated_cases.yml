@@ -19,7 +19,7 @@ en:
         maat_id: "%{maat_id}"
         mode_of_trial: Mode of trial
         reason_for_man_linking_html: Reason for<br>man. linking
-        xhibit_ref: Xhibit ref.
+        xhibit_ref: Xhibit ref
       no_results: No migrated cases found
       page_title: Link migrated cases
     show_link:

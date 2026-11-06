@@ -8,6 +8,8 @@
         %th.govuk-table__header{ scope: "col" }= t("search.result.defendant.date_of_birth")
         %th.govuk-table__header{ scope: "col" }= sanitize_html(t("search.result.defendant.prosecution_case_reference", urn: t("acronyms.urn_html")))
         %th.govuk-table__header{ scope: "col" }= sanitize_html(t("search.result.defendant.arrest_summons_number", asn: t("acronyms.asn_html")))
+        - if xhibit_case_number
+          %th.govuk-table__header{ scope: "col" }= t("link_migrated_cases.index.columns.xhibit_ref")
     %tbody.govuk-table__body
       - results.each do |defendant|
         %tr.govuk-table__row
@@ -19,3 +21,6 @@
             = link_to accessible_id(defendant.prosecution_case_reference), prosecution_case_path(defendant.prosecution_case_reference), class: "govuk-link"
           %td.govuk-table__cell
             = accessible_id(defendant.arrest_summons_number)
+          - if xhibit_case_number
+            %td.govuk-table__cell
+              = accessible_id(xhibit_case_number)

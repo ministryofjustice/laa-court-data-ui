@@ -32,7 +32,7 @@ RSpec.feature "Defendant by reference search", :js, :vcr, type: :feature do
       fill_in "search-term-field", with: "GP999999B"
       click_button "Search"
 
-      expect(page).to have_css(".govuk-body", text: "There are no matching results")
+      expect(page).to have_css(".govuk-heading-l", text: "No search results")
 
       expect(page).to be_accessible
     end
@@ -45,7 +45,7 @@ RSpec.feature "Defendant by reference search", :js, :vcr, type: :feature do
       fill_in "search-term-field", with: ""
       click_button "Search"
 
-      expect(page).to have_no_css(".govuk-body", text: "There are no matching results")
+      expect(page).to have_no_css(".govuk-heading-l", text: "No search results")
       expect(page).to have_css(".govuk-error-summary")
       within ".govuk-error-summary" do
         expect(page).to have_text("Search term required")

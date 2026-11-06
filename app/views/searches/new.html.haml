@@ -8,4 +8,4 @@
                                         label: @label }
     = render partial: "error", locals: { error: @error } if @error
 .govuk-grid-row
-  = render partial: "results", locals: { results: @results, term: @term, dob: @dob, cookies_preferences_set: @cookies_preferences_set } if @results
+  = render partial: "results", locals: { results: @results, filter: @filter, term: @term, dob: @dob, cookies_preferences_set: @cookies_preferences_set } if @results
