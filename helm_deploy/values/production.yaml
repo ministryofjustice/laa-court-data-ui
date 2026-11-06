@@ -28,3 +28,4 @@ featureFlags:
   showStats: false
   showLinkMigratedCases: false
   fakeAuth: false
+  searchByXhibitRefFlag: false
