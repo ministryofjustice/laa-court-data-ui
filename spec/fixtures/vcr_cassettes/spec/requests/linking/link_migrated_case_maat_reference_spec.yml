@@ -57,8 +57,8 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":"97140ef9-3a85-4d9a-89b0-eccca35486a1","case_urn":"XAOOWDPTITQ","xhibit_case_number":"T20254007","court_name":"Derby
         Justice Centre","ou_code":"B30PI00","case_type":"T","case_sub_type":"Either
-        way offence","mode_of_trial":"Either way","defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","defendant_first_name":"John","defendant_middle_name":null,"defendant_last_name":"Yundt","defendant_date_of_birth":"1987-05-21","defendant_arrest_summons_number":"XVITYX8RAIHZ","committal_date":null,"sent_date":"2019-10-25","created_at":"2026-08-06T11:47:06.409Z","updated_at":"2026-08-12T11:06:06.508Z","status":"action_required","maat_id":null,"linked_at":null,"linked_by":null,"process_errors":{"message":"MAAT
-        application not found"}}'
+        way offence","mode_of_trial":"Either way","defendant_id":"353d829f-a3e6-425e-b325-f6f13c059f0b","defendant_first_name":"John","defendant_middle_name":null,"defendant_last_name":"Yundt","defendant_date_of_birth":"1987-05-21","defendant_arrest_summons_number":"XVITYX8RAIHZ","committal_date":null,"sent_date":"2019-10-25","created_at":"2026-08-06T11:47:06.409Z","updated_at":"2026-08-12T11:06:06.508Z","status":"action_required","maat_id":null,"linked_at":null,"linked_by":null,"process_errors":{"maat":{"message":"MAAT
+        application not found"}}}'
   recorded_at: Wed, 26 Aug 2026 21:18:30 GMT
 - request:
     method: get
