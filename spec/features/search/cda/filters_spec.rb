@@ -17,6 +17,8 @@ RSpec.feature "Search filters", :js, type: :feature do
                              text: "A defendant by ASN\nA S N\n or National insurance number")
     expect(page).to have_css(".govuk-radios__item",
                              text: "A defendant by name and date of birth")
+    expect(page).to have_css(".govuk-radios__item",
+                             text: "A migrated case by Xhibit reference")
 
     expect(page).to be_accessible
   end
@@ -47,6 +49,16 @@ RSpec.feature "Search filters", :js, type: :feature do
     choose "A case by URN"
     click_link_or_button "Continue"
     expect(page).to have_text("Unique reference number")
+
+    expect(page).to be_accessible
+  end
+
+  scenario "user chooses Xhibit reference filter" do
+    visit "/"
+
+    choose "A migrated case by Xhibit reference"
+    click_link_or_button "Continue"
+    expect(page).to have_text("Xhibit case reference")
 
     expect(page).to be_accessible
   end

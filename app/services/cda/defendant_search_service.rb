@@ -29,6 +29,8 @@ module Cda
         { name: @term, date_of_birth: @dob.to_s }
       when "defendant_reference"
         { reference.kind => reference.value }
+      when "xhibit_case_number"
+        { xhibit_case_number: @term }
       end
     end
 

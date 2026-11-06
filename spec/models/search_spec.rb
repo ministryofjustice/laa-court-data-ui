@@ -17,7 +17,8 @@ RSpec.describe Search, type: :model do
     it { is_expected.to all(be_a(SearchFilter)) }
 
     it {
-      expect(filters.map(&:id)).to include(:case_reference, :defendant_name, :defendant_reference)
+      expect(filters.map(&:id)).to include(:case_reference, :defendant_name, :defendant_reference,
+                                           :xhibit_case_number)
     }
 
     it "spells out acronyms in the label for screen readers" do

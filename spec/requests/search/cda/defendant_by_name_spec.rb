@@ -59,7 +59,7 @@ RSpec.describe "Defendant by name and dob search", type: :request do
       end
 
       it "renders results/_none template" do
-        expect(response.body).to include("There are no matching results.")
+        expect(response.body).to include("Check you have entered the details correctly")
       end
     end
   end
