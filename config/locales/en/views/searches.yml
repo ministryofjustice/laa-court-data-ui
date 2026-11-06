@@ -7,16 +7,8 @@ en:
     error:
       failure: Unable to complete the search. Please try again in a moment.
       unprocessable: Unable to complete the search. Please adjust the search terms and try again.
-    no_result:
-      body: There are no matching results.
-      body_guide: 'Improve your search results by:'
-      body_guide_four: searching for something less specific
-      body_guide_one: removing filters
-      body_guide_three: using fewer keywords
-      body_guide_two: double-checking your spelling
     page_title: Search
     result:
-      appeals_heading: "%{term} search %{result}"
       caption: Search results
       defendant:
         arrest_summons_number: "%{asn}"
@@ -28,6 +20,10 @@ en:
         no_defendants: No defendants are associated with this case
         prosecution_case_reference: Case %{urn}
         unlinked: Not linked
+      heading:
+        one: "%{count} search result"
+        other: "%{count} search results"
+        zero: No search results
       hearing:
         caption: Hearings
         heading: Hearings
@@ -52,14 +48,15 @@ en:
         heading: Representation orders
         maat_number: "%{maat_id}"
         provider: Provider
-      result: result
     term:
       case_reference_label: Unique reference number
       defendant_name_label: Defendant name
       defendant_reference_label: Defendant %{asn} or National insurance number
+      xhibit_case_number_label: Xhibit case reference
   search_filter:
     breadcrumb: Home
     legend_text: Search for
     radio_case_reference_label: A case by %{urn}
     radio_defendant_name_label_html: A defendant by name <b>and</b> date of birth
     radio_defendant_reference_label_html: A defendant by %{asn} <b>or</b> National insurance number
+    radio_xhibit_case_number_label: A migrated case by Xhibit reference

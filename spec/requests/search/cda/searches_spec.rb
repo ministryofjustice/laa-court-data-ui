@@ -26,7 +26,7 @@ RSpec.describe "Searches", type: :request do
       end
 
       it "does not display results" do
-        expect(response.body).not_to include("search results")
+        expect(response.body).not_to include("search result")
       end
     end
 
@@ -68,7 +68,7 @@ RSpec.describe "Searches", type: :request do
       let(:params) { { search: { filter: "case_reference", term: "whatever" } } }
 
       it "shows no results message" do
-        expect(response.body).to include("There are no matching results")
+        expect(response.body).to include("No search results")
       end
 
       it "returns successful response" do

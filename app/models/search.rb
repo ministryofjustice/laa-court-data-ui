@@ -16,6 +16,8 @@ class Search
               name: sanitize_html(I18n.t("search_filter.radio_defendant_reference_label_html", asn: I18n.t("acronyms.asn_html")))),
       _filter(id: :defendant_name,
               name: sanitize_html(I18n.t("search_filter.radio_defendant_name_label_html"))),
+      _filter(id: :xhibit_case_number,
+              name: I18n.t("search_filter.radio_xhibit_case_number_label")),
     ]
   end
 
