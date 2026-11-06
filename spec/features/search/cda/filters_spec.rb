@@ -62,4 +62,14 @@ RSpec.feature "Search filters", :js, type: :feature do
 
     expect(page).to be_accessible
   end
+
+  scenario "user visits search filter options when the search by Xhibit ref flag is disabled" do
+    allow(FeatureFlag).to receive(:enabled?).and_call_original
+    allow(FeatureFlag).to receive(:enabled?).with(:search_by_xhibit_ref_flag).and_return(false)
+
+    visit "/"
+
+    expect(page).to have_css(".govuk-radios__item", text: "A case by URN\nU R N")
+    expect(page).to have_no_css(".govuk-radios__item", text: "A migrated case by Xhibit reference")
+  end
 end

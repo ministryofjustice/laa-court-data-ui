@@ -91,6 +91,8 @@ spec:
               value: "{{ .Values.featureFlags.showLinkMigratedCases }}"
             - name: FAKE_AUTH
               value: "{{ .Values.featureFlags.fakeAuth }}"
+            - name: SEARCH_BY_XHIBIT_REF_FLAG
+              value: "{{ .Values.featureFlags.searchByXhibitRefFlag }}"
             - name: COURT_DATA_ADAPTOR_API_UID
               valueFrom:
                 secretKeyRef:
