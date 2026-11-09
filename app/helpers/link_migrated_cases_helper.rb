@@ -21,14 +21,6 @@ module LinkMigratedCasesHelper
     COLUMN_CONFIG[col]
   end
 
-  # CDA keys errors by processing step, e.g.
-  # { "maat" => { "error" => 500, "message" => "Internal Server Error" } }
-  def formatted_process_errors(process_errors)
-    return if process_errors.blank?
-
-    process_errors.as_json.values.map { |detail| format_process_error(detail) }.compact_blank.join("; ")
-  end
-
   def link_maat_id_url(id)
     link_to("Link MAAT ID",
             link_link_migrated_case_path(id),
@@ -101,7 +93,7 @@ private
   end
 
   def handle_reason_for_man_linking(m_case)
-    formatted_process_errors(m_case["process_errors"])
+    m_case["reason_for_manual_linking"]
   end
 
   def handle_action(m_case)

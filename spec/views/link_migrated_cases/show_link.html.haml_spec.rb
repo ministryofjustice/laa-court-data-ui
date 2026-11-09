@@ -49,8 +49,8 @@ RSpec.describe "link_migrated_cases/show_link.html.haml", type: :view do
 
     # Helpers used in the view
     allow(view).to receive_messages(service_name: "LAA",
-                                    formatted_process_errors: "MAAT application not found",
-                                    offences_defendant_path: "/offences")
+                                    offences_defendant_path: "/offences",
+                                    reason_for_manual_linking: "MAAT application not found for this defendant")
 
     allow(view).to receive(:render).and_call_original
   end
@@ -90,7 +90,7 @@ RSpec.describe "link_migrated_cases/show_link.html.haml", type: :view do
     expect(rendered).to include("1 Mar 2024")
 
     expect(rendered).to include("Reason for manual linking")
-    expect(rendered).to include("MAAT application not found")
+    expect(rendered).to include("MAAT application not found for this defendant")
   end
 
   it "renders the linking form" do

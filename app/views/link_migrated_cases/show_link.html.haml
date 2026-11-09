@@ -63,7 +63,7 @@
           %th.govuk-table__header{ scope: "row" }
             = t(".reason_for_man_linking")
           %td.govuk-table__cell
-            = formatted_process_errors(@migrated_case.process_errors)
+            = @migrated_case.reason_for_manual_linking
 
 .govuk-grid-row
   .govuk-grid-column-full

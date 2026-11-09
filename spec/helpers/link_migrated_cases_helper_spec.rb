@@ -11,36 +11,6 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
     end
   end
 
-  describe "#formatted_process_errors" do
-    it "returns nil when there are no errors" do
-      expect(helper.formatted_process_errors(nil)).to be_nil
-    end
-
-    it "returns the message of a single step" do
-      err = { "maat" => { "message" => "MAAT application not found" } }
-      expect(helper.formatted_process_errors(err)).to eq("MAAT application not found")
-    end
-
-    it "formats error and message of a step" do
-      err = { "maat" => { "error" => 500, "message" => "Internal Server Error" } }
-      expect(helper.formatted_process_errors(err)).to eq("500 - Internal Server Error")
-    end
-
-    it "joins the errors of several steps" do
-      err = {
-        "maat" => { "error" => 500, "message" => "Internal Server Error" },
-        "common_platform" => { "message" => "Case not found on Common Platform" },
-      }
-      expect(helper.formatted_process_errors(err))
-        .to eq("500 - Internal Server Error; Case not found on Common Platform")
-    end
-
-    it "skips steps without error or message" do
-      err = { "maat" => {}, "common_platform" => { "message" => "Case not found on Common Platform" } }
-      expect(helper.formatted_process_errors(err)).to eq("Case not found on Common Platform")
-    end
-  end
-
   describe "#link_maat_id_url" do
     it "returns a link to the migrated case linking page with the urn param" do
       allow(helper).to receive(:link_link_migrated_case_path)
@@ -101,11 +71,8 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
       expect(helper.column_value("case_urn_new_tab", base_case)).to eq(expected_html)
     end
 
-    it "uses formatted_process_errors for reason_for_man_linking column" do
-      allow(helper).to receive(:formatted_process_errors).and_call_original
-
+    it "returns reason_for_manual_linking for reason_for_man_linking column" do
       expect(helper.column_value("reason_for_man_linking", base_case)).to eq("E - M")
-      expect(helper).to have_received(:formatted_process_errors).with(base_case["process_errors"])
     end
 
     it "returns a link for link_maat_id column" do
