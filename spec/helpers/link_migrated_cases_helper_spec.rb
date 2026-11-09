@@ -47,6 +47,7 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
         "defendant_id" => 555,
         "linked_at" => "2024-02-01T12:00:00Z",
         "defendant_date_of_birth" => "2024-02-02T12:00:00Z",
+        "reason_for_manual_linking" => "MAAT application not found for this defendant",
         "x" => "y",
       }
     end
@@ -71,8 +72,8 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
       expect(helper.column_value("case_urn_new_tab", base_case)).to eq(expected_html)
     end
 
-    it "returns reason_for_manual_linking for reason_for_man_linking column" do
-      expect(helper.column_value("reason_for_man_linking", base_case)).to eq("E - M")
+    it "returns `reason_for_manual_linking` for `reason_for_man_linking` column" do
+      expect(helper.column_value("reason_for_man_linking", base_case)).to eq("MAAT application not found for this defendant")
     end
 
     it "returns a link for link_maat_id column" do

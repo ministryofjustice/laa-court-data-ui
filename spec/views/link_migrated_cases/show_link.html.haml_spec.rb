@@ -24,8 +24,7 @@ RSpec.describe "link_migrated_cases/show_link.html.haml", type: :view do
           committal_date: nil,
           sent_date: Date.new(2024, 3, 1),
           xhibit_case_number: "X123",
-          court_name: "Southwark",
-          process_errors: { "maat" => { "message" => "MAAT application not found" } })
+          court_name: "Southwark")
   end
 
   let(:offence_summary) do
@@ -49,8 +48,7 @@ RSpec.describe "link_migrated_cases/show_link.html.haml", type: :view do
 
     # Helpers used in the view
     allow(view).to receive_messages(service_name: "LAA",
-                                    offences_defendant_path: "/offences",
-                                    reason_for_manual_linking: "MAAT application not found for this defendant")
+                                    offences_defendant_path: "/offences")
 
     allow(view).to receive(:render).and_call_original
   end
