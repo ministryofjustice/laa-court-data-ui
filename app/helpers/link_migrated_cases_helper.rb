@@ -21,14 +21,6 @@ module LinkMigratedCasesHelper
     COLUMN_CONFIG[col]
   end
 
-  def formatted_process_errors(process_errors)
-    return process_errors unless process_errors.as_json.is_a?(Hash)
-
-    formatted_values = process_errors.as_json.with_indifferent_access.slice(:error,
-                                                                            :message).values.compact_blank
-    formatted_values.join(" - ").presence || process_errors.to_s
-  end
-
   def link_maat_id_url(id)
     link_to("Link MAAT ID",
             link_link_migrated_case_path(id),
@@ -76,6 +68,10 @@ module LinkMigratedCasesHelper
 
 private
 
+  def format_process_error(detail)
+    detail.values_at("error", "message").compact_blank.join(" - ")
+  end
+
   def handle_defendant_name(m_case)
     [m_case["defendant_first_name"], m_case["defendant_last_name"]].compact.join(" ")
   end
@@ -97,7 +93,7 @@ private
   end
 
   def handle_reason_for_man_linking(m_case)
-    formatted_process_errors(m_case["process_errors"])
+    m_case["reason_for_manual_linking"]
   end
 
   def handle_action(m_case)

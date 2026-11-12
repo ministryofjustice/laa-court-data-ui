@@ -68,9 +68,7 @@ RSpec.describe "link_migrated_cases/index.html.haml", type: :view do
         "defendant_date_of_birth" => "01/01/1990",
         "linked_at" => "2024-03-01",
         "linked_by" => "Jane Doe",
-        "process_errors" => {
-          "message" => "MAAT application not found",
-        },
+        "reason_for_manual_linking" => "MAAT application not found",
       },
     ]
   end

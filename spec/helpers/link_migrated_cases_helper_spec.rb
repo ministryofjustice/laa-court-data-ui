@@ -11,32 +11,6 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
     end
   end
 
-  describe "#formatted_process_errors" do
-    it "returns the original value when not a hash" do
-      expect(helper.formatted_process_errors("some error")).to eq("some error")
-    end
-
-    it "formats error and message when present" do
-      err = { error: "ERR", message: "Something went wrong" }
-      expect(helper.formatted_process_errors(err)).to eq("ERR - Something went wrong")
-    end
-
-    it "returns only error when message absent" do
-      err = { error: "ONLY_ERR" }
-      expect(helper.formatted_process_errors(err)).to eq("ONLY_ERR")
-    end
-
-    it "returns only message when error absent" do
-      err = { "message" => "ONLY_MESSAGE" }
-      expect(helper.formatted_process_errors(err)).to eq("ONLY_MESSAGE")
-    end
-
-    it "falls back to stringified hash when both blank" do
-      err = { error: nil, message: nil }
-      expect(helper.formatted_process_errors(err)).to eq(err.to_s)
-    end
-  end
-
   describe "#link_maat_id_url" do
     it "returns a link to the migrated case linking page with the urn param" do
       allow(helper).to receive(:link_link_migrated_case_path)
@@ -69,10 +43,11 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
         "defendant_first_name" => "John",
         "defendant_last_name" => "Doe",
         "case_urn" => "URN-1",
-        "process_errors" => { error: "E", message: "M" },
+        "process_errors" => { "maat" => { "error" => "E", "message" => "M" } },
         "defendant_id" => 555,
         "linked_at" => "2024-02-01T12:00:00Z",
         "defendant_date_of_birth" => "2024-02-02T12:00:00Z",
+        "reason_for_manual_linking" => "MAAT application not found for this defendant",
         "x" => "y",
       }
     end
@@ -97,11 +72,8 @@ RSpec.describe LinkMigratedCasesHelper, type: :helper do
       expect(helper.column_value("case_urn_new_tab", base_case)).to eq(expected_html)
     end
 
-    it "uses formatted_process_errors for reason_for_man_linking column" do
-      allow(helper).to receive(:formatted_process_errors).and_call_original
-
-      expect(helper.column_value("reason_for_man_linking", base_case)).to eq("E - M")
-      expect(helper).to have_received(:formatted_process_errors).with(base_case["process_errors"])
+    it "returns `reason_for_manual_linking` for `reason_for_man_linking` column" do
+      expect(helper.column_value("reason_for_man_linking", base_case)).to eq("MAAT application not found for this defendant")
     end
 
     it "returns a link for link_maat_id column" do
