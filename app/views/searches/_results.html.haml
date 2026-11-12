@@ -1,7 +1,8 @@
 .govuk-grid-column-two-thirds
   = render partial: "results_header", locals: { term: term, dob: dob, results: results }
 - if results.empty?
-  = render "results/none"
+  = render partial: "results/none", locals: { filter: filter }
 - else
   .govuk-grid-column-full
-    = render partial: "results/defendant", locals: { results: results }
+    = render partial: "results/defendant",
+             locals: { results: results, xhibit_case_number: (term.strip.upcase if filter == "xhibit_case_number") }
