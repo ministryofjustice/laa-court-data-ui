@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem "activeresource", "~> 6.2.0"
 gem "array_enum"
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.7.0", require: false
+gem "bootsnap", require: false
 
 gem "breadcrumbs_on_rails"
 gem "cancancan"
