@@ -23,7 +23,6 @@ en:
       heading:
         one: "%{count} search result"
         other: "%{count} search results"
-        zero: No search results
       hearing:
         caption: Hearings
         heading: Hearings
