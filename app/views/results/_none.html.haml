@@ -1,6 +1,8 @@
 .govuk-grid-column-two-thirds
+  %p{ class: "govuk-body govuk-!-font-weight-bold" } There are no matching results.
+  %p.govuk-body Improve your search results by:
   %ul.govuk-list.govuk-list--bullet
-    - if filter == "xhibit_case_number"
-      %li The case might not have been migrated yet
-    %li Check you have entered the details correctly
-    %li If the details are correct but you don’t get a result,<br>email #{mail_to "mojprod@service-now.com", class: "govuk-link"}.
+    %li removing filters
+    %li double-checking your spelling
+    %li using fewer keywords
+    %li searching for something less specific

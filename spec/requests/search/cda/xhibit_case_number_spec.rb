@@ -53,11 +53,7 @@ RSpec.describe "Xhibit case number search", type: :request do
     end
 
     it "renders results/_none template" do
-      expect(response.body).to include("Check you have entered the details correctly")
-    end
-
-    it "shows the not migrated guidance" do
-      expect(response.body).to include("The case might not have been migrated yet")
+      expect(response.body).to include("There are no matching results.")
     end
   end
 end

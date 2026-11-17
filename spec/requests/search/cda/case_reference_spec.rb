@@ -50,15 +50,11 @@ RSpec.describe "case reference search", :stub_defendants_case_search, type: :req
       end
 
       it "renders searches/_results_header" do
-        expect(response.body).to include("No search results")
+        expect(response.body).to include("0 search results")
       end
 
       it "renders results/_none template" do
-        expect(response.body).to include("Check you have entered the details correctly")
-      end
-
-      it "does not show the not migrated guidance" do
-        expect(response.body).not_to include("The case might not have been migrated yet")
+        expect(response.body).to include("There are no matching results.")
       end
     end
   end
