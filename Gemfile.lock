@@ -704,7 +704,7 @@ DEPENDENCIES
   amazing_print
   array_enum
   axe-core-rspec (~> 4.14.0)
-  bootsnap (>= 1.7.0)
+  bootsnap
   brakeman
   breadcrumbs_on_rails
   cancancan
