@@ -79,7 +79,7 @@ search:
   # only: ["*.rb", "*.html.slim"]
 
   ## If `strict` is `false`, guess usages such as t("categories.#{category}.title"). The default is `true`.
-  # strict: true
+  strict: false
 
   ## Multiple scanners can be used. Their results are merged.
   ## The options specified above are passed down to each scanner. Per-scanner options can be specified as well.
@@ -110,19 +110,19 @@ search:
 # ignore devise specific translations
 # as they are called by the gem not the app.
 ignore_unused:
-- devise.*
-- errors.messages.already_confirmed
-- errors.messages.confirmation_period_expired
-- errors.messages.expired
-- errors.messages.not_found
-- errors.messages.not_locked
-- unauthorized.*
-- date.formats.*
-- activemodel.errors.models.*
-- activerecord.errors.models.*
-- court_applications.results.*
-- cda_errors.*
-- pagy.*
+  - devise.*
+  - errors.messages.already_confirmed
+  - errors.messages.confirmation_period_expired
+  - errors.messages.expired
+  - errors.messages.not_found
+  - errors.messages.not_locked
+  - unauthorized.*
+  - date.formats.*
+  - activemodel.errors.models.*
+  - activerecord.errors.models.*
+  - court_applications.results.*
+  - cda_errors.*
+  - pagy.*
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:
