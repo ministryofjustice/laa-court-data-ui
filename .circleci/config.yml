@@ -142,7 +142,7 @@ commands:
     parameters:
       environment:
         type: enum
-        enum: [ "dev", "test", "uat", "production" ]
+        enum: ["dev", "test", "uat", "production"]
     steps:
       - run:
           name: Record deployment in progress

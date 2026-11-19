@@ -1,5 +1,5 @@
-FROM node:22.23-alpine3.23 AS node
-FROM ruby:3.4.12-alpine3.23
+FROM node:22.23-alpine3.24 AS node
+FROM ruby:3.4.13-alpine3.24
 LABEL Organisation="Ministry of Justice"
 LABEL Team="LAA Access Court Data"
 LABEL Contact="<access-court-data-team@digital.justice.gov.uk>"
