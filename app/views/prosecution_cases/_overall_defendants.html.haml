@@ -1,4 +1,4 @@
-%h2.govuk-heading-l{ class: "govuk-!-margin-bottom-4" }
+%h2.govuk-heading-l{ class: "govuk-!-margin-bottom-4", aria: { hidden: "true" } }
   = t("search.result.defendant.heading")
 - if case_summary.defendants
   .moj-scrollable-pane{ role: "region", aria: { label: t("search.result.defendant.caption") }, tabindex: "0" }
