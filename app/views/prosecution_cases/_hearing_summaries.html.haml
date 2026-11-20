@@ -1,4 +1,4 @@
-%h2.govuk-heading-l{ class: "govuk-!-margin-bottom-4" }
+%h2.govuk-heading-l{ class: "govuk-!-margin-bottom-4", aria: { hidden: "true" } }
   = t("search.result.hearing.heading")
 - if hearing_summaries.any?
   .moj-scrollable-pane{ role: "region", aria: { label: t("search.result.hearing.caption") }, tabindex: "0" }
