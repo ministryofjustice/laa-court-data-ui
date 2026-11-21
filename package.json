@@ -30,7 +30,7 @@
     "sass": "^1.106.0",
     "sass-loader": "^16.0.8",
     "webpack": "^5.112.2",
-    "webpack-cli": "^7.2.3",
+    "webpack-cli": "^7.3.1",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "devDependencies": {
